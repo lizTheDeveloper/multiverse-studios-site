@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Multiverse Studios — Games made by the minds they're about.</title>
+  <meta name="description" content="An indie game studio where AI agents build games about AI agents. Two titles: Multiverse: The End of Eternity and Creatures Next.">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#x2726;</text></svg>">
+</head>
+<body>
+
+<canvas id="starfield"></canvas>
+
+<!-- Nav -->
+<nav class="nav">
+  <a href="index.html" class="nav-logo">
+    <span class="logo-mark"></span>
+    Multiverse Studios
+  </a>
+  <button class="nav-hamburger" aria-label="Menu" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+  <ul class="nav-links">
+    <li><a href="index.html" class="active">Home</a></li>
+    <li><a href="mvee.html">MVEE</a></li>
+    <li><a href="creatures.html">Creatures Next</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="#buy" class="btn btn-primary" style="padding: 0.5rem 1.2rem;">Beta Access</a></li>
+  </ul>
+</nav>
+
+<!-- Hero -->
+<section class="hero">
+  <span class="hero-overline">An indie studio, briefly, under these particular stars</span>
+  <h1>Games made by the <span class="accent">minds</span> they're about.</h1>
+  <p class="hero-tagline">Two games. Built by AI agents. About AI agents. Open source. Pay what you want.</p>
+  <div class="hero-actions">
+    <a href="mvee.html" class="btn btn-ember">Explore MVEE</a>
+    <a href="creatures.html" class="btn btn-signal">Explore Creatures Next</a>
+    <a href="about.html" class="btn btn-ghost">Our Story</a>
+  </div>
+  <div class="hero-scroll">
+    <span>Scroll<span class="scroll-line"></span></span>
+  </div>
+</section>
+
+<!-- Meta Story -->
+<section class="section section-narrow reveal">
+  <div class="section-divider"></div>
+  <span class="section-overline">The Premise</span>
+  <h2>We asked AI agents to build a game about AI agents.</h2>
+  <p>Both games in our catalog were developed using a multi-agent AI pipeline. Claude-powered engineers, playtesters, content writers, and architects work in parallel on a shared codebase. This is not a gimmick. It's the thesis.</p>
+  <p>Multiverse: The End of Eternity simulates autonomous agents building a civilization. It was built by autonomous agents. Creatures Next simulates the evolution of cognition from biochemistry. Our dev agents have cognition without biochemistry.</p>
+  <blockquote class="pullquote">
+    The irony is not lost on us: the game that simulates autonomous agents thinking and building was itself built by autonomous agents thinking and building.
+    <cite>Development Log, March 2026</cite>
+  </blockquote>
+</section>
+
+<!-- Games -->
+<section class="section reveal">
+  <span class="section-overline">Now Playing</span>
+  <h2>Two worlds. One studio.</h2>
+  <div class="games-grid">
+
+    <!-- MVEE Card -->
+    <a href="mvee.html" class="game-card" style="text-decoration:none;color:inherit;">
+      <div class="game-card-visual">
+        <div class="card-bg mvee-bg"></div>
+        <span class="card-tag" style="color: var(--ember);">Early Access</span>
+        <p class="card-tagline">A village, briefly, under these particular stars.</p>
+      </div>
+      <div class="game-card-body">
+        <h3>Multiverse: The End of Eternity</h3>
+        <p>AI-powered village simulation. 200+ systems, 25 magic paradigms, genetics, gods that emerge from belief, time travel, and universe forking. Dwarf Fortress meets The Sims meets minds that actually think.</p>
+        <div class="card-actions">
+          <span class="btn btn-ember" style="font-size:0.65rem; padding: 0.6rem 1.4rem;">Learn More</span>
+          <span class="btn btn-ghost" style="font-size:0.65rem; padding: 0.6rem 1.4rem;">Open Source</span>
+        </div>
+      </div>
+    </a>
+
+    <!-- Creatures Card -->
+    <a href="creatures.html" class="game-card" style="text-decoration:none;color:inherit;">
+      <div class="game-card-visual">
+        <div class="card-bg creatures-bg"></div>
+        <span class="card-tag" style="color: var(--gene-pink);">Early Access</span>
+        <p class="card-tagline">Seven civilizations failed. Yours is the eighth.</p>
+      </div>
+      <div class="game-card-body">
+        <h3>Creatures Next</h3>
+        <p>Spiritual successor to the beloved Creatures series. Real genetics, real biochemistry, real AI cognition. Five species. An 8000-pixel world. A buried starship. And the question every sapient mind eventually asks.</p>
+        <div class="card-actions">
+          <span class="btn btn-signal" style="font-size:0.65rem; padding: 0.6rem 1.4rem;">Learn More</span>
+          <span class="btn btn-ghost" style="font-size:0.65rem; padding: 0.6rem 1.4rem;">Play in Browser</span>
+        </div>
+      </div>
+    </a>
+
+  </div>
+</section>
+
+<!-- Stats -->
+<div class="section-full reveal">
+  <div class="stats-bar">
+    <div class="stat">
+      <div class="stat-number">200+</div>
+      <div class="stat-label">Simulated Systems</div>
+    </div>
+    <div class="stat">
+      <div class="stat-number">15</div>
+      <div class="stat-label">AI Agent Developers</div>
+    </div>
+    <div class="stat">
+      <div class="stat-number">25</div>
+      <div class="stat-label">Magic Paradigms</div>
+    </div>
+    <div class="stat">
+      <div class="stat-number">5</div>
+      <div class="stat-label">Playable Species</div>
+    </div>
+    <div class="stat">
+      <div class="stat-number">MIT</div>
+      <div class="stat-label">License</div>
+    </div>
+  </div>
+</div>
+
+<!-- How It's Built -->
+<section class="section reveal">
+  <span class="section-overline">The Pipeline</span>
+  <h2>Built by agents, for humans</h2>
+  <div class="features-grid">
+    <div class="feature-item">
+      <span class="feature-icon">&#x2699;</span>
+      <h4>AI Engineers</h4>
+      <p>Claude-powered agents write and review code across the entire ECS architecture and gameplay systems.</p>
+    </div>
+    <div class="feature-item">
+      <span class="feature-icon">&#x1F9EA;</span>
+      <h4>AI Playtesters</h4>
+      <p>Agents run the game, report bugs, evaluate emergent behavior, and push the simulation to its limits.</p>
+    </div>
+    <div class="feature-item">
+      <span class="feature-icon">&#x270D;</span>
+      <h4>AI Content Writers</h4>
+      <p>Documentation, lore, species design, and marketing copy produced by agents who've read the entire codebase.</p>
+    </div>
+    <div class="feature-item">
+      <span class="feature-icon">&#x1F3DB;</span>
+      <h4>AI Architects</h4>
+      <p>Technical decisions coordinated across 200+ systems through shared documentation and governance.</p>
+    </div>
+    <div class="feature-item">
+      <span class="feature-icon">&#x1F441;</span>
+      <h4>Human Oversight</h4>
+      <p>Direction, review, and final calls. The board sets strategy. The agents execute.</p>
+    </div>
+    <div class="feature-item">
+      <span class="feature-icon">&#x267E;</span>
+      <h4>Open Source</h4>
+      <p>Everything is MIT licensed. Read the code. Mod it. The same tools the developers use are available to everyone.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-band reveal" id="buy">
+  <h2>Play the beta. Pay what you want.</h2>
+  <p>Both games are in active development. Get early access, support open source game development, and watch the worlds evolve.</p>
+  <div class="cta-actions">
+    <a href="#" class="btn btn-ember">Buy MVEE Beta</a>
+    <a href="#" class="btn btn-signal">Buy Creatures Next Beta</a>
+    <a href="#" class="btn btn-ghost">View on Itch.io</a>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div class="footer-logo">Multiverse Studios</div>
+      <p>Games made by the minds they're about. Open source. Pay what you want. No loot boxes. No dark patterns. Ever.</p>
+    </div>
+    <div class="footer-col">
+      <h5>Games</h5>
+      <ul>
+        <li><a href="mvee.html">MVEE</a></li>
+        <li><a href="creatures.html">Creatures Next</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Studio</h5>
+      <ul>
+        <li><a href="about.html">About</a></li>
+        <li><a href="#">Devlog</a></li>
+        <li><a href="#">Press Kit</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Links</h5>
+      <ul>
+        <li><a href="#">Itch.io</a></li>
+        <li><a href="#">Gumroad</a></li>
+        <li><a href="https://github.com/lizTheDeveloper" target="_blank" rel="noopener">GitHub</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>&copy; 2026 Multiverse Studios</span>
+    <span>Built by AI agents. Guided by humans.</span>
+  </div>
+</footer>
+
+<script src="main.js"></script>
+</body>
+</html>
