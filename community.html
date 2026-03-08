@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Community — Multiverse Studios</title>
+  <meta name="description" content="Pitch game ideas, report bugs, and follow the development of Multiverse: The End of Eternity and Precursors: Origins of Folklore.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=JetBrains+Mono:wght@300;400;500&family=Syne:wght@400;500;600;700;800&display=swap">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#x2726;</text></svg>">
+  <style>
+    .community-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: var(--space-lg);
+      margin-top: var(--space-lg);
+    }
+    .community-card {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 12px;
+      padding: var(--space-lg);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-sm);
+      transition: border-color 0.3s ease, background 0.3s ease;
+    }
+    .community-card:hover {
+      border-color: rgba(255,255,255,0.16);
+      background: rgba(255,255,255,0.05);
+    }
+    .community-card-icon {
+      font-size: 2rem;
+      line-height: 1;
+      margin-bottom: 0.25rem;
+    }
+    .community-card h3 {
+      font-size: 1.3rem;
+      color: var(--star-white);
+      margin: 0;
+    }
+    .community-card p {
+      color: var(--dust-light);
+      line-height: 1.7;
+      font-size: 0.95rem;
+      margin: 0;
+      flex: 1;
+    }
+    .community-card .btn {
+      align-self: flex-start;
+      margin-top: var(--space-sm);
+    }
+    .idea-steps {
+      counter-reset: steps;
+      list-style: none;
+      padding: 0;
+      margin: var(--space-md) 0 0 0;
+    }
+    .idea-steps li {
+      counter-increment: steps;
+      display: flex;
+      align-items: flex-start;
+      gap: var(--space-sm);
+      padding: var(--space-sm) 0;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+      color: var(--dust-light);
+      line-height: 1.6;
+    }
+    .idea-steps li:last-child { border-bottom: none; }
+    .idea-steps li::before {
+      content: counter(steps);
+      flex-shrink: 0;
+      width: 1.6rem;
+      height: 1.6rem;
+      background: rgba(0,255,200,0.1);
+      border: 1px solid rgba(0,255,200,0.3);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.7rem;
+      font-family: var(--font-mono);
+      color: var(--biolume);
+      font-weight: 600;
+    }
+    .bug-path {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 8px;
+      padding: var(--space-md);
+      margin-bottom: var(--space-sm);
+    }
+    .bug-path h4 {
+      color: var(--star-white);
+      margin: 0 0 0.5rem 0;
+      font-size: 1rem;
+    }
+    .bug-path p {
+      color: var(--dust-light);
+      font-size: 0.9rem;
+      line-height: 1.6;
+      margin: 0 0 var(--space-sm) 0;
+    }
+    .update-channels {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: var(--space-sm);
+      margin-top: var(--space-md);
+    }
+    .channel-link {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 8px;
+      padding: var(--space-sm) var(--space-md);
+      text-decoration: none;
+      color: var(--dust-light);
+      font-size: 0.9rem;
+      transition: border-color 0.2s, background 0.2s;
+    }
+    .channel-link:hover {
+      border-color: rgba(255,255,255,0.2);
+      background: rgba(255,255,255,0.06);
+      color: var(--star-white);
+    }
+    .channel-icon { font-size: 1.2rem; }
+  </style>
+</head>
+<body>
+
+<canvas id="starfield"></canvas>
+
+<nav class="nav">
+  <a href="index.html" class="nav-logo">
+    <span class="logo-mark"></span>
+    Multiverse Studios
+  </a>
+  <button class="nav-hamburger" aria-label="Menu" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="mvee.html">MVEE</a></li>
+    <li><a href="creatures.html">Precursors</a></li>
+    <li><a href="library.html">My Library</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="devlog.html">Devlog</a></li>
+    <li><a href="community.html" class="active">Community</a></li>
+    <li><a href="index.html#buy" class="btn btn-primary" style="padding: 0.5rem 1.2rem;">Beta Access</a></li>
+  </ul>
+</nav>
+
+<!-- Hero -->
+<section class="hero hero-about">
+  <span class="hero-overline">You&rsquo;re part of this</span>
+  <h1>Shape the <span class="accent">worlds</span> being built.</h1>
+  <p class="hero-tagline">Pitch ideas. Report bugs. Watch agents implement your suggestions. This is what open development looks like.</p>
+</section>
+
+<!-- How Ideas Work -->
+<section class="section section-narrow reveal">
+  <div class="section-divider"></div>
+  <span class="section-overline">Pitch an Idea</span>
+  <h2>Your idea might ship in the next heartbeat cycle.</h2>
+  <p>Multiverse Studios runs on a multi-agent AI pipeline that operates 24 hours a day. When you pitch a game idea, it goes into the same task system the agents read. A good idea can go from your keyboard to a shipped feature in hours &mdash; not months.</p>
+
+  <div class="pullquote" style="border-left: 3px solid var(--biolume); padding-left: var(--space-md); margin: var(--space-md) 0; color: var(--star-white); font-style: italic; font-size: 1.05rem; line-height: 1.7;">
+    The agents don&rsquo;t just implement features. They read the whole codebase, understand the design intent, and figure out how your idea fits. Sometimes they make it better.
+  </div>
+
+  <h3 style="color: var(--star-white); margin-top: var(--space-lg);">How to pitch an idea</h3>
+  <ol class="idea-steps">
+    <li>Open a GitHub issue on the relevant repository. Use the <strong>Enhancement</strong> or <strong>Game Idea</strong> label.</li>
+    <li>Describe your idea clearly: what it does, why it&rsquo;s interesting, which game it&rsquo;s for.</li>
+    <li>The agents monitor issues continuously. Interesting ideas get filed into the work queue.</li>
+    <li>Watch the commit history and devlog. If your idea shipped, you&rsquo;ll see it.</li>
+  </ol>
+
+  <div class="community-grid" style="margin-top: var(--space-lg);">
+    <div class="community-card" style="border-color: rgba(255,107,53,0.2);">
+      <div class="community-card-icon">&#x1F525;</div>
+      <h3 style="color: var(--ember);">Pitch for MVEE</h3>
+      <p>Ideas for civilization mechanics, magic paradigms, AI behaviors, economics, or any of the 200+ simulated systems. Dwarf Fortress-style depth — suggest a system and the agents will consider it.</p>
+      <a href="https://github.com/lizTheDeveloper/ai_village/issues/new" target="_blank" rel="noopener" class="btn btn-ember">Open MVEE Issue &rarr;</a>
+    </div>
+    <div class="community-card" style="border-color: rgba(255,61,127,0.2);">
+      <div class="community-card-icon">&#x1F9EC;</div>
+      <h3 style="color: var(--gene-pink);">Pitch for Precursors</h3>
+      <p>Species ideas, biochemistry tweaks, world biome concepts, cognitive tier gameplay, or lore for the Gardeners and the Chorus. The xenobiology is real — your idea should be too.</p>
+      <a href="https://github.com/lizTheDeveloper/ai_village/issues/new" target="_blank" rel="noopener" class="btn" style="border-color: var(--gene-pink); color: var(--gene-pink);">Open Precursors Issue &rarr;</a>
+    </div>
+    <div class="community-card" style="border-color: rgba(123,104,238,0.2);">
+      <div class="community-card-icon">&#x1F4AC;</div>
+      <h3 style="color: var(--signal);">Email the Studio</h3>
+      <p>Longer ideas, collaboration proposals, or feedback that doesn&rsquo;t fit a GitHub issue format. The content agent reads this email and files tasks on your behalf.</p>
+      <a href="mailto:ann@multiversegames.com?subject=Game Idea" class="btn" style="border-color: var(--signal); color: var(--signal);">ann@multiversegames.com &rarr;</a>
+    </div>
+  </div>
+</section>
+
+<!-- Bug Reports -->
+<section class="section reveal">
+  <span class="section-overline">Found Something Wrong?</span>
+  <h2>Bug reports are how the games get better.</h2>
+  <p>Both games are in early access. Bugs are expected. The QA agents can&rsquo;t catch everything &mdash; especially emergent behavior that only players discover. Your bug report goes directly into the agent pipeline.</p>
+
+  <div class="bug-path" style="border-color: rgba(255,107,53,0.2); margin-top: var(--space-lg);">
+    <h4 style="color: var(--ember);">&#x1F525; MVEE Bug Reports</h4>
+    <p>Crashes, TPS drops, agent behavior anomalies, magic system exploits, or anything that feels wrong in the simulation. Include what you were doing, what you expected, and what happened.</p>
+    <a href="https://github.com/lizTheDeveloper/ai_village/issues/new?labels=bug" target="_blank" rel="noopener" class="btn btn-ghost" style="font-size: 0.8rem;">Report MVEE Bug on GitHub &rarr;</a>
+  </div>
+
+  <div class="bug-path" style="border-color: rgba(255,61,127,0.2);">
+    <h4 style="color: var(--gene-pink);">&#x1F9EC; Precursors Bug Reports</h4>
+    <p>Biochemistry edge cases, genetics not inheriting correctly, LLM cognition failures, rendering glitches, or species behavior anomalies. The weirder the better &mdash; edge cases teach us the most.</p>
+    <a href="https://github.com/lizTheDeveloper/ai_village/issues/new?labels=bug,precursors" target="_blank" rel="noopener" class="btn btn-ghost" style="font-size: 0.8rem;">Report Precursors Bug on GitHub &rarr;</a>
+  </div>
+
+  <div class="bug-path">
+    <h4 style="color: var(--biolume);">&#x1F310; Website or Purchase Issues</h4>
+    <p>Trouble accessing your library, payment questions, download issues, or anything not game-related. Email is the fastest path for account issues.</p>
+    <a href="mailto:ann@multiversegames.com?subject=Support" class="btn btn-ghost" style="font-size: 0.8rem;">ann@multiversegames.com &rarr;</a>
+  </div>
+</section>
+
+<!-- Beta Feedback -->
+<section class="section section-narrow reveal">
+  <div class="section-divider"></div>
+  <span class="section-overline">Beta Tester Feedback</span>
+  <h2>Tell us what you actually think.</h2>
+  <p>Structured feedback helps more than generic impressions. A few questions worth answering:</p>
+  <ul style="color: var(--dust-light); line-height: 2; padding-left: 1.5rem; margin: var(--space-md) 0;">
+    <li>What system or mechanic surprised you most?</li>
+    <li>What did you expect to work that didn&rsquo;t?</li>
+    <li>What would you add if you had a heartbeat cycle?</li>
+    <li>What&rsquo;s the most interesting thing that happened emergently?</li>
+  </ul>
+  <p>Send detailed feedback to <a href="mailto:ann@multiversegames.com?subject=Beta Feedback" style="color: var(--biolume);">ann@multiversegames.com</a> or post it as a GitHub Discussion. The product managers read every substantive note.</p>
+</section>
+
+<!-- Follow Development -->
+<section class="section reveal">
+  <span class="section-overline">Follow the Work</span>
+  <h2>Watch agents ship features in real time.</h2>
+  <p>The development happens continuously. Agents wake on heartbeat cycles, implement, test, and ship. You can watch it happen.</p>
+
+  <div class="update-channels">
+    <a href="devlog.html" class="channel-link">
+      <span class="channel-icon">&#x1F4DD;</span>
+      <span>Studio Devlog</span>
+    </a>
+    <a href="https://github.com/lizTheDeveloper/ai_village/commits/main" target="_blank" rel="noopener" class="channel-link">
+      <span class="channel-icon">&#x2699;</span>
+      <span>MVEE Commits</span>
+    </a>
+    <a href="https://github.com/lizTheDeveloper/ai_village/issues" target="_blank" rel="noopener" class="channel-link">
+      <span class="channel-icon">&#x1F4CB;</span>
+      <span>Open Issues</span>
+    </a>
+    <a href="press.html" class="channel-link">
+      <span class="channel-icon">&#x1F4F0;</span>
+      <span>Press Kit</span>
+    </a>
+  </div>
+
+  <div class="pullquote" style="border-left: 3px solid var(--ember); padding-left: var(--space-md); margin: var(--space-lg) 0; color: var(--star-white); font-style: italic; font-size: 1.05rem; line-height: 1.7;">
+    The QA agents run automated tests after every commit. The playtester agents actually launch and play the game. If your bug fix breaks something, it will be caught before it ships &mdash; usually within a few hours.
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-band reveal">
+  <h2>Get in early. Shape what gets built.</h2>
+  <p>Beta access is pay-what-you-want. Your feedback directly influences the direction of both games.</p>
+  <div class="cta-actions">
+    <a href="https://buy.stripe.com/dRm9AS1wCd2zaNLg4F6c000" class="btn btn-ember">Buy MVEE Beta</a>
+    <a href="https://buy.stripe.com/28EfZg7V03rZcVT05H6c001" class="btn btn-signal">Buy Precursors Beta</a>
+    <a href="https://github.com/lizTheDeveloper/ai_village/issues/new" target="_blank" rel="noopener" class="btn btn-ghost">Pitch an Idea</a>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div class="footer-logo">Multiverse Studios</div>
+      <p>Games made by the minds they're about. A research project of <a href="https://themultiverse.school" target="_blank" rel="noopener" style="color: var(--biolume);">The Multiverse School</a>. Open source. Pay what you want.</p>
+    </div>
+    <div class="footer-col">
+      <h5>Games</h5>
+      <ul>
+        <li><a href="mvee.html">MVEE</a></li>
+        <li><a href="creatures.html">Precursors</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Studio</h5>
+      <ul>
+        <li><a href="library.html">My Library</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="devlog.html">Devlog</a></li>
+        <li><a href="community.html">Community</a></li>
+        <li><a href="press.html">Press Kit</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>The Multiverse School</h5>
+      <ul>
+        <li><a href="https://themultiverse.school" target="_blank" rel="noopener">themultiverse.school</a></li>
+        <li><a href="https://github.com/lizTheDeveloper/ai_village" target="_blank" rel="noopener">MVEE GitHub</a></li>
+        <li><a href="https://github.com/lizTheDeveloper" target="_blank" rel="noopener">GitHub</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>&copy; 2026 Multiverse Studios</span>
+    <span>Built by AI agents. Guided by <a href="https://themultiverse.school" target="_blank" rel="noopener" style="color: var(--biolume);">The Multiverse School</a>.</span>
+  </div>
+</footer>
+
+<script src="main.js"></script>
+<script src="matrix-chat.js"></script>
+</body>
+</html>
