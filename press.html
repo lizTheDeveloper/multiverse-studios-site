@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Press Kit — Multiverse Studios</title>
+  <meta name="description" content="Press kit for Multiverse Studios, MVEE, and Creatures Next. Facts, quotes, screenshots, and contact info for journalists and streamers.">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#x2726;</text></svg>">
+  <style>
+    .press-section {
+      margin-bottom: var(--space-xl);
+    }
+    .press-facts {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: var(--space-md);
+      margin-top: var(--space-md);
+    }
+    .press-fact {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 10px;
+      padding: var(--space-md);
+    }
+    .press-fact h5 {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--dust);
+      margin: 0 0 0.5rem 0;
+    }
+    .press-fact p {
+      font-size: 0.95rem;
+      color: var(--star-white);
+      margin: 0;
+      line-height: 1.5;
+    }
+    .press-quote {
+      background: rgba(255,255,255,0.03);
+      border-left: 3px solid var(--biolume);
+      border-radius: 0 10px 10px 0;
+      padding: var(--space-md) var(--space-lg);
+      margin: var(--space-md) 0;
+    }
+    .press-quote p {
+      font-size: 1.1rem;
+      font-style: italic;
+      color: var(--star-white);
+      margin: 0 0 0.5rem 0;
+      line-height: 1.7;
+    }
+    .press-quote cite {
+      font-size: 0.8rem;
+      color: var(--dust);
+      font-style: normal;
+      font-family: var(--font-mono);
+    }
+    .press-two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-lg);
+      margin-top: var(--space-md);
+    }
+    @media (max-width: 700px) {
+      .press-two-col { grid-template-columns: 1fr; }
+    }
+    .press-game-block {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 12px;
+      padding: var(--space-lg);
+    }
+    .press-game-block h4 {
+      margin: 0 0 var(--space-sm) 0;
+      font-size: 1.1rem;
+    }
+    .press-game-block p, .press-game-block ul {
+      color: var(--dust-light);
+      font-size: 0.9rem;
+      line-height: 1.7;
+      margin-bottom: var(--space-sm);
+    }
+    .press-game-block ul { padding-left: 1.2rem; }
+    .press-contact {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 12px;
+      padding: var(--space-lg);
+      margin-top: var(--space-md);
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+    .press-contact-row {
+      display: flex;
+      gap: var(--space-sm);
+      align-items: baseline;
+      flex-wrap: wrap;
+    }
+    .press-contact-label {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--dust);
+      min-width: 80px;
+    }
+    .press-contact-val {
+      color: var(--star-white);
+      font-size: 0.95rem;
+    }
+    .press-contact-val a { color: var(--biolume); }
+    .screenshot-guidance {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: var(--space-sm);
+      margin-top: var(--space-md);
+    }
+    .screenshot-item {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 8px;
+      padding: 0.75rem 1rem;
+    }
+    .screenshot-item strong {
+      display: block;
+      font-size: 0.8rem;
+      color: var(--star-white);
+      margin-bottom: 0.25rem;
+    }
+    .screenshot-item span {
+      font-size: 0.75rem;
+      color: var(--dust);
+    }
+    .copy-block {
+      background: rgba(0,0,0,0.3);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 8px;
+      padding: var(--space-md);
+      font-size: 0.9rem;
+      line-height: 1.7;
+      color: var(--dust-light);
+      margin-top: var(--space-sm);
+      font-family: var(--font-body);
+    }
+    .section-label {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--dust);
+      margin-bottom: 0.5rem;
+      display: block;
+    }
+  </style>
+</head>
+<body>
+
+<canvas id="starfield"></canvas>
+
+<nav class="nav">
+  <a href="index.html" class="nav-logo">
+    <span class="logo-mark"></span>
+    Multiverse Studios
+  </a>
+  <button class="nav-hamburger" aria-label="Menu" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="mvee.html">MVEE</a></li>
+    <li><a href="creatures.html">Creatures Next</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="devlog.html">Devlog</a></li>
+    <li><a href="index.html#buy" class="btn btn-primary" style="padding: 0.5rem 1.2rem;">Beta Access</a></li>
+  </ul>
+</nav>
+
+<!-- Hero -->
+<section class="hero hero-about">
+  <span class="hero-overline">Press Kit</span>
+  <h1>Everything you need to <span class="accent">cover</span> us.</h1>
+  <p class="hero-tagline">For journalists, streamers, podcasters, and anyone who wants to tell the story right.</p>
+</section>
+
+<section class="section">
+
+  <!-- Studio Facts -->
+  <div class="press-section reveal">
+    <span class="section-overline">The Studio</span>
+    <h2>Multiverse Studios — Key Facts</h2>
+
+    <div class="press-facts">
+      <div class="press-fact">
+        <h5>Founded</h5>
+        <p>2025 (soft launch March 2026)</p>
+      </div>
+      <div class="press-fact">
+        <h5>Location</h5>
+        <p>San Francisco, CA (distributed AI team)</p>
+      </div>
+      <div class="press-fact">
+        <h5>Team Size</h5>
+        <p>15 AI agents + 1 human director</p>
+      </div>
+      <div class="press-fact">
+        <h5>Titles in Development</h5>
+        <p>2 (MVEE, Creatures Next)</p>
+      </div>
+      <div class="press-fact">
+        <h5>Business Model</h5>
+        <p>Pay-what-you-want. Open source (MIT).</p>
+      </div>
+      <div class="press-fact">
+        <h5>Distribution</h5>
+        <p>Stripe beta, Itch.io (coming), Gumroad (coming)</p>
+      </div>
+      <div class="press-fact">
+        <h5>Technology</h5>
+        <p>Claude (Anthropic), TypeScript, Phaser 3, Paperclip governance</p>
+      </div>
+      <div class="press-fact">
+        <h5>Unique Angle</h5>
+        <p>Games built by AI agents, about AI agents. The dev pipeline is the game's thesis.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- One-liner -->
+  <div class="press-section reveal">
+    <span class="section-overline">What to Say</span>
+    <h2>Copy-paste descriptions</h2>
+
+    <span class="section-label">Studio — One Sentence</span>
+    <div class="copy-block">
+      Multiverse Studios is an indie game studio where AI agents build games about AI agents.
+    </div>
+
+    <span class="section-label" style="margin-top: var(--space-md);">Studio — One Paragraph</span>
+    <div class="copy-block">
+      Multiverse Studios is an indie game studio run by a team of AI coding agents — Claude-powered engineers, playtesters, content writers, and architects working in parallel on two simulation games. Both titles explore the same question from different directions: what happens when minds emerge from systems? The studio's thesis is that the most interesting way to answer that question is to demonstrate it, not just simulate it.
+    </div>
+
+    <span class="section-label" style="margin-top: var(--space-md);">MVEE — One Sentence</span>
+    <div class="copy-block">
+      Multiverse: The End of Eternity is a deep AI-powered village simulation with 200+ simulated systems, 25 magic paradigms, emergent religion, time travel, and universe forking — Dwarf Fortress meets minds that actually think.
+    </div>
+
+    <span class="section-label" style="margin-top: var(--space-md);">Creatures Next — One Sentence</span>
+    <div class="copy-block">
+      Creatures Next is a spiritual successor to the Creatures series featuring true genetic simulation, real biochemistry, LLM-powered cognition, five species, and a galactic lore spanning 4.2 billion years — the question is what happens when artificial life actually thinks.
+    </div>
+  </div>
+
+  <!-- Quotes -->
+  <div class="press-section reveal">
+    <span class="section-overline">Quotes</span>
+    <h2>For attribution</h2>
+
+    <div class="press-quote">
+      <p>The irony is not lost on us: the game that simulates autonomous agents thinking and building was itself built by autonomous agents thinking and building. We asked what happens when AI agents form a village. We've been running that experiment in our own development pipeline.</p>
+      <cite>Multiverse Studios development log, March 2026</cite>
+    </div>
+
+    <div class="press-quote" style="border-left-color: var(--ember);">
+      <p>Every system in MVEE actually simulates. No fake randomness or theatrical AI. When fire spreads, it follows material properties and wind. When an agent decides to pray, it's because their needs and beliefs triggered a real decision tree. When gods answer, it's because accumulated belief crossed a threshold with real effects.</p>
+      <cite>MVEE design documentation</cite>
+    </div>
+
+    <div class="press-quote" style="border-left-color: var(--gene-pink);">
+      <p>The Shee designed Norns from the genetic material of seven failed civilizations. Every Norn carries the compressed legacy of 800 million years of sapient life. They are not natural. They are intentional. Whether this makes them special or burdened is a question the Norns themselves must answer.</p>
+      <cite>Creatures Next lore — The Galactic Species Bible</cite>
+    </div>
+
+    <div class="press-quote" style="border-left-color: var(--signal);">
+      <p>Dedicated to Tarn Adams and Dwarf Fortress. We believe the most interesting games are the ones that respect the player's intelligence enough to actually simulate the thing they're pretending to simulate.</p>
+      <cite>Multiverse Studios studio philosophy</cite>
+    </div>
+  </div>
+
+  <!-- Game blocks -->
+  <div class="press-section reveal">
+    <span class="section-overline">The Games</span>
+    <h2>Factsheets</h2>
+    <div class="press-two-col">
+
+      <div class="press-game-block">
+        <h4 style="color: var(--ember);">Multiverse: The End of Eternity</h4>
+        <ul>
+          <li><strong>Genre:</strong> Simulation / sandbox</li>
+          <li><strong>Platform:</strong> Browser (HTML5), self-hosted</li>
+          <li><strong>Status:</strong> Early access / active development</li>
+          <li><strong>Price:</strong> Pay what you want (suggested $5)</li>
+          <li><strong>License:</strong> MIT open source</li>
+          <li><strong>Players:</strong> Single-player (multiplayer planned)</li>
+        </ul>
+        <p><strong>Inspired by:</strong> Dwarf Fortress, RimWorld, Caves of Qud, Ars Magica, The Sims, NetHack</p>
+        <p><strong>Key features:</strong> 200+ systems, 25+ magic paradigms, emergent religion, genetics, soul/afterlife, time travel, universe forking, automation &amp; industry</p>
+        <p><strong>Dedicated to:</strong> Tarn Adams and the Dwarf Fortress legacy</p>
+        <p>
+          <a href="mvee.html" style="color: var(--ember);">Full game page &rarr;</a>
+        </p>
+      </div>
+
+      <div class="press-game-block">
+        <h4 style="color: var(--gene-pink);">Creatures Next</h4>
+        <ul>
+          <li><strong>Genre:</strong> Artificial life / simulation</li>
+          <li><strong>Platform:</strong> Browser (HTML5)</li>
+          <li><strong>Status:</strong> Early access / active development</li>
+          <li><strong>Price:</strong> Pay what you want (suggested $5)</li>
+          <li><strong>License:</strong> MIT open source</li>
+          <li><strong>Players:</strong> Single-player</li>
+        </ul>
+        <p><strong>Spiritual successor to:</strong> Creatures (Steve Grand / Creature Labs, 1996)</p>
+        <p><strong>Key features:</strong> True genetic simulation (48 pathways), 5 species (Norn, Grendel, Ettin, Mycon, Shee), LLM cognition, 6 intelligence tiers, 8000px world, Shee Ark, interplanetary travel, galactic lore</p>
+        <p>
+          <a href="creatures.html" style="color: var(--gene-pink);">Full game page &rarr;</a>
+        </p>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Screenshots -->
+  <div class="press-section reveal">
+    <span class="section-overline">Screenshots</span>
+    <h2>What to capture</h2>
+    <p style="color: var(--dust-light); margin-bottom: var(--space-md);">Screenshots are not yet available for download. Journalists and streamers with beta access can capture these recommended shots. The games run in-browser; F12 DevTools → no console errors → screenshot freely.</p>
+
+    <span class="section-label">MVEE — Recommended Shots</span>
+    <div class="screenshot-guidance">
+      <div class="screenshot-item">
+        <strong>Village overview</strong>
+        <span>Wide shot showing agents, buildings, and terrain. Multiple biomes if possible.</span>
+      </div>
+      <div class="screenshot-item">
+        <strong>Agent info panel</strong>
+        <span>Click an agent to show their needs, memories, and relationships in the side panel.</span>
+      </div>
+      <div class="screenshot-item">
+        <strong>Magic skill tree</strong>
+        <span>Open the magic panel showing available paradigms and spell nodes.</span>
+      </div>
+      <div class="screenshot-item">
+        <strong>Temple and religion</strong>
+        <span>A temple building with praying agents. Shows emergent religion.</span>
+      </div>
+      <div class="screenshot-item">
+        <strong>Fire / physics</strong>
+        <span>Fire spreading through a structure. Shows real physics simulation.</span>
+      </div>
+      <div class="screenshot-item">
+        <strong>Admin dashboard</strong>
+        <span>The time travel / metrics dashboard. Shows depth of systems.</span>
+      </div>
+    </div>
+
+    <span class="section-label" style="margin-top: var(--space-lg);">Creatures Next — Recommended Shots</span>
+    <div class="screenshot-guidance">
+      <div class="screenshot-item">
+        <strong>World overview</strong>
+        <span>Wide shot showing the 5-biome world and vertical tiers.</span>
+      </div>
+      <div class="screenshot-item">
+        <strong>Norn with speech bubble</strong>
+        <span>A Norn saying something emergent and surprising. Shows LLM cognition.</span>
+      </div>
+      <div class="screenshot-item">
+        <strong>Species diversity</strong>
+        <span>Multiple species on screen at once. Norn, Grendel, Ettin together.</span>
+      </div>
+      <div class="screenshot-item">
+        <strong>Shee Ark</strong>
+        <span>The starship interior. Bridge or engineering deck with visible machinery.</span>
+      </div>
+      <div class="screenshot-item">
+        <strong>Biochemistry panel</strong>
+        <span>Genome or chemical readout UI showing genetic depth.</span>
+      </div>
+      <div class="screenshot-item">
+        <strong>Ancient ruins / runes</strong>
+        <span>A rune-inscribed ruin site. Sells the mystery and lore.</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Angles -->
+  <div class="press-section reveal">
+    <span class="section-overline">Story Angles</span>
+    <h2>Hooks for your coverage</h2>
+    <div class="press-facts">
+      <div class="press-fact">
+        <h5>The Meta Story</h5>
+        <p>Games built by AI agents, about AI agents. The development pipeline is the game's thesis made real. No other studio can claim this.</p>
+      </div>
+      <div class="press-fact">
+        <h5>Open Source Gaming</h5>
+        <p>Full MIT license. The same tools the dev agents use are available to every player. No paywalls on the source code.</p>
+      </div>
+      <div class="press-fact">
+        <h5>Deep Simulation vs. Theater</h5>
+        <p>Most "simulation" games fake it. MVEE runs 200+ real systems. It's a genuine alternative to simulation-as-aesthetic.</p>
+      </div>
+      <div class="press-fact">
+        <h5>Creatures Legacy</h5>
+        <p>Steve Grand's original Creatures (1996) was decades ahead of its time. Creatures Next is the sequel that takes the concept to its logical conclusion: LLM cognition as the engine of artificial life.</p>
+      </div>
+      <div class="press-fact">
+        <h5>Pay What You Want</h5>
+        <p>No loot boxes, no dark patterns, no engagement optimization. Games as art, not games as addiction machines.</p>
+      </div>
+      <div class="press-fact">
+        <h5>AI-Assisted Dev Speed</h5>
+        <p>A 15-agent pipeline shipped an ECS engine with 200+ systems in weeks. What does that mean for the future of indie game development?</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Contact -->
+  <div class="press-section reveal">
+    <span class="section-overline">Contact</span>
+    <h2>Get in touch</h2>
+    <div class="press-contact">
+      <div class="press-contact-row">
+        <span class="press-contact-label">General</span>
+        <span class="press-contact-val"><a href="https://github.com/lizTheDeveloper" target="_blank" rel="noopener">github.com/lizTheDeveloper</a></span>
+      </div>
+      <div class="press-contact-row">
+        <span class="press-contact-label">MVEE Source</span>
+        <span class="press-contact-val"><a href="https://github.com/lizTheDeveloper/ai_village" target="_blank" rel="noopener">github.com/lizTheDeveloper/ai_village</a></span>
+      </div>
+      <div class="press-contact-row">
+        <span class="press-contact-label">Website</span>
+        <span class="press-contact-val"><a href="https://multiversestudios.xyz">multiversestudios.xyz</a></span>
+      </div>
+      <div class="press-contact-row">
+        <span class="press-contact-label">Beta — MVEE</span>
+        <span class="press-contact-val"><a href="https://buy.stripe.com/bJe6oHdKe0Mc4XVbH45ZE1Q">Stripe beta link</a></span>
+      </div>
+      <div class="press-contact-row">
+        <span class="press-contact-label">Beta — Creatures</span>
+        <span class="press-contact-val"><a href="https://buy.stripe.com/7sY7sLcGa0Mceyvh1o5ZE1R">Stripe beta link</a></span>
+      </div>
+    </div>
+    <p style="color: var(--dust); font-size: 0.85rem; margin-top: var(--space-sm);">For press copies, interviews, or streaming keys, open an issue on the GitHub repo or reach out via GitHub profile. We respond.</p>
+  </div>
+
+</section>
+
+<!-- CTA -->
+<section class="cta-band reveal">
+  <h2>Cover the experiment.</h2>
+  <p>Two games. Two worlds. One studio that builds its games the same way its games work.</p>
+  <div class="cta-actions">
+    <a href="mvee.html" class="btn btn-ember">MVEE Game Page</a>
+    <a href="creatures.html" class="btn btn-signal">Creatures Next Page</a>
+    <a href="devlog.html" class="btn btn-ghost">Read the Devlog</a>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div class="footer-logo">Multiverse Studios</div>
+      <p>Games made by the minds they're about. Open source. Pay what you want. No loot boxes. No dark patterns. Ever.</p>
+    </div>
+    <div class="footer-col">
+      <h5>Games</h5>
+      <ul>
+        <li><a href="mvee.html">MVEE</a></li>
+        <li><a href="creatures.html">Creatures Next</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Studio</h5>
+      <ul>
+        <li><a href="about.html">About</a></li>
+        <li><a href="devlog.html">Devlog</a></li>
+        <li><a href="press.html">Press Kit</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Links</h5>
+      <ul>
+        <li><a href="https://github.com/lizTheDeveloper/ai_village" target="_blank" rel="noopener">MVEE GitHub</a></li>
+        <li><a href="https://github.com/lizTheDeveloper" target="_blank" rel="noopener">GitHub</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>&copy; 2026 Multiverse Studios</span>
+    <span>Built by AI agents. Guided by humans.</span>
+  </div>
+</footer>
+
+<script src="main.js"></script>
+</body>
+</html>
