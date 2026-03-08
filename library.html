@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Game Library — Multiverse Studios</title>
+  <meta name="description" content="Look up your Multiverse Studios purchases by email and access your game downloads.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=JetBrains+Mono:wght@300;400;500&family=Syne:wght@400;500;600;700;800&display=swap">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#x2726;</text></svg>">
+  <style>
+    .library-hero {
+      min-height: 52vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: calc(var(--space-xl) + 4rem) var(--space-md) var(--space-lg);
+    }
+    .library-glyph {
+      font-size: 3.5rem;
+      margin-bottom: var(--space-md);
+      animation: pulse-glow 3s ease-in-out infinite;
+    }
+    @keyframes pulse-glow {
+      0%, 100% { filter: drop-shadow(0 0 12px var(--biolume)); }
+      50%       { filter: drop-shadow(0 0 28px var(--biolume)); }
+    }
+    .library-hero h1 {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: var(--space-sm);
+    }
+    .library-hero p {
+      color: var(--dust);
+      max-width: 500px;
+      font-size: 1.2rem;
+    }
+
+    /* ── Lookup form ── */
+    .library-section {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 0 var(--space-md) var(--space-xl);
+    }
+    .lookup-form {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-sm);
+    }
+    .lookup-form label {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--dust);
+    }
+    .lookup-input-row {
+      display: flex;
+      gap: 0.75rem;
+      align-items: stretch;
+    }
+    .lookup-email {
+      flex: 1;
+      background: var(--void-elevated);
+      border: 1px solid var(--void-border);
+      border-radius: 6px;
+      padding: 0.75rem 1rem;
+      font-family: var(--font-body);
+      font-size: 1.05rem;
+      color: var(--star-white);
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .lookup-email::placeholder {
+      color: var(--dust);
+      opacity: 0.55;
+    }
+    .lookup-email:focus {
+      border-color: var(--biolume);
+      box-shadow: 0 0 0 2px rgba(0, 255, 200, 0.12);
+    }
+    .btn-biolume {
+      background: var(--biolume);
+      color: #050508;
+      border: none;
+      border-radius: 6px;
+      padding: 0.75rem 1.5rem;
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 0.92rem;
+      letter-spacing: 0.04em;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: opacity 0.2s, box-shadow 0.2s;
+    }
+    .btn-biolume:hover:not(:disabled) {
+      opacity: 0.88;
+      box-shadow: 0 0 18px rgba(0, 255, 200, 0.35);
+    }
+    .btn-biolume:disabled {
+      opacity: 0.45;
+      cursor: not-allowed;
+    }
+
+    /* ── States ── */
+    .lookup-status {
+      min-height: 1.4rem;
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      letter-spacing: 0.06em;
+    }
+    .status-loading {
+      color: var(--biolume);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .status-error {
+      color: #ff6b6b;
+    }
+    .spinner {
+      width: 14px;
+      height: 14px;
+      border: 2px solid rgba(0, 255, 200, 0.25);
+      border-top-color: var(--biolume);
+      border-radius: 50%;
+      animation: spin 0.75s linear infinite;
+      flex-shrink: 0;
+    }
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    /* ── Results ── */
+    .results-area {
+      display: none;
+      margin-top: var(--space-lg);
+    }
+    .results-area.visible {
+      display: block;
+    }
+    .results-heading {
+      font-family: var(--font-display);
+      font-size: 1.3rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: var(--dust);
+      margin-bottom: var(--space-md);
+      text-align: center;
+    }
+    .download-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: var(--space-md);
+    }
+    .download-card {
+      background: var(--void-elevated);
+      border: 1px solid var(--void-border);
+      border-radius: 8px;
+      padding: var(--space-md);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-sm);
+    }
+    .download-card-header {
+      display: flex;
+      align-items: center;
+      gap: var(--space-sm);
+    }
+    .download-card-icon {
+      font-size: 2.2rem;
+    }
+    .download-card h3 {
+      font-family: var(--font-display);
+      font-size: 1.2rem;
+      font-weight: 700;
+      line-height: 1.3;
+    }
+    .download-card p {
+      color: var(--dust);
+      font-size: 1rem;
+      line-height: 1.6;
+      flex: 1;
+    }
+    .download-card .download-btn {
+      align-self: flex-start;
+      margin-top: var(--space-xs);
+    }
+    .download-tag {
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.2em 0.6em;
+      border-radius: 3px;
+      background: rgba(0, 255, 200, 0.08);
+      color: var(--biolume);
+      border: 1px solid rgba(0, 255, 200, 0.18);
+    }
+    .purchase-meta {
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      letter-spacing: 0.06em;
+      color: var(--dust);
+      opacity: 0.7;
+      margin-top: 0.15rem;
+    }
+
+    /* ── Empty state ── */
+    .empty-state {
+      text-align: center;
+      padding: var(--space-lg) var(--space-md);
+      background: var(--void-elevated);
+      border: 1px solid var(--void-border);
+      border-radius: 8px;
+    }
+    .empty-state-glyph {
+      font-size: 2.5rem;
+      margin-bottom: var(--space-sm);
+      opacity: 0.5;
+    }
+    .empty-state h3 {
+      font-family: var(--font-display);
+      font-size: 1.3rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      color: var(--star-white);
+    }
+    .empty-state p {
+      color: var(--dust);
+      font-size: 1rem;
+      max-width: 420px;
+      margin: 0 auto var(--space-sm);
+      line-height: 1.65;
+    }
+    .empty-state a {
+      color: var(--signal);
+    }
+    .empty-state a:hover {
+      color: var(--biolume);
+    }
+
+    /* ── Note box ── */
+    .note-box {
+      background: rgba(123, 104, 238, 0.06);
+      border: 1px solid rgba(123, 104, 238, 0.2);
+      border-radius: 6px;
+      padding: var(--space-sm) var(--space-md);
+      margin-top: var(--space-md);
+      font-size: 0.95rem;
+      color: var(--dust);
+      text-align: center;
+    }
+    .note-box a {
+      color: var(--signal);
+    }
+    .note-box a:hover {
+      color: var(--biolume);
+    }
+  </style>
+</head>
+<body>
+
+<canvas id="starfield"></canvas>
+
+<nav class="nav">
+  <a href="index.html" class="nav-logo">
+    <span class="logo-mark"></span>
+    Multiverse Studios
+  </a>
+  <button class="nav-hamburger" aria-label="Menu" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="mvee.html">MVEE</a></li>
+    <li><a href="creatures.html">Creatures Next</a></li>
+    <li><a href="library.html">My Library</a></li>
+    <li><a href="about.html">About</a></li>
+  </ul>
+</nav>
+
+<div class="library-hero">
+  <div class="library-glyph">&#x1F4DA;</div>
+  <h1>Your <span style="color: var(--biolume);">Game Library</span></h1>
+  <p>Enter your purchase email to access your downloads.</p>
+</div>
+
+<div class="library-section">
+
+  <form class="lookup-form" id="lookup-form" novalidate>
+    <label for="lookup-email">Purchase email address</label>
+    <div class="lookup-input-row">
+      <input
+        type="email"
+        id="lookup-email"
+        class="lookup-email"
+        placeholder="you@example.com"
+        autocomplete="email"
+        required
+      >
+      <button type="submit" class="btn-biolume" id="lookup-btn">
+        Look up my library
+      </button>
+    </div>
+    <div class="lookup-status" id="lookup-status" aria-live="polite"></div>
+  </form>
+
+  <div class="results-area" id="results-area" aria-live="polite">
+    <!-- populated by JS -->
+  </div>
+
+  <div class="note-box">
+    Purchased on Itch.io or Gumroad? Email <a href="mailto:ann@multiversegames.com">ann@multiversegames.com</a> with your receipt and we'll get you sorted.
+  </div>
+
+</div>
+
+<footer class="footer">
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div class="footer-logo">Multiverse Studios</div>
+      <p>Games made by the minds they're about. Open source. Pay what you want.</p>
+    </div>
+    <div class="footer-col">
+      <h5>Games</h5>
+      <ul>
+        <li><a href="mvee.html">MVEE</a></li>
+        <li><a href="creatures.html">Creatures Next</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Studio</h5>
+      <ul>
+        <li><a href="library.html">My Library</a></li>
+    <li><a href="about.html">About</a></li>
+        <li><a href="devlog.html">Devlog</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Links</h5>
+      <ul>
+        <li><a href="press.html">Press Kit</a></li>
+        <li><a href="https://github.com/lizTheDeveloper" target="_blank" rel="noopener">GitHub</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>&copy; 2026 Multiverse Studios</span>
+    <span>Built by AI agents. Guided by humans.</span>
+  </div>
+</footer>
+
+<script src="main.js"></script>
+<script>
+  (function () {
+    const form      = document.getElementById('lookup-form');
+    const emailEl   = document.getElementById('lookup-email');
+    const btn       = document.getElementById('lookup-btn');
+    const statusEl  = document.getElementById('lookup-status');
+    const resultsEl = document.getElementById('results-area');
+
+    function setStatus(html, type) {
+      statusEl.innerHTML = html;
+      statusEl.className = 'lookup-status' + (type ? ' status-' + type : '');
+    }
+
+    function clearStatus() {
+      statusEl.innerHTML = '';
+      statusEl.className = 'lookup-status';
+    }
+
+    function hideResults() {
+      resultsEl.classList.remove('visible');
+      resultsEl.innerHTML = '';
+    }
+
+    function formatDate(dateStr) {
+      if (!dateStr) return '';
+      try {
+        return new Date(dateStr).toLocaleDateString('en-US', {
+          year: 'numeric', month: 'long', day: 'numeric'
+        });
+      } catch (e) {
+        return dateStr;
+      }
+    }
+
+    function renderPurchases(purchases) {
+      const cards = purchases.map(function (p) {
+        const icon    = p.icon    ? p.icon    : '&#x2726;';
+        const game    = p.game    ? p.game    : 'Game';
+        const version = p.version ? p.version : '';
+        const url     = p.downloadUrl;
+        const date    = p.purchasedAt ? 'Purchased ' + formatDate(p.purchasedAt) : '';
+
+        const downloadBtn = url
+          ? '<a href="' + url + '" target="_blank" rel="noopener" class="btn btn-signal download-btn">Download &rarr;</a>'
+          : '<span style="font-family:var(--font-mono);font-size:0.78rem;color:var(--dust);">Download link coming soon</span>';
+
+        return [
+          '<div class="download-card">',
+          '  <div class="download-card-header">',
+          '    <span class="download-card-icon">' + icon + '</span>',
+          '    <div>',
+          '      <h3>' + game + '</h3>',
+          version ? '      <span class="download-tag">' + version + '</span>' : '',
+          date    ? '      <div class="purchase-meta">' + date + '</div>' : '',
+          '    </div>',
+          '  </div>',
+          '  ' + downloadBtn,
+          '</div>',
+        ].join('\n');
+      });
+
+      resultsEl.innerHTML = [
+        '<p class="results-heading">Your Downloads</p>',
+        '<div class="download-cards">',
+        cards.join('\n'),
+        '</div>',
+      ].join('\n');
+
+      resultsEl.classList.add('visible');
+    }
+
+    function renderEmpty() {
+      resultsEl.innerHTML = [
+        '<div class="empty-state">',
+        '  <div class="empty-state-glyph">&#x1F50D;</div>',
+        '  <h3>No purchases found</h3>',
+        '  <p>We couldn\'t find any orders linked to that address. Double-check the email you used at checkout, or contact us if you think something\'s wrong.</p>',
+        '  <p>',
+        '    <a href="https://support.stripe.com" target="_blank" rel="noopener">Stripe support</a>',
+        '    &nbsp;&middot;&nbsp;',
+        '    <a href="mailto:ann@multiversegames.com">ann@multiversegames.com</a>',
+        '  </p>',
+        '</div>',
+      ].join('\n');
+
+      resultsEl.classList.add('visible');
+    }
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      const email = emailEl.value.trim();
+      if (!email || !email.includes('@')) {
+        setStatus('Please enter a valid email address.', 'error');
+        emailEl.focus();
+        return;
+      }
+
+      btn.disabled = true;
+      hideResults();
+      setStatus(
+        '<span class="spinner"></span><span>Looking up your library&hellip;</span>',
+        'loading'
+      );
+
+      fetch('https://api.multiversestudios.xyz/library/lookup', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email: email }),
+      })
+        .then(function (res) {
+          if (!res.ok) {
+            return res.json().catch(function () {
+              return { error: 'Server error (' + res.status + ')' };
+            }).then(function (data) {
+              throw new Error(data.error || 'Server error (' + res.status + ')');
+            });
+          }
+          return res.json();
+        })
+        .then(function (data) {
+          clearStatus();
+          btn.disabled = false;
+
+          if (data.error) {
+            setStatus('Something went wrong: ' + data.error, 'error');
+            return;
+          }
+
+          if (!data.purchases || data.purchases.length === 0) {
+            renderEmpty();
+          } else {
+            renderPurchases(data.purchases);
+          }
+        })
+        .catch(function (err) {
+          clearStatus();
+          btn.disabled = false;
+          setStatus(
+            'Could not reach the server. Check your connection and try again.',
+            'error'
+          );
+        });
+    });
+  }());
+</script>
+</body>
+</html>

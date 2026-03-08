@@ -1,0 +1,22 @@
+version: '3.8'
+
+services:
+  library-api:
+    build: .
+    restart: unless-stopped
+    env_file: .env
+    networks:
+      - coolify
+    labels:
+      # Traefik — path-based routing so no new DNS record is needed.
+      # Incoming:  https://api.multiversestudios.xyz/library/*
+      - traefik.enable=true
+      - traefik.http.routers.library-api.rule=Host(`api.multiversestudios.xyz`) && PathPrefix(`/library`)
+      - traefik.http.routers.library-api.entrypoints=websecure
+      - traefik.http.routers.library-api.tls=true
+      - traefik.http.routers.library-api.tls.certresolver=letsencrypt
+      - traefik.http.services.library-api.loadbalancer.server.port=4000
+
+networks:
+  coolify:
+    external: true
