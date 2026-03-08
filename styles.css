@@ -887,3 +887,9 @@ body::after {
     radial-gradient(ellipse at 50% 80%, rgba(123, 104, 238, 0.08), transparent 50%),
     radial-gradient(ellipse at 50% 20%, rgba(0, 255, 200, 0.04), transparent 50%);
 }
+
+/* Screenshot gallery responsive */
+@media (max-width: 600px) {
+  .screenshot-2col { grid-template-columns: 1fr !important; }
+  .screenshot-3col { grid-template-columns: 1fr !important; }
+}
