@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sprite Diagnostic — Precursors</title>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0a0b10;
+      --cyan: #3dfce0;
+      --amber: #f0c850;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      background: var(--bg);
+      color: var(--cyan);
+      font-family: 'JetBrains Mono', monospace;
+      overflow: hidden;
+    }
+    #header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 36px;
+      background: rgba(10, 11, 16, 0.95);
+      border-bottom: 1px solid #252637;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 16px;
+      z-index: 100;
+      font-size: 12px;
+    }
+    #header h1 { color: var(--amber); font-size: 13px; font-weight: 400; }
+    #header a  { color: var(--cyan); opacity: 0.6; text-decoration: none; font-size: 11px; }
+    #header a:hover { opacity: 1; }
+    #game {
+      position: fixed;
+      top: 36px;
+      left: 0;
+      right: 0;
+      bottom: 0;
+    }
+  </style>
+  <script type="module" crossorigin src="/assets/diagnostic-D4RN0i_l.js"></script>
+  <link rel="modulepreload" crossorigin href="/assets/SpriteManifest-DMNJtyCi.js">
+<link rel="manifest" href="/manifest.webmanifest"><script id="vite-plugin-pwa:register-sw" src="/registerSW.js"></script></head>
+<body>
+  <div id="header">
+    <h1>Sprite Diagnostic — Precursors</h1>
+    <div>
+      <a href="/">← Back to Game</a>
+      &nbsp;&nbsp;
+      <span style="color:#525567">Scroll to browse · Bottom panel: live animation preview using resolveSpritePose()</span>
+    </div>
+  </div>
+  <div id="game"></div>
+</body>
+</html>

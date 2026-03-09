@@ -1,0 +1,964 @@
+<!--
+  Precursors: Origins of Folklore
+  A Multiverse Games project
+
+  Spiritual successor to the Creatures series (1996-2004) by Creature Labs.
+  Species names drawn from world folklore traditions.
+  Game mechanics inspired by artificial life research.
+
+  This game is not affiliated with Creature Labs, Gameware Development, or Fishing Cactus.
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Precursors: Origins of Folklore</title>
+  <meta name="description" content="Artificial life with LLM-powered minds — bioluminescent archaeology" />
+  <meta name="theme-color" content="#0a0b10" />
+  <link rel="icon" href="/icon.svg" type="image/svg+xml" />
+  <link rel="apple-touch-icon" href="/icon-192x192.png" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Egyptian+Hieroglyphs&family=Noto+Sans+Cuneiform&family=Noto+Sans+Phoenician&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet">
+  <style>
+    /* ═══════════════════════════════════════════
+       PRECURSORS: Origins of Folklore
+       ═══════════════════════════════════════════ */
+
+    :root {
+      --stone-deep: #0a0b10;
+      --stone-mid: #12131c;
+      --stone-surface: #1a1b28;
+      --stone-edge: #252637;
+      --glow-cyan: #3dfce0;
+      --glow-cyan-dim: #1a7d6f;
+      --glow-cyan-faint: rgba(61, 252, 224, 0.06);
+      --glow-amber: #f0c850;
+      --glow-amber-dim: #7a6428;
+      --glow-violet: #9b7cdb;
+      --glow-violet-dim: #4d3e6e;
+      --text-bright: #d8dce8;
+      --text-mid: #8b8fa4;
+      --text-dim: #4a4d62;
+      --rune-glow: rgba(61, 252, 224, 0.15);
+      --font-display: 'Cormorant Garamond', 'Garamond', serif;
+      --font-mono: 'JetBrains Mono', 'Menlo', monospace;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background: var(--stone-deep);
+      overflow: hidden;
+      font-family: var(--font-mono);
+      color: var(--text-bright);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── GAME CONTAINER ── */
+    #game-container {
+      width: 100vw;
+      height: 100vh;
+      position: relative;
+    }
+
+    #game-container canvas {
+      display: block;
+    }
+
+    /* ── VIEWPORT FRAME ── carved stone border around game */
+    .viewport-frame {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 50;
+      border: 3px solid var(--stone-edge);
+      box-shadow:
+        inset 0 0 60px rgba(0,0,0,0.5),
+        inset 0 0 4px var(--rune-glow);
+    }
+
+    .viewport-frame::before,
+    .viewport-frame::after {
+      content: '';
+      position: absolute;
+      background: var(--glow-cyan);
+      opacity: 0.08;
+    }
+
+    /* Corner rune marks */
+    .viewport-frame::before {
+      top: 8px; left: 8px;
+      width: 24px; height: 24px;
+      border-top: 1px solid var(--glow-cyan-dim);
+      border-left: 1px solid var(--glow-cyan-dim);
+      background: none;
+      opacity: 0.4;
+    }
+
+    .viewport-frame::after {
+      bottom: 8px; right: 8px;
+      width: 24px; height: 24px;
+      border-bottom: 1px solid var(--glow-cyan-dim);
+      border-right: 1px solid var(--glow-cyan-dim);
+      background: none;
+      opacity: 0.4;
+    }
+
+    /* ── TITLE BAR ── solid stone bar anchoring the UI above the canvas */
+    .title-bar {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      height: 36px;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(10, 11, 16, 0.96);
+      border-bottom: 1px solid var(--stone-edge);
+      box-shadow: 0 1px 0 rgba(61, 252, 224, 0.04), 0 2px 12px rgba(0,0,0,0.4);
+      pointer-events: none;
+    }
+
+    /* ── HUD STATUS ── creature count + location, right side of title bar */
+    .hud-status {
+      position: absolute;
+      right: 16px;
+      font-family: var(--font-mono);
+      font-size: 10px;
+      font-weight: 300;
+      color: var(--text-mid);
+      letter-spacing: 0.12em;
+      white-space: nowrap;
+      opacity: 0.85;
+      transition: opacity 0.4s;
+    }
+
+    .hud-status:empty {
+      opacity: 0;
+    }
+
+    /* ── CREATURE ROSTER ── left side of title bar */
+    .creature-roster {
+      position: fixed;
+      top: 0;
+      left: 8px;
+      height: 36px;
+      z-index: 101;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      pointer-events: auto;
+      opacity: 0.75;
+      transition: opacity 0.3s ease;
+    }
+
+    .creature-roster:hover {
+      opacity: 1;
+    }
+
+    .roster-pip {
+      display: flex;
+      align-items: center;
+      gap: 3px;
+      padding: 2px 5px 2px 3px;
+      border-radius: 3px;
+      border: 1px solid rgba(61, 252, 224, 0.12);
+      background: rgba(10, 11, 16, 0.6);
+      transition: border-color 0.2s, background 0.2s, box-shadow 0.2s;
+      cursor: pointer;
+      position: relative;
+    }
+
+    .roster-pip:hover {
+      border-color: rgba(61, 252, 224, 0.28);
+      background: rgba(61, 252, 224, 0.04);
+    }
+
+    .roster-pip.is-selected {
+      border-color: rgba(61, 252, 224, 0.55);
+      background: rgba(61, 252, 224, 0.07);
+      box-shadow: 0 0 8px rgba(61, 252, 224, 0.12);
+    }
+
+    .roster-pip.is-selected::after {
+      content: '';
+      position: absolute;
+      bottom: -1px;
+      left: 3px;
+      right: 3px;
+      height: 1px;
+      background: var(--glow-cyan);
+      opacity: 0.7;
+      border-radius: 1px;
+    }
+
+    .roster-pip-dot {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    .roster-pip-name {
+      font-family: var(--font-mono);
+      font-size: 8px;
+      font-weight: 400;
+      letter-spacing: 0.05em;
+      color: var(--text-mid);
+      white-space: nowrap;
+      transition: color 0.2s;
+    }
+
+    .roster-pip:hover .roster-pip-name {
+      color: var(--text-bright);
+    }
+
+    .roster-pip.is-selected .roster-pip-name {
+      color: var(--glow-cyan);
+    }
+
+    .roster-overflow {
+      font-family: var(--font-mono);
+      font-size: 8px;
+      color: var(--text-dim);
+      padding: 0 4px;
+      white-space: nowrap;
+      pointer-events: none;
+    }
+
+    .title-bar h1 {
+      font-family: var(--font-display);
+      font-weight: 300;
+      font-size: 13px;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: var(--text-dim);
+      position: relative;
+    }
+
+    .title-bar h1::before,
+    .title-bar h1::after {
+      content: '◆';
+      font-size: 5px;
+      vertical-align: middle;
+      margin: 0 12px;
+      color: var(--glow-cyan-dim);
+    }
+
+    .title-bar .status-dot {
+      position: absolute;
+      right: -20px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: var(--glow-cyan);
+      animation: pulse-dot 3s ease-in-out infinite;
+    }
+
+    @keyframes pulse-dot {
+      0%, 100% { opacity: 0.3; box-shadow: 0 0 2px var(--glow-cyan); }
+      50% { opacity: 1; box-shadow: 0 0 8px var(--glow-cyan); }
+    }
+
+    /* ── CHAT INPUT ── carved channel at the bottom */
+    .chat-container {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 268px; /* UIPanel: 240 canvas px × 1.09375 CSS scale = ~263px viewport; +5px clearance */
+      z-index: 100;
+      padding: 0 16px 14px;
+      background: linear-gradient(
+        0deg,
+        rgba(10, 11, 16, 0.95) 0%,
+        rgba(10, 11, 16, 0.8) 60%,
+        transparent 100%
+      );
+      transition: opacity 0.4s ease, transform 0.4s ease;
+    }
+
+    .chat-container.hidden {
+      opacity: 0;
+      transform: translateY(8px);
+      pointer-events: none;
+    }
+
+    .chat-input-wrap {
+      position: relative;
+      display: flex;
+      align-items: center;
+    }
+
+    .chat-input-wrap::before {
+      content: '›';
+      position: absolute;
+      left: 14px;
+      font-family: var(--font-mono);
+      font-size: 16px;
+      color: var(--glow-cyan-dim);
+      z-index: 2;
+      transition: color 0.3s ease;
+    }
+
+    .chat-input-wrap:focus-within::before {
+      color: var(--glow-cyan);
+      text-shadow: 0 0 8px var(--glow-cyan);
+    }
+
+    #chat-input {
+      width: 100%;
+      height: 40px;
+      background: var(--stone-mid);
+      border: 1px solid var(--stone-edge);
+      border-radius: 6px;
+      color: var(--text-bright);
+      font-family: var(--font-mono);
+      font-size: 13px;
+      font-weight: 300;
+      padding: 0 16px 0 32px;
+      outline: none;
+      transition: border-color 0.3s ease, box-shadow 0.3s ease;
+      caret-color: var(--glow-cyan);
+    }
+
+    #chat-input::placeholder {
+      color: var(--text-dim);
+      font-style: italic;
+    }
+
+    #chat-input:focus {
+      border-color: var(--glow-cyan-dim);
+      box-shadow:
+        0 0 0 1px rgba(61, 252, 224, 0.05),
+        0 0 20px rgba(61, 252, 224, 0.04),
+        inset 0 0 12px rgba(61, 252, 224, 0.02);
+    }
+
+    .chat-hint {
+      position: absolute;
+      right: 14px;
+      font-size: 10px;
+      font-weight: 300;
+      color: var(--text-dim);
+      letter-spacing: 0.05em;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .chat-input-wrap:focus-within .chat-hint {
+      opacity: 1;
+    }
+
+    /* ── IDLE PROMPT ── shown when no Norn selected */
+    .idle-prompt {
+      position: fixed;
+      bottom: 22px;
+      left: 0;
+      right: 268px;
+      z-index: 100;
+      text-align: center;
+      font-family: var(--font-display);
+      font-size: 15px;
+      font-weight: 300;
+      font-style: italic;
+      color: var(--text-mid);
+      letter-spacing: 0.08em;
+      transition: opacity 0.6s ease;
+      pointer-events: none;
+      text-shadow: 0 0 12px rgba(0,0,0,0.8), 0 0 4px rgba(0,0,0,1);
+    }
+
+    .idle-prompt.hidden {
+      opacity: 0;
+    }
+
+    /* ── LOADING SCREEN ── the Substrate waking up */
+    #loading-screen {
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      background: var(--stone-deep);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      transition: opacity 0.8s ease;
+    }
+
+    #loading-screen.fade-out {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    /* Rune circle - the heartbeat */
+    .rune-circle {
+      width: 120px;
+      height: 120px;
+      position: relative;
+      margin-bottom: 40px;
+    }
+
+    .rune-ring {
+      position: absolute;
+      inset: 0;
+      border-radius: 50%;
+      border: 1px solid var(--glow-cyan-dim);
+      animation: ring-breathe 4s ease-in-out infinite;
+    }
+
+    .rune-ring:nth-child(2) {
+      inset: 12px;
+      border-style: dashed;
+      animation-delay: -1s;
+      animation-duration: 6s;
+      border-color: var(--glow-violet-dim);
+    }
+
+    .rune-ring:nth-child(3) {
+      inset: 28px;
+      animation-delay: -2s;
+      animation-duration: 5s;
+    }
+
+    .rune-core {
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--glow-cyan);
+      box-shadow: 0 0 20px var(--glow-cyan), 0 0 60px rgba(61, 252, 224, 0.2);
+      animation: core-pulse 2s ease-in-out infinite;
+    }
+
+    /* Floating rune glyphs */
+    .rune-glyph {
+      position: absolute;
+      font-size: 14px;
+      color: var(--glow-cyan-dim);
+      animation: glyph-drift 8s ease-in-out infinite;
+    }
+
+    .rune-glyph:nth-child(5) { top: 0; left: 50%; transform: translateX(-50%); animation-delay: 0s; }
+    .rune-glyph:nth-child(6) { top: 50%; right: -4px; transform: translateY(-50%); animation-delay: -2s; }
+    .rune-glyph:nth-child(7) { bottom: 0; left: 50%; transform: translateX(-50%); animation-delay: -4s; }
+    .rune-glyph:nth-child(8) { top: 50%; left: -4px; transform: translateY(-50%); animation-delay: -6s; }
+
+    @keyframes ring-breathe {
+      0%, 100% { opacity: 0.2; transform: scale(1) rotate(0deg); }
+      50% { opacity: 0.6; transform: scale(1.02) rotate(3deg); }
+    }
+
+    @keyframes core-pulse {
+      0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.7; }
+      50% { transform: translate(-50%, -50%) scale(1.3); opacity: 1; }
+    }
+
+    @keyframes glyph-drift {
+      0%, 100% { opacity: 0.15; }
+      50% { opacity: 0.5; }
+    }
+
+    .loading-text {
+      font-family: var(--font-display);
+      font-weight: 300;
+      font-size: 14px;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--text-dim);
+      margin-bottom: 12px;
+    }
+
+    .loading-sub {
+      font-family: var(--font-display);
+      font-weight: 300;
+      font-style: italic;
+      font-size: 12px;
+      color: var(--text-dim);
+      opacity: 0.5;
+      letter-spacing: 0.1em;
+    }
+
+    .loading-bar-track {
+      width: 180px;
+      height: 1px;
+      background: var(--stone-edge);
+      margin-top: 20px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .loading-bar-fill {
+      position: absolute;
+      top: 0; left: 0;
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, transparent, var(--glow-cyan-dim), var(--glow-cyan), var(--glow-cyan-dim), transparent);
+      animation: load-sweep 2s ease-in-out infinite;
+    }
+
+    @keyframes load-sweep {
+      0% { left: -40%; width: 40%; }
+      100% { left: 100%; width: 40%; }
+    }
+
+    /* ── NOTIFICATION TOAST ── for lore events and startup sequence */
+    .lore-toast {
+      position: fixed;
+      top: 48px;
+      left: 50%;
+      transform: translateX(-50%) translateY(-20px);
+      z-index: 200;
+      background: linear-gradient(135deg, rgba(14, 15, 22, 0.97), rgba(10, 11, 16, 0.99));
+      border: 1px solid var(--glow-cyan-dim);
+      border-radius: 4px;
+      padding: 12px 28px;
+      font-family: var(--font-display);
+      font-size: 14px;
+      font-weight: 300;
+      font-style: italic;
+      color: var(--glow-cyan);
+      letter-spacing: 0.07em;
+      box-shadow:
+        0 4px 30px rgba(61, 252, 224, 0.12),
+        0 0 0 1px rgba(61, 252, 224, 0.04) inset;
+      opacity: 0;
+      transition: opacity 0.5s ease, transform 0.5s ease;
+      pointer-events: none;
+      white-space: nowrap;
+    }
+
+    .lore-toast.visible {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+
+    /* ── COMPOUND DISCOVERY OVERLAY ── dramatic full-moment announcement */
+    .compound-discovery {
+      position: fixed;
+      inset: 0;
+      z-index: 8500; /* above NavigationUI (8000); below TransitOverlay (9000) */
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 0.5s ease;
+    }
+    .compound-discovery--visible {
+      opacity: 1;
+    }
+    .compound-discovery__inner {
+      background: linear-gradient(160deg, rgba(14, 15, 24, 0.97) 0%, rgba(20, 21, 36, 0.97) 100%);
+      border: 1px solid rgba(61, 252, 224, 0.5);
+      border-radius: 6px;
+      padding: 32px 52px;
+      text-align: center;
+      box-shadow:
+        0 0 60px rgba(61, 252, 224, 0.15),
+        0 0 120px rgba(61, 252, 224, 0.06),
+        inset 0 0 40px rgba(61, 252, 224, 0.04);
+      transform: translateY(10px);
+      transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+    .compound-discovery--visible .compound-discovery__inner {
+      transform: translateY(0);
+    }
+    .compound-discovery__label {
+      font-family: var(--font-display);
+      font-size: 10px;
+      letter-spacing: 0.3em;
+      color: rgba(61, 252, 224, 0.6);
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+    .compound-discovery__name {
+      font-family: var(--font-display);
+      font-size: 28px;
+      font-weight: 300;
+      color: var(--glow-cyan);
+      letter-spacing: 0.08em;
+      margin-bottom: 14px;
+      text-shadow: 0 0 20px rgba(61, 252, 224, 0.4);
+    }
+    .compound-discovery__detail {
+      font-family: var(--font-display);
+      font-size: 13px;
+      color: rgba(216, 220, 232, 0.8);
+      letter-spacing: 0.04em;
+      margin-bottom: 8px;
+    }
+    .compound-discovery__detail em {
+      color: var(--glow-amber, #f0c850);
+      font-style: normal;
+    }
+    .compound-discovery__sub {
+      font-family: var(--font-display);
+      font-size: 11px;
+      font-style: italic;
+      color: rgba(216, 220, 232, 0.4);
+      letter-spacing: 0.06em;
+    }
+
+    /* ── NOISE TEXTURE OVERLAY ── subtle grain for atmosphere */
+    .grain-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 45;
+      pointer-events: none;
+      opacity: 0.025;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+      background-repeat: repeat;
+      background-size: 256px;
+    }
+
+    /* ── SCANLINE EFFECT ── very subtle CRT-feel */
+    .scanlines {
+      position: fixed;
+      inset: 0;
+      z-index: 46;
+      pointer-events: none;
+      background: repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 2px,
+        rgba(0, 0, 0, 0.015) 2px,
+        rgba(0, 0, 0, 0.015) 4px
+      );
+    }
+
+    /* ── SELECTION INDICATOR for accessibility ── */
+    *:focus-visible {
+      outline: 1px solid var(--glow-cyan-dim);
+      outline-offset: 2px;
+    }
+
+    /* ── KEYBINDING HINTS ── alien glyphic reference, bottom-left */
+    .key-hints {
+      position: fixed;
+      bottom: 60px; /* above chat-container (40px input + 14px padding + 6px gap) */
+      left: 236px; /* clear InventionChronicle (220px + 8px + gap) */
+      z-index: 100;
+      pointer-events: none;
+      opacity: 0.55;
+      transition: opacity 0.4s ease;
+    }
+
+    .key-hints:hover {
+      opacity: 0.95;
+      pointer-events: auto;
+    }
+
+    .key-hints ul {
+      list-style: none;
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .key-hints li {
+      font-family: var(--font-mono);
+      font-size: 9px;
+      font-weight: 300;
+      color: var(--text-dim);
+      white-space: nowrap;
+    }
+
+    .key-hints kbd {
+      display: inline-block;
+      font-family: var(--font-mono);
+      font-size: 9px;
+      color: var(--glow-cyan-dim);
+      border: 1px solid var(--stone-edge);
+      border-radius: 2px;
+      padding: 0 3px;
+      margin-right: 3px;
+      line-height: 1.5;
+      background: var(--stone-mid);
+    }
+    /* ── DOCK SYSTEM ── 6-slot item stasis pocket, bottom-left */
+    #dock-system {
+      position: fixed;
+      bottom: 12px;
+      left: 12px;
+      z-index: 200;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(10, 11, 16, 0.88);
+      border: 1px solid rgba(61, 252, 224, 0.18);
+      border-radius: 4px;
+      padding: 4px 8px;
+      pointer-events: auto;
+      opacity: 0.72;
+      transition: opacity 0.25s ease;
+    }
+
+    #dock-system:hover {
+      opacity: 1;
+    }
+
+    .dock-label {
+      font-family: var(--font-mono);
+      font-size: 7px;
+      letter-spacing: 0.18em;
+      color: rgba(61, 252, 224, 0.4);
+      writing-mode: vertical-lr;
+      transform: rotate(180deg);
+      text-transform: uppercase;
+      user-select: none;
+    }
+
+    .dock-slots {
+      display: flex;
+      gap: 4px;
+    }
+
+    .dock-slot {
+      width: 26px;
+      height: 26px;
+      border: 1px solid rgba(61, 252, 224, 0.14);
+      border-radius: 3px;
+      background: rgba(26, 27, 40, 0.7);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      cursor: pointer;
+      transition: border-color 0.15s, background 0.15s, box-shadow 0.15s;
+      user-select: none;
+    }
+
+    .dock-slot:hover {
+      border-color: rgba(61, 252, 224, 0.35);
+      background: rgba(61, 252, 224, 0.06);
+    }
+
+    .dock-slot--filled {
+      border-color: rgba(240, 200, 80, 0.4);
+      box-shadow: 0 0 6px rgba(240, 200, 80, 0.12) inset;
+    }
+
+    .dock-slot--filled:hover {
+      border-color: rgba(240, 200, 80, 0.65);
+      background: rgba(240, 200, 80, 0.08);
+    }
+
+    /* ── TOOL TRAY ── slide-out tools panel attached to DockSystem */
+    .tool-tray-btn {
+      background: rgba(26, 27, 40, 0.8);
+      border: 1px solid rgba(61, 252, 224, 0.18);
+      border-radius: 3px;
+      color: rgba(61, 252, 224, 0.55);
+      font-size: 14px;
+      width: 26px;
+      height: 26px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: border-color 0.15s, color 0.15s, background 0.15s;
+      flex-shrink: 0;
+      padding: 0;
+      line-height: 1;
+    }
+
+    .tool-tray-btn:hover,
+    .tool-tray-btn--active {
+      border-color: rgba(61, 252, 224, 0.45);
+      color: rgba(61, 252, 224, 0.9);
+      background: rgba(61, 252, 224, 0.07);
+    }
+
+    .tool-tray {
+      position: fixed;
+      bottom: 52px;
+      left: 12px;
+      z-index: 201;
+      background: rgba(10, 11, 16, 0.94);
+      border: 1px solid rgba(61, 252, 224, 0.22);
+      border-radius: 5px;
+      padding: 8px;
+      min-width: 140px;
+      box-shadow: 0 -4px 24px rgba(0,0,0,0.5), 0 0 0 1px rgba(61,252,224,0.04);
+      opacity: 0;
+      transform: translateY(6px);
+      pointer-events: none;
+      transition: opacity 0.18s ease, transform 0.18s ease;
+    }
+
+    .tool-tray--visible {
+      opacity: 1;
+      transform: translateY(0);
+      pointer-events: auto;
+    }
+
+    .tool-tray__label {
+      font-family: var(--font-mono);
+      font-size: 7px;
+      letter-spacing: 0.18em;
+      color: rgba(61, 252, 224, 0.35);
+      text-transform: uppercase;
+      margin-bottom: 6px;
+      padding-bottom: 5px;
+      border-bottom: 1px solid rgba(61, 252, 224, 0.08);
+    }
+
+    .tool-tray__tools {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+
+    .tool-tray__tool {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      width: 100%;
+      background: rgba(26, 27, 40, 0.6);
+      border: 1px solid rgba(61, 252, 224, 0.1);
+      border-radius: 3px;
+      padding: 5px 8px;
+      cursor: pointer;
+      text-align: left;
+      transition: border-color 0.12s, background 0.12s;
+    }
+
+    .tool-tray__tool:hover {
+      border-color: rgba(61, 252, 224, 0.3);
+      background: rgba(61, 252, 224, 0.05);
+    }
+
+    .tool-tray__icon {
+      font-size: 14px;
+      width: 18px;
+      text-align: center;
+      flex-shrink: 0;
+      color: rgba(61, 252, 224, 0.7);
+    }
+
+    .tool-tray__tool-label {
+      font-family: var(--font-mono);
+      font-size: 9px;
+      color: rgba(61, 252, 224, 0.65);
+      letter-spacing: 0.06em;
+    }
+
+    .tool-tray__submenu {
+      margin-top: 6px;
+      border-top: 1px solid rgba(61, 252, 224, 0.08);
+      padding-top: 6px;
+    }
+
+    .tool-tray__submenu-title {
+      font-family: var(--font-mono);
+      font-size: 7px;
+      color: rgba(240, 200, 80, 0.55);
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      margin-bottom: 4px;
+    }
+
+    .tool-tray__submenu-item {
+      display: block;
+      width: 100%;
+      background: none;
+      border: none;
+      border-radius: 2px;
+      padding: 4px 6px;
+      text-align: left;
+      font-family: var(--font-mono);
+      font-size: 9px;
+      color: rgba(61, 252, 224, 0.6);
+      cursor: pointer;
+      transition: background 0.1s, color 0.1s;
+    }
+
+    .tool-tray__submenu-item:hover {
+      background: rgba(61, 252, 224, 0.06);
+      color: rgba(61, 252, 224, 0.9);
+    }
+
+  </style>
+  <script type="module" crossorigin src="/assets/main-D2Lwfev0.js"></script>
+  <link rel="modulepreload" crossorigin href="/assets/SpriteManifest-DMNJtyCi.js">
+<link rel="manifest" href="/manifest.webmanifest"><script id="vite-plugin-pwa:register-sw" src="/registerSW.js"></script></head>
+<body>
+  <!-- Loading Screen -->
+  <div id="loading-screen">
+    <div class="rune-circle">
+      <div class="rune-ring"></div>
+      <div class="rune-ring"></div>
+      <div class="rune-ring"></div>
+      <div class="rune-core"></div>
+      <span class="rune-glyph">&#5792;</span>
+      <span class="rune-glyph">&#5809;</span>
+      <span class="rune-glyph">&#5799;</span>
+      <span class="rune-glyph">&#5827;</span>
+    </div>
+    <div class="loading-text">Waking the Substrate</div>
+    <div class="loading-sub">the lattice remembers</div>
+    <div class="loading-bar-track">
+      <div class="loading-bar-fill"></div>
+    </div>
+  </div>
+
+  <!-- Game -->
+  <div id="game-container"></div>
+
+  <!-- Overlay frame -->
+  <div class="viewport-frame"></div>
+  <div class="grain-overlay"></div>
+  <div class="scanlines"></div>
+
+  <!-- Title bar -->
+  <div class="title-bar">
+    <h1>
+      Precursors: Origins of Folklore
+      <span class="status-dot"></span>
+    </h1>
+    <span class="hud-status" id="hud-status"></span>
+  </div>
+
+  <!-- Creature roster — populated by NornSelector via EventBus -->
+  <div class="creature-roster" id="creature-roster" aria-label="Living creatures"></div>
+
+  <!-- Chat -->
+  <div class="chat-container hidden" id="chat-container">
+    <div class="chat-input-wrap">
+      <input type="text" id="chat-input" placeholder="speak to your Norn..." autocomplete="off" spellcheck="false" />
+      <span class="chat-hint">enter ↵</span>
+    </div>
+  </div>
+  <div class="idle-prompt" id="idle-prompt">select a creature to begin observation · <kbd style="font-family:var(--font-mono);font-size:11px;color:var(--glow-cyan-dim);border:1px solid var(--stone-edge);border-radius:2px;padding:0 3px;background:var(--stone-mid)">Tab</kbd> to cycle · drag to pan</div>
+
+  <!-- Screen reader announcements -->
+  <div id="sr-announce" aria-live="polite" aria-atomic="true" style="position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden;"></div>
+
+  <!-- Lore notification toast -->
+  <div class="lore-toast" id="lore-toast"></div>
+
+  <!-- Keybinding hint row — dim by default, brightens on hover -->
+  <nav class="key-hints" aria-label="keyboard shortcuts">
+    <ul>
+      <li><kbd>Tab</kbd>cycle</li>
+      <li><kbd>F</kbd>feed</li>
+      <li><kbd>Space</kbd>follow</li>
+      <li><kbd>C</kbd>chronicle</li>
+      <li><kbd>N</kbd>planets</li>
+      <li><kbd>+</kbd><kbd>−</kbd>zoom · scroll</li>
+      <li><kbd>F5</kbd>save · <kbd>F9</kbd>load</li>
+      <li><kbd>Esc</kbd>deselect</li>
+    </ul>
+  </nav>
+
+</body>
+</html>
