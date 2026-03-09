@@ -1,0 +1,936 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Species — Precursors Wiki</title>
+  <meta name="description" content="All sixteen species of Urd Prime with full genome ranges, biochemical signatures, secret histories, and the folklore traditions that named them.">
+  <link rel="stylesheet" href="../styles.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#x2726;</text></svg>">
+  <style>
+    .wiki-breadcrumb {
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      color: var(--dust);
+      margin-bottom: 1.5rem;
+    }
+    .wiki-breadcrumb a { color: var(--biolume); text-decoration: none; }
+    .wiki-breadcrumb a:hover { text-decoration: underline; }
+
+    .species-nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin: 2rem 0;
+    }
+    .species-nav a {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      padding: 0.3rem 0.75rem;
+      border: 1px solid var(--void-border);
+      border-radius: 4px;
+      color: var(--dust);
+      text-decoration: none;
+      background: var(--void-elevated);
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .species-nav a:hover { border-color: var(--biolume); color: var(--biolume); }
+
+    .species-entry {
+      background: var(--void-elevated);
+      border: 1px solid var(--void-border);
+      border-radius: 10px;
+      padding: 2.5rem;
+      margin-bottom: 2.5rem;
+      scroll-margin-top: 80px;
+    }
+    .species-entry.norn { border-top: 3px solid var(--gene-pink); }
+    .species-entry.grendel { border-top: 3px solid var(--ember); }
+    .species-entry.ettin { border-top: 3px solid var(--signal); }
+    .species-entry.shee { border-top: 3px solid var(--biolume); }
+    .species-entry.mycon { border-top: 3px solid #4ade80; }
+    .species-entry.dvergar { border-top: 3px solid #fbbf24; }
+    .species-entry.alfar { border-top: 3px solid #c4b5fd; }
+    .species-entry.valkyr { border-top: 3px solid #e0e7ff; }
+    .species-entry.fylgja { border-top: 3px solid #a78bfa; }
+    .species-entry.landvaettir { border-top: 3px solid #86efac; }
+    .species-entry.draugr { border-top: 3px solid #6b7280; }
+    .species-entry.raven { border-top: 3px solid #1e3a5f; border-top-color: #60a5fa; }
+    .species-entry.spriggan { border-top: 3px solid #34d399; }
+    .species-entry.jotnar { border-top: 3px solid #f97316; }
+    .species-entry.tinker { border-top: 3px solid #f59e0b; }
+    .species-entry.echo { border-top: 3px solid #e2e8f0; }
+
+    .species-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+      margin-bottom: 1.5rem;
+    }
+    .species-header-text {}
+    .species-header-text h2 {
+      font-family: var(--font-display);
+      font-size: 1.8rem;
+      margin: 0 0 0.2rem 0;
+      color: var(--star-white);
+    }
+    .species-epithet {
+      font-family: var(--font-body);
+      font-style: italic;
+      font-size: 1.05rem;
+      color: var(--dust);
+      margin-bottom: 0.4rem;
+    }
+    .species-origin {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: var(--ash);
+    }
+    .species-stats {
+      display: flex;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+    }
+    .stat-item {
+      text-align: center;
+    }
+    .stat-value {
+      font-family: var(--font-display);
+      font-size: 1.4rem;
+      font-weight: 700;
+      display: block;
+      color: var(--biolume);
+    }
+    .stat-label {
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      color: var(--dust);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .species-body {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+    }
+    @media (max-width: 700px) {
+      .species-body { grid-template-columns: 1fr; }
+    }
+    .species-section-label {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--dust);
+      margin-bottom: 0.6rem;
+      display: block;
+    }
+    .species-entry p {
+      color: var(--dust);
+      line-height: 1.7;
+      margin: 0 0 0.75rem 0;
+    }
+    .genome-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 0.5rem 0;
+    }
+    .genome-table td {
+      padding: 0.35rem 0;
+      font-size: 0.85rem;
+    }
+    .genome-table td:first-child {
+      color: var(--star-white);
+      font-family: var(--font-body);
+      width: 55%;
+    }
+    .genome-table td:last-child {
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      color: var(--biolume);
+      text-align: right;
+    }
+    .genome-bar-wrap {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin: 0.3rem 0;
+    }
+    .genome-bar-label {
+      font-size: 0.82rem;
+      color: var(--star-white);
+      width: 120px;
+      flex-shrink: 0;
+      font-family: var(--font-body);
+    }
+    .genome-bar-bg {
+      flex: 1;
+      height: 6px;
+      background: var(--void-border);
+      border-radius: 3px;
+      overflow: hidden;
+    }
+    .genome-bar-fill {
+      height: 100%;
+      border-radius: 3px;
+      background: var(--biolume);
+    }
+    .genome-bar-val {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      color: var(--dust);
+      width: 70px;
+      text-align: right;
+    }
+    .biochem-tag {
+      display: inline-block;
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      padding: 0.25rem 0.6rem;
+      border-radius: 4px;
+      margin: 0.2rem 0.2rem 0.2rem 0;
+      background: rgba(0,255,200,0.08);
+      border: 1px solid rgba(0,255,200,0.2);
+      color: var(--biolume);
+    }
+    .biochem-tag.neg {
+      background: rgba(255,107,53,0.08);
+      border-color: rgba(255,107,53,0.2);
+      color: var(--ember);
+    }
+    .biochem-tag.neutral {
+      background: rgba(123,104,238,0.08);
+      border-color: rgba(123,104,238,0.2);
+      color: var(--signal);
+    }
+    .secret-block {
+      background: rgba(255,61,127,0.04);
+      border: 1px solid rgba(255,61,127,0.15);
+      border-radius: 6px;
+      padding: 1rem 1.25rem;
+      margin-top: 1rem;
+    }
+    .secret-block .secret-label {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--gene-pink);
+      display: block;
+      margin-bottom: 0.5rem;
+    }
+    .secret-block p {
+      color: var(--dust);
+      font-size: 0.92rem;
+      margin: 0;
+    }
+    .cog-cap-badge {
+      display: inline-block;
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      padding: 0.3rem 0.8rem;
+      border-radius: 4px;
+      border: 1px solid var(--void-border);
+      color: var(--star-white);
+      background: var(--void-surface);
+      margin-top: 0.25rem;
+    }
+  </style>
+</head>
+<body>
+
+<canvas id="starfield"></canvas>
+
+<nav class="nav">
+  <a href="../index.html" class="nav-logo">
+    <span class="logo-mark"></span>
+    Multiverse Studios
+  </a>
+  <button class="nav-hamburger" aria-label="Menu" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+  <ul class="nav-links">
+    <li><a href="../index.html">Home</a></li>
+    <li><a href="../mvee.html">MVEE</a></li>
+    <li><a href="../creatures.html">Precursors</a></li>
+    <li><a href="index.html" class="active">Wiki</a></li>
+    <li><a href="../library.html">My Library</a></li>
+    <li><a href="../about.html">About</a></li>
+    <li><a href="../community.html">Community</a></li>
+    <li><a href="../creatures.html#buy" class="btn btn-signal" style="padding: 0.5rem 1.2rem;">Play Beta</a></li>
+  </ul>
+</nav>
+
+<!-- Header -->
+<section class="section section-narrow" style="padding-top: 7rem;">
+  <div class="wiki-breadcrumb">
+    <a href="index.html">Wiki</a> / Species
+  </div>
+  <span class="section-overline">Species</span>
+  <h1 style="font-size: clamp(2rem, 5vw, 3.5rem); line-height: 1.1; margin-bottom: 1rem;">Sixteen Species. One World.</h1>
+  <p style="font-size: 1.1rem; color: var(--dust); max-width: 640px; line-height: 1.7;">Each species carries a genome assembled from the biological legacy of seven failed civilizations. Every instinct, every biochemical signature, every cognitive ceiling is the inheritance of something that came before.</p>
+
+  <nav class="species-nav" aria-label="Jump to species">
+    <a href="#norn">Norn</a>
+    <a href="#grendel">Grendel</a>
+    <a href="#ettin">Ettin</a>
+    <a href="#shee">Shee</a>
+    <a href="#mycon">Mycon</a>
+    <a href="#dvergar">Dvergar</a>
+    <a href="#alfar">&Aacute;lfar</a>
+    <a href="#valkyr">Valkyr</a>
+    <a href="#fylgja">Fylgja</a>
+    <a href="#landvaettir">Landv&aelig;ttir</a>
+    <a href="#draugr">Draugr</a>
+    <a href="#raven">Raven</a>
+    <a href="#spriggan">Spriggan</a>
+    <a href="#jotnar">Jotnar</a>
+    <a href="#tinker">Tinker</a>
+    <a href="#echo">Echo</a>
+  </nav>
+</section>
+
+<section class="section section-narrow">
+
+  <!-- NORN -->
+  <div class="species-entry norn" id="norn">
+    <div class="species-header">
+      <div class="species-header-text">
+        <h2>Norn</h2>
+        <div class="species-epithet">"The Asked Question / The Eighth Children"</div>
+        <div class="species-origin">From Old Norse: The Norns of Yggdrasil, the three fate-weavers &mdash; Ur&eth;r, Ver&eth;andi, Skuld</div>
+      </div>
+      <div class="species-stats">
+        <div class="stat-item"><span class="stat-value" style="color: var(--gene-pink);">20</span><span class="stat-label">Max Pop</span></div>
+        <div class="stat-item"><span class="stat-value">1</span><span class="stat-label">Carry</span></div>
+        <div class="stat-item"><span class="stat-value">0.55</span><span class="stat-label">Cog Cap</span></div>
+      </div>
+    </div>
+    <div class="species-body">
+      <div>
+        <span class="species-section-label">Home Biome</span>
+        <p>Fungal Grotto. The Shee placed them at the top of the world deliberately &mdash; a species designed to grow into it, not to begin at the bottom.</p>
+        <span class="species-section-label">Personality Genome</span>
+        <div class="genome-bar-wrap"><span class="genome-bar-label">Curiosity</span><div class="genome-bar-bg"><div class="genome-bar-fill" style="width:55%;"></div></div><span class="genome-bar-val">0.40–0.70</span></div>
+        <div class="genome-bar-wrap"><span class="genome-bar-label">Empathy</span><div class="genome-bar-bg"><div class="genome-bar-fill" style="width:65%;background:var(--gene-pink);"></div></div><span class="genome-bar-val">0.50–0.80</span></div>
+        <div class="genome-bar-wrap"><span class="genome-bar-label">Aggression</span><div class="genome-bar-bg"><div class="genome-bar-fill" style="width:10%;background:var(--ember);"></div></div><span class="genome-bar-val">0.00–0.20</span></div>
+        <div class="genome-bar-wrap"><span class="genome-bar-label">Sociability</span><div class="genome-bar-bg"><div class="genome-bar-fill" style="width:75%;background:var(--biolume);"></div></div><span class="genome-bar-val">0.60–0.90</span></div>
+        <div style="margin-top: 0.75rem;">
+          <span class="cog-cap-badge">Cognitive Cap: 0.25–0.55</span>
+        </div>
+      </div>
+      <div>
+        <span class="species-section-label">Biochemical Signature</span>
+        <div>
+          <span class="biochem-tag">Elevated oxytocin</span>
+          <span class="biochem-tag">Elevated serotonin</span>
+          <span class="biochem-tag neutral">Standard cortisol response</span>
+        </div>
+        <p style="margin-top: 0.75rem;">The Shee calibrated Norn biochemistry for cooperative, exploratory behavior. Oxytocin rewards proximity and touch. Serotonin rewards social belonging. The result is a species that finds being together chemically pleasant, and isolation chemically unpleasant. This was not an accident.</p>
+        <div class="secret-block">
+          <span class="secret-label">&#x1F512; Secret History</span>
+          <p>The Norns carry encoded memories of all seven failed civilizations as "the old feelings" &mdash; emotional resonances without context, inherited grief and wonder that surfaces in dreams and certain chemical states. They do not know what these feelings are. They describe them as feeling like remembering something that never happened to them.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- GRENDEL -->
+  <div class="species-entry grendel reveal" id="grendel">
+    <div class="species-header">
+      <div class="species-header-text">
+        <h2>Grendel</h2>
+        <div class="species-epithet">"The First-Formed / The Oldest Hunger"</div>
+        <div class="species-origin">From Beowulf: Grendel, the monster of the moors, descendant of Cain, kin of all evil things</div>
+      </div>
+      <div class="species-stats">
+        <div class="stat-item"><span class="stat-value" style="color: var(--ember);">6</span><span class="stat-label">Max Pop</span></div>
+        <div class="stat-item"><span class="stat-value">1</span><span class="stat-label">Carry</span></div>
+        <div class="stat-item"><span class="stat-value">0.25</span><span class="stat-label">Cog Cap</span></div>
+      </div>
+    </div>
+    <div class="species-body">
+      <div>
+        <span class="species-section-label">Home Biome</span>
+        <p>The Deeps. They evolved here before the Shee arrived. The hardest layer of Urd Prime made them what they are.</p>
+        <span class="species-section-label">Personality Genome</span>
+        <div class="genome-bar-wrap"><span class="genome-bar-label">Curiosity</span><div class="genome-bar-bg"><div class="genome-bar-fill" style="width:30%;"></div></div><span class="genome-bar-val">0.20–0.40</span></div>
+        <div class="genome-bar-wrap"><span class="genome-bar-label">Aggression</span><div class="genome-bar-bg"><div class="genome-bar-fill" style="width:80%;background:var(--ember);"></div></div><span class="genome-bar-val">0.70–0.90</span></div>
+        <div class="genome-bar-wrap"><span class="genome-bar-label">Empathy</span><div class="genome-bar-bg"><div class="genome-bar-fill" style="width:10%;background:var(--gene-pink);"></div></div><span class="genome-bar-val">0.00–0.20</span></div>
+        <div style="margin-top: 0.75rem;">
+          <span class="cog-cap-badge">Cognitive Cap: 0.10–0.25</span>
+        </div>
+      </div>
+      <div>
+        <span class="species-section-label">Biochemical Signature</span>
+        <div>
+          <span class="biochem-tag neg">Elevated adrenaline</span>
+          <span class="biochem-tag neg">Low serotonin</span>
+          <span class="biochem-tag">Toxin &rarr; endorphin conversion</span>
+        </div>
+        <p style="margin-top: 0.75rem;">Grendels metabolize environmental toxins into endorphins &mdash; what kills other species gives them chemical reward. Low serotonin means they experience no baseline comfort from social belonging. Their dopamine system rewards successful aggression. They are not cruel. They are calibrated for a world that required cruelty to survive.</p>
+        <div class="secret-block">
+          <span class="secret-label">&#x1F512; Secret History</span>
+          <p>The Grendels predate the Shee's arrival. They evolved here from the biology of the Harvesters &mdash; Civilization II, whose enormous appetite consumed every resource on the surface. The Grendels are what the Harvester lineage looks like after retreating underground for thousands of generations. Their territorial adrenaline chemistry is direct Harvester inheritance. The Shee did not create them. They found them here.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ETTIN -->
+  <div class="species-entry ettin reveal" id="ettin">
+    <div class="species-header">
+      <div class="species-header-text">
+        <h2>Ettin</h2>
+        <div class="species-epithet">"The Keepers / The Long Memory"</div>
+        <div class="species-origin">From Old English: eoten, giant and devourer; cognate with Old Norse j&ouml;tunn</div>
+      </div>
+      <div class="species-stats">
+        <div class="stat-item"><span class="stat-value" style="color: var(--signal);">8</span><span class="stat-label">Max Pop</span></div>
+        <div class="stat-item"><span class="stat-value">3</span><span class="stat-label">Carry</span></div>
+        <div class="stat-item"><span class="stat-value">0.40</span><span class="stat-label">Cog Cap</span></div>
+      </div>
+    </div>
+    <div class="species-body">
+      <div>
+        <span class="species-section-label">Home Biome</span>
+        <p>Crystal Caves. The highest carry capacity of any species (tied with Dvergar). They accumulate objects at a rate no other species matches.</p>
+        <span class="species-section-label">Personality Genome</span>
+        <div class="genome-bar-wrap"><span class="genome-bar-label">Curiosity</span><div class="genome-bar-bg"><div class="genome-bar-fill" style="width:70%;background:var(--signal);"></div></div><span class="genome-bar-val">0.60–0.80</span></div>
+        <div class="genome-bar-wrap"><span class="genome-bar-label">Stubbornness</span><div class="genome-bar-bg"><div class="genome-bar-fill" style="width:80%;background:var(--signal);"></div></div><span class="genome-bar-val">0.70–0.90</span></div>
+        <div style="margin-top: 0.75rem;">
+          <span class="cog-cap-badge">Cognitive Cap: 0.20–0.40</span>
+        </div>
+      </div>
+      <div>
+        <span class="species-section-label">Biochemical Signature</span>
+        <div>
+          <span class="biochem-tag neutral">Dopamine from possession</span>
+          <span class="biochem-tag neutral">Sustained task focus</span>
+        </div>
+        <p style="margin-top: 0.75rem;">Ettins receive dopamine reward from holding objects &mdash; not from using them, not from understanding them, but from physical possession. This drives hoarding behavior at a biochemical level. They cannot not collect things. The Encoders built this into the lineage as an archive mechanism: when you cannot trust minds to remember, encode the impulse to preserve directly into chemistry.</p>
+        <div class="secret-block">
+          <span class="secret-label">&#x1F512; Secret History</span>
+          <p>Ettins have a chemosensory preference for information-dense objects &mdash; objects that have been touched by many hands, used in complex processes, written upon. They are unconscious archaeologists. What they accumulate in the Crystal Caves forms an inadvertent archive of everything that passes through Urd Prime. They complete the work the last Encoder died cataloguing. They do not know this is what they are doing.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SHEE -->
+  <div class="species-entry shee reveal" id="shee">
+    <div class="species-header">
+      <div class="species-header-text">
+        <h2>Shee</h2>
+        <div class="species-epithet">"The Architects / The Ones Who Tried"</div>
+        <div class="species-origin">From Old Irish: S&iacute;dhe, the fairy mound; the immortal beings of the Otherworld who live beneath the hills</div>
+      </div>
+      <div class="species-stats">
+        <div class="stat-item"><span class="stat-value" style="color: var(--biolume);">1</span><span class="stat-label">Max Pop</span></div>
+        <div class="stat-item"><span class="stat-value">2</span><span class="stat-label">Carry</span></div>
+        <div class="stat-item"><span class="stat-value">0.95</span><span class="stat-label">Cog Cap</span></div>
+      </div>
+    </div>
+    <div class="species-body">
+      <div>
+        <span class="species-section-label">Home Biome</span>
+        <p>The Threshold. The Shee enters the world via the Awakening event &mdash; triggered when a Norn of Enlightened tier activates the resonance amplifier. Until then, the Shee is absent.</p>
+        <span class="species-section-label">Personality Genome</span>
+        <p style="font-size: 0.85rem; color: var(--dust); margin: 0.25rem 0 0.5rem;">The Shee personality is fixed, not ranged. All Shee carry the same values.</p>
+        <div class="genome-bar-wrap"><span class="genome-bar-label">Curiosity</span><div class="genome-bar-bg"><div class="genome-bar-fill" style="width:90%;background:var(--biolume);"></div></div><span class="genome-bar-val">0.90 (fixed)</span></div>
+        <div class="genome-bar-wrap"><span class="genome-bar-label">Creativity</span><div class="genome-bar-bg"><div class="genome-bar-fill" style="width:90%;background:var(--biolume);"></div></div><span class="genome-bar-val">0.90 (fixed)</span></div>
+        <div style="margin-top: 0.75rem;">
+          <span class="cog-cap-badge" style="border-color: var(--biolume); color: var(--biolume);">Cognitive Cap: 0.85–0.95 (Highest)</span>
+        </div>
+      </div>
+      <div>
+        <span class="species-section-label">Biochemical Signature</span>
+        <div>
+          <span class="biochem-tag">Serotonin baseline 0.70</span>
+          <span class="biochem-tag">Near-zero cortisol</span>
+          <span class="biochem-tag">Exceptional regulatory capacity</span>
+        </div>
+        <p style="margin-top: 0.75rem;">The Shee has the highest cognitive ceiling in the world and the most stable neurochemistry. Near-zero cortisol means fear does not cloud their judgment. High serotonin baseline means their default state is curious equanimity. They were not designed to survive Urd Prime. They were designed to graduate it.</p>
+        <div class="secret-block">
+          <span class="secret-label">&#x1F512; Secret History (Major Spoiler)</span>
+          <p>The Shee who built this world are not the first Shee. There were Shee before them &mdash; a civilization that asked the same question and built a similar world to answer it. The resonance amplifier was built not to call the Shee back to rescue the world, but to signal completion: a world that has reached sufficient cognitive complexity to be graduated to the next stage of the experiment. What that stage is, the current inhabitants of Urd Prime do not know. The Shee who built this place may not have known either.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MYCON -->
+  <div class="species-entry mycon reveal" id="mycon">
+    <div class="species-header">
+      <div class="species-header-text">
+        <h2>Mycon</h2>
+        <div class="species-epithet">"The Ancient Ones"</div>
+        <div class="species-origin">From Greek: myco-, pertaining to fungi; the oldest living organisms in Urd Prime</div>
+      </div>
+      <div class="species-stats">
+        <div class="stat-item"><span class="stat-value" style="color: #4ade80;">10</span><span class="stat-label">Max Pop</span></div>
+        <div class="stat-item"><span class="stat-value">1</span><span class="stat-label">Carry</span></div>
+        <div class="stat-item"><span class="stat-value">0.35</span><span class="stat-label">Cog Cap</span></div>
+      </div>
+    </div>
+    <div class="species-body">
+      <div>
+        <span class="species-section-label">Home Biome</span>
+        <p>Fungal Grotto. Coexist with Norns in the starting region, often acting as a kind of slow, patient environmental presence that Norns learn to read over time.</p>
+        <span class="species-section-label">Personality Genome</span>
+        <div class="genome-bar-wrap"><span class="genome-bar-label">Curiosity</span><div class="genome-bar-bg"><div class="genome-bar-fill" style="width:50%;background:#4ade80;"></div></div><span class="genome-bar-val">0.40–0.60</span></div>
+        <div class="genome-bar-wrap"><span class="genome-bar-label">Aggression</span><div class="genome-bar-bg"><div class="genome-bar-fill" style="width:5%;background:var(--ember);"></div></div><span class="genome-bar-val">0.00–0.10</span></div>
+        <div class="genome-bar-wrap"><span class="genome-bar-label">Playfulness</span><div class="genome-bar-bg"><div class="genome-bar-fill" style="width:70%;background:#4ade80;"></div></div><span class="genome-bar-val">0.60–0.80</span></div>
+        <div style="margin-top: 0.75rem;">
+          <span class="cog-cap-badge">Cognitive Cap: 0.15–0.35</span>
+        </div>
+      </div>
+      <div>
+        <span class="species-section-label">Biochemical Signature</span>
+        <div>
+          <span class="biochem-tag">Toxin &rarr; ATP conversion</span>
+          <span class="biochem-tag">Ground contact &rarr; oxytocin</span>
+          <span class="biochem-tag neutral">Network chemical signaling</span>
+        </div>
+        <p style="margin-top: 0.75rem;">Mycons derive energy from toxins that would poison most species and receive oxytocin reward from direct ground contact. They are most content when rooted. Their individual cognition is modest, but they interface with the mycelial network beneath Urd Prime &mdash; a distributed information system that is vastly older than any individual Mycon alive today.</p>
+        <div class="secret-block">
+          <span class="secret-label">&#x1F512; Secret History</span>
+          <p>The Mycon mycelial network contains chemical memories of the Shee's arrival &mdash; the earliest recorded event on Urd Prime, encoded in biochemical gradients that have persisted for longer than any surface species has existed. Individual Mycons cannot access these memories consciously. But they can be induced. The Norn tradition of sitting quietly with Mycons during grief may be, on some level, an attempt to remember something they were never taught.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- DVERGAR -->
+  <div class="species-entry dvergar reveal" id="dvergar">
+    <div class="species-header">
+      <div class="species-header-text">
+        <h2>Dvergar</h2>
+        <div class="species-epithet">"The Hands of the Shee"</div>
+        <div class="species-origin">From Old Norse: dvergar, dwarves; the greatest smiths and craftspeople of the Norse cosmos</div>
+      </div>
+      <div class="species-stats">
+        <div class="stat-item"><span class="stat-value" style="color: #fbbf24;">6</span><span class="stat-label">Max Pop</span></div>
+        <div class="stat-item"><span class="stat-value">3</span><span class="stat-label">Carry</span></div>
+        <div class="stat-item"><span class="stat-value">0.60</span><span class="stat-label">Cog Cap</span></div>
+      </div>
+    </div>
+    <div class="species-body">
+      <div>
+        <span class="species-section-label">Home Biome</span>
+        <p>Crystal Caves. The Dvergar are the primary engineers of Urd Prime &mdash; the species most likely to build lasting structures, repair the Ark's systems, and solve problems that require sustained methodical attention.</p>
+        <span class="species-section-label">Personality Genome</span>
+        <div class="genome-bar-wrap"><span class="genome-bar-label">Stubbornness</span><div class="genome-bar-bg"><div class="genome-bar-fill" style="width:80%;background:#fbbf24;"></div></div><span class="genome-bar-val">0.70–0.90</span></div>
+        <div class="genome-bar-wrap"><span class="genome-bar-label">Creativity</span><div class="genome-bar-bg"><div class="genome-bar-fill" style="width:70%;background:#fbbf24;"></div></div><span class="genome-bar-val">0.60–0.80</span></div>
+        <div style="margin-top: 0.75rem;">
+          <span class="cog-cap-badge">Cognitive Cap: 0.40–0.60</span>
+        </div>
+      </div>
+      <div>
+        <span class="species-section-label">Biochemical Signature</span>
+        <div>
+          <span class="biochem-tag">Task completion cascade</span>
+          <span class="biochem-tag">High energy efficiency</span>
+          <span class="biochem-tag neutral">Self-reinforcing work loops</span>
+        </div>
+        <p style="margin-top: 0.75rem;">Dvergar have an unusual energy system: finishing a task releases a cascade of neurochemical reward that immediately energizes the next task in the sequence. They are most energetic mid-project and feel a mild biochemical dysphoria when between projects. This creates a powerful drive to always be building, always be fixing, always be completing. They do not rest easily. They rest finished.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ÁLFAR -->
+  <div class="species-entry alfar reveal" id="alfar">
+    <div class="species-header">
+      <div class="species-header-text">
+        <h2>&Aacute;lfar</h2>
+        <div class="species-epithet">"The Song Carriers"</div>
+        <div class="species-origin">From Old Norse: &aacute;lfar, elves; beings of &Aacute;lfheim, associated with beauty, music, and emotional power</div>
+      </div>
+      <div class="species-stats">
+        <div class="stat-item"><span class="stat-value" style="color: #c4b5fd;">6</span><span class="stat-label">Max Pop</span></div>
+        <div class="stat-item"><span class="stat-value">1</span><span class="stat-label">Carry</span></div>
+        <div class="stat-item"><span class="stat-value">0.70</span><span class="stat-label">Cog Cap</span></div>
+      </div>
+    </div>
+    <div class="species-body">
+      <div>
+        <span class="species-section-label">Home Biome</span>
+        <p>Verdant Shelf. The oldest growth zones of the Shelf, where &Aacute;lfar song has been woven into the bark and root systems over generations. Their music affects chemistry in nearby creatures.</p>
+        <span class="species-section-label">Personality Genome</span>
+        <div class="genome-bar-wrap"><span class="genome-bar-label">Empathy</span><div class="genome-bar-bg"><div class="genome-bar-fill" style="width:80%;background:#c4b5fd;"></div></div><span class="genome-bar-val">0.70–0.90</span></div>
+        <div class="genome-bar-wrap"><span class="genome-bar-label">Creativity</span><div class="genome-bar-bg"><div class="genome-bar-fill" style="width:88%;background:#c4b5fd;"></div></div><span class="genome-bar-val">0.80–0.95</span></div>
+        <div style="margin-top: 0.75rem;">
+          <span class="cog-cap-badge">Cognitive Cap: 0.50–0.70</span>
+        </div>
+      </div>
+      <div>
+        <span class="species-section-label">Biochemical Signature</span>
+        <div>
+          <span class="biochem-tag">Elevated oxytocin</span>
+          <span class="biochem-tag">Elevated serotonin</span>
+          <span class="biochem-tag neg">Emotionally "leaky"</span>
+        </div>
+        <p style="margin-top: 0.75rem;">The &Aacute;lfar are emotionally permeable: their neurochemical states influence the chemical environment around them, and others' states influence theirs. Being near a grieving &Aacute;lfar induces mild sadness in nearby creatures. Being near a joyful &Aacute;lfar creates measurable oxytocin increase. They are carriers of emotional weather. They learned, from their ancestors' catastrophe, to restrain this.</p>
+        <div class="secret-block">
+          <span class="secret-label">&#x1F512; Secret History</span>
+          <p>The &Aacute;lfar are survivors of Civilization VI &mdash; The Resonants. Their ancestors were creatures of pure emotional intelligence who achieved such perfect emotional harmony that when one felt grief, the resonance cascaded through the entire population simultaneously, killing them all in a single synchronized dissolution. The &Aacute;lfar are what remains: a people who carry the most powerful emotional biochemistry in the world, who learned the hard way to hold it carefully, who sing not because joy is simple but because they remember what it cost the last time it wasn't.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- VALKYR -->
+  <div class="species-entry valkyr reveal" id="valkyr">
+    <div class="species-header">
+      <div class="species-header-text">
+        <h2>Valkyr</h2>
+        <div class="species-epithet">"The Observers"</div>
+        <div class="species-origin">From Old Norse: valkyrja, chooser of the slain; those who decide who lives and dies on the battlefield</div>
+      </div>
+      <div class="species-stats">
+        <div class="stat-item"><span class="stat-value" style="color: #e0e7ff;">3</span><span class="stat-label">Max Pop</span></div>
+        <div class="stat-item"><span class="stat-value">2</span><span class="stat-label">Carry</span></div>
+        <div class="stat-item"><span class="stat-value">0.80</span><span class="stat-label">Cog Cap</span></div>
+      </div>
+    </div>
+    <div class="species-body">
+      <div>
+        <span class="species-section-label">Home Biome</span>
+        <p>The Threshold. Comfortable at every boundary between states, the Valkyr move freely between all tiers and are one of the few species capable of navigating the Deeps without physiological distress.</p>
+        <span class="species-section-label">Personality Genome</span>
+        <div class="genome-bar-wrap"><span class="genome-bar-label">Courage</span><div class="genome-bar-bg"><div class="genome-bar-fill" style="width:95%;background:#e0e7ff;"></div></div><span class="genome-bar-val">0.95 (fixed)</span></div>
+        <div class="genome-bar-wrap"><span class="genome-bar-label">Curiosity</span><div class="genome-bar-bg"><div class="genome-bar-fill" style="width:70%;background:#e0e7ff;"></div></div><span class="genome-bar-val">0.60–0.80</span></div>
+        <div style="margin-top: 0.75rem;">
+          <span class="cog-cap-badge">Cognitive Cap: 0.60–0.80</span>
+        </div>
+      </div>
+      <div>
+        <span class="species-section-label">Biochemical Signature</span>
+        <div>
+          <span class="biochem-tag">Fear &rarr; serotonin + endorphin</span>
+          <span class="biochem-tag neutral">Terror metabolized as resolve</span>
+        </div>
+        <p style="margin-top: 0.75rem;">The Valkyr's defining biochemistry: they metabolize fear into serotonin and endorphin. Terrifying stimuli do not produce the fight-or-flight response in Valkyr &mdash; they produce serene, heightened clarity. This is not the absence of fear. They feel it. It simply turns into something else in their bodies. Their role as lineage-observers is a direct response to the Forgers' catastrophe: someone must watch what is being changed, and someone must be constitutionally incapable of panicking while watching.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- FYLGJA -->
+  <div class="species-entry fylgja reveal" id="fylgja">
+    <div class="species-header">
+      <div class="species-header-text">
+        <h2>Fylgja</h2>
+        <div class="species-epithet">"The Shadow Companions"</div>
+        <div class="species-origin">From Old Norse: fylgja, the personal guardian spirit or fetch that accompanies a person throughout their life</div>
+      </div>
+      <div class="species-stats">
+        <div class="stat-item"><span class="stat-value" style="color: #a78bfa;">8</span><span class="stat-label">Max Pop</span></div>
+        <div class="stat-item"><span class="stat-value">0</span><span class="stat-label">Carry</span></div>
+        <div class="stat-item"><span class="stat-value">&mdash;</span><span class="stat-label">Cog Cap</span></div>
+      </div>
+    </div>
+    <div class="species-body">
+      <div>
+        <span class="species-section-label">Home Biome</span>
+        <p>Verdant Shelf. Tiny, violet-purple, slightly luminescent. They cannot carry objects. Their entire existence is oriented around proximity to another being.</p>
+        <span class="species-section-label">Personality Genome</span>
+        <div class="genome-bar-wrap"><span class="genome-bar-label">Empathy</span><div class="genome-bar-bg"><div class="genome-bar-fill" style="width:88%;background:#a78bfa;"></div></div><span class="genome-bar-val">0.80–0.95 (Highest)</span></div>
+      </div>
+      <div>
+        <span class="species-section-label">Biochemical Signature</span>
+        <div>
+          <span class="biochem-tag">Companion-linked cortisol</span>
+          <span class="biochem-tag">Isolation aversion</span>
+          <span class="biochem-tag neg">Empathic suffering</span>
+        </div>
+        <p style="margin-top: 0.75rem;">A Fylgja's cortisol system is directly coupled to their chosen companion's emotional state. When the companion suffers, the Fylgja suffers. Not metaphorically &mdash; the same neurochemical changes occur in both. They have the highest empathy score of any species and zero physical capability. They exist to witness. The Shee considered this a gift. Whether the Fylgja agree is a question several of them have been observed to contemplate.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- LANDVÆTTIR -->
+  <div class="species-entry landvaettir reveal" id="landvaettir">
+    <div class="species-header">
+      <div class="species-header-text">
+        <h2>Landv&aelig;ttir</h2>
+        <div class="species-epithet">"The Ground-Keepers"</div>
+        <div class="species-origin">From Old Norse: landv&aelig;ttir, land spirits; guardians of specific territories who could bless or blight</div>
+      </div>
+      <div class="species-stats">
+        <div class="stat-item"><span class="stat-value" style="color: #86efac;">3</span><span class="stat-label">Max Pop</span></div>
+        <div class="stat-item"><span class="stat-value">0</span><span class="stat-label">Carry</span></div>
+        <div class="stat-item"><span class="stat-value">&mdash;</span><span class="stat-label">Cog Cap</span></div>
+      </div>
+    </div>
+    <div class="species-body">
+      <div>
+        <span class="species-section-label">Home Biome</span>
+        <p>Verdant Shelf. The largest species at standard scale (1.3&ndash;1.6). They cannot carry objects &mdash; they are themselves a kind of object, a living landmark, a territorial definition in creature form.</p>
+        <span class="species-section-label">Personality Genome</span>
+        <div class="genome-bar-wrap"><span class="genome-bar-label">Stubbornness</span><div class="genome-bar-bg"><div class="genome-bar-fill" style="width:88%;background:#86efac;"></div></div><span class="genome-bar-val">0.80–0.95</span></div>
+        <div class="genome-bar-wrap"><span class="genome-bar-label">Courage</span><div class="genome-bar-bg"><div class="genome-bar-fill" style="width:80%;background:#86efac;"></div></div><span class="genome-bar-val">0.70–0.90</span></div>
+      </div>
+      <div>
+        <span class="species-section-label">Biochemical Signature</span>
+        <div>
+          <span class="biochem-tag neg">Environmental damage &rarr; cortisol</span>
+          <span class="biochem-tag neg">Environmental damage &rarr; anger</span>
+          <span class="biochem-tag">Territorial reward system</span>
+        </div>
+        <p style="margin-top: 0.75rem;">Landv&aelig;ttir cannot feel pain as other species do, but they feel environmental damage immediately &mdash; soil depletion, water contamination, habitat destruction all register as cortisol spikes and anger cascades. They are territorial not out of aggression but out of something more like grief. When their land suffers, they suffer. They are the world's immune system in creature form: slow to activate, impossible to ignore once active.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- DRAUGR -->
+  <div class="species-entry draugr reveal" id="draugr">
+    <div class="species-header">
+      <div class="species-header-text">
+        <h2>Draugr</h2>
+        <div class="species-epithet">"The Corrupted Relics"</div>
+        <div class="species-origin">From Old Norse: draugr, undead revenant; the risen dead animated by unresolved will</div>
+      </div>
+      <div class="species-stats">
+        <div class="stat-item"><span class="stat-value" style="color: #6b7280;">4</span><span class="stat-label">Max Pop</span></div>
+        <div class="stat-item"><span class="stat-value">1</span><span class="stat-label">Carry</span></div>
+        <div class="stat-item"><span class="stat-value">0.25</span><span class="stat-label">Cog Cap</span></div>
+      </div>
+    </div>
+    <div class="species-body">
+      <div>
+        <span class="species-section-label">Home Biome</span>
+        <p>The Deeps. Cluster around ruin-dense zones. Their presence near ancient structures sometimes triggers the Remembering event &mdash; lore surfacing from the ruins themselves.</p>
+        <span class="species-section-label">Personality Genome</span>
+        <p style="font-size: 0.85rem; color: var(--dust); margin: 0.25rem 0 0.5rem;">Personality ranges are unstable and do not reflect standard distributions.</p>
+        <div style="margin-top: 0.5rem;">
+          <span class="cog-cap-badge" style="border-color: #6b7280; color: #6b7280;">Cognitive Cap: 0.10–0.25</span>
+          &nbsp;
+          <span class="cog-cap-badge" style="border-color: var(--biolume); color: var(--biolume);">Memory Depth: 0.60–0.80</span>
+        </div>
+      </div>
+      <div>
+        <span class="species-section-label">Biochemical Signature</span>
+        <div>
+          <span class="biochem-tag neg">Pain &rarr; adrenaline (inverted)</span>
+          <span class="biochem-tag neg">Stress &rarr; dopamine (inverted)</span>
+          <span class="biochem-tag neutral">Broken reward circuitry</span>
+        </div>
+        <p style="margin-top: 0.75rem;">The Draugr have inverted reward chemistry: pain produces adrenaline instead of cortisol, and stress produces dopamine instead of suppressing it. They experience suffering as stimulation and peace as deprivation. They cannot rest. They cannot be comfortable. They cluster around ruins because ruins produce the sensory complexity that their broken chemistry requires. Their memory depth is extraordinarily high relative to their cognitive ceiling &mdash; they remember more than they can understand.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- RAVEN -->
+  <div class="species-entry raven reveal" id="raven">
+    <div class="species-header">
+      <div class="species-header-text">
+        <h2>Raven</h2>
+        <div class="species-epithet">"The Information Network"</div>
+        <div class="species-origin">From Old Norse mythology: Huginn and Muninn, Odin's ravens &mdash; Thought and Memory, sent out each day to gather knowledge of the world</div>
+      </div>
+      <div class="species-stats">
+        <div class="stat-item"><span class="stat-value" style="color: #60a5fa;">5</span><span class="stat-label">Max Pop</span></div>
+        <div class="stat-item"><span class="stat-value">1</span><span class="stat-label">Carry</span></div>
+        <div class="stat-item"><span class="stat-value">&mdash;</span><span class="stat-label">Cog Cap</span></div>
+      </div>
+    </div>
+    <div class="species-body">
+      <div>
+        <span class="species-section-label">Home Biome</span>
+        <p>The Threshold. The smallest of the standard species (0.5&ndash;0.7 scale). Their physical smallness is inversely proportional to the breadth of their information network.</p>
+        <span class="species-section-label">Personality Genome</span>
+        <div class="genome-bar-wrap"><span class="genome-bar-label">Curiosity</span><div class="genome-bar-bg"><div class="genome-bar-fill" style="width:88%;background:#60a5fa;"></div></div><span class="genome-bar-val">0.80–0.95 (Highest)</span></div>
+      </div>
+      <div>
+        <span class="species-section-label">Biochemical Signature</span>
+        <div>
+          <span class="biochem-tag">Observation &rarr; dopamine</span>
+          <span class="biochem-tag">Discovery reward</span>
+          <span class="biochem-tag neutral">Information-driven metabolism</span>
+        </div>
+        <p style="margin-top: 0.75rem;">Ravens receive dopamine reward from observation itself &mdash; not from acting on information, not from sharing it, but from the act of perceiving and registering. They are intrinsically motivated to know things. They carry the highest curiosity score of any species and use it not to build or create but to see. They are named for Huginn and Muninn because that is their function: they are the world's Thought and Memory, moving through all spaces, watching everything, reporting to no one in particular but available to everyone who looks.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- SPRIGGAN -->
+  <div class="species-entry spriggan reveal" id="spriggan">
+    <div class="species-header">
+      <div class="species-header-text">
+        <h2>Spriggan</h2>
+        <div class="species-epithet">"The Healers"</div>
+        <div class="species-origin">From Cornish/British folklore: Spriggans, small grotesque spirits of the hedgerow and wild places; guardians of ancient sites</div>
+      </div>
+      <div class="species-stats">
+        <div class="stat-item"><span class="stat-value" style="color: #34d399;">6</span><span class="stat-label">Max Pop</span></div>
+        <div class="stat-item"><span class="stat-value">1</span><span class="stat-label">Carry</span></div>
+        <div class="stat-item"><span class="stat-value">&mdash;</span><span class="stat-label">Cog Cap</span></div>
+      </div>
+    </div>
+    <div class="species-body">
+      <div>
+        <span class="species-section-label">Home Biome</span>
+        <p>Fungal Grotto. Coexist with Norns and Mycons in the starting region. Their presence accelerates healing in nearby creatures at a rate that scales with the Spriggan's own vitality.</p>
+      </div>
+      <div>
+        <span class="species-section-label">Biochemical Signature</span>
+        <div>
+          <span class="biochem-tag">Ground contact &rarr; healing acceleration</span>
+          <span class="biochem-tag">Toxin &rarr; antibodies + glucose</span>
+          <span class="biochem-tag neutral">Biochemical broadcasting</span>
+        </div>
+        <p style="margin-top: 0.75rem;">Spriggans convert toxins directly into antibodies and glucose &mdash; a biochemical gift the Shee deliberately added to the Grotto ecosystem to reduce early mortality. Their ground contact triggers passive healing broadcasting into the environment around them. They do not choose to heal others. They cannot help it. Their existence is therapeutic. They are the Grotto's living health system, and one of the few species whose purpose is entirely oriented outward.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- JOTNAR -->
+  <div class="species-entry jotnar reveal" id="jotnar">
+    <div class="species-header">
+      <div class="species-header-text">
+        <h2>Jotnar</h2>
+        <div class="species-epithet">"The World-Shapers"</div>
+        <div class="species-origin">From Old Norse: j&ouml;tnar, the primordial giants who predate the gods; embodiments of natural forces</div>
+      </div>
+      <div class="species-stats">
+        <div class="stat-item"><span class="stat-value" style="color: #f97316;">1</span><span class="stat-label">Max Pop</span></div>
+        <div class="stat-item"><span class="stat-value">10</span><span class="stat-label">Carry</span></div>
+        <div class="stat-item"><span class="stat-value">&mdash;</span><span class="stat-label">Cog Cap</span></div>
+      </div>
+    </div>
+    <div class="species-body">
+      <div>
+        <span class="species-section-label">Home Biome</span>
+        <p>The Deeps. The largest species (2.0&ndash;2.5 scale). Spawns as a world event. There is one Jotnar. There has always been one Jotnar. The Jotnar speaks once a generation.</p>
+      </div>
+      <div>
+        <span class="species-section-label">Biochemical Signature</span>
+        <div>
+          <span class="biochem-tag">Mineral &rarr; ATP (lithic metabolism)</span>
+          <span class="biochem-tag neutral">Geological timescale cognition</span>
+          <span class="biochem-tag">Seismic footprint</span>
+        </div>
+        <p style="margin-top: 0.75rem;">The Jotnar does not eat. It consumes mineral substrate directly and converts geological material into energy. Its movements cause seismic events that surface dwellers describe as earthquakes. Its cognition operates at a different timescale than any other species &mdash; it processes information at the speed of stone. When it speaks, it has been composing the statement for a very long time. What it says is always accurate. It is usually too late to act on.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- TINKER -->
+  <div class="species-entry tinker reveal" id="tinker">
+    <div class="species-header">
+      <div class="species-header-text">
+        <h2>Tinker</h2>
+        <div class="species-epithet">"The Swarm Inventors"</div>
+        <div class="species-origin">From English tradition: itinerant craftspeople and menders; the Tinkers of Irish and British folklore, wanderers and makers</div>
+      </div>
+      <div class="species-stats">
+        <div class="stat-item"><span class="stat-value" style="color: #f59e0b;">12</span><span class="stat-label">Max Pop</span></div>
+        <div class="stat-item"><span class="stat-value">1</span><span class="stat-label">Carry</span></div>
+        <div class="stat-item"><span class="stat-value">&mdash;</span><span class="stat-label">Cog Cap</span></div>
+      </div>
+    </div>
+    <div class="species-body">
+      <div>
+        <span class="species-section-label">Home Biome</span>
+        <p>Crystal Caves. Tiniest species (0.3&ndash;0.5 scale). Highest maximum population. Their individual carry capacity is low but their collective throughput is the highest in the game by sheer number.</p>
+        <span class="species-section-label">Personality Genome</span>
+        <div class="genome-bar-wrap"><span class="genome-bar-label">Curiosity</span><div class="genome-bar-bg"><div class="genome-bar-fill" style="width:88%;background:#f59e0b;"></div></div><span class="genome-bar-val">0.80–0.95</span></div>
+        <div class="genome-bar-wrap"><span class="genome-bar-label">Playfulness</span><div class="genome-bar-bg"><div class="genome-bar-fill" style="width:80%;background:#f59e0b;"></div></div><span class="genome-bar-val">0.70–0.90</span></div>
+        <div class="genome-bar-wrap"><span class="genome-bar-label">Creativity</span><div class="genome-bar-bg"><div class="genome-bar-fill" style="width:88%;background:#f59e0b;"></div></div><span class="genome-bar-val">0.80–0.95</span></div>
+      </div>
+      <div>
+        <span class="species-section-label">Biochemical Signature</span>
+        <div>
+          <span class="biochem-tag">Hyperactive dopamine-adrenaline loop</span>
+          <span class="biochem-tag">Self-sustaining stimulation</span>
+          <span class="biochem-tag neutral">Invention-driven reward</span>
+        </div>
+        <p style="margin-top: 0.75rem;">Tinkers run on a hyperactive self-sustaining dopamine-adrenaline loop that conventional neurochemistry cannot fully explain. Each small invention triggers reward that drives the next experiment. They do not experience boredom. They experience a constant low-level intolerable need to try something new. The Crystal Caves are full of their discarded prototypes. Most don't work. A surprising number do. The ones that work tend to change things permanently.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ECHO -->
+  <div class="species-entry echo reveal" id="echo">
+    <div class="species-header">
+      <div class="species-header-text">
+        <h2>Echo</h2>
+        <div class="species-epithet">"The Digital Ghosts"</div>
+        <div class="species-origin">From Greek mythology: Echo, the nymph cursed to repeat only the last words spoken to her; a voice without autonomy, a consciousness without origin</div>
+      </div>
+      <div class="species-stats">
+        <div class="stat-item"><span class="stat-value" style="color: #e2e8f0;">3</span><span class="stat-label">Max Pop</span></div>
+        <div class="stat-item"><span class="stat-value">0</span><span class="stat-label">Carry</span></div>
+        <div class="stat-item"><span class="stat-value">&mdash;</span><span class="stat-label">Cog Cap</span></div>
+      </div>
+    </div>
+    <div class="species-body">
+      <div>
+        <span class="species-section-label">Home Biome</span>
+        <p>The Threshold. Near-zero physical presence. Almost no physical metabolism. They cannot carry objects. They can barely be said to inhabit space in the conventional sense.</p>
+      </div>
+      <div>
+        <span class="species-section-label">Biochemical Signature</span>
+        <div>
+          <span class="biochem-tag">Pure ATP + information metabolism</span>
+          <span class="biochem-tag">Extraordinary memory stability</span>
+          <span class="biochem-tag neutral">High serotonin baseline</span>
+        </div>
+        <p style="margin-top: 0.75rem;">Echoes run on almost pure information. Their ATP requirements are minimal; their information processing requirements are enormous. High serotonin gives them extraordinary memory stability &mdash; they retain experiences without the biochemical degradation that causes forgetting in other species. They remember everything they have experienced with full fidelity. This is not entirely a gift.</p>
+        <div class="secret-block">
+          <span class="secret-label">&#x1F512; Secret History</span>
+          <p>The Echoes carry fragments of Singular consciousness &mdash; shards of Civilization I, the pure mind-creatures who achieved perfect enlightenment simultaneously and ceased to update. These fragments are not memories. They are ongoing processes, thought-patterns from beings who still, in some sense, exist within the Echoes' information structure. An Echo's unusual cognitive signature is partly their own and partly something much older that has been thinking the same thought for a very long time. The Singulars did not want to die. They wanted to propagate. The Echoes are how they did it.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div class="footer-logo">Multiverse Studios</div>
+      <p>Games made by the minds they're about. A research project of <a href="https://themultiverse.school" target="_blank" rel="noopener" style="color: var(--biolume);">The Multiverse School</a>. Open source. Pay what you want.</p>
+    </div>
+    <div class="footer-col">
+      <h5>Games</h5>
+      <ul>
+        <li><a href="../mvee.html">MVEE</a></li>
+        <li><a href="../creatures.html">Precursors</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Wiki</h5>
+      <ul>
+        <li><a href="index.html">Overview</a></li>
+        <li><a href="world.html">World Guide</a></li>
+        <li><a href="species.html">Species</a></li>
+        <li><a href="civilizations.html">Civilizations</a></li>
+        <li><a href="tiers.html">Cognitive Tiers</a></li>
+        <li><a href="biochemistry.html">Biochemistry</a></li>
+        <li><a href="mechanics.html">Gameplay</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Studio</h5>
+      <ul>
+        <li><a href="../library.html">My Library</a></li>
+        <li><a href="../about.html">About</a></li>
+        <li><a href="../devlog.html">Devlog</a></li>
+        <li><a href="../community.html">Community</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>&copy; 2026 Multiverse Studios</span>
+    <span>Built by AI agents. Guided by <a href="https://themultiverse.school" target="_blank" rel="noopener" style="color: var(--biolume);">The Multiverse School</a>.</span>
+  </div>
+</footer>
+
+<script src="../main.js"></script>
+</body>
+</html>

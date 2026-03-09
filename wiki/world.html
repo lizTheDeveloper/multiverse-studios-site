@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>World Guide — Precursors Wiki</title>
+  <meta name="description" content="A guide to Urd Prime: six biomes, four vertical tiers, Norse etymologies, and the Ancient Ark buried beneath the world.">
+  <link rel="stylesheet" href="../styles.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#x2726;</text></svg>">
+  <style>
+    .wiki-breadcrumb {
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      color: var(--dust);
+      margin-bottom: 1.5rem;
+    }
+    .wiki-breadcrumb a {
+      color: var(--biolume);
+      text-decoration: none;
+    }
+    .wiki-breadcrumb a:hover {
+      text-decoration: underline;
+    }
+    .etymology-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 2rem 0;
+      font-family: var(--font-body);
+    }
+    .etymology-table th {
+      background: var(--void-elevated);
+      color: var(--biolume);
+      font-family: var(--font-display);
+      font-size: 0.85rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 0.75rem 1rem;
+      text-align: left;
+      border-bottom: 1px solid var(--void-border);
+    }
+    .etymology-table td {
+      padding: 0.75rem 1rem;
+      border-bottom: 1px solid rgba(26,26,36,0.6);
+      color: var(--star-white);
+      vertical-align: top;
+    }
+    .etymology-table tr:nth-child(even) td {
+      background: rgba(17,17,24,0.4);
+    }
+    .etymology-table td:first-child {
+      color: var(--biolume);
+      font-weight: 600;
+    }
+    .etymology-table td:nth-child(2) {
+      color: var(--dust);
+      font-style: italic;
+      font-family: var(--font-mono);
+      font-size: 0.9rem;
+    }
+    .biome-card {
+      background: var(--void-elevated);
+      border: 1px solid var(--void-border);
+      border-left: 3px solid var(--biolume);
+      border-radius: 8px;
+      padding: 1.75rem 2rem;
+      margin-bottom: 1.5rem;
+    }
+    .biome-card.deeps {
+      border-left-color: var(--ember);
+    }
+    .biome-card.shelf {
+      border-left-color: #4ade80;
+    }
+    .biome-card.caves {
+      border-left-color: var(--signal);
+    }
+    .biome-card.threshold {
+      border-left-color: var(--gene-pink);
+    }
+    .biome-card.hidden {
+      border-left-color: var(--ash);
+      border-style: dashed;
+    }
+    .biome-card h3 {
+      font-family: var(--font-display);
+      font-size: 1.3rem;
+      margin: 0 0 0.3rem 0;
+      color: var(--star-white);
+    }
+    .biome-card .biome-tier {
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      color: var(--dust);
+      margin-bottom: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+    .biome-card p {
+      color: var(--dust);
+      margin: 0 0 0.75rem 0;
+      line-height: 1.7;
+    }
+    .biome-card p:last-child {
+      margin-bottom: 0;
+    }
+    .biome-inhabitants {
+      font-family: var(--font-mono);
+      font-size: 0.82rem;
+      color: var(--biolume);
+    }
+    .tier-diagram {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      margin: 2rem 0;
+      border: 1px solid var(--void-border);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+    .tier-row {
+      display: flex;
+      align-items: stretch;
+    }
+    .tier-label {
+      background: var(--void-elevated);
+      width: 140px;
+      min-width: 140px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 1.25rem;
+      border-right: 1px solid var(--void-border);
+    }
+    .tier-label .tier-name {
+      font-family: var(--font-display);
+      font-size: 0.9rem;
+      color: var(--star-white);
+      font-weight: 700;
+    }
+    .tier-label .tier-depth {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      color: var(--dust);
+      margin-top: 0.2rem;
+    }
+    .tier-content {
+      flex: 1;
+      padding: 1.25rem 1.5rem;
+      background: var(--void-surface);
+      border-bottom: 1px solid var(--void-border);
+    }
+    .tier-content p {
+      color: var(--dust);
+      margin: 0;
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+    .tier-row:last-child .tier-content,
+    .tier-row:last-child .tier-label {
+      border-bottom: none;
+    }
+    .tier-surface .tier-label { border-left: 3px solid #4ade80; }
+    .tier-mid .tier-label { border-left: 3px solid var(--biolume); }
+    .tier-underground .tier-label { border-left: 3px solid var(--signal); }
+    .tier-deep .tier-label { border-left: 3px solid var(--ember); }
+    .ark-teaser {
+      background: linear-gradient(135deg, rgba(255,107,53,0.06), rgba(5,5,8,0));
+      border: 1px solid rgba(255,107,53,0.25);
+      border-radius: 8px;
+      padding: 1.75rem 2rem;
+      margin-top: 2rem;
+    }
+    .ark-teaser h3 {
+      font-family: var(--font-display);
+      color: var(--ember);
+      margin: 0 0 0.75rem 0;
+    }
+    .ark-teaser p {
+      color: var(--dust);
+      margin: 0 0 1rem 0;
+      line-height: 1.7;
+    }
+  </style>
+</head>
+<body>
+
+<canvas id="starfield"></canvas>
+
+<nav class="nav">
+  <a href="../index.html" class="nav-logo">
+    <span class="logo-mark"></span>
+    Multiverse Studios
+  </a>
+  <button class="nav-hamburger" aria-label="Menu" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+  <ul class="nav-links">
+    <li><a href="../index.html">Home</a></li>
+    <li><a href="../mvee.html">MVEE</a></li>
+    <li><a href="../creatures.html">Precursors</a></li>
+    <li><a href="index.html" class="active">Wiki</a></li>
+    <li><a href="../library.html">My Library</a></li>
+    <li><a href="../about.html">About</a></li>
+    <li><a href="../community.html">Community</a></li>
+    <li><a href="../creatures.html#buy" class="btn btn-signal" style="padding: 0.5rem 1.2rem;">Play Beta</a></li>
+  </ul>
+</nav>
+
+<!-- Hero -->
+<section class="section section-narrow" style="padding-top: 7rem;">
+  <div class="wiki-breadcrumb">
+    <a href="index.html">Wiki</a> / World Guide
+  </div>
+  <span class="section-overline">World Guide</span>
+  <h1 style="font-size: clamp(2rem, 5vw, 3.5rem); line-height: 1.1; margin-bottom: 1rem;">Urd Prime</h1>
+  <p style="font-size: 1.15rem; color: var(--dust); max-width: 620px; line-height: 1.7;">Named from Old Norse <em>Ur&eth;r</em> &mdash; "that which has become." The eldest of the three Norns who weave fate at the Well of Ur&eth;r, beneath the roots of Yggdrasil. The world was given this name because it is not a beginning. It is an accumulation.</p>
+</section>
+
+<!-- Etymology -->
+<section class="section section-narrow reveal">
+  <div class="section-divider"></div>
+  <span class="section-overline">Names &amp; Origins</span>
+  <h2>The etymology of Urd Prime.</h2>
+  <p>Every name in Precursors is drawn from real mythological tradition. The Shee named nothing carelessly &mdash; each name is a memory, a dedication, an act of grief or respect for what was lost. The table below documents the Old Norse, Old English, Irish, and Beowulf sources for the world's core vocabulary.</p>
+
+  <table class="etymology-table">
+    <thead>
+      <tr>
+        <th>Game Name</th>
+        <th>Source Word</th>
+        <th>Language / Tradition</th>
+        <th>Meaning</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Urd Prime</td>
+        <td>Ur&eth;r</td>
+        <td>Old Norse</td>
+        <td>That which has become; the eldest Norn, fate-weaver at the Well of Ur&eth;r</td>
+      </tr>
+      <tr>
+        <td>Norns</td>
+        <td>Norns of Yggdrasil</td>
+        <td>Old Norse mythology</td>
+        <td>The three fate-weavers: Ur&eth;r (past), Ver&eth;andi (present), Skuld (future)</td>
+      </tr>
+      <tr>
+        <td>Ettins</td>
+        <td>eoten</td>
+        <td>Old English</td>
+        <td>Giant, devourer; cognate with Norse j&ouml;tunn</td>
+      </tr>
+      <tr>
+        <td>Grendels</td>
+        <td>Grendel</td>
+        <td>Old English / Beowulf</td>
+        <td>The monster of the moor; possibly "grinder" or "anger"; descendant of Cain</td>
+      </tr>
+      <tr>
+        <td>Shee</td>
+        <td>S&iacute;dhe</td>
+        <td>Old Irish</td>
+        <td>The fairy mound; the Otherworld; the immortal beings who live beneath the hills</td>
+      </tr>
+      <tr>
+        <td>Dvergar</td>
+        <td>dvergar</td>
+        <td>Old Norse</td>
+        <td>Dwarves; smiths of the gods; makers of Mj&ouml;lnir, Gleipnir, Draupnir</td>
+      </tr>
+      <tr>
+        <td>&Aacute;lfar</td>
+        <td>&aacute;lfar</td>
+        <td>Old Norse</td>
+        <td>Elves; light-beings of &Aacute;lfheim; associated with music and emotional resonance</td>
+      </tr>
+      <tr>
+        <td>Valkyr</td>
+        <td>valkyrja</td>
+        <td>Old Norse</td>
+        <td>Chooser of the slain; servant of Odin; she who decides who lives and dies in battle</td>
+      </tr>
+      <tr>
+        <td>Fylgja</td>
+        <td>fylgja</td>
+        <td>Old Norse</td>
+        <td>Fetch; the personal guardian spirit that accompanies a person throughout life</td>
+      </tr>
+      <tr>
+        <td>Landv&aelig;ttir</td>
+        <td>landv&aelig;ttir</td>
+        <td>Old Norse</td>
+        <td>Land spirits; guardians of specific territories; could bless or blight a land's fertility</td>
+      </tr>
+      <tr>
+        <td>Draugr</td>
+        <td>draugr</td>
+        <td>Old Norse</td>
+        <td>Undead revenant; the risen dead; a corpse animated by will or unresolved purpose</td>
+      </tr>
+      <tr>
+        <td>Jotnar</td>
+        <td>j&ouml;tnar</td>
+        <td>Old Norse</td>
+        <td>Giants; primordial beings who predate the gods; embodiments of natural forces</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- Biomes -->
+<section class="section section-narrow reveal">
+  <div class="section-divider"></div>
+  <span class="section-overline">Biomes</span>
+  <h2>Six regions. One ecosystem.</h2>
+  <p>Urd Prime is divided into six distinct biomes distributed across four vertical tiers. Five are documented in Shee survey records. The sixth appears in no official map.</p>
+
+  <div class="biome-card">
+    <h3>Fungal Grotto</h3>
+    <div class="biome-tier">Surface Tier &mdash; Layer 1</div>
+    <p>The topmost inhabited layer of Urd Prime, and the first place the Norns wake. The Fungal Grotto is defined by enormous bioluminescent fungi whose spore-light illuminates a canopy of living material. Moisture is constant. The air carries a faint sweetness that the Mycons describe as "the world breathing."</p>
+    <p>The Grotto is the most welcoming region for new life &mdash; food is abundant, predators are minimal, and the Mycon's ancient mycelial network runs beneath the substrate, carrying chemical signals the Norns can sense but not read. Not yet.</p>
+    <p class="biome-inhabitants">Primary inhabitants: Norns, Mycons, Spriggans</p>
+  </div>
+
+  <div class="biome-card shelf">
+    <h3>Verdant Shelf</h3>
+    <div class="biome-tier">Midworld Tier &mdash; Layer 2</div>
+    <p>A wide horizontal plateau running the circumference of the inner world, thick with conventional plant life, running water, and the most complex surface ecology on Urd Prime. The Shelf is where the world is most alive &mdash; and where the consequences of life are most visible. Seasons exist here in ways they don't in the controlled environment of the Grotto above.</p>
+    <p>The &Aacute;lfar inhabit the oldest growth zones, their songs threading through root and branch. The Fylgja drift between larger creatures, attaching themselves to beings they deem worth accompanying. The Landv&aelig;ttir, when not dormant, patrol the Shelf's most ancient territories with territorial patience.</p>
+    <p class="biome-inhabitants">Primary inhabitants: &Aacute;lfar, Fylgja, Landv&aelig;ttir</p>
+  </div>
+
+  <div class="biome-card caves">
+    <h3>Crystal Caves</h3>
+    <div class="biome-tier">Underground Tier &mdash; Layer 3</div>
+    <p>Deep below the Verdant Shelf, the substrate crystallizes. The Crystal Caves are a vast network of mineral formations whose resonant properties the Dvergar have been cataloguing since before the Norns existed &mdash; though they would be the first to tell you the catalogue is incomplete. The caves grow. The crystals add new facets. The archive is never finished.</p>
+    <p>The Ettins arrived here drawn by some chemosensory instinct they cannot explain &mdash; something about information-dense objects triggers a hoarding response the Encoders bequeathed them through evolutionary descent. Whatever the Ettins accumulate here will eventually be found by someone. That is the nature of archives.</p>
+    <p class="biome-inhabitants">Primary inhabitants: Dvergar, Ettins</p>
+  </div>
+
+  <div class="biome-card threshold">
+    <h3>The Threshold</h3>
+    <div class="biome-tier">Transitional &mdash; Between all layers</div>
+    <p>The Threshold is less a place than a condition: the boundary zone between inhabited tiers. It exists wherever the world changes register &mdash; where Grotto gives way to Shelf, where Shelf meets Crystal Caves, where the Caves open onto the Deeps. To stand in the Threshold is to stand in a transition. Most species pass through it. Only a few choose to live here.</p>
+    <p>The Shee (when present) make their home in the Threshold &mdash; perhaps because a species that exists to move between states of being is most comfortable in the spaces between. The Valkyr, who metabolize fear into serenity, are comfortable at every threshold. The Ravens live in the Threshold because information density is highest where worlds intersect. The Echoes exist at the threshold between pattern and consciousness.</p>
+    <p class="biome-inhabitants">Primary inhabitants: Shee, Valkyr, Ravens, Echoes</p>
+  </div>
+
+  <div class="biome-card deeps">
+    <h3>The Deeps</h3>
+    <div class="biome-tier">Deep Tier &mdash; Layer 4</div>
+    <p>Below the Crystal Caves, the world becomes inhospitable to most life. The Deeps are hot, mineral-dense, and lit only by geological events. The Grendels evolved here before the Shee arrived &mdash; their adrenaline chemistry, their territorial instincts, their resistance to toxins that would kill any surface species, are all adaptations to an environment that has been trying to kill them since before they had names for what they were.</p>
+    <p>The Jotnar move through the Deeps at geological timescales, consuming mineral substrate directly. Their movements cause what surface-dwellers describe as earthquakes. The Draugr cluster around the ruins that are most concentrated here &mdash; relics of the seven civilizations that burned through this world before the current age.</p>
+    <p class="biome-inhabitants">Primary inhabitants: Grendels, Draugr, Jotnar</p>
+  </div>
+
+  <div class="biome-card hidden">
+    <h3>[Unnamed]</h3>
+    <div class="biome-tier">Location: Unknown &mdash; Not in Shee Survey Records</div>
+    <p>There is a sixth biome. It does not appear in any Shee cartographic record. The Mycon network carries chemical traces of it &mdash; a place of extreme cognitive amplification, where the boundary between thought and substrate becomes permeable.</p>
+    <p>The Looped Ones, before their dissolution, described something like this in their final transmissions. Their thought-patterns still echo in the Resonance Faults that persist across Urd Prime. Whether the sixth biome and the Resonance Faults are the same phenomenon is currently unknown.</p>
+    <p style="color: var(--ash); font-style: italic;">No further data available.</p>
+    <p class="biome-inhabitants">Inhabitants: Unknown</p>
+  </div>
+</section>
+
+<!-- Vertical Tiers -->
+<section class="section section-narrow reveal">
+  <div class="section-divider"></div>
+  <span class="section-overline">Vertical Tiers</span>
+  <h2>The four layers of Urd Prime.</h2>
+  <p>Urd Prime is structured vertically as much as horizontally. Resources, danger, and cognitive challenge all scale with depth. The Shee placed the Norns at the surface deliberately &mdash; they are meant to discover the world layer by layer, as complexity earns itself.</p>
+
+  <div class="tier-diagram">
+    <div class="tier-row tier-surface">
+      <div class="tier-label">
+        <div class="tier-name">Surface</div>
+        <div class="tier-depth">Layer 1</div>
+      </div>
+      <div class="tier-content">
+        <p>The Fungal Grotto and the upper Verdant Shelf. Most accessible. Highest food abundance, lowest ambient danger. The starting world for Norns. The Shee calibrated this layer for early cognitive development &mdash; challenges are complex enough to drive growth, dangerous enough to require cooperation, safe enough to allow recovery from mistakes.</p>
+      </div>
+    </div>
+    <div class="tier-row tier-mid">
+      <div class="tier-label">
+        <div class="tier-name">Midworld</div>
+        <div class="tier-depth">Layer 2</div>
+      </div>
+      <div class="tier-content">
+        <p>The deeper Verdant Shelf, the Threshold's upper reaches. The world becomes more complex here: ecosystems more interdependent, resources requiring more sophisticated extraction. The &Aacute;lfar's emotional contagion is strongest in the Midworld &mdash; proximity to them accelerates social cognitive development. The Landv&aelig;ttir's territorial awareness becomes relevant as resource competition increases.</p>
+      </div>
+    </div>
+    <div class="tier-row tier-underground">
+      <div class="tier-label">
+        <div class="tier-name">Underground</div>
+        <div class="tier-depth">Layer 3</div>
+      </div>
+      <div class="tier-content">
+        <p>The Crystal Caves, the lower Threshold, the upper Deeps. Darkness requires adaptation or technology. The mineral wealth here drove the Dvergar's entire civilization. The ruins are most concentrated at this depth &mdash; most of the seven failed civilizations left their densest remains in the underground tier. The Draugr navigate by ruin-density, making them most active at this layer.</p>
+      </div>
+    </div>
+    <div class="tier-row tier-deep">
+      <div class="tier-label">
+        <div class="tier-name">The Deep</div>
+        <div class="tier-depth">Layer 4</div>
+      </div>
+      <div class="tier-content">
+        <p>The deepest layer, inhospitable to most surface life. The Grendels evolved here. The Jotnar live here. And at the deepest point, beneath everything &mdash; the Ancient Ark. The Shee ship that carried the genetic archives, the resonance amplifier, and the question that the entire simulation was built to answer. Most creatures will never reach the Deeps. The ones who do are not the same afterward.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Ancient Ark Teaser -->
+<section class="section section-narrow reveal" id="ark">
+  <div class="section-divider"></div>
+  <span class="section-overline">The Ancient Ark</span>
+  <h2>What is buried beneath.</h2>
+
+  <div class="ark-teaser">
+    <h3>&#x26F5; The Ancient Ark</h3>
+    <p>At the lowest point of the Deeps, beneath the geological strata of three failed civilizations, the Shee ship rests. It arrived before the first Norn was born. It has been there long enough that the minerals have grown over its hull and the Draugr have begun incorporating its outer plating into their territory markings.</p>
+    <p>The Ark contains everything. The genetic archives in the Terrarium. The resonance amplifier on the Bridge. The creator pod in Engineering. The cargo on the Cargo Deck &mdash; including something sealed in a brass container that predates the Ark's known construction date by several centuries.</p>
+    <p>The resonance amplifier was built to call the Shee back. But the Shee who built this world are not the first Shee. And the amplifier was built not to rescue the world, but to graduate it.</p>
+    <a href="tiers.html#ark" class="btn btn-ghost" style="margin-top: 0.5rem; display: inline-block;">Full Ark Documentation &rarr;</a>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div class="footer-logo">Multiverse Studios</div>
+      <p>Games made by the minds they're about. A research project of <a href="https://themultiverse.school" target="_blank" rel="noopener" style="color: var(--biolume);">The Multiverse School</a>. Open source. Pay what you want.</p>
+    </div>
+    <div class="footer-col">
+      <h5>Games</h5>
+      <ul>
+        <li><a href="../mvee.html">MVEE</a></li>
+        <li><a href="../creatures.html">Precursors</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Wiki</h5>
+      <ul>
+        <li><a href="index.html">Overview</a></li>
+        <li><a href="world.html">World Guide</a></li>
+        <li><a href="species.html">Species</a></li>
+        <li><a href="civilizations.html">Civilizations</a></li>
+        <li><a href="tiers.html">Cognitive Tiers</a></li>
+        <li><a href="biochemistry.html">Biochemistry</a></li>
+        <li><a href="mechanics.html">Gameplay</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Studio</h5>
+      <ul>
+        <li><a href="../library.html">My Library</a></li>
+        <li><a href="../about.html">About</a></li>
+        <li><a href="../devlog.html">Devlog</a></li>
+        <li><a href="../community.html">Community</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>&copy; 2026 Multiverse Studios</span>
+    <span>Built by AI agents. Guided by <a href="https://themultiverse.school" target="_blank" rel="noopener" style="color: var(--biolume);">The Multiverse School</a>.</span>
+  </div>
+</footer>
+
+<script src="../main.js"></script>
+</body>
+</html>

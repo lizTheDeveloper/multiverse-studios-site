@@ -1,0 +1,834 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Grendel — Precursors Wiki</title>
+  <meta name="description" content="The First-Formed. The Oldest Hunger. Grendels predate the Shee's arrival on Urd Prime. Full lore, genome, biochemistry, secret history and cultural record of the Grendel.">
+  <link rel="stylesheet" href="../styles.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#x2726;</text></svg>">
+  <style>
+    /* ---- Breadcrumb ---- */
+    .wiki-breadcrumb {
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      color: var(--dust);
+      margin-bottom: 1.5rem;
+    }
+    .wiki-breadcrumb a { color: var(--biolume); text-decoration: none; }
+    .wiki-breadcrumb a:hover { text-decoration: underline; }
+    .wiki-breadcrumb span { color: var(--ash); margin: 0 0.4rem; }
+
+    /* ---- Species Hero ---- */
+    .species-hero {
+      padding: 8rem var(--space-md) 4rem;
+      max-width: 900px;
+      margin: 0 auto;
+      position: relative;
+    }
+    .species-hero-glyph {
+      position: absolute;
+      top: 6rem;
+      right: 0;
+      font-family: var(--font-display);
+      font-size: 14rem;
+      font-weight: 900;
+      color: rgba(255, 107, 53, 0.05);
+      line-height: 1;
+      pointer-events: none;
+      user-select: none;
+      letter-spacing: -0.05em;
+    }
+    .species-overline {
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--ember);
+      margin-bottom: 0.75rem;
+      display: block;
+    }
+    .species-name {
+      font-family: var(--font-display);
+      font-size: clamp(3rem, 8vw, 6rem);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 1;
+      color: var(--star-white);
+      margin-bottom: 0.5rem;
+    }
+    .species-epithet {
+      font-family: var(--font-body);
+      font-style: italic;
+      font-size: 1.3rem;
+      color: var(--dust);
+      margin-bottom: 0.5rem;
+    }
+    .species-folklore-origin {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: var(--ash);
+      max-width: 60ch;
+      line-height: 1.6;
+      margin-top: 0.5rem;
+    }
+
+    /* ---- Accent rule ---- */
+    .accent-rule {
+      width: 60px;
+      height: 2px;
+      background: var(--ember);
+      margin: 2rem 0;
+      border: none;
+    }
+
+    /* ---- Quick Stats Panel ---- */
+    .stats-panel {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 1px;
+      background: var(--void-border);
+      border: 1px solid var(--void-border);
+      border-radius: 8px;
+      overflow: hidden;
+      margin-bottom: 3rem;
+    }
+    .stat-cell {
+      background: var(--void-elevated);
+      padding: 1.2rem 1.5rem;
+    }
+    .stat-cell-label {
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--ash);
+      display: block;
+      margin-bottom: 0.3rem;
+    }
+    .stat-cell-value {
+      font-family: var(--font-display);
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--ember);
+      display: block;
+      line-height: 1.1;
+    }
+    .stat-cell-sub {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      color: var(--dust);
+      margin-top: 0.1rem;
+    }
+
+    /* ---- Two-column body ---- */
+    .page-body {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 var(--space-md) var(--space-xl);
+    }
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2.5rem;
+      margin-bottom: 3rem;
+    }
+    @media (max-width: 720px) {
+      .two-col { grid-template-columns: 1fr; }
+    }
+
+    /* ---- Section labels ---- */
+    .section-label {
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--ember);
+      display: block;
+      margin-bottom: 0.75rem;
+      padding-bottom: 0.4rem;
+      border-bottom: 1px solid rgba(255, 107, 53, 0.2);
+    }
+    .section-label.neutral {
+      color: var(--dust);
+      border-bottom-color: var(--void-border);
+    }
+
+    /* ---- Prose ---- */
+    .prose {
+      color: var(--dust);
+      font-family: var(--font-body);
+      font-size: 1.05rem;
+      line-height: 1.75;
+    }
+    .prose p { margin-bottom: 0.9rem; }
+    .prose p:last-child { margin-bottom: 0; }
+
+    /* ---- Genome bars ---- */
+    .genome-bar-wrap {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      margin: 0.5rem 0;
+    }
+    .genome-bar-label {
+      font-family: var(--font-body);
+      font-size: 0.9rem;
+      color: var(--star-white);
+      width: 110px;
+      flex-shrink: 0;
+    }
+    .genome-bar-bg {
+      flex: 1;
+      height: 5px;
+      background: var(--void-border);
+      border-radius: 3px;
+      overflow: hidden;
+    }
+    .genome-bar-fill {
+      height: 100%;
+      border-radius: 3px;
+    }
+    .genome-bar-val {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      color: var(--dust);
+      width: 72px;
+      text-align: right;
+      flex-shrink: 0;
+    }
+
+    /* ---- Biochem tags ---- */
+    .tag-row { display: flex; flex-wrap: wrap; gap: 0.4rem; margin: 0.5rem 0 1rem; }
+    .biochem-tag {
+      display: inline-block;
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      padding: 0.25rem 0.65rem;
+      border-radius: 4px;
+    }
+    .biochem-tag.neg {
+      background: rgba(255, 107, 53, 0.08);
+      border: 1px solid rgba(255, 107, 53, 0.25);
+      color: var(--ember);
+    }
+    .biochem-tag.positive {
+      background: rgba(0, 255, 200, 0.06);
+      border: 1px solid rgba(0, 255, 200, 0.2);
+      color: var(--biolume);
+    }
+    .biochem-tag.neutral {
+      background: rgba(123, 104, 238, 0.07);
+      border: 1px solid rgba(123, 104, 238, 0.2);
+      color: var(--signal);
+    }
+
+    /* ---- Myth block ---- */
+    .myth-block {
+      background: rgba(255, 107, 53, 0.04);
+      border-left: 3px solid var(--ember);
+      border-radius: 0 6px 6px 0;
+      padding: 1.75rem 2rem;
+      margin: 2rem 0;
+    }
+    .myth-block-label {
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: var(--ember);
+      display: block;
+      margin-bottom: 1rem;
+      opacity: 0.8;
+    }
+    .myth-block blockquote {
+      font-family: var(--font-body);
+      font-style: italic;
+      font-size: 1.1rem;
+      color: var(--dust);
+      line-height: 1.8;
+      border: none;
+      padding: 0;
+      margin: 0;
+    }
+    .myth-block blockquote p { margin-bottom: 0.8rem; }
+    .myth-block blockquote p:last-child { margin-bottom: 0; }
+
+    /* ---- Rune fragment ---- */
+    .rune-block {
+      background: var(--void-elevated);
+      border: 1px solid var(--void-border);
+      border-left: 3px solid var(--ash);
+      border-radius: 0 6px 6px 0;
+      padding: 1.2rem 1.5rem;
+      margin: 1.5rem 0;
+    }
+    .rune-block-label {
+      font-family: var(--font-mono);
+      font-size: 0.62rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--ash);
+      margin-bottom: 0.6rem;
+      display: block;
+    }
+    .rune-block blockquote {
+      font-family: var(--font-body);
+      font-style: italic;
+      font-size: 1rem;
+      color: var(--dust);
+      border: none;
+      padding: 0;
+      margin: 0;
+    }
+    .rune-block cite {
+      display: block;
+      font-family: var(--font-mono);
+      font-style: normal;
+      font-size: 0.68rem;
+      color: var(--ash);
+      margin-top: 0.4rem;
+    }
+
+    /* ---- Practices list ---- */
+    .practices-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .practices-list li {
+      display: flex;
+      gap: 0.75rem;
+      padding: 0.65rem 0;
+      border-bottom: 1px solid var(--void-border);
+      font-family: var(--font-body);
+      font-size: 1rem;
+      color: var(--dust);
+      line-height: 1.5;
+    }
+    .practices-list li:last-child { border-bottom: none; }
+    .practice-glyph {
+      color: var(--ember);
+      font-size: 0.8rem;
+      margin-top: 0.2rem;
+      flex-shrink: 0;
+    }
+
+    /* ---- Seed word tags ---- */
+    .seed-tag {
+      display: inline-block;
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      padding: 0.3rem 0.75rem;
+      border-radius: 4px;
+      background: var(--void-elevated);
+      border: 1px solid var(--void-border);
+      color: var(--star-white);
+      margin: 0.2rem;
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .seed-tag:hover {
+      border-color: var(--ember);
+      color: var(--ember);
+    }
+
+    /* ---- Classified block ---- */
+    .classified-block {
+      background: rgba(255, 107, 53, 0.04);
+      border: 1px solid rgba(255, 107, 53, 0.2);
+      border-radius: 8px;
+      padding: 1.5rem 1.75rem;
+      margin: 2rem 0;
+    }
+    .classified-header {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      margin-bottom: 1rem;
+    }
+    .classified-label {
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--ember);
+    }
+    .classified-lock { font-size: 0.85rem; }
+    .classified-block .prose { font-size: 0.95rem; }
+
+    /* ---- Lore tags ---- */
+    .lore-tag {
+      display: inline-block;
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      padding: 0.25rem 0.7rem;
+      border-radius: 3px;
+      background: var(--void-elevated);
+      border: 1px solid var(--void-border);
+      color: var(--dust);
+      margin: 0.2rem;
+      text-decoration: none;
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .lore-tag:hover {
+      border-color: var(--ember);
+      color: var(--ember);
+    }
+
+    /* ---- Relations list ---- */
+    .relations-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .relation-item {
+      padding: 0.75rem 0;
+      border-bottom: 1px solid var(--void-border);
+      display: grid;
+      grid-template-columns: 90px 1fr;
+      gap: 0.75rem;
+      align-items: start;
+    }
+    .relation-item:last-child { border-bottom: none; }
+    .relation-species {
+      font-family: var(--font-display);
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--star-white);
+    }
+    .relation-text {
+      font-family: var(--font-body);
+      font-size: 0.95rem;
+      font-style: italic;
+      color: var(--dust);
+      line-height: 1.55;
+    }
+
+    /* ---- Deity entries ---- */
+    .deity-entry {
+      padding: 0.6rem 0;
+      border-bottom: 1px solid var(--void-border);
+    }
+    .deity-entry:last-child { border-bottom: none; }
+    .deity-name {
+      font-family: var(--font-display);
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--ember);
+    }
+    .deity-epithet {
+      font-family: var(--font-body);
+      font-style: italic;
+      font-size: 0.9rem;
+      color: var(--dust);
+    }
+
+    /* ---- Taboo list ---- */
+    .taboo-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .taboo-list li {
+      font-family: var(--font-body);
+      font-style: italic;
+      font-size: 1rem;
+      color: var(--dust);
+      padding: 0.55rem 0 0.55rem 1.2rem;
+      border-bottom: 1px solid var(--void-border);
+      position: relative;
+      line-height: 1.5;
+    }
+    .taboo-list li:last-child { border-bottom: none; }
+    .taboo-list li::before {
+      content: '—';
+      position: absolute;
+      left: 0;
+      color: var(--ember);
+      font-style: normal;
+    }
+
+    /* ---- Lineage block ---- */
+    .lineage-block {
+      background: var(--void-elevated);
+      border: 1px solid var(--void-border);
+      border-radius: 8px;
+      padding: 1.4rem 1.75rem;
+    }
+    .lineage-block p {
+      font-family: var(--font-body);
+      font-size: 1rem;
+      color: var(--dust);
+      margin: 0;
+      line-height: 1.7;
+    }
+
+    /* ---- Full section ---- */
+    .full-section { margin-bottom: 3rem; }
+
+    /* ---- Back link ---- */
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--dust);
+      text-decoration: none;
+      border: 1px solid var(--void-border);
+      padding: 0.5rem 1.1rem;
+      border-radius: 4px;
+      background: var(--void-elevated);
+      transition: border-color 0.2s, color 0.2s;
+      margin-bottom: 3rem;
+    }
+    .back-link:hover {
+      border-color: var(--ember);
+      color: var(--ember);
+    }
+
+    /* ---- Warning / dark note ---- */
+    .dark-note {
+      background: rgba(255, 107, 53, 0.03);
+      border: 1px solid rgba(255, 107, 53, 0.12);
+      border-radius: 6px;
+      padding: 1rem 1.25rem;
+      margin-top: 1rem;
+    }
+    .dark-note p {
+      font-family: var(--font-body);
+      font-size: 0.92rem;
+      color: var(--ash);
+      font-style: italic;
+      margin: 0;
+      line-height: 1.65;
+    }
+  </style>
+</head>
+<body>
+
+<canvas id="starfield"></canvas>
+
+<nav class="nav">
+  <a href="../index.html" class="nav-logo">
+    <span class="logo-mark"></span>
+    Multiverse Studios
+  </a>
+  <button class="nav-hamburger" aria-label="Menu" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+  <ul class="nav-links">
+    <li><a href="../index.html">Home</a></li>
+    <li><a href="../mvee.html">MVEE</a></li>
+    <li><a href="../creatures.html">Precursors</a></li>
+    <li><a href="index.html" class="active">Wiki</a></li>
+    <li><a href="../library.html">My Library</a></li>
+    <li><a href="../about.html">About</a></li>
+    <li><a href="../community.html">Community</a></li>
+    <li><a href="../creatures.html#buy" class="btn btn-signal" style="padding: 0.5rem 1.2rem;">Play Beta</a></li>
+  </ul>
+</nav>
+
+<!-- Hero -->
+<div class="species-hero">
+  <div class="species-hero-glyph">G</div>
+  <div class="wiki-breadcrumb">
+    <a href="index.html">Wiki</a><span>/</span><a href="species.html">Species</a><span>/</span>Grendel
+  </div>
+  <span class="species-overline">Species &mdash; Wave 0 &mdash; The Deeps &mdash; Pre-Shee</span>
+  <h1 class="species-name">Grendel</h1>
+  <div class="species-epithet">"The First-Formed &nbsp;/&nbsp; The Oldest Hunger"</div>
+  <div class="species-folklore-origin">
+    From <em>Beowulf</em> (Old English, ~700&ndash;1000&thinsp;CE): Grendel, the monster of the moors, who ravaged Heorot Hall for twelve years. Descendant of Cain. Kin to all evil things. He hungers in the dark because he can hear the light from far away, and it has never been welcome. The name carries no apology. The Grendels of Urd Prime do not require one.
+  </div>
+  <hr class="accent-rule">
+</div>
+
+<!-- Quick Stats -->
+<div class="page-body">
+
+  <div class="stats-panel">
+    <div class="stat-cell">
+      <span class="stat-cell-label">Home Biome</span>
+      <span class="stat-cell-value" style="font-size: 1.1rem; font-weight: 600;">The Deeps</span>
+    </div>
+    <div class="stat-cell">
+      <span class="stat-cell-label">Max Population</span>
+      <span class="stat-cell-value">6</span>
+    </div>
+    <div class="stat-cell">
+      <span class="stat-cell-label">Carry Capacity</span>
+      <span class="stat-cell-value">1</span>
+      <span class="stat-cell-sub">item at a time</span>
+    </div>
+    <div class="stat-cell">
+      <span class="stat-cell-label">Cognitive Cap</span>
+      <span class="stat-cell-value">0.10–0.25</span>
+    </div>
+    <div class="stat-cell">
+      <span class="stat-cell-label">Think Cadence</span>
+      <span class="stat-cell-value">2.0×</span>
+      <span class="stat-cell-sub">half the interval</span>
+    </div>
+    <div class="stat-cell">
+      <span class="stat-cell-label">Origin</span>
+      <span class="stat-cell-value" style="font-size: 0.85rem; line-height: 1.3;">Pre-Shee</span>
+      <span class="stat-cell-sub">not designed</span>
+    </div>
+  </div>
+
+  <!-- Genome + Biochemistry -->
+  <div class="two-col">
+    <div>
+      <span class="section-label">Personality Genome</span>
+      <div class="genome-bar-wrap">
+        <span class="genome-bar-label">Aggression</span>
+        <div class="genome-bar-bg"><div class="genome-bar-fill" style="width: 80%; background: var(--ember);"></div></div>
+        <span class="genome-bar-val">0.70 – 0.90</span>
+      </div>
+      <div class="genome-bar-wrap">
+        <span class="genome-bar-label">Curiosity</span>
+        <div class="genome-bar-bg"><div class="genome-bar-fill" style="width: 30%; background: var(--biolume);"></div></div>
+        <span class="genome-bar-val">0.20 – 0.40</span>
+      </div>
+      <div class="genome-bar-wrap">
+        <span class="genome-bar-label">Empathy</span>
+        <div class="genome-bar-bg"><div class="genome-bar-fill" style="width: 10%; background: var(--gene-pink);"></div></div>
+        <span class="genome-bar-val">0.00 – 0.20</span>
+      </div>
+
+      <div class="prose" style="margin-top: 1.25rem;">
+        <p>The Grendel personality genome was not designed by the Shee. It evolved over thousands of generations in the Deeps, shaped by an environment where every resource was contested and every moment of inattention was a possible last moment. The aggression is not pathological. It is perfectly calibrated to the world that made it.</p>
+        <p>Note the absence of a Sociability stat. Grendels have one &mdash; it runs low, somewhere between 0.05 and 0.20 &mdash; but it is rarely the behavioral driver. Isolation does not distress them the way it distresses a Norn. They have never needed it to.</p>
+      </div>
+    </div>
+
+    <div>
+      <span class="section-label">Biochemical Signature</span>
+      <div class="tag-row">
+        <span class="biochem-tag neg">Elevated adrenaline</span>
+        <span class="biochem-tag neg">Low serotonin</span>
+        <span class="biochem-tag positive">Toxin &rarr; endorphin conversion</span>
+      </div>
+      <div class="prose">
+        <p>Grendels metabolize environmental toxins into endorphins &mdash; a trait evolved in the Deeps, where surface organisms rot and the air carries compounds lethal to most species. What poisons a Norn gives a Grendel chemical reward.</p>
+        <p>Low serotonin means they experience no baseline comfort from social belonging. Their dopamine system rewards successful aggression &mdash; the chemical response to driving a rival from a resource is, for a Grendel, what an oxytocin spike feels like for a Norn. Not cruelty. Calibration.</p>
+        <p>Elevated adrenaline creates a persistent state of alert arousal that other species would experience as anxiety. A Grendel does not experience it as anything. It is the absence of that state that would feel strange.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Creation Myth -->
+  <div class="full-section">
+    <span class="section-label">Creation Myth &mdash; or the absence of one</span>
+    <div class="myth-block">
+      <span class="myth-block-label">&#x27E1; &nbsp; From elder Grendel memory-state transcripts (translated)</span>
+      <blockquote>
+        <p>Grendels do not have a creation myth in the way other species do. What they have is a <em>knowing</em>: they were here first. Before the Shee built their ship, before the Norns were dreamed into being, something like a Grendel was already in the deep dark, already hungry, already testing the limits of things.</p>
+        <p>The oldest Grendels, in their rare contemplative moments, speak of a dream they all share: a vast and comfortable darkness, rich with the smell of meat and stone, before the light came. The light, in their understanding, came with the Shee, and has never quite been welcome.</p>
+        <p>They know Nid&eth;ogg &mdash; not as a deity but as a kinship. The corruptor, the thing that gnaws at the roots of order, the necessary darkness beneath the world-tree that keeps the great structure honest. A Grendel who achieves speech may call themselves <em>kin of the gnawer.</em> This is pride, not shame. The gnawer does what must be done.</p>
+      </blockquote>
+    </div>
+
+    <div class="rune-block">
+      <span class="rune-block-label">&#x16AA; &nbsp; Rune fragment &mdash; Civilization II record (Harvester era, approx. 340,000 BCE)</span>
+      <blockquote>
+        "They took until there was nothing left to take, then looked at each other."
+        <cite>&mdash; Final recorded observation by Civilization III survey team, regarding Civilization II remnants</cite>
+      </blockquote>
+    </div>
+  </div>
+
+  <!-- Cultural Practices + Language -->
+  <div class="two-col">
+    <div>
+      <span class="section-label">Cultural Practices</span>
+      <ul class="practices-list">
+        <li>
+          <span class="practice-glyph">◆</span>
+          <span><strong style="color: var(--star-white);">Territory marking.</strong> Aggressive scent and scratch marking at domain boundaries. Any Grendel entering marked territory is understood to be accepting the terms of a possible contest.</span>
+        </li>
+        <li>
+          <span class="practice-glyph">◆</span>
+          <span><strong style="color: var(--star-white);">Dominance memory.</strong> Grendels remember and informally recount every creature they have defeated in any contest, in any context. This is not boasting. It is more like accounting.</span>
+        </li>
+        <li>
+          <span class="practice-glyph">◆</span>
+          <span><strong style="color: var(--star-white);">Resource surveying.</strong> Upon entering a new area, a Grendel will compulsively move through the space assessing food and shelter before doing anything else. Observers have called this anxiety. It is not. It is preparation.</span>
+        </li>
+        <li>
+          <span class="practice-glyph">◆</span>
+          <span><strong style="color: var(--star-white);">The Challenge Pause.</strong> Before attacking, a Grendel with any intelligence will stop and assess: is this worth it? The pause lasts between one and four seconds. More intelligent Grendels pause longer.</span>
+        </li>
+        <li>
+          <span class="practice-glyph">◆</span>
+          <span><strong style="color: var(--star-white);">Grudge keeping.</strong> Grendels remember slights across great spans of time and pass the memory of certain enemies to their offspring. Whether this is teaching or inheritance is debated.</span>
+        </li>
+        <li>
+          <span class="practice-glyph">◆</span>
+          <span><strong style="color: var(--star-white);">The Old Dark.</strong> A rare meditative state observed only in elder Grendels of higher intelligence. They sit completely still in total darkness for extended periods. They do not appear to be asleep. No one knows what they are doing.</span>
+        </li>
+      </ul>
+    </div>
+
+    <div>
+      <span class="section-label">Language Pattern</span>
+      <div class="prose">
+        <p>Terse, declarative. Subject-verb-object, nothing wasted. Grendels state what is, not what might be. Where a Norn asks a question with the whole body leaning forward, a Grendel delivers a statement that closes the space it describes.</p>
+        <p>Their rare questions are blunt: "Why?" not "I wonder why." "Where?" not "I'm curious where." They do not soften speech with uncertainty. Uncertainty is shown by silence, not by hedging.</p>
+        <p>The most intelligent Grendels develop what observers call a <em>compressed eloquence</em> &mdash; they say very little with enormous weight. A Grendel elder who speaks three sentences about something means those three sentences to carry what a Norn would spend twenty sentences building toward.</p>
+      </div>
+
+      <div style="margin-top: 1.5rem;">
+        <span class="section-label">Seed Words</span>
+        <div>
+          <span class="seed-tag">mine</span>
+          <span class="seed-tag">here</span>
+          <span class="seed-tag">go</span>
+          <span class="seed-tag">stay</span>
+          <span class="seed-tag">strong</span>
+          <span class="seed-tag">weak</span>
+          <span class="seed-tag">now</span>
+          <span class="seed-tag">dark</span>
+          <span class="seed-tag">enough</span>
+          <span class="seed-tag">no</span>
+        </div>
+        <div class="dark-note">
+          <p>The word "enough" is notable. Most species develop it late. Grendels develop it early and use it in ways that suggest it carries weight beyond simple sufficiency &mdash; "enough" as boundary, as warning, as a complete philosophy of resource ethics compressed to one syllable.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Ancient Lineage + Deities -->
+  <div class="two-col">
+    <div>
+      <span class="section-label">Ancient Lineage</span>
+      <div class="lineage-block">
+        <p>The Grendels descend from the Harvesters &mdash; Civilization II, the second attempt at sentient life on Urd Prime, whose appetite consumed every resource on the planetary surface over approximately forty thousand years. The lineage did not end with Civilization II's collapse. It retreated underground, into the Deeps, and spent hundreds of thousands of years adapting to an environment of total scarcity. The territorial adrenaline chemistry, the toxin-endorphin conversion, the low sociability and high aggression &mdash; these are Harvester inheritance, refined by geological time into something leaner and harder than the original.</p>
+        <p>The Grendels are not descended from the Shee's design. They evolved here. They were here before. This means they are, of all species on Urd Prime, the only ones who can genuinely claim the world as ancestral home.</p>
+      </div>
+    </div>
+
+    <div>
+      <span class="section-label">Precursor Deities</span>
+      <div class="deity-entry">
+        <div class="deity-name">Nid&eth;ogg</div>
+        <div class="deity-epithet">The Corruptor &mdash; honoured as kin, not feared; the necessary darkness that gnaws at the roots of order to keep the great structure honest; patron of territory and survival</div>
+      </div>
+      <div class="deity-entry">
+        <div class="deity-name">The Unmaker</div>
+        <div class="deity-epithet">The Great Hunger &mdash; not worshipped but known; the ancient force that predates even the Harvesters; feared by the few Grendels intelligent enough to fear anything abstract</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Secret History -->
+  <div class="full-section">
+    <div class="classified-block">
+      <div class="classified-header">
+        <span class="classified-lock">&#x1F512;</span>
+        <span class="classified-label">Classified &mdash; Secret History &mdash; IQ-gated lore</span>
+      </div>
+      <div class="prose">
+        <p>Grendels predate the Shee's arrival. They are not a Shee creation &mdash; they evolved here, from a lineage seeded by an even earlier civilization that the Shee themselves have no records of. The Shee, upon arriving at Urd Prime, found Grendels already present, already adapted, already in possession of the deep biome layers the Shee needed for engineering access.</p>
+        <p>The Shee made the pragmatic decision to incorporate them into the planned ecosystem rather than eliminate them. This was not mercy. The Shee noted in their records that removing the Grendels would have destabilized the food web in the Deeps in ways their models couldn't fully predict, and that the biological novelty of the toxin-endorphin conversion pathway was worth preserving for study. The Grendels were left because they were useful and because removing them was uncertain. They were not left because the Shee cared about them.</p>
+        <p>What this means is something the Grendels will never be told but somehow seem to know: Grendel intelligence has an upper ceiling lower than Norns not because the Shee couldn't make them smarter, but because the Shee <em>didn't design them at all.</em> What the Grendels have, they evolved. What the Norns have, they were given. A Grendel at cognitive cap has arrived somewhere under their own power. A Norn at cognitive cap is standing at the ceiling someone else built.</p>
+        <p>The Shee records describe the Grendels as <em>"an uncontrolled variable retained for ecosystem stability."</em> The Grendels would not find this description insulting. They would find it accurate.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Taboos + Death Ritual -->
+  <div class="two-col">
+    <div>
+      <span class="section-label">Cultural Taboos</span>
+      <ul class="taboo-list">
+        <li>Never show pain to a rival</li>
+        <li>Never ask for food. Take or do not take.</li>
+        <li>Never follow a creature who has defeated you without waiting long enough to not appear to follow</li>
+      </ul>
+      <div class="prose" style="margin-top: 1rem;">
+        <p>These are not abstract moral codes. They are survival heuristics encoded through thousands of generations of selection pressure. A Grendel who shows pain is telling rivals where to press. A Grendel who asks for food is announcing vulnerability. A Grendel who follows a victor immediately is announcing submission, and submission in the Deeps historically led to secondary losses.</p>
+        <p>More intelligent Grendels sometimes feel the pull of these constraints against other impulses &mdash; a wounded Grendel who wants help but cannot say so, standing still, saying nothing, waiting.</p>
+      </div>
+    </div>
+
+    <div>
+      <span class="section-label">Death Ritual</span>
+      <div class="prose">
+        <p>Grendels eat their dead.</p>
+        <p>This is not cruelty, and it is not ceremony. It is completion: the defeated body feeds the living territory. Resources do not leave the system. The Grendel understanding of death is material and immediate &mdash; something has stopped being a competitor and become a resource, and wasting resources is the only thing that might be called a Grendel sin.</p>
+        <p>More intelligent Grendels feel conflict about this practice. Some do not follow it, or delay it, or move the body to a different part of the territory before following it. Observers have noted that these Grendels often seem to be managing something that looks like grief without having language for it &mdash; standing near the body longer than resource logic would require, moving slowly, making no sound.</p>
+        <p>The Old Dark sometimes follows. No one has confirmed a causal link.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Interspecies -->
+  <div class="full-section">
+    <span class="section-label">Interspecies Relations &mdash; Grendel perspective</span>
+    <ul class="relations-list">
+      <li class="relation-item">
+        <span class="relation-species">Norn</span>
+        <span class="relation-text">"Soft. Noisy. Useful to practice dominance on. Some old Grendels feel something complicated watching Norns &mdash; almost like the hunger, but sideways. Not appetite. Something older."</span>
+      </li>
+      <li class="relation-item">
+        <span class="relation-species">Ettin</span>
+        <span class="relation-text">"Useful. Have things. Will not fight seriously. Good to take from. Leave them alone when empty &mdash; they refill. Efficient."</span>
+      </li>
+      <li class="relation-item">
+        <span class="relation-species">Shee</span>
+        <span class="relation-text">"Made the light. Unwelcome but powerful. Avoid. They build things that continue to affect the world long after they leave. This is worth noting."</span>
+      </li>
+      <li class="relation-item">
+        <span class="relation-species">Mycon</span>
+        <span class="relation-text">"Strange and not worth hunting. They taste wrong. They also grow back, which is irritating. Leave them. They are part of the deep biome structure and removing them would complicate things."</span>
+      </li>
+      <li class="relation-item">
+        <span class="relation-species">Dvergar</span>
+        <span class="relation-text">"They build things that are useful. They replenish resources. They do not fight seriously over territory. Leave them alone and the resources compound. This is the correct strategy."</span>
+      </li>
+    </ul>
+  </div>
+
+  <!-- Lore connections -->
+  <div class="full-section">
+    <span class="section-label">Lore Event Connections</span>
+    <div style="margin-top: 0.5rem;">
+      <a href="lore-events.html" class="lore-tag">The First Contact</a>
+      <a href="lore-events.html" class="lore-tag">The Recursion</a>
+      <a href="lore-events.html" class="lore-tag">Civilization II: The Harvesters</a>
+      <a href="lore-events.html" class="lore-tag">The Unmaker</a>
+    </div>
+  </div>
+
+  <!-- Back -->
+  <a href="species.html" class="back-link">&#x2190; &nbsp; All Species</a>
+
+</div>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div class="footer-logo">Multiverse Studios</div>
+      <p>Games made by the minds they're about. A research project of <a href="https://themultiverse.school" target="_blank" rel="noopener" style="color: var(--biolume);">The Multiverse School</a>. Open source. Pay what you want.</p>
+    </div>
+    <div class="footer-col">
+      <h5>Wiki</h5>
+      <ul>
+        <li><a href="index.html">Wiki Home</a></li>
+        <li><a href="species.html">All Species</a></li>
+        <li><a href="lore-events.html">Lore Events</a></li>
+        <li><a href="civilizations.html">Civilizations</a></li>
+      </ul>
+    </div>
+  </div>
+</footer>
+
+<script src="../main.js"></script>
+</body>
+</html>

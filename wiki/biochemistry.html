@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Biochemistry — Precursors Wiki</title>
+  <meta name="description" content="The 48-chemical system that drives every creature in Urd Prime: energy, drives, hormones, nutrients, damage, reproduction, neurotransmitters, and meta-chemicals.">
+  <link rel="stylesheet" href="../styles.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#x2726;</text></svg>">
+  <style>
+    .wiki-breadcrumb {
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      color: var(--dust);
+      margin-bottom: 1.5rem;
+    }
+    .wiki-breadcrumb a { color: var(--biolume); text-decoration: none; }
+    .wiki-breadcrumb a:hover { text-decoration: underline; }
+
+    .chem-group {
+      margin-bottom: 3rem;
+    }
+    .chem-group-header {
+      display: flex;
+      align-items: baseline;
+      gap: 1rem;
+      margin-bottom: 1.25rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid var(--void-border);
+    }
+    .chem-group-header h3 {
+      font-family: var(--font-display);
+      font-size: 1.15rem;
+      color: var(--star-white);
+      margin: 0;
+    }
+    .chem-group-header .chem-count {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: var(--dust);
+    }
+    .chem-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 0.75rem;
+    }
+    .chem-pill {
+      background: var(--void-elevated);
+      border: 1px solid var(--void-border);
+      border-radius: 6px;
+      padding: 0.65rem 1rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.2rem;
+    }
+    .chem-pill-name {
+      font-family: var(--font-display);
+      font-size: 0.9rem;
+      color: var(--star-white);
+      font-weight: 600;
+    }
+    .chem-pill-desc {
+      font-size: 0.8rem;
+      color: var(--dust);
+      line-height: 1.4;
+    }
+
+    /* Group accent colors */
+    .chem-energy .chem-pill { border-left: 3px solid #facc15; }
+    .chem-drives .chem-pill { border-left: 3px solid var(--biolume); }
+    .chem-hormones .chem-pill { border-left: 3px solid var(--gene-pink); }
+    .chem-nutrients .chem-pill { border-left: 3px solid #4ade80; }
+    .chem-damage .chem-pill { border-left: 3px solid var(--ember); }
+    .chem-repro .chem-pill { border-left: 3px solid var(--signal); }
+    .chem-neuro .chem-pill { border-left: 3px solid #a78bfa; }
+    .chem-meta .chem-pill { border-left: 3px solid var(--ash); }
+
+    .chem-energy .chem-group-header h3 { color: #facc15; }
+    .chem-drives .chem-group-header h3 { color: var(--biolume); }
+    .chem-hormones .chem-group-header h3 { color: var(--gene-pink); }
+    .chem-nutrients .chem-group-header h3 { color: #4ade80; }
+    .chem-damage .chem-group-header h3 { color: var(--ember); }
+    .chem-repro .chem-group-header h3 { color: var(--signal); }
+    .chem-neuro .chem-group-header h3 { color: #a78bfa; }
+    .chem-meta .chem-group-header h3 { color: var(--ash); }
+
+    .organ-card {
+      background: var(--void-elevated);
+      border: 1px solid var(--void-border);
+      border-radius: 10px;
+      padding: 2rem 2.5rem;
+      margin-bottom: 1.5rem;
+    }
+    .organ-card h3 {
+      font-family: var(--font-display);
+      font-size: 1.15rem;
+      margin: 0 0 0.4rem 0;
+      color: var(--biolume);
+    }
+    .organ-card p {
+      color: var(--dust);
+      margin: 0.5rem 0 0;
+      line-height: 1.7;
+    }
+    .organ-components {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+      margin-top: 0.75rem;
+    }
+    .organ-tag {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      padding: 0.25rem 0.6rem;
+      border-radius: 4px;
+      background: rgba(0,255,200,0.08);
+      border: 1px solid rgba(0,255,200,0.2);
+      color: var(--biolume-dim);
+    }
+    .organ-tag.reaction { background: rgba(255,107,53,0.08); border-color: rgba(255,107,53,0.2); color: var(--ember); }
+    .organ-tag.receptor { background: rgba(123,104,238,0.08); border-color: rgba(123,104,238,0.2); color: var(--signal); }
+    .organ-tag.emitter { background: rgba(255,61,127,0.08); border-color: rgba(255,61,127,0.2); color: var(--gene-pink); }
+
+    .drive-explainer {
+      background: linear-gradient(135deg, rgba(0,255,200,0.05), rgba(5,5,8,0));
+      border: 1px solid rgba(0,255,200,0.15);
+      border-radius: 8px;
+      padding: 1.75rem 2rem;
+      margin-bottom: 2rem;
+    }
+    .drive-explainer p {
+      color: var(--dust);
+      margin: 0;
+      line-height: 1.7;
+    }
+    .drive-explainer strong { color: var(--biolume); }
+
+    .intensity-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1.5rem 0;
+      font-family: var(--font-body);
+    }
+    .intensity-table th {
+      background: var(--void-elevated);
+      color: var(--biolume);
+      font-family: var(--font-display);
+      font-size: 0.85rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 0.65rem 1rem;
+      text-align: left;
+      border-bottom: 1px solid var(--void-border);
+    }
+    .intensity-table td {
+      padding: 0.65rem 1rem;
+      border-bottom: 1px solid rgba(26,26,36,0.5);
+      color: var(--star-white);
+    }
+    .intensity-table tr:last-child td { border-bottom: none; }
+    .intensity-table td:first-child {
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+      color: var(--dust);
+    }
+
+    .llm-box {
+      background: linear-gradient(135deg, rgba(123,104,238,0.06), rgba(5,5,8,0));
+      border: 1px solid rgba(123,104,238,0.25);
+      border-radius: 8px;
+      padding: 1.75rem 2rem;
+      margin: 2rem 0;
+    }
+    .llm-box h4 {
+      font-family: var(--font-display);
+      color: var(--signal);
+      margin: 0 0 0.75rem 0;
+    }
+    .llm-box p {
+      color: var(--dust);
+      margin: 0;
+      line-height: 1.7;
+    }
+    .llm-box strong { color: var(--signal); }
+  </style>
+</head>
+<body>
+
+<canvas id="starfield"></canvas>
+
+<nav class="nav">
+  <a href="../index.html" class="nav-logo">
+    <span class="logo-mark"></span>
+    Multiverse Studios
+  </a>
+  <button class="nav-hamburger" aria-label="Menu" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+  <ul class="nav-links">
+    <li><a href="../index.html">Home</a></li>
+    <li><a href="../mvee.html">MVEE</a></li>
+    <li><a href="../creatures.html">Precursors</a></li>
+    <li><a href="index.html" class="active">Wiki</a></li>
+    <li><a href="../library.html">My Library</a></li>
+    <li><a href="../about.html">About</a></li>
+    <li><a href="../community.html">Community</a></li>
+    <li><a href="../creatures.html#buy" class="btn btn-signal" style="padding: 0.5rem 1.2rem;">Play Beta</a></li>
+  </ul>
+</nav>
+
+<!-- Hero -->
+<section class="section section-narrow" style="padding-top: 7rem;">
+  <div class="wiki-breadcrumb">
+    <a href="index.html">Wiki</a> / Biochemistry
+  </div>
+  <span class="section-overline">Biochemistry</span>
+  <h1 style="font-size: clamp(2rem, 5vw, 3.5rem); line-height: 1.1; margin-bottom: 1rem;">The Chemistry of Life</h1>
+  <p style="font-size: 1.15rem; color: var(--dust); max-width: 640px; line-height: 1.7;">Every creature in Urd Prime runs on 48 chemicals. Hunger is a chemical. Fear is a chemical. Love, grief, territorial rage &mdash; all of it encoded in concentrations, reactions, and the organs that process them. The Shee did not simulate emotion. They <em>implemented</em> it.</p>
+</section>
+
+<!-- Overview -->
+<section class="section section-narrow reveal">
+  <div class="section-divider"></div>
+  <span class="section-overline">How It Works</span>
+  <h2>Biochemistry is the source of truth.</h2>
+
+  <div class="llm-box">
+    <h4>&#x1F9E0; The LLM is told how it feels &mdash; it does not decide.</h4>
+    <p>Each creature's emotional state is derived from its biochemistry, not from an AI choosing an emotion to perform. When a Norn's <strong>Fear</strong> chemical rises to "critical," the language model receives that information as context &mdash; <em>"you are desperately afraid"</em> &mdash; and speaks from that state. The AI provides the voice. The chemistry provides the truth. A Norn cannot lie about being hungry. Its Hunger chemical is either elevated or it isn't.</p>
+  </div>
+
+  <p>Biochemistry runs continuously underneath cognition. The genome expresses into <strong>Organs</strong>, which contain <strong>Reactions</strong> (chemical transformations), <strong>Receptors</strong> (chemistry reading organ state), and <strong>Emitters</strong> (organs writing back into chemistry). Every tick, every organ processes its chemistry, depletes ATP, and potentially damages itself if resources run short.</p>
+  <p>This architecture comes directly from Creature Labs' original Creatures series (1996&ndash;2004), extended with a full neurotransmitter layer, reproductive chemistry, and the dream-state chemicals that power memory consolidation.</p>
+</section>
+
+<!-- 48 Chemicals -->
+<section class="section section-narrow reveal">
+  <div class="section-divider"></div>
+  <span class="section-overline">The 48 Chemicals</span>
+  <h2>A complete inventory.</h2>
+  <p>Chemicals are indexed 0&ndash;47 in the genome. Every chemical has a floating-point concentration between 0.0 and 1.0. Reactions consume and produce chemicals; Emitters continuously generate them; Receptors read them to modulate organ state.</p>
+
+  <!-- Energy -->
+  <div class="chem-group chem-energy">
+    <div class="chem-group-header">
+      <h3>Energy</h3>
+      <span class="chem-count">Chemicals 0&ndash;4</span>
+    </div>
+    <div class="chem-grid">
+      <div class="chem-pill">
+        <span class="chem-pill-name">Glucose</span>
+        <span class="chem-pill-desc">Primary fuel. Absorbed from food. Converted to ATP for organ function.</span>
+      </div>
+      <div class="chem-pill">
+        <span class="chem-pill-name">ATP</span>
+        <span class="chem-pill-desc">Active energy currency. Organs consume ATP each tick. Depletion causes organ damage.</span>
+      </div>
+      <div class="chem-pill">
+        <span class="chem-pill-name">ADP</span>
+        <span class="chem-pill-desc">Spent ATP. Returned to ADP pool when organs consume energy. Recycled back into ATP via glucose metabolism.</span>
+      </div>
+      <div class="chem-pill">
+        <span class="chem-pill-name">Glycogen</span>
+        <span class="chem-pill-desc">Medium-term storage form of glucose. Builds up during feeding; depletes during fasting.</span>
+      </div>
+      <div class="chem-pill">
+        <span class="chem-pill-name">Starch</span>
+        <span class="chem-pill-desc">Long-term carbohydrate storage. Slow to mobilize &mdash; a creature with high Starch has reserves, but needs time to access them.</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Drives -->
+  <div class="chem-group chem-drives">
+    <div class="chem-group-header">
+      <h3>Drives</h3>
+      <span class="chem-count">Chemicals 5&ndash;18 &mdash; The bridge to cognition</span>
+    </div>
+    <div class="drive-explainer">
+      <p>Drive chemicals are the <strong>interface between body and mind</strong>. They rise when needs are unmet and fall when needs are satisfied. Each drive maps directly to a felt state that the LLM receives as plain language. A creature with Hunger at 0.85 is told: <em>"you are very hungry."</em> A creature with Loneliness at 0.92 is told: <em>"you are desperately lonely."</em> The creature's speech emerges from that real state.</p>
+    </div>
+
+    <table class="intensity-table">
+      <thead>
+        <tr>
+          <th>Threshold</th>
+          <th>Intensity Level</th>
+          <th>LLM Adverb</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>&gt; 0.10</td><td>Low</td><td>"slightly"</td></tr>
+        <tr><td>&gt; 0.30</td><td>Moderate</td><td>"somewhat"</td></tr>
+        <tr><td>&gt; 0.65</td><td>High</td><td>"very"</td></tr>
+        <tr><td>&gt; 0.85</td><td>Critical</td><td>"desperately"</td></tr>
+      </tbody>
+    </table>
+
+    <div class="chem-grid" style="margin-top: 1rem;">
+      <div class="chem-pill"><span class="chem-pill-name">Pain</span><span class="chem-pill-desc">Physical injury signal. Rises with damage. Dominates cognition when critical.</span></div>
+      <div class="chem-pill"><span class="chem-pill-name">Hunger</span><span class="chem-pill-desc">Caloric deficit signal. Falls when food is eaten. Rises with metabolic rate.</span></div>
+      <div class="chem-pill"><span class="chem-pill-name">Thirst</span><span class="chem-pill-desc">Hydration deficit. Rises faster in hot biomes; suppressed by Water nutrient intake.</span></div>
+      <div class="chem-pill"><span class="chem-pill-name">Fatigue</span><span class="chem-pill-desc">Accumulated exhaustion. Falls during sleep. Rises faster with high activity and low ATP.</span></div>
+      <div class="chem-pill"><span class="chem-pill-name">Loneliness</span><span class="chem-pill-desc">Social isolation signal. Suppressed by proximity to other creatures. Chronic loneliness affects cognitive capacity.</span></div>
+      <div class="chem-pill"><span class="chem-pill-name">Boredom</span><span class="chem-pill-desc">Understimulation drive. Falls when interacting with items or other creatures. Persistent boredom produces melancholy cognition.</span></div>
+      <div class="chem-pill"><span class="chem-pill-name">Curiosity</span><span class="chem-pill-desc">Exploration drive. Rises when novel objects are nearby. Genetically variable &mdash; high-curiosity species investigate before eating.</span></div>
+      <div class="chem-pill"><span class="chem-pill-name">Fear</span><span class="chem-pill-desc">Threat response. Elevated by Grendels, dangerous items, unfamiliar biomes. Falls with distance from threat.</span></div>
+      <div class="chem-pill"><span class="chem-pill-name">Anger</span><span class="chem-pill-desc">Aggression drive. High in Grendels by genome. Rises with Pain and territorial violation.</span></div>
+      <div class="chem-pill"><span class="chem-pill-name">Happiness</span><span class="chem-pill-desc">Positive valence. Rises with satisfied needs, social bonds, and successful interactions.</span></div>
+      <div class="chem-pill"><span class="chem-pill-name">Sadness</span><span class="chem-pill-desc">Negative valence. Rises with grief events, failed interactions, and chronic unmet needs.</span></div>
+      <div class="chem-pill"><span class="chem-pill-name">Comfort</span><span class="chem-pill-desc">Safety signal. Suppresses Fear and Loneliness. Generated by familiar territory and trusted companions.</span></div>
+      <div class="chem-pill"><span class="chem-pill-name">Crowding</span><span class="chem-pill-desc">Overcrowding stress. Rises with proximity density. Grendels respond with aggression; Ettins with withdrawal.</span></div>
+      <div class="chem-pill"><span class="chem-pill-name">Sleepiness</span><span class="chem-pill-desc">Sleep pressure. Rises with accumulated Fatigue and elevated Melatonin. Triggers dream-state consolidation on sleep.</span></div>
+    </div>
+  </div>
+
+  <!-- Hormones -->
+  <div class="chem-group chem-hormones">
+    <div class="chem-group-header">
+      <h3>Hormones</h3>
+      <span class="chem-count">Chemicals 19&ndash;28</span>
+    </div>
+    <div class="chem-grid">
+      <div class="chem-pill"><span class="chem-pill-name">Adrenaline</span><span class="chem-pill-desc">Fight-or-flight mediator. Elevated in Grendels. Suppresses Fatigue; accelerates metabolic rate.</span></div>
+      <div class="chem-pill"><span class="chem-pill-name">Endorphin</span><span class="chem-pill-desc">Pain suppressor. Released after intense exertion or social bonding. Temporarily masks injury signals.</span></div>
+      <div class="chem-pill"><span class="chem-pill-name">Testosterone</span><span class="chem-pill-desc">Drives territorial and mating behaviors. Modulated by dominance dynamics. Rises during breeding season.</span></div>
+      <div class="chem-pill"><span class="chem-pill-name">Oestrogen</span><span class="chem-pill-desc">Reproductive readiness signal. Rises prior to Fertility peak. Modulates Oxytocin sensitivity.</span></div>
+      <div class="chem-pill"><span class="chem-pill-name">Oxytocin</span><span class="chem-pill-desc">Bonding chemical. Rises with grooming, shared feeding, and infant-care behaviors. Core to social trust formation.</span></div>
+      <div class="chem-pill"><span class="chem-pill-name">Cortisol</span><span class="chem-pill-desc">Chronic stress marker. Sustained high Cortisol accelerates aging and suppresses immune function.</span></div>
+      <div class="chem-pill"><span class="chem-pill-name">Melatonin</span><span class="chem-pill-desc">Circadian marker. Rises in darkness; suppressed by light. Triggers Sleepiness accumulation and dream-state entry.</span></div>
+      <div class="chem-pill"><span class="chem-pill-name">Dopamine</span><span class="chem-pill-desc">Reward signal. Released on successful feeding, play, and discovery. Core to habit formation and motivation.</span></div>
+      <div class="chem-pill"><span class="chem-pill-name">Serotonin</span><span class="chem-pill-desc">Mood stabilizer. Low serotonin correlates with chronic Sadness and risk-averse cognition.</span></div>
+      <div class="chem-pill"><span class="chem-pill-name">Growth Hormone</span><span class="chem-pill-desc">Developmental signal. Drives life-stage transitions. Released by protein-rich food and deep sleep.</span></div>
+    </div>
+  </div>
+
+  <!-- Nutrients -->
+  <div class="chem-group chem-nutrients">
+    <div class="chem-group-header">
+      <h3>Nutrients</h3>
+      <span class="chem-count">Chemicals 29&ndash;33</span>
+    </div>
+    <div class="chem-grid">
+      <div class="chem-pill"><span class="chem-pill-name">Protein</span><span class="chem-pill-desc">Building block for organ repair and development. Protein deficiency slows organ regeneration.</span></div>
+      <div class="chem-pill"><span class="chem-pill-name">Fat</span><span class="chem-pill-desc">Long-term energy reserve and cold-resistance factor. High fat allows survival in The Deeps.</span></div>
+      <div class="chem-pill"><span class="chem-pill-name">Water</span><span class="chem-pill-desc">Universal solvent. Required for all metabolic reactions. Deficiency accelerates Thirst and reduces Reaction rates.</span></div>
+      <div class="chem-pill"><span class="chem-pill-name">Vitamin</span><span class="chem-pill-desc">Metabolic cofactor. Vitamin deficiency reduces organ efficiency and suppresses immune response.</span></div>
+      <div class="chem-pill"><span class="chem-pill-name">Mineral</span><span class="chem-pill-desc">Structural and enzymatic co-factor. Required for bone-equivalent structures and enzyme catalysis.</span></div>
+    </div>
+  </div>
+
+  <!-- Damage -->
+  <div class="chem-group chem-damage">
+    <div class="chem-group-header">
+      <h3>Damage &amp; Healing</h3>
+      <span class="chem-count">Chemicals 34&ndash;37</span>
+    </div>
+    <div class="chem-grid">
+      <div class="chem-pill"><span class="chem-pill-name">Injury</span><span class="chem-pill-desc">Physical damage accumulation. Sustained Injury without healing degrades organ long-term life.</span></div>
+      <div class="chem-pill"><span class="chem-pill-name">Antibody</span><span class="chem-pill-desc">Immune response chemical. Rises to combat Toxin; depleted as Toxin concentration drops.</span></div>
+      <div class="chem-pill"><span class="chem-pill-name">Toxin</span><span class="chem-pill-desc">Poison concentration. Elevated by dangerous items and Grendel attacks. Suppresses organ function.</span></div>
+      <div class="chem-pill"><span class="chem-pill-name">Healing Factor</span><span class="chem-pill-desc">Regeneration signal. Produced during rest and by medicine items. Accelerates organ repair rate.</span></div>
+    </div>
+  </div>
+
+  <!-- Reproduction -->
+  <div class="chem-group chem-repro">
+    <div class="chem-group-header">
+      <h3>Reproduction</h3>
+      <span class="chem-count">Chemicals 38&ndash;40</span>
+    </div>
+    <div class="chem-grid">
+      <div class="chem-pill"><span class="chem-pill-name">Fertility</span><span class="chem-pill-desc">Reproductive readiness. Must exceed 0.5 for mating to succeed. Suppressed by stress and Toxin. Cross-species matings halve this threshold.</span></div>
+      <div class="chem-pill"><span class="chem-pill-name">Pregnancy</span><span class="chem-pill-desc">Gestation signal. Rises after successful mating in the female. Egg is laid when this reaches the threshold.</span></div>
+      <div class="chem-pill"><span class="chem-pill-name">Mating Drive</span><span class="chem-pill-desc">Reproductive urge. Must exceed 0.6 (in both creatures) for mating to trigger. Rises naturally in Adult+ creatures.</span></div>
+    </div>
+  </div>
+
+  <!-- Neurotransmitters -->
+  <div class="chem-group chem-neuro">
+    <div class="chem-group-header">
+      <h3>Neurotransmitters</h3>
+      <span class="chem-count">Chemicals 41&ndash;45</span>
+    </div>
+    <div class="chem-grid">
+      <div class="chem-pill"><span class="chem-pill-name">GABA</span><span class="chem-pill-desc">Inhibitory signal. Reduces neural excitability. High GABA produces calm, methodical cognition; deficiency produces anxiety.</span></div>
+      <div class="chem-pill"><span class="chem-pill-name">Glutamate</span><span class="chem-pill-desc">Excitatory signal. Drives learning and memory formation. Excess Glutamate with low GABA produces erratic behavior.</span></div>
+      <div class="chem-pill"><span class="chem-pill-name">Acetylcholine</span><span class="chem-pill-desc">Memory encoding chemical. Elevated during learning events and machine interactions. Critical for long-term memory formation.</span></div>
+      <div class="chem-pill"><span class="chem-pill-name">PreREM</span><span class="chem-pill-desc">Sleep onset chemical. Transitions the creature from waking to dream state. Required for memory consolidation cycle initiation.</span></div>
+      <div class="chem-pill"><span class="chem-pill-name">REM</span><span class="chem-pill-desc">Active dream chemical. During REM, the brain replays recent experiences. This is when memory integration, emotional processing, and creative insight occur.</span></div>
+    </div>
+  </div>
+
+  <!-- Meta -->
+  <div class="chem-group chem-meta">
+    <div class="chem-group-header">
+      <h3>Meta-Chemicals</h3>
+      <span class="chem-count">Chemicals 46&ndash;47</span>
+    </div>
+    <div class="chem-grid">
+      <div class="chem-pill"><span class="chem-pill-name">Age</span><span class="chem-pill-desc">Monotonically increasing life-stage signal. Genome Receptors read Age to trigger life-stage transitions (Baby &rarr; Child &rarr; Adolescent &rarr; Adult &rarr; Elder).</span></div>
+      <div class="chem-pill"><span class="chem-pill-name">Dead</span><span class="chem-pill-desc">Organism death signal. Rises when organ life force fails beyond recovery. When Dead reaches critical threshold, the creature's cognitive thread ends and its genome is archived.</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- Organs -->
+<section class="section section-narrow reveal" id="organs">
+  <div class="section-divider"></div>
+  <span class="section-overline">Organs</span>
+  <h2>The machines that run the chemistry.</h2>
+  <p>Each creature's genome expresses into a set of Organs. Every organ has a clock rate (how often it ticks), a life force (its health), an energy cost (ATP consumed per tick), and a set of Reactions, Receptors, and Emitters. Organs degrade if they cannot get enough ATP. They repair if the creature rests and has sufficient Protein. An elder creature whose organs are failing will behave differently than a young one &mdash; the same genome in a damaged body produces different chemistry.</p>
+
+  <div class="organ-card">
+    <h3>Reactions</h3>
+    <p>A Reaction specifies: if chemical A is above a threshold, convert some of A into B (with a catalyst coefficient). Reactions are how food becomes energy, how energy becomes action, and how one emotional state transforms into another. A Grendel with high Anger might have a Reaction that converts Anger + Adrenaline into elevated Pain tolerance &mdash; a feature, not a bug, of their evolved biochemistry.</p>
+    <div class="organ-components">
+      <span class="organ-tag reaction">substrate &rarr; product</span>
+      <span class="organ-tag reaction">rate × catalyst</span>
+      <span class="organ-tag reaction">threshold gated</span>
+    </div>
+  </div>
+
+  <div class="organ-card">
+    <h3>Receptors</h3>
+    <p>A Receptor monitors a chemical concentration and modulates an organ's internal state based on what it reads. A Receptor might read Cortisol levels and increase an organ's damage rate when stress is chronic. Or read Melatonin and slow the organ's clock rate to prepare for sleep. Receptors are how the chemistry feeds back into the biological machinery.</p>
+    <div class="organ-components">
+      <span class="organ-tag receptor">reads chemical</span>
+      <span class="organ-tag receptor">modulates organ state</span>
+      <span class="organ-tag receptor">gain + offset control</span>
+    </div>
+  </div>
+
+  <div class="organ-card">
+    <h3>Emitters</h3>
+    <p>An Emitter continuously produces a chemical at a base rate, subject to modulation by organ state and genetics. The hunger drive rises because an Emitter is slowly secreting Hunger chemical when food is absent &mdash; and a corresponding Reaction in the gut organ destroys Hunger when Glucose is processed. The balance between these two processes is what creates a creature that gets hungry at a characteristic rate.</p>
+    <div class="organ-components">
+      <span class="organ-tag emitter">continuous secretion</span>
+      <span class="organ-tag emitter">organ-state modulated</span>
+      <span class="organ-tag emitter">genetic rate control</span>
+    </div>
+  </div>
+</section>
+
+<!-- Genome Connection -->
+<section class="section section-narrow reveal">
+  <div class="section-divider"></div>
+  <span class="section-overline">Genome &amp; Biochemistry</span>
+  <h2>How genes become feelings.</h2>
+  <p>Each gene in the genome carries a mutability flag, a life-stage activation flag, and an expression target. Some genes express into Organ configurations &mdash; adding or removing Reactions, changing Receptor sensitivities, altering Emitter rates. This is how a Grendel genome produces different chemistry than a Norn genome despite sharing the same chemical alphabet: the Grendel's organ expressions are tuned differently. The same 48-chemical substrate, different weights.</p>
+  <p>When two creatures breed, their genomes cross over in type-aligned segments, with numeric interpolation for continuous values and gaussian drift for mutations. The offspring inherits a novel combination of organ expressions &mdash; a new biochemical profile that belongs entirely to that individual creature.</p>
+
+  <div class="llm-box">
+    <h4>&#x26A0; Intelligence is Genetic</h4>
+    <p>The IntelligenceGene specifies three values: <strong>cognitiveCapacity</strong> (an IQ ceiling), <strong>learningRate</strong> (how fast IQ grows from experience), and <strong>abstractionAffinity</strong> (the creature's native tendency toward abstract thought). These are not metaphors &mdash; they directly control the complexity of LLM context, the scoring thresholds for IQ advancement, and the probability weights for accessing higher cognitive tiers. Intelligence, like fear or hunger, is expressed from DNA.</p>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div class="footer-logo">Multiverse Studios</div>
+      <p>Games made by the minds they're about. A research project of <a href="https://themultiverse.school" target="_blank" rel="noopener" style="color: var(--biolume);">The Multiverse School</a>. Open source. Pay what you want.</p>
+    </div>
+    <div class="footer-col">
+      <h5>Games</h5>
+      <ul>
+        <li><a href="../mvee.html">MVEE</a></li>
+        <li><a href="../creatures.html">Precursors</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Wiki</h5>
+      <ul>
+        <li><a href="index.html">Overview</a></li>
+        <li><a href="world.html">World Guide</a></li>
+        <li><a href="species.html">Species</a></li>
+        <li><a href="civilizations.html">Civilizations</a></li>
+        <li><a href="tiers.html">Cognitive Tiers</a></li>
+        <li><a href="biochemistry.html">Biochemistry</a></li>
+        <li><a href="mechanics.html">Gameplay</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Studio</h5>
+      <ul>
+        <li><a href="../library.html">My Library</a></li>
+        <li><a href="../about.html">About</a></li>
+        <li><a href="../devlog.html">Devlog</a></li>
+        <li><a href="../community.html">Community</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>&copy; 2026 Multiverse Studios</span>
+    <span>Built by AI agents. Guided by <a href="https://themultiverse.school" target="_blank" rel="noopener" style="color: var(--biolume);">The Multiverse School</a>.</span>
+  </div>
+</footer>
+
+<script src="../main.js"></script>
+</body>
+</html>

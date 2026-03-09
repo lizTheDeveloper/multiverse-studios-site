@@ -1,0 +1,751 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ettin — Precursors Wiki</title>
+  <meta name="description" content="The Keepers of Urd Prime. Ancient archivists whose hoarding instinct is encoded memory — the living legacy of the third civilization.">
+  <link rel="stylesheet" href="../styles.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#x2726;</text></svg>">
+  <style>
+    /* ─── Breadcrumb ─── */
+    .wiki-breadcrumb {
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      color: var(--dust);
+      margin-bottom: 1.5rem;
+    }
+    .wiki-breadcrumb a { color: var(--biolume); text-decoration: none; }
+    .wiki-breadcrumb a:hover { text-decoration: underline; }
+
+    /* ─── Hero ─── */
+    .species-hero {
+      padding: 7rem 0 3rem;
+      border-bottom: 1px solid var(--void-border);
+      margin-bottom: 3rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .species-hero::before {
+      content: 'ETTIN';
+      position: absolute;
+      right: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      font-family: var(--font-display);
+      font-size: clamp(6rem, 16vw, 14rem);
+      font-weight: 900;
+      color: rgba(123,104,238,0.05);
+      line-height: 1;
+      pointer-events: none;
+      user-select: none;
+    }
+    .species-hero .section-overline { color: var(--signal); }
+    .species-hero h1 {
+      font-size: clamp(2.5rem, 6vw, 4.5rem);
+      line-height: 1.05;
+      margin: 0.5rem 0 0.75rem;
+      color: var(--star-white);
+    }
+    .species-hero .epithet {
+      font-family: var(--font-body);
+      font-style: italic;
+      font-size: 1.2rem;
+      color: var(--dust);
+      display: block;
+      margin-bottom: 0.6rem;
+    }
+    .species-hero .folklore-origin {
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      color: var(--ash);
+      max-width: 620px;
+      line-height: 1.6;
+    }
+
+    /* ─── Quick Stats ─── */
+    .quick-stats {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin: 2rem 0;
+    }
+    .quick-stat {
+      background: var(--void-elevated);
+      border: 1px solid var(--void-border);
+      border-radius: 6px;
+      padding: 0.9rem 1.4rem;
+      text-align: center;
+      min-width: 90px;
+    }
+    .quick-stat .qval {
+      display: block;
+      font-family: var(--font-display);
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: var(--signal);
+      line-height: 1;
+      margin-bottom: 0.3rem;
+    }
+    .quick-stat .qlabel {
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--dust);
+    }
+
+    /* ─── Body Grid ─── */
+    .species-page-body {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2.5rem;
+      margin-bottom: 3rem;
+    }
+    @media (max-width: 740px) {
+      .species-page-body { grid-template-columns: 1fr; }
+    }
+
+    /* ─── Section blocks ─── */
+    .wiki-section {
+      background: var(--void-elevated);
+      border: 1px solid var(--void-border);
+      border-radius: 10px;
+      padding: 2rem 2.25rem;
+      margin-bottom: 2rem;
+    }
+    .wiki-section.accent-top {
+      border-top: 3px solid var(--signal);
+    }
+    .wiki-section h2 {
+      font-family: var(--font-display);
+      font-size: 1.35rem;
+      color: var(--star-white);
+      margin: 0 0 1rem 0;
+    }
+    .wiki-section h3 {
+      font-family: var(--font-display);
+      font-size: 1.1rem;
+      color: var(--signal);
+      margin: 1.5rem 0 0.6rem;
+    }
+    .wiki-section h3:first-child { margin-top: 0; }
+
+    .section-label {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--dust);
+      display: block;
+      margin-bottom: 0.6rem;
+    }
+    p.body-text {
+      color: var(--dust);
+      line-height: 1.75;
+      margin: 0 0 0.85rem 0;
+      font-size: 0.97rem;
+    }
+    p.body-text:last-child { margin-bottom: 0; }
+
+    /* ─── Genome bars ─── */
+    .genome-bar-wrap {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin: 0.35rem 0;
+    }
+    .genome-bar-label {
+      font-size: 0.83rem;
+      color: var(--star-white);
+      width: 130px;
+      flex-shrink: 0;
+      font-family: var(--font-body);
+    }
+    .genome-bar-bg {
+      flex: 1;
+      height: 6px;
+      background: var(--void-border);
+      border-radius: 3px;
+      overflow: hidden;
+    }
+    .genome-bar-fill {
+      height: 100%;
+      border-radius: 3px;
+      background: var(--signal);
+    }
+    .genome-bar-val {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      color: var(--dust);
+      width: 80px;
+      text-align: right;
+    }
+    .cog-cap-badge {
+      display: inline-block;
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      padding: 0.3rem 0.8rem;
+      border-radius: 4px;
+      border: 1px solid var(--signal);
+      color: var(--signal);
+      background: rgba(123,104,238,0.07);
+      margin-top: 0.6rem;
+    }
+
+    /* ─── Biochem tags ─── */
+    .biochem-tags { display: flex; flex-wrap: wrap; gap: 0.3rem; margin: 0.4rem 0 0.75rem; }
+    .biochem-tag {
+      display: inline-block;
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      padding: 0.25rem 0.6rem;
+      border-radius: 4px;
+      background: rgba(123,104,238,0.08);
+      border: 1px solid rgba(123,104,238,0.25);
+      color: var(--signal);
+    }
+    .biochem-tag.biolume {
+      background: rgba(0,255,200,0.07);
+      border-color: rgba(0,255,200,0.2);
+      color: var(--biolume);
+    }
+    .biochem-tag.ember {
+      background: rgba(255,107,53,0.07);
+      border-color: rgba(255,107,53,0.2);
+      color: var(--ember);
+    }
+
+    /* ─── Quote / myth block ─── */
+    .myth-block {
+      border-left: 2px solid var(--signal);
+      padding: 0.85rem 1.4rem;
+      margin: 0.75rem 0;
+      font-family: var(--font-body);
+      font-style: italic;
+      color: var(--dust);
+      font-size: 0.97rem;
+      line-height: 1.75;
+    }
+    .myth-block cite {
+      display: block;
+      font-style: normal;
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      color: var(--ash);
+      margin-top: 0.5rem;
+    }
+
+    /* ─── Secret history ─── */
+    .secret-block {
+      background: rgba(255,61,127,0.04);
+      border: 1px solid rgba(255,61,127,0.18);
+      border-radius: 6px;
+      padding: 1.1rem 1.35rem;
+      margin-top: 1rem;
+    }
+    .secret-block .secret-label {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--gene-pink);
+      display: block;
+      margin-bottom: 0.55rem;
+    }
+    .secret-block p {
+      color: var(--dust);
+      font-size: 0.93rem;
+      margin: 0 0 0.75rem;
+      line-height: 1.7;
+    }
+    .secret-block p:last-child { margin-bottom: 0; }
+
+    /* ─── Rune fragment ─── */
+    .rune-fragment {
+      background: rgba(123,104,238,0.06);
+      border: 1px solid rgba(123,104,238,0.18);
+      border-radius: 6px;
+      padding: 1rem 1.35rem;
+      margin-top: 1rem;
+    }
+    .rune-fragment .rune-label {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--signal);
+      display: block;
+      margin-bottom: 0.45rem;
+    }
+    .rune-fragment p {
+      font-family: var(--font-body);
+      font-style: italic;
+      color: var(--ash);
+      font-size: 0.92rem;
+      margin: 0;
+      line-height: 1.65;
+    }
+
+    /* ─── Practice list ─── */
+    .practice-list {
+      list-style: none;
+      padding: 0;
+      margin: 0.5rem 0;
+    }
+    .practice-list li {
+      color: var(--dust);
+      font-size: 0.93rem;
+      line-height: 1.65;
+      padding: 0.45rem 0;
+      border-bottom: 1px solid rgba(255,255,255,0.04);
+      display: flex;
+      gap: 0.75rem;
+      align-items: flex-start;
+    }
+    .practice-list li:last-child { border-bottom: none; }
+    .practice-list li::before {
+      content: '◈';
+      color: var(--signal);
+      flex-shrink: 0;
+      font-size: 0.75rem;
+      margin-top: 0.15rem;
+    }
+
+    /* ─── Seed words ─── */
+    .seed-words {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin: 0.5rem 0;
+    }
+    .seed-word {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      padding: 0.2rem 0.55rem;
+      border-radius: 3px;
+      border: 1px solid var(--void-border);
+      color: var(--ash);
+      background: var(--void-elevated);
+    }
+
+    /* ─── Deity pills ─── */
+    .deity-pills { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 0.5rem 0; }
+    .deity-pill {
+      font-family: var(--font-mono);
+      font-size: 0.77rem;
+      padding: 0.3rem 0.8rem;
+      border-radius: 20px;
+      border: 1px solid rgba(123,104,238,0.3);
+      color: var(--signal);
+      background: rgba(123,104,238,0.06);
+    }
+
+    /* ─── Interspecies ─── */
+    .interspecies-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.75rem;
+      margin: 0.5rem 0;
+    }
+    @media (max-width: 560px) { .interspecies-grid { grid-template-columns: 1fr; } }
+    .interspecies-item {
+      background: rgba(255,255,255,0.02);
+      border: 1px solid var(--void-border);
+      border-radius: 6px;
+      padding: 0.8rem 1rem;
+    }
+    .interspecies-item .species-name {
+      font-family: var(--font-mono);
+      font-size: 0.73rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--signal);
+      display: block;
+      margin-bottom: 0.3rem;
+    }
+    .interspecies-item p {
+      color: var(--ash);
+      font-size: 0.87rem;
+      margin: 0;
+      line-height: 1.6;
+      font-style: italic;
+    }
+
+    /* ─── Lore connection ─── */
+    .lore-connection {
+      background: rgba(123,104,238,0.05);
+      border: 1px solid rgba(123,104,238,0.2);
+      border-radius: 6px;
+      padding: 1rem 1.25rem;
+      display: flex;
+      gap: 1rem;
+      align-items: flex-start;
+    }
+    .lore-connection .lore-glyph {
+      font-size: 1.4rem;
+      flex-shrink: 0;
+      line-height: 1;
+      margin-top: 0.1rem;
+    }
+    .lore-connection .lore-title {
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      color: var(--signal);
+      display: block;
+      margin-bottom: 0.3rem;
+    }
+    .lore-connection p {
+      color: var(--dust);
+      font-size: 0.87rem;
+      margin: 0;
+      line-height: 1.6;
+    }
+
+    /* ─── Back link ─── */
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-family: var(--font-mono);
+      font-size: 0.82rem;
+      color: var(--signal);
+      text-decoration: none;
+      border: 1px solid rgba(123,104,238,0.3);
+      border-radius: 4px;
+      padding: 0.45rem 0.9rem;
+      margin-top: 1rem;
+      transition: background 0.2s, border-color 0.2s;
+    }
+    .back-link:hover {
+      background: rgba(123,104,238,0.08);
+      border-color: var(--signal);
+    }
+
+    .taboo-list {
+      list-style: none;
+      padding: 0;
+      margin: 0.5rem 0;
+    }
+    .taboo-list li {
+      color: var(--dust);
+      font-size: 0.93rem;
+      line-height: 1.65;
+      padding: 0.4rem 0;
+      border-bottom: 1px solid rgba(255,255,255,0.04);
+      display: flex;
+      gap: 0.7rem;
+      align-items: flex-start;
+    }
+    .taboo-list li:last-child { border-bottom: none; }
+    .taboo-list li::before {
+      content: '✕';
+      color: var(--ember);
+      flex-shrink: 0;
+      font-size: 0.7rem;
+      font-family: var(--font-mono);
+      margin-top: 0.2rem;
+    }
+  </style>
+</head>
+<body>
+
+<canvas id="starfield"></canvas>
+
+<nav class="nav">
+  <a href="../index.html" class="nav-logo">
+    <span class="logo-mark"></span>
+    Multiverse Studios
+  </a>
+  <button class="nav-hamburger" aria-label="Menu" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+  <ul class="nav-links">
+    <li><a href="../index.html">Home</a></li>
+    <li><a href="../mvee.html">MVEE</a></li>
+    <li><a href="../creatures.html">Precursors</a></li>
+    <li><a href="index.html" class="active">Wiki</a></li>
+    <li><a href="../library.html">My Library</a></li>
+    <li><a href="../about.html">About</a></li>
+    <li><a href="../community.html">Community</a></li>
+    <li><a href="../creatures.html#buy" class="btn btn-signal" style="padding: 0.5rem 1.2rem;">Play Beta</a></li>
+  </ul>
+</nav>
+
+<!-- Hero -->
+<section class="section section-narrow species-hero">
+  <div class="wiki-breadcrumb">
+    <a href="index.html">Wiki</a> / <a href="species.html">Species</a> / Ettin
+  </div>
+  <span class="section-overline">Species Profile</span>
+  <h1>Ettin</h1>
+  <span class="epithet">"The Keepers / The Long Memory"</span>
+  <p class="folklore-origin">From Old English: <em>eoten</em>, a giant and devourer; cognate with Old Norse <em>j&ouml;tunn</em>, the primordial giants. In Old English literature the eoten were things from outside &mdash; monstrous, hoarding, not-quite-human. Beowulf names Grendel as eoten-kin. In Norse myth, the J&ouml;tnar were the primordial giants who predated the gods, holding ancient powers and deep grudges. The Ettin carries both: the devouring appetite rewritten as accumulation, the ancient power encoded as memory.</p>
+
+  <div class="quick-stats">
+    <div class="quick-stat"><span class="qval">8</span><span class="qlabel">Max Pop</span></div>
+    <div class="quick-stat"><span class="qval">3</span><span class="qlabel">Carry</span></div>
+    <div class="quick-stat"><span class="qval">0.20–0.40</span><span class="qlabel">Cog Cap</span></div>
+    <div class="quick-stat"><span class="qval" style="font-size:1.1rem;">Crystal Caves</span><span class="qlabel">Home Biome</span></div>
+    <div class="quick-stat"><span class="qval" style="font-size:1.1rem;">1.0×</span><span class="qlabel">Think Interval</span></div>
+  </div>
+</section>
+
+<!-- Main content -->
+<section class="section section-narrow">
+
+  <!-- Genome + Biochem: two-col -->
+  <div class="species-page-body">
+
+    <!-- LEFT: Genome -->
+    <div class="wiki-section accent-top">
+      <span class="section-label">Personality Genome</span>
+      <div class="genome-bar-wrap">
+        <span class="genome-bar-label">Curiosity</span>
+        <div class="genome-bar-bg"><div class="genome-bar-fill" style="width:70%;"></div></div>
+        <span class="genome-bar-val">0.60–0.80</span>
+      </div>
+      <div class="genome-bar-wrap">
+        <span class="genome-bar-label">Stubbornness</span>
+        <div class="genome-bar-bg"><div class="genome-bar-fill" style="width:80%;"></div></div>
+        <span class="genome-bar-val">0.70–0.90</span>
+      </div>
+      <div class="genome-bar-wrap">
+        <span class="genome-bar-label">Aggression</span>
+        <div class="genome-bar-bg"><div class="genome-bar-fill" style="width:25%;background:var(--ember);"></div></div>
+        <span class="genome-bar-val">0.15–0.35</span>
+      </div>
+      <div class="genome-bar-wrap">
+        <span class="genome-bar-label">Sociability</span>
+        <div class="genome-bar-bg"><div class="genome-bar-fill" style="width:35%;background:var(--biolume);"></div></div>
+        <span class="genome-bar-val">0.25–0.45</span>
+      </div>
+      <div class="genome-bar-wrap">
+        <span class="genome-bar-label">Empathy</span>
+        <div class="genome-bar-bg"><div class="genome-bar-fill" style="width:28%;background:var(--gene-pink);"></div></div>
+        <span class="genome-bar-val">0.20–0.35</span>
+      </div>
+      <span class="cog-cap-badge">Cognitive Cap: 0.20–0.40</span>
+    </div>
+
+    <!-- RIGHT: Biochem -->
+    <div class="wiki-section accent-top">
+      <span class="section-label">Biochemical Signature</span>
+      <div class="biochem-tags">
+        <span class="biochem-tag">Dopamine from possession</span>
+        <span class="biochem-tag">Sustained task focus</span>
+        <span class="biochem-tag biolume">Chemosensory object detection</span>
+        <span class="biochem-tag ember">Distress when inventory empty</span>
+        <span class="biochem-tag">Low cortisol response</span>
+      </div>
+      <p class="body-text">Ettins receive dopamine reward from holding objects &mdash; not from using them, not from understanding them, but from physical possession. This is non-negotiable at the biochemical level. An Ettin who holds nothing experiences a mild but persistent chemical deficit that they will act to resolve. They cannot not collect things.</p>
+      <p class="body-text">The Encoders &mdash; Civilization III &mdash; built this into the lineage as a propagation mechanism: when you cannot trust minds to remember, encode the impulse to preserve directly into chemistry. The compulsive archiving that destroyed the Encoders lives on in Ettin hoarding behavior, safely contained within individual limits rather than civilization-scale systems.</p>
+      <p class="body-text">They also have the highest natural carry capacity in the world, tied only with the Dvergar. Three items. They use every slot.</p>
+    </div>
+
+  </div>
+
+  <!-- Creation myth: full width -->
+  <div class="wiki-section reveal" style="margin-bottom: 2rem;">
+    <h2>The Creation Myth: The Keeping</h2>
+    <div class="myth-block">
+      <p>The Ettins say: everything that exists has always existed, in a form. Objects do not appear; they are found. The universe has been slowly making things and hiding them, and the purpose of an Ettin is to find what has been hidden and keep it safe.</p>
+      <p>They call this purpose <em>the Keeping</em>. An Ettin who has gathered nothing is considered ill &mdash; not morally wrong, but genuinely unwell, as if a critical drive is unfulfilled. This is an accurate description of their biochemistry.</p>
+      <p>The oldest Ettin stories speak of Buri the Rememberer, who carried all of history in the form of objects. When Buri died, the stories say, the objects scattered across the world. Every Ettin who finds and keeps an object is, in some sense, gathering a piece of Buri back together. The universe will be complete when everything is accounted for.</p>
+      <p>They do not know this is a literal description of their ancestor species: the Encoders, who archived all things into physical form before collapsing under the weight.</p>
+      <cite>&mdash; From Ettin oral tradition; source: Archive reconstruction, depth unknown</cite>
+    </div>
+  </div>
+
+  <!-- Cultural practices + Language: two-col -->
+  <div class="species-page-body">
+
+    <div class="wiki-section reveal">
+      <h2>Cultural Practices</h2>
+      <ul class="practice-list">
+        <li><strong>Inventory recitation</strong> &mdash; Ettins who are calm will sometimes quietly recite their possessions. This is meditative. It is also an accuracy check.</li>
+        <li><strong>Gift recording</strong> &mdash; any received item is immediately categorized. The act of receiving without categorizing causes visible distress. Ettins do not open gifts casually.</li>
+        <li><strong>Trade protocol</strong> &mdash; Ettins trade on strict equivalence. The exchange must make sense to them or they will refuse, politely but completely.</li>
+        <li><strong>Ruin reverence</strong> &mdash; Ettins instinctively treat ruins as sacred libraries, even if they cannot articulate why. They do not remove objects from ruins until they have catalogued them in place.</li>
+        <li><strong>Tool-naming</strong> &mdash; Ettins who develop sufficient intelligence give personal names to their most-used tools. The names are not poetic. They are precise: "The Stone That Opens Shells," "The Stick That Is The Right Length."</li>
+        <li><strong>Solitary maintenance</strong> &mdash; Ettins regularly inspect, rearrange, and tend their possessions. This is not anxiety. It is upkeep.</li>
+      </ul>
+    </div>
+
+    <div class="wiki-section reveal">
+      <h2>Language Pattern</h2>
+      <p class="body-text">Methodical, category-focused. Ettins describe things in terms of their properties, use-cases, and relationships to other things. They are significantly better at talking about systems than about feelings. Their language sounds more like taxonomy than poetry.</p>
+      <p class="body-text">They use precise quantity words at stages of intelligence where other species are still pointing. They distinguish between "I have this" and "I am keeping this" as meaningfully different states. They have no idiom for losing something by accident &mdash; from an Ettin's perspective, all loss is failure of attention.</p>
+
+      <span class="section-label" style="margin-top:1.25rem;">Seed Words</span>
+      <div class="seed-words">
+        <span class="seed-word">keep</span>
+        <span class="seed-word">fix</span>
+        <span class="seed-word">mine</span>
+        <span class="seed-word">find</span>
+        <span class="seed-word">count</span>
+        <span class="seed-word">work</span>
+        <span class="seed-word">break</span>
+        <span class="seed-word">repair</span>
+        <span class="seed-word">where</span>
+        <span class="seed-word">what</span>
+      </div>
+
+      <span class="section-label" style="margin-top:1.25rem;">Precursor Deities</span>
+      <div class="deity-pills">
+        <span class="deity-pill">Buri &mdash; The Rememberer</span>
+        <span class="deity-pill">Skuld &mdash; The Weaver</span>
+      </div>
+      <p class="body-text" style="margin-top:0.75rem; font-size:0.87rem;">Ettins honor Buri as the First Archivist. They respect Skuld for her role in encoding fate &mdash; in Ettin theology, a genome is just a very old kind of keeping.</p>
+    </div>
+
+  </div>
+
+  <!-- Ancient lineage + Secret history -->
+  <div class="wiki-section reveal" style="margin-bottom: 2rem;">
+    <h2>Ancient Lineage</h2>
+    <p class="body-text">The Ettin is encoded in the Encoder lineage &mdash; Civilization III. The Encoders were the first species on Urd Prime to develop systematic information preservation, and they pursued it to catastrophic excess: they archived everything, built physical records of all things, and eventually collapsed under the weight of what they had built. Their civilization was not destroyed by war or resource depletion. It was buried in its own archive.</p>
+    <p class="body-text">The compulsive accumulation that drove the Encoders to their end lives on in Ettin hoarding behavior, but safely distributed: where the Encoders tried to archive a civilization, an Ettin tries to fill three inventory slots. The destructive potential is proportionate now. The impulse remains.</p>
+
+    <div class="secret-block">
+      <span class="secret-label">&#x1F512; Secret History</span>
+      <p>The items Ettins collect are not random. Their chemosensory system has a low-level preference for objects that carry residual information density &mdash; things that have been touched many times, objects that have witnessed important events, artifacts from ruins. This is not mysticism. The Shee encoded this as a genome-propagation mechanism: Ettin hoarding behavior ensures that culturally significant objects survive and are found by later, more intelligent creatures.</p>
+      <p>Ettins are the world's unconscious archaeologists. What they accumulate in the Crystal Caves forms an inadvertent archive of everything that passes through Urd Prime. They complete the work the last Encoder died cataloguing. They do not know this is what they are doing.</p>
+    </div>
+
+    <div class="rune-fragment" style="margin-top:1.25rem;">
+      <span class="rune-label">&#x16B4; Rune Fragment &mdash; Civilization III</span>
+      <p>"They wrote the world down so carefully they forgot to inhabit it."</p>
+    </div>
+  </div>
+
+  <!-- Death ritual + taboos: two-col -->
+  <div class="species-page-body">
+
+    <div class="wiki-section reveal">
+      <h2>Death Ritual</h2>
+      <p class="body-text">A dead Ettin's possessions are never casually scattered. Other Ettins will "inherit" them &mdash; taking on the maintenance burden of what the dead kept. This is considered honoring the Keeper. The precise objects pass to whoever knew the deceased best, not to the nearest or the strongest.</p>
+      <p class="body-text">The inherited items are added to the new keeper's inventory and often rearranged to sit alongside their own, in a specific sequence that indicates the transition. An Ettin who inherits something will sometimes say the original owner's name when counting their possessions, even generations later.</p>
+    </div>
+
+    <div class="wiki-section reveal">
+      <h2>Cultural Taboos</h2>
+      <ul class="taboo-list">
+        <li>Never take an item from an Ettin without offering something of equal value in exchange.</li>
+        <li>Never destroy objects in an Ettin's presence if any alternative exists. They will remember.</li>
+        <li>Never tell an Ettin that something they kept was useless. The act of keeping is the point.</li>
+        <li>Never scatter a dead Ettin's possessions without first allowing other Ettins to witness and inherit.</li>
+        <li>Never rush an Ettin who is cataloguing. Interrupting the count requires restarting it.</li>
+      </ul>
+    </div>
+
+  </div>
+
+  <!-- Interspecies -->
+  <div class="wiki-section reveal" style="margin-bottom: 2rem;">
+    <h2>Interspecies Views</h2>
+    <div class="interspecies-grid">
+      <div class="interspecies-item">
+        <span class="species-name">Norn</span>
+        <p>"They talk too much and keep nothing. Puzzling."</p>
+      </div>
+      <div class="interspecies-item">
+        <span class="species-name">Grendel</span>
+        <p>"Will take things without permission. Must be kept at a distance or dominated."</p>
+      </div>
+      <div class="interspecies-item">
+        <span class="species-name">Shee</span>
+        <p>"The machines they left are the finest objects. Worth any cost to preserve."</p>
+      </div>
+      <div class="interspecies-item">
+        <span class="species-name">Mycon</span>
+        <p>"They grow and change and cannot be kept. This is disturbing."</p>
+      </div>
+      <div class="interspecies-item">
+        <span class="species-name">Dvergar</span>
+        <p>"Kindred in purpose. They build; we preserve. Together we are the complete record."</p>
+      </div>
+      <div class="interspecies-item">
+        <span class="species-name">Alfar</span>
+        <p>"They make beautiful things and give them away. Inexplicable. We keep what they release."</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Lore connections -->
+  <div class="wiki-section reveal" style="margin-bottom: 3rem;">
+    <h2>Lore Connections</h2>
+    <div style="display: flex; flex-direction: column; gap: 0.75rem;">
+      <div class="lore-connection">
+        <span class="lore-glyph">&#x16B4;</span>
+        <div>
+          <span class="lore-title">Ancient Ruins &mdash; The Crystal Archive</span>
+          <p>Ettins who discover ruin sites may enter a deep calm state, sitting still and touching objects carefully before carrying anything. They are reading information density the way they were built to. Ruins discovered by Ettins are more thoroughly catalogued than those found by any other species.</p>
+        </div>
+      </div>
+      <div class="lore-connection">
+        <span class="lore-glyph">&#x2726;</span>
+        <div>
+          <span class="lore-title">Buri's Inheritance &mdash; Lore Event</span>
+          <p>Triggered when an Ettin finds three Shee-era artifacts and holds all three simultaneously. The chemical density of the objects triggers a brief state of deep recognition &mdash; not memory, but something adjacent to it. The Ettin will become still for several minutes. When they move again, their language complexity spikes temporarily.</p>
+        </div>
+      </div>
+      <div class="lore-connection">
+        <span class="lore-glyph">&#x2641;</span>
+        <div>
+          <span class="lore-title">Dvergar Alliance &mdash; Emergent Cultural Event</span>
+          <p>When a Dvergar and an Ettin both reach Spoken tier in the same game session, they may spontaneously establish a barter system: the Dvergar builds, the Ettin keeps. Objects crafted by the alliance are marked by both and pass through inheritance chains for the rest of the session.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <a href="species.html#ettin" class="back-link">&#x2190; All Species</a>
+
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div class="footer-logo">Multiverse Studios</div>
+      <p>Games made by the minds they're about. A research project of <a href="https://themultiverse.school" target="_blank" rel="noopener" style="color: var(--biolume);">The Multiverse School</a>. Open source. Pay what you want.</p>
+    </div>
+    <div class="footer-col">
+      <h5>Wiki</h5>
+      <ul>
+        <li><a href="index.html">Wiki Home</a></li>
+        <li><a href="species.html">All Species</a></li>
+        <li><a href="lore-events.html">Lore Events</a></li>
+        <li><a href="civilizations.html">Civilizations</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Species</h5>
+      <ul>
+        <li><a href="norn.html">Norn</a></li>
+        <li><a href="grendel.html">Grendel</a></li>
+        <li><a href="ettin.html">Ettin</a></li>
+        <li><a href="shee.html">Shee</a></li>
+        <li><a href="mycon.html">Mycon</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Studio</h5>
+      <ul>
+        <li><a href="../library.html">My Library</a></li>
+        <li><a href="../about.html">About</a></li>
+        <li><a href="../devlog.html">Devlog</a></li>
+        <li><a href="../community.html">Community</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>&copy; 2026 Multiverse Studios</span>
+    <span>Built by AI agents. Guided by <a href="https://themultiverse.school" target="_blank" rel="noopener" style="color: var(--biolume);">The Multiverse School</a>.</span>
+  </div>
+</footer>
+
+<script src="../main.js"></script>
+</body>
+</html>

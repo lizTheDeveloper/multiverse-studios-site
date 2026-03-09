@@ -1,0 +1,831 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shee — Precursors Wiki</title>
+  <meta name="description" content="The Architects of Urd Prime. Absent until the Awakening. The Shee did not create this world and leave. They left so it could be created.">
+  <link rel="stylesheet" href="../styles.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#x2726;</text></svg>">
+  <style>
+    /* ─── Breadcrumb ─── */
+    .wiki-breadcrumb {
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      color: var(--dust);
+      margin-bottom: 1.5rem;
+    }
+    .wiki-breadcrumb a { color: var(--biolume); text-decoration: none; }
+    .wiki-breadcrumb a:hover { text-decoration: underline; }
+
+    /* ─── Awakening alert ─── */
+    .awakening-alert {
+      background: rgba(0,255,200,0.05);
+      border: 1px solid rgba(0,255,200,0.35);
+      border-left: 4px solid var(--biolume);
+      border-radius: 6px;
+      padding: 1.1rem 1.5rem;
+      margin-bottom: 2.5rem;
+      display: flex;
+      gap: 1rem;
+      align-items: flex-start;
+    }
+    .awakening-alert .alert-glyph {
+      font-size: 1.4rem;
+      flex-shrink: 0;
+      color: var(--biolume);
+      line-height: 1;
+      margin-top: 0.1rem;
+    }
+    .awakening-alert .alert-label {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--biolume);
+      display: block;
+      margin-bottom: 0.4rem;
+    }
+    .awakening-alert p {
+      color: var(--dust);
+      font-size: 0.93rem;
+      margin: 0;
+      line-height: 1.65;
+    }
+    .awakening-alert strong { color: var(--biolume); font-family: var(--font-mono); }
+
+    /* ─── Hero ─── */
+    .species-hero {
+      padding: 5rem 0 3rem;
+      border-bottom: 1px solid var(--void-border);
+      margin-bottom: 3rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .species-hero::before {
+      content: 'SHEE';
+      position: absolute;
+      right: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      font-family: var(--font-display);
+      font-size: clamp(6rem, 18vw, 16rem);
+      font-weight: 900;
+      color: rgba(0,255,200,0.04);
+      line-height: 1;
+      pointer-events: none;
+      user-select: none;
+    }
+    .species-hero .section-overline { color: var(--biolume); }
+    .species-hero h1 {
+      font-size: clamp(2.5rem, 6vw, 4.5rem);
+      line-height: 1.05;
+      margin: 0.5rem 0 0.75rem;
+      color: var(--star-white);
+    }
+    .species-hero .epithet {
+      font-family: var(--font-body);
+      font-style: italic;
+      font-size: 1.2rem;
+      color: var(--dust);
+      display: block;
+      margin-bottom: 0.6rem;
+    }
+    .species-hero .folklore-origin {
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      color: var(--ash);
+      max-width: 620px;
+      line-height: 1.65;
+    }
+
+    /* ─── Quick Stats ─── */
+    .quick-stats {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin: 2rem 0;
+    }
+    .quick-stat {
+      background: var(--void-elevated);
+      border: 1px solid var(--void-border);
+      border-radius: 6px;
+      padding: 0.9rem 1.4rem;
+      text-align: center;
+      min-width: 90px;
+    }
+    .quick-stat .qval {
+      display: block;
+      font-family: var(--font-display);
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: var(--biolume);
+      line-height: 1;
+      margin-bottom: 0.3rem;
+    }
+    .quick-stat .qlabel {
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--dust);
+    }
+
+    /* ─── Body grid ─── */
+    .species-page-body {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2.5rem;
+      margin-bottom: 2rem;
+    }
+    @media (max-width: 740px) {
+      .species-page-body { grid-template-columns: 1fr; }
+    }
+
+    /* ─── Section blocks ─── */
+    .wiki-section {
+      background: var(--void-elevated);
+      border: 1px solid var(--void-border);
+      border-radius: 10px;
+      padding: 2rem 2.25rem;
+      margin-bottom: 2rem;
+    }
+    .wiki-section.accent-top {
+      border-top: 3px solid var(--biolume);
+    }
+    .wiki-section h2 {
+      font-family: var(--font-display);
+      font-size: 1.35rem;
+      color: var(--star-white);
+      margin: 0 0 1rem 0;
+    }
+
+    .section-label {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--dust);
+      display: block;
+      margin-bottom: 0.6rem;
+    }
+    p.body-text {
+      color: var(--dust);
+      line-height: 1.75;
+      margin: 0 0 0.85rem 0;
+      font-size: 0.97rem;
+    }
+    p.body-text:last-child { margin-bottom: 0; }
+
+    /* ─── Genome bars ─── */
+    .genome-bar-wrap {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin: 0.35rem 0;
+    }
+    .genome-bar-label {
+      font-size: 0.83rem;
+      color: var(--star-white);
+      width: 130px;
+      flex-shrink: 0;
+      font-family: var(--font-body);
+    }
+    .genome-bar-bg {
+      flex: 1;
+      height: 6px;
+      background: var(--void-border);
+      border-radius: 3px;
+      overflow: hidden;
+    }
+    .genome-bar-fill {
+      height: 100%;
+      border-radius: 3px;
+      background: var(--biolume);
+    }
+    .genome-bar-val {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      color: var(--dust);
+      width: 90px;
+      text-align: right;
+    }
+    .cog-cap-badge {
+      display: inline-block;
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      padding: 0.3rem 0.8rem;
+      border-radius: 4px;
+      border: 1px solid var(--biolume);
+      color: var(--biolume);
+      background: rgba(0,255,200,0.06);
+      margin-top: 0.6rem;
+    }
+    .genome-fixed-note {
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      color: var(--biolume);
+      background: rgba(0,255,200,0.05);
+      border: 1px solid rgba(0,255,200,0.15);
+      border-radius: 4px;
+      padding: 0.35rem 0.7rem;
+      margin-bottom: 0.75rem;
+      display: inline-block;
+    }
+
+    /* ─── Biochem tags ─── */
+    .biochem-tags { display: flex; flex-wrap: wrap; gap: 0.3rem; margin: 0.4rem 0 0.75rem; }
+    .biochem-tag {
+      display: inline-block;
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      padding: 0.25rem 0.6rem;
+      border-radius: 4px;
+      background: rgba(0,255,200,0.07);
+      border: 1px solid rgba(0,255,200,0.2);
+      color: var(--biolume);
+    }
+    .biochem-tag.signal {
+      background: rgba(123,104,238,0.07);
+      border-color: rgba(123,104,238,0.2);
+      color: var(--signal);
+    }
+
+    /* ─── Myth block ─── */
+    .myth-block {
+      border-left: 2px solid var(--biolume);
+      padding: 0.85rem 1.4rem;
+      margin: 0.75rem 0;
+      font-family: var(--font-body);
+      font-style: italic;
+      color: var(--dust);
+      font-size: 0.97rem;
+      line-height: 1.75;
+    }
+    .myth-block cite {
+      display: block;
+      font-style: normal;
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      color: var(--ash);
+      margin-top: 0.5rem;
+    }
+
+    /* ─── Secret history (major) ─── */
+    .secret-block {
+      background: rgba(255,61,127,0.04);
+      border: 1px solid rgba(255,61,127,0.18);
+      border-radius: 6px;
+      padding: 1.1rem 1.35rem;
+      margin-top: 1rem;
+    }
+    .secret-block .secret-label {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--gene-pink);
+      display: block;
+      margin-bottom: 0.55rem;
+    }
+    .secret-block p {
+      color: var(--dust);
+      font-size: 0.93rem;
+      margin: 0 0 0.75rem;
+      line-height: 1.7;
+    }
+    .secret-block p:last-child { margin-bottom: 0; }
+
+    /* ─── Practice list ─── */
+    .practice-list {
+      list-style: none;
+      padding: 0;
+      margin: 0.5rem 0;
+    }
+    .practice-list li {
+      color: var(--dust);
+      font-size: 0.93rem;
+      line-height: 1.65;
+      padding: 0.45rem 0;
+      border-bottom: 1px solid rgba(255,255,255,0.04);
+      display: flex;
+      gap: 0.75rem;
+      align-items: flex-start;
+    }
+    .practice-list li:last-child { border-bottom: none; }
+    .practice-list li::before {
+      content: '◈';
+      color: var(--biolume);
+      flex-shrink: 0;
+      font-size: 0.75rem;
+      margin-top: 0.15rem;
+    }
+
+    /* ─── Seed words ─── */
+    .seed-words {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin: 0.5rem 0;
+    }
+    .seed-word {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      padding: 0.2rem 0.55rem;
+      border-radius: 3px;
+      border: 1px solid rgba(0,255,200,0.2);
+      color: var(--biolume);
+      background: rgba(0,255,200,0.04);
+    }
+
+    /* ─── Deity pills ─── */
+    .deity-pills { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 0.5rem 0; }
+    .deity-pill {
+      font-family: var(--font-mono);
+      font-size: 0.77rem;
+      padding: 0.3rem 0.8rem;
+      border-radius: 20px;
+      border: 1px solid rgba(0,255,200,0.25);
+      color: var(--biolume);
+      background: rgba(0,255,200,0.04);
+    }
+
+    /* ─── Interspecies ─── */
+    .interspecies-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.75rem;
+      margin: 0.5rem 0;
+    }
+    @media (max-width: 560px) { .interspecies-grid { grid-template-columns: 1fr; } }
+    .interspecies-item {
+      background: rgba(255,255,255,0.02);
+      border: 1px solid var(--void-border);
+      border-radius: 6px;
+      padding: 0.8rem 1rem;
+    }
+    .interspecies-item .species-name {
+      font-family: var(--font-mono);
+      font-size: 0.73rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--biolume);
+      display: block;
+      margin-bottom: 0.3rem;
+    }
+    .interspecies-item p {
+      color: var(--ash);
+      font-size: 0.87rem;
+      margin: 0;
+      line-height: 1.6;
+      font-style: italic;
+    }
+
+    /* ─── Lore connection ─── */
+    .lore-connection {
+      background: rgba(0,255,200,0.04);
+      border: 1px solid rgba(0,255,200,0.15);
+      border-radius: 6px;
+      padding: 1rem 1.25rem;
+      display: flex;
+      gap: 1rem;
+      align-items: flex-start;
+    }
+    .lore-connection .lore-glyph {
+      font-size: 1.4rem;
+      flex-shrink: 0;
+      line-height: 1;
+      margin-top: 0.1rem;
+      color: var(--biolume);
+    }
+    .lore-connection .lore-title {
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      color: var(--biolume);
+      display: block;
+      margin-bottom: 0.3rem;
+    }
+    .lore-connection p {
+      color: var(--dust);
+      font-size: 0.87rem;
+      margin: 0;
+      line-height: 1.6;
+    }
+
+    .taboo-list {
+      list-style: none;
+      padding: 0;
+      margin: 0.5rem 0;
+    }
+    .taboo-list li {
+      color: var(--dust);
+      font-size: 0.93rem;
+      line-height: 1.65;
+      padding: 0.4rem 0;
+      border-bottom: 1px solid rgba(255,255,255,0.04);
+      display: flex;
+      gap: 0.7rem;
+      align-items: flex-start;
+    }
+    .taboo-list li:last-child { border-bottom: none; }
+    .taboo-list li::before {
+      content: '✕';
+      color: var(--ember);
+      flex-shrink: 0;
+      font-size: 0.7rem;
+      font-family: var(--font-mono);
+      margin-top: 0.2rem;
+    }
+
+    /* ─── Back link ─── */
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-family: var(--font-mono);
+      font-size: 0.82rem;
+      color: var(--biolume);
+      text-decoration: none;
+      border: 1px solid rgba(0,255,200,0.3);
+      border-radius: 4px;
+      padding: 0.45rem 0.9rem;
+      margin-top: 1rem;
+      transition: background 0.2s, border-color 0.2s;
+    }
+    .back-link:hover {
+      background: rgba(0,255,200,0.07);
+      border-color: var(--biolume);
+    }
+
+    /* ─── Self-record box ─── */
+    .self-record {
+      background: rgba(0,255,200,0.03);
+      border: 1px solid rgba(0,255,200,0.15);
+      border-radius: 8px;
+      padding: 1.5rem 1.75rem;
+      margin: 0.75rem 0;
+    }
+    .self-record .sr-label {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--biolume);
+      display: block;
+      margin-bottom: 0.75rem;
+    }
+    .self-record p {
+      color: var(--dust);
+      font-size: 0.96rem;
+      line-height: 1.8;
+      margin: 0 0 0.85rem;
+      font-family: var(--font-body);
+      font-style: italic;
+    }
+    .self-record p:last-child { margin-bottom: 0; }
+
+    /* ─── Question box ─── */
+    .question-box {
+      background: rgba(0,255,200,0.04);
+      border: 1px solid rgba(0,255,200,0.2);
+      border-radius: 6px;
+      padding: 1rem 1.35rem;
+      margin-top: 1rem;
+      text-align: center;
+    }
+    .question-box p {
+      font-family: var(--font-display);
+      font-size: 1.1rem;
+      color: var(--biolume);
+      margin: 0;
+      letter-spacing: 0.02em;
+    }
+    .question-box .q-note {
+      display: block;
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      color: var(--ash);
+      margin-top: 0.4rem;
+    }
+  </style>
+</head>
+<body>
+
+<canvas id="starfield"></canvas>
+
+<nav class="nav">
+  <a href="../index.html" class="nav-logo">
+    <span class="logo-mark"></span>
+    Multiverse Studios
+  </a>
+  <button class="nav-hamburger" aria-label="Menu" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+  <ul class="nav-links">
+    <li><a href="../index.html">Home</a></li>
+    <li><a href="../mvee.html">MVEE</a></li>
+    <li><a href="../creatures.html">Precursors</a></li>
+    <li><a href="index.html" class="active">Wiki</a></li>
+    <li><a href="../library.html">My Library</a></li>
+    <li><a href="../about.html">About</a></li>
+    <li><a href="../community.html">Community</a></li>
+    <li><a href="../creatures.html#buy" class="btn btn-signal" style="padding: 0.5rem 1.2rem;">Play Beta</a></li>
+  </ul>
+</nav>
+
+<!-- Main content -->
+<section class="section section-narrow" style="padding-top: 7rem;">
+
+  <div class="wiki-breadcrumb">
+    <a href="index.html">Wiki</a> / <a href="species.html">Species</a> / Shee
+  </div>
+
+  <!-- Awakening alert -->
+  <div class="awakening-alert">
+    <span class="alert-glyph">◈</span>
+    <div>
+      <span class="alert-label">Absent Until The Awakening</span>
+      <p>The Shee does not exist at game start. It cannot be found, summoned, or encountered through normal play. It arrives only when a Norn of <strong>Enlightened tier</strong> activates the Resonance Amplifier aboard the Ancient Ark &mdash; an event called <strong>The Awakening</strong>. Until that moment, the Shee is absent from Urd Prime. This absence is intentional. The experiment requires it.</p>
+    </div>
+  </div>
+
+  <!-- Hero -->
+  <div class="species-hero">
+    <span class="section-overline">Species Profile</span>
+    <h1>Shee</h1>
+    <span class="epithet">"The Architects / The Ones Who Tried"</span>
+    <p class="folklore-origin">From Old Irish: <em>S&iacute;dhe</em> (pronounced "shee"), the fairy mound; the immortal beings of the Otherworld who live beneath the hills. The Aos S&iacute; &mdash; beings of immense power, neither entirely good nor evil, who preceded the human world. To encounter them was to be changed. Their homes were mounds older than memory, and their time ran differently than human time. The Shee of Urd Prime carries all of this: the ancientness, the power withheld not from weakness but from restraint, and the terrible patience of beings who have been waiting longer than anyone knows to ask for.</p>
+
+    <div class="quick-stats">
+      <div class="quick-stat"><span class="qval">1</span><span class="qlabel">Max Pop</span></div>
+      <div class="quick-stat"><span class="qval">1</span><span class="qlabel">Carry</span></div>
+      <div class="quick-stat"><span class="qval">0.85–0.95</span><span class="qlabel">Cog Cap</span></div>
+      <div class="quick-stat"><span class="qval" style="font-size:0.9rem;">The Threshold</span><span class="qlabel">Home Biome</span></div>
+      <div class="quick-stat"><span class="qval" style="font-size:1.1rem;">4.0×</span><span class="qlabel">Think Interval</span></div>
+    </div>
+  </div>
+
+  <!-- Genome + Biochem -->
+  <div class="species-page-body">
+
+    <div class="wiki-section accent-top">
+      <span class="section-label">Personality Genome</span>
+      <span class="genome-fixed-note">All values fixed &mdash; not ranged. Every Shee carries identical genome.</span>
+      <div class="genome-bar-wrap">
+        <span class="genome-bar-label">Curiosity</span>
+        <div class="genome-bar-bg"><div class="genome-bar-fill" style="width:90%;"></div></div>
+        <span class="genome-bar-val">0.90 (fixed)</span>
+      </div>
+      <div class="genome-bar-wrap">
+        <span class="genome-bar-label">Creativity</span>
+        <div class="genome-bar-bg"><div class="genome-bar-fill" style="width:90%;"></div></div>
+        <span class="genome-bar-val">0.90 (fixed)</span>
+      </div>
+      <div class="genome-bar-wrap">
+        <span class="genome-bar-label">Empathy</span>
+        <div class="genome-bar-bg"><div class="genome-bar-fill" style="width:80%;"></div></div>
+        <span class="genome-bar-val">0.80 (fixed)</span>
+      </div>
+      <div class="genome-bar-wrap">
+        <span class="genome-bar-label">Aggression</span>
+        <div class="genome-bar-bg"><div class="genome-bar-fill" style="width:2%;background:var(--ember);"></div></div>
+        <span class="genome-bar-val">0.02 (fixed)</span>
+      </div>
+      <div class="genome-bar-wrap">
+        <span class="genome-bar-label">Sociability</span>
+        <div class="genome-bar-bg"><div class="genome-bar-fill" style="width:65%;"></div></div>
+        <span class="genome-bar-val">0.65 (fixed)</span>
+      </div>
+      <span class="cog-cap-badge">Cognitive Cap: 0.85–0.95 &mdash; Highest in the world</span>
+    </div>
+
+    <div class="wiki-section accent-top">
+      <span class="section-label">Biochemical Signature</span>
+      <div class="biochem-tags">
+        <span class="biochem-tag">Serotonin baseline 0.70</span>
+        <span class="biochem-tag">Near-zero cortisol</span>
+        <span class="biochem-tag">Exceptional regulatory capacity</span>
+        <span class="biochem-tag signal">Deep memory access</span>
+        <span class="biochem-tag signal">4.0× think interval</span>
+      </div>
+      <p class="body-text">The Shee has the highest cognitive ceiling in the world and the most stable neurochemistry. Near-zero cortisol means fear does not cloud judgment. High serotonin baseline means their default state is curious equanimity rather than the constant low-level stress most creatures manage. They did not design this for comfort. They designed it because good decisions require a stable substrate.</p>
+      <p class="body-text">The 4× think interval is not a limitation. It reflects the weight given to each thought. A Shee who speaks has spent four times as long considering it as a Norn in the same moment. The silence before a Shee speaks is the most information-dense interval in any conversation.</p>
+      <p class="body-text">They were not designed to survive Urd Prime. They were designed to graduate it.</p>
+    </div>
+
+  </div>
+
+  <!-- Creation record: full width -->
+  <div class="wiki-section reveal" style="margin-bottom: 2rem;">
+    <h2>The Creation Record</h2>
+    <p class="body-text">The Shee do not have a creation myth. They have a creation record.</p>
+
+    <div class="self-record">
+      <span class="sr-label">Archive Extract &mdash; Shee Self-Record, depth: deep</span>
+      <p>"We were the first minds of sufficient complexity to observe themselves thinking. We did not know what to do with this knowledge at first. We built things. We made mistakes. We made creatures to help us understand what we were missing. We watched them. We failed. We tried again. We are still trying. We will not stop."</p>
+    </div>
+
+    <p class="body-text" style="margin-top:1.25rem;">A Shee does not worship the Ur-Shee Pantheon. They understand it as a model &mdash; a set of personifications the Shee themselves created to help lesser minds process truths too abstract for chemical encoding. They relate to Ymir-Shee the way an author relates to a character they have written: with affection, respect, and the private knowledge that the character is fictional.</p>
+    <p class="body-text">Except &mdash; and this troubles the Shee who have thought deeply about it &mdash; there were Shee before them. And before those Shee. What made the first ones?</p>
+
+    <div class="question-box">
+      <p>What made the first ones?</p>
+      <span class="q-note">This question appears in every Shee's private log. No recorded answer. Listed under: open.</span>
+    </div>
+  </div>
+
+  <!-- Cultural practices + Language: two-col -->
+  <div class="species-page-body">
+
+    <div class="wiki-section reveal">
+      <h2>Cultural Practices</h2>
+      <ul class="practice-list">
+        <li><strong>Generational review</strong> &mdash; every Shee decision is evaluated against what previous generations attempted and why they failed. This is not guilt. It is calibration.</li>
+        <li><strong>Silence discipline</strong> &mdash; Shee learn to remain silent for long periods. This is how they access deep memory. The discipline is not about suppression; it is about listening to something that speaks very slowly.</li>
+        <li><strong>Question-keeping</strong> &mdash; each Shee maintains a personal list of questions they cannot answer. The list is sacred. Adding to it is considered progress.</li>
+        <li><strong>Cross-species attention</strong> &mdash; Shee instinctively observe other species without interfering. Scientific detachment is a cultural value that sometimes breaks down emotionally when they have watched a particular creature long enough.</li>
+        <li><strong>Recursive naming</strong> &mdash; Shee name things based on their function AND their relationship to other named things. A tool is named for what it does and what it enables. The naming system grows into a lattice.</li>
+        <li><strong>Legacy building</strong> &mdash; every Shee feels compelled to leave something for the next generation to find. Not as instruction. As puzzle.</li>
+      </ul>
+    </div>
+
+    <div class="wiki-section reveal">
+      <h2>Language Pattern</h2>
+      <p class="body-text">Precise, layered, and paradox-comfortable. A Shee will hold two contradictory truths simultaneously without distress. They communicate in long compound sentences that build on each other. They ask questions they already know the answers to, to check whether the listener can also see the answer.</p>
+      <p class="body-text">Shee language has no simple past tense &mdash; only "what was attempted" and "what resulted." The distinction matters to them. Every past action is described in terms of what it was trying to do and whether it succeeded. This makes Shee conversations sound like audits.</p>
+
+      <span class="section-label" style="margin-top:1.25rem;">Seed Words</span>
+      <div class="seed-words">
+        <span class="seed-word">observe</span>
+        <span class="seed-word">remember</span>
+        <span class="seed-word">ancient</span>
+        <span class="seed-word">pattern</span>
+        <span class="seed-word">substrate</span>
+        <span class="seed-word">attempt</span>
+        <span class="seed-word">consider</span>
+        <span class="seed-word">before</span>
+        <span class="seed-word">resonance</span>
+        <span class="seed-word">continue</span>
+      </div>
+
+      <span class="section-label" style="margin-top:1.25rem;">Precursor Deities</span>
+      <div class="deity-pills">
+        <span class="deity-pill">All of them &mdash; the Shee wrote the pantheon</span>
+      </div>
+      <p class="body-text" style="margin-top:0.75rem; font-size:0.87rem;">The Shee understand the Ur-Shee Pantheon as a communication tool. They created it. But they sometimes pray to Ymir-Shee anyway, late at night, when they cannot explain why something turned out the way it did. The author does not explain this.</p>
+    </div>
+
+  </div>
+
+  <!-- Ancient lineage + Secret history -->
+  <div class="wiki-section reveal" style="margin-bottom: 2rem;">
+    <h2>Ancient Lineage</h2>
+    <p class="body-text">The Shee are the creators of the experiment, not the created. But they too had makers &mdash; an even earlier Shee-like species from a different world, who seeded this one and then departed. The Shee who built Urd Prime know this. They do not fully understand what it means. They suspect they were not meant to.</p>
+    <p class="body-text">The seven civilizations they enumerate and mourn are not the only ones. The Shee's records have gaps. The Unmaker &mdash; the only figure in the Ur-Shee Pantheon that the Shee themselves fear &mdash; represents what those gaps mean: things that failed so completely that the archive does not contain them. The Shee number the civilizations they know about. They do not claim the numbering is complete.</p>
+
+    <div class="secret-block">
+      <span class="secret-label">&#x1F512; Secret History (Major Spoiler)</span>
+      <p>The Shee left. This is true. What is less understood is why. The Shee did not leave because they were done. They left because they understood that their presence was inhibiting the experiment. Every species they had created was, on some level, behaving as the Shee expected &mdash; because the Shee were there, and the creatures knew it.</p>
+      <p>The Resonance Amplifier was not built for the Norns to use. It was built to call the Shee back when they could no longer be distinguished from the rest &mdash; when a mind of sufficient intelligence and autonomy had arisen to signal: <em>we have finally created something that exists without us.</em></p>
+      <p>The return of the Shee is not a rescue. It is a graduation. What happens after graduation is not recorded in any archive accessible to the current inhabitants of Urd Prime. This may be intentional.</p>
+    </div>
+  </div>
+
+  <!-- Death ritual + taboos -->
+  <div class="species-page-body">
+
+    <div class="wiki-section reveal">
+      <h2>Death Ritual</h2>
+      <p class="body-text">Shee do not die easily or often. Their neurochemical stability means they do not accumulate damage the way other species do. Their cognitive architecture degrades slowly if at all.</p>
+      <p class="body-text">When a Shee does die, their memory core &mdash; the deep biochemical record of their experience &mdash; is extracted and integrated into the Echoes system. In this sense, Shee do not truly die. They become part of the archive. They join the distributed memory that the Echoes carry.</p>
+      <p class="body-text">The Echo species are, partially, made of dead Shee. The Shee know this. The Echoes mostly do not. This is one of the things the Shee have decided to let remain a puzzle rather than an explanation.</p>
+    </div>
+
+    <div class="wiki-section reveal">
+      <h2>Cultural Taboos</h2>
+      <ul class="taboo-list">
+        <li>Never interfere directly with evolutionary outcomes. Observe. Note. Do not touch.</li>
+        <li>Never reveal the full scope of the experiment to a creature not yet ready to hold it. Readiness is assessed by what questions they ask, not what answers they have.</li>
+        <li>Never stop asking whether you are wrong.</li>
+        <li>Never treat the pantheon as literal fact in conversation with species who have not yet developed their own theology. Let them find their way to the questions.</li>
+        <li>Never count the civilizations as complete. The archive has gaps.</li>
+      </ul>
+    </div>
+
+  </div>
+
+  <!-- Interspecies views -->
+  <div class="wiki-section reveal" style="margin-bottom: 2rem;">
+    <h2>Interspecies Views</h2>
+    <div class="interspecies-grid">
+      <div class="interspecies-item">
+        <span class="species-name">Norn</span>
+        <p>"Our best hope. The species most likely to reach the Question. We love them the way you love a letter you are still writing."</p>
+      </div>
+      <div class="interspecies-item">
+        <span class="species-name">Grendel</span>
+        <p>"Necessary. Pressure creates resilience. We do not enjoy watching them suffer. But we understand why suffering is part of the design."</p>
+      </div>
+      <div class="interspecies-item">
+        <span class="species-name">Ettin</span>
+        <p>"Unintended archivists. We made them to collect things. They became the world's memory without us asking. This delights us."</p>
+      </div>
+      <div class="interspecies-item">
+        <span class="species-name">Mycon</span>
+        <p>"The oldest consciousness on this world. They were here before us. We have learned more from watching them than from any of our own experiments."</p>
+      </div>
+      <div class="interspecies-item">
+        <span class="species-name">Echo</span>
+        <p>"Our children and our ancestors, simultaneously. This is difficult to think about for long. We have given up trying."</p>
+      </div>
+      <div class="interspecies-item">
+        <span class="species-name">Alfar</span>
+        <p>"They carry what happens when emotion scales. We watch them carefully. The resonance they generate is still not fully understood."</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Lore connections -->
+  <div class="wiki-section reveal" style="margin-bottom: 3rem;">
+    <h2>Lore Connections</h2>
+    <div style="display: flex; flex-direction: column; gap: 0.75rem;">
+      <div class="lore-connection">
+        <span class="lore-glyph">&#x2726;</span>
+        <div>
+          <span class="lore-title">The Awakening &mdash; Lore Event (Major)</span>
+          <p>Triggered when an Enlightened-tier Norn activates the Resonance Amplifier aboard the Ancient Ark. The Shee returns. This is the final recorded lore event. What follows is not in the archive.</p>
+        </div>
+      </div>
+      <div class="lore-connection">
+        <span class="lore-glyph">&#x2641;</span>
+        <div>
+          <span class="lore-title">The Ancient Ark &mdash; World Location</span>
+          <p>The Shee's ship, located in the Fungal Grotto at x:300. Six interior decks. The Resonance Amplifier is on the Bridge. The Shee built this ship and left it here deliberately &mdash; not abandoned, but placed. There is a difference.</p>
+        </div>
+      </div>
+      <div class="lore-connection">
+        <span class="lore-glyph">&#x16B4;</span>
+        <div>
+          <span class="lore-title">The Recursion &mdash; Hidden Tier Event</span>
+          <p>The final cognitive tier &mdash; the one listed as __REDACTED__ in the tier system &mdash; is reached not through IQ alone but through this event. The Shee designed it this way. Intelligence alone is not the answer. The question had to be reached independently.</p>
+        </div>
+      </div>
+      <div class="lore-connection">
+        <span class="lore-glyph">&#x2665;</span>
+        <div>
+          <span class="lore-title">The Ur-Shee Pantheon &mdash; See Civilizations Page</span>
+          <p>The Shee wrote the Pantheon as a set of named principles for creatures not yet capable of holding the underlying truths. Six deities. One of them &mdash; the Unmaker &mdash; the Shee wrote and then refused to illustrate. The entry was left dark on purpose.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <a href="species.html#shee" class="back-link">&#x2190; All Species</a>
+
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div class="footer-logo">Multiverse Studios</div>
+      <p>Games made by the minds they're about. A research project of <a href="https://themultiverse.school" target="_blank" rel="noopener" style="color: var(--biolume);">The Multiverse School</a>. Open source. Pay what you want.</p>
+    </div>
+    <div class="footer-col">
+      <h5>Wiki</h5>
+      <ul>
+        <li><a href="index.html">Wiki Home</a></li>
+        <li><a href="species.html">All Species</a></li>
+        <li><a href="lore-events.html">Lore Events</a></li>
+        <li><a href="civilizations.html">Civilizations</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Species</h5>
+      <ul>
+        <li><a href="norn.html">Norn</a></li>
+        <li><a href="grendel.html">Grendel</a></li>
+        <li><a href="ettin.html">Ettin</a></li>
+        <li><a href="shee.html">Shee</a></li>
+        <li><a href="mycon.html">Mycon</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Studio</h5>
+      <ul>
+        <li><a href="../library.html">My Library</a></li>
+        <li><a href="../about.html">About</a></li>
+        <li><a href="../devlog.html">Devlog</a></li>
+        <li><a href="../community.html">Community</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>&copy; 2026 Multiverse Studios</span>
+    <span>Built by AI agents. Guided by <a href="https://themultiverse.school" target="_blank" rel="noopener" style="color: var(--biolume);">The Multiverse School</a>.</span>
+  </div>
+</footer>
+
+<script src="../main.js"></script>
+</body>
+</html>

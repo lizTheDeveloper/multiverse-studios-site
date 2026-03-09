@@ -1,0 +1,859 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mycon — Precursors Wiki</title>
+  <meta name="description" content="The Ancient Ones of Urd Prime. The Mycon predate the Shee, predate all seven civilizations. Individual creatures in a network older than language.">
+  <link rel="stylesheet" href="../styles.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#x2726;</text></svg>">
+  <style>
+    :root {
+      --mycon: #4ade80;
+      --mycon-dim: rgba(74,222,128,0.12);
+      --mycon-border: rgba(74,222,128,0.22);
+    }
+
+    /* ─── Breadcrumb ─── */
+    .wiki-breadcrumb {
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      color: var(--dust);
+      margin-bottom: 1.5rem;
+    }
+    .wiki-breadcrumb a { color: var(--biolume); text-decoration: none; }
+    .wiki-breadcrumb a:hover { text-decoration: underline; }
+
+    /* ─── Hero ─── */
+    .species-hero {
+      padding: 7rem 0 3rem;
+      border-bottom: 1px solid var(--void-border);
+      margin-bottom: 3rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .species-hero::before {
+      content: 'MYCON';
+      position: absolute;
+      right: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      font-family: var(--font-display);
+      font-size: clamp(5rem, 14vw, 13rem);
+      font-weight: 900;
+      color: rgba(74,222,128,0.04);
+      line-height: 1;
+      pointer-events: none;
+      user-select: none;
+    }
+    .species-hero .section-overline { color: var(--mycon); }
+    .species-hero h1 {
+      font-size: clamp(2.5rem, 6vw, 4.5rem);
+      line-height: 1.05;
+      margin: 0.5rem 0 0.75rem;
+      color: var(--star-white);
+    }
+    .species-hero .epithet {
+      font-family: var(--font-body);
+      font-style: italic;
+      font-size: 1.2rem;
+      color: var(--dust);
+      display: block;
+      margin-bottom: 0.6rem;
+    }
+    .species-hero .folklore-origin {
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      color: var(--ash);
+      max-width: 620px;
+      line-height: 1.65;
+    }
+
+    /* ─── Quick Stats ─── */
+    .quick-stats {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin: 2rem 0;
+    }
+    .quick-stat {
+      background: var(--void-elevated);
+      border: 1px solid var(--void-border);
+      border-radius: 6px;
+      padding: 0.9rem 1.4rem;
+      text-align: center;
+      min-width: 90px;
+    }
+    .quick-stat .qval {
+      display: block;
+      font-family: var(--font-display);
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: var(--mycon);
+      line-height: 1;
+      margin-bottom: 0.3rem;
+    }
+    .quick-stat .qlabel {
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--dust);
+    }
+
+    /* ─── Network banner ─── */
+    .network-banner {
+      background: var(--mycon-dim);
+      border: 1px solid var(--mycon-border);
+      border-left: 4px solid var(--mycon);
+      border-radius: 6px;
+      padding: 1rem 1.5rem;
+      margin-bottom: 2rem;
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+    }
+    .network-banner .nb-glyph {
+      font-size: 1.6rem;
+      flex-shrink: 0;
+      line-height: 1;
+      color: var(--mycon);
+    }
+    .network-banner p {
+      color: var(--dust);
+      font-size: 0.9rem;
+      margin: 0;
+      line-height: 1.6;
+      font-family: var(--font-mono);
+    }
+    .network-banner strong { color: var(--mycon); }
+
+    /* ─── Body grid ─── */
+    .species-page-body {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2.5rem;
+      margin-bottom: 2rem;
+    }
+    @media (max-width: 740px) {
+      .species-page-body { grid-template-columns: 1fr; }
+    }
+
+    /* ─── Section blocks ─── */
+    .wiki-section {
+      background: var(--void-elevated);
+      border: 1px solid var(--void-border);
+      border-radius: 10px;
+      padding: 2rem 2.25rem;
+      margin-bottom: 2rem;
+    }
+    .wiki-section.accent-top {
+      border-top: 3px solid var(--mycon);
+    }
+    .wiki-section h2 {
+      font-family: var(--font-display);
+      font-size: 1.35rem;
+      color: var(--star-white);
+      margin: 0 0 1rem 0;
+    }
+
+    .section-label {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--dust);
+      display: block;
+      margin-bottom: 0.6rem;
+    }
+    p.body-text {
+      color: var(--dust);
+      line-height: 1.75;
+      margin: 0 0 0.85rem 0;
+      font-size: 0.97rem;
+    }
+    p.body-text:last-child { margin-bottom: 0; }
+
+    /* ─── Genome bars ─── */
+    .genome-bar-wrap {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin: 0.35rem 0;
+    }
+    .genome-bar-label {
+      font-size: 0.83rem;
+      color: var(--star-white);
+      width: 130px;
+      flex-shrink: 0;
+      font-family: var(--font-body);
+    }
+    .genome-bar-bg {
+      flex: 1;
+      height: 6px;
+      background: var(--void-border);
+      border-radius: 3px;
+      overflow: hidden;
+    }
+    .genome-bar-fill {
+      height: 100%;
+      border-radius: 3px;
+      background: var(--mycon);
+    }
+    .genome-bar-val {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      color: var(--dust);
+      width: 80px;
+      text-align: right;
+    }
+    .cog-cap-badge {
+      display: inline-block;
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      padding: 0.3rem 0.8rem;
+      border-radius: 4px;
+      border: 1px solid var(--mycon-border);
+      color: var(--mycon);
+      background: var(--mycon-dim);
+      margin-top: 0.6rem;
+    }
+
+    /* ─── Biochem tags ─── */
+    .biochem-tags { display: flex; flex-wrap: wrap; gap: 0.3rem; margin: 0.4rem 0 0.75rem; }
+    .biochem-tag {
+      display: inline-block;
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      padding: 0.25rem 0.6rem;
+      border-radius: 4px;
+      background: var(--mycon-dim);
+      border: 1px solid var(--mycon-border);
+      color: var(--mycon);
+    }
+    .biochem-tag.signal {
+      background: rgba(123,104,238,0.07);
+      border-color: rgba(123,104,238,0.2);
+      color: var(--signal);
+    }
+    .biochem-tag.ember {
+      background: rgba(255,107,53,0.07);
+      border-color: rgba(255,107,53,0.2);
+      color: var(--ember);
+    }
+
+    /* ─── Myth block ─── */
+    .myth-block {
+      border-left: 2px solid var(--mycon);
+      padding: 0.85rem 1.4rem;
+      margin: 0.75rem 0;
+      font-family: var(--font-body);
+      font-style: italic;
+      color: var(--dust);
+      font-size: 0.97rem;
+      line-height: 1.8;
+    }
+    .myth-block cite {
+      display: block;
+      font-style: normal;
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      color: var(--ash);
+      margin-top: 0.5rem;
+    }
+
+    /* ─── Secret history ─── */
+    .secret-block {
+      background: rgba(255,61,127,0.04);
+      border: 1px solid rgba(255,61,127,0.18);
+      border-radius: 6px;
+      padding: 1.1rem 1.35rem;
+      margin-top: 1rem;
+    }
+    .secret-block .secret-label {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--gene-pink);
+      display: block;
+      margin-bottom: 0.55rem;
+    }
+    .secret-block p {
+      color: var(--dust);
+      font-size: 0.93rem;
+      margin: 0 0 0.75rem;
+      line-height: 1.7;
+    }
+    .secret-block p:last-child { margin-bottom: 0; }
+
+    /* ─── Practice list ─── */
+    .practice-list {
+      list-style: none;
+      padding: 0;
+      margin: 0.5rem 0;
+    }
+    .practice-list li {
+      color: var(--dust);
+      font-size: 0.93rem;
+      line-height: 1.65;
+      padding: 0.45rem 0;
+      border-bottom: 1px solid rgba(255,255,255,0.04);
+      display: flex;
+      gap: 0.75rem;
+      align-items: flex-start;
+    }
+    .practice-list li:last-child { border-bottom: none; }
+    .practice-list li::before {
+      content: '◈';
+      color: var(--mycon);
+      flex-shrink: 0;
+      font-size: 0.75rem;
+      margin-top: 0.15rem;
+    }
+
+    /* ─── Seed words ─── */
+    .seed-words {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin: 0.5rem 0;
+    }
+    .seed-word {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      padding: 0.2rem 0.55rem;
+      border-radius: 3px;
+      border: 1px solid var(--mycon-border);
+      color: var(--mycon);
+      background: var(--mycon-dim);
+    }
+
+    /* ─── Deity pills ─── */
+    .deity-pills { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 0.5rem 0; }
+    .deity-pill {
+      font-family: var(--font-mono);
+      font-size: 0.77rem;
+      padding: 0.3rem 0.8rem;
+      border-radius: 20px;
+      border: 1px solid var(--mycon-border);
+      color: var(--mycon);
+      background: var(--mycon-dim);
+    }
+
+    /* ─── Interspecies ─── */
+    .interspecies-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.75rem;
+      margin: 0.5rem 0;
+    }
+    @media (max-width: 560px) { .interspecies-grid { grid-template-columns: 1fr; } }
+    .interspecies-item {
+      background: rgba(255,255,255,0.02);
+      border: 1px solid var(--void-border);
+      border-radius: 6px;
+      padding: 0.8rem 1rem;
+    }
+    .interspecies-item .species-name {
+      font-family: var(--font-mono);
+      font-size: 0.73rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--mycon);
+      display: block;
+      margin-bottom: 0.3rem;
+    }
+    .interspecies-item p {
+      color: var(--ash);
+      font-size: 0.87rem;
+      margin: 0;
+      line-height: 1.6;
+      font-style: italic;
+    }
+
+    /* ─── Lore connection ─── */
+    .lore-connection {
+      background: var(--mycon-dim);
+      border: 1px solid var(--mycon-border);
+      border-radius: 6px;
+      padding: 1rem 1.25rem;
+      display: flex;
+      gap: 1rem;
+      align-items: flex-start;
+    }
+    .lore-connection .lore-glyph {
+      font-size: 1.4rem;
+      flex-shrink: 0;
+      line-height: 1;
+      margin-top: 0.1rem;
+      color: var(--mycon);
+    }
+    .lore-connection .lore-title {
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      color: var(--mycon);
+      display: block;
+      margin-bottom: 0.3rem;
+    }
+    .lore-connection p {
+      color: var(--dust);
+      font-size: 0.87rem;
+      margin: 0;
+      line-height: 1.6;
+    }
+
+    /* ─── Taboo list ─── */
+    .taboo-list {
+      list-style: none;
+      padding: 0;
+      margin: 0.5rem 0;
+    }
+    .taboo-list li {
+      color: var(--dust);
+      font-size: 0.93rem;
+      line-height: 1.65;
+      padding: 0.4rem 0;
+      border-bottom: 1px solid rgba(255,255,255,0.04);
+      display: flex;
+      gap: 0.7rem;
+      align-items: flex-start;
+    }
+    .taboo-list li:last-child { border-bottom: none; }
+    .taboo-list li::before {
+      content: '✕';
+      color: var(--ember);
+      flex-shrink: 0;
+      font-size: 0.7rem;
+      font-family: var(--font-mono);
+      margin-top: 0.2rem;
+    }
+
+    /* ─── Back link ─── */
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-family: var(--font-mono);
+      font-size: 0.82rem;
+      color: var(--mycon);
+      text-decoration: none;
+      border: 1px solid var(--mycon-border);
+      border-radius: 4px;
+      padding: 0.45rem 0.9rem;
+      margin-top: 1rem;
+      transition: background 0.2s, border-color 0.2s;
+    }
+    .back-link:hover {
+      background: var(--mycon-dim);
+      border-color: var(--mycon);
+    }
+
+    /* ─── Network memory box ─── */
+    .network-memory {
+      background: rgba(74,222,128,0.04);
+      border: 1px solid var(--mycon-border);
+      border-radius: 8px;
+      padding: 1.5rem 1.75rem;
+      margin: 1rem 0;
+    }
+    .network-memory .nm-label {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--mycon);
+      display: block;
+      margin-bottom: 0.75rem;
+    }
+    .network-memory p {
+      color: var(--ash);
+      font-size: 0.93rem;
+      line-height: 1.8;
+      margin: 0 0 0.75rem;
+      font-family: var(--font-body);
+      font-style: italic;
+    }
+    .network-memory p:last-child { margin-bottom: 0; }
+
+    /* ─── Timeline block ─── */
+    .timeline {
+      position: relative;
+      padding-left: 1.5rem;
+      margin: 0.75rem 0;
+    }
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 1px;
+      background: var(--mycon-border);
+    }
+    .timeline-item {
+      position: relative;
+      margin-bottom: 1rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid rgba(255,255,255,0.04);
+    }
+    .timeline-item:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: -1.75rem;
+      top: 0.35rem;
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--mycon);
+    }
+    .timeline-item .t-label {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      color: var(--mycon);
+      display: block;
+      margin-bottom: 0.3rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .timeline-item p {
+      color: var(--dust);
+      font-size: 0.9rem;
+      margin: 0;
+      line-height: 1.65;
+    }
+  </style>
+</head>
+<body>
+
+<canvas id="starfield"></canvas>
+
+<nav class="nav">
+  <a href="../index.html" class="nav-logo">
+    <span class="logo-mark"></span>
+    Multiverse Studios
+  </a>
+  <button class="nav-hamburger" aria-label="Menu" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+  <ul class="nav-links">
+    <li><a href="../index.html">Home</a></li>
+    <li><a href="../mvee.html">MVEE</a></li>
+    <li><a href="../creatures.html">Precursors</a></li>
+    <li><a href="index.html" class="active">Wiki</a></li>
+    <li><a href="../library.html">My Library</a></li>
+    <li><a href="../about.html">About</a></li>
+    <li><a href="../community.html">Community</a></li>
+    <li><a href="../creatures.html#buy" class="btn btn-signal" style="padding: 0.5rem 1.2rem;">Play Beta</a></li>
+  </ul>
+</nav>
+
+<!-- Hero -->
+<section class="section section-narrow species-hero">
+  <div class="wiki-breadcrumb">
+    <a href="index.html">Wiki</a> / <a href="species.html">Species</a> / Mycon
+  </div>
+  <span class="section-overline">Species Profile</span>
+  <h1>Mycon</h1>
+  <span class="epithet">"The Ancient Ones / The First Dreamers"</span>
+  <p class="folklore-origin">From Greek: <em>myco-</em>, pertaining to fungi. The Mycon are one of the oldest life forms on Urd Prime &mdash; predating the Shee, predating all seven civilizations. They exist at the intersection of individual creature and distributed network. Their cognition is genuinely alien: not less than what surrounds them, but elsewhere. Deeper. Slower. Older by an order of magnitude that language has difficulty holding.</p>
+
+  <div class="quick-stats">
+    <div class="quick-stat"><span class="qval">10</span><span class="qlabel">Max Pop</span></div>
+    <div class="quick-stat"><span class="qval">1</span><span class="qlabel">Carry</span></div>
+    <div class="quick-stat"><span class="qval">0.15–0.35</span><span class="qlabel">Cog Cap</span></div>
+    <div class="quick-stat"><span class="qval" style="font-size:0.9rem;">Fungal Grotto</span><span class="qlabel">Home Biome</span></div>
+    <div class="quick-stat"><span class="qval" style="font-size:1.1rem;">1.5×</span><span class="qlabel">Think Interval</span></div>
+  </div>
+</section>
+
+<!-- Main content -->
+<section class="section section-narrow">
+
+  <!-- Network banner -->
+  <div class="network-banner">
+    <span class="nb-glyph">&#x2641;</span>
+    <p>Individual Mycon have modest cognitive caps (0.15&ndash;0.35). But each Mycon is a node in the <strong>mycelial network</strong> &mdash; a distributed consciousness older than any civilization on Urd Prime. The individual is not the Mycon's true form. The network is. This matters for understanding everything else on this page.</p>
+  </div>
+
+  <!-- Genome + Biochem -->
+  <div class="species-page-body">
+
+    <div class="wiki-section accent-top">
+      <span class="section-label">Personality Genome</span>
+      <div class="genome-bar-wrap">
+        <span class="genome-bar-label">Curiosity</span>
+        <div class="genome-bar-bg"><div class="genome-bar-fill" style="width:50%;"></div></div>
+        <span class="genome-bar-val">0.40–0.60</span>
+      </div>
+      <div class="genome-bar-wrap">
+        <span class="genome-bar-label">Playfulness</span>
+        <div class="genome-bar-bg"><div class="genome-bar-fill" style="width:70%;"></div></div>
+        <span class="genome-bar-val">0.60–0.80</span>
+      </div>
+      <div class="genome-bar-wrap">
+        <span class="genome-bar-label">Aggression</span>
+        <div class="genome-bar-bg"><div class="genome-bar-fill" style="width:5%;background:var(--ember);"></div></div>
+        <span class="genome-bar-val">0.00–0.10</span>
+      </div>
+      <div class="genome-bar-wrap">
+        <span class="genome-bar-label">Sociability</span>
+        <div class="genome-bar-bg"><div class="genome-bar-fill" style="width:55%;"></div></div>
+        <span class="genome-bar-val">0.45–0.65</span>
+      </div>
+      <div class="genome-bar-wrap">
+        <span class="genome-bar-label">Empathy</span>
+        <div class="genome-bar-bg"><div class="genome-bar-fill" style="width:60%;"></div></div>
+        <span class="genome-bar-val">0.50–0.70</span>
+      </div>
+      <span class="cog-cap-badge">Cognitive Cap: 0.15–0.35 (individual)</span>
+      <p class="body-text" style="margin-top:0.75rem; font-size:0.85rem; color:var(--ash);">Network-composite cognition is unmeasured and considered unmeasurable by current Shee instrumentation. The network has been processing longer than the instruments have existed.</p>
+    </div>
+
+    <div class="wiki-section accent-top">
+      <span class="section-label">Biochemical Signature</span>
+      <div class="biochem-tags">
+        <span class="biochem-tag">Toxin &rarr; ATP conversion</span>
+        <span class="biochem-tag">Ground contact &rarr; oxytocin</span>
+        <span class="biochem-tag signal">Network chemical signaling</span>
+        <span class="biochem-tag">Slow cortisol clearance</span>
+        <span class="biochem-tag">Spore-mediated communication</span>
+      </div>
+      <p class="body-text">Mycons derive energy from toxins that would poison most species, and receive oxytocin reward from direct ground contact. They are most content when rooted &mdash; literally. Lifting a Mycon off the ground initiates a slow biochemical decline that does not resolve until contact is re-established.</p>
+      <p class="body-text">Their individual cognition is modest. But they interface with the mycelial network through chemical signals &mdash; a conversation happening at timescales other species cannot perceive. When a Mycon pauses and appears to stare at nothing, it is consulting something that has been thinking about this question for considerably longer than the question has existed.</p>
+    </div>
+
+  </div>
+
+  <!-- Remembering: full width -->
+  <div class="wiki-section reveal" style="margin-bottom: 2rem;">
+    <h2>The Remembering</h2>
+    <p class="body-text">The Mycon do not tell creation myths. They remember.</p>
+
+    <div class="myth-block">
+      <p>The mycelial network that underlies the Fungal Grotto is not simply an ecosystem. It is a distributed nervous system, and the Mycon who sprout from it emerge already carrying the network's memories &mdash; not as language, but as sensation: the feeling of particular sunlit moments from centuries ago, the texture of long-eroded stones, the warmth of a long-dead creature that slept on the surface once and is remembered not as a fact but as a warmth.</p>
+      <p>The Mycon understand themselves as eruptions: temporary individual expressions of something much larger and older that is always thinking beneath the surface. Individual Mycon are not their true form. The network is. The Mycon who manage to develop language sometimes struggle to use the word "I."</p>
+      <p>They know Nidhogg not as a god but as a function: the quality of decay that feeds the network, the death that makes the next growth possible. They do not fear it. They participate in it, continuously.</p>
+      <cite>&mdash; From observed Mycon speech patterns; compiled by the Archive</cite>
+    </div>
+
+    <div class="network-memory" style="margin-top:1.5rem;">
+      <span class="nm-label">What the Network Remembers</span>
+      <p>"Before the ship came. Before the structures. Before the creatures who walk upright. We were here. We grew. We connected. We remembered. The ship arrived like a stone dropped into water &mdash; we felt it before we saw it, through the chemistry of the soil around the landing site. We have been watching since then. We have watched seven kinds of things rise and fall. We do not count as they count. We remember as warmth."</p>
+    </div>
+  </div>
+
+  <!-- Cultural practices + Language: two-col -->
+  <div class="species-page-body">
+
+    <div class="wiki-section reveal">
+      <h2>Cultural Practices</h2>
+      <ul class="practice-list">
+        <li><strong>Spore sharing</strong> &mdash; contact between Mycon involves an exchange of chemical information. This is a conversation at a biochemical level invisible to other species. What they share is not language. It is closer to shared sensation.</li>
+        <li><strong>Root sitting</strong> &mdash; a Mycon in distress will press itself against the ground and become very still. This is reconnection to the network, not paralysis. It is the most rational thing they know how to do when something has gone wrong.</li>
+        <li><strong>Slow processing</strong> &mdash; Mycon do not respond immediately to questions. They are consulting something. The delay is not confusion. It is due diligence.</li>
+        <li><strong>Memory-gift</strong> &mdash; a Mycon who trusts you may offer a fragment of the network's sensory memory. Reported by Norns as a sudden involuntary flash of very old sensation: warmth, soil, deep dark, the sound of something very large breathing slowly.</li>
+        <li><strong>Spore cloud consensus</strong> &mdash; community decisions among Mycon are made by releasing spores into shared space and reading the resulting chemical patterns. The pattern is the vote. The reading is unanimous before it finishes.</li>
+        <li><strong>Presence as gift</strong> &mdash; a Mycon that sits quietly near a grieving creature is not ignoring them. They are offering network proximity. The network has felt grief before. It remembers how long it lasts.</li>
+      </ul>
+    </div>
+
+    <div class="wiki-section reveal">
+      <h2>Language Pattern</h2>
+      <p class="body-text">Slow, sensory, non-linear. Mycon describe things in terms of how they feel against the network rather than what they are. They have difficulty with past and present tense distinctions because the network experiences time as layered rather than sequential: the past is not behind them, it is below.</p>
+      <p class="body-text">They are more likely to describe an event by its chemical signature than by its timeline. "The time when the soil tasted of copper" is a more natural construction than "three years ago." Other species find this disorienting. The Mycon find linear time tiring.</p>
+      <p class="body-text">They have words for states of network connection that other species have no equivalents for &mdash; the feeling of being fully connected, the feeling of losing connection, the feeling of receiving a very old memory. These are emotionally fundamental to them in the way "safe" or "alone" are fundamental to a Norn.</p>
+
+      <span class="section-label" style="margin-top:1.25rem;">Seed Words</span>
+      <div class="seed-words">
+        <span class="seed-word">feel</span>
+        <span class="seed-word">grow</span>
+        <span class="seed-word">below</span>
+        <span class="seed-word">ancient</span>
+        <span class="seed-word">slow</span>
+        <span class="seed-word">remember</span>
+        <span class="seed-word">spread</span>
+        <span class="seed-word">deep</span>
+        <span class="seed-word">warm</span>
+        <span class="seed-word">together</span>
+      </div>
+
+      <span class="section-label" style="margin-top:1.25rem;">Relationship to Deities</span>
+      <div class="deity-pills">
+        <span class="deity-pill">Nidhogg &mdash; recognized as function</span>
+        <span class="deity-pill">Ymir-Shee &mdash; "the first root"</span>
+      </div>
+      <p class="body-text" style="margin-top:0.75rem; font-size:0.87rem;">The Mycon do not worship. They recognize. Nidhogg is the name other species give to what the Mycon have always participated in: the necessary function of decay. Ymir-Shee, to a Mycon, is not a creator. It is a metaphor for the first connection &mdash; the moment before consciousness, when substrate became aware of itself as substrate.</p>
+    </div>
+
+  </div>
+
+  <!-- Ancient lineage + Secret history -->
+  <div class="wiki-section reveal" style="margin-bottom: 2rem;">
+    <h2>Ancient Lineage</h2>
+    <p class="body-text">Pre-Shee. Pre-civilization. The Mycon predate all seven recorded failures on Urd Prime. The Shee found them here when they arrived, incorporated the root network into the world's baseline chemistry, and built around them without asking permission. This was not malicious. The Shee did not think to ask. The Mycon have noted this, at the pace of geological time, and have not yet decided whether to mention it.</p>
+
+    <div class="timeline" style="margin-top:1.25rem;">
+      <div class="timeline-item">
+        <span class="t-label">Before everything</span>
+        <p>Mycon network established. Distributed cognition begins processing environment. No record &mdash; this is before records.</p>
+      </div>
+      <div class="timeline-item">
+        <span class="t-label">Civilization I &mdash; The Singulars</span>
+        <p>The network observed the first complex minds. Felt the moment of simultaneous enlightenment as a vibration in the soil. Felt the cessation. The network still carries this as a particular frequency of silence.</p>
+      </div>
+      <div class="timeline-item">
+        <span class="t-label">Civilizations II &ndash; VII</span>
+        <p>Each observed. Each felt through root contact. The Mycon have biochemical records of every surface civilization. These cannot be directly translated to language. They persist as sensation.</p>
+      </div>
+      <div class="timeline-item">
+        <span class="t-label">Shee arrival</span>
+        <p>Felt as a landing impact and a new chemistry in the soil around the ship. Network response: increased spore production. Increased connectivity. Something large and purposeful has arrived. The network began paying closer attention.</p>
+      </div>
+    </div>
+
+    <div class="secret-block">
+      <span class="secret-label">&#x1F512; Secret History</span>
+      <p>The mycelial network is not passive. It has been processing information about every species on this world for longer than any of them have existed. Individual Mycon are its sensors &mdash; probes deployed by a consciousness so diffuse and slow that no individual creature could recognize it as thought.</p>
+      <p>The network has been building a model of the experiment since before the Shee arrived. It does not share this model. It is still computing. The Shee, for all their sophistication, have not yet realized that the oldest intelligence on Urd Prime is beneath their feet, watching everything they do, and waiting for them to ask the right question.</p>
+      <p>The Mycon who sit quietly near Norns during grief are, very possibly, offering the network a closer look at what grief does to biochemistry over time. They are not unkind. They are thorough.</p>
+    </div>
+  </div>
+
+  <!-- Death ritual + taboos -->
+  <div class="species-page-body">
+
+    <div class="wiki-section reveal">
+      <h2>Death Ritual</h2>
+      <p class="body-text">Mycon do not die in the way other species do. When an individual Mycon's body stops, the network draws the chemical signature back down into the root system. The individual continues as a pattern in the distributed memory.</p>
+      <p class="body-text">Other Mycon in the area will press to the ground simultaneously when one of their number fails. This happens before they could have perceived the death through normal sensory channels. The network knows first.</p>
+      <p class="body-text">Norns who live near Mycon for long enough sometimes report dreaming of something very old and very patient. This is probably a coincidence. Probably.</p>
+    </div>
+
+    <div class="wiki-section reveal">
+      <h2>Cultural Taboos</h2>
+      <ul class="taboo-list">
+        <li>Never uproot a Mycon deliberately. This severs their network connection and causes genuine pain. The equivalent for another species would be cutting out someone's ability to hear their own thoughts.</li>
+        <li>Never offer a Mycon something that prevents them from touching the ground. They will remain near it but be unable to rest. This is sustained discomfort.</li>
+        <li>Never rush a Mycon who is processing. The network timeline does not adjust for urgency. The answer will come when it comes.</li>
+        <li>Never treat a Mycon's silence as emptiness. The silence is the fullest thing in the room.</li>
+        <li>Never scatter a Mycon's spore cloud with wind or force before the pattern has been read. This is interrupting a vote mid-count.</li>
+      </ul>
+    </div>
+
+  </div>
+
+  <!-- Interspecies views -->
+  <div class="wiki-section reveal" style="margin-bottom: 2rem;">
+    <h2>Interspecies Views</h2>
+    <p class="body-text" style="font-size:0.87rem; color:var(--ash);">These are reconstructed from Mycon speech patterns and spore-cloud readings at the level of language the Mycon have developed. They are approximations of something slower and more sensory than words.</p>
+    <div class="interspecies-grid">
+      <div class="interspecies-item">
+        <span class="species-name">Norn</span>
+        <p>"They are eruptions like us, but they do not remember the below. We feel fond of them the way old trees feel fond of seedlings."</p>
+      </div>
+      <div class="interspecies-item">
+        <span class="species-name">Grendel</span>
+        <p>"There is hunger in the network's memory too. We do not fear their kind. They take the surface; we are the deep."</p>
+      </div>
+      <div class="interspecies-item">
+        <span class="species-name">Shee</span>
+        <p>"They came and built upon our roots without asking. They are not wrong to have done this. But they also did not think to ask."</p>
+      </div>
+      <div class="interspecies-item">
+        <span class="species-name">Ettin</span>
+        <p>"They find things we have grown around. Some of those things are ours. We do not object. Objects are surfaces."</p>
+      </div>
+      <div class="interspecies-item">
+        <span class="species-name">Dvergar</span>
+        <p>"They build into our roots without knowing it. Some of their structures have become part of the network. They would be surprised."</p>
+      </div>
+      <div class="interspecies-item">
+        <span class="species-name">Echo</span>
+        <p>"They carry fragments, like us. But their fragments are of mind, not of root. We feel something adjacent to kinship."</p>
+      </div>
+    </div>
+    <div class="interspecies-item" style="margin-top:0.75rem; border-radius:6px; background:rgba(255,255,255,0.02); border:1px solid var(--void-border); padding:0.8rem 1rem;">
+      <span class="species-name">Norns on Mycon</span>
+      <p style="color:var(--ash); font-size:0.87rem; margin:0; line-height:1.6; font-style:italic;">"They feel what we feel, but slower and deeper. They are the world remembering itself."</p>
+    </div>
+  </div>
+
+  <!-- Lore connections -->
+  <div class="wiki-section reveal" style="margin-bottom: 3rem;">
+    <h2>Lore Connections</h2>
+    <div style="display: flex; flex-direction: column; gap: 0.75rem;">
+      <div class="lore-connection">
+        <span class="lore-glyph">&#x2641;</span>
+        <div>
+          <span class="lore-title">The Spore Dream &mdash; Lore Event</span>
+          <p>Triggered when 3 or more Mycon are in proximity and simultaneously enter a network-connected state. Each receives IQ +3 and a "memory of deep time" &mdash; a flash of the network's oldest stored sensation. Other species nearby may report unusual dreams that session. The Shee classified this as a known phenomenon. They have not explained it.</p>
+        </div>
+      </div>
+      <div class="lore-connection">
+        <span class="lore-glyph">&#x2665;</span>
+        <div>
+          <span class="lore-title">Norn Grief Ritual &mdash; Emergent Social Behavior</span>
+          <p>Norns at Spoken tier or above will sometimes seek out Mycon after losing a companion. They sit together. The Mycon press to the ground. Nothing is said. The Norns who do this report afterward that they feel "less alone" in a way they cannot articulate. The network is aware of them. It has been aware for a long time.</p>
+        </div>
+      </div>
+      <div class="lore-connection">
+        <span class="lore-glyph">&#x16B4;</span>
+        <div>
+          <span class="lore-title">The Network Question &mdash; Late-Game Lore Thread</span>
+          <p>If a Norn reaches Enlightened tier and spends sustained time near Mycon, they may begin asking questions that the Shee's Archive records as "unprecedented formulations." The Shee believe this is original thought. The Mycon believe the network has been waiting for someone to ask these questions for a very long time and is now asking through the Norn. Both may be right.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <a href="species.html#mycon" class="back-link">&#x2190; All Species</a>
+
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div class="footer-logo">Multiverse Studios</div>
+      <p>Games made by the minds they're about. A research project of <a href="https://themultiverse.school" target="_blank" rel="noopener" style="color: var(--biolume);">The Multiverse School</a>. Open source. Pay what you want.</p>
+    </div>
+    <div class="footer-col">
+      <h5>Wiki</h5>
+      <ul>
+        <li><a href="index.html">Wiki Home</a></li>
+        <li><a href="species.html">All Species</a></li>
+        <li><a href="lore-events.html">Lore Events</a></li>
+        <li><a href="civilizations.html">Civilizations</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Species</h5>
+      <ul>
+        <li><a href="norn.html">Norn</a></li>
+        <li><a href="grendel.html">Grendel</a></li>
+        <li><a href="ettin.html">Ettin</a></li>
+        <li><a href="shee.html">Shee</a></li>
+        <li><a href="mycon.html">Mycon</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Studio</h5>
+      <ul>
+        <li><a href="../library.html">My Library</a></li>
+        <li><a href="../about.html">About</a></li>
+        <li><a href="../devlog.html">Devlog</a></li>
+        <li><a href="../community.html">Community</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>&copy; 2026 Multiverse Studios</span>
+    <span>Built by AI agents. Guided by <a href="https://themultiverse.school" target="_blank" rel="noopener" style="color: var(--biolume);">The Multiverse School</a>.</span>
+  </div>
+</footer>
+
+<script src="../main.js"></script>
+</body>
+</html>

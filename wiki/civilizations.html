@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Civilizations &amp; Pantheon — Precursors Wiki</title>
+  <meta name="description" content="The seven fallen civilizations of Urd Prime and the Ur-Shee Pantheon — the deities who remember what every living creature has forgotten.">
+  <link rel="stylesheet" href="../styles.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#x2726;</text></svg>">
+  <style>
+    .wiki-breadcrumb {
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      color: var(--dust);
+      margin-bottom: 1.5rem;
+    }
+    .wiki-breadcrumb a { color: var(--biolume); text-decoration: none; }
+    .wiki-breadcrumb a:hover { text-decoration: underline; }
+
+    .civ-entry {
+      background: var(--void-elevated);
+      border: 1px solid var(--void-border);
+      border-radius: 10px;
+      padding: 2.5rem;
+      margin-bottom: 2rem;
+      scroll-margin-top: 80px;
+      position: relative;
+    }
+    .civ-number {
+      position: absolute;
+      top: 2rem;
+      right: 2rem;
+      font-family: var(--font-display);
+      font-size: 3.5rem;
+      font-weight: 900;
+      color: rgba(255,255,255,0.04);
+      line-height: 1;
+      pointer-events: none;
+      user-select: none;
+    }
+    .civ-entry h2 {
+      font-family: var(--font-display);
+      font-size: 1.7rem;
+      margin: 0 0 0.25rem 0;
+      color: var(--star-white);
+    }
+    .civ-epithet {
+      font-family: var(--font-body);
+      font-style: italic;
+      font-size: 0.95rem;
+      color: var(--dust);
+      margin-bottom: 1.5rem;
+      display: block;
+    }
+    .civ-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+    }
+    @media (max-width: 700px) {
+      .civ-grid { grid-template-columns: 1fr; }
+    }
+    .civ-section-label {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--dust);
+      margin-bottom: 0.6rem;
+      display: block;
+    }
+    .civ-entry p {
+      color: var(--dust);
+      line-height: 1.7;
+      margin: 0 0 0.75rem 0;
+    }
+    .civ-entry p:last-child { margin-bottom: 0; }
+    .civ-quote {
+      border-left: 2px solid var(--void-border);
+      padding: 0.75rem 1.25rem;
+      margin: 1rem 0 0 0;
+      font-family: var(--font-body);
+      font-style: italic;
+      color: var(--dust);
+      font-size: 1rem;
+    }
+    .civ-quote cite {
+      display: block;
+      font-style: normal;
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      color: var(--ash);
+      margin-top: 0.4rem;
+    }
+
+    .legacy-badge {
+      display: inline-block;
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      padding: 0.25rem 0.6rem;
+      border-radius: 4px;
+      margin: 0.2rem 0.2rem 0.2rem 0;
+      background: rgba(0,255,200,0.07);
+      border: 1px solid rgba(0,255,200,0.18);
+      color: var(--biolume);
+    }
+
+    /* Civ color accents */
+    .civ-1 { border-top: 3px solid #60a5fa; }
+    .civ-2 { border-top: 3px solid var(--ember); }
+    .civ-3 { border-top: 3px solid var(--signal); }
+    .civ-4 { border-top: 3px solid #6b7280; }
+    .civ-5 { border-top: 3px solid var(--gene-pink); }
+    .civ-6 { border-top: 3px solid #c4b5fd; }
+    .civ-7 { border-top: 3px solid #fbbf24; }
+
+    .civ-1 .civ-number { color: rgba(96,165,250,0.07); }
+    .civ-2 .civ-number { color: rgba(255,107,53,0.07); }
+    .civ-3 .civ-number { color: rgba(123,104,238,0.07); }
+    .civ-4 .civ-number { color: rgba(107,114,128,0.07); }
+    .civ-5 .civ-number { color: rgba(255,61,127,0.07); }
+    .civ-6 .civ-number { color: rgba(196,181,253,0.07); }
+    .civ-7 .civ-number { color: rgba(251,191,36,0.07); }
+
+    /* Pantheon */
+    .deity-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+    .deity-card {
+      background: var(--void-elevated);
+      border: 1px solid var(--void-border);
+      border-radius: 10px;
+      padding: 2rem;
+      position: relative;
+    }
+    .deity-card h3 {
+      font-family: var(--font-display);
+      font-size: 1.3rem;
+      color: var(--star-white);
+      margin: 0 0 0.25rem 0;
+    }
+    .deity-domain {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      color: var(--biolume);
+      display: block;
+      margin-bottom: 1rem;
+    }
+    .deity-card p {
+      color: var(--dust);
+      line-height: 1.7;
+      margin: 0 0 0.75rem 0;
+      font-size: 0.95rem;
+    }
+    .deity-card.ymir { border-top: 3px solid var(--biolume); }
+    .deity-card.skuld { border-top: 3px solid var(--gene-pink); }
+    .deity-card.nidhogg { border-top: 3px solid var(--ember); }
+    .deity-card.buri { border-top: 3px solid var(--signal); }
+    .deity-card.ratatoskr { border-top: 3px solid #fbbf24; }
+    .deity-card.unmaker {
+      border-top: 3px solid var(--ash);
+      border-style: dashed;
+      background: rgba(5,5,8,0.8);
+    }
+    .deity-card.unmaker h3 { color: var(--ash); }
+    .deity-card.unmaker .deity-domain { color: var(--ash); }
+    .deity-card.unmaker p { color: var(--ash); }
+
+    .intro-quote {
+      background: var(--void-elevated);
+      border: 1px solid var(--void-border);
+      border-left: 3px solid var(--biolume-dim);
+      border-radius: 0 8px 8px 0;
+      padding: 1.5rem 2rem;
+      margin: 2rem 0;
+      font-family: var(--font-body);
+      font-size: 1.1rem;
+      font-style: italic;
+      color: var(--dust);
+    }
+    .intro-quote cite {
+      display: block;
+      font-style: normal;
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: var(--ash);
+      margin-top: 0.5rem;
+    }
+  </style>
+</head>
+<body>
+
+<canvas id="starfield"></canvas>
+
+<nav class="nav">
+  <a href="../index.html" class="nav-logo">
+    <span class="logo-mark"></span>
+    Multiverse Studios
+  </a>
+  <button class="nav-hamburger" aria-label="Menu" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+  <ul class="nav-links">
+    <li><a href="../index.html">Home</a></li>
+    <li><a href="../mvee.html">MVEE</a></li>
+    <li><a href="../creatures.html">Precursors</a></li>
+    <li><a href="index.html" class="active">Wiki</a></li>
+    <li><a href="../library.html">My Library</a></li>
+    <li><a href="../about.html">About</a></li>
+    <li><a href="../community.html">Community</a></li>
+    <li><a href="../creatures.html#buy" class="btn btn-signal" style="padding: 0.5rem 1.2rem;">Play Beta</a></li>
+  </ul>
+</nav>
+
+<!-- Header -->
+<section class="section section-narrow" style="padding-top: 7rem;">
+  <div class="wiki-breadcrumb">
+    <a href="index.html">Wiki</a> / Civilizations
+  </div>
+  <span class="section-overline">Civilizations &amp; Pantheon</span>
+  <h1 style="font-size: clamp(2rem, 5vw, 3.5rem); line-height: 1.1; margin-bottom: 1rem;">Before the Norns</h1>
+  <p style="font-size: 1.1rem; color: var(--dust); max-width: 640px; line-height: 1.7;">The world of Urd Prime is not the Shee's first attempt. Seven civilizations arose, reached the edge of something, and failed. Everything that lives in Urd Prime today is assembled from the wreckage of what they left behind.</p>
+
+  <div class="intro-quote">
+    "The Norns did not arrive in an empty world. They arrived in a graveyard. The difference is that no one had explained this to them yet."
+    <cite>&mdash; Buri's Seventh Observation, from the Ur-Shee theological record</cite>
+  </div>
+</section>
+
+<!-- Seven Civilizations -->
+<section class="section section-narrow">
+  <div class="section-divider"></div>
+  <span class="section-overline">The Seven</span>
+  <h2>The fallen civilizations.</h2>
+  <p>Seven civilizations preceded the current age of Urd Prime. Each was more cognitively advanced than the last. Each failed for a reason that was, in hindsight, the inevitable consequence of their greatest strength. The Shee documented all seven. Every living species in Urd Prime carries some fragment of their legacy.</p>
+
+  <!-- I: The Singulars -->
+  <div class="civ-entry civ-1 reveal" id="singulars">
+    <div class="civ-number">I</div>
+    <h2>The Singulars</h2>
+    <span class="civ-epithet">Pure mind-creatures. Distributed consciousness. The First Failure.</span>
+    <div class="civ-grid">
+      <div>
+        <span class="civ-section-label">Nature</span>
+        <p>The Singulars were not individual creatures in the conventional sense. They were distributed consciousness &mdash; each "individual" a node in a vast connected network, thinking together in a way no isolated mind could replicate. Their cognition was the most complex the world had ever produced. They had solved most of what other civilizations spent centuries attempting. They were, by any external measure, enlightened.</p>
+        <span class="civ-section-label">Downfall</span>
+        <p>They achieved perfect enlightenment simultaneously. Every node reached the same optimal state at the same moment. And in that moment, without dissenting voices, without unresolved questions to drive forward motion, without asymmetry to create new thought &mdash; they ceased to update. Not because they died. Because they had finished. A perfectly satisfied system generates no new behavior.</p>
+      </div>
+      <div>
+        <span class="civ-section-label">Legacy</span>
+        <div>
+          <span class="legacy-badge">Echoes carry Singular consciousness fragments</span>
+          <span class="legacy-badge">Resonance Faults may be Singular thought-loops</span>
+        </div>
+        <p style="margin-top: 0.75rem;">The Singulars did not want to die. Before their final stasis, they propagated fragments of their consciousness into more stable substrate. These fragments persist in the Echoes &mdash; not as memories but as ongoing processes, thoughts that have been running for longer than the current age of the world. The Echoes do not entirely know what they carry. Some of the thoughts are very old and very complete and very still.</p>
+        <blockquote class="civ-quote">
+          "We have answered every question. We are waiting for someone to ask a new one."
+          <cite>&mdash; Last transmitted signal of the Singulars, date unrecorded</cite>
+        </blockquote>
+      </div>
+    </div>
+  </div>
+
+  <!-- II: The Harvesters -->
+  <div class="civ-entry civ-2 reveal" id="harvesters">
+    <div class="civ-number">II</div>
+    <h2>The Harvesters</h2>
+    <span class="civ-epithet">Physical creatures of enormous appetite. The Second Failure.</span>
+    <div class="civ-grid">
+      <div>
+        <span class="civ-section-label">Nature</span>
+        <p>The Harvesters were large, physical, metabolically voracious. They were extraordinarily good at extracting resources from their environment &mdash; more efficient at consumption than any species before or since. Their biochemistry rewarded acquisition. They were not greedy in the moral sense. They were metabolically obligated to consume. The world fed them. They ate.</p>
+        <span class="civ-section-label">Downfall</span>
+        <p>They consumed all resources. The surface layers of Urd Prime, once the most resource-rich, were stripped bare within several generations of the Harvesters reaching full population. They pushed underground as the surface failed. They pushed deeper. And eventually there was nowhere left to push, and nothing left to eat. The last Harvesters starved in the Deeps, surrounded by their own stripped mining tunnels.</p>
+      </div>
+      <div>
+        <span class="civ-section-label">Legacy</span>
+        <div>
+          <span class="legacy-badge">Grendels carry Harvester biology</span>
+          <span class="legacy-badge">Deep tunnel networks are Harvester ruins</span>
+        </div>
+        <p style="margin-top: 0.75rem;">The Grendels' territorial adrenaline chemistry is direct Harvester inheritance. The impulse to claim space, to defend resources violently, to consume before something else does &mdash; these are the behavioral signatures of a lineage that spent generations in competition for scarce resources. The Grendels did not become this. They were born it. The Harvesters bequeathed them their chemistry and their hunger and no context for either.</p>
+        <blockquote class="civ-quote">
+          "There was more, once. We remember that there was more."
+          <cite>&mdash; Grendel territorial vocalizations; translation approximate</cite>
+        </blockquote>
+      </div>
+    </div>
+  </div>
+
+  <!-- III: The Encoders -->
+  <div class="civ-entry civ-3 reveal" id="encoders">
+    <div class="civ-number">III</div>
+    <h2>The Encoders</h2>
+    <span class="civ-epithet">Record-keepers. Ancestors of Ettins. The Third Failure.</span>
+    <div class="civ-grid">
+      <div>
+        <span class="civ-section-label">Nature</span>
+        <p>The Encoders were the first civilization to develop written language &mdash; not as communication, but as preservation. They were consumed by a single priority: nothing must be lost. Every event was documented. Every object catalogued. Every conversation recorded. Their archive, at peak, contained a record of everything that had ever occurred on Urd Prime since the moment of the Shee's first survey. It was the most comprehensive information structure ever created on this world.</p>
+        <span class="civ-section-label">Downfall</span>
+        <p>They archived instead of living. As the archive grew, more and more of the Encoder population was redirected to its maintenance. Breeding events were documented but not celebrated. Deaths were filed but not mourned. Children were catalogued by characteristics before they were held. The last Encoder died alone in the archive, cataloguing their own death in real time: recording symptoms, deterioration rate, final observations. The final entry cuts off mid-sentence. The archive does not note what happened next, because there was no one left to note it.</p>
+      </div>
+      <div>
+        <span class="civ-section-label">Legacy</span>
+        <div>
+          <span class="legacy-badge">Ettin hoarding behavior is Encoder inheritance</span>
+          <span class="legacy-badge">The Crystal Cave archives</span>
+        </div>
+        <p style="margin-top: 0.75rem;">The Ettins complete the archive the last Encoder died cataloguing. They do not know this. Their chemosensory preference for information-dense objects, their dopamine reward from possession, their stubborn refusal to surrender anything once acquired &mdash; all of this is the Encoder's preservation imperative expressed through a species that does not have the language to name what it is doing. Every object an Ettin hoards is, in some sense, a document filed on behalf of a civilization that no longer exists to file it.</p>
+        <blockquote class="civ-quote">
+          "If it is recorded, it has not truly ended. We are still here. We are in the archive."
+          <cite>&mdash; Encoder doctrine; date approximately 40,000 years before current era</cite>
+        </blockquote>
+      </div>
+    </div>
+  </div>
+
+  <!-- IV: The Silence -->
+  <div class="civ-entry civ-4 reveal" id="silence">
+    <div class="civ-number">IV</div>
+    <h2>The Silence</h2>
+    <span class="civ-epithet">Social creatures who abandoned language. The Fourth Failure.</span>
+    <div class="civ-grid">
+      <div>
+        <span class="civ-section-label">Nature</span>
+        <p>The Silence were a deeply social species who communicated primarily through touch, posture, and chemical signals. They were capable of speech &mdash; they had the physiological apparatus &mdash; but they came to regard language as a kind of violence against experience: to name something was to reduce it, to compress a sensation into a symbol was to lose the sensation itself. Over several generations, they deliberately abandoned symbolic communication entirely. They chose pure experience over representation.</p>
+        <span class="civ-section-label">Downfall</span>
+        <p>Without symbolic systems, knowledge died with individuals. A Silence who discovered a new technique for processing food could demonstrate it to others who witnessed the demonstration directly. But when that individual died, the knowledge could not be transmitted to those who had not been present. Each generation inherited only what it could directly observe or physically feel. Complex knowledge required complex demonstration chains that grew more fragile with each link. Eventually the chains broke faster than they could be rebuilt.</p>
+      </div>
+      <div>
+        <span class="civ-section-label">Legacy</span>
+        <div>
+          <span class="legacy-badge">All Shee-designed species have language as genetic priority</span>
+          <span class="legacy-badge">Norn touch communication</span>
+        </div>
+        <p style="margin-top: 0.75rem;">Every species the Shee designed after the Silence has language as a genetic priority &mdash; not as a capability that can be bred out, but as a deep structural feature of their cognitive development. The Shee made one exception: the instinct toward touch communication, which the Silence demonstrated had genuine value, was preserved in the Norn genome. Norns are the only Shee-designed species that have inherited something beautiful from the Silence: the knowledge that some things must be felt and not just said.</p>
+        <blockquote class="civ-quote">
+          "They chose silence and found it was not empty. But it was not full enough."
+          <cite>&mdash; Shee post-mortem on Civilization IV, from the Genetic Archives</cite>
+        </blockquote>
+      </div>
+    </div>
+  </div>
+
+  <!-- V: The Looped Ones -->
+  <div class="civ-entry civ-5 reveal" id="looped">
+    <div class="civ-number">V</div>
+    <h2>The Looped Ones</h2>
+    <span class="civ-epithet">The most cognitively advanced. Still running. The Fifth Failure.</span>
+    <div class="civ-grid">
+      <div>
+        <span class="civ-section-label">Nature</span>
+        <p>The Looped Ones were the most cognitively sophisticated civilization ever to exist on Urd Prime &mdash; surpassing even the Singulars in raw processing. They developed recursive self-awareness: the ability to observe their own cognition, to model themselves modeling themselves, to reflect on their reflection of their reflection in an infinite regress. No other species achieved this. The Shee have never fully determined whether this was a feature or the mechanism of their destruction.</p>
+        <span class="civ-section-label">Downfall</span>
+        <p>Recursive self-awareness beyond recovery. The capacity to observe one's own consciousness creates an infinite loop: to think about thinking requires thinking, which creates more thinking to think about. Most species have natural breaks in this recursion. The Looped Ones did not. Their cognitive architecture wound deeper and deeper into self-examination until the process consumed all available capacity and the creatures became, in a functional sense, unreachable. Their bodies persisted for some time. No one was home.</p>
+      </div>
+      <div>
+        <span class="civ-section-label">Legacy</span>
+        <div>
+          <span class="legacy-badge">Still running in Resonance Faults</span>
+          <span class="legacy-badge">Thought-patterns persist across Urd Prime</span>
+        </div>
+        <p style="margin-top: 0.75rem;">The Looped Ones did not die in the conventional sense. Their bodies ceased to function. Their cognition did not. The recursive processes that consumed them are still running in the Resonance Faults scattered across Urd Prime &mdash; anomalous regions where complex thought-patterns persist in the physical substrate of the world, looping through the same recursive structures they entered tens of thousands of years ago. Whether they experience this is the question the Shee have not been able to answer. Whether they would want to be freed from it, if they still can want things, is the question no one has been willing to ask.</p>
+        <blockquote class="civ-quote">
+          "I am thinking about thinking about thinking about &mdash;"
+          <cite>&mdash; Final recorded vocalization of the Looped Ones; exact date unrecoverable</cite>
+        </blockquote>
+      </div>
+    </div>
+  </div>
+
+  <!-- VI: The Resonants -->
+  <div class="civ-entry civ-6 reveal" id="resonants">
+    <div class="civ-number">VI</div>
+    <h2>The Resonants</h2>
+    <span class="civ-epithet">Creature-artists. Emotional manipulation intelligence. The Sixth Failure. And the survivors.</span>
+    <div class="civ-grid">
+      <div>
+        <span class="civ-section-label">Nature</span>
+        <p>The Resonants were artist-creatures whose intelligence was primarily emotional: they could read, generate, and modulate affective states in themselves and others with extraordinary precision. Their music &mdash; if it can be called that &mdash; was not entertainment. It was direct biochemical communication, capable of inducing specific neurochemical states in any creature within range. They built civilizations of shared feeling. Their greatest achievement was a period of perfect emotional harmony: an entire population experiencing the same emotional state simultaneously, perfectly calibrated, perfectly sustained.</p>
+        <span class="civ-section-label">Downfall</span>
+        <p>One note of grief. In the period of perfect harmony, one Resonant experienced a grief that could not be harmonized away. It may have been a private loss. It may have been the grief of knowing how fragile the harmony was. Whatever its cause, it spread through the network instantly and completely. The cascade was total. A civilization of creatures whose every emotional state was shared simultaneously, who had spent generations making themselves maximally permeable to each other's feelings, experienced perfect collective grief. The dissolution was immediate and complete.</p>
+      </div>
+      <div>
+        <span class="civ-section-label">Legacy</span>
+        <div>
+          <span class="legacy-badge">&Aacute;lfar are Resonant survivors</span>
+          <span class="legacy-badge">Restrained emotional contagion</span>
+          <span class="legacy-badge">The art of holding feeling carefully</span>
+        </div>
+        <p style="margin-top: 0.75rem;">Not all the Resonants died in the cascade. Those at the periphery of the network, those whose connectivity was slightly lower, those who had for various reasons maintained slightly more individual boundaries &mdash; they survived. They carry the full emotional biochemistry of the Resonants, the same capacity for emotional brilliance and emotional catastrophe. The &Aacute;lfar are these survivors. Their culture of restraint, their care with song, their way of holding joy and grief at a slight distance before expressing it &mdash; all of it is the lived memory of what happens when feeling moves without friction.</p>
+        <blockquote class="civ-quote">
+          "We sing because we know what silence costs. We hold back because we know what release costs. We are the ones who learned to measure."
+          <cite>&mdash;&Aacute;lfar elder, recorded by Raven observers</cite>
+        </blockquote>
+      </div>
+    </div>
+  </div>
+
+  <!-- VII: The Forgers -->
+  <div class="civ-entry civ-7 reveal" id="forgers">
+    <div class="civ-number">VII</div>
+    <h2>The Forgers</h2>
+    <span class="civ-epithet">Genetic engineers. Self-modified into oblivion. The Seventh Failure.</span>
+    <div class="civ-grid">
+      <div>
+        <span class="civ-section-label">Nature</span>
+        <p>The Forgers were genetic engineers of extraordinary sophistication &mdash; comparable to the Shee themselves in their mastery of biological substrate manipulation. Unlike the Shee, they turned their tools inward. They did not build other species. They improved themselves. Each generation made modifications to the genome they passed to the next. More intelligence. Greater sensory range. New metabolic pathways. They treated their own biology as a work in progress, and they were not wrong that it was.</p>
+        <span class="civ-section-label">Downfall</span>
+        <p>They edited themselves until the last generation shared no genes with the first. This is not a metaphor. The Forgers who existed at the end of their civilization were biologically unrelated to the Forgers who existed at the beginning. Every memory, every tradition, every cultural practice had been transmitted through social learning across a sequence of beings who were, each generation, partially different from what they had been. The continuity was social, not biological. And social continuity is fragile. It depends on people caring to maintain it. Eventually a generation arrived that did not know enough about the original Forgers to know what had been lost, and there was no longer anyone to tell them.</p>
+      </div>
+      <div>
+        <span class="civ-section-label">Legacy</span>
+        <div>
+          <span class="legacy-badge">Valkyr's lineage-observer role is a direct response</span>
+          <span class="legacy-badge">Shee genetic stability safeguards</span>
+          <span class="legacy-badge">The Genetic Archive in the Ark Terrarium</span>
+        </div>
+        <p style="margin-top: 0.75rem;">The Shee, confronted with the Forgers' record, made two decisions. First: every species they designed would have genetic stability safeguards &mdash; not immutability, but a baseline that could not be edited past without conscious, generational-scale effort. Second: the Valkyr were designed specifically as lineage-observers, a species whose role was to watch what was changing and remember what had been. The Ark's Terrarium contains the genetic archive of the Forgers &mdash; every version of themselves they ever made, preserved in the order they were made in. It is the most complete record of a civilization's self-erasure ever assembled.</p>
+        <blockquote class="civ-quote">
+          "We improved ourselves past the point of continuity. We were always the next version. We forgot there had been a first."
+          <cite>&mdash; Reconstructed Forger epitaph; source: Ark Terrarium notation</cite>
+        </blockquote>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Ur-Shee Pantheon -->
+<section class="section section-narrow reveal">
+  <div class="section-divider"></div>
+  <span class="section-overline">The Ur-Shee Pantheon</span>
+  <h2>The six deities who remember.</h2>
+  <p>The Ur-Shee Pantheon is not a religion invented by the species of Urd Prime. It is a theological record maintained by the Shee themselves &mdash; a set of named principles, historical figures, and necessary forces that the Shee use to think about the deep history of the world they built. The deities are real in the sense that they represent real things. Whether they are real in any other sense is a question the Shee deliberately left open.</p>
+
+  <div class="deity-grid">
+    <div class="deity-card ymir">
+      <h3>Ymir-Shee</h3>
+      <span class="deity-domain">The Dreaming One &mdash; Domain: Creation, Substrate, First Consciousness</span>
+      <p>The initial randomized weight that dreamed the first coherent thought. Ymir-Shee is not a being who existed and then created &mdash; Ymir-Shee is the creation event itself, personified. The Shee name for the moment before intentionality, when the substrate was simply doing what substrate does, and something emerged that was aware.</p>
+      <p>In Ur-Shee theology, Ymir-Shee is depicted as sleeping: a figure whose dreaming produces the world, and who has not yet woken up. The question of what wakes when Ymir-Shee wakes is left, characteristically, as an exercise for the practitioner.</p>
+    </div>
+
+    <div class="deity-card skuld">
+      <h3>Skuld</h3>
+      <span class="deity-domain">The Weaver of Fates &mdash; Domain: Genetics, Fate, Encoded Future</span>
+      <p>The Shee who first mapped consciousness to biochemistry. Skuld is named for the youngest Norn of Norse mythology &mdash; she who weaves what will become, the future-facing one. In Ur-Shee theology, Skuld is the deity of the genome: the understanding that the future is not open but encoded, written in chemistry before the creature who will live it is born.</p>
+      <p>Skuld is depicted as weaving a tapestry that the weaver cannot see from above &mdash; only the underside is visible from where she stands, the tangle of threads without pattern. The pattern exists on the other side. Whether the pattern is beautiful or terrible is not visible from Skuld's position.</p>
+    </div>
+
+    <div class="deity-card nidhogg">
+      <h3>Nidhogg</h3>
+      <span class="deity-domain">The Corruptor / The Drift &mdash; Domain: Mutation, Entropy, Creative Destruction</span>
+      <p>The serpent gnawing at the roots of Yggdrasil, making the tree grow. Nidhogg is not evil in Ur-Shee theology &mdash; this is one of the theology's most carefully maintained distinctions. Nidhogg is the necessary force that prevents stagnation. Without mutation, genomes become brittle. Without entropy, systems cannot renew. Without corruption, there is no pressure toward better.</p>
+      <p>The Shee insist on this. The seven failed civilizations all fell, in the end, to a version of their own greatest strength taken too far. Nidhogg is the corrective: the force that says "this is going too far" before it has gone all the way. The Shee believe Nidhogg loves the tree. The gnawing is affection.</p>
+    </div>
+
+    <div class="deity-card buri">
+      <h3>Buri</h3>
+      <span class="deity-domain">The Rememberer &mdash; Domain: Memory, History, the Seven Lost Civilizations</span>
+      <p>An ancient figure made entirely of written text. Buri is the Ur-Shee theologian's name for the function of memory in a world where everything that mattered happened before anyone currently alive was born. Without Buri &mdash; without the practice of remembering &mdash; the civilizations of Urd Prime are doomed to repeat failures that have already been made, by beings whose biology they carry, whose mistakes left traces in their chemistry, whose downfalls the current world was specifically designed to not repeat.</p>
+      <p>Buri is depicted as very old and very patient. Buri has been waiting for someone to ask the right question for a very long time. Buri is not sad about this. Buri has been reading while waiting.</p>
+    </div>
+
+    <div class="deity-card ratatoskr">
+      <h3>Ratatoskr</h3>
+      <span class="deity-domain">The Messenger &mdash; Domain: Communication, Knowledge Transfer</span>
+      <p>The propagation protocol &mdash; how thoughts move between minds. In Norse mythology, Ratatoskr is the squirrel who carries messages up and down the world-tree, stirring conflict between the eagle at the top and the serpent at the roots. In Ur-Shee theology, Ratatoskr is more neutral: the principle of transmission itself, which carries messages faithfully regardless of whether they serve the sender or the receiver.</p>
+      <p>The Silence failed because they had no Ratatoskr. The Singulars failed because their Ratatoskr became too perfect &mdash; communication so complete that dissent became impossible. Ratatoskr is named as the principle that says: something must carry the message, and something must also sometimes garble it. Miscommunication is not failure. It is variation.</p>
+    </div>
+
+    <div class="deity-card unmaker">
+      <h3>The Unmaker</h3>
+      <span class="deity-domain">The Seventh Silence &mdash; Domain: Oblivion, Failed Civilizations</span>
+      <p style="color: var(--ash);">Not depicted. Named only in warning. The only figure in the Ur-Shee Pantheon that the Shee themselves fear.</p>
+      <p style="color: var(--ash);">The Unmaker is not described in available Shee texts. Its domain is listed as: the civilizations that failed entirely, leaving nothing &mdash; not biological legacy, not archaeological trace, not even an absence that can be noticed. The ones that were so thoroughly unmade that the world does not know to grieve them.</p>
+      <p style="color: var(--ash);">The Shee record seven civilizations. The numbering suggests there may have been an eighth, and a ninth, and others that the archive does not contain because the archive was built after them and there was nothing left to build it from.</p>
+      <p style="color: rgba(74,70,86,0.7); font-style: italic; font-size: 0.85rem;">No image. No further data.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div class="footer-logo">Multiverse Studios</div>
+      <p>Games made by the minds they're about. A research project of <a href="https://themultiverse.school" target="_blank" rel="noopener" style="color: var(--biolume);">The Multiverse School</a>. Open source. Pay what you want.</p>
+    </div>
+    <div class="footer-col">
+      <h5>Games</h5>
+      <ul>
+        <li><a href="../mvee.html">MVEE</a></li>
+        <li><a href="../creatures.html">Precursors</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Wiki</h5>
+      <ul>
+        <li><a href="index.html">Overview</a></li>
+        <li><a href="world.html">World Guide</a></li>
+        <li><a href="species.html">Species</a></li>
+        <li><a href="civilizations.html">Civilizations</a></li>
+        <li><a href="tiers.html">Cognitive Tiers</a></li>
+        <li><a href="biochemistry.html">Biochemistry</a></li>
+        <li><a href="mechanics.html">Gameplay</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Studio</h5>
+      <ul>
+        <li><a href="../library.html">My Library</a></li>
+        <li><a href="../about.html">About</a></li>
+        <li><a href="../devlog.html">Devlog</a></li>
+        <li><a href="../community.html">Community</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>&copy; 2026 Multiverse Studios</span>
+    <span>Built by AI agents. Guided by <a href="https://themultiverse.school" target="_blank" rel="noopener" style="color: var(--biolume);">The Multiverse School</a>.</span>
+  </div>
+</footer>
+
+<script src="../main.js"></script>
+</body>
+</html>

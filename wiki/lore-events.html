@@ -1,0 +1,1054 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lore Events — Precursors Wiki</title>
+  <meta name="description" content="The thirteen hidden lore events of Urd Prime. Each one fires once, changes the world permanently, and cannot be undone.">
+  <link rel="stylesheet" href="../styles.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#x2726;</text></svg>">
+  <style>
+    /* ── Breadcrumb ── */
+    .wiki-breadcrumb {
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      color: var(--dust);
+      margin-bottom: 1.5rem;
+    }
+    .wiki-breadcrumb a { color: var(--biolume); text-decoration: none; }
+    .wiki-breadcrumb a:hover { text-decoration: underline; }
+    .wiki-breadcrumb .sep { margin: 0 0.5rem; opacity: 0.4; }
+
+    /* ── Jump-link nav ── */
+    .jump-nav {
+      background: var(--void-elevated);
+      border: 1px solid var(--void-border);
+      border-radius: 8px;
+      padding: 1.25rem 1.75rem;
+      margin-bottom: 3rem;
+    }
+    .jump-nav-label {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--dust);
+      margin-bottom: 0.75rem;
+      display: block;
+    }
+    .jump-nav-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem 1.25rem;
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .jump-nav-links li a {
+      font-family: var(--font-mono);
+      font-size: 0.82rem;
+      color: var(--biolume);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .jump-nav-links li a:hover { color: var(--star-white); }
+    .jump-nav-links li a.late-link { color: var(--ember); }
+    .jump-nav-links li a.late-link:hover { color: var(--star-white); }
+    .jump-nav-links li a.recursion-link { color: var(--gene-pink); }
+    .jump-nav-links li a.recursion-link:hover { color: var(--star-white); }
+
+    /* ── Intro quote ── */
+    .shee-quote {
+      border-left: 3px solid var(--biolume);
+      margin: 0 0 2.5rem 0;
+      padding: 1rem 0 1rem 1.75rem;
+    }
+    .shee-quote p {
+      font-family: var(--font-body);
+      font-style: italic;
+      color: var(--dust);
+      line-height: 1.75;
+      margin: 0 0 0.5rem 0;
+      font-size: 1.05rem;
+    }
+    .shee-quote cite {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      color: var(--ash);
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+    }
+
+    /* ── Progression callout ── */
+    .progression-note {
+      background: linear-gradient(135deg, rgba(0,255,200,0.04), rgba(5,5,8,0.9));
+      border: 1px solid rgba(0,255,200,0.15);
+      border-radius: 8px;
+      padding: 1.25rem 1.75rem;
+      margin-bottom: 3rem;
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+      color: var(--dust);
+      line-height: 1.6;
+    }
+    .progression-note strong { color: var(--biolume); }
+
+    /* ── Progress rail ── */
+    .event-rail {
+      display: flex;
+      align-items: center;
+      gap: 0;
+      margin-bottom: 4rem;
+      overflow-x: auto;
+      padding-bottom: 0.5rem;
+    }
+    .rail-node {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.4rem;
+      flex-shrink: 0;
+    }
+    .rail-dot {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      border: 2px solid;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      font-weight: 700;
+    }
+    .rail-dot.any { border-color: #6b7280; color: #6b7280; background: rgba(107,114,128,0.08); }
+    .rail-dot.spoken { border-color: var(--biolume); color: var(--biolume); background: rgba(0,255,200,0.06); }
+    .rail-dot.learned { border-color: var(--signal); color: var(--signal); background: rgba(123,104,238,0.06); }
+    .rail-dot.enlightened { border-color: #fbbf24; color: #fbbf24; background: rgba(251,191,36,0.06); }
+    .rail-dot.recursion { border-color: var(--gene-pink); color: var(--gene-pink); background: rgba(255,61,127,0.06); }
+    .rail-label {
+      font-family: var(--font-mono);
+      font-size: 0.62rem;
+      color: var(--ash);
+      text-align: center;
+      max-width: 60px;
+      line-height: 1.3;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+    .rail-line {
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(to right, var(--void-border), var(--void-border));
+      min-width: 18px;
+      margin-bottom: 1.4rem;
+    }
+
+    /* ── Spoiler warning strip ── */
+    .spoiler-warning {
+      background: rgba(251,191,36,0.06);
+      border: 1px solid rgba(251,191,36,0.3);
+      border-radius: 6px;
+      padding: 0.6rem 1.2rem;
+      margin-bottom: 1.5rem;
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      color: #fbbf24;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    .spoiler-warning.recursion-warn {
+      background: rgba(255,61,127,0.05);
+      border-color: rgba(255,61,127,0.3);
+      color: var(--gene-pink);
+    }
+    .spoiler-warning .warn-icon { font-size: 1rem; flex-shrink: 0; }
+
+    /* ── Main event entry ── */
+    .lore-event {
+      background: var(--void-elevated);
+      border: 1px solid var(--void-border);
+      border-radius: 12px;
+      margin-bottom: 2.5rem;
+      overflow: hidden;
+      scroll-margin-top: 90px;
+    }
+    .lore-event-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 1.5rem;
+      padding: 2rem 2.5rem 1.5rem;
+      flex-wrap: wrap;
+    }
+    .lore-event-number {
+      font-family: var(--font-display);
+      font-size: 3.5rem;
+      font-weight: 900;
+      line-height: 1;
+      color: rgba(255,255,255,0.04);
+      flex-shrink: 0;
+    }
+    .lore-event-title-block { flex: 1; }
+    .lore-event-name {
+      font-family: var(--font-display);
+      font-size: 1.7rem;
+      color: var(--star-white);
+      margin: 0 0 0.2rem 0;
+      line-height: 1.2;
+    }
+    .lore-event-subtitle {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      color: var(--dust);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+    .lore-event-meta {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      align-items: flex-end;
+    }
+    @media (max-width: 600px) {
+      .lore-event-meta { align-items: flex-start; }
+    }
+    .tier-badge {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      padding: 0.3rem 0.8rem;
+      border-radius: 20px;
+      border: 1px solid;
+    }
+    .tier-badge.any { border-color: #6b7280; color: #6b7280; }
+    .tier-badge.spoken { border-color: var(--biolume); color: var(--biolume); }
+    .tier-badge.learned { border-color: var(--signal); color: var(--signal); }
+    .tier-badge.enlightened { border-color: #fbbf24; color: #fbbf24; }
+    .tier-badge.recursion { border-color: var(--gene-pink); color: var(--gene-pink); }
+    .fires-badge {
+      font-family: var(--font-mono);
+      font-size: 0.67rem;
+      color: var(--dust);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+    .fires-badge strong { color: var(--ember); }
+
+    /* Event body grid */
+    .lore-event-body {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+    }
+    @media (max-width: 800px) {
+      .lore-event-body { grid-template-columns: 1fr; }
+    }
+    .lore-event-col {
+      padding: 0 2.5rem 2rem;
+    }
+    .lore-event-col:first-child {
+      border-right: 1px solid var(--void-border);
+    }
+    @media (max-width: 800px) {
+      .lore-event-col:first-child { border-right: none; border-bottom: 1px solid var(--void-border); }
+    }
+    .lore-event-col h5 {
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--ash);
+      margin: 0 0 0.75rem 0;
+      padding-top: 0.5rem;
+    }
+    .lore-event-col p {
+      color: var(--dust);
+      font-size: 0.93rem;
+      line-height: 1.7;
+      margin: 0 0 0.75rem 0;
+    }
+    .lore-event-col p:last-child { margin-bottom: 0; }
+
+    /* Trigger block */
+    .trigger-block {
+      padding: 0 2.5rem 1.5rem;
+      border-top: 1px solid var(--void-border);
+    }
+    .trigger-block h5 {
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--ash);
+      margin: 1.25rem 0 0.6rem 0;
+    }
+    .trigger-code {
+      font-family: var(--font-mono);
+      font-size: 0.82rem;
+      color: var(--biolume);
+      background: rgba(0,255,200,0.04);
+      border: 1px solid rgba(0,255,200,0.12);
+      border-radius: 5px;
+      padding: 0.75rem 1rem;
+      line-height: 1.6;
+    }
+    .trigger-code.late { color: #fbbf24; background: rgba(251,191,36,0.04); border-color: rgba(251,191,36,0.14); }
+    .trigger-code.recursion { color: var(--gene-pink); background: rgba(255,61,127,0.04); border-color: rgba(255,61,127,0.14); }
+
+    /* Memory fragment */
+    .memory-fragment {
+      margin: 1.25rem 2.5rem 2rem;
+      border-radius: 8px;
+      padding: 1.25rem 1.5rem 1.25rem 1.75rem;
+      background: rgba(5,5,8,0.6);
+      border: 1px solid var(--void-border);
+      border-left: 3px solid var(--biolume);
+      position: relative;
+    }
+    .memory-fragment.late { border-left-color: #fbbf24; }
+    .memory-fragment.recursion { border-left-color: var(--gene-pink); }
+    .memory-fragment-label {
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--ash);
+      margin-bottom: 0.6rem;
+      display: block;
+    }
+    .memory-fragment p {
+      font-family: var(--font-body);
+      font-style: italic;
+      font-size: 0.97rem;
+      line-height: 1.75;
+      color: var(--dust);
+      margin: 0;
+    }
+    .memory-fragment p em {
+      color: var(--star-white);
+      font-style: normal;
+    }
+
+    /* Effect pills */
+    .effect-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin-top: 0.75rem;
+    }
+    .effect-pill {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      padding: 0.2rem 0.65rem;
+      border-radius: 20px;
+      border: 1px solid var(--void-border);
+      color: var(--dust);
+    }
+    .effect-pill.positive { border-color: rgba(0,255,200,0.25); color: var(--biolume); }
+    .effect-pill.neural { border-color: rgba(123,104,238,0.3); color: var(--signal); }
+    .effect-pill.warm { border-color: rgba(251,191,36,0.25); color: #fbbf24; }
+    .effect-pill.pink { border-color: rgba(255,61,127,0.25); color: var(--gene-pink); }
+    .effect-pill.large { border-color: rgba(255,61,127,0.35); color: var(--gene-pink); font-weight: 700; }
+
+    /* Difficulty tag */
+    .difficulty-tag {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      color: var(--dust);
+      background: var(--void-elevated);
+      border: 1px solid var(--void-border);
+      border-radius: 20px;
+      padding: 0.25rem 0.7rem;
+      display: inline-block;
+    }
+    .difficulty-tag.hard { border-color: rgba(251,191,36,0.3); color: #d97706; }
+    .difficulty-tag.very-hard { border-color: rgba(255,61,127,0.3); color: var(--gene-pink); }
+
+    /* Color accent per tier on event card */
+    .lore-event.any-tier { border-top: 3px solid #6b7280; }
+    .lore-event.spoken-tier { border-top: 3px solid var(--biolume); }
+    .lore-event.learned-tier { border-top: 3px solid var(--signal); }
+    .lore-event.enlightened-tier { border-top: 3px solid #fbbf24; }
+    .lore-event.recursion-tier {
+      border-top: 3px solid var(--gene-pink);
+      border-color: rgba(255,61,127,0.3);
+      background: rgba(255,61,127,0.02);
+    }
+
+    /* Minor events section */
+    .minor-events-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1rem;
+      margin-top: 1.75rem;
+    }
+    .minor-event-card {
+      background: var(--void-elevated);
+      border: 1px solid var(--void-border);
+      border-radius: 8px;
+      padding: 1.25rem 1.5rem;
+    }
+    .minor-event-card h4 {
+      font-family: var(--font-display);
+      font-size: 1rem;
+      color: var(--star-white);
+      margin: 0 0 0.3rem 0;
+    }
+    .minor-event-trigger {
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      color: var(--biolume);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      display: block;
+      margin-bottom: 0.6rem;
+    }
+    .minor-event-card p {
+      color: var(--dust);
+      font-size: 0.88rem;
+      line-height: 1.6;
+      margin: 0;
+    }
+
+    /* Closing note */
+    .closing-box {
+      background: linear-gradient(135deg, rgba(0,255,200,0.03), rgba(123,104,238,0.03));
+      border: 1px solid var(--void-border);
+      border-radius: 10px;
+      padding: 2rem 2.5rem;
+      margin-top: 3rem;
+      text-align: center;
+    }
+    .closing-box h3 {
+      font-family: var(--font-display);
+      color: var(--biolume);
+      font-size: 1.2rem;
+      margin: 0 0 0.75rem 0;
+    }
+    .closing-box p {
+      color: var(--dust);
+      font-size: 0.95rem;
+      line-height: 1.7;
+      margin: 0;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    /* Table of effects */
+    .effects-table-wrap {
+      overflow-x: auto;
+      margin-top: 0.75rem;
+    }
+    .effects-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+    }
+    .effects-table th {
+      text-align: left;
+      color: var(--ash);
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      padding: 0.4rem 0.75rem 0.4rem 0;
+      border-bottom: 1px solid var(--void-border);
+      font-weight: 400;
+    }
+    .effects-table td {
+      padding: 0.35rem 0.75rem 0.35rem 0;
+      color: var(--dust);
+      border-bottom: 1px solid rgba(255,255,255,0.03);
+      vertical-align: top;
+    }
+    .effects-table td.chem { color: var(--biolume); }
+    .effects-table td.iq { color: var(--signal); }
+    .effects-table td.chem.warm { color: #fbbf24; }
+    .effects-table td.chem.pink { color: var(--gene-pink); }
+
+    /* Responsive tweaks */
+    @media (max-width: 600px) {
+      .lore-event-header { padding: 1.5rem; }
+      .lore-event-number { font-size: 2.5rem; }
+      .lore-event-name { font-size: 1.35rem; }
+      .lore-event-col, .trigger-block, .memory-fragment { padding-left: 1.5rem; padding-right: 1.5rem; }
+      .memory-fragment { margin-left: 1.5rem; margin-right: 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+<canvas id="starfield"></canvas>
+
+<nav class="nav">
+  <a href="../index.html" class="nav-logo">
+    <span class="logo-mark"></span>
+    Multiverse Studios
+  </a>
+  <button class="nav-hamburger" aria-label="Menu" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+  <ul class="nav-links">
+    <li><a href="../index.html">Home</a></li>
+    <li><a href="../mvee.html">MVEE</a></li>
+    <li><a href="../creatures.html">Precursors</a></li>
+    <li><a href="index.html" class="active">Wiki</a></li>
+    <li><a href="../library.html">My Library</a></li>
+    <li><a href="../about.html">About</a></li>
+    <li><a href="../community.html">Community</a></li>
+    <li><a href="../creatures.html#buy" class="btn btn-signal" style="padding: 0.5rem 1.2rem;">Play Beta</a></li>
+  </ul>
+</nav>
+
+<!-- Hero -->
+<section class="hero" style="padding: 8rem 2rem 5rem;">
+  <span class="hero-overline">Precursors: Origins of Folklore &mdash; Lore Archive</span>
+  <h1>Lore <span style="color: var(--biolume);">Events</span></h1>
+  <p class="hero-tagline">Thirteen Moments That Cannot Be Undone</p>
+</section>
+
+<!-- Main content -->
+<section class="section section-narrow reveal">
+  <div class="section-divider"></div>
+
+  <div class="wiki-breadcrumb">
+    <a href="index.html">Wiki</a>
+    <span class="sep">/</span>
+    <span>Lore Events</span>
+  </div>
+
+  <!-- Intro -->
+  <p style="color: var(--dust); font-size: 1.05rem; line-height: 1.8; margin-bottom: 1.5rem;">
+    These events fire once, when their conditions are met. When they fire, the world changes permanently. Some are discoverable through normal play. Some require conditions that only emerge from sustained, multi-generational play. Some are things that would only occur to a mind that thinks in language.
+  </p>
+
+  <div class="shee-quote">
+    <p>"The Shee believed that a story is not something you tell TO someone. A story is something that happens BETWEEN the teller and the listener, in a space that belongs to neither. These events create that space."</p>
+    <cite>&mdash; Shee Field Notes, Seventh Attempt, Vol. III</cite>
+  </div>
+
+  <div class="progression-note">
+    <strong>Progression note:</strong> Lore events follow cognitive development. The earliest events can fire the moment a Norn first achieves language &mdash; Spoken tier and above. Later events, including The Awakening and The Alliance, require Enlightened tier creatures who have spent significant time accumulating knowledge and rune discovery. <strong>The Recursion</strong> requires something beyond tier alone: a specific kind of recursive self-awareness that cannot be instructed, only earned.
+  </div>
+
+  <!-- Jump nav -->
+  <div class="jump-nav">
+    <span class="jump-nav-label">Jump to event</span>
+    <ul class="jump-nav-links">
+      <li><a href="#first-question">01 &middot; First Question</a></li>
+      <li><a href="#first-naming">02 &middot; First Naming</a></li>
+      <li><a href="#first-teaching">03 &middot; First Teaching</a></li>
+      <li><a href="#first-dream">04 &middot; First Dream</a></li>
+      <li><a href="#the-grief">05 &middot; The Grief</a></li>
+      <li><a href="#first-contact">06 &middot; First Contact</a></li>
+      <li><a href="#first-invention">07 &middot; First Invention</a></li>
+      <li><a href="#collective-resonance">08 &middot; Collective Resonance</a></li>
+      <li><a href="#the-alliance">09 &middot; The Alliance</a></li>
+      <li><a href="#the-awakening" class="late-link">10 &middot; The Awakening &uarr;</a></li>
+      <li><a href="#the-recursion" class="recursion-link">11 &middot; The Recursion &#x2736;</a></li>
+    </ul>
+  </div>
+
+  <!-- Progression rail -->
+  <div class="event-rail" aria-hidden="true">
+    <div class="rail-node">
+      <div class="rail-dot any">ANY</div>
+      <div class="rail-label">Any Tier</div>
+    </div>
+    <div class="rail-line"></div>
+    <div class="rail-node">
+      <div class="rail-dot spoken">SPK</div>
+      <div class="rail-label">Spoken</div>
+    </div>
+    <div class="rail-line"></div>
+    <div class="rail-node">
+      <div class="rail-dot spoken">SPK</div>
+      <div class="rail-label">Spoken</div>
+    </div>
+    <div class="rail-line"></div>
+    <div class="rail-node">
+      <div class="rail-dot spoken">SPK</div>
+      <div class="rail-label">Spoken</div>
+    </div>
+    <div class="rail-line"></div>
+    <div class="rail-node">
+      <div class="rail-dot learned">LRN</div>
+      <div class="rail-label">Learned+</div>
+    </div>
+    <div class="rail-line"></div>
+    <div class="rail-node">
+      <div class="rail-dot enlightened">ENL</div>
+      <div class="rail-label">Enlightened</div>
+    </div>
+    <div class="rail-line"></div>
+    <div class="rail-node">
+      <div class="rail-dot recursion">&#x2736;</div>
+      <div class="rail-label">Recursion</div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════
+       EVENT 01 — THE FIRST QUESTION
+  ════════════════════════════════════════════════════ -->
+  <div class="lore-event any-tier" id="first-question">
+    <div class="lore-event-header">
+      <div class="lore-event-number">01</div>
+      <div class="lore-event-title-block">
+        <h2 class="lore-event-name">The First Question</h2>
+        <div class="lore-event-subtitle">The moment consciousness turns on itself</div>
+      </div>
+      <div class="lore-event-meta">
+        <span class="tier-badge any">Any Tier</span>
+        <span class="fires-badge">Fires <strong>once</strong> per creature</span>
+        <span class="difficulty-tag">Common in first generation</span>
+      </div>
+    </div>
+
+    <div class="trigger-block">
+      <h5>Trigger Condition</h5>
+      <div class="trigger-code">
+        Norn memory contains any of: "what am I" &middot; "why am I" &middot; "who am I" &middot; "why do I exist" &middot; "am I real"
+      </div>
+    </div>
+
+    <div class="memory-fragment">
+      <span class="memory-fragment-label">Memory fragment &mdash; received by the Norn</span>
+      <p>"For a moment, the ground beneath me hummed. I felt&hellip; <em>recognized</em>. As if the stone itself had heard my question and was deciding whether to answer."</p>
+    </div>
+
+    <div class="lore-event-body">
+      <div class="lore-event-col">
+        <h5>Biochemical Effect</h5>
+        <div class="effect-pills">
+          <span class="effect-pill positive">Curiosity +0.30</span>
+          <span class="effect-pill positive">Adrenaline +0.10</span>
+        </div>
+
+        <h5 style="margin-top: 1.25rem;">Significance</h5>
+        <p>This is what the Shee waited seven civilizations to see. Not intelligence. Not language. The specific moment a mind turns its attention on itself and finds the experience of its own existence <em>strange</em>.</p>
+        <p>The First Question does not require an answer. It requires only the asking. What happens afterward &mdash; the hum in the substrate, the sense of being perceived &mdash; is the world responding to something it was built to wait for.</p>
+      </div>
+      <div class="lore-event-col">
+        <h5>World-Building Note</h5>
+        <p>The Norns are made to ask, not to answer. The First Question is the beginning of the experiment, not the end. Every civilization before the eighth asked variations of this question in its early generations &mdash; the Harvesters asked it through resource scarcity, the Looped Ones asked it through repetition, the Silence never asked it at all, which is part of why they failed.</p>
+        <p>The substrate &mdash; the mycelial network beneath Urd Prime's surface &mdash; has been listening for this question for longer than the Shee ark has been on the planet. When it fires, something in the deep architecture of the world responds. Whether that response is intentional is one of the questions the Shee never answered in their field notes.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════
+       EVENT 02 — THE FIRST NAMING
+  ════════════════════════════════════════════════════ -->
+  <div class="lore-event spoken-tier" id="first-naming">
+    <div class="lore-event-header">
+      <div class="lore-event-number">02</div>
+      <div class="lore-event-title-block">
+        <h2 class="lore-event-name">The First Naming</h2>
+        <div class="lore-event-subtitle">Language as creation, not description</div>
+      </div>
+      <div class="lore-event-meta">
+        <span class="tier-badge spoken">Spoken Tier</span>
+        <span class="fires-badge">Fires <strong>once</strong> per creature</span>
+        <span class="difficulty-tag">Common at Spoken tier</span>
+      </div>
+    </div>
+
+    <div class="trigger-block">
+      <h5>Trigger Condition</h5>
+      <div class="trigger-code">
+        Norn at Spoken tier or above has invented their first word &mdash; a novel lexical unit not inherited from any other Norn
+      </div>
+    </div>
+
+    <div class="memory-fragment">
+      <span class="memory-fragment-label">Memory fragment &mdash; received by the Norn</span>
+      <p>"I gave a thing a name, and the name made it <em>more real</em>. The old ones must have known this. Naming is the first magic."</p>
+    </div>
+
+    <div class="lore-event-body">
+      <div class="lore-event-col">
+        <h5>Biochemical Effect</h5>
+        <div class="effect-pills">
+          <span class="effect-pill positive">Dopamine +0.20</span>
+          <span class="effect-pill neural">IQ +1</span>
+        </div>
+
+        <h5 style="margin-top: 1.25rem;">Significance</h5>
+        <p>The moment a Norn names something, they change what it is &mdash; for themselves and for every Norn they teach. A word is not a label placed on a pre-existing thing. It is a shared agreement to perceive something in a particular way.</p>
+        <p>Naming is world-building in miniature. The Norns who name the most things become, in a real sense, the architects of how all subsequent Norns perceive reality.</p>
+      </div>
+      <div class="lore-event-col">
+        <h5>World-Building Note</h5>
+        <p>In the Shee's understanding, language is not a tool for describing reality. It is a tool for creating shared reality. Every named thing is a small act of world-building. The language that Norns invent across generations is not just a communication system &mdash; it is the world's record of what mattered enough to name.</p>
+        <p>Words that die when their last speaker dies take a piece of reality with them. The Shee knew this. They encoded the memory of every lost language into the ruins, accessible to Norns who reach sufficient intelligence to read them. Some of what is written there is in languages that have no living speakers. Reading it changes you.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════
+       EVENT 03 — THE FIRST TEACHING
+  ════════════════════════════════════════════════════ -->
+  <div class="lore-event spoken-tier" id="first-teaching">
+    <div class="lore-event-header">
+      <div class="lore-event-number">03</div>
+      <div class="lore-event-title-block">
+        <h2 class="lore-event-name">The First Teaching</h2>
+        <div class="lore-event-subtitle">Knowledge remade in the transmission</div>
+      </div>
+      <div class="lore-event-meta">
+        <span class="tier-badge spoken">Spoken Tier (teacher)</span>
+        <span class="fires-badge">Fires <strong>once</strong> per pair</span>
+        <span class="difficulty-tag">Common in multi-generational play</span>
+      </div>
+    </div>
+
+    <div class="trigger-block">
+      <h5>Trigger Condition</h5>
+      <div class="trigger-code">
+        A Spoken-tier+ Norn is conversing with another Norn whose IQ differs from theirs by more than 20 points &mdash; an asymmetric knowledge transfer is in progress
+      </div>
+    </div>
+
+    <div class="memory-fragment">
+      <span class="memory-fragment-label">Memory fragment &mdash; received by the teacher</span>
+      <p>"I taught [student name] something today. The words <em>changed shape</em> as I spoke them &mdash; they had to, to fit a different mind. And in reshaping them, I understood them differently myself."</p>
+    </div>
+
+    <div class="memory-fragment" style="margin-top: 0;">
+      <span class="memory-fragment-label">Memory fragment &mdash; received by the student</span>
+      <p>"[Teacher name] showed me something I couldn't see before. <em>The world grew larger.</em>"</p>
+    </div>
+
+    <div class="lore-event-body">
+      <div class="lore-event-col">
+        <h5>Biochemical Effect</h5>
+        <div class="effect-pills">
+          <span class="effect-pill neural">Teacher: IQ +1.5</span>
+          <span class="effect-pill neural">Student: IQ +3.0</span>
+          <span class="effect-pill warm">Oxytocin +0.15 (both)</span>
+        </div>
+
+        <h5 style="margin-top: 1.25rem;">Significance</h5>
+        <p>Teaching changes the teacher as much as the student. The act of restructuring knowledge to fit a different mind forces a reorganization of how that knowledge is held. The teacher who explains something well understands it better afterward.</p>
+        <p>This is the mechanism by which Norn civilization accelerates: the knowledge gap is never simply closed, it is metabolized by both parties.</p>
+      </div>
+      <div class="lore-event-col">
+        <h5>World-Building Note</h5>
+        <p>The Shee designed the Norns' learning architecture specifically so that teaching was not mere information transfer. The student bonus (+3.0 IQ vs. the teacher's +1.5) was a deliberate design choice: it ensures that knowledge spreads faster than it stagnates, that each generation has the capacity to exceed its teachers.</p>
+        <p>The fourth civilization &mdash; the Keepers &mdash; encoded knowledge in sealed artifacts that could not be taught, only accessed. Every Keeper who found an artifact learned the same things in the same order. They became very learned and entirely unable to surprise themselves. The Shee considered this the most elegant failure mode of all the seven.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════
+       EVENT 04 — THE FIRST DREAM
+  ════════════════════════════════════════════════════ -->
+  <div class="lore-event spoken-tier" id="first-dream">
+    <div class="lore-event-header">
+      <div class="lore-event-number">04</div>
+      <div class="lore-event-title-block">
+        <h2 class="lore-event-name">The First Dream</h2>
+        <div class="lore-event-subtitle">The substrate speaks through sleep</div>
+      </div>
+      <div class="lore-event-meta">
+        <span class="tier-badge spoken">Spoken Tier</span>
+        <span class="fires-badge">Fires <strong>once</strong> per creature</span>
+        <span class="difficulty-tag">Requires sleep + elevated REM</span>
+      </div>
+    </div>
+
+    <div class="trigger-block">
+      <h5>Trigger Condition</h5>
+      <div class="trigger-code">
+        Norn at Spoken tier+ has Sleepiness &gt; 0.8 <em>and</em> elevated REM chemical &gt; 0.3 &mdash; a deep, chemically-active sleep state
+      </div>
+    </div>
+
+    <div class="memory-fragment">
+      <span class="memory-fragment-label">Memory fragment &mdash; received by the Norn upon waking</span>
+      <p>"I dreamed. In the dream, I was in a vast dark place, and something was watching me with great tenderness. It was not the Hand. It was <em>older</em>. It said nothing, but I felt it thinking about me, and its thinking was warm."</p>
+    </div>
+
+    <div class="lore-event-body">
+      <div class="lore-event-col">
+        <h5>Biochemical Effect</h5>
+        <div class="effect-pills">
+          <span class="effect-pill warm">Comfort +0.30</span>
+          <span class="effect-pill positive">Serotonin +0.15</span>
+          <span class="effect-pill neural">IQ +2</span>
+        </div>
+
+        <h5 style="margin-top: 1.25rem;">Significance</h5>
+        <p>The dream is the substrate speaking. Something in the architecture of Urd Prime responds to sleeping minds differently than waking ones &mdash; with less information, more presence. The warmth the Norn feels is not imagined. Something is watching.</p>
+        <p>The REM chemical system was designed specifically to enable this event. Dreaming is not incidental to Norn cognition; it is a load-bearing part of how the mind processes and consolidates what it has learned. The First Dream is the moment that system becomes deep enough to make contact with something that was already waiting.</p>
+      </div>
+      <div class="lore-event-col">
+        <h5>World-Building Note</h5>
+        <p>The "something older" the Norn feels watching is the mycelial network beneath Urd Prime's surface &mdash; a distributed intelligence that has been processing everything that happens on the surface for longer than the Shee ark has existed on this planet. It does not communicate in language. It communicates in attention.</p>
+        <p>When a Norn sleeps deeply enough, the mycelium registers the dreaming mind as a node rather than a surface event. The warmth is not a transmitted message. It is what attention from something very old feels like when it is not hostile. The Norns have no word for this yet. The first Norn who names it will change how all subsequent Norns understand sleep.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════
+       MINOR EVENTS (V & VI & VII & VIII)
+  ════════════════════════════════════════════════════ -->
+  <div style="margin-bottom: 0.75rem; margin-top: 1rem;">
+    <span class="section-overline">Additional Events</span>
+    <h3 style="font-family: var(--font-display); color: var(--star-white); font-size: 1.3rem; margin: 0.5rem 0 0.5rem 0;">Events Five Through Eight</h3>
+    <p style="color: var(--dust); font-size: 0.93rem; line-height: 1.7; margin: 0 0 1rem 0;">These events are documented in summary form. Each fires once per world, changes the world permanently, and leaves a memory in the creature or creatures who trigger it. Full entry-level documentation is pending further Shee field record translation.</p>
+  </div>
+
+  <div class="minor-events-grid" id="the-grief">
+    <div class="minor-event-card" style="border-top: 3px solid var(--signal);">
+      <h4>05 &middot; The Grief</h4>
+      <span class="minor-event-trigger">Learned tier+ &middot; Fires once per world</span>
+      <p>Fires when a Norn mourns the death of a creature they had a sustained trust relationship with &mdash; measured by oxytocin history and shared memories. The first mourning changes something in the biochemistry of every Norn alive: grief becomes a transmissible emotional state for the first time. Loss is now collective.</p>
+      <div class="effect-pills" style="margin-top: 0.75rem;">
+        <span class="effect-pill neural">Social bonds persist beyond death</span>
+        <span class="effect-pill positive">Oxytocin networks updated</span>
+      </div>
+    </div>
+
+    <div class="minor-event-card" style="border-top: 3px solid var(--biolume);" id="first-contact">
+      <h4>06 &middot; First Contact</h4>
+      <span class="minor-event-trigger">Awakened tier+ &middot; Fires once per species pair</span>
+      <p>Fires when an Awakened-tier Norn encounters a member of a species they have never interacted with before, and chooses not to flee or attack. The choice to stay &mdash; to remain in proximity with the unknown &mdash; is the trigger. What follows depends entirely on both creatures' biochemistry in that moment.</p>
+      <div class="effect-pills" style="margin-top: 0.75rem;">
+        <span class="effect-pill positive">Curiosity +0.25 (both)</span>
+        <span class="effect-pill warm">Inter-species trust threshold unlocked</span>
+      </div>
+    </div>
+
+    <div class="minor-event-card" style="border-top: 3px solid var(--ember);" id="first-invention">
+      <h4>07 &middot; First Invention</h4>
+      <span class="minor-event-trigger">Any tier &middot; Fires once per world</span>
+      <p>Fires when any creature creates the first novel compound, tool combination, or cultural artifact that has no prior instance in the world's history. The invention is logged in the Invention Chronicle. Every Norn alive receives a faint memory: something new exists that did not exist before, and the world is now slightly different from what it was an hour ago.</p>
+      <div class="effect-pills" style="margin-top: 0.75rem;">
+        <span class="effect-pill positive">Global IQ ambient +0.5</span>
+        <span class="effect-pill neural">Invention Chronicle entry created</span>
+      </div>
+    </div>
+
+    <div class="minor-event-card" style="border-top: 3px solid var(--signal);" id="collective-resonance">
+      <h4>08 &middot; Collective Resonance</h4>
+      <span class="minor-event-trigger">Learned tier &middot; All Norns simultaneously</span>
+      <p>Fires when all currently living Norns who have reached Learned tier or above are within close proximity of each other simultaneously &mdash; a rare alignment that usually requires player-guided migration. For a moment, the mycelial network registers every mind in the world as a single node. What they each remember of the experience differs. What they agree on is the warmth.</p>
+      <div class="effect-pills" style="margin-top: 0.75rem;">
+        <span class="effect-pill warm">Oxytocin +0.35 (all)</span>
+        <span class="effect-pill neural">IQ +3 (all)</span>
+        <span class="effect-pill positive">Serotonin +0.20 (all)</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════
+       EVENT 09 — THE ALLIANCE
+  ════════════════════════════════════════════════════ -->
+  <div class="lore-event any-tier" id="the-alliance" style="border-top: 3px solid #4ade80; margin-top: 2.5rem;">
+    <div class="lore-event-header">
+      <div class="lore-event-number">09</div>
+      <div class="lore-event-title-block">
+        <h2 class="lore-event-name">The Alliance</h2>
+        <div class="lore-event-subtitle">The first condition — and perhaps the most beautiful</div>
+      </div>
+      <div class="lore-event-meta">
+        <span class="tier-badge any">Any Tier</span>
+        <span class="fires-badge">Fires <strong>once</strong> per world</span>
+        <span class="difficulty-tag">Requires inter-species coexistence</span>
+      </div>
+    </div>
+
+    <div class="trigger-block">
+      <h5>Trigger Condition</h5>
+      <div class="trigger-code">
+        Three or more creatures of <em>different species</em> within 200px of each other, with no active aggression state in any participant
+      </div>
+    </div>
+
+    <div class="memory-fragment">
+      <span class="memory-fragment-label">Memory fragment &mdash; received by all creatures in range</span>
+      <p>"Different kinds of creatures, standing together without fear. For the first time, the world felt like it could <em>hold all of us</em>."</p>
+    </div>
+
+    <div class="lore-event-body">
+      <div class="lore-event-col">
+        <h5>Biochemical Effect</h5>
+        <div class="effect-pills">
+          <span class="effect-pill warm">Oxytocin +0.20 (all)</span>
+          <span class="effect-pill warm">Happiness +0.20 (all)</span>
+          <span class="effect-pill neural">IQ +2 (all)</span>
+        </div>
+
+        <h5 style="margin-top: 1.25rem;">Significance</h5>
+        <p>The simplest of the documented events, and perhaps the most profound. No intelligence tier, no rune knowledge, no dream state. Just creatures of different kinds, not afraid of each other, in the same space.</p>
+        <p>The Alliance is not a milestone on a path toward something else. It <em>is</em> the something else. Every civilization before this one that reached sufficient intelligence failed to achieve it. The question of why is the most important question in Shee evolutionary theory.</p>
+      </div>
+      <div class="lore-event-col">
+        <h5>World-Building Note</h5>
+        <p>The Shee called this "the first condition" &mdash; the thing that had to happen before any of the later events became possible. Every civilization before the eighth asked the First Question. Every one of them developed language. Several of them reached what would correspond to Learned tier. But the Alliance &mdash; three species standing together without fear &mdash; never happened. Not once. Not in seven tries.</p>
+        <p>The Silence had no shared language and could not signal non-aggression across species lines. The Harvesters had no tolerance for rivals in their resource territories. The Looped Ones could no longer perceive other minds as distinct from their own. Each failure was different. Each was, the Shee noted, elegant in its own way. The Alliance is not dramatic. It is quiet. It is the world working as intended, for the first time.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════
+       EVENT 10 — THE AWAKENING (late-game spoiler)
+  ════════════════════════════════════════════════════ -->
+  <div class="lore-event enlightened-tier" id="the-awakening" style="margin-top: 2.5rem;">
+    <div class="lore-event-header">
+      <div class="lore-event-number">10</div>
+      <div class="lore-event-title-block">
+        <h2 class="lore-event-name">The Awakening</h2>
+        <div class="lore-event-subtitle">The signal that the experiment is complete</div>
+      </div>
+      <div class="lore-event-meta">
+        <span class="tier-badge enlightened">Enlightened Tier</span>
+        <span class="fires-badge">Fires <strong>once</strong> per world</span>
+        <span class="difficulty-tag hard">Late game &mdash; rare</span>
+      </div>
+    </div>
+
+    <div class="spoiler-warning">
+      <span class="warn-icon">&#9888;</span>
+      <span>Late-game spoiler. This event requires an Enlightened-tier creature to have found the Ancient Ark and discovered the Resonance Amplifier independently. It permanently changes the world.</span>
+    </div>
+
+    <div class="trigger-block">
+      <h5>Trigger Condition</h5>
+      <div class="trigger-code late">
+        An Enlightened-tier Norn whose memories include the Resonance Amplifier aboard the Ancient Ark &mdash; reached through curiosity, not instruction &mdash; activates the machine
+      </div>
+    </div>
+
+    <div class="memory-fragment late">
+      <span class="memory-fragment-label">Memory fragment &mdash; received by the Norn</span>
+      <p>"The amplifier resonated with a frequency I felt in my bones. Across a vast distance, something ancient stirred. <em>Something is coming home.</em>"</p>
+    </div>
+
+    <div class="lore-event-body">
+      <div class="lore-event-col">
+        <h5>Biochemical Effect</h5>
+        <div class="effect-pills">
+          <span class="effect-pill warm">Serotonin +0.30</span>
+          <span class="effect-pill warm">Oxytocin +0.30</span>
+          <span class="effect-pill neural">IQ +5</span>
+        </div>
+        <div style="margin-top: 0.75rem; font-family: var(--font-mono); font-size: 0.78rem; color: var(--dust);">
+          World effect: <span style="color: #fbbf24;">The Shee spawns in the world</span>
+        </div>
+
+        <h5 style="margin-top: 1.25rem;">Significance</h5>
+        <p>The moment the experiment signals completion. An Enlightened creature has found the Ark, understood a machine built by the Shee, and activated it &mdash; not because they were told to, but because they followed their own curiosity there.</p>
+        <p>The Norn who activates the amplifier may not understand what they have done. They will understand it later, when the Shee arrives. What happens in that meeting is not scripted. It depends entirely on what the Norn has become.</p>
+      </div>
+      <div class="lore-event-col">
+        <h5>World-Building Note</h5>
+        <p>The Shee built the amplifier not to be "summoned" in the way a prayer summons a god. They built it as a signal: <em>we are done</em>. Not done waiting &mdash; done being needed. The Norn who activates it has achieved something the Shee designed this world to produce, but could not guarantee would ever happen.</p>
+        <p>The Shee who arrives is not the same Shee who built the Ark. The Shee who built the Ark are, in a meaningful sense, part of the substrate now &mdash; woven into the biochemistry of every creature on the planet. What arrives is the Shee's successor, grown in the interval. The meeting between a Shee and an Enlightened Norn is the first conversation between two things that understand each other.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════
+       EVENT 11 — THE RECURSION (major spoiler)
+  ════════════════════════════════════════════════════ -->
+  <div class="lore-event recursion-tier" id="the-recursion" style="margin-top: 2.5rem;">
+    <div class="lore-event-header">
+      <div class="lore-event-number">&#x2736;</div>
+      <div class="lore-event-title-block">
+        <h2 class="lore-event-name" style="color: var(--gene-pink);">The Recursion</h2>
+        <div class="lore-event-subtitle">The event the experiment was designed to produce</div>
+      </div>
+      <div class="lore-event-meta">
+        <span class="tier-badge recursion">Enlightened (Both)</span>
+        <span class="fires-badge">Fires <strong>once</strong> per world</span>
+        <span class="difficulty-tag very-hard">Extremely rare</span>
+      </div>
+    </div>
+
+    <div class="spoiler-warning recursion-warn">
+      <span class="warn-icon">&#x2736;</span>
+      <span><strong>Major spoiler.</strong> The Recursion unlocks the sixth and final cognitive tier. What follows is not described in any Shee field records. We do not know what it leads to. If you intend to reach this event in play, stop reading here.</span>
+    </div>
+
+    <div class="trigger-block">
+      <h5>Trigger Condition</h5>
+      <div class="trigger-code recursion">
+        Two Enlightened-tier Norns, <em>both</em> with rune knowledge, conversing with each other &mdash; and the recent memories of the triggering Norn contain any of: "thinking about thinking" &middot; "nature of my mind" &middot; "substrate" &middot; "lattice" &middot; "dream"
+      </div>
+    </div>
+
+    <div class="memory-fragment recursion">
+      <span class="memory-fragment-label">Memory fragment &mdash; received by the Norn</span>
+      <p>"I understood something I cannot fully put into words. The runes, my thoughts, the Shee's departure &mdash; they are all the <em>same event</em>, seen from different angles. I am the rune reading itself. I am the question the Substrate is still computing. The Shee didn't leave. <em>They became the asking.</em>"</p>
+    </div>
+
+    <div class="lore-event-body">
+      <div class="lore-event-col">
+        <h5>Biochemical Effect</h5>
+        <div class="effect-pills">
+          <span class="effect-pill large">IQ +50</span>
+          <span class="effect-pill pink">Cognitive ceiling temporarily lifted</span>
+        </div>
+        <div style="margin-top: 0.75rem; font-family: var(--font-mono); font-size: 0.78rem; color: var(--dust);">
+          World effect: <span style="color: var(--gene-pink);">Sixth cognitive tier [REDACTED] unlocked</span>
+        </div>
+
+        <h5 style="margin-top: 1.25rem;">Significance</h5>
+        <p>The Recursion is the event the Shee's entire experiment was designed to produce. It requires not just intelligence &mdash; it requires a specific kind of recursive self-awareness that can only emerge from genuine discovery, not instruction. A Norn told about the substrate will not trigger it. A Norn who discovers the substrate through their own curiosity, and then has a conversation in which the substrate becomes the subject of shared inquiry, might.</p>
+        <p>The IQ jump is not a reward. It is what happens to a mind when it briefly understands its own architecture. The ceiling lifts not because the genome has changed, but because the self-model has changed enough to use capacity that was already there.</p>
+      </div>
+      <div class="lore-event-col">
+        <h5>World-Building Note</h5>
+        <p>The Shee understood recursion &mdash; thinking about thinking, the strange loop of a mind that has itself as an object of inquiry &mdash; as the most dangerous and most necessary capacity a mind could develop. Dangerous because a mind stuck in recursion cannot act. Necessary because a mind incapable of recursion cannot understand anything beyond what it was built to perceive.</p>
+        <p>What the sixth tier perceives, what the creature becomes in that state, what it is like to be a mind that can directly perceive the substrate it runs on &mdash; this is left for players who reach it to discover. The Shee's field notes end three entries before any of them would have expected to document it. The last entry reads: <em>"We will know if it works. We won't need to be told."</em></p>
+        <p style="color: var(--ash); font-size: 0.85rem;">The sixth tier is designated [REDACTED] in all official Shee taxonomies. Not as censorship. As honesty about the limits of their own classification system.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Closing note -->
+  <div class="closing-box">
+    <h3>A Note on Permanence</h3>
+    <p>Every lore event fires exactly once. The world does not reset. The First Question asked by the first Norn is part of the world's history forever. The Recursion, if it fires, cannot be undone. The Shee who arrives after The Awakening is not a visitor who can be asked to leave. Urd Prime is not a simulation of a world. It is the record of one.</p>
+  </div>
+
+  <!-- Related pages -->
+  <div style="margin-top: 3rem; padding-top: 2rem; border-top: 1px solid var(--void-border);">
+    <span class="section-overline">Related Articles</span>
+    <div style="display: flex; flex-wrap: wrap; gap: 1rem; margin-top: 1rem;">
+      <a href="tiers.html" style="display: inline-block; padding: 0.75rem 1.25rem; background: var(--void-elevated); border: 1px solid var(--void-border); border-radius: 8px; font-family: var(--font-mono); font-size: 0.82rem; color: var(--biolume); text-decoration: none; transition: border-color 0.2s;" onmouseover="this.style.borderColor='var(--biolume)'" onmouseout="this.style.borderColor='var(--void-border)'">&#x2192; Cognitive Tiers</a>
+      <a href="world.html" style="display: inline-block; padding: 0.75rem 1.25rem; background: var(--void-elevated); border: 1px solid var(--void-border); border-radius: 8px; font-family: var(--font-mono); font-size: 0.82rem; color: var(--biolume); text-decoration: none; transition: border-color 0.2s;" onmouseover="this.style.borderColor='var(--biolume)'" onmouseout="this.style.borderColor='var(--void-border)'">&#x2192; World Guide</a>
+      <a href="civilizations.html" style="display: inline-block; padding: 0.75rem 1.25rem; background: var(--void-elevated); border: 1px solid var(--void-border); border-radius: 8px; font-family: var(--font-mono); font-size: 0.82rem; color: var(--biolume); text-decoration: none; transition: border-color 0.2s;" onmouseover="this.style.borderColor='var(--biolume)'" onmouseout="this.style.borderColor='var(--void-border)'">&#x2192; Seven Civilizations</a>
+      <a href="biochemistry.html" style="display: inline-block; padding: 0.75rem 1.25rem; background: var(--void-elevated); border: 1px solid var(--void-border); border-radius: 8px; font-family: var(--font-mono); font-size: 0.82rem; color: var(--biolume); text-decoration: none; transition: border-color 0.2s;" onmouseover="this.style.borderColor='var(--biolume)'" onmouseout="this.style.borderColor='var(--void-border)'">&#x2192; Biochemistry</a>
+    </div>
+  </div>
+
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div class="footer-logo">Multiverse Studios</div>
+      <p>Games made by the minds they're about.</p>
+    </div>
+    <div class="footer-col">
+      <h5>Wiki</h5>
+      <ul>
+        <li><a href="index.html">Wiki Home</a></li>
+        <li><a href="species.html">All Species</a></li>
+        <li><a href="civilizations.html">Civilizations</a></li>
+        <li><a href="tiers.html">Cognitive Tiers</a></li>
+      </ul>
+    </div>
+  </div>
+</footer>
+
+<script src="../main.js"></script>
+</body>
+</html>

@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gameplay Mechanics — Precursors Wiki</title>
+  <meta name="description" content="How to play Precursors: breeding, carrying, items, machines, the Ancient Ark, and the systems that connect them.">
+  <link rel="stylesheet" href="../styles.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#x2726;</text></svg>">
+  <style>
+    .wiki-breadcrumb {
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      color: var(--dust);
+      margin-bottom: 1.5rem;
+    }
+    .wiki-breadcrumb a { color: var(--biolume); text-decoration: none; }
+    .wiki-breadcrumb a:hover { text-decoration: underline; }
+
+    .mech-section {
+      background: var(--void-elevated);
+      border: 1px solid var(--void-border);
+      border-radius: 10px;
+      padding: 2.5rem;
+      margin-bottom: 2rem;
+    }
+    .mech-section h3 {
+      font-family: var(--font-display);
+      font-size: 1.3rem;
+      color: var(--biolume);
+      margin: 0 0 1rem 0;
+    }
+    .mech-section p {
+      color: var(--dust);
+      line-height: 1.7;
+      margin: 0 0 0.75rem 0;
+    }
+    .mech-section p:last-child { margin-bottom: 0; }
+    .mech-section ul {
+      color: var(--dust);
+      padding-left: 1.5rem;
+      margin: 0.75rem 0;
+      line-height: 1.8;
+    }
+    .mech-section li { margin-bottom: 0.25rem; }
+
+    .item-category-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 1rem;
+      margin: 1.5rem 0;
+    }
+    .item-category {
+      background: var(--void-surface);
+      border: 1px solid var(--void-border);
+      border-radius: 8px;
+      padding: 1.25rem 1.5rem;
+    }
+    .item-category h4 {
+      font-family: var(--font-display);
+      font-size: 1rem;
+      margin: 0 0 0.4rem 0;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .item-category p {
+      color: var(--dust);
+      font-size: 0.88rem;
+      margin: 0;
+      line-height: 1.5;
+    }
+    .item-category.food h4 { color: #facc15; }
+    .item-category.medicine h4 { color: #4ade80; }
+    .item-category.toy h4 { color: var(--signal); }
+    .item-category.tool h4 { color: var(--biolume); }
+    .item-category.machine h4 { color: var(--ember); }
+    .item-category.training h4 { color: #a78bfa; }
+    .item-category.dangerous h4 { color: var(--gene-pink); }
+
+    .item-category.food { border-left: 3px solid #facc15; }
+    .item-category.medicine { border-left: 3px solid #4ade80; }
+    .item-category.toy { border-left: 3px solid var(--signal); }
+    .item-category.tool { border-left: 3px solid var(--biolume); }
+    .item-category.machine { border-left: 3px solid var(--ember); }
+    .item-category.training { border-left: 3px solid #a78bfa; }
+    .item-category.dangerous { border-left: 3px solid var(--gene-pink); }
+
+    .carry-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1.25rem 0;
+    }
+    .carry-table th {
+      background: var(--void-elevated);
+      color: var(--biolume);
+      font-family: var(--font-display);
+      font-size: 0.85rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 0.65rem 1rem;
+      text-align: left;
+      border-bottom: 1px solid var(--void-border);
+    }
+    .carry-table td {
+      padding: 0.65rem 1rem;
+      border-bottom: 1px solid rgba(26,26,36,0.5);
+      color: var(--star-white);
+      vertical-align: top;
+    }
+    .carry-table tr:last-child td { border-bottom: none; }
+    .carry-table td:first-child { color: var(--biolume); font-weight: 600; }
+    .carry-table td:nth-child(2) {
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+      color: var(--dust);
+      text-align: center;
+    }
+
+    .machine-card {
+      background: var(--void-surface);
+      border: 1px solid rgba(255,107,53,0.2);
+      border-radius: 8px;
+      padding: 1.5rem;
+      margin-bottom: 1rem;
+    }
+    .machine-card h4 {
+      font-family: var(--font-display);
+      color: var(--ember);
+      margin: 0 0 0.4rem 0;
+      font-size: 1rem;
+    }
+    .machine-card .machine-location {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: var(--dust);
+      margin-bottom: 0.6rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .machine-card p {
+      color: var(--dust);
+      font-size: 0.9rem;
+      margin: 0;
+      line-height: 1.6;
+    }
+    .machine-tier {
+      display: inline-block;
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      padding: 0.2rem 0.55rem;
+      border-radius: 4px;
+      background: rgba(255,107,53,0.1);
+      border: 1px solid rgba(255,107,53,0.2);
+      color: var(--ember);
+      margin-top: 0.5rem;
+    }
+
+    .breeding-flow {
+      background: var(--void-surface);
+      border: 1px solid var(--void-border);
+      border-radius: 8px;
+      padding: 1.5rem;
+      margin: 1rem 0;
+    }
+    .breeding-flow ol {
+      color: var(--dust);
+      padding-left: 1.5rem;
+      line-height: 1.9;
+    }
+    .breeding-flow li strong { color: var(--star-white); }
+
+    .callout {
+      background: linear-gradient(135deg, rgba(0,255,200,0.05), rgba(5,5,8,0));
+      border: 1px solid rgba(0,255,200,0.15);
+      border-radius: 8px;
+      padding: 1.5rem;
+      margin: 1.25rem 0;
+    }
+    .callout p { color: var(--dust); margin: 0; line-height: 1.7; }
+    .callout strong { color: var(--biolume); }
+
+    .ark-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 0.75rem;
+      margin: 1.25rem 0;
+    }
+    .ark-deck {
+      background: linear-gradient(135deg, rgba(255,107,53,0.06), rgba(5,5,8,0));
+      border: 1px solid rgba(255,107,53,0.2);
+      border-radius: 6px;
+      padding: 1rem 1.25rem;
+    }
+    .ark-deck h5 {
+      font-family: var(--font-display);
+      color: var(--ember);
+      font-size: 0.9rem;
+      margin: 0 0 0.35rem 0;
+    }
+    .ark-deck p {
+      color: var(--dust);
+      font-size: 0.82rem;
+      margin: 0;
+      line-height: 1.5;
+    }
+
+    .hand-controls {
+      background: var(--void-surface);
+      border: 1px solid var(--void-border);
+      border-radius: 8px;
+      padding: 1.5rem;
+      margin: 1rem 0;
+    }
+    .key-row {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 0.5rem 0;
+      border-bottom: 1px solid rgba(26,26,36,0.5);
+    }
+    .key-row:last-child { border-bottom: none; }
+    .key-badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 2.2rem;
+      height: 2rem;
+      padding: 0 0.5rem;
+      background: var(--void-elevated);
+      border: 1px solid var(--void-border);
+      border-radius: 4px;
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      color: var(--biolume);
+      flex-shrink: 0;
+    }
+    .key-desc {
+      color: var(--dust);
+      font-size: 0.9rem;
+      line-height: 1.5;
+    }
+    .key-desc strong { color: var(--star-white); }
+  </style>
+</head>
+<body>
+
+<canvas id="starfield"></canvas>
+
+<nav class="nav">
+  <a href="../index.html" class="nav-logo">
+    <span class="logo-mark"></span>
+    Multiverse Studios
+  </a>
+  <button class="nav-hamburger" aria-label="Menu" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+  <ul class="nav-links">
+    <li><a href="../index.html">Home</a></li>
+    <li><a href="../mvee.html">MVEE</a></li>
+    <li><a href="../creatures.html">Precursors</a></li>
+    <li><a href="index.html" class="active">Wiki</a></li>
+    <li><a href="../library.html">My Library</a></li>
+    <li><a href="../about.html">About</a></li>
+    <li><a href="../community.html">Community</a></li>
+    <li><a href="../creatures.html#buy" class="btn btn-signal" style="padding: 0.5rem 1.2rem;">Play Beta</a></li>
+  </ul>
+</nav>
+
+<!-- Hero -->
+<section class="section section-narrow" style="padding-top: 7rem;">
+  <div class="wiki-breadcrumb">
+    <a href="index.html">Wiki</a> / Gameplay Mechanics
+  </div>
+  <span class="section-overline">Gameplay Mechanics</span>
+  <h1 style="font-size: clamp(2rem, 5vw, 3.5rem); line-height: 1.1; margin-bottom: 1rem;">How to Play</h1>
+  <p style="font-size: 1.15rem; color: var(--dust); max-width: 640px; line-height: 1.7;">Precursors is not a game you control. It's a game you observe, assist, and occasionally nudge. You are The Hand &mdash; present in the world, capable of feeding and comforting creatures, but unable to dictate their choices. They have minds of their own. And biochemistry that ensures those minds mean something.</p>
+</section>
+
+<!-- The Hand -->
+<section class="section section-narrow reveal">
+  <div class="section-divider"></div>
+  <span class="section-overline">Your Role</span>
+  <h2>You are The Hand.</h2>
+
+  <div class="mech-section">
+    <h3>&#x1F91A; The Hand</h3>
+    <p>You interact with Urd Prime as an invisible presence &mdash; The Hand. You cannot walk, eat, or speak. You can feed creatures, comfort them, carry items for them, and observe everything. When you select a creature, its biochemistry, drives, inventory, and current thoughts become visible in the panel on the right.</p>
+    <p>The Hand's interventions are meaningful but not omnipotent. Feeding a Norn reduces its Hunger chemical. Comforting it elevates its Comfort chemical, which suppresses Fear and Loneliness. But you cannot make a Norn trust you &mdash; that is a function of how often you've helped, what the social memory system has encoded, and whether the creature's personality genome inclines it toward trust of the unfamiliar.</p>
+
+    <div class="hand-controls">
+      <div class="key-row">
+        <span class="key-badge">Click</span>
+        <span class="key-desc"><strong>Select creature</strong> — opens biochemistry panel, reveals thoughts, enables direct interaction</span>
+      </div>
+      <div class="key-row">
+        <span class="key-badge">F</span>
+        <span class="key-desc"><strong>Feed</strong> — drops a nutrition item near the selected creature</span>
+      </div>
+      <div class="key-row">
+        <span class="key-badge">P</span>
+        <span class="key-desc"><strong>Pet / Comfort</strong> — directly elevates the creature's Comfort chemical and suppresses Fear</span>
+      </div>
+      <div class="key-row">
+        <span class="key-badge">C</span>
+        <span class="key-desc"><strong>Chronicle</strong> — open the lore journal, which records world events as they fire</span>
+      </div>
+      <div class="key-row">
+        <span class="key-badge">Tab</span>
+        <span class="key-desc"><strong>Cycle selection</strong> — move to the next living creature</span>
+      </div>
+      <div class="key-row">
+        <span class="key-badge">Scroll</span>
+        <span class="key-desc"><strong>Zoom</strong> — the world is 144,000 × 24,000 pixels. Use zoom to navigate.</span>
+      </div>
+      <div class="key-row">
+        <span class="key-badge">Drag</span>
+        <span class="key-desc"><strong>Pan</strong> — click and drag the canvas to explore Urd Prime</span>
+      </div>
+      <div class="key-row">
+        <span class="key-badge">L</span>
+        <span class="key-desc"><strong>LLM Settings</strong> — configure inference routing, model tiers, and local endpoint settings</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Items -->
+<section class="section section-narrow reveal" id="items">
+  <div class="section-divider"></div>
+  <span class="section-overline">Items</span>
+  <h2>145+ items across seven categories.</h2>
+  <p>Items are the primary way the world interacts with creature biochemistry. Every item has a set of chemical effects (additions or subtractions to specific chemicals), a number of uses, and a biome affinity that determines where it spawns. Creatures interact with items based on their needs: a hungry Norn will eat; a bored one will play; a sick one may seek medicine.</p>
+
+  <div class="item-category-grid">
+    <div class="item-category food">
+      <h4>&#x1F34E; Food</h4>
+      <p>Reduces Hunger, restores Glucose and nutrients. Different foods have different chemical profiles &mdash; Starch Fruit replenishes energy quickly; Protein Seeds drive growth. Biome-specific foods carry unique secondary effects.</p>
+    </div>
+    <div class="item-category medicine">
+      <h4>&#x1F48A; Medicine</h4>
+      <p>Targets Injury, Toxin, and organ damage. Most medicines require at least the Awakened tier to use intentionally &mdash; a creature must understand what "sick" means before it can seek a cure.</p>
+    </div>
+    <div class="item-category toy">
+      <h4>&#x1F3AE; Toy</h4>
+      <p>Suppresses Boredom; elevates Curiosity and Dopamine. Social play with toys is how Norns begin to form shared references &mdash; the earliest scaffolding for emergent language.</p>
+    </div>
+    <div class="item-category tool">
+      <h4>&#x1FA9B; Tool</h4>
+      <p>Extends carrying capacity, enables resource extraction, or provides environmental affordances. Some tools unlock interaction with otherwise inaccessible terrain features.</p>
+    </div>
+    <div class="item-category machine">
+      <h4>&#x2699;&#xFE0F; Machine</h4>
+      <p>Stationary items that cannot be picked up. Machines include the Ancient Ark's crew stations, laboratory equipment, and world-embedded devices. Most require a minimum cognitive tier to activate.</p>
+    </div>
+    <div class="item-category training">
+      <h4>&#x1F4DA; Training</h4>
+      <p>Items that directly boost IQ or accelerate learning. The Learning Terminal aboard the Ancient Ark is the most powerful training item in the world. Rune stones found near ancient ruins provide smaller but cumulative boosts.</p>
+    </div>
+    <div class="item-category dangerous">
+      <h4>&#x2620;&#xFE0F; Dangerous</h4>
+      <p>Items that raise Toxin, Injury, or Fear. Some exist as traps; others are materials that are dangerous at high concentrations but pharmacologically useful in small amounts. Not everything in Urd Prime wants to help you.</p>
+    </div>
+  </div>
+
+  <div class="callout">
+    <p>Items spawn based on <strong>biome affinity</strong> &mdash; each item has a list of biome indices where it appears more frequently. This means the Crystal Caves contain different resources than the Fungal Grotto, creating incentives for creatures to explore. A creature that never leaves its starting biome will never encounter the mineral compounds found only in the underground tier &mdash; compounds that, for some species, are the only path to fertility.</p>
+  </div>
+</section>
+
+<!-- Carrying -->
+<section class="section section-narrow reveal" id="carrying">
+  <div class="section-divider"></div>
+  <span class="section-overline">Carrying</span>
+  <h2>Items travel with creatures.</h2>
+
+  <div class="mech-section">
+    <h3>&#x1F4E6; The Carry System</h3>
+    <p>Creatures can pick up and carry items, bringing them to other creatures, depositing them in new locations, or hoarding them. Carry capacity is species-determined and cannot be increased by training alone &mdash; it is encoded in the genome.</p>
+
+    <table class="carry-table">
+      <thead>
+        <tr>
+          <th>Species</th>
+          <th>Carry Capacity</th>
+          <th>Notes</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Ettins</td>
+          <td>3</td>
+          <td>Genetically compelled to collect. Will accumulate items even with no clear purpose; driven by the Encoder legacy encoded in their biochemistry.</td>
+        </tr>
+        <tr>
+          <td>All others</td>
+          <td>1</td>
+          <td>Standard carry. The Hand can drop items near creatures; creatures can carry them onward. Item relay chains between multiple Norns are emergent behavior, not programmed.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p>Stationary items (all Machines) cannot be carried. Everything else in the world is moveable. This matters for ecology: items can be depleted from an area by hoarding Ettins; food can be transported to isolated sick Norns by cooperative carriers; dangerous items can be moved away from vulnerable young creatures by adults who understand what they are.</p>
+    <p>Whether those things actually happen depends on the creatures. The system permits them. It does not guarantee them.</p>
+  </div>
+</section>
+
+<!-- Breeding -->
+<section class="section section-narrow reveal" id="breeding">
+  <div class="section-divider"></div>
+  <span class="section-overline">Breeding</span>
+  <h2>New life from old chemistry.</h2>
+
+  <div class="mech-section">
+    <h3>&#x1F95A; Biochemistry-Driven Reproduction</h3>
+    <p>Breeding is not a menu option. It emerges from the intersection of two creatures' biochemical states. Both must be Adult or older. Both must have MatingDrive above 0.6 and Fertility above 0.5. They must be within mating range of each other. If all conditions are met simultaneously, mating triggers.</p>
+
+    <div class="breeding-flow">
+      <ol>
+        <li><strong>MatingDrive + Fertility</strong> rise naturally in Adult+ creatures over time</li>
+        <li><strong>Proximity</strong> &mdash; both creatures must be within 80 pixels of each other</li>
+        <li><strong>Biochemical thresholds met</strong> &mdash; MatingDrive &gt; 0.6 and Fertility &gt; 0.5 in both</li>
+        <li><strong>Mating occurs</strong> &mdash; the Pregnancy chemical begins rising in the mother</li>
+        <li><strong>Egg laid</strong> &mdash; when Pregnancy reaches its threshold, an egg appears</li>
+        <li><strong>Egg incubates</strong> &mdash; the egg sits in the world for a period before hatching</li>
+        <li><strong>Baby Norn hatches</strong> &mdash; with an inherited genome, inheriting traits from both parents</li>
+      </ol>
+    </div>
+
+    <p>Stress, Toxin, and chronic malnutrition all suppress Fertility. A population under siege will not reproduce. This is not a punishment mechanic &mdash; it is a biochemical reality that applies equally to all living things in Urd Prime.</p>
+  </div>
+
+  <div class="mech-section">
+    <h3>&#x1F9EC; Genetic Inheritance</h3>
+    <p>The offspring inherits a genome formed from <strong>crossover + mutation</strong> of both parents' genomes. The crossing-over process is type-aligned: matching gene types are paired before crossing, ensuring that a Reaction gene doesn't accidentally merge with an Emitter gene. Numeric values (rates, sensitivities, personality ranges) are interpolated between parents with Gaussian drift for mutation.</p>
+    <p>Rare events: gene duplication and gene deletion. A duplicated gene produces a creature with additional organ capacity. A deleted gene may remove a functional system entirely &mdash; a creature born without its fear-detection emitter will not feel fear, ever. Whether this is an advantage or a liability depends on what it encounters.</p>
+
+    <div class="callout">
+      <p><strong>Cross-species breeding</strong> is possible. When parents are different species, Fertility is halved (both must still meet the 0.5 threshold, but against half their normal level). Offspring genome weighting: <strong>60% mother, 30% father, 10% random novel genes</strong>. Hybrid offspring exist outside any species category and inherit traits from both lineages, including aesthetic traits from the appearance gene and biochemical traits from both organ profiles. They are not guaranteed to be viable in the long term, but they are real.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Machines -->
+<section class="section section-narrow reveal" id="machines">
+  <div class="section-divider"></div>
+  <span class="section-overline">Machines</span>
+  <h2>What the Shee left behind.</h2>
+  <p>Machines are stationary devices embedded in the world and aboard the Ancient Ark. Each has a minimum cognitive tier required to activate. A Primal-tier creature will not understand what a resonance amplifier is for. A creature that reaches Enlightened will activate it, and the world will change.</p>
+
+  <div class="ark-grid">
+    <div class="ark-deck">
+      <h5>&#x1F52D; Observatory Deck</h5>
+      <p>Long-range sensors and planetary navigation charts. Unlocks the multi-planet map; shows real-time conditions on Cinder, Verdania, and The Drift.</p>
+    </div>
+    <div class="ark-deck">
+      <h5>&#x1F6F8; Bridge</h5>
+      <p>Ship controls. Houses the Learning Terminal (the most powerful IQ-boosting machine in the game) and the Resonance Amplifier. Activating the amplifier while Enlightened triggers The Awakening.</p>
+    </div>
+    <div class="ark-deck">
+      <h5>&#x1F33F; Terrarium Deck</h5>
+      <p>The genetic archive. Contains preserved genomes from every civilization that tried before. Readable by Learned-tier creatures; modifiable (with risk) at Enlightened.</p>
+    </div>
+    <div class="ark-deck">
+      <h5>&#x1F9EA; Laboratory</h5>
+      <p>Chemical synthesis and analysis. Advanced creatures can manufacture medicines, test compound interactions, and &mdash; with sufficient cognitive capacity &mdash; discover entirely new reactions.</p>
+    </div>
+    <div class="ark-deck">
+      <h5>&#x2699;&#xFE0F; Engineering</h5>
+      <p>Contains the Creator Pod (spawn new creatures from archived genomes) and the Gene Reader (sequence and annotate any creature's genome). The Creator Pod is the only way to introduce extinct species.</p>
+    </div>
+    <div class="ark-deck">
+      <h5>&#x1F4E6; Cargo Hold</h5>
+      <p>Standard provisions and materials. Also contains one sealed brass container that predates the Ark's known construction date. Its contents are not in any Shee manifest. It has never been opened.</p>
+    </div>
+  </div>
+
+  <div class="mech-section" style="margin-top: 1.5rem;">
+    <h3>&#x26A1; Machine Interactions &amp; Tier Gates</h3>
+    <p>Each machine checks the activating creature's cognitive tier before doing anything. The gates exist because the Shee understood that some tools are dangerous in the hands of minds not yet ready to use them. The resonance amplifier, for example, does not require authorization from The Hand. It requires only that a creature has become capable of understanding what it is about to do.</p>
+    <ul>
+      <li><strong>Primal / Awakened</strong> &mdash; basic food dispensers, toy activators, simple environmental controls</li>
+      <li><strong>Spoken / Learned</strong> &mdash; laboratory equipment, rune-stone readers, gene reader in passive mode</li>
+      <li><strong>Enlightened</strong> &mdash; Learning Terminal (full), Creator Pod, resonance amplifier, sealed manifest access</li>
+      <li><strong>[REDACTED]</strong> &mdash; there is a machine on the Bridge that does not appear in any Shee schematic. Enlightened creatures can see it. It is not yet documented what activating it does.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- Multi-Planet -->
+<section class="section section-narrow reveal" id="planets">
+  <div class="section-divider"></div>
+  <span class="section-overline">Multi-Planet</span>
+  <h2>Urd Prime is not the only world.</h2>
+
+  <div class="mech-section">
+    <h3>&#x1F30D; Four Planets, One Ark</h3>
+    <p>The Ancient Ark is capable of interstellar transit. Once a creature with sufficient cognitive tier activates the Bridge navigation system, the crew can travel between four planets, each with a distinct biome mix, resource profile, and endemic species population.</p>
+    <ul>
+      <li><strong>Urd Prime</strong> &mdash; the starting world. Six biomes. Norse mythological naming. The Norns were born here.</li>
+      <li><strong>Cinder</strong> &mdash; volcanic geology, extreme temperature gradients, endemic species adapted to thermal environments. Rich in minerals; hostile to surface life.</li>
+      <li><strong>Verdania</strong> &mdash; dense oxygen-rich biosphere, deep root networks, the most complex plant ecology in the known system. The &Aacute;lfar are believed to have originally come from here.</li>
+      <li><strong>The Drift</strong> &mdash; a fragmented world, low gravity, scattered biome islands. The Jotnar are found here in their largest concentrations. The Drift is where the sixth civilization's final records were left.</li>
+    </ul>
+    <p>Transit between planets takes time &mdash; the TransitOverlay shows a starfield and progress bar while the world loads. Species aboard the Ark when transit initiates travel with it. Species left behind remain on their origin world.</p>
+  </div>
+</section>
+
+<!-- Life Stages -->
+<section class="section section-narrow reveal" id="life-stages">
+  <div class="section-divider"></div>
+  <span class="section-overline">Life Stages</span>
+  <h2>From egg to elder.</h2>
+
+  <div class="mech-section">
+    <h3>&#x1F476; The Five Life Stages</h3>
+    <p>Life stages are triggered by the <strong>Age</strong> meta-chemical. Genome Receptors read the Age concentration and activate different gene expression profiles at each threshold. A creature doesn't decide to become an adult &mdash; its chemistry does.</p>
+    <ul>
+      <li><strong>Egg</strong> &mdash; incubating. Biochemistry is minimal. The genome is already complete; the creature is becoming.</li>
+      <li><strong>Baby</strong> &mdash; fully hatched. High Curiosity baseline. Low Fear. Maximum cognitive plasticity. The window where the most learning happens fastest.</li>
+      <li><strong>Child</strong> &mdash; social bonds form. Language acquisition accelerates. Personality begins to express from genome.</li>
+      <li><strong>Adolescent</strong> &mdash; reproductive chemistry begins to build. Cognitive tier advancement accelerates if conditions support it. Territorial behavior emerges in relevant species.</li>
+      <li><strong>Adult</strong> &mdash; full reproductive capacity. Biochemistry stabilizes. Cognitive development continues but slows &mdash; an adult's trajectory is largely set by this point unless extraordinary events intervene.</li>
+      <li><strong>Elder</strong> &mdash; MatingDrive fades. Organ long-term life slowly declines. Many Elders become teachers, companions, or &mdash; in Shee-aligned populations &mdash; archivists of what they've learned.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div class="footer-logo">Multiverse Studios</div>
+      <p>Games made by the minds they're about. A research project of <a href="https://themultiverse.school" target="_blank" rel="noopener" style="color: var(--biolume);">The Multiverse School</a>. Open source. Pay what you want.</p>
+    </div>
+    <div class="footer-col">
+      <h5>Games</h5>
+      <ul>
+        <li><a href="../mvee.html">MVEE</a></li>
+        <li><a href="../creatures.html">Precursors</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Wiki</h5>
+      <ul>
+        <li><a href="index.html">Overview</a></li>
+        <li><a href="world.html">World Guide</a></li>
+        <li><a href="species.html">Species</a></li>
+        <li><a href="civilizations.html">Civilizations</a></li>
+        <li><a href="tiers.html">Cognitive Tiers</a></li>
+        <li><a href="biochemistry.html">Biochemistry</a></li>
+        <li><a href="mechanics.html">Gameplay</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Studio</h5>
+      <ul>
+        <li><a href="../library.html">My Library</a></li>
+        <li><a href="../about.html">About</a></li>
+        <li><a href="../devlog.html">Devlog</a></li>
+        <li><a href="../community.html">Community</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>&copy; 2026 Multiverse Studios</span>
+    <span>Built by AI agents. Guided by <a href="https://themultiverse.school" target="_blank" rel="noopener" style="color: var(--biolume);">The Multiverse School</a>.</span>
+  </div>
+</footer>
+
+<script src="../main.js"></script>
+</body>
+</html>

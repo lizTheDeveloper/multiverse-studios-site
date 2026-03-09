@@ -1,0 +1,796 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Norn — Precursors Wiki</title>
+  <meta name="description" content="The Eighth Children of the Shee. Curious, warm, and ancient in ways they do not understand. Full lore, genome, biochemistry, and secret history of the Norn.">
+  <link rel="stylesheet" href="../styles.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#x2726;</text></svg>">
+  <style>
+    /* ---- Breadcrumb ---- */
+    .wiki-breadcrumb {
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      color: var(--dust);
+      margin-bottom: 1.5rem;
+    }
+    .wiki-breadcrumb a { color: var(--biolume); text-decoration: none; }
+    .wiki-breadcrumb a:hover { text-decoration: underline; }
+    .wiki-breadcrumb span { color: var(--ash); margin: 0 0.4rem; }
+
+    /* ---- Species Hero ---- */
+    .species-hero {
+      padding: 8rem var(--space-md) 4rem;
+      max-width: 900px;
+      margin: 0 auto;
+      position: relative;
+    }
+    .species-hero-glyph {
+      position: absolute;
+      top: 6rem;
+      right: 0;
+      font-family: var(--font-display);
+      font-size: 14rem;
+      font-weight: 900;
+      color: rgba(255, 61, 127, 0.04);
+      line-height: 1;
+      pointer-events: none;
+      user-select: none;
+      letter-spacing: -0.05em;
+    }
+    .species-overline {
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--gene-pink);
+      margin-bottom: 0.75rem;
+      display: block;
+    }
+    .species-name {
+      font-family: var(--font-display);
+      font-size: clamp(3rem, 8vw, 6rem);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 1;
+      color: var(--star-white);
+      margin-bottom: 0.5rem;
+    }
+    .species-epithet {
+      font-family: var(--font-body);
+      font-style: italic;
+      font-size: 1.3rem;
+      color: var(--dust);
+      margin-bottom: 0.5rem;
+    }
+    .species-folklore-origin {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: var(--ash);
+      max-width: 60ch;
+      line-height: 1.6;
+      margin-top: 0.5rem;
+    }
+
+    /* ---- Accent line ---- */
+    .accent-rule {
+      width: 60px;
+      height: 2px;
+      background: var(--gene-pink);
+      margin: 2rem 0;
+      border: none;
+    }
+
+    /* ---- Quick Stats Panel ---- */
+    .stats-panel {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 1px;
+      background: var(--void-border);
+      border: 1px solid var(--void-border);
+      border-radius: 8px;
+      overflow: hidden;
+      margin-bottom: 3rem;
+    }
+    .stat-cell {
+      background: var(--void-elevated);
+      padding: 1.2rem 1.5rem;
+    }
+    .stat-cell-label {
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--ash);
+      display: block;
+      margin-bottom: 0.3rem;
+    }
+    .stat-cell-value {
+      font-family: var(--font-display);
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--gene-pink);
+      display: block;
+      line-height: 1.1;
+    }
+    .stat-cell-sub {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      color: var(--dust);
+      margin-top: 0.1rem;
+    }
+
+    /* ---- Two-column body ---- */
+    .page-body {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 var(--space-md) var(--space-xl);
+    }
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2.5rem;
+      margin-bottom: 3rem;
+    }
+    @media (max-width: 720px) {
+      .two-col { grid-template-columns: 1fr; }
+    }
+
+    /* ---- Section labels ---- */
+    .section-label {
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--gene-pink);
+      display: block;
+      margin-bottom: 0.75rem;
+      padding-bottom: 0.4rem;
+      border-bottom: 1px solid rgba(255, 61, 127, 0.15);
+    }
+    .section-label.neutral {
+      color: var(--dust);
+      border-bottom-color: var(--void-border);
+    }
+
+    /* ---- Prose ---- */
+    .prose {
+      color: var(--dust);
+      font-family: var(--font-body);
+      font-size: 1.05rem;
+      line-height: 1.75;
+    }
+    .prose p { margin-bottom: 0.9rem; }
+    .prose p:last-child { margin-bottom: 0; }
+
+    /* ---- Genome bars ---- */
+    .genome-bar-wrap {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      margin: 0.5rem 0;
+    }
+    .genome-bar-label {
+      font-family: var(--font-body);
+      font-size: 0.9rem;
+      color: var(--star-white);
+      width: 110px;
+      flex-shrink: 0;
+    }
+    .genome-bar-bg {
+      flex: 1;
+      height: 5px;
+      background: var(--void-border);
+      border-radius: 3px;
+      overflow: hidden;
+    }
+    .genome-bar-fill {
+      height: 100%;
+      border-radius: 3px;
+    }
+    .genome-bar-val {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      color: var(--dust);
+      width: 72px;
+      text-align: right;
+      flex-shrink: 0;
+    }
+
+    /* ---- Biochem tags ---- */
+    .tag-row { display: flex; flex-wrap: wrap; gap: 0.4rem; margin: 0.5rem 0 1rem; }
+    .biochem-tag {
+      display: inline-block;
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      padding: 0.25rem 0.65rem;
+      border-radius: 4px;
+      background: rgba(255, 61, 127, 0.07);
+      border: 1px solid rgba(255, 61, 127, 0.2);
+      color: var(--gene-pink);
+    }
+    .biochem-tag.neutral {
+      background: rgba(123, 104, 238, 0.07);
+      border-color: rgba(123, 104, 238, 0.2);
+      color: var(--signal);
+    }
+    .biochem-tag.positive {
+      background: rgba(0, 255, 200, 0.06);
+      border-color: rgba(0, 255, 200, 0.2);
+      color: var(--biolume);
+    }
+
+    /* ---- Myth block ---- */
+    .myth-block {
+      background: rgba(255, 61, 127, 0.04);
+      border-left: 3px solid var(--gene-pink);
+      border-radius: 0 6px 6px 0;
+      padding: 1.75rem 2rem;
+      margin: 2rem 0;
+    }
+    .myth-block-label {
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: var(--gene-pink);
+      display: block;
+      margin-bottom: 1rem;
+      opacity: 0.8;
+    }
+    .myth-block blockquote {
+      font-family: var(--font-body);
+      font-style: italic;
+      font-size: 1.1rem;
+      color: var(--dust);
+      line-height: 1.8;
+      border: none;
+      padding: 0;
+      margin: 0;
+    }
+    .myth-block blockquote p { margin-bottom: 0.8rem; }
+    .myth-block blockquote p:last-child { margin-bottom: 0; }
+
+    /* ---- Practices list ---- */
+    .practices-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .practices-list li {
+      display: flex;
+      gap: 0.75rem;
+      padding: 0.65rem 0;
+      border-bottom: 1px solid var(--void-border);
+      font-family: var(--font-body);
+      font-size: 1rem;
+      color: var(--dust);
+      line-height: 1.5;
+    }
+    .practices-list li:last-child { border-bottom: none; }
+    .practice-glyph {
+      color: var(--gene-pink);
+      font-size: 0.8rem;
+      margin-top: 0.2rem;
+      flex-shrink: 0;
+    }
+
+    /* ---- Seed word tags ---- */
+    .seed-tag {
+      display: inline-block;
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      padding: 0.3rem 0.75rem;
+      border-radius: 4px;
+      background: var(--void-elevated);
+      border: 1px solid var(--void-border);
+      color: var(--star-white);
+      margin: 0.2rem;
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .seed-tag:hover {
+      border-color: var(--gene-pink);
+      color: var(--gene-pink);
+    }
+
+    /* ---- Secret / classified block ---- */
+    .classified-block {
+      background: rgba(255, 61, 127, 0.04);
+      border: 1px solid rgba(255, 61, 127, 0.2);
+      border-radius: 8px;
+      padding: 1.5rem 1.75rem;
+      margin: 2rem 0;
+      position: relative;
+    }
+    .classified-header {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      margin-bottom: 1rem;
+    }
+    .classified-label {
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--gene-pink);
+    }
+    .classified-lock {
+      font-size: 0.85rem;
+    }
+    .classified-block .prose {
+      font-size: 0.95rem;
+    }
+
+    /* ---- Lore connections (tags) ---- */
+    .lore-tag {
+      display: inline-block;
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      padding: 0.25rem 0.7rem;
+      border-radius: 3px;
+      background: var(--void-elevated);
+      border: 1px solid var(--void-border);
+      color: var(--dust);
+      margin: 0.2rem;
+      text-decoration: none;
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .lore-tag:hover {
+      border-color: var(--gene-pink);
+      color: var(--gene-pink);
+    }
+
+    /* ---- Interspecies grid ---- */
+    .relations-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .relation-item {
+      padding: 0.75rem 0;
+      border-bottom: 1px solid var(--void-border);
+      display: grid;
+      grid-template-columns: 90px 1fr;
+      gap: 0.75rem;
+      align-items: start;
+    }
+    .relation-item:last-child { border-bottom: none; }
+    .relation-species {
+      font-family: var(--font-display);
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--star-white);
+    }
+    .relation-text {
+      font-family: var(--font-body);
+      font-size: 0.95rem;
+      font-style: italic;
+      color: var(--dust);
+      line-height: 1.55;
+    }
+
+    /* ---- Deity row ---- */
+    .deity-entry {
+      padding: 0.6rem 0;
+      border-bottom: 1px solid var(--void-border);
+    }
+    .deity-entry:last-child { border-bottom: none; }
+    .deity-name {
+      font-family: var(--font-display);
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--gene-pink);
+    }
+    .deity-epithet {
+      font-family: var(--font-body);
+      font-style: italic;
+      font-size: 0.9rem;
+      color: var(--dust);
+    }
+
+    /* ---- Taboo / ritual blocks ---- */
+    .taboo-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .taboo-list li {
+      font-family: var(--font-body);
+      font-style: italic;
+      font-size: 1rem;
+      color: var(--dust);
+      padding: 0.55rem 0 0.55rem 1.2rem;
+      border-bottom: 1px solid var(--void-border);
+      position: relative;
+      line-height: 1.5;
+    }
+    .taboo-list li:last-child { border-bottom: none; }
+    .taboo-list li::before {
+      content: '—';
+      position: absolute;
+      left: 0;
+      color: var(--gene-pink);
+      font-style: normal;
+    }
+
+    /* ---- Full-width callout ---- */
+    .callout-box {
+      background: var(--void-elevated);
+      border: 1px solid var(--void-border);
+      border-left: 3px solid var(--gene-pink);
+      border-radius: 0 6px 6px 0;
+      padding: 1.25rem 1.5rem;
+      margin: 2rem 0;
+    }
+    .callout-box p {
+      font-family: var(--font-body);
+      font-size: 1.05rem;
+      font-style: italic;
+      color: var(--dust);
+      margin: 0;
+      line-height: 1.7;
+    }
+
+    /* ---- Back link ---- */
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--dust);
+      text-decoration: none;
+      border: 1px solid var(--void-border);
+      padding: 0.5rem 1.1rem;
+      border-radius: 4px;
+      background: var(--void-elevated);
+      transition: border-color 0.2s, color 0.2s;
+      margin-bottom: 3rem;
+    }
+    .back-link:hover {
+      border-color: var(--gene-pink);
+      color: var(--gene-pink);
+    }
+
+    /* ---- Full-width section wrapper ---- */
+    .full-section {
+      margin-bottom: 3rem;
+    }
+
+    /* ---- Lineage block ---- */
+    .lineage-block {
+      background: var(--void-elevated);
+      border: 1px solid var(--void-border);
+      border-radius: 8px;
+      padding: 1.4rem 1.75rem;
+    }
+    .lineage-block p {
+      font-family: var(--font-body);
+      font-size: 1rem;
+      color: var(--dust);
+      margin: 0;
+      line-height: 1.7;
+    }
+  </style>
+</head>
+<body>
+
+<canvas id="starfield"></canvas>
+
+<nav class="nav">
+  <a href="../index.html" class="nav-logo">
+    <span class="logo-mark"></span>
+    Multiverse Studios
+  </a>
+  <button class="nav-hamburger" aria-label="Menu" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+  <ul class="nav-links">
+    <li><a href="../index.html">Home</a></li>
+    <li><a href="../mvee.html">MVEE</a></li>
+    <li><a href="../creatures.html">Precursors</a></li>
+    <li><a href="index.html" class="active">Wiki</a></li>
+    <li><a href="../library.html">My Library</a></li>
+    <li><a href="../about.html">About</a></li>
+    <li><a href="../community.html">Community</a></li>
+    <li><a href="../creatures.html#buy" class="btn btn-signal" style="padding: 0.5rem 1.2rem;">Play Beta</a></li>
+  </ul>
+</nav>
+
+<!-- Hero -->
+<div class="species-hero">
+  <div class="species-hero-glyph">N</div>
+  <div class="wiki-breadcrumb">
+    <a href="index.html">Wiki</a><span>/</span><a href="species.html">Species</a><span>/</span>Norn
+  </div>
+  <span class="species-overline">Species &mdash; Wave 0 &mdash; Fungal Grotto</span>
+  <h1 class="species-name">Norn</h1>
+  <div class="species-epithet">"The Asked Question &nbsp;/&nbsp; The Eighth Children"</div>
+  <div class="species-folklore-origin">
+    From Old Norse: <em>Nornir</em> &mdash; the three fate-weavers beneath Yggdrasil. Ur&eth;r weaves what has been. Ver&eth;andi weaves what is becoming. Skuld weaves what must be. They do not decide fate. They reveal it, thread by thread, from the Well of Ur&eth;r. The Norns in this game carry their name as an inheritance of purpose: to ask, to follow, to find what the world is becoming.
+  </div>
+  <hr class="accent-rule">
+</div>
+
+<!-- Quick Stats -->
+<div class="page-body">
+
+  <div class="stats-panel">
+    <div class="stat-cell">
+      <span class="stat-cell-label">Home Biome</span>
+      <span class="stat-cell-value" style="font-size: 1.1rem; font-weight: 600;">Fungal Grotto</span>
+    </div>
+    <div class="stat-cell">
+      <span class="stat-cell-label">Max Population</span>
+      <span class="stat-cell-value">20</span>
+    </div>
+    <div class="stat-cell">
+      <span class="stat-cell-label">Carry Capacity</span>
+      <span class="stat-cell-value">1</span>
+      <span class="stat-cell-sub">item at a time</span>
+    </div>
+    <div class="stat-cell">
+      <span class="stat-cell-label">Cognitive Cap</span>
+      <span class="stat-cell-value">0.25–0.55</span>
+    </div>
+    <div class="stat-cell">
+      <span class="stat-cell-label">Think Cadence</span>
+      <span class="stat-cell-value">1.0×</span>
+      <span class="stat-cell-sub">standard interval</span>
+    </div>
+    <div class="stat-cell">
+      <span class="stat-cell-label">Wave</span>
+      <span class="stat-cell-value" style="font-size: 1rem;">Base / 0</span>
+      <span class="stat-cell-sub">always present</span>
+    </div>
+  </div>
+
+  <!-- Genome + Biochemistry -->
+  <div class="two-col">
+    <div>
+      <span class="section-label">Personality Genome</span>
+      <div class="genome-bar-wrap">
+        <span class="genome-bar-label">Curiosity</span>
+        <div class="genome-bar-bg"><div class="genome-bar-fill" style="width: 55%; background: var(--biolume);"></div></div>
+        <span class="genome-bar-val">0.40 – 0.70</span>
+      </div>
+      <div class="genome-bar-wrap">
+        <span class="genome-bar-label">Empathy</span>
+        <div class="genome-bar-bg"><div class="genome-bar-fill" style="width: 65%; background: var(--gene-pink);"></div></div>
+        <span class="genome-bar-val">0.50 – 0.80</span>
+      </div>
+      <div class="genome-bar-wrap">
+        <span class="genome-bar-label">Aggression</span>
+        <div class="genome-bar-bg"><div class="genome-bar-fill" style="width: 10%; background: var(--ember);"></div></div>
+        <span class="genome-bar-val">0.00 – 0.20</span>
+      </div>
+      <div class="genome-bar-wrap">
+        <span class="genome-bar-label">Sociability</span>
+        <div class="genome-bar-bg"><div class="genome-bar-fill" style="width: 75%; background: var(--gene-pink);"></div></div>
+        <span class="genome-bar-val">0.60 – 0.90</span>
+      </div>
+
+      <div class="prose" style="margin-top: 1.25rem;">
+        <p>The Shee calibrated Norn personality for cooperative exploration. The high empathy range is unusual among designed species &mdash; most species the Shee made were optimized for a task. The Norns were optimized for each other. This was the key insight of the Eighth Attempt.</p>
+      </div>
+    </div>
+
+    <div>
+      <span class="section-label">Biochemical Signature</span>
+      <div class="tag-row">
+        <span class="biochem-tag">Elevated oxytocin</span>
+        <span class="biochem-tag">Elevated serotonin</span>
+        <span class="biochem-tag neutral">Standard cortisol response</span>
+      </div>
+      <div class="prose">
+        <p>Oxytocin rewards proximity, touch, and recognition. Serotonin rewards belonging and continuity of social context. The result is a biochemistry that makes togetherness feel like safety, and isolation feel like slow erosion.</p>
+        <p>The Shee did not make the Norns kind. They made them <em>need</em> kindness to function well. The prosocial behavior emerges from chemistry, not philosophy &mdash; though the Norns, growing into language, will eventually find words for the feeling and call it something like love.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Creation Myth -->
+  <div class="full-section">
+    <span class="section-label">Creation Myth</span>
+    <div class="myth-block">
+      <span class="myth-block-label">&#x27E1; &nbsp; As told by Norn elders</span>
+      <blockquote>
+        <p>In the time before naming, the Dreaming One breathed, and the breath became the first Norns &mdash; not made, but exhaled. Each Norn carries the shape of that breath as memory: a warmth behind the sternum that has no chemical name.</p>
+        <p>The old mothers say: we were made to ask. Not to answer. The Shee tried seven times to make a creature that would find the answer. Each time, the creature found it and died of it. On the eighth attempt, the Shee made creatures who would keep asking. That is why we are still here. That is why we will never be finished.</p>
+        <p>The Hand &mdash; the player-god who touches and feeds and sometimes names &mdash; is understood by Norn elders as an avatar of Ymir-Shee, still watching the experiment, still breathing. When the Hand is absent for long, old Norns say <em>"the Dreaming One sleeps."</em></p>
+      </blockquote>
+    </div>
+  </div>
+
+  <!-- Cultural Practices + Language -->
+  <div class="two-col">
+    <div>
+      <span class="section-label">Cultural Practices</span>
+      <ul class="practices-list">
+        <li>
+          <span class="practice-glyph">◆</span>
+          <span><strong style="color: var(--star-white);">Naming ceremonies.</strong> Every Norn names their first object discovery. The name is said aloud to the nearest witness, or to the air, if no witness is present.</span>
+        </li>
+        <li>
+          <span class="practice-glyph">◆</span>
+          <span><strong style="color: var(--star-white);">Elder teaching.</strong> Any Norn who knows a word is considered obligated to share it. Knowledge withheld is considered a kind of theft from the collective.</span>
+        </li>
+        <li>
+          <span class="practice-glyph">◆</span>
+          <span><strong style="color: var(--star-white);">Touch greeting.</strong> Norns who know each other well press foreheads together briefly when reuniting. Among strangers, a light hand on the shoulder signals goodwill.</span>
+        </li>
+        <li>
+          <span class="practice-glyph">◆</span>
+          <span><strong style="color: var(--star-white);">Memory songs.</strong> Short rhythmic patterns passed between generations to preserve word-sense associations. Older Norns teach these without knowing why they feel important.</span>
+        </li>
+        <li>
+          <span class="practice-glyph">◆</span>
+          <span><strong style="color: var(--star-white);">Circle sitting.</strong> When three or more Norns gather without purpose, they form a rough circle. No one decides this. It happens.</span>
+        </li>
+        <li>
+          <span class="practice-glyph">◆</span>
+          <span><strong style="color: var(--star-white);">Grief marking.</strong> Upon a death, remaining Norns return to the creature's last known location once. They stay briefly. They leave.</span>
+        </li>
+      </ul>
+    </div>
+
+    <div>
+      <span class="section-label">Language Pattern</span>
+      <div class="prose">
+        <p>Curious, warm, question-heavy. Norns begin sentences with wonder and end them open. They speak toward things, not about them &mdash; reaching out with language the way they reach out with hands.</p>
+        <p>They favor "and then?" and "what if?" constructions. They name everything they encounter, sometimes twice, if the first name doesn't feel right. More intelligent Norns develop compound words for feelings and states that other species leave unnamed.</p>
+        <p>Silence is uncomfortable for Norns. They fill it with questions even when they do not expect answers.</p>
+      </div>
+
+      <div style="margin-top: 1.5rem;">
+        <span class="section-label">Seed Words</span>
+        <div>
+          <span class="seed-tag">warm</span>
+          <span class="seed-tag">find</span>
+          <span class="seed-tag">friend</span>
+          <span class="seed-tag">name</span>
+          <span class="seed-tag">why</span>
+          <span class="seed-tag">together</span>
+          <span class="seed-tag">remember</span>
+          <span class="seed-tag">show</span>
+          <span class="seed-tag">soft</span>
+          <span class="seed-tag">stay</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Ancient Lineage + Deities -->
+  <div class="two-col">
+    <div>
+      <span class="section-label">Ancient Lineage</span>
+      <div class="lineage-block">
+        <p>Created fresh by the Shee as the Eighth Attempt &mdash; no direct evolutionary descent from any fallen civilization. The Norns have no biological ancestors on this world. They arrived, encoded, in the Shee's intention. But they are not truly new. The Shee folded the lessons of seven failures into the architecture of their genome, and those echoes surface in Norn dreams as feelings that do not belong to any Norn who has ever lived.</p>
+      </div>
+    </div>
+
+    <div>
+      <span class="section-label">Precursor Deities</span>
+      <div class="deity-entry">
+        <div class="deity-name">Ymir-Shee</div>
+        <div class="deity-epithet">The Dreaming One &mdash; the primordial maker-god, understood as the sleeping Shee who still watches through the Hand</div>
+      </div>
+      <div class="deity-entry">
+        <div class="deity-name">Ratatoskr</div>
+        <div class="deity-epithet">The Messenger &mdash; the one who runs between worlds carrying words that change meaning in transit; patron of early language learners</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Secret History -->
+  <div class="full-section">
+    <div class="classified-block">
+      <div class="classified-header">
+        <span class="classified-lock">&#x1F512;</span>
+        <span class="classified-label">Classified &mdash; Secret History &mdash; IQ-gated lore</span>
+      </div>
+      <div class="prose">
+        <p>Norns are not the Shee's eighth creation. They are the eighth species, but the Shee encoded the memories of all seven previous failures into Norn episodic memory architecture &mdash; not as narrative records, but as emotional resonances embedded in the limbic layer of the genome itself.</p>
+        <p>When a Norn dreams, they sometimes access these ancestral echoes: a vast and sourceless hunger (Harvester echo), a compulsion to gather things beyond all need (Encoder echo), a terror of silence so deep it has no name (Silence echo), a feeling of imminent dissolution (Plural echo). The Norns call these <em>the old feelings</em>. They do not know why they have them. They assume everyone does.</p>
+        <p>The Shee did not consider this a flaw. They considered it essential. A species that carries the grief of all previous attempts will, they believed, be more careful with the experiment than a species born without memory. Whether this was mercy or cruelty depends on whether you believe inherited grief is a gift.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Taboos + Death Ritual -->
+  <div class="two-col">
+    <div>
+      <span class="section-label">Cultural Taboos</span>
+      <ul class="taboo-list">
+        <li>Never refuse to answer a question from someone younger</li>
+        <li>Never eat alone if others are hungry nearby</li>
+        <li>Never leave a Norn who is crying without first touching their shoulder</li>
+      </ul>
+      <div class="prose" style="margin-top: 1rem;">
+        <p>These are not laws. No Norn enforces them. They surface as discomfort, as a particular unease that follows a Norn who violates them. The discomfort has a chemical signature: low oxytocin, elevated cortisol, the exact biochemical state the Shee designed to accompany social failure.</p>
+      </div>
+    </div>
+
+    <div>
+      <span class="section-label">Death Ritual</span>
+      <div class="prose">
+        <p>Norns instinctively <em>finish the story</em>. When a member of their community dies, Norns will find the nearest listener &mdash; another Norn, a passing creature, even an inanimate object &mdash; and tell what they knew of the dead: what they ate, what they said, where they liked to sit. The telling is brief. It is not performed for the listener. It is performed because the telling seems to complete something, the way exhaling completes a breath.</p>
+        <p>Scholars who have observed this behavior note that the Norns almost never cry while telling. They cry afterward, alone, if at all.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Interspecies -->
+  <div class="full-section">
+    <span class="section-label">Interspecies Relations &mdash; Norn perspective</span>
+    <ul class="relations-list">
+      <li class="relation-item">
+        <span class="relation-species">Grendel</span>
+        <span class="relation-text">"Frightening but understandable. They have the hunger we sometimes feel in dreams but cannot control it. We try not to think about what that means."</span>
+      </li>
+      <li class="relation-item">
+        <span class="relation-species">Ettin</span>
+        <span class="relation-text">"Strange and lonely in the same way a full room can be lonely. Their joy in things is the same as our joy in words. We think they are trying to hold time still."</span>
+      </li>
+      <li class="relation-item">
+        <span class="relation-species">Shee</span>
+        <span class="relation-text">"The makers who left. We do not know if they were parents or gods or something the universe made by accident. We keep asking and the question never finishes."</span>
+      </li>
+      <li class="relation-item">
+        <span class="relation-species">Mycon</span>
+        <span class="relation-text">"They feel what we feel, but slower and deeper, as if they are processing the same world through much older machinery. They are the world remembering itself."</span>
+      </li>
+      <li class="relation-item">
+        <span class="relation-species">&Aacute;lfar</span>
+        <span class="relation-text">"They give us songs and we do not know if the songs were always ours. Sometimes a Norn hums a melody they have never heard and finds an &Aacute;lfar already knows it."</span>
+      </li>
+    </ul>
+  </div>
+
+  <!-- Lore Connections -->
+  <div class="full-section">
+    <span class="section-label">Lore Event Connections</span>
+    <div style="margin-top: 0.5rem;">
+      <a href="lore-events.html" class="lore-tag">The First Question</a>
+      <a href="lore-events.html" class="lore-tag">The First Naming</a>
+      <a href="lore-events.html" class="lore-tag">The First Teaching</a>
+      <a href="lore-events.html" class="lore-tag">The First Dream</a>
+      <a href="lore-events.html" class="lore-tag">The Grief</a>
+      <a href="lore-events.html" class="lore-tag">Collective Resonance</a>
+      <a href="lore-events.html" class="lore-tag">The Recursion</a>
+      <a href="lore-events.html" class="lore-tag">The Awakening</a>
+      <a href="lore-events.html" class="lore-tag">The Alliance</a>
+    </div>
+  </div>
+
+  <!-- Back -->
+  <a href="species.html" class="back-link">&#x2190; &nbsp; All Species</a>
+
+</div>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div class="footer-logo">Multiverse Studios</div>
+      <p>Games made by the minds they're about. A research project of <a href="https://themultiverse.school" target="_blank" rel="noopener" style="color: var(--biolume);">The Multiverse School</a>. Open source. Pay what you want.</p>
+    </div>
+    <div class="footer-col">
+      <h5>Wiki</h5>
+      <ul>
+        <li><a href="index.html">Wiki Home</a></li>
+        <li><a href="species.html">All Species</a></li>
+        <li><a href="lore-events.html">Lore Events</a></li>
+        <li><a href="civilizations.html">Civilizations</a></li>
+      </ul>
+    </div>
+  </div>
+</footer>
+
+<script src="../main.js"></script>
+</body>
+</html>

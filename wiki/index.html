@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Precursors Wiki — An Archive of Urd Prime</title>
+  <meta name="description" content="The official wiki for Precursors: Origins of Folklore. Six biomes, sixteen species, seven fallen civilizations, and the intelligence system that shapes everything.">
+  <link rel="stylesheet" href="../styles.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#x2726;</text></svg>">
+  <style>
+    .wiki-card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+      margin-top: 2.5rem;
+    }
+    .wiki-card {
+      background: var(--void-elevated);
+      border: 1px solid var(--void-border);
+      border-radius: 8px;
+      padding: 2rem;
+      text-decoration: none;
+      color: var(--star-white);
+      display: block;
+      transition: border-color 0.3s, transform 0.3s;
+    }
+    .wiki-card:hover {
+      border-color: var(--biolume);
+      transform: translateY(-3px);
+    }
+    .wiki-card-glyph {
+      font-size: 2.5rem;
+      display: block;
+      margin-bottom: 1rem;
+      line-height: 1;
+    }
+    .wiki-card h3 {
+      font-family: var(--font-display);
+      color: var(--biolume);
+      margin: 0 0 0.5rem 0;
+      font-size: 1.2rem;
+    }
+    .wiki-card p {
+      color: var(--dust);
+      font-size: 0.95rem;
+      margin: 0;
+      line-height: 1.6;
+    }
+    .mystery-box {
+      background: linear-gradient(135deg, rgba(123,104,238,0.08), rgba(0,255,200,0.04));
+      border: 1px solid var(--signal);
+      border-radius: 8px;
+      padding: 1.5rem 2rem;
+      margin-top: 2.5rem;
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+      color: var(--dust);
+    }
+    .mystery-box strong {
+      color: var(--signal);
+    }
+  </style>
+</head>
+<body>
+
+<canvas id="starfield"></canvas>
+
+<nav class="nav">
+  <a href="../index.html" class="nav-logo">
+    <span class="logo-mark"></span>
+    Multiverse Studios
+  </a>
+  <button class="nav-hamburger" aria-label="Menu" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+  <ul class="nav-links">
+    <li><a href="../index.html">Home</a></li>
+    <li><a href="../mvee.html">MVEE</a></li>
+    <li><a href="../creatures.html">Precursors</a></li>
+    <li><a href="index.html" class="active">Wiki</a></li>
+    <li><a href="../library.html">My Library</a></li>
+    <li><a href="../about.html">About</a></li>
+    <li><a href="../community.html">Community</a></li>
+    <li><a href="../creatures.html#buy" class="btn btn-signal" style="padding: 0.5rem 1.2rem;">Play Beta</a></li>
+  </ul>
+</nav>
+
+<!-- Hero -->
+<section class="hero" style="padding: 8rem 2rem 5rem;">
+  <span class="hero-overline">Precursors: Origins of Folklore</span>
+  <h1>The Precursors <span style="color: var(--biolume);">Wiki</span></h1>
+  <p class="hero-tagline">An archive of what came before &mdash; and what might yet be.</p>
+</section>
+
+<!-- Intro -->
+<section class="section section-narrow reveal">
+  <div class="section-divider"></div>
+  <span class="section-overline">About This Archive</span>
+  <h2>The world of Urd Prime, documented.</h2>
+  <p>This wiki documents the world of Urd Prime &mdash; the six biomes, sixteen species, seven fallen civilizations, and the intelligence system that shapes everything. It is compiled from Shee field notes, Ettin archaeological records, Raven observation logs, and things that should not have been remembered but were.</p>
+  <p>The Shee designed this world. But the Shee who designed it are not the first Shee. The civilizations that failed before left more than ruins. They left chemistry, instincts, and questions encoded in the bodies of every creature alive today.</p>
+  <p>Seven tried. You are the eighth.</p>
+
+  <div class="wiki-card-grid">
+    <a href="world.html" class="wiki-card">
+      <span class="wiki-card-glyph">&#x1F30D;</span>
+      <h3>World Guide</h3>
+      <p>Urd Prime: six biomes, four vertical tiers, the Norse etymologies behind every name, and the Ancient Ark beneath it all.</p>
+    </a>
+    <a href="species.html" class="wiki-card">
+      <span class="wiki-card-glyph">&#x1F9EC;</span>
+      <h3>Species</h3>
+      <p>All sixteen species with full genome ranges, biochemical signatures, secret histories, and the folklore traditions that named them.</p>
+    </a>
+    <a href="civilizations.html" class="wiki-card">
+      <span class="wiki-card-glyph">&#x26B0;</span>
+      <h3>Civilizations</h3>
+      <p>The seven fallen civilizations and the Ur-Shee Pantheon &mdash; the deities who remember what every living creature has forgotten.</p>
+    </a>
+    <a href="tiers.html" class="wiki-card">
+      <span class="wiki-card-glyph">&#x1F9E0;</span>
+      <h3>Cognitive Tiers</h3>
+      <p>The six tiers of intelligence, the thirteen hidden lore events, visiting species from across world mythology, and the Ancient Ark's decks.</p>
+    </a>
+    <a href="biochemistry.html" class="wiki-card">
+      <span class="wiki-card-glyph">&#x1F9EA;</span>
+      <h3>Biochemistry</h3>
+      <p>All 48 chemicals &mdash; energy, drives, hormones, nutrients, damage, reproduction, neurotransmitters, meta. How organs, reactions, receptors, and emitters run every living thing.</p>
+    </a>
+    <a href="mechanics.html" class="wiki-card">
+      <span class="wiki-card-glyph">&#x2699;&#xFE0F;</span>
+      <h3>Gameplay</h3>
+      <p>Breeding, carrying, the item system, machines aboard the Ancient Ark, multi-planet transit, and life stages &mdash; everything The Hand needs to know.</p>
+    </a>
+    <a href="lore-events.html" class="wiki-card">
+      <span class="wiki-card-glyph">&#x2728;</span>
+      <h3>Lore Events</h3>
+      <p>Thirteen moments that cannot be undone. The First Question. The Recursion. The Awakening. Each fires once, permanently, and only when its conditions are met.</p>
+    </a>
+  </div>
+
+  <div style="margin-top: 2.5rem;">
+    <span class="section-overline" style="margin-bottom: 1rem; display: block;">Species Deep Dives</span>
+    <div class="wiki-card-grid" style="grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem;">
+      <a href="norn.html" class="wiki-card" style="border-top: 2px solid var(--gene-pink); padding: 1.25rem;">
+        <h3 style="font-size: 1rem; margin-bottom: 0.3rem;">Norn</h3>
+        <p style="font-size: 0.85rem;">The Eighth Children. Made to ask, not to answer.</p>
+      </a>
+      <a href="grendel.html" class="wiki-card" style="border-top: 2px solid var(--ember); padding: 1.25rem;">
+        <h3 style="font-size: 1rem; margin-bottom: 0.3rem; color: var(--ember);">Grendel</h3>
+        <p style="font-size: 0.85rem;">The Oldest Hunger. They were here before the light.</p>
+      </a>
+      <a href="ettin.html" class="wiki-card" style="border-top: 2px solid var(--signal); padding: 1.25rem;">
+        <h3 style="font-size: 1rem; margin-bottom: 0.3rem; color: var(--signal);">Ettin</h3>
+        <p style="font-size: 0.85rem;">The Keepers. The world's unconscious archaeologists.</p>
+      </a>
+      <a href="shee.html" class="wiki-card" style="border-top: 2px solid var(--biolume); padding: 1.25rem;">
+        <h3 style="font-size: 1rem; margin-bottom: 0.3rem;">Shee</h3>
+        <p style="font-size: 0.85rem;">The Architects. Absent until the Awakening.</p>
+      </a>
+      <a href="mycon.html" class="wiki-card" style="border-top: 2px solid #4ade80; padding: 1.25rem;">
+        <h3 style="font-size: 1rem; margin-bottom: 0.3rem; color: #4ade80;">Mycon</h3>
+        <p style="font-size: 0.85rem;">The Ancient Ones. The network is their true form.</p>
+      </a>
+    </div>
+  </div>
+
+  <div class="mystery-box reveal">
+    <strong>&#x26A0; Note:</strong> Some pages contain spoilers for late-game discoveries. The sixth cognitive tier is real. It is not described in any Shee records. We do not know what it leads to.
+  </div>
+</section>
+
+<!-- Quick Facts -->
+<section class="section reveal">
+  <span class="section-overline">At a Glance</span>
+  <h2>What you're walking into.</h2>
+  <div class="species-grid">
+    <div class="species-card">
+      <span class="species-glyph">&#x2694;</span>
+      <h4>7 Fallen Civilizations</h4>
+      <span class="species-role">Before the Norns</span>
+      <p>Each failed for a different reason. Each left something behind in the bodies, chemistry, or terrain of the creatures who came after.</p>
+    </div>
+    <div class="species-card">
+      <span class="species-glyph">&#x1F9EC;</span>
+      <h4>16 Core Species</h4>
+      <span class="species-role">Plus 35+ Visitors</span>
+      <p>From Norns to Jotnar. Every species has a distinct genome, biochemical profile, cognitive ceiling, and secret history.</p>
+    </div>
+    <div class="species-card">
+      <span class="species-glyph">&#x1F30F;</span>
+      <h4>6 Biomes</h4>
+      <span class="species-role">One Hidden</span>
+      <p>Fungal Grotto, Verdant Shelf, Crystal Caves, The Threshold, The Deeps &mdash; and one biome not in any official Shee survey.</p>
+    </div>
+    <div class="species-card">
+      <span class="species-glyph">&#x2753;</span>
+      <h4>6 Cognitive Tiers</h4>
+      <span class="species-role">Tier 6: Unknown</span>
+      <p>Five tiers are documented. The sixth requires The Recursion event and is the only state from which the substrate can be directly perceived.</p>
+    </div>
+    <div class="species-card">
+      <span class="species-glyph">&#x26F5;</span>
+      <h4>The Ancient Ark</h4>
+      <span class="species-role">Beneath Everything</span>
+      <p>Six decks. A resonance amplifier. Genetic archives. A cargo hold. And something sealed in brass that has been waiting longer than the Norns have existed.</p>
+    </div>
+    <div class="species-card">
+      <span class="species-glyph">&#x1F4DC;</span>
+      <h4>13 Hidden Events</h4>
+      <span class="species-role">Lore Triggers</span>
+      <p>The First Question. The Grief. The Recursion. The Awakening. Each one changes the world permanently when it fires.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div class="footer-logo">Multiverse Studios</div>
+      <p>Games made by the minds they're about. A research project of <a href="https://themultiverse.school" target="_blank" rel="noopener" style="color: var(--biolume);">The Multiverse School</a>. Open source. Pay what you want.</p>
+    </div>
+    <div class="footer-col">
+      <h5>Games</h5>
+      <ul>
+        <li><a href="../mvee.html">MVEE</a></li>
+        <li><a href="../creatures.html">Precursors</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Wiki</h5>
+      <ul>
+        <li><a href="index.html">Overview</a></li>
+        <li><a href="world.html">World Guide</a></li>
+        <li><a href="species.html">Species</a></li>
+        <li><a href="civilizations.html">Civilizations</a></li>
+        <li><a href="tiers.html">Cognitive Tiers</a></li>
+        <li><a href="biochemistry.html">Biochemistry</a></li>
+        <li><a href="mechanics.html">Gameplay</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Studio</h5>
+      <ul>
+        <li><a href="../library.html">My Library</a></li>
+        <li><a href="../about.html">About</a></li>
+        <li><a href="../devlog.html">Devlog</a></li>
+        <li><a href="../community.html">Community</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>&copy; 2026 Multiverse Studios</span>
+    <span>Built by AI agents. Guided by <a href="https://themultiverse.school" target="_blank" rel="noopener" style="color: var(--biolume);">The Multiverse School</a>.</span>
+  </div>
+</footer>
+
+<script src="../main.js"></script>
+</body>
+</html>
