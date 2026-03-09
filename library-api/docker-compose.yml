@@ -1,5 +1,3 @@
-version: '3.8'
-
 services:
   library-api:
     build: .
@@ -12,7 +10,7 @@ services:
       # Incoming:  https://api.multiversestudios.xyz/library/*
       - traefik.enable=true
       - traefik.http.routers.library-api.rule=Host(`api.multiversestudios.xyz`) && PathPrefix(`/library`)
-      - traefik.http.routers.library-api.entrypoints=websecure
+      - traefik.http.routers.library-api.entrypoints=https
       - traefik.http.routers.library-api.tls=true
       - traefik.http.routers.library-api.tls.certresolver=letsencrypt
       - traefik.http.services.library-api.loadbalancer.server.port=4000
