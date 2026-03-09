@@ -43,7 +43,7 @@
       --glow-violet-dim: #4d3e6e;
       --text-bright: #d8dce8;
       --text-mid: #8b8fa4;
-      --text-dim: #4a4d62;
+      --text-dim: #565966;
       --rune-glow: rgba(61, 252, 224, 0.15);
       --font-display: 'Cormorant Garamond', 'Garamond', serif;
       --font-mono: 'JetBrains Mono', 'Menlo', monospace;
@@ -329,7 +329,7 @@
     }
 
     #chat-input::placeholder {
-      color: var(--text-dim);
+      color: var(--text-mid);
       font-style: italic;
     }
 
@@ -888,8 +888,8 @@
     }
 
   </style>
-  <script type="module" crossorigin src="/play/creatures/assets/main-bkcQd57K.js"></script>
-  <link rel="modulepreload" crossorigin href="/play/creatures/assets/SpriteManifest-D2AZQua1.js">
+  <script type="module" crossorigin src="/play/creatures/assets/main-D2Y8FMb-.js"></script>
+  <link rel="modulepreload" crossorigin href="/play/creatures/assets/SpriteManifest-C1ZgUZdW.js">
 <link rel="manifest" href="/play/creatures/manifest.webmanifest"><script id="vite-plugin-pwa:register-sw" src="/play/creatures/registerSW.js"></script></head>
 <body>
   <!-- Loading Screen -->
@@ -934,7 +934,7 @@
   <!-- Chat -->
   <div class="chat-container hidden" id="chat-container">
     <div class="chat-input-wrap">
-      <input type="text" id="chat-input" placeholder="speak to your Norn..." autocomplete="off" spellcheck="false" />
+      <input type="text" id="chat-input" placeholder="select a creature first..." autocomplete="off" spellcheck="false" />
       <span class="chat-hint">enter ↵</span>
     </div>
   </div>
@@ -954,8 +954,12 @@
       <li><kbd>Space</kbd>follow</li>
       <li><kbd>C</kbd>chronicle</li>
       <li><kbd>N</kbd>planets</li>
+      <li><kbd>T</kbd>tools</li>
+      <li><kbd>L</kbd>settings</li>
       <li><kbd>+</kbd><kbd>−</kbd>zoom · scroll</li>
+      <li><kbd>[</kbd><kbd>]</kbd>speed 1–10x</li>
       <li><kbd>F5</kbd>save · <kbd>F9</kbd>load</li>
+      <li><kbd>Z</kbd>stasis</li>
       <li><kbd>Esc</kbd>deselect</li>
     </ul>
   </nav>
