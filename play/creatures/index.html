@@ -148,6 +148,7 @@
       top: 0;
       left: 8px;
       height: 36px;
+      max-width: 40%;
       z-index: 101;
       display: flex;
       align-items: center;
@@ -211,6 +212,9 @@
       letter-spacing: 0.05em;
       color: var(--text-mid);
       white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      max-width: 48px;
       transition: color 0.2s;
     }
 
@@ -224,11 +228,32 @@
 
     .roster-overflow {
       font-family: var(--font-mono);
-      font-size: 8px;
-      color: var(--text-dim);
-      padding: 0 4px;
+      font-size: 9px;
+      color: var(--glow-cyan);
+      opacity: 0.7;
+      padding: 2px 6px;
       white-space: nowrap;
       pointer-events: none;
+      border: 1px solid rgba(61, 252, 224, 0.15);
+      border-radius: 3px;
+      background: rgba(61, 252, 224, 0.04);
+      flex-shrink: 0;
+    }
+
+    /* Roster pulse animation — draws attention after cinematic zoom (MUL-529) */
+    .creature-roster.roster-pulse {
+      animation: rosterPulse 1.5s ease-in-out 2;
+    }
+    .creature-roster.roster-pulse .roster-pip-dot {
+      animation: pipGlow 1.5s ease-in-out 2;
+    }
+    @keyframes rosterPulse {
+      0%, 100% { opacity: 0.88; }
+      50% { opacity: 1; filter: drop-shadow(0 0 6px rgba(61, 252, 224, 0.5)); }
+    }
+    @keyframes pipGlow {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.6); box-shadow: 0 0 8px currentColor; }
     }
 
     .title-bar h1 {
@@ -646,10 +671,24 @@
       position: fixed;
       bottom: 60px; /* above chat-container (40px input + 14px padding + 6px gap) */
       left: 236px; /* clear InventionChronicle (220px + 8px + gap) */
+      right: 268px; /* don't overlap UIPanel */
       z-index: 100;
       pointer-events: none;
-      opacity: 0.55;
+      opacity: 0;
       transition: opacity 0.4s ease;
+      background: linear-gradient(0deg, rgba(10, 11, 16, 0.7) 0%, rgba(10, 11, 16, 0.4) 70%, transparent 100%);
+      padding: 6px 10px 4px;
+      border-radius: 3px;
+    }
+
+    /* Show hints when idle (no norn selected) — more visible for new players */
+    .key-hints.hints-idle {
+      opacity: 0.7;
+    }
+
+    /* Dim when norn selected (chat is active, player is engaged) */
+    .key-hints.hints-active {
+      opacity: 0.4;
     }
 
     .key-hints:hover {
@@ -662,6 +701,7 @@
       display: flex;
       gap: 14px;
       flex-wrap: wrap;
+      justify-content: center;
     }
 
     .key-hints li {
@@ -888,7 +928,7 @@
     }
 
   </style>
-  <script type="module" crossorigin src="/play/creatures/assets/main-D2Y8FMb-.js"></script>
+  <script type="module" crossorigin src="/play/creatures/assets/main-B-82yfUc.js"></script>
   <link rel="modulepreload" crossorigin href="/play/creatures/assets/SpriteManifest-C1ZgUZdW.js">
 <link rel="manifest" href="/play/creatures/manifest.webmanifest"><script id="vite-plugin-pwa:register-sw" src="/play/creatures/registerSW.js"></script></head>
 <body>
