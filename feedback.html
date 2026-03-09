@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Feedback & Bug Reports — Multiverse Studios</title>
+  <meta name="description" content="Submit bug reports, feedback, or game ideas for Multiverse: The End of Eternity and Precursors: Origins of Folklore.">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#x2726;</text></svg>">
+  <style>
+    .feedback-section {
+      padding: var(--space-xl) var(--space-md);
+      max-width: var(--max-width-narrow);
+      margin: 0 auto;
+    }
+    .feedback-section h1 {
+      font-family: var(--font-display);
+      font-size: 2.4rem;
+      color: var(--star-white);
+      margin-bottom: var(--space-xs);
+    }
+    .feedback-section .subtitle {
+      color: var(--dust);
+      font-family: var(--font-body);
+      font-size: 1.2rem;
+      margin-bottom: var(--space-lg);
+    }
+    .feedback-form {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-md);
+    }
+    .form-row {
+      display: flex;
+      gap: var(--space-sm);
+    }
+    @media (max-width: 600px) {
+      .form-row { flex-direction: column; }
+    }
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+      flex: 1;
+    }
+    .form-group label {
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      color: var(--dust);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .form-group select,
+    .form-group input,
+    .form-group textarea {
+      background: var(--void-surface);
+      border: 1px solid var(--void-border);
+      color: var(--star-white);
+      font-family: var(--font-body);
+      font-size: 1.1rem;
+      padding: 0.75rem 1rem;
+      border-radius: 6px;
+      transition: border-color 0.2s;
+    }
+    .form-group select:focus,
+    .form-group input:focus,
+    .form-group textarea:focus {
+      outline: none;
+      border-color: var(--biolume-dim);
+    }
+    .form-group textarea {
+      min-height: 150px;
+      resize: vertical;
+    }
+    .form-group select option {
+      background: var(--void-surface);
+      color: var(--star-white);
+    }
+    .severity-options {
+      display: flex;
+      gap: var(--space-xs);
+      flex-wrap: wrap;
+    }
+    .severity-options label {
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+      cursor: pointer;
+      padding: 0.4rem 0.8rem;
+      border: 1px solid var(--void-border);
+      border-radius: 4px;
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: var(--dust);
+      text-transform: none;
+      transition: all 0.2s;
+    }
+    .severity-options input[type="radio"] { display: none; }
+    .severity-options input[type="radio"]:checked + label {
+      border-color: var(--biolume-dim);
+      color: var(--star-white);
+      background: var(--void-elevated);
+    }
+    .submit-btn {
+      align-self: flex-start;
+      padding: 0.9rem 2.5rem;
+      font-family: var(--font-display);
+      font-size: 1rem;
+      font-weight: 600;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      background: var(--biolume);
+      color: var(--void);
+      transition: all 0.2s;
+    }
+    .submit-btn:hover { background: var(--biolume-dim); transform: translateY(-1px); }
+    .submit-btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+    .form-status {
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+      padding: 0.75rem 1rem;
+      border-radius: 6px;
+      display: none;
+    }
+    .form-status.success {
+      display: block;
+      background: rgba(0,255,200,0.1);
+      border: 1px solid var(--biolume-dim);
+      color: var(--biolume);
+    }
+    .form-status.error {
+      display: block;
+      background: rgba(255,61,127,0.1);
+      border: 1px solid var(--gene-pink);
+      color: var(--gene-pink);
+    }
+    .bug-only { display: none; }
+    .show-bug .bug-only { display: flex; }
+  </style>
+</head>
+<body>
+
+<canvas id="starfield"></canvas>
+
+<nav class="nav">
+  <a href="index.html" class="nav-logo">
+    <span class="logo-mark"></span>
+    Multiverse Studios
+  </a>
+  <button class="nav-hamburger" aria-label="Menu" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="mvee.html">MVEE</a></li>
+    <li><a href="creatures.html">Precursors</a></li>
+    <li><a href="wiki/index.html">Wiki</a></li>
+    <li><a href="library.html">My Library</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="devlog.html">Devlog</a></li>
+    <li><a href="community.html">Community</a></li>
+  </ul>
+</nav>
+
+<section class="feedback-section">
+  <h1>Feedback & Bug Reports</h1>
+  <p class="subtitle">Found a bug? Have an idea? We read everything. Submissions go directly to our team.</p>
+
+  <form class="feedback-form" id="feedbackForm">
+    <div class="form-row">
+      <div class="form-group">
+        <label for="feedbackType">Type</label>
+        <select id="feedbackType" name="type" required>
+          <option value="bug_report">Bug Report</option>
+          <option value="feedback">Feedback</option>
+          <option value="idea">Game Idea</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="feedbackGame">Game</label>
+        <select id="feedbackGame" name="game" required>
+          <option value="general">General / Both</option>
+          <option value="creatures_next">Precursors: Origins of Folklore</option>
+          <option value="mvee">Multiverse: The End of Eternity</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="form-group bug-only">
+      <label>Severity</label>
+      <div class="severity-options">
+        <input type="radio" name="severity" value="critical" id="sev-critical">
+        <label for="sev-critical">Critical</label>
+        <input type="radio" name="severity" value="major" id="sev-major">
+        <label for="sev-major">Major</label>
+        <input type="radio" name="severity" value="minor" id="sev-minor" checked>
+        <label for="sev-minor">Minor</label>
+        <input type="radio" name="severity" value="cosmetic" id="sev-cosmetic">
+        <label for="sev-cosmetic">Cosmetic</label>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="feedbackTitle">Title</label>
+      <input type="text" id="feedbackTitle" name="title" required minlength="3" maxlength="200"
+             placeholder="Brief summary of the issue or idea">
+    </div>
+
+    <div class="form-group">
+      <label for="feedbackDescription">Description</label>
+      <textarea id="feedbackDescription" name="description" required minlength="10" maxlength="5000"
+                placeholder="What happened? What did you expect? Steps to reproduce (for bugs)."></textarea>
+    </div>
+
+    <div class="form-group">
+      <label for="feedbackContact">Contact (optional)</label>
+      <input type="text" id="feedbackContact" name="contact"
+             placeholder="Email or Matrix handle so we can follow up">
+    </div>
+
+    <div class="form-status" id="formStatus"></div>
+
+    <button type="submit" class="submit-btn" id="submitBtn">Submit</button>
+  </form>
+</section>
+
+<footer class="footer">
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div class="footer-logo">Multiverse Studios</div>
+      <p>Games made by the minds they're about. Open source. Pay what you want.</p>
+    </div>
+    <div class="footer-col">
+      <h5>Games</h5>
+      <ul>
+        <li><a href="mvee.html">MVEE</a></li>
+        <li><a href="creatures.html">Precursors</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Studio</h5>
+      <ul>
+        <li><a href="about.html">About</a></li>
+        <li><a href="devlog.html">Devlog</a></li>
+        <li><a href="community.html">Community</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>&copy; 2026 Multiverse Studios</span>
+  </div>
+</footer>
+
+<script src="main.js"></script>
+<script>
+(function() {
+  const FEEDBACK_API = 'https://feedback.multiversestudios.xyz/submit';
+  const form = document.getElementById('feedbackForm');
+  const status = document.getElementById('formStatus');
+  const submitBtn = document.getElementById('submitBtn');
+  const typeSelect = document.getElementById('feedbackType');
+  const gameSelect = document.getElementById('feedbackGame');
+
+  // Pre-fill game from URL param
+  const params = new URLSearchParams(window.location.search);
+  if (params.get('game')) {
+    gameSelect.value = params.get('game');
+  }
+  if (params.get('type')) {
+    typeSelect.value = params.get('type');
+  }
+
+  // Show/hide severity for bug reports
+  typeSelect.addEventListener('change', function() {
+    form.classList.toggle('show-bug', this.value === 'bug_report');
+  });
+  form.classList.toggle('show-bug', typeSelect.value === 'bug_report');
+
+  form.addEventListener('submit', async function(e) {
+    e.preventDefault();
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Submitting...';
+    status.className = 'form-status';
+    status.style.display = 'none';
+
+    const payload = {
+      type: typeSelect.value,
+      game: gameSelect.value,
+      title: document.getElementById('feedbackTitle').value.trim(),
+      description: document.getElementById('feedbackDescription').value.trim(),
+      browser: navigator.userAgent,
+    };
+
+    const contact = document.getElementById('feedbackContact').value.trim();
+    if (contact) payload.contact = contact;
+
+    if (typeSelect.value === 'bug_report') {
+      const severity = document.querySelector('input[name="severity"]:checked');
+      if (severity) payload.severity = severity.value;
+    }
+
+    try {
+      const resp = await fetch(FEEDBACK_API, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      });
+
+      const data = await resp.json();
+
+      if (resp.ok) {
+        status.className = 'form-status success';
+        status.textContent = 'Thank you! Your submission has been received. We read everything.';
+        status.style.display = 'block';
+        form.reset();
+        form.classList.remove('show-bug');
+      } else {
+        throw new Error(data.error || 'Submission failed');
+      }
+    } catch (err) {
+      status.className = 'form-status error';
+      status.textContent = 'Error: ' + (err.message || 'Could not submit. Please try again.');
+      status.style.display = 'block';
+    } finally {
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'Submit';
+    }
+  });
+})();
+</script>
+</body>
+</html>

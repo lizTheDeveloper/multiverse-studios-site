@@ -1,0 +1,24 @@
+services:
+  feedback-api:
+    build: .
+    container_name: feedback-api
+    restart: unless-stopped
+    environment:
+      - MATRIX_HOMESERVER=https://matrix.multiversestudios.xyz
+      - MATRIX_ROOM_ID=!pQqsRZBEIHWLodysbV:matrix.multiversestudios.xyz
+      - MATRIX_ACCESS_TOKEN=${MATRIX_ACCESS_TOKEN}
+      - ALLOWED_ORIGINS=https://multiversestudios.xyz,http://localhost:3000,http://localhost:5173
+      - PORT=3000
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.feedback.rule=Host(`feedback.multiversestudios.xyz`)"
+      - "traefik.http.routers.feedback.entrypoints=https"
+      - "traefik.http.routers.feedback.tls=true"
+      - "traefik.http.routers.feedback.tls.certresolver=letsencrypt"
+      - "traefik.http.services.feedback.loadbalancer.server.port=3000"
+    networks:
+      - coolify
+
+networks:
+  coolify:
+    external: true
