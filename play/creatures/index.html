@@ -64,6 +64,7 @@
       width: 100vw;
       height: 100vh;
       position: relative;
+      contain: strict; /* P-330: Prevent layout from escaping the game view */
     }
 
     #game-container canvas {
@@ -156,6 +157,7 @@
       pointer-events: auto;
       opacity: 0.88;
       transition: opacity 0.3s ease;
+      contain: content; /* P-330: Isolate roster updates */
     }
 
     .creature-roster:hover {
@@ -292,6 +294,38 @@
       50% { opacity: 1; box-shadow: 0 0 8px var(--glow-cyan); }
     }
 
+    /* ── CHAT THINKING INDICATOR ── shown while waiting for LLM (MUL-638) */
+    .chat-thinking {
+      display: none;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 16px 4px;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--text-dim);
+      letter-spacing: 0.04em;
+    }
+    .chat-thinking.visible {
+      display: flex;
+    }
+    .chat-thinking__dots {
+      display: flex;
+      gap: 3px;
+    }
+    .chat-thinking__dot {
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: var(--glow-cyan-dim);
+      animation: chat-dot-pulse 1.2s ease-in-out infinite;
+    }
+    .chat-thinking__dot:nth-child(2) { animation-delay: 0.2s; }
+    .chat-thinking__dot:nth-child(3) { animation-delay: 0.4s; }
+    @keyframes chat-dot-pulse {
+      0%, 80%, 100% { opacity: 0.2; transform: scale(0.8); }
+      40% { opacity: 1; transform: scale(1.1); box-shadow: 0 0 4px var(--glow-cyan); }
+    }
+
     /* ── CHAT INPUT ── carved channel at the bottom */
     .chat-container {
       position: fixed;
@@ -307,6 +341,7 @@
         transparent 100%
       );
       transition: opacity 0.4s ease, transform 0.4s ease;
+      contain: content; /* P-330: Isolate typing and history layout */
     }
 
     .chat-container.hidden {
@@ -928,7 +963,7 @@
     }
 
   </style>
-  <script type="module" crossorigin src="/play/creatures/assets/main-DlD_EFPp.js"></script>
+  <script type="module" crossorigin src="/play/creatures/assets/main-I1Gyxytk.js"></script>
   <link rel="modulepreload" crossorigin href="/play/creatures/assets/SpriteManifest-Bio_CDXt.js">
 <link rel="manifest" href="/play/creatures/manifest.webmanifest"><script id="vite-plugin-pwa:register-sw" src="/play/creatures/registerSW.js"></script></head>
 <body>
@@ -973,12 +1008,20 @@
 
   <!-- Chat -->
   <div class="chat-container hidden" id="chat-container">
+    <div class="chat-thinking" id="chat-thinking" aria-live="polite" aria-label="thinking">
+      <span class="chat-thinking__dots">
+        <span class="chat-thinking__dot"></span>
+        <span class="chat-thinking__dot"></span>
+        <span class="chat-thinking__dot"></span>
+      </span>
+      <span id="chat-thinking-label">◈ thinking...</span>
+    </div>
     <div class="chat-input-wrap">
       <input type="text" id="chat-input" placeholder="select a creature first..." autocomplete="off" spellcheck="false" />
       <span class="chat-hint">enter ↵</span>
     </div>
   </div>
-  <div class="idle-prompt" id="idle-prompt">select a creature to begin observation · <kbd style="font-family:var(--font-mono);font-size:11px;color:var(--glow-cyan-dim);border:1px solid var(--stone-edge);border-radius:2px;padding:0 3px;background:var(--stone-mid)">Tab</kbd> to cycle · drag to pan</div>
+  <div class="idle-prompt" id="idle-prompt">touch a norn to commune · <kbd style="font-family:var(--font-mono);font-size:11px;color:var(--glow-cyan-dim);border:1px solid var(--stone-edge);border-radius:2px;padding:0 3px;background:var(--stone-mid)">Tab</kbd> to cycle · drag to wander</div>
 
   <!-- Screen reader announcements -->
   <div id="sr-announce" aria-live="polite" aria-atomic="true" style="position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden;"></div>
