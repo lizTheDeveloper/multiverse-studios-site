@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 80" width="320" height="80" role="img" aria-label="Multiverse Studios">
+  <defs>
+    <radialGradient id="orb-light" cx="35%" cy="30%" r="70%">
+      <stop offset="0%" stop-color="#00cc9f"/>
+      <stop offset="55%" stop-color="#5a4fcf"/>
+      <stop offset="100%" stop-color="#1a1a2e"/>
+    </radialGradient>
+  </defs>
+
+  <!-- White background -->
+  <rect width="320" height="80" fill="#ffffff" rx="4"/>
+
+  <!-- Logo orb -->
+  <circle cx="40" cy="40" r="28" fill="url(#orb-light)" opacity="0.9"/>
+
+  <!-- Wordmark: Multiverse Studios -->
+  <text x="80" y="34" font-family="'Syne', 'Helvetica Neue', Arial, sans-serif" font-weight="800" font-size="22" fill="#0a0a14" letter-spacing="1">MULTIVERSE</text>
+  <text x="81" y="56" font-family="'JetBrains Mono', 'Courier New', monospace" font-weight="400" font-size="13" fill="#555566" letter-spacing="3">STUDIOS</text>
+</svg>

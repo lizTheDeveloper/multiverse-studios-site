@@ -449,12 +449,18 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
+      visibility: visible;
       transition: opacity 0.8s ease;
     }
 
     #loading-screen.fade-out {
       opacity: 0;
       pointer-events: none;
+      /* visibility:hidden applied after the opacity transition ends so the
+         element is fully removed from compositing and cannot bleed through
+         lower z-index content (MUL-648) */
+      visibility: hidden;
+      transition: opacity 0.8s ease, visibility 0s linear 0.8s;
     }
 
     /* Rune circle - the heartbeat */
@@ -963,8 +969,8 @@
     }
 
   </style>
-  <script type="module" crossorigin src="/play/creatures/assets/main-I1Gyxytk.js"></script>
-  <link rel="modulepreload" crossorigin href="/play/creatures/assets/SpriteManifest-Bio_CDXt.js">
+  <script type="module" crossorigin src="/play/creatures/assets/main-CG49y7ep.js"></script>
+  <link rel="modulepreload" crossorigin href="/play/creatures/assets/SpriteManifest-B1ehD3-s.js">
 <link rel="manifest" href="/play/creatures/manifest.webmanifest"><script id="vite-plugin-pwa:register-sw" src="/play/creatures/registerSW.js"></script></head>
 <body>
   <!-- Loading Screen -->

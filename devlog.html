@@ -141,6 +141,75 @@
 <section class="section">
   <div class="devlog-grid">
 
+    <!-- Entry: Biochemistry Deep Dive -->
+    <article class="devlog-entry reveal">
+      <div class="devlog-meta">
+        <span class="devlog-date">March 9, 2026</span>
+        <span class="devlog-tag creatures">Precursors</span>
+        <span class="devlog-tag milestone">Deep Dive</span>
+      </div>
+      <h3>48 Chemical Pathways: How Precursors Simulates Real Biochemistry</h3>
+
+      <p>When Steve Grand built the original Creatures in 1996, he gave his Norns 48 chemicals and a rule-based nervous system. It was the first consumer simulation where a creature's hunger was a <em>measurable quantity of a specific molecule</em>, not a timer. Players fell in love with creatures that had real biology.</p>
+
+      <p>Precursors is built on the same principle, taken further. There are <strong>48 universal chemicals</strong> shared by every species — then 25 or more additional chemicals unique to each lineage. A Norn's biochemistry and a Grendel's are as different as a mammal's and an insect's. Neither creature follows any scripted behavioral rules. Everything they do emerges from molecules reacting.</p>
+
+      <div class="devlog-pullout">
+        No creature in Precursors is "programmed to be hungry." Hunger is a chemical. When its concentration crosses a threshold, the LLM cognition system perceives it as urgency. When the creature eats, the chemical drops. That's the entire hunger system.
+      </div>
+
+      <h4 style="color: var(--star-white); margin: var(--space-md) 0 var(--space-sm) 0;">How the 48 universal pathways break down</h4>
+
+      <p>The base chemistry is organized into functional groups that map to real biology:</p>
+
+      <div class="devlog-systems-grid">
+        <div class="devlog-system-chip">Energy (5)<br><small>Glucose, ATP, ADP, Glycogen, Starch</small></div>
+        <div class="devlog-system-chip">Drives (14)<br><small>Hunger, Fear, Curiosity, Loneliness, Anger, Boredom&hellip;</small></div>
+        <div class="devlog-system-chip">Hormones (10)<br><small>Adrenaline, Cortisol, Oxytocin, Dopamine, Serotonin&hellip;</small></div>
+        <div class="devlog-system-chip">Nutrients (5)<br><small>Protein, Fat, Water, Vitamin, Mineral</small></div>
+        <div class="devlog-system-chip">Damage &amp; Healing (4)<br><small>Injury, Toxin, Antibody, HealingFactor</small></div>
+        <div class="devlog-system-chip">Reproduction (3)<br><small>Fertility, Pregnancy, MatingDrive</small></div>
+        <div class="devlog-system-chip">Neurotransmitters (5)<br><small>GABA, Glutamate, Acetylcholine, PreREM, REM</small></div>
+        <div class="devlog-system-chip">Meta (2)<br><small>Age, Dead</small></div>
+      </div>
+
+      <p>Each chemical has a half-life. The formula for decay rate is <code>1 &minus; 0.5^(1 / 2.2^(halfLife × 32))</code> — borrowed directly from the pharmacokinetics literature. Fear decays quickly (half-life: 0.2). Hunger decays almost not at all (half-life: 0.02). Fertility and MatingDrive have no natural decay at all — they accumulate until a threshold triggers mating behavior, then are consumed. This is why creatures reliably reproduce at biological intervals rather than randomly.</p>
+
+      <h4 style="color: var(--star-white); margin: var(--space-md) 0 var(--space-sm) 0;">Cascading reactions: how behavior emerges</h4>
+
+      <p>Reactions follow the rule: <code>Reactant1 + Reactant2 &rarr; Product1 + Product2</code> at a defined rate, with limiting-reactant logic. No reaction runs faster than its slowest ingredient. Here are three reactions running in every creature's Heart organ, every tick:</p>
+
+      <ul>
+        <li><code>Starch + ATP &rarr; Glucose + ADP</code> (Stomach, rate 0.8) — carbohydrate digestion</li>
+        <li><code>Glucose + ADP &rarr; ATP + Water</code> (Heart, rate 0.8) — primary energy cycle</li>
+        <li><code>Pain + ATP &rarr; Endorphin + ADP</code> (Brain, rate 0.3) — pain suppression</li>
+      </ul>
+
+      <p>These three reactions alone produce hunger, ATP depletion under stress, and pain tolerance — without any explicit code for any of those behaviors. The brain organ then runs emotional cycles: <code>Loneliness + Oxytocin &rarr; Happiness + Dopamine</code>. A lonely creature that finds connection doesn't "become happy" because a flag was set. Dopamine is actually produced.</p>
+
+      <h4 style="color: var(--star-white); margin: var(--space-md) 0 var(--space-sm) 0;">Emergent behavior: two examples from the code</h4>
+
+      <p><strong style="color: var(--gene-pink);">The Grendel damage spiral.</strong> Grendels have a unique reaction: <code>Toxin + ATP &rarr; Endorphin + ADP</code> (rate 0.6). They metabolize poison into pleasure. When a Grendel takes damage, Pain drives Anger and Adrenaline via <code>Pain &rarr; Anger + Adrenaline</code>. Sustained Adrenaline (slow decay: 0.15) keeps them aggressive. But because toxins produce Endorphin for them specifically, injured Grendels are chemically drawn toward toxic environments — the same ones that harm every other species. They appear to develop territorial behavior around poison sources. They appear "addicted." No addiction system was written. It emerged from five reactions.</p>
+
+      <p><strong style="color: var(--gene-pink);">The Norn social feedback loop.</strong> Lonely Norns produce Oxytocin via <code>Loneliness + ATP &rarr; Oxytocin</code>. When a Norn reaches another creature, Happiness rises. Then <code>Oxytocin + Happiness &rarr; Dopamine + Serotonin</code> runs. Dopamine and Serotonin reinforce approach behavior at the LLM layer — the cognition system reads chemical states as drive intensities, and high Dopamine/Serotonin push social behavior to the foreground. The result: Norns form groups, separate with genuine distress, teach each other, and seek reunion. No social AI was written. It's in the chemistry.</p>
+
+      <h4 style="color: var(--star-white); margin: var(--space-md) 0 var(--space-sm) 0;">How this differs from original Creatures</h4>
+
+      <p>The original Creatures 1 used 48 chemicals with a closed genetic system: reactions were fixed, species couldn't diverge biochemically, and cognition was a neural net disconnected from chemistry. Creatures 3 expanded to 256+ chemicals but kept the architecture mostly fixed.</p>
+
+      <p>In Precursors, every reaction is gene-expressed. A species can evolve entirely different half-life rates, new chemicals no other lineage has, and reaction chains that produce genuinely alien emotional architectures. The Shee, for instance, run <code>Cortisol + ATP &rarr; Serotonin</code> — they metabolize stress into calm. Their aging system (GrowthHormone production from Serotonin, no natural decay) means Shee who stay intellectually engaged age more slowly. Not symbolically. The chemical math checks out.</p>
+
+      <div class="devlog-pullout">
+        The original Creatures had biochemistry. Precursors has biochemistry that <em>evolves</em>. Every species is a different experiment in chemical architecture. Some of them are going to discover things we didn't design.
+      </div>
+
+      <p>The bridge to behavior is a <code>DriveSystem</code> that reads chemical levels, computes intensity thresholds (<code>none / low / moderate / high / critical</code>), and generates natural language like "You feel very hungry and somewhat lonely." That string goes directly into the LLM context. The creature reasons from its chemistry. When it acts, emitters inject chemicals back. The loop closes.</p>
+
+      <p>If you want to watch this running in a real creature, <a href="https://buy.stripe.com/28EfZg7V03rZcVT05H6c001" style="color: var(--gene-pink);">beta access is open</a>. The source code for the full biochemistry engine is at <a href="https://github.com/lizTheDeveloper/ai_village" target="_blank" rel="noopener" style="color: var(--dust-light);">github.com/lizTheDeveloper/ai_village</a> — start with <code>src/biochemistry/</code>.</p>
+    </article>
+
+    <hr class="devlog-divider">
+
     <!-- Entry: Rename + Scale Update -->
     <article class="devlog-entry reveal">
       <div class="devlog-meta">

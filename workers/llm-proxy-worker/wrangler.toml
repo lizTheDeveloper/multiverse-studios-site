@@ -1,0 +1,16 @@
+name = "llm-proxy-worker"
+main = "src/index.ts"
+compatibility_date = "2024-01-01"
+
+[vars]
+ALLOWED_ORIGINS = "https://multiversestudios.xyz,http://localhost:3000,http://localhost:3001,http://localhost:5173"
+
+# GROQ_API_KEY is set as a secret via:
+#   wrangler secret put GROQ_API_KEY
+# (paste the key when prompted — it is never stored in this file)
+
+# Route: intercept /api/llm/* on the live domain before it reaches the static host.
+# Requires the domain to be proxied through Cloudflare (orange cloud ON in DNS).
+[[routes]]
+pattern = "multiversestudios.xyz/api/llm/*"
+zone_name = "multiversestudios.xyz"

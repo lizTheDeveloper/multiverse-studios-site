@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 80" width="320" height="80" role="img" aria-label="Multiverse Studios">
+  <defs>
+    <radialGradient id="orb-dark" cx="35%" cy="30%" r="70%">
+      <stop offset="0%" stop-color="#00ffc8"/>
+      <stop offset="55%" stop-color="#7b68ee"/>
+      <stop offset="100%" stop-color="#0a0a14"/>
+    </radialGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+
+  <!-- Logo orb -->
+  <circle cx="40" cy="40" r="28" fill="url(#orb-dark)" filter="url(#glow)" opacity="0.95"/>
+
+  <!-- Wordmark: Multiverse Studios -->
+  <!-- "MULTIVERSE" in Syne-style (fallback: sans-serif bold) -->
+  <text x="80" y="34" font-family="'Syne', 'Helvetica Neue', Arial, sans-serif" font-weight="800" font-size="22" fill="#e8e6f0" letter-spacing="1">MULTIVERSE</text>
+  <!-- "STUDIOS" smaller, in monospace -->
+  <text x="81" y="56" font-family="'JetBrains Mono', 'Courier New', monospace" font-weight="400" font-size="13" fill="#8a8694" letter-spacing="3">STUDIOS</text>
+</svg>
