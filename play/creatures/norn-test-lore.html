@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Norn GameLoop Test</title>
+  <title>Norn Lore Test</title>
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body { background: #0a0b10; overflow: hidden; }
@@ -20,22 +20,24 @@
       white-space: pre;
       border: 1px solid #252637;
       line-height: 1.6;
-      min-width: 260px;
+      min-width: 280px;
     }
     #drive-overlay .label { color: #3dfce0; font-weight: bold; }
     #drive-overlay .danger { color: #f0a050; }
     #drive-overlay .critical { color: #f05050; }
     #drive-overlay .dim { color: #565966; }
   </style>
-  <script type="module" crossorigin src="/play/creatures/assets/norn-test-gameloop-D_YzLEzV.js"></script>
+  <script type="module" crossorigin src="/play/creatures/assets/norn-test-lore-CuxLa1Db.js"></script>
   <link rel="modulepreload" crossorigin href="/play/creatures/assets/SpriteState-D4YTKvRp.js">
   <link rel="modulepreload" crossorigin href="/play/creatures/assets/WorldRenderer-jOPPZXiX.js">
   <link rel="modulepreload" crossorigin href="/play/creatures/assets/BiochemistrySystem-DO8Dz6aK.js">
   <link rel="modulepreload" crossorigin href="/play/creatures/assets/SimulationScheduler-BGLRfRja.js">
+  <link rel="modulepreload" crossorigin href="/play/creatures/assets/EventBus-BDki86ks.js">
+  <link rel="modulepreload" crossorigin href="/play/creatures/assets/WaveUnlockSystem-CBbQUfWy.js">
 <link rel="manifest" href="/play/creatures/manifest.webmanifest"><script id="vite-plugin-pwa:register-sw" src="/play/creatures/registerSW.js"></script></head>
 <body>
   <div id="fps-overlay">FPS: --</div>
-  <div id="drive-overlay">initializing scheduler...</div>
+  <div id="drive-overlay">initializing lore systems...</div>
   <div id="game-container"></div>
 </body>
 </html>

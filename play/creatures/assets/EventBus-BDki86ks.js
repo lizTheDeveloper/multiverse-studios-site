@@ -1,0 +1,1 @@
+class n{listeners=new Map;on(s,e){this.listeners.has(s)||this.listeners.set(s,new Set),this.listeners.get(s).add(e)}off(s,e){this.listeners.get(s)?.delete(e)}emit(s,...e){this.listeners.get(s)?.forEach(t=>t(...e))}once(s,e){const t=(...i)=>{this.off(s,t),e(...i)};this.on(s,t)}}const o=new n;export{o as e};
