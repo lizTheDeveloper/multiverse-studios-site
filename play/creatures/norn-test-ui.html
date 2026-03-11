@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Norn UI Test</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { background: #0a0b10; overflow: hidden; font-family: 'JetBrains Mono', Menlo, monospace; }
+    #game-container { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; }
+
+    /* ── Title bar ── */
+    .title-bar {
+      position: fixed; top: 0; left: 0; right: 0; height: 36px; z-index: 200;
+      background: rgba(10,11,16,0.92); border-bottom: 1px solid #1a1b28;
+      display: flex; align-items: center; padding: 0 12px; gap: 10px;
+    }
+    .title-label { color: #3dfce0; font: 11px monospace; opacity: 0.8; white-space: nowrap; }
+
+    /* ── Creature roster ── */
+    .creature-roster {
+      display: flex; align-items: center; gap: 4px; flex: 1; overflow: hidden;
+    }
+    .roster-pip {
+      display: flex; align-items: center; gap: 4px; padding: 2px 6px;
+      border-radius: 3px; cursor: pointer; border: 1px solid transparent;
+      transition: border-color 0.15s, background 0.15s;
+    }
+    .roster-pip:hover { background: rgba(61,252,224,0.06); border-color: #252637; }
+    .roster-pip.is-selected { border-color: #3dfce0; background: rgba(61,252,224,0.08); }
+    .roster-pip-dot { width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0; }
+    .roster-pip-name { font: 11px monospace; color: #b4b8ce; max-width: 48px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .roster-overflow { font: 11px monospace; color: #3dfce0; padding: 0 4px; }
+
+    /* ── FPS overlay ── */
+    #fps-overlay {
+      position: fixed; top: 44px; left: 8px; z-index: 300;
+      color: #3dfce0; font: 11px monospace; background: rgba(10,11,16,0.8);
+      padding: 3px 6px; border-radius: 3px;
+    }
+
+    /* ── Population overlay ── */
+    #drive-overlay {
+      position: fixed; top: 68px; left: 8px; z-index: 100;
+      color: #b4b8ce; font: 12px monospace; background: rgba(10,11,16,0.88);
+      padding: 6px 10px; border-radius: 4px; white-space: pre;
+      border: 1px solid #252637; line-height: 1.6; min-width: 270px;
+    }
+    #drive-overlay .label { color: #3dfce0; font-weight: bold; }
+    #drive-overlay .danger { color: #f0a050; }
+    #drive-overlay .critical { color: #f05050; }
+    #drive-overlay .dim { color: #565966; }
+
+    /* ── Chat UI ── */
+    .chat-container {
+      position: fixed; bottom: 0; left: 0; right: 268px; z-index: 150;
+      padding: 0 14px 14px;
+    }
+    .chat-container.hidden { display: none; }
+
+    .chat-thinking {
+      display: none; align-items: center; gap: 6px;
+      padding: 4px 10px; margin-bottom: 4px;
+      color: #565966; font: 11px monospace;
+    }
+    .chat-thinking.visible { display: flex; }
+    .chat-thinking__dots { display: flex; gap: 3px; }
+    .chat-thinking__dot {
+      width: 4px; height: 4px; border-radius: 50%; background: #3dfce0;
+      animation: blink 1.2s infinite; opacity: 0.3;
+    }
+    .chat-thinking__dot:nth-child(2) { animation-delay: 0.2s; }
+    .chat-thinking__dot:nth-child(3) { animation-delay: 0.4s; }
+    @keyframes blink { 0%,100% { opacity:0.3 } 50% { opacity:1 } }
+
+    .chat-input-wrap {
+      display: flex; align-items: center;
+      background: rgba(16,17,26,0.92); border: 1px solid #252637; border-radius: 6px;
+    }
+    .chat-input-wrap:focus-within { border-color: #3dfce066; }
+
+    #chat-input {
+      flex: 1; background: transparent; border: none; outline: none;
+      padding: 10px 12px; color: #d8dce8; font: 13px monospace;
+      caret-color: #3dfce0;
+    }
+    #chat-input::placeholder { color: #565966; }
+
+    /* ── Idle prompt ── */
+    .idle-prompt {
+      position: fixed; bottom: 14px; left: 14px; right: 268px; z-index: 150;
+      color: #565966; font: 12px monospace; text-align: center; pointer-events: none;
+    }
+    .idle-prompt.hidden { display: none; }
+
+    /* ── Key hints ── */
+    .key-hints {
+      position: fixed; bottom: 60px; left: 50%; transform: translateX(-50%); z-index: 140;
+      list-style: none; display: flex; gap: 10px; flex-wrap: wrap; justify-content: center;
+      padding: 4px 10px; border-radius: 4px;
+      background: rgba(10,11,16,0.7); pointer-events: none;
+      transition: opacity 0.3s;
+    }
+    .key-hints.hints-idle { opacity: 0.7; }
+    .key-hints.hints-active { opacity: 0.4; }
+    .key-hints li { font: 10px monospace; color: #565966; }
+    .key-hints kbd {
+      font-family: monospace; font-size: 10px; color: #3dfce0b0;
+      border: 1px solid #2a2d3e; border-radius: 2px; padding: 0 3px;
+      background: #0d0e17;
+    }
+  </style>
+  <script type="module" crossorigin src="/play/creatures/assets/norn-test-ui-S0hyBXmA.js"></script>
+  <link rel="modulepreload" crossorigin href="/play/creatures/assets/SpriteState-D4YTKvRp.js">
+  <link rel="modulepreload" crossorigin href="/play/creatures/assets/WorldRenderer-DlaGm_xb.js">
+  <link rel="modulepreload" crossorigin href="/play/creatures/assets/BiochemistrySystem-BlYw6iMm.js">
+  <link rel="modulepreload" crossorigin href="/play/creatures/assets/EventBus-BDki86ks.js">
+  <link rel="modulepreload" crossorigin href="/play/creatures/assets/World-BFYodnLZ.js">
+  <link rel="modulepreload" crossorigin href="/play/creatures/assets/SimulationScheduler-BGLRfRja.js">
+  <link rel="modulepreload" crossorigin href="/play/creatures/assets/Logger-WxO3dM4d.js">
+  <link rel="modulepreload" crossorigin href="/play/creatures/assets/TheHand-CQsUk4tK.js">
+<link rel="manifest" href="/play/creatures/manifest.webmanifest"><script id="vite-plugin-pwa:register-sw" src="/play/creatures/registerSW.js"></script></head>
+<body>
+  <div class="title-bar">
+    <span class="title-label">norn-test-ui</span>
+    <div class="creature-roster" id="creature-roster" aria-label="Living creatures"></div>
+  </div>
+
+  <div id="fps-overlay">FPS: --</div>
+  <div id="drive-overlay">initializing UI layer...</div>
+  <div id="game-container"></div>
+
+  <!-- Chat UI — required by ChatBox.ts -->
+  <div class="chat-container hidden" id="chat-container">
+    <div class="chat-thinking" id="chat-thinking" aria-live="polite">
+      <span class="chat-thinking__dots">
+        <span class="chat-thinking__dot"></span>
+        <span class="chat-thinking__dot"></span>
+        <span class="chat-thinking__dot"></span>
+      </span>
+      <span id="chat-thinking-label">◈ thinking...</span>
+    </div>
+    <div class="chat-input-wrap">
+      <input type="text" id="chat-input" placeholder="select a creature first..." autocomplete="off" spellcheck="false" />
+    </div>
+  </div>
+
+  <div class="idle-prompt" id="idle-prompt">select a norn to observe · <kbd>Tab</kbd> to cycle · drag to wander</div>
+
+  <ul class="key-hints hints-idle">
+    <li><kbd>Tab</kbd> cycle</li>
+    <li><kbd>A/D</kbd> pan</li>
+    <li><kbd>+/−</kbd> zoom</li>
+    <li><kbd>Space</kbd> follow</li>
+    <li><kbd>Esc</kbd> deselect</li>
+  </ul>
+
+</body>
+</html>
