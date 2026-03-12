@@ -888,6 +888,20 @@ body::after {
     radial-gradient(ellipse at 50% 20%, rgba(0, 255, 200, 0.04), transparent 50%);
 }
 
+.hero-nel {
+  background:
+    radial-gradient(ellipse at 40% 70%, rgba(255, 160, 60, 0.1), transparent 50%),
+    radial-gradient(ellipse at 60% 30%, rgba(200, 140, 80, 0.06), transparent 50%);
+}
+
+.nel-bg {
+  background:
+    radial-gradient(ellipse at 40% 60%, rgba(255, 160, 60, 0.25), transparent 55%),
+    radial-gradient(ellipse at 60% 40%, rgba(200, 140, 80, 0.15), transparent 50%),
+    radial-gradient(ellipse at 50% 50%, rgba(123, 104, 238, 0.05), transparent 70%),
+    var(--void-surface);
+}
+
 /* Screenshot gallery responsive */
 @media (max-width: 600px) {
   .screenshot-2col { grid-template-columns: 1fr !important; }

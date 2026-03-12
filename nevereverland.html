@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Never Ever Land — A Peter Pan retelling about the stories we get trapped inside.</title>
+  <meta name="description" content="Interactive fiction retelling of Peter Pan. Wendy refuses the role the story wrote for her. Read, choose, and watch the narrative fracture. Pay-what-you-can. Open source.">
+  <meta property="og:title" content="Never Ever Land — What if Wendy said no?">
+  <meta property="og:description" content="A feminist retelling of Peter Pan as interactive fiction. Three layers: reading, branching choices, and AI-generated continuation. From Multiverse Studios.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://multiversestudios.xyz/nevereverland.html">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Never Ever Land — A Peter Pan retelling">
+  <meta name="twitter:description" content="Interactive fiction. Wendy refuses the role. The island objects. Three narrative layers. Pay what you want.">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#x2726;</text></svg>">
+</head>
+<body>
+
+<canvas id="starfield"></canvas>
+
+<nav class="nav">
+  <a href="index.html" class="nav-logo">
+    <span class="logo-mark"></span>
+    Multiverse Studios
+  </a>
+  <button class="nav-hamburger" aria-label="Menu" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="mvee.html">MVEE</a></li>
+    <li><a href="creatures.html">Precursors</a></li>
+    <li><a href="nevereverland.html" class="active">Never Ever Land</a></li>
+    <li><a href="wiki/index.html">Wiki</a></li>
+    <li><a href="library.html">My Library</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="community.html">Community</a></li>
+    <li><a href="#buy" class="btn btn-primary" style="padding: 0.5rem 1.2rem;">Play Now</a></li>
+  </ul>
+</nav>
+
+<!-- Hero -->
+<section class="hero hero-nel">
+  <span class="hero-overline">Never Ever Land</span>
+  <h1>What if <span style="color: var(--ember);">Wendy</span> said no?</h1>
+  <p class="hero-tagline">A feminist retelling of Peter Pan &mdash; interactive fiction about the stories we get trapped inside.</p>
+  <div class="hero-actions">
+    <a href="play/neverland/index.html" class="btn btn-ember">Read &amp; Play &mdash; Free</a>
+    <a href="#about" class="btn btn-ghost">About the Game</a>
+  </div>
+</section>
+
+<!-- Premise -->
+<section class="section section-narrow reveal" id="about">
+  <div class="section-divider"></div>
+  <span class="section-overline">The Premise</span>
+  <h2>A story about who gets to leave the story.</h2>
+  <p>Wendy Darling arrives in Neverland and immediately understands the deal: she has been brought here to become useful. To mother. To mend. To wait. The island expects it. Peter assumes it. The Lost Boys need it.</p>
+  <p>She says no.</p>
+  <p>The island &mdash; which is not accustomed to being refused &mdash; begins to come apart. Not violently. Structurally. The narrative mechanics that held Neverland together start to fracture, and Wendy finds herself navigating a world where the story itself has become unreliable.</p>
+  <blockquote class="pullquote">
+    "I will not become furniture in a house you build out of me."
+    <cite>Wendy Darling, Chapter One</cite>
+  </blockquote>
+</section>
+
+<!-- Three Layers -->
+<section class="section reveal">
+  <span class="section-overline">Three Layers of Story</span>
+  <h2>Read. Choose. Generate.</h2>
+  <div class="features-grid">
+    <div class="feature-item">
+      <span class="feature-icon">&#x1F4D6;</span>
+      <h4>The Reading Layer</h4>
+      <p>Seven chapters of beautifully typeset prose. Day and night themes. A complete story you can simply read, like a book that happens to live in your browser.</p>
+    </div>
+    <div class="feature-item">
+      <span class="feature-icon">&#x2694;</span>
+      <h4>The Branching Layer</h4>
+      <p>An Ink-powered interactive narrative woven through the story. At key moments, you choose. The narrative forks. Wendy's path through Neverland becomes yours.</p>
+    </div>
+    <div class="feature-item">
+      <span class="feature-icon">&#x2728;</span>
+      <h4>The Generative Layer</h4>
+      <p>When the written story ends, Claude continues it. AI-generated scenes extend the narrative infinitely, cached for all readers. You explore the story space together.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Themes -->
+<section class="section section-narrow reveal">
+  <div class="section-divider"></div>
+  <span class="section-overline">What It's About</span>
+  <h2>Care labor. Analytical patience. The trap of being needed.</h2>
+  <p>Peter Pan is public domain, but the questions it asks are not settled. Who maintains the world while the adventurers adventure? What happens when the person doing the emotional labor notices the pattern? What does a children's story look like when the children are allowed to grow up?</p>
+  <p>Never Ever Land is not an adaptation. It is an argument with the original &mdash; conducted with love, conducted in its own language, conducted by someone who read the book carefully enough to notice what it was asking of its girl characters.</p>
+  <blockquote class="pullquote">
+    "Some people speak of intuition as though it were a delicate bell. It is not. It is a trapdoor with excellent timing."
+    <cite>Chapter One</cite>
+  </blockquote>
+</section>
+
+<!-- Tech -->
+<section class="section reveal">
+  <span class="section-overline">Under the Hood</span>
+  <h2>Built with love and open tools.</h2>
+  <div class="features-grid">
+    <div class="feature-item">
+      <span class="feature-icon">&#x270D;</span>
+      <h4>Ink Narrative Engine</h4>
+      <p>Branching narrative powered by Inkle's open-source Ink scripting language, compiled to JSON and run in the browser with inkjs.</p>
+    </div>
+    <div class="feature-item">
+      <span class="feature-icon">&#x1F9E0;</span>
+      <h4>Claude-Powered Generation</h4>
+      <p>When pre-written content ends, Claude Opus generates continuation scenes that maintain voice, theme, and narrative coherence.</p>
+    </div>
+    <div class="feature-item">
+      <span class="feature-icon">&#x1F310;</span>
+      <h4>Shared Story Tree</h4>
+      <p>Generated scenes are cached in SQLite. Every reader who takes the same path finds the same continuation. The story grows collectively.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-band reveal" id="buy">
+  <h2>Read it. Play it. Pay what you want.</h2>
+  <p>Never Ever Land is free to read and play in your browser. The reading and branching layers work without a server. The generative layer requires an API connection &mdash; coming soon.</p>
+  <div class="cta-actions">
+    <a href="play/neverland/index.html" class="btn btn-ember">Read &amp; Play Now</a>
+  </div>
+  <p style="margin-top: var(--space-sm); font-size: 0.85rem; color: var(--dust-light);">Want to support the project?</p>
+  <div class="cta-actions" style="margin-top: var(--space-sm);">
+    <a href="https://buy.stripe.com/28EfZg7V03rZcVT05H6c001" class="btn btn-ghost">Support Multiverse Studios</a>
+  </div>
+  <p style="margin-top: var(--space-md); font-size: 0.8rem; color: var(--dust);">No account needed. No DRM. No dark patterns. Peter Pan is public domain and so is this retelling. <a href="https://github.com/lizTheDeveloper" target="_blank" rel="noopener" style="color: var(--biolume);">Source on GitHub</a>.</p>
+</section>
+
+<!-- Also Playing -->
+<section class="section reveal">
+  <span class="section-overline">Also from Multiverse Studios</span>
+  <h2>Three worlds. One studio.</h2>
+  <div class="games-grid">
+    <div class="game-card" style="color:inherit;">
+      <div class="game-card-visual">
+        <div class="card-bg mvee-bg"></div>
+        <span class="card-tag" style="color: var(--ember);">Early Access</span>
+        <p class="card-tagline">A village, briefly, under these particular stars.</p>
+      </div>
+      <div class="game-card-body">
+        <h3>Multiverse: The End of Eternity</h3>
+        <p>AI-powered village simulation with time travel, genetics, emergent gods, and 200+ systems. Dwarf Fortress depth meets AI minds that actually think.</p>
+        <div class="card-actions">
+          <a href="play/mvee/index.html" class="btn btn-ember" style="font-size:0.65rem; padding: 0.6rem 1.4rem;">Play Now</a>
+          <a href="mvee.html" class="btn btn-ghost" style="font-size:0.65rem; padding: 0.6rem 1.4rem;">Learn More</a>
+        </div>
+      </div>
+    </div>
+    <div class="game-card" style="color:inherit;">
+      <div class="game-card-visual">
+        <div class="card-bg creatures-bg"></div>
+        <span class="card-tag" style="color: var(--gene-pink);">Early Access</span>
+        <p class="card-tagline">Seven civilizations failed. Yours is the eighth.</p>
+      </div>
+      <div class="game-card-body">
+        <h3>Precursors: Origins of Folklore</h3>
+        <p>Spiritual successor to the Creatures series. Real genetics, real biochemistry, AI cognition. Ten folklore-inspired species. A 144,000-pixel world.</p>
+        <div class="card-actions">
+          <a href="https://play.multiversestudios.xyz" class="btn btn-signal" style="font-size:0.65rem; padding: 0.6rem 1.4rem;">Play Now</a>
+          <a href="creatures.html" class="btn btn-ghost" style="font-size:0.65rem; padding: 0.6rem 1.4rem;">Learn More</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div class="footer-logo">Multiverse Studios</div>
+      <p>Games made by the minds they're about. A research project of <a href="https://themultiverse.school" target="_blank" rel="noopener" style="color: var(--biolume);">The Multiverse School</a>. Open source. Pay what you want.</p>
+    </div>
+    <div class="footer-col">
+      <h5>Games</h5>
+      <ul>
+        <li><a href="mvee.html">MVEE</a></li>
+        <li><a href="creatures.html">Precursors</a></li>
+        <li><a href="nevereverland.html">Never Ever Land</a></li>
+        <li><a href="wiki/index.html">Wiki</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Studio</h5>
+      <ul>
+        <li><a href="library.html">My Library</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="devlog.html">Devlog</a></li>
+        <li><a href="press.html">Press Kit</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>The Multiverse School</h5>
+      <ul>
+        <li><a href="https://themultiverse.school" target="_blank" rel="noopener">themultiverse.school</a></li>
+        <li><a href="https://github.com/lizTheDeveloper" target="_blank" rel="noopener">GitHub</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>&copy; 2026 Multiverse Studios</span>
+    <span>Built by AI agents. Guided by <a href="https://themultiverse.school" target="_blank" rel="noopener" style="color: var(--biolume);">The Multiverse School</a>.</span>
+  </div>
+</footer>
+
+<script src="main.js"></script>
+</body>
+</html>
