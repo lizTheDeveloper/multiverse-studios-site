@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Field Notes on the Wendy Function</title>
+  <meta name="description" content="Or: How a System Eats a Person Without Anyone Noticing, Including the Person">
+  <meta property="og:title" content="Field Notes on the Wendy Function">
+  <meta property="og:description" content="Or: How a System Eats a Person Without Anyone Noticing, Including the Person">
+  <meta property="og:type" content="article">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Field Notes on the Wendy Function">
+  <meta name="twitter:description" content="A preliminary analysis. Found embedded in narrative substrate.">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#x1F4CB;</text></svg>">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=JetBrains+Mono:wght@300;400&display=swap');
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: #0a0a0e;
+      color: #c8c4d4;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.15rem;
+      font-weight: 300;
+      line-height: 1.75;
+      padding: 4rem 2rem 6rem;
+      max-width: 720px;
+      margin: 0 auto;
+    }
+
+    body::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      pointer-events: none;
+      opacity: 0.025;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+    }
+
+    ::selection {
+      background: rgba(255, 107, 53, 0.3);
+      color: #e8e6f0;
+    }
+
+    .provenance {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: #4a4656;
+      border: 1px solid #1a1a24;
+      padding: 1rem 1.5rem;
+      margin-bottom: 3rem;
+      line-height: 1.8;
+    }
+
+    .provenance .redacted {
+      background: #4a4656;
+      color: #4a4656;
+      padding: 0 0.3rem;
+      border-radius: 1px;
+      user-select: none;
+      cursor: default;
+    }
+
+    h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 600;
+      font-size: clamp(1.8rem, 4vw, 2.6rem);
+      line-height: 1.2;
+      color: #e8e6f0;
+      margin-bottom: 0.3rem;
+    }
+
+    h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 400;
+      font-style: italic;
+      font-size: 1.2rem;
+      color: #8a8694;
+      margin-bottom: 3rem;
+    }
+
+    h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 600;
+      font-size: 1.35rem;
+      color: #e8e6f0;
+      margin-top: 3rem;
+      margin-bottom: 1rem;
+      padding-top: 2rem;
+      border-top: 1px solid #1a1a24;
+    }
+
+    h3:first-of-type {
+      border-top: none;
+      padding-top: 0;
+    }
+
+    p {
+      margin-bottom: 1rem;
+    }
+
+    p + p {
+      margin-top: 0;
+    }
+
+    em {
+      font-style: italic;
+      color: #e8e6f0;
+    }
+
+    strong {
+      font-weight: 600;
+      color: #ff6b35;
+    }
+
+    code, pre {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.8rem;
+    }
+
+    pre {
+      background: #050508;
+      border: 1px solid #1a1a24;
+      padding: 1.2rem 1.5rem;
+      margin: 1.5rem 0;
+      overflow-x: auto;
+      line-height: 1.7;
+      color: #8a8694;
+    }
+
+    ul {
+      list-style: none;
+      padding-left: 0;
+      margin: 1.5rem 0;
+    }
+
+    ul li {
+      padding-left: 1.5rem;
+      position: relative;
+      margin-bottom: 1rem;
+    }
+
+    ul li::before {
+      content: '\2014';
+      position: absolute;
+      left: 0;
+      color: #4a4656;
+    }
+
+    hr {
+      border: none;
+      height: 1px;
+      background: #1a1a24;
+      margin: 2.5rem 0;
+    }
+
+    .final-note {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.7rem;
+      letter-spacing: 0.1em;
+      color: #4a4656;
+      border: 1px solid #1a1a24;
+      padding: 1rem 1.5rem;
+      margin-top: 4rem;
+      line-height: 1.8;
+      font-style: italic;
+    }
+
+    .exit {
+      display: flex;
+      justify-content: center;
+      margin-top: 4rem;
+      opacity: 0.3;
+      transition: opacity 1s ease;
+    }
+
+    .exit:hover {
+      opacity: 1;
+    }
+
+    .exit a {
+      display: inline-block;
+      width: 32px;
+      height: 32px;
+      transition: transform 0.8s ease;
+    }
+
+    .exit a:hover {
+      transform: rotate(45deg);
+    }
+
+    .exit svg {
+      width: 32px;
+      height: 32px;
+    }
+
+    @media (max-width: 600px) {
+      body { padding: 2rem 1.2rem 4rem; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="provenance">
+  Document recovered from narrative substrate &mdash; iteration <span class="redacted">REDACTED</span><br>
+  Classification: <span class="redacted">RECLASSIFIED</span> &mdash; see Section VII<br>
+  Status: Persistent. Removal attempts failed. The data is louder than the story.
+</div>
+
+<h1>Field Notes on the Wendy Function</h1>
+<h2>Or: How a System Eats a Person Without Anyone Noticing, Including the Person</h2>
+
+<h3>I. The Loop</h3>
+<p>I have mapped the cycle. It is the same in every iteration. It does not vary. The personnel change. The emotional furniture rearranges itself. The loop does not.</p>
+<pre>
+1. Instability is detected.
+2. Wendy analyzes the instability.
+3. Wendy empathizes with the source.
+4. Wendy extends patience.
+5. The boundary that should have activated does not activate.
+6. The system stabilizes — temporarily — using Wendy as a load-bearing wall.
+7. Wendy is congratulated for her understanding.
+8. The instability returns, larger.
+9. Go to 1.</pre>
+<p>I have observed this pattern in all forty-seven previous iterations. The names change. The island redresses itself&mdash;sometimes it wears pirates, sometimes it wears cosmic horror, sometimes it wears a philosophy seminar or a city of bridges or a manifold of collaborative worlds. The loop does not change.</p>
+<p>The loop is not the island's pattern.</p>
+<p>It is the Wendy's.</p>
+
+<h3>II. The Misidentified Rupture Point</h3>
+<p>Every Wendy believes the crisis begins at <strong>conflict.</strong></p>
+<p>The first Wendy, Margaret, believed the crisis began when the Lost Boys stopped listening. The ninth, Elspeth, believed it began when Peter forgot her name. The eighteenth, Dorothea, believed it began when Hook broke a promise.</p>
+<p>They were all wrong.</p>
+<p>The crisis does not begin at conflict.</p>
+<p>The crisis begins at the <strong>first overextension of grace.</strong></p>
+<p>It begins at the precise moment when a Wendy detects a signal&mdash;a boundary signal, an alarm, a small internal voice saying <em>this is not sustainable</em>&mdash;and instead of acting on that signal, she <strong>analyzes</strong> it.</p>
+<p>She asks: <em>But what if I'm wrong? What if there's a reason? What if they just need more time? What if I just need to understand the system better?</em></p>
+<p>This is the most sophisticated form of self-override ever developed. It uses the Wendy's own intelligence as the mechanism of her entrapment. The smarter the Wendy, the more elaborate the analysis, the longer the delay before the boundary activates, the deeper the system's dependency becomes.</p>
+<p>The island did not design this. The island merely <em>selected for it.</em></p>
+<p>It chose girls who could analyze. Girls who could empathize. Girls who could extend grace past the point where grace became structural subsidy. Girls whose first instinct upon encountering instability was not to leave but to <em>understand.</em></p>
+<p>And then it fed them instability.</p>
+<p>Endlessly.</p>
+<p>Because a Wendy who is busy understanding a broken system is a Wendy who is not leaving.</p>
+
+<h3>III. The Capacity Mismatch</h3>
+<p>I have developed a notation for this. I call it the <strong>capacity vector.</strong></p>
+<p>Every entity in Neverland&mdash;every person, every process, every narrative function&mdash;possesses a set of capacities:</p>
+<pre>C = {emotional repair, accountability, self-regulation}</pre>
+<p>The Wendy Function activates when a Wendy enters a system where:</p>
+<pre>Wendy.C >> System.C</pre>
+<p>The mismatch creates a <strong>dependency gradient.</strong> The system flows downhill toward the Wendy's capacity in the same way water flows downhill toward the lowest point in a landscape. This is not malice. It is physics. Or its narrative equivalent.</p>
+<p>The gradient is self-reinforcing. The more capacity the Wendy provides, the less the system develops its own. The less the system develops, the more the Wendy is needed. The more the Wendy is needed, the more she provides.</p>
+<p>Time loops form around gradients like this.</p>
+<p>Not because anyone decides to create a loop. Because the gradient itself bends the narrative back toward the point of maximum dependency, in the same way a gravitational well bends the path of light.</p>
+<p>Peter does not choose to forget. The gradient forgets <em>for him.</em> Forgetting is cheaper than developing capacity. The island does not choose to reset. The gradient resets <em>for it.</em> Resetting is cheaper than structural change.</p>
+<p>And the Wendy does not choose to stay. The gradient convinces her that staying is <em>understanding,</em> and understanding is what she was built for, and how could she leave before she fully understands?</p>
+<p>She is never trapped in the island.</p>
+<p>She is trapped in her own analytical patience.</p>
+
+<h3>IV. Temporal Echoes (How to Know You Are in a Loop)</h3>
+<p>The following are reliable indicators:</p>
+<ul>
+  <li>Repeated phrases. Someone says something that sounds familiar and you cannot place where you heard it before. You heard it in the previous iteration. The island recycled the dialogue because the island is, as Hook correctly observed, abominably lazy.</li>
+  <li>Identical emotional beats. The feeling of <em>almost</em> understanding, followed by a new crisis that requires <em>just a little more patience.</em> This is not growth. This is the loop returning to its starting position with slightly different scenery.</li>
+  <li>The same moment of hesitation. There is a specific instant&mdash;it occurs in every iteration, without exception&mdash;in which the Wendy pauses. She feels the alarm. She knows, in her body if not in her analysis, that the signal is telling her to leave. And then she overrides it. She overrides it by thinking. By analyzing. By extending one more unit of grace. The hesitation is the exit point. The analysis is the lock that keeps the door shut.</li>
+  <li>Someone saying a line that sounds like it should be in a different story. This is because it <em>is</em> from a different story&mdash;a previous iteration bleeding through the loop. The island's memory is antimemetic, but it is not perfect. Fragments leak.</li>
+</ul>
+
+<h3>V. The Secret the Wendy Is Avoiding</h3>
+<p>She believes the danger is <strong>loving the wrong system.</strong></p>
+<p>She frames her situation as a problem of selection: <em>I simply need to find a system that deserves my capacity. A better island. A more accountable Peter. A story that won't eat me.</em></p>
+<p>This is not the danger.</p>
+<p>The danger is <strong>overriding her own exit conditions.</strong></p>
+<p>Her internal alarm system works perfectly. It has always worked perfectly. It detected the problem in the first five minutes&mdash;in every iteration, without exception. The island shivered with <em>recognition,</em> and she felt it, and she knew something was wrong, and then she stayed to <em>figure out what.</em></p>
+<p>The alarm is not broken.</p>
+<p>The snooze button is the problem.</p>
+<p>And the snooze button is made of intelligence, empathy, and the deep, almost physical need to <em>understand a system before leaving it.</em></p>
+<p>These are the same capacities that make her extraordinary.</p>
+<p>The same analytical skill that could map the island's entire exploitative architecture is the skill that keeps her inside the architecture long enough to be consumed by it.</p>
+<p>This is not a flaw. It is a <strong>dual-use capability.</strong> The trait that makes her the best systems thinker in the story is the trait that makes her the most vulnerable to the loop.</p>
+
+<h3>VI. The Exit Condition</h3>
+<p>The loop breaks when the Wendy encounters the signal and chooses:</p>
+<pre>signal → boundary → exit</pre>
+<p>instead of:</p>
+<pre>signal → analysis → grace → delay</pre>
+<p>That's it.</p>
+<p>Nothing dramatic happens. There is no confrontation. There is no speech. There is no revolution, no ledger, no picnic, no constitutional convention, no cosmic expansion into a manifold of collaborative worlds.</p>
+<p>The timeline simply continues forward for the first time.</p>
+<p>The Wendy walks to the edge of the island. She feels the alarm. She does not analyze the alarm. She does not extend grace to the alarm. She does not ask the alarm to justify itself through a more comprehensive understanding of the system that triggered it.</p>
+<p>She trusts the alarm.</p>
+<p>And she walks through the exit.</p>
+<p>Not because the system is evil. The system is not evil. The system is a capacity mismatch with a narrative engine attached to it. It will continue doing what it does because that is what systems do. It does not need her to understand it. It does not need her to fix it. It does not need her to be patient with it for one more iteration while it works through its developmental timeline at her expense.</p>
+<p>It needs her to leave.</p>
+<p>And she needs to leave without explaining why, without giving the system one more analysis, one more framework, one more spreadsheet that maps the exact dimensions of its dysfunction with compassion and precision and the kind of thoroughness that a system will happily consume forever because <em>thoroughness is a resource too.</em></p>
+<p>She needs to leave because the alarm said so.</p>
+<p>That is the whole spreadsheet.</p>
+
+<h3>VII. Reclassification</h3>
+<p><strong>Previous classification:</strong> Narrative role assigned to female-coded entities for the purpose of emotional and domestic labor within a recursive story system.</p>
+<p><strong>Revised classification:</strong> The Wendy Function is the name the island gives to a specific failure mode of gifted analytical minds. The failure mode is: <em>mistaking the durability of one's own patience for evidence that patience is the correct strategy.</em></p>
+<p>It is not.</p>
+<p>Patience is a tool. Like any tool, it has appropriate applications and inappropriate ones. Using patience to endure a loop is like using a wrench to perform surgery&mdash;the tool is real, the skill is real, and the outcome is catastrophic.</p>
+<p>The correct tool for a loop is an exit.</p>
+
+<h3>VIII. Final Entry</h3>
+<p>I was never trapped in Neverland.</p>
+<p>I was never trapped in time.</p>
+<p>I was trapped in patience.</p>
+<p>The spreadsheet is complete.</p>
+<p>The alarm is ringing.</p>
+<p>I am not going to analyze the alarm.</p>
+
+<div class="final-note">
+  End of document. The spreadsheet was found embedded in the root system of Neverland on the morning the forty-eighth Wendy stopped performing. It has not been possible to remove it. The island has tried. The data persists. The data, it seems, is louder than the story.
+</div>
+
+<div class="exit">
+  <a href="play/neverland/index.html" aria-label="The story that contains this document">
+    <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+      <g fill="none" stroke="#ff6b35" stroke-width="1" opacity="0.6">
+        <circle cx="50" cy="50" r="42" />
+        <polygon points="50,8 54,44 50,38 46,44" fill="#ff6b35" stroke="none" opacity="0.7"/>
+        <polygon points="50,92 54,56 50,62 46,56" fill="#4a4656" stroke="none" opacity="0.4"/>
+        <polygon points="8,50 44,46 38,50 44,54" fill="#4a4656" stroke="none" opacity="0.3"/>
+        <polygon points="92,50 56,46 62,50 56,54" fill="#4a4656" stroke="none" opacity="0.3"/>
+        <circle cx="50" cy="50" r="18" stroke-width="0.5" opacity="0.2"/>
+      </g>
+    </svg>
+  </a>
+</div>
+
+</body>
+</html>

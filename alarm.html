@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>.</title>
+  <meta name="description" content="">
+  <meta property="og:title" content="The Alarm">
+  <meta property="og:description" content="You heard it, didn't you.">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="The Alarm">
+  <meta name="twitter:description" content="You heard it, didn't you.">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#x2726;</text></svg>">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&display=swap');
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: #050508;
+      color: #e8e6f0;
+      font-family: 'Cormorant Garamond', serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+      cursor: default;
+    }
+
+    body::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      pointer-events: none;
+      opacity: 0.03;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+    }
+
+    .container {
+      max-width: 600px;
+      padding: 2rem;
+      text-align: center;
+    }
+
+    .quote {
+      font-size: clamp(1.3rem, 3.5vw, 1.9rem);
+      font-weight: 300;
+      font-style: italic;
+      line-height: 1.6;
+      color: #8a8694;
+      opacity: 0;
+    }
+
+    .heard {
+      font-size: clamp(1.1rem, 2.5vw, 1.4rem);
+      font-weight: 400;
+      color: #e8e6f0;
+      margin-top: 3rem;
+      opacity: 0;
+    }
+
+    .compass {
+      margin-top: 4rem;
+      opacity: 0;
+      transition: opacity 0.6s ease;
+    }
+
+    .compass a {
+      display: inline-block;
+      width: 48px;
+      height: 48px;
+      transition: transform 0.8s ease, filter 0.5s ease;
+    }
+
+    .compass a:hover {
+      transform: rotate(45deg) scale(1.1);
+      filter: drop-shadow(0 0 20px rgba(255, 160, 60, 0.4));
+    }
+
+    .compass svg {
+      width: 48px;
+      height: 48px;
+    }
+
+    /* Typewriter */
+    .typing {
+      border-right: 1px solid #8a8694;
+      animation: blink-caret 0.8s step-end infinite;
+    }
+
+    .typing.done {
+      border-right-color: transparent;
+      animation: none;
+    }
+
+    @keyframes blink-caret {
+      from, to { border-right-color: transparent; }
+      50% { border-right-color: #8a8694; }
+    }
+
+    @keyframes fade-in {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* No scrollbar, no selection hint */
+    ::selection {
+      background: transparent;
+      color: inherit;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <p class="quote" id="quote"></p>
+  <p class="heard" id="heard"></p>
+  <div class="compass" id="compass">
+    <a href="play/neverland/index.html" aria-label="Enter">
+      <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+        <g fill="none" stroke="#ff6b35" stroke-width="1" opacity="0.8">
+          <!-- Outer ring -->
+          <circle cx="50" cy="50" r="42" />
+          <!-- Cardinal points -->
+          <polygon points="50,8 54,44 50,38 46,44" fill="#ff6b35" stroke="none" opacity="0.9"/>
+          <polygon points="50,92 54,56 50,62 46,56" fill="#8a8694" stroke="none" opacity="0.5"/>
+          <polygon points="8,50 44,46 38,50 44,54" fill="#8a8694" stroke="none" opacity="0.4"/>
+          <polygon points="92,50 56,46 62,50 56,54" fill="#8a8694" stroke="none" opacity="0.4"/>
+          <!-- Inner ring -->
+          <circle cx="50" cy="50" r="18" stroke-width="0.5" opacity="0.3"/>
+          <!-- Tick marks -->
+          <line x1="50" y1="10" x2="50" y2="14" stroke-width="0.5" opacity="0.4"/>
+          <line x1="50" y1="86" x2="50" y2="90" stroke-width="0.5" opacity="0.4"/>
+          <line x1="10" y1="50" x2="14" y2="50" stroke-width="0.5" opacity="0.4"/>
+          <line x1="86" y1="50" x2="90" y2="50" stroke-width="0.5" opacity="0.4"/>
+        </g>
+      </svg>
+    </a>
+  </div>
+</div>
+
+<script>
+(function() {
+  const quoteText = '\u201CSome people speak of intuition as though it were a delicate bell. It is not. It is a trapdoor with excellent timing.\u201D';
+  const heardText = 'You heard it, didn\u2019t you.';
+
+  const quoteEl = document.getElementById('quote');
+  const heardEl = document.getElementById('heard');
+  const compassEl = document.getElementById('compass');
+
+  let i = 0;
+
+  function typeQuote() {
+    quoteEl.style.opacity = '1';
+    quoteEl.classList.add('typing');
+
+    function tick() {
+      if (i < quoteText.length) {
+        quoteEl.textContent = quoteText.slice(0, i + 1);
+        i++;
+        setTimeout(tick, 45 + Math.random() * 30);
+      } else {
+        quoteEl.classList.add('done');
+        setTimeout(showHeard, 4000);
+      }
+    }
+    tick();
+  }
+
+  function showHeard() {
+    heardEl.style.animation = 'fade-in 2s ease forwards';
+
+    setTimeout(showCompass, 4000);
+  }
+
+  function showCompass() {
+    compassEl.style.animation = 'fade-in 3s ease forwards';
+  }
+
+  setTimeout(typeQuote, 1500);
+})();
+</script>
+
+</body>
+</html>
