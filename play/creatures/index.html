@@ -707,53 +707,87 @@
       outline-offset: 2px;
     }
 
-    /* ── KEYBINDING HINTS ── alien glyphic reference, bottom-left */
+    /* ── KEYBINDING HINTS ── collapsible alien glyph toggle, bottom-right */
     .key-hints {
       position: fixed;
-      bottom: 60px; /* above chat-container (40px input + 14px padding + 6px gap) */
-      left: 236px; /* clear InventionChronicle (220px + 8px + gap) */
-      right: 268px; /* don't overlap UIPanel */
-      z-index: 100;
-      pointer-events: none;
-      opacity: 0;
-      transition: opacity 0.4s ease;
-      background: linear-gradient(0deg, rgba(10, 11, 16, 0.7) 0%, rgba(10, 11, 16, 0.4) 70%, transparent 100%);
-      padding: 6px 10px 4px;
-      border-radius: 3px;
-    }
-
-    /* Show hints when idle (no norn selected) — more visible for new players */
-    .key-hints.hints-idle {
-      opacity: 0.7;
-    }
-
-    /* Dim when norn selected (chat is active, player is engaged) */
-    .key-hints.hints-active {
-      opacity: 0.4;
-    }
-
-    .key-hints:hover {
-      opacity: 0.95;
+      bottom: 62px;
+      right: 16px;
+      z-index: 200;
       pointer-events: auto;
     }
 
-    .key-hints ul {
-      list-style: none;
+    .key-hints-toggle {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      border: 1px solid var(--stone-edge);
+      background: rgba(10, 11, 16, 0.85);
+      color: var(--glow-cyan-dim);
+      font-family: var(--font-mono);
+      font-size: 13px;
+      font-weight: 400;
+      cursor: pointer;
       display: flex;
-      gap: 14px;
-      flex-wrap: wrap;
+      align-items: center;
       justify-content: center;
+      opacity: 0.5;
+      transition: opacity 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+      position: relative;
+      line-height: 1;
     }
 
-    .key-hints li {
+    .key-hints-toggle:hover {
+      opacity: 0.9;
+      border-color: var(--glow-cyan-dim);
+      box-shadow: 0 0 8px rgba(61, 252, 224, 0.1);
+    }
+
+    .key-hints.expanded .key-hints-toggle {
+      opacity: 1;
+      border-color: var(--glow-cyan-dim);
+      box-shadow: 0 0 10px rgba(61, 252, 224, 0.12);
+    }
+
+    .key-hints-panel {
+      position: absolute;
+      bottom: 34px;
+      right: 0;
+      min-width: 180px;
+      background: rgba(10, 11, 16, 0.92);
+      border: 1px solid rgba(61, 252, 224, 0.12);
+      border-radius: 4px;
+      padding: 10px 12px 8px;
+      opacity: 0;
+      transform: translateY(6px) scale(0.96);
+      pointer-events: none;
+      transition: opacity 0.25s ease, transform 0.25s ease;
+    }
+
+    .key-hints.expanded .key-hints-panel {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+      pointer-events: auto;
+    }
+
+    .key-hints-panel ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+
+    .key-hints-panel li {
       font-family: var(--font-mono);
       font-size: 9px;
       font-weight: 300;
       color: var(--text-dim);
       white-space: nowrap;
+      display: flex;
+      align-items: center;
+      gap: 4px;
     }
 
-    .key-hints kbd {
+    .key-hints-panel kbd {
       display: inline-block;
       font-family: var(--font-mono);
       font-size: 9px;
@@ -761,9 +795,9 @@
       border: 1px solid var(--stone-edge);
       border-radius: 2px;
       padding: 0 3px;
-      margin-right: 3px;
       line-height: 1.5;
       background: var(--stone-mid);
+      flex-shrink: 0;
     }
     /* ── DOCK SYSTEM ── 6-slot item stasis pocket, bottom-left */
     #dock-system {
@@ -969,16 +1003,15 @@
     }
 
   </style>
-  <script type="module" crossorigin src="assets/main-Behz8LIG.js"></script>
-  <link rel="modulepreload" crossorigin href="assets/SpriteState-D4YTKvRp.js">
-  <link rel="modulepreload" crossorigin href="assets/EventBus-BDki86ks.js">
-  <link rel="modulepreload" crossorigin href="assets/WorldRenderer-DlaGm_xb.js">
-  <link rel="modulepreload" crossorigin href="assets/Logger-WxO3dM4d.js">
-  <link rel="modulepreload" crossorigin href="assets/BiochemistrySystem-BlYw6iMm.js">
-  <link rel="modulepreload" crossorigin href="assets/World-BFYodnLZ.js">
-  <link rel="modulepreload" crossorigin href="assets/TheHand-CQsUk4tK.js">
-  <link rel="modulepreload" crossorigin href="assets/SimulationScheduler-BGLRfRja.js">
-  <link rel="modulepreload" crossorigin href="assets/WaveUnlockSystem-DCkMFwvc.js">
+  <script type="module" crossorigin src="/play/creatures/assets/main-ZUCFqual.js"></script>
+  <link rel="modulepreload" crossorigin href="/play/creatures/assets/LifeStage-DLlDtvpU.js">
+  <link rel="modulepreload" crossorigin href="/play/creatures/assets/vendor-phaser-CaWnzXme.js">
+  <link rel="modulepreload" crossorigin href="/play/creatures/assets/WorldItem-CHMh5PYe.js">
+  <link rel="modulepreload" crossorigin href="/play/creatures/assets/EventBus-BDki86ks.js">
+  <link rel="modulepreload" crossorigin href="/play/creatures/assets/LanguageSystem-VVTB5aE8.js">
+  <link rel="modulepreload" crossorigin href="/play/creatures/assets/ChemicalSet-DD8XGCoh.js">
+  <link rel="modulepreload" crossorigin href="/play/creatures/assets/PerfTelemetry-5-XEMZIB.js">
+  <link rel="modulepreload" crossorigin href="/play/creatures/assets/UIScene-BQHBroAV.js">
 <link rel="manifest" href="/play/creatures/manifest.webmanifest"><script id="vite-plugin-pwa:register-sw" src="/play/creatures/registerSW.js"></script></head>
 <body>
   <!-- Loading Screen -->
@@ -1043,23 +1076,26 @@
   <!-- Lore notification toast -->
   <div class="lore-toast" id="lore-toast"></div>
 
-  <!-- Keybinding hint row — dim by default, brightens on hover -->
+  <!-- Keybinding hints — collapsed ? toggle, expands on click -->
   <nav class="key-hints" aria-label="keyboard shortcuts">
-    <ul>
-      <li><kbd>Tab</kbd>cycle</li>
-      <li><kbd>F</kbd>feed</li>
-      <li><kbd>Space</kbd>follow</li>
-      <li><kbd>C</kbd>chronicle</li>
-      <li><kbd>B</kbd>next biome · <kbd>⇧B</kbd>prev</li>
-      <li><kbd>N</kbd>planets</li>
-      <li><kbd>T</kbd>tools</li>
-      <li><kbd>L</kbd>settings</li>
-      <li><kbd>+</kbd><kbd>−</kbd>zoom · scroll</li>
-      <li><kbd>[</kbd><kbd>]</kbd>speed 1–10x</li>
-      <li><kbd>F5</kbd>save · <kbd>F9</kbd>load</li>
-      <li><kbd>Z</kbd>stasis</li>
-      <li><kbd>Esc</kbd>deselect</li>
-    </ul>
+    <button class="key-hints-toggle" aria-expanded="false" aria-controls="key-hints-panel" title="Keyboard shortcuts">?</button>
+    <div class="key-hints-panel" id="key-hints-panel" role="region">
+      <ul>
+        <li><kbd>Tab</kbd> cycle norns</li>
+        <li><kbd>F</kbd> feed</li>
+        <li><kbd>Space</kbd> follow</li>
+        <li><kbd>C</kbd> chronicle</li>
+        <li><kbd>B</kbd> next biome · <kbd>⇧B</kbd> prev</li>
+        <li id="hint-n-planets"><kbd>N</kbd> planets</li>
+        <li><kbd>T</kbd> tools</li>
+        <li><kbd>L</kbd> settings</li>
+        <li><kbd>+</kbd><kbd>−</kbd> zoom</li>
+        <li><kbd>[</kbd><kbd>]</kbd> speed 1–10×</li>
+        <li><kbd>F5</kbd> save · <kbd>F9</kbd> load</li>
+        <li><kbd>Z</kbd> stasis</li>
+        <li><kbd>Esc</kbd> deselect</li>
+      </ul>
+    </div>
   </nav>
 
 </body>
