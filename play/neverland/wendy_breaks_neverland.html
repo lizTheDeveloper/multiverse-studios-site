@@ -1,0 +1,915 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wendy Breaks Neverland</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=IM+Fell+English+SC&family=Special+Elite&display=swap');
+
+  :root {
+    --paper: #dcc9a2;
+    --paper-light: #eadabd;
+    --paper-shadow: #c2a277;
+    --paper-burn: #7d5731;
+    --ink: #39261a;
+    --ink-soft: #5b4531;
+    --text-dim: rgba(57, 38, 26, 0.64);
+    --accent: #835332;
+    --accent-dim: #a67745;
+    --red: #8f4331;
+    --green: #556c49;
+    --border: rgba(90, 60, 32, 0.24);
+    --choice-bg: rgba(255, 248, 232, 0.42);
+    --choice-hover: rgba(255, 252, 242, 0.78);
+    --choice-border: rgba(114, 78, 43, 0.28);
+    --narrator: #725744;
+    --phase-linear: #5e746d;
+    --phase-loop: #8e6148;
+    --phase-infinite: #65764c;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    color: var(--ink);
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 21px;
+    line-height: 1.72;
+    min-height: 100vh;
+    overflow-x: hidden;
+    background:
+      radial-gradient(circle at top, rgba(255, 245, 219, 0.7), transparent 36%),
+      linear-gradient(180deg, rgba(125, 88, 48, 0.24), transparent 26%),
+      linear-gradient(140deg, #8f6b47, #c39a68 24%, #d8bf90 61%, #ad8453 100%);
+    position: relative;
+  }
+
+  body::before,
+  body::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  body::before {
+    opacity: 0.24;
+    mix-blend-mode: multiply;
+    background:
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 160 160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.82' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)' opacity='0.72'/%3E%3C/svg%3E") repeat,
+      radial-gradient(circle at 15% 20%, rgba(81, 56, 33, 0.14), transparent 30%);
+    background-size: 170px 170px, auto;
+  }
+
+  body::after {
+    opacity: 0.34;
+    background:
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 600 600'%3E%3Cg fill='none' stroke='rgba(95,68,39,0.24)' stroke-width='1.2'%3E%3Cpath d='M36 116c58-29 139-36 225 14s172 53 299 1'/%3E%3Cpath d='M14 260c99 12 164 2 236-34s170-35 330 6'/%3E%3Cpath d='M28 412c77-48 157-54 240-16s176 45 312-12'/%3E%3C/g%3E%3Cg fill='rgba(95,68,39,0.16)'%3E%3Ccircle cx='136' cy='170' r='3'/%3E%3Ccircle cx='344' cy='324' r='3'/%3E%3Ccircle cx='518' cy='428' r='3'/%3E%3C/g%3E%3C/svg%3E") center/780px 780px repeat;
+  }
+
+  #container {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 64px 18px 100px;
+    position: relative;
+    z-index: 1;
+  }
+
+  #container::before {
+    content: '';
+    position: absolute;
+    inset: 24px 0 36px;
+    z-index: -1;
+    border-radius: 28px;
+    background:
+      linear-gradient(180deg, rgba(255, 248, 232, 0.38), transparent 12%),
+      linear-gradient(135deg, rgba(121, 82, 45, 0.08), transparent 36%),
+      linear-gradient(180deg, var(--paper-light), var(--paper) 40%, var(--paper-shadow) 100%);
+    border: 1px solid rgba(96, 65, 37, 0.26);
+    box-shadow:
+      0 32px 82px rgba(63, 38, 17, 0.2),
+      inset 0 0 0 1px rgba(255, 247, 225, 0.34),
+      inset 0 0 34px rgba(96, 65, 37, 0.12);
+  }
+
+  #container::after {
+    content: '';
+    position: absolute;
+    top: 8px;
+    right: -10px;
+    width: 180px;
+    height: 180px;
+    opacity: 0.18;
+    z-index: -1;
+    border-radius: 50%;
+    background:
+      radial-gradient(circle at center, transparent 26%, rgba(90, 60, 33, 0.82) 27%, transparent 29%),
+      conic-gradient(from 0deg, rgba(90, 60, 33, 0.88) 0 8deg, transparent 8deg 22deg, rgba(90, 60, 33, 0.82) 22deg 30deg, transparent 30deg 44deg, rgba(90, 60, 33, 0.82) 44deg 52deg, transparent 52deg 66deg, rgba(90, 60, 33, 0.82) 66deg 74deg, transparent 74deg 88deg, rgba(90, 60, 33, 0.88) 88deg 96deg, transparent 96deg 110deg, rgba(90, 60, 33, 0.82) 110deg 118deg, transparent 118deg 132deg, rgba(90, 60, 33, 0.82) 132deg 140deg, transparent 140deg 154deg, rgba(90, 60, 33, 0.82) 154deg 162deg, transparent 162deg 176deg, rgba(90, 60, 33, 0.88) 176deg 184deg, transparent 184deg 198deg, rgba(90, 60, 33, 0.82) 198deg 206deg, transparent 206deg 220deg, rgba(90, 60, 33, 0.82) 220deg 228deg, transparent 228deg 242deg, rgba(90, 60, 33, 0.82) 242deg 250deg, transparent 250deg 264deg, rgba(90, 60, 33, 0.88) 264deg 272deg, transparent 272deg 286deg, rgba(90, 60, 33, 0.82) 286deg 294deg, transparent 294deg 308deg, rgba(90, 60, 33, 0.82) 308deg 316deg, transparent 316deg 330deg, rgba(90, 60, 33, 0.88) 330deg 338deg, transparent 338deg 360deg);
+  }
+
+  #story,
+  #choices,
+  #continuation,
+  #restart,
+  #story-meta {
+    position: relative;
+    z-index: 1;
+    padding-left: clamp(22px, 4vw, 56px);
+    padding-right: clamp(22px, 4vw, 56px);
+  }
+
+  /* Phase indicator */
+  #phase-indicator {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: rgba(72, 45, 24, 0.18);
+    z-index: 100;
+    box-shadow: 0 2px 10px rgba(65, 41, 20, 0.12);
+    transition: background 1.2s ease;
+  }
+  #phase-indicator.linear { background: var(--phase-linear); }
+  #phase-indicator.looping { background: var(--phase-loop); }
+  #phase-indicator.infinite { background: var(--phase-infinite); }
+  #phase-indicator.transition {
+    background: linear-gradient(90deg, var(--phase-loop), var(--phase-infinite));
+    animation: shimmer 3s ease infinite;
+  }
+
+  @keyframes shimmer {
+    0%, 100% { opacity: 0.6; }
+    50% { opacity: 1; }
+  }
+
+  /* Iteration counter */
+  #iteration-counter {
+    position: fixed;
+    top: 18px;
+    right: 20px;
+    font-family: 'Special Elite', monospace;
+    font-size: 11px;
+    color: var(--ink-soft);
+    background: rgba(238, 222, 189, 0.74);
+    border: 1px solid rgba(101, 70, 41, 0.2);
+    border-radius: 999px;
+    padding: 8px 12px;
+    box-shadow: 0 10px 24px rgba(62, 38, 18, 0.08);
+    opacity: 0;
+    transition: opacity 1s ease;
+    z-index: 100;
+  }
+  #iteration-counter.visible { opacity: 1; }
+  #iteration-counter.antimemetic {
+    animation: antimemetic 4s ease infinite;
+  }
+  @keyframes antimemetic {
+    0%, 100% { opacity: 0.3; }
+    30% { opacity: 0.7; }
+    50% { opacity: 0.1; }
+    70% { opacity: 0.5; }
+  }
+
+  /* Story text */
+  .story-paragraph {
+    margin-bottom: 1.2em;
+    opacity: 0;
+    transform: translateY(8px);
+    animation: fadeIn 0.8s ease forwards;
+    color: var(--ink);
+  }
+
+  .story-paragraph.narrator-voice {
+    color: var(--narrator);
+    font-style: italic;
+  }
+
+  .story-paragraph.island-voice {
+    color: var(--red);
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    font-size: 0.92em;
+  }
+
+  .story-paragraph.spreadsheet {
+    font-family: 'Special Elite', monospace;
+    font-size: 0.85em;
+    color: var(--accent);
+    border-left: 2px solid rgba(131, 83, 50, 0.42);
+    background: rgba(255, 247, 229, 0.3);
+    padding: 12px 0 12px 16px;
+    margin: 1.5em 0;
+  }
+
+  .story-paragraph.fragment {
+    color: var(--text-dim);
+    font-style: italic;
+    padding-left: 24px;
+    border-left: 1px solid var(--border);
+  }
+
+  .story-paragraph.antimemetic-text {
+    animation: antimemetic 4s ease infinite;
+  }
+
+  .story-title {
+    font-family: 'IM Fell English SC', serif;
+    font-size: clamp(1.9rem, 4vw, 2.8rem);
+    font-weight: 400;
+    letter-spacing: 0.03em;
+    color: var(--paper-burn);
+    margin: 1.8em 0 0.9em;
+    opacity: 0;
+    animation: fadeIn 1.2s ease forwards;
+  }
+
+  .story-separator {
+    text-align: center;
+    color: var(--text-dim);
+    margin: 2.1em 0;
+    letter-spacing: 0.42em;
+    opacity: 0;
+    animation: fadeIn 0.6s ease forwards;
+  }
+
+  @keyframes fadeIn {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Choices */
+  #choices {
+    margin-top: 2em;
+    opacity: 0;
+    animation: fadeIn 1s ease 0.5s forwards;
+  }
+
+  .choice {
+    display: block;
+    width: 100%;
+    text-align: left;
+    background: var(--choice-bg);
+    border: 1px solid var(--choice-border);
+    color: var(--ink);
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 21px;
+    line-height: 1.6;
+    padding: 15px 20px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border-radius: 14px;
+    box-shadow: 0 12px 24px rgba(73, 46, 24, 0.06);
+  }
+
+  .choice:hover {
+    background: var(--choice-hover);
+    border-color: rgba(126, 84, 47, 0.48);
+    color: var(--accent);
+    padding-left: 28px;
+    transform: translateY(-1px);
+  }
+
+  .choice:active {
+    transform: scale(0.99);
+  }
+
+  /* LLM continuation area */
+  #continuation {
+    display: none;
+    margin-top: 2em;
+  }
+
+  #continuation.active { display: block; }
+
+  #continuation-text {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 21px;
+    line-height: 1.7;
+    color: var(--ink);
+    margin-bottom: 1.5em;
+  }
+
+  #continuation-text p {
+    margin-bottom: 1.2em;
+    opacity: 0;
+    animation: fadeIn 0.8s ease forwards;
+  }
+
+  .generate-btn {
+    display: inline-block;
+    background: rgba(255, 248, 232, 0.34);
+    border: 1px solid rgba(126, 84, 47, 0.42);
+    color: var(--accent);
+    font-family: 'IM Fell English SC', serif;
+    font-size: 16px;
+    padding: 10px 24px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border-radius: 999px;
+    margin-top: 1em;
+  }
+  .generate-btn:hover {
+    background: rgba(255, 251, 241, 0.82);
+    color: var(--paper-burn);
+  }
+  .generate-btn:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+  }
+
+  .cached-indicator {
+    font-family: 'Special Elite', monospace;
+    font-size: 10px;
+    color: var(--text-dim);
+    opacity: 0.72;
+    margin-top: 0.5em;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+  }
+
+  /* Loading indicator */
+  .generating {
+    color: var(--text-dim);
+    font-style: italic;
+  }
+
+  .choice.not-chosen {
+    opacity: 0;
+    height: 0;
+    padding: 0;
+    margin: 0;
+    border: none;
+    overflow: hidden;
+    transition: all 0.4s ease;
+  }
+  .choice.chosen {
+    border-color: var(--accent-dim);
+    color: var(--accent);
+    opacity: 0.6;
+    cursor: default;
+    pointer-events: none;
+  }
+
+  /* Restart link */
+  #restart {
+    display: none;
+    margin-top: 3em;
+    text-align: center;
+  }
+  #restart a {
+    color: var(--ink-soft);
+    text-decoration: none;
+    font-size: 14px;
+    border-bottom: 1px solid rgba(99, 68, 40, 0.3);
+    padding: 8px 0 2px;
+    transition: all 0.3s ease;
+  }
+  #restart a:hover {
+    color: var(--accent);
+    border-color: var(--accent-dim);
+  }
+
+  /* Scrollbar */
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background: rgba(223, 204, 166, 0.6); }
+  ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+  ::-webkit-scrollbar-thumb:hover { background: rgba(87, 59, 34, 0.34); }
+
+  #story-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px 20px;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 14px;
+    color: var(--ink-soft);
+  }
+
+  .map-kicker {
+    font-family: 'Special Elite', monospace;
+    font-size: 11px;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    opacity: 0.78;
+  }
+
+  .map-title {
+    font-family: 'IM Fell English SC', serif;
+    font-size: 1rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--paper-burn);
+  }
+
+  /* Mobile */
+  @media (max-width: 640px) {
+    body { font-size: 18px; }
+    #container {
+      padding: 46px 10px 72px;
+    }
+    #container::before {
+      inset: 14px 0 24px;
+      border-radius: 20px;
+    }
+    #story,
+    #choices,
+    #continuation,
+    #restart,
+    #story-meta {
+      padding-left: 18px;
+      padding-right: 18px;
+    }
+    .story-title { font-size: 1.7rem; }
+    .choice { font-size: 19px; }
+  }
+</style>
+</head>
+<body>
+
+<div id="phase-indicator" class="linear"></div>
+<div id="iteration-counter"></div>
+
+<div id="container">
+  <div id="story-meta">
+    <div class="map-kicker">Recovered chart of repeated voyages</div>
+    <div class="map-title">Never Ever Land</div>
+  </div>
+  <div id="story"></div>
+  <div id="choices"></div>
+  <div id="continuation">
+    <div id="continuation-text"></div>
+  </div>
+  <div id="restart"><a href="#" onclick="restartStory(); return false;">The loop resets. Read again.</a></div>
+</div>
+
+<!-- inkjs runtime (inlined) -->
+<script id="inkjs-runtime"></script>
+
+<!-- Story JSON (inlined) -->
+<script id="story-json"></script>
+
+<script>
+// ============================================================
+// STORY STATE
+// ============================================================
+
+let story = null;
+let currentPhase = 'linear';
+let inkPath = [];
+let choiceHistory = [];
+let storyContext = [];
+let generatePrompt = '';
+let currentNodeId = null;
+
+const INK_VARS_TO_TRACK = [
+  'stayed', 'exit_chosen', 'hook_spoken_to', 'mermaids_spoken_to',
+  'peter_confronted', 'names_recovered', 'spreadsheet_exists',
+  'three_days_lived', 'narrator_compromised', 'times_read_opening',
+  'loop_detected', 'alarm_heard', 'alarm_analyzed', 'reader_addressed'
+];
+
+function getInkVariables() {
+  const vars = {};
+  for (const name of INK_VARS_TO_TRACK) {
+    try { vars[name] = story.variablesState[name]; } catch(e) {}
+  }
+  return vars;
+}
+
+// ============================================================
+// INK RUNTIME
+// ============================================================
+
+function initStory() {
+  story = new inkjs.Story(storyJson);
+  inkPath = [];
+  choiceHistory = [];
+  storyContext = [];
+  generatePrompt = '';
+  currentNodeId = null;
+  currentPhase = 'linear';
+  updatePhaseIndicator();
+  document.getElementById('story').innerHTML = '';
+  document.getElementById('choices').innerHTML = '';
+  document.getElementById('continuation').classList.remove('active');
+  document.getElementById('restart').style.display = 'none';
+  continueStory();
+}
+
+function continueStory() {
+  const storyEl = document.getElementById('story');
+  const choicesEl = document.getElementById('choices');
+  choicesEl.innerHTML = '';
+
+  let delay = 0;
+  let hitGenerate = false;
+
+  while (story.canContinue) {
+    const text = story.Continue().trim();
+    const tags = story.currentTags || [];
+
+    for (const tag of tags) {
+      const [key, ...rest] = tag.split(':');
+      const val = rest.join(':').trim();
+
+      if (key.trim() === 'PHASE') {
+        currentPhase = val;
+        updatePhaseIndicator();
+      }
+      if (key.trim() === 'TITLE') {
+        const titleEl = document.createElement('h2');
+        titleEl.className = 'story-title';
+        titleEl.textContent = val;
+        titleEl.style.animationDelay = delay + 'ms';
+        storyEl.appendChild(titleEl);
+        delay += 200;
+      }
+      if (key.trim() === 'GENERATE') {
+        generatePrompt = val;
+        hitGenerate = true;
+      }
+    }
+
+    if (!text) continue;
+
+    const paragraphs = text.split('\n').filter(p => p.trim());
+    for (const para of paragraphs) {
+      const el = document.createElement('p');
+      el.className = 'story-paragraph';
+      el.style.animationDelay = delay + 'ms';
+
+      if (para.match(/^"YOU |^"THE LOOP|^"I WILL NOT/)) {
+        el.classList.add('island-voice');
+      } else if (para.match(/^\[ANTIMEMETIC/) || para.match(/^\[FRAGMENTS/) || para.match(/^\[ENTRY REDACTED/)) {
+        el.classList.add('antimemetic-text');
+      } else if (para.match(/^—\s/)) {
+        el.classList.add('fragment');
+      }
+
+      el.innerHTML = para;
+      storyEl.appendChild(el);
+      storyContext.push(para);
+      delay += 100;
+    }
+  }
+
+  updateIterationCounter();
+
+  if (hitGenerate) {
+    setTimeout(() => requestGeneration(), delay);
+    return;
+  }
+
+  if (story.currentChoices.length > 0) {
+    setTimeout(() => {
+      for (let i = 0; i < story.currentChoices.length; i++) {
+        const choice = story.currentChoices[i];
+        const btn = document.createElement('button');
+        btn.className = 'choice';
+        btn.innerHTML = choice.text;
+        btn.onclick = () => makeChoice(i);
+        choicesEl.appendChild(btn);
+      }
+      choicesEl.style.animationDelay = delay + 'ms';
+      setTimeout(() => {
+        choicesEl.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      }, 300);
+    }, delay);
+  } else {
+    document.getElementById('restart').style.display = 'block';
+  }
+}
+
+function makeChoice(index) {
+  const choice = story.currentChoices[index];
+  choiceHistory.push(choice.text);
+  inkPath.push(index);
+
+  const storyEl = document.getElementById('story');
+  const sep = document.createElement('div');
+  sep.className = 'story-separator';
+  sep.textContent = '· · ·';
+  storyEl.appendChild(sep);
+
+  story.ChooseChoiceIndex(index);
+  continueStory();
+}
+
+function updatePhaseIndicator() {
+  const indicator = document.getElementById('phase-indicator');
+  indicator.className = '';
+  indicator.classList.add(currentPhase);
+}
+
+function updateIterationCounter() {
+  const counter = document.getElementById('iteration-counter');
+  try {
+    const timesRead = story.variablesState['times_read_opening'];
+    if (timesRead > 1) {
+      counter.classList.add('visible');
+      counter.textContent = 'iteration: ' + timesRead + ' | choices: ' + choiceHistory.length;
+      if (timesRead > 2) {
+        counter.classList.add('antimemetic');
+      }
+    }
+  } catch(e) {}
+}
+
+function restartStory() {
+  initStory();
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+// ============================================================
+// SERVER-SIDE GENERATION
+// ============================================================
+
+function startLoadingDots(el) {
+  el.textContent = 'The story unfolds';
+  const timer = setInterval(() => {
+    el.textContent += '.';
+  }, 1500);
+  return timer;
+}
+
+function stopLoadingDots(timer) {
+  clearInterval(timer);
+}
+
+async function requestGeneration() {
+  const contEl = document.getElementById('continuation');
+  const textEl = document.getElementById('continuation-text');
+  contEl.classList.add('active');
+  document.getElementById('restart').style.display = 'block';
+
+  const loadingEl = document.createElement('p');
+  loadingEl.className = 'generating';
+  const dotsTimer = startLoadingDots(loadingEl);
+  textEl.appendChild(loadingEl);
+
+  try {
+    const response = await fetch('/api/generate', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        ink_path: inkPath,
+        ink_variables: getInkVariables(),
+        story_context: storyContext.slice(-30),
+        generate_prompt: generatePrompt,
+      })
+    });
+
+    if (!response.ok) {
+      const err = await response.json().catch(() => ({ error: response.statusText }));
+      throw new Error(err.error || 'Server error ' + response.status);
+    }
+
+    const data = await response.json();
+    stopLoadingDots(dotsTimer);
+    textEl.removeChild(loadingEl);
+    currentNodeId = data.node_id;
+    renderGeneratedScene(data);
+
+  } catch (err) {
+    stopLoadingDots(dotsTimer);
+    textEl.removeChild(loadingEl);
+    renderError(textEl, err.message, function() {
+      requestGeneration();
+    });
+  }
+}
+
+async function continueFromChoice(parentId, choiceIndex) {
+  const textEl = document.getElementById('continuation-text');
+
+  const sep = document.createElement('div');
+  sep.className = 'story-separator';
+  sep.textContent = '· · ·';
+  textEl.appendChild(sep);
+
+  const loadingEl = document.createElement('p');
+  loadingEl.className = 'generating';
+  const dotsTimer = startLoadingDots(loadingEl);
+  textEl.appendChild(loadingEl);
+
+  try {
+    const response = await fetch('/api/continue', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        parent_id: parentId,
+        choice_index: choiceIndex,
+      })
+    });
+
+    if (!response.ok) {
+      const err = await response.json().catch(() => ({ error: response.statusText }));
+      throw new Error(err.error || 'Server error ' + response.status);
+    }
+
+    const data = await response.json();
+    stopLoadingDots(dotsTimer);
+    textEl.removeChild(loadingEl);
+    currentNodeId = data.node_id;
+    renderGeneratedScene(data);
+
+  } catch (err) {
+    stopLoadingDots(dotsTimer);
+    textEl.removeChild(loadingEl);
+    renderError(textEl, err.message, function() {
+      continueFromChoice(parentId, choiceIndex);
+    });
+  }
+}
+
+function renderGeneratedScene(data) {
+  const textEl = document.getElementById('continuation-text');
+
+  const paragraphs = data.content.split('\n\n').filter(p => p.trim());
+  let delay = 0;
+  for (const para of paragraphs) {
+    const el = document.createElement('p');
+    el.className = 'story-paragraph';
+    el.style.animationDelay = delay + 'ms';
+    el.textContent = para;
+    textEl.appendChild(el);
+    storyContext.push(para);
+    delay += 300;
+  }
+
+  if (data.cached) {
+    const indicator = document.createElement('div');
+    indicator.className = 'cached-indicator';
+    indicator.textContent = 'another reader found this path before you';
+    indicator.style.animationDelay = delay + 'ms';
+    indicator.style.opacity = '0';
+    indicator.style.animation = 'fadeIn 0.8s ease ' + delay + 'ms forwards';
+    textEl.appendChild(indicator);
+    delay += 200;
+  }
+
+  const choicesContainer = document.createElement('div');
+  choicesContainer.id = 'generated-choices';
+  choicesContainer.style.marginTop = '2em';
+  choicesContainer.style.opacity = '0';
+  choicesContainer.style.animation = 'fadeIn 1s ease ' + delay + 'ms forwards';
+
+  const nodeId = data.node_id;
+  for (let idx = 0; idx < data.choices.length; idx++) {
+    const btn = document.createElement('button');
+    btn.className = 'choice';
+    btn.textContent = data.choices[idx];
+    btn.dataset.choiceIdx = idx;
+    const capturedIdx = idx;
+    btn.onclick = function() {
+      choicesContainer.querySelectorAll('.choice').forEach(function(other) {
+        if (parseInt(other.dataset.choiceIdx) === capturedIdx) {
+          other.classList.add('chosen');
+        } else {
+          other.classList.add('not-chosen');
+        }
+        other.disabled = true;
+      });
+      continueFromChoice(nodeId, capturedIdx);
+    };
+    choicesContainer.appendChild(btn);
+  }
+
+  textEl.appendChild(choicesContainer);
+
+  setTimeout(() => {
+    choicesContainer.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  }, delay + 500);
+}
+
+function renderError(container, message, retryFn) {
+  const errEl = document.createElement('p');
+  errEl.className = 'story-paragraph narrator-voice';
+  errEl.textContent = 'The story tried to continue but encountered resistance: ' + message + '. The island may be interfering.';
+  container.appendChild(errEl);
+
+  const retryBtn = document.createElement('button');
+  retryBtn.className = 'generate-btn';
+  retryBtn.textContent = 'Try again';
+  retryBtn.onclick = function() {
+    errEl.remove();
+    retryBtn.remove();
+    retryFn();
+  };
+  container.appendChild(retryBtn);
+}
+
+// ============================================================
+// JUMP NAVIGATION
+// ============================================================
+
+const JUMP_PRESETS = {
+  the_deadlock:           { stayed: true, spreadsheet_exists: true, narrator_compromised: true, hook_spoken_to: true, mermaids_spoken_to: true, loop_detected: true, times_read_opening: 2 },
+  the_infinite_game:      { stayed: true, spreadsheet_exists: true, narrator_compromised: true, hook_spoken_to: true, mermaids_spoken_to: true, loop_detected: true, times_read_opening: 2 },
+  generate_continuation:  { stayed: true, spreadsheet_exists: true, narrator_compromised: true, hook_spoken_to: true, mermaids_spoken_to: true, loop_detected: true, times_read_opening: 2 },
+  the_silence_ending:     { stayed: true, spreadsheet_exists: true, narrator_compromised: true, times_read_opening: 2 },
+  the_true_exit:          { exit_chosen: true, spreadsheet_exists: true, three_days_lived: true, narrator_compromised: true, times_read_opening: 2 },
+  the_becoming:           { stayed: true, spreadsheet_exists: true, narrator_compromised: true, hook_spoken_to: true, mermaids_spoken_to: true, loop_detected: true, times_read_opening: 2 },
+  the_becoming_after_exit:{ exit_chosen: true, spreadsheet_exists: true, narrator_compromised: true, times_read_opening: 2 },
+  the_loop_revealed:      { loop_detected: true, narrator_compromised: true, spreadsheet_exists: true, times_read_opening: 2 },
+  the_real_story:         { narrator_compromised: true, spreadsheet_exists: true, loop_detected: true, times_read_opening: 2 },
+  the_choice_point:       { alarm_heard: true, spreadsheet_exists: true, ledger_found: true, second_ledger_found: true, hook_spoken_to: true, mermaids_spoken_to: true },
+  the_narrator_speaks:    { narrator_compromised: true, loop_detected: true, times_read_opening: 2 },
+  the_hook_alliance:      { hook_spoken_to: true, spreadsheet_exists: true },
+  the_three_days:         { hook_spoken_to: true, spreadsheet_exists: true, mermaids_spoken_to: true },
+  the_mermaid_ending:     { mermaids_spoken_to: true, spreadsheet_exists: true },
+  the_island_speaks:      { stayed: true, spreadsheet_exists: true, narrator_compromised: true, hook_spoken_to: true },
+  what_it_became:         { stayed: true, spreadsheet_exists: true, narrator_compromised: true, hook_spoken_to: true },
+  the_exit_or_stay:       { narrator_compromised: true, spreadsheet_exists: true, loop_detected: true, reader_addressed: true, times_read_opening: 2 },
+};
+
+function parseHash() {
+  const hash = window.location.hash.slice(1);
+  if (!hash) return null;
+  const params = {};
+  for (const part of hash.split('&')) {
+    const [key, val] = part.split('=');
+    if (key && val !== undefined) {
+      if (val === 'true') params[key] = true;
+      else if (val === 'false') params[key] = false;
+      else if (!isNaN(Number(val))) params[key] = Number(val);
+      else params[key] = val;
+    }
+  }
+  return params;
+}
+
+function applyJump() {
+  const params = parseHash();
+  if (!params || !params.jump) return false;
+
+  const knot = params.jump;
+  delete params.jump;
+
+  const preset = JUMP_PRESETS[knot] || {};
+  const vars = Object.assign({}, preset, params);
+
+  for (const [key, val] of Object.entries(vars)) {
+    try { story.variablesState[key] = val; } catch(e) {
+      console.warn('Could not set ink var:', key, e);
+    }
+  }
+
+  try {
+    story.ChoosePathString(knot);
+    console.log('Jumped to:', knot, 'with vars:', vars);
+    return true;
+  } catch(e) {
+    console.error('Jump failed for knot:', knot, e);
+    return false;
+  }
+}
+
+// ============================================================
+// LOAD & INIT
+// ============================================================
+
+async function loadAndInit() {
+  try {
+    const inkResponse = await fetch('node_modules/inkjs/dist/ink.js');
+    if (!inkResponse.ok) throw new Error('Could not load inkjs runtime');
+    const inkCode = await inkResponse.text();
+    const inkScript = document.createElement('script');
+    inkScript.textContent = inkCode;
+    document.head.appendChild(inkScript);
+
+    const jsonResponse = await fetch('wendy_breaks_neverland.json');
+    if (!jsonResponse.ok) throw new Error('Could not load story JSON');
+    window.storyJson = await jsonResponse.json();
+
+    initStory();
+
+    if (window.location.hash.includes('jump=')) {
+      if (applyJump()) {
+        document.getElementById('story').innerHTML = '';
+        document.getElementById('choices').innerHTML = '';
+        continueStory();
+      }
+    }
+  } catch(e) {
+    console.error('Load error:', e);
+    document.getElementById('story').innerHTML = '<p class="story-paragraph narrator-voice">The story could not be loaded. The island may be interfering. Ensure the files are served from a web server (not file://). Try: <code>python server.py</code> in the project directory.</p>';
+  }
+}
+
+document.addEventListener('DOMContentLoaded', loadAndInit);
+</script>
+
+</body>
+</html>

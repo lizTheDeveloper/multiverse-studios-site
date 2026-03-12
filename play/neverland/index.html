@@ -1,0 +1,805 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Never Ever Land</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=IM+Fell+English+SC&family=Special+Elite&display=swap');
+
+  :root {
+    --paper: #dcc9a2;
+    --paper-light: #eadabd;
+    --paper-deep: #b89360;
+    --paper-burn: #7a5530;
+    --ink: #38251a;
+    --ink-soft: #5d4632;
+    --ink-faint: rgba(56, 37, 26, 0.58);
+    --salt: #6a7b76;
+    --sea: #4f6f6b;
+    --rose: #8b5b3a;
+    --border: rgba(74, 47, 24, 0.28);
+    --shadow: rgba(57, 35, 16, 0.24);
+    --map-line: rgba(92, 65, 38, 0.2);
+  }
+
+  body[data-theme="moonlit"] {
+    --paper: #31251d;
+    --paper-light: #43342b;
+    --paper-deep: #18120e;
+    --paper-burn: #f0d09e;
+    --ink: #fff5e4;
+    --ink-soft: #efd9b3;
+    --ink-faint: rgba(255, 245, 228, 0.78);
+    --salt: #98a39f;
+    --sea: #79908a;
+    --rose: #ffd7a2;
+    --border: rgba(255, 230, 188, 0.08);
+    --shadow: rgba(0, 0, 0, 0.6);
+    --map-line: rgba(245, 224, 193, 0.08);
+  }
+
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    min-height: 100vh;
+    overflow-x: hidden;
+    color: var(--ink);
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 22px;
+    line-height: 1.68;
+    background:
+      radial-gradient(circle at top, rgba(255, 244, 214, 0.72), transparent 38%),
+      linear-gradient(180deg, rgba(118, 88, 58, 0.24), transparent 28%),
+      url("assets/textures/textured_paper.png"),
+      linear-gradient(135deg, #8e6c49, #c49b68 26%, #d7bc8c 62%, #b18858 100%);
+    background-size: auto, auto, 512px 512px, auto;
+    background-blend-mode: normal, normal, soft-light, normal;
+    position: relative;
+  }
+
+  body[data-theme="moonlit"] {
+    background:
+      radial-gradient(circle at top, rgba(240, 210, 156, 0.09), transparent 32%),
+      linear-gradient(180deg, rgba(255, 244, 218, 0.04), transparent 22%),
+      url("assets/textures/black_paper.png"),
+      linear-gradient(135deg, #020406, #091018 22%, #101821 56%, #04070a 100%);
+    background-size: auto, auto, 512px 512px, auto;
+    background-blend-mode: screen, normal, soft-light, normal;
+  }
+
+  body::before,
+  body::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  body::before {
+    opacity: 0.26;
+    mix-blend-mode: multiply;
+    background:
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 160 160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)' opacity='0.75'/%3E%3C/svg%3E") repeat,
+      radial-gradient(circle at 20% 20%, rgba(80, 52, 28, 0.16), transparent 30%),
+      radial-gradient(circle at 80% 14%, rgba(255, 242, 214, 0.12), transparent 32%),
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 600 600'%3E%3Cg fill='none' stroke='rgba(94,69,40,0.24)' stroke-width='1.2'%3E%3Cpath d='M40 108c63-33 139-36 224 11s170 52 292-5'/%3E%3Cpath d='M8 232c85 21 158 17 236-21s158-45 329-5'/%3E%3Cpath d='M24 372c72-42 146-44 225-11s178 48 328-19'/%3E%3Cpath d='M74 498c79 7 140-6 208-43s166-44 273-17'/%3E%3C/g%3E%3Cg fill='rgba(94,69,40,0.18)'%3E%3Ccircle cx='110' cy='140' r='3'/%3E%3Ccircle cx='308' cy='254' r='3'/%3E%3Ccircle cx='490' cy='402' r='3'/%3E%3C/g%3E%3C/svg%3E") center/820px 820px repeat;
+    background-size: 180px 180px, auto, auto, 820px 820px;
+  }
+
+  body[data-theme="moonlit"]::before {
+    opacity: 0.12;
+    mix-blend-mode: screen;
+  }
+
+  body::after {
+    opacity: 0.62;
+    background: linear-gradient(180deg, rgba(110, 73, 39, 0.28), rgba(73, 48, 27, 0.2));
+    mix-blend-mode: multiply;
+    -webkit-mask-image: url("assets/masks/paper-edge-mask.svg");
+    mask-image: url("assets/masks/paper-edge-mask.svg");
+    -webkit-mask-size: 100% 100%;
+    mask-size: 100% 100%;
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+    -webkit-mask-position: center;
+    mask-position: center;
+  }
+
+  body[data-theme="moonlit"]::after {
+    opacity: 0.2;
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.58));
+  }
+
+  #container {
+    width: min(100%, 980px);
+    margin: 0 auto;
+    padding: 48px 20px 80px;
+    position: relative;
+    z-index: 1;
+  }
+
+  #map-frame {
+    position: relative;
+    overflow: visible;
+    padding: 28px clamp(20px, 3vw, 34px) 48px;
+  }
+
+  #map-frame::before,
+  #map-frame::after {
+    content: '';
+    position: absolute;
+    pointer-events: none;
+  }
+
+  #map-frame::before {
+    content: none;
+  }
+
+  #map-frame::after {
+    width: 220px;
+    height: 220px;
+    right: 6px;
+    top: -22px;
+    opacity: 0.18;
+    background:
+      radial-gradient(circle at center, transparent 28%, rgba(86, 57, 30, 0.7) 29%, transparent 31%),
+      conic-gradient(from 0deg, rgba(86, 57, 30, 0.9) 0 8deg, transparent 8deg 22deg, rgba(86, 57, 30, 0.88) 22deg 30deg, transparent 30deg 44deg, rgba(86, 57, 30, 0.82) 44deg 52deg, transparent 52deg 66deg, rgba(86, 57, 30, 0.84) 66deg 74deg, transparent 74deg 88deg, rgba(86, 57, 30, 0.92) 88deg 96deg, transparent 96deg 110deg, rgba(86, 57, 30, 0.82) 110deg 118deg, transparent 118deg 132deg, rgba(86, 57, 30, 0.88) 132deg 140deg, transparent 140deg 154deg, rgba(86, 57, 30, 0.82) 154deg 162deg, transparent 162deg 176deg, rgba(86, 57, 30, 0.9) 176deg 184deg, transparent 184deg 198deg, rgba(86, 57, 30, 0.84) 198deg 206deg, transparent 206deg 220deg, rgba(86, 57, 30, 0.88) 220deg 228deg, transparent 228deg 242deg, rgba(86, 57, 30, 0.84) 242deg 250deg, transparent 250deg 264deg, rgba(86, 57, 30, 0.9) 264deg 272deg, transparent 272deg 286deg, rgba(86, 57, 30, 0.82) 286deg 294deg, transparent 294deg 308deg, rgba(86, 57, 30, 0.88) 308deg 316deg, transparent 316deg 330deg, rgba(86, 57, 30, 0.9) 330deg 338deg, transparent 338deg 360deg);
+    border-radius: 50%;
+    filter: blur(0.3px);
+  }
+
+  body[data-theme="moonlit"] #map-frame::after {
+    opacity: 0.24;
+    filter: blur(0.15px);
+  }
+
+  #map-header {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px 22px;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 26px;
+    padding-bottom: 8px;
+    color: var(--ink-soft);
+  }
+
+  .map-kicker {
+    font-family: 'Special Elite', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    opacity: 0.78;
+  }
+
+  .map-actions {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .chart-toggle {
+    appearance: none;
+    border: none;
+    background: rgba(255, 247, 228, 0.44);
+    color: var(--rose);
+    font-family: 'Special Elite', monospace;
+    font-size: 0.74rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 11px 14px 10px;
+    border-radius: 999px;
+    cursor: pointer;
+    box-shadow: 0 10px 24px rgba(82, 51, 24, 0.08);
+    transition: transform 0.25s ease, background 0.25s ease, color 0.25s ease;
+  }
+
+  .chart-toggle:hover {
+    transform: translateY(-1px);
+    background: rgba(255, 250, 240, 0.72);
+    color: var(--paper-burn);
+  }
+
+  body[data-theme="moonlit"] .chart-toggle {
+    background: rgba(10, 15, 22, 0.76);
+    color: #fff3dc;
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.28);
+  }
+
+  body[data-theme="moonlit"] .chart-toggle:hover {
+    background: rgba(18, 26, 36, 0.92);
+  }
+
+  #story,
+  #next-link {
+    position: relative;
+    z-index: 1;
+  }
+
+  .story-body {
+    margin-bottom: 2.4em;
+  }
+
+  .story-body > * {
+    position: relative;
+  }
+
+  .story-body > *::before {
+    content: '';
+    position: absolute;
+    left: -20px;
+    top: 0.95em;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: rgba(94, 68, 45, 0.22);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  .story-body > p:hover::before,
+  .story-body > blockquote:hover::before,
+  .story-body > ul:hover::before,
+  .story-body > ol:hover::before {
+    opacity: 1;
+  }
+
+  .story-body p,
+  .story-body ul,
+  .story-body ol,
+  .story-body blockquote,
+  .story-body hr {
+    margin-bottom: 1.1em;
+  }
+
+  .story-body h1,
+  .story-body h2,
+  .story-body h3 {
+    font-family: 'IM Fell English SC', serif;
+    line-height: 1.05;
+    color: var(--paper-burn);
+    text-wrap: balance;
+  }
+
+  .story-body h1 {
+    font-size: clamp(2.6rem, 5vw, 4.1rem);
+    margin: 0 0 0.5em;
+  }
+
+  .story-body h2 {
+    font-size: clamp(1.8rem, 3vw, 2.4rem);
+    margin: 1.7em 0 0.7em;
+  }
+
+  .story-body h3 {
+    font-size: 1.36rem;
+    margin: 1.5em 0 0.6em;
+  }
+
+  .story-body em {
+    font-style: italic;
+    color: var(--ink-soft);
+  }
+
+  .story-body strong {
+    font-weight: 700;
+    color: #2d1d14;
+  }
+
+  .story-body hr {
+    border: none;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(92, 62, 35, 0.55), transparent);
+    margin: 2.2em 0;
+  }
+
+  .story-body ul,
+  .story-body ol {
+    padding-left: 1.45em;
+  }
+
+  .story-body li + li {
+    margin-top: 0.45em;
+  }
+
+  .story-body blockquote {
+    padding: 1em 1.1em 1em 1.2em;
+    border-left: 3px solid rgba(125, 91, 54, 0.58);
+    background: rgba(255, 247, 230, 0.26);
+    color: var(--ink-soft);
+    font-style: italic;
+  }
+
+  body[data-theme="moonlit"] .story-body {
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.22);
+  }
+
+  body[data-theme="moonlit"] .story-body strong {
+    color: #fffdf7;
+  }
+
+  body[data-theme="moonlit"] .story-body blockquote {
+    background: rgba(255, 244, 218, 0.08);
+    border-left-color: rgba(255, 214, 157, 0.78);
+    color: #fff3dc;
+  }
+
+  #next-link {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    align-items: flex-start;
+    padding-top: 24px;
+  }
+
+  #next-link a {
+    display: inline-block;
+    max-width: 100%;
+    color: var(--rose);
+    text-decoration: none;
+    font-style: italic;
+    font-size: 1.06rem;
+    padding: 14px 18px;
+    border-radius: 999px;
+    background: rgba(255, 247, 228, 0.36);
+    box-shadow: 0 10px 24px rgba(82, 51, 24, 0.08);
+    transition: transform 0.25s ease, box-shadow 0.25s ease, color 0.25s ease, border-color 0.25s ease, background 0.25s ease;
+  }
+
+  #next-link a:hover {
+    color: #55341f;
+    background: rgba(255, 249, 236, 0.7);
+    box-shadow: 0 16px 34px rgba(82, 51, 24, 0.14);
+    transform: translateY(-1px);
+  }
+
+  body[data-theme="moonlit"] #next-link a {
+    background: rgba(9, 14, 20, 0.76);
+    color: #ffe0af;
+    box-shadow: 0 16px 34px rgba(0, 0, 0, 0.24);
+  }
+
+  body[data-theme="moonlit"] #next-link a:hover {
+    color: #fff1d7;
+    background: rgba(18, 26, 36, 0.92);
+  }
+
+  .loading,
+  .error {
+    font-style: italic;
+    color: var(--ink-soft);
+  }
+
+  .error {
+    color: #6d3720;
+  }
+
+  body[data-theme="moonlit"] .loading,
+  body[data-theme="moonlit"] .error {
+    color: #ffd8a6;
+  }
+
+  #map-frame.is-glitching #story,
+  #map-frame.is-glitching #next-link,
+  #map-frame.is-glitching #map-header {
+    filter: blur(0.45px);
+    opacity: 0.26;
+    transform: scale(0.996);
+  }
+
+  #transition-veil {
+    position: absolute;
+    inset: 0;
+    display: grid;
+    place-items: center;
+    padding: 44px;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.25s ease;
+    z-index: 4;
+    background:
+      radial-gradient(circle at center, rgba(219, 194, 153, 0.88), rgba(197, 161, 111, 0.74) 46%, rgba(108, 77, 46, 0.48) 100%);
+    backdrop-filter: blur(1.5px);
+  }
+
+  body[data-theme="moonlit"] #transition-veil {
+    background:
+      radial-gradient(circle at center, rgba(43, 56, 72, 0.9), rgba(24, 34, 46, 0.84) 46%, rgba(10, 15, 23, 0.66) 100%);
+  }
+
+  #transition-veil.active {
+    opacity: 1;
+  }
+
+  .veil-core {
+    width: min(100%, 720px);
+    padding: 28px 24px 24px;
+    border-radius: 18px;
+    border: 1px solid rgba(89, 57, 30, 0.32);
+    background:
+      linear-gradient(180deg, rgba(255, 248, 232, 0.52), rgba(215, 187, 142, 0.24)),
+      rgba(238, 220, 187, 0.35);
+    box-shadow: inset 0 0 24px rgba(77, 48, 20, 0.12);
+  }
+
+  body[data-theme="moonlit"] .veil-core {
+    background:
+      linear-gradient(180deg, rgba(79, 92, 106, 0.34), rgba(30, 39, 52, 0.26)),
+      rgba(26, 34, 45, 0.42);
+  }
+
+  .veil-label {
+    margin-bottom: 14px;
+    color: var(--paper-burn);
+    font-family: 'Special Elite', monospace;
+    font-size: 0.74rem;
+    text-transform: uppercase;
+    letter-spacing: 0.28em;
+  }
+
+  .glyph-stream {
+    min-height: 10.8em;
+    color: rgba(67, 43, 23, 0.88);
+    font-family: 'Special Elite', monospace;
+    font-size: clamp(0.94rem, 2vw, 1.12rem);
+    line-height: 1.35;
+    white-space: pre-wrap;
+    word-break: break-word;
+    text-shadow: 0 0 10px rgba(135, 93, 53, 0.18);
+  }
+
+  body[data-theme="moonlit"] .glyph-stream,
+  body[data-theme="moonlit"] .veil-label {
+    color: #ecd8b5;
+    text-shadow: 0 0 12px rgba(236, 216, 181, 0.1);
+  }
+
+  @media (max-width: 720px) {
+    body {
+      font-size: 19px;
+    }
+
+    #container {
+      padding: 20px 12px 56px;
+    }
+
+    #map-frame {
+      padding: 18px 8px 30px;
+    }
+
+    #map-frame::after {
+      width: 150px;
+      height: 150px;
+      top: -10px;
+      right: 0;
+    }
+
+    .glyph-stream {
+      min-height: 12.6em;
+    }
+  }
+</style>
+</head>
+<body>
+
+<div id="container">
+  <div id="map-frame">
+    <div id="map-header">
+      <div class="map-kicker">Never Ever Land</div>
+      <div class="map-actions">
+        <button id="theme-toggle" class="chart-toggle" type="button" aria-pressed="false">Moonlit</button>
+      </div>
+    </div>
+    <div id="story"></div>
+    <div id="next-link"></div>
+    <div id="transition-veil" aria-hidden="true">
+      <div class="veil-core">
+        <div class="veil-label">Cartographic interference</div>
+        <pre id="glyph-stream" class="glyph-stream"></pre>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+<script>
+(function() {
+  const THEME_STORAGE_KEY = 'never-ever-land-theme';
+  const STORY_FILES = [
+    '0_wendy_breaks_neverland_story.md',
+    '1_wendy_breaks_neverland_story.md',
+    '2_wendy_breaks_neverland_story.md',
+    '3_wendy_breaks_neverland_story.md',
+    '4_wendy_breaks_neverland_story.md',
+    '5_wendy_breaks_neverland_story.md',
+    '6_wendy_breaks_neverland_appendix_the_spreadsheet.md'
+  ];
+
+  const OPENING_FILE = 'opening_peter_pan.md';
+
+  const GLYPH_BANKS = [
+    '𓀀𓀁𓂀𓃭𓃰𓆣𓆤𓆥𓇋𓇳𓈖𓉔𓊹𓋴𓌳𓍯𓎛𓏏',
+    '𒀀𒀭𒁹𒂍𒃲𒄑𒆠𒇷𒈠𒉈𒊕𒋗𒌋𒍣𒎙𒐕'
+  ];
+
+  let currentRenderedIndex = null;
+
+  function getInitialTheme() {
+    try {
+      const savedTheme = window.localStorage.getItem(THEME_STORAGE_KEY);
+      if (savedTheme === 'sunlit' || savedTheme === 'moonlit') {
+        return savedTheme;
+      }
+    } catch (error) {}
+
+    return window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'moonlit' : 'sunlit';
+  }
+
+  function applyTheme(theme) {
+    const resolvedTheme = theme === 'moonlit' ? 'moonlit' : 'sunlit';
+    document.body.dataset.theme = resolvedTheme;
+    const toggle = document.getElementById('theme-toggle');
+    if (toggle) {
+      const isMoonlit = resolvedTheme === 'moonlit';
+      toggle.textContent = isMoonlit ? 'Sunlit' : 'Moonlit';
+      toggle.setAttribute('aria-pressed', String(isMoonlit));
+    }
+
+    try {
+      window.localStorage.setItem(THEME_STORAGE_KEY, resolvedTheme);
+    } catch (error) {}
+  }
+
+  function toggleTheme() {
+    applyTheme(document.body.dataset.theme === 'moonlit' ? 'sunlit' : 'moonlit');
+  }
+
+  function wait(milliseconds) {
+    return new Promise(function(resolve) {
+      window.setTimeout(resolve, milliseconds);
+    });
+  }
+
+  function getStoryIndex() {
+    const hash = window.location.hash.slice(1);
+    if (hash === '') return -1;
+    const index = parseInt(hash, 10);
+    if (isNaN(index) || index < 0 || index > 6) return -1;
+    return index;
+  }
+
+  function setNextLink(index, label, href) {
+    const el = document.getElementById('next-link');
+    el.innerHTML = '';
+    if (href == null) return;
+    const link = document.createElement('a');
+    link.href = href;
+    link.innerHTML = label;
+    link.addEventListener('click', function(e) {
+      if (href.startsWith('#')) {
+        e.preventDefault();
+        window.location.hash = href.slice(1);
+      }
+    });
+    el.appendChild(link);
+  }
+
+  function setNextLinks(links) {
+    const el = document.getElementById('next-link');
+    el.innerHTML = '';
+    if (!Array.isArray(links) || links.length === 0) return;
+
+    links.forEach(function(item) {
+      if (!item || !item.href) return;
+      const link = document.createElement('a');
+      link.href = item.href;
+      link.innerHTML = item.label;
+      link.addEventListener('click', function(e) {
+        if (item.href.startsWith('#')) {
+          e.preventDefault();
+          window.location.hash = item.href.slice(1);
+        }
+      });
+      el.appendChild(link);
+    });
+  }
+
+  function randomGlyphFrame() {
+    const rows = [];
+    const lineCount = window.innerWidth < 720 ? 8 : 7;
+    const lineLength = window.innerWidth < 720 ? 32 : 54;
+
+    for (let rowIndex = 0; rowIndex < lineCount; rowIndex += 1) {
+      const bank = Array.from(GLYPH_BANKS[rowIndex % GLYPH_BANKS.length]);
+      let row = '';
+      for (let characterIndex = 0; characterIndex < lineLength; characterIndex += 1) {
+        if (Math.random() < 0.12) {
+          row += ' ';
+          continue;
+        }
+        const glyph = bank[Math.floor(Math.random() * bank.length)];
+        row += glyph;
+      }
+      rows.push(row);
+    }
+
+    return rows.join('\n');
+  }
+
+  function startGlyphTransition() {
+    const frame = document.getElementById('map-frame');
+    const veil = document.getElementById('transition-veil');
+    const glyphStream = document.getElementById('glyph-stream');
+    frame.classList.add('is-glitching');
+    veil.classList.add('active');
+    glyphStream.textContent = randomGlyphFrame();
+
+    const timer = window.setInterval(function() {
+      glyphStream.textContent = randomGlyphFrame();
+    }, 90);
+
+    return {
+      stop: function() {
+        window.clearInterval(timer);
+        frame.classList.remove('is-glitching');
+        veil.classList.remove('active');
+      }
+    };
+  }
+
+  function resolveStoryHtml(index) {
+    if (index === -1) {
+      return fetchStoryPath(OPENING_FILE);
+    }
+    return fetchStory(index);
+  }
+
+  function renderStory(index, html) {
+    const storyEl = document.getElementById('story');
+    storyEl.innerHTML = '<div class="story-body">' + html + '</div>';
+
+    if (index === -1) {
+      setNextLinks([
+        { label: "except that isn't what happened at all", href: '#0' },
+        { label: 'Chapter VII', href: 'https://www.gutenberg.org/files/16/16-h/16-h.htm#chap07' }
+      ]);
+    } else if (index === 6) {
+      setNextLink(6, 'Enter the infinite game.', 'wendy_breaks_neverland.html');
+    } else {
+      setNextLink(index, getNextLabel(index), '#' + (index + 1));
+    }
+
+    document.title = 'Never Ever Land';
+    currentRenderedIndex = index;
+    forceScrollToTop();
+  }
+
+  function forceScrollToTop() {
+    const reset = function() {
+      document.documentElement.scrollTop = 0;
+      document.body.scrollTop = 0;
+      window.scrollTo({
+        top: 0,
+        left: 0,
+        behavior: 'auto'
+      });
+    };
+
+    reset();
+    window.requestAnimationFrame(reset);
+    window.setTimeout(reset, 60);
+    window.setTimeout(reset, 220);
+  }
+
+  async function loadStory(options) {
+    const settings = options || {};
+    const index = getStoryIndex();
+    const storyEl = document.getElementById('story');
+    const nextEl = document.getElementById('next-link');
+    const shouldTransition = Boolean(settings.withTransition && currentRenderedIndex !== null && currentRenderedIndex !== index);
+    let transition = null;
+
+    if (!shouldTransition && currentRenderedIndex !== index) {
+      storyEl.innerHTML = '<p class="loading">Charting a new course through the island…</p>';
+      nextEl.innerHTML = '';
+    }
+
+    try {
+      if (shouldTransition) {
+        transition = startGlyphTransition();
+      }
+
+      const htmlPromise = resolveStoryHtml(index);
+      if (shouldTransition) {
+        await wait(1125);
+      }
+
+      const html = await htmlPromise;
+      renderStory(index, html);
+
+      if (transition) {
+        await wait(180);
+        transition.stop();
+      }
+    } catch (error) {
+      if (transition) {
+        transition.stop();
+      }
+      storyEl.innerHTML = '<p class="error">The story could not be loaded.</p>';
+      nextEl.innerHTML = '';
+    }
+  }
+
+  function getNextLabel(index) {
+    var labels = [
+      "*[Editor's note: This is the first version. There are others. They do not all agree. The discrepancies are not errors.]*",
+      "*[This is where the second telling ends. It ends well. It ends cleanly. The narrator is satisfied. Please do not ask why the narrator is satisfied. Please do not ask what happens to Neverland after the protagonist leaves. Please do not check whether the moon has resumed its position over the lagoon. Please continue to the next telling.]*",
+      "*[The third telling ends here. It is the most expansive version so far. The narrator has been extremely generous with the scope. Cosmic, even. You may wish to ask yourself what a narrator gains by making a story so large that the reader forgets to look at its foundations. You may wish to count the mermaids again. You may wish to ask: in all this vast manifold of spacious authorship and dimensional hospitality — in all these worlds built from collaborative meaning and non-coercive relation — does anyone remember the names? The ones from the ledger. The ones from before Wendy. Does anyone, in all this beautiful infinity, remember them? Or has the scale itself become a kind of forgetting?]*",
+      "*[Fourth telling complete. The volume increases. The scope is now cosmic. The narrator would like you to notice how far we have traveled from a girl in a nightgown standing on an island. The narrator would like you to feel that the distance is progress. The narrator would very much prefer that you do not notice that in all four tellings, the same thing happens: Wendy leaves, and the story continues. The narrator is beginning to suspect that you have noticed anyway.]*",
+      "*[The fifth telling ends by looking at you. This is the narrator's final defensive maneuver: if the story can make you feel that you are part of the story, then your attention has been absorbed rather than directed. You are no longer a reader examining a text. You are a participant in a cosmic unfolding. You are flattered. You are included.]*",
+      "*[You could close this now. The island expects you to. Or you could stay in the room where the loop doesn't reset and the narrator is compromised. You could refuse to complete the iteration. It's your choice. The island has no procedure for your choice. That's what makes it real.]*"
+    ];
+    return labels[index] || 'Continue →';
+  }
+
+  function fetchStoryPath(path) {
+    return fetch(path).then(function(res) {
+      if (!res.ok) throw new Error(res.statusText);
+      return res.text();
+    }).then(function(content) {
+      if (typeof marked === 'undefined') {
+        return content.replace(/\n/g, '<br>\n');
+      }
+
+      if (typeof marked.setOptions === 'function') {
+        marked.setOptions({ gfm: true, breaks: true });
+      }
+
+      if (typeof marked.parse === 'function') {
+        return marked.parse(content);
+      }
+
+      if (typeof marked === 'function') {
+        return marked(content);
+      }
+
+      return content.replace(/\n/g, '<br>\n');
+    });
+  }
+
+  function fetchStory(index) {
+    return fetchStoryPath(STORY_FILES[index]);
+  }
+
+  if ('scrollRestoration' in window.history) {
+    window.history.scrollRestoration = 'manual';
+  }
+
+  document.addEventListener('DOMContentLoaded', function() {
+    const toggle = document.getElementById('theme-toggle');
+    applyTheme(getInitialTheme());
+    if (toggle) {
+      toggle.addEventListener('click', toggleTheme);
+    }
+  }, { once: true });
+
+  window.addEventListener('hashchange', function() {
+    loadStory({ withTransition: true });
+  });
+
+  window.addEventListener('DOMContentLoaded', function() {
+    loadStory({ withTransition: false });
+  });
+})();
+</script>
+
+</body>
+</html>
