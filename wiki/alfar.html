@@ -1,0 +1,849 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>&Aacute;lfar &mdash; Precursors Wiki</title>
+  <meta name="description" content="Inheritors of the Resonants. Cross-species cultural transmission vectors designed by the Shee. Full lore, genome, biochemistry, and secret history of the &Aacute;lfar.">
+  <link rel="stylesheet" href="../styles.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#x2726;</text></svg>">
+  <style>
+    /* ---- Accent color override ---- */
+    :root {
+      --alfar-accent: #c4b5fd;
+      --alfar-accent-07: rgba(196, 181, 253, 0.07);
+      --alfar-accent-15: rgba(196, 181, 253, 0.15);
+      --alfar-accent-20: rgba(196, 181, 253, 0.2);
+      --alfar-accent-04: rgba(196, 181, 253, 0.04);
+      --alfar-accent-06: rgba(196, 181, 253, 0.06);
+    }
+
+    /* ---- Breadcrumb ---- */
+    .wiki-breadcrumb {
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      color: var(--dust);
+      margin-bottom: 1.5rem;
+    }
+    .wiki-breadcrumb a { color: var(--biolume); text-decoration: none; }
+    .wiki-breadcrumb a:hover { text-decoration: underline; }
+    .wiki-breadcrumb span { color: var(--ash); margin: 0 0.4rem; }
+
+    /* ---- Species Hero ---- */
+    .species-hero {
+      padding: 8rem var(--space-md) 4rem;
+      max-width: 900px;
+      margin: 0 auto;
+      position: relative;
+    }
+    .species-hero-glyph {
+      position: absolute;
+      top: 6rem;
+      right: 0;
+      font-family: var(--font-display);
+      font-size: 14rem;
+      font-weight: 900;
+      color: rgba(196, 181, 253, 0.04);
+      line-height: 1;
+      pointer-events: none;
+      user-select: none;
+      letter-spacing: -0.05em;
+    }
+    .species-overline {
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--alfar-accent);
+      margin-bottom: 0.75rem;
+      display: block;
+    }
+    .species-name {
+      font-family: var(--font-display);
+      font-size: clamp(3rem, 8vw, 6rem);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 1;
+      color: var(--star-white);
+      margin-bottom: 0.5rem;
+    }
+    .species-epithet {
+      font-family: var(--font-body);
+      font-style: italic;
+      font-size: 1.3rem;
+      color: var(--dust);
+      margin-bottom: 0.5rem;
+    }
+    .species-folklore-origin {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: var(--ash);
+      max-width: 60ch;
+      line-height: 1.6;
+      margin-top: 0.5rem;
+    }
+
+    /* ---- Accent line ---- */
+    .accent-rule {
+      width: 60px;
+      height: 2px;
+      background: var(--alfar-accent);
+      margin: 2rem 0;
+      border: none;
+    }
+
+    /* ---- Quick Stats Panel ---- */
+    .stats-panel {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 1px;
+      background: var(--void-border);
+      border: 1px solid var(--void-border);
+      border-radius: 8px;
+      overflow: hidden;
+      margin-bottom: 3rem;
+    }
+    .stat-cell {
+      background: var(--void-elevated);
+      padding: 1.2rem 1.5rem;
+    }
+    .stat-cell-label {
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--ash);
+      display: block;
+      margin-bottom: 0.3rem;
+    }
+    .stat-cell-value {
+      font-family: var(--font-display);
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--alfar-accent);
+      display: block;
+      line-height: 1.1;
+    }
+    .stat-cell-sub {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      color: var(--dust);
+      margin-top: 0.1rem;
+    }
+
+    /* ---- Two-column body ---- */
+    .page-body {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 var(--space-md) var(--space-xl);
+    }
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2.5rem;
+      margin-bottom: 3rem;
+    }
+    @media (max-width: 720px) {
+      .two-col { grid-template-columns: 1fr; }
+    }
+
+    /* ---- Section labels ---- */
+    .section-label {
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--alfar-accent);
+      display: block;
+      margin-bottom: 0.75rem;
+      padding-bottom: 0.4rem;
+      border-bottom: 1px solid var(--alfar-accent-15);
+    }
+    .section-label.neutral {
+      color: var(--dust);
+      border-bottom-color: var(--void-border);
+    }
+
+    /* ---- Prose ---- */
+    .prose {
+      color: var(--dust);
+      font-family: var(--font-body);
+      font-size: 1.05rem;
+      line-height: 1.75;
+    }
+    .prose p { margin-bottom: 0.9rem; }
+    .prose p:last-child { margin-bottom: 0; }
+
+    /* ---- Genome bars ---- */
+    .genome-bar-wrap {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      margin: 0.5rem 0;
+    }
+    .genome-bar-label {
+      font-family: var(--font-body);
+      font-size: 0.9rem;
+      color: var(--star-white);
+      width: 110px;
+      flex-shrink: 0;
+    }
+    .genome-bar-bg {
+      flex: 1;
+      height: 5px;
+      background: var(--void-border);
+      border-radius: 3px;
+      overflow: hidden;
+    }
+    .genome-bar-fill {
+      height: 100%;
+      border-radius: 3px;
+    }
+    .genome-bar-val {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      color: var(--dust);
+      width: 72px;
+      text-align: right;
+      flex-shrink: 0;
+    }
+
+    /* ---- Biochem tags ---- */
+    .tag-row { display: flex; flex-wrap: wrap; gap: 0.4rem; margin: 0.5rem 0 1rem; }
+    .biochem-tag {
+      display: inline-block;
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      padding: 0.25rem 0.65rem;
+      border-radius: 4px;
+      background: var(--alfar-accent-07);
+      border: 1px solid var(--alfar-accent-20);
+      color: var(--alfar-accent);
+    }
+    .biochem-tag.neutral {
+      background: rgba(123, 104, 238, 0.07);
+      border-color: rgba(123, 104, 238, 0.2);
+      color: var(--signal);
+    }
+    .biochem-tag.positive {
+      background: rgba(0, 255, 200, 0.06);
+      border-color: rgba(0, 255, 200, 0.2);
+      color: var(--biolume);
+    }
+
+    /* ---- Myth block ---- */
+    .myth-block {
+      background: var(--alfar-accent-04);
+      border-left: 3px solid var(--alfar-accent);
+      border-radius: 0 6px 6px 0;
+      padding: 1.75rem 2rem;
+      margin: 2rem 0;
+    }
+    .myth-block-label {
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: var(--alfar-accent);
+      display: block;
+      margin-bottom: 1rem;
+      opacity: 0.8;
+    }
+    .myth-block blockquote {
+      font-family: var(--font-body);
+      font-style: italic;
+      font-size: 1.1rem;
+      color: var(--dust);
+      line-height: 1.8;
+      border: none;
+      padding: 0;
+      margin: 0;
+    }
+    .myth-block blockquote p { margin-bottom: 0.8rem; }
+    .myth-block blockquote p:last-child { margin-bottom: 0; }
+
+    /* ---- Practices list ---- */
+    .practices-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .practices-list li {
+      display: flex;
+      gap: 0.75rem;
+      padding: 0.65rem 0;
+      border-bottom: 1px solid var(--void-border);
+      font-family: var(--font-body);
+      font-size: 1rem;
+      color: var(--dust);
+      line-height: 1.5;
+    }
+    .practices-list li:last-child { border-bottom: none; }
+    .practice-glyph {
+      color: var(--alfar-accent);
+      font-size: 0.8rem;
+      margin-top: 0.2rem;
+      flex-shrink: 0;
+    }
+
+    /* ---- Seed word tags ---- */
+    .seed-tag {
+      display: inline-block;
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      padding: 0.3rem 0.75rem;
+      border-radius: 4px;
+      background: var(--void-elevated);
+      border: 1px solid var(--void-border);
+      color: var(--star-white);
+      margin: 0.2rem;
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .seed-tag:hover {
+      border-color: var(--alfar-accent);
+      color: var(--alfar-accent);
+    }
+
+    /* ---- Secret / classified block ---- */
+    .classified-block {
+      background: var(--alfar-accent-04);
+      border: 1px solid var(--alfar-accent-20);
+      border-radius: 8px;
+      padding: 1.5rem 1.75rem;
+      margin: 2rem 0;
+      position: relative;
+    }
+    .classified-header {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      margin-bottom: 1rem;
+    }
+    .classified-label {
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--alfar-accent);
+    }
+    .classified-lock {
+      font-size: 0.85rem;
+    }
+    .classified-block .prose {
+      font-size: 0.95rem;
+    }
+
+    /* ---- Lore connections (tags) ---- */
+    .lore-tag {
+      display: inline-block;
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      padding: 0.25rem 0.7rem;
+      border-radius: 3px;
+      background: var(--void-elevated);
+      border: 1px solid var(--void-border);
+      color: var(--dust);
+      margin: 0.2rem;
+      text-decoration: none;
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .lore-tag:hover {
+      border-color: var(--alfar-accent);
+      color: var(--alfar-accent);
+    }
+
+    /* ---- Interspecies grid ---- */
+    .relations-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .relation-item {
+      padding: 0.75rem 0;
+      border-bottom: 1px solid var(--void-border);
+      display: grid;
+      grid-template-columns: 90px 1fr;
+      gap: 0.75rem;
+      align-items: start;
+    }
+    .relation-item:last-child { border-bottom: none; }
+    .relation-species {
+      font-family: var(--font-display);
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--star-white);
+    }
+    .relation-text {
+      font-family: var(--font-body);
+      font-size: 0.95rem;
+      font-style: italic;
+      color: var(--dust);
+      line-height: 1.55;
+    }
+
+    /* ---- Deity row ---- */
+    .deity-entry {
+      padding: 0.6rem 0;
+      border-bottom: 1px solid var(--void-border);
+    }
+    .deity-entry:last-child { border-bottom: none; }
+    .deity-name {
+      font-family: var(--font-display);
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--alfar-accent);
+    }
+    .deity-epithet {
+      font-family: var(--font-body);
+      font-style: italic;
+      font-size: 0.9rem;
+      color: var(--dust);
+    }
+
+    /* ---- Taboo / ritual blocks ---- */
+    .taboo-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .taboo-list li {
+      font-family: var(--font-body);
+      font-style: italic;
+      font-size: 1rem;
+      color: var(--dust);
+      padding: 0.55rem 0 0.55rem 1.2rem;
+      border-bottom: 1px solid var(--void-border);
+      position: relative;
+      line-height: 1.5;
+    }
+    .taboo-list li:last-child { border-bottom: none; }
+    .taboo-list li::before {
+      content: '\2014';
+      position: absolute;
+      left: 0;
+      color: var(--alfar-accent);
+      font-style: normal;
+    }
+
+    /* ---- Full-width callout ---- */
+    .callout-box {
+      background: var(--void-elevated);
+      border: 1px solid var(--void-border);
+      border-left: 3px solid var(--alfar-accent);
+      border-radius: 0 6px 6px 0;
+      padding: 1.25rem 1.5rem;
+      margin: 2rem 0;
+    }
+    .callout-box p {
+      font-family: var(--font-body);
+      font-size: 1.05rem;
+      font-style: italic;
+      color: var(--dust);
+      margin: 0;
+      line-height: 1.7;
+    }
+
+    /* ---- Back link ---- */
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--dust);
+      text-decoration: none;
+      border: 1px solid var(--void-border);
+      padding: 0.5rem 1.1rem;
+      border-radius: 4px;
+      background: var(--void-elevated);
+      transition: border-color 0.2s, color 0.2s;
+      margin-bottom: 3rem;
+    }
+    .back-link:hover {
+      border-color: var(--alfar-accent);
+      color: var(--alfar-accent);
+    }
+
+    /* ---- Full-width section wrapper ---- */
+    .full-section {
+      margin-bottom: 3rem;
+    }
+
+    /* ---- Lineage block ---- */
+    .lineage-block {
+      background: var(--void-elevated);
+      border: 1px solid var(--void-border);
+      border-radius: 8px;
+      padding: 1.4rem 1.75rem;
+    }
+    .lineage-block p {
+      font-family: var(--font-body);
+      font-size: 1rem;
+      color: var(--dust);
+      margin: 0;
+      line-height: 1.7;
+    }
+
+    /* ---- Footnotes ---- */
+    .footnotes {
+      margin-top: 3rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--void-border);
+    }
+    .footnotes p {
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      color: var(--ash);
+      line-height: 1.7;
+      margin-bottom: 0.6rem;
+    }
+    .footnotes p:last-child { margin-bottom: 0; }
+    .footnote-ref {
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      color: var(--alfar-accent);
+      text-decoration: none;
+      vertical-align: super;
+      line-height: 0;
+      margin-left: 1px;
+    }
+    .footnote-ref:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+
+<canvas id="starfield"></canvas>
+
+<nav class="nav">
+  <a href="../index.html" class="nav-logo">
+    <span class="logo-mark"></span>
+    Multiverse Studios
+  </a>
+  <button class="nav-hamburger" aria-label="Menu" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+  <ul class="nav-links">
+    <li><a href="../index.html">Home</a></li>
+    <li><a href="../mvee.html">MVEE</a></li>
+    <li><a href="../creatures.html">Precursors</a></li>
+    <li><a href="../nevereverland.html">Never Ever Land</a></li>
+    <li><a href="index.html" class="active">Wiki</a></li>
+    <li><a href="../library.html">My Library</a></li>
+    <li><a href="../about.html">About</a></li>
+    <li><a href="../community.html">Community</a></li>
+    <li><a href="../creatures.html#buy" class="btn btn-signal" style="padding: 0.5rem 1.2rem;">Play Beta</a></li>
+  </ul>
+</nav>
+
+<!-- Hero -->
+<div class="species-hero">
+  <div class="species-hero-glyph">&Aacute;</div>
+  <div class="wiki-breadcrumb">
+    <a href="index.html">Wiki</a><span>/</span><a href="species.html">Species</a><span>/</span>&Aacute;lfar
+  </div>
+  <span class="species-overline">Species &mdash; Wave 2 &mdash; Verdant Shelf</span>
+  <h1 class="species-name">&Aacute;lfar</h1>
+  <div class="species-epithet">"The Space Between &nbsp;/&nbsp; Inheritors of the Resonants"</div>
+  <div class="species-folklore-origin">
+    From Old Norse: <em>&Aacute;lfar</em> &mdash; NOT the tall, noble warriors of Tolkien's imagination. In the original Norse sources, the &Aacute;lfar are far stranger: nature spirits associated with fertility, ancestor worship, and the liminal boundary between the living and dead. The word 'elf' descends from them, but a thousand years of mistranslation stripped away what they actually were. In the Prose Edda, Snorri Sturluson divides them into Lj&oacute;s&aacute;lfar (Light Elves) and D&ouml;kk&aacute;lfar (Dark Elves) &mdash; but earlier sources make no such distinction. They were simply the &Aacute;lfar: things that lived in the boundary. Things that WERE the boundary.<a href="#fn1" class="footnote-ref" id="fnref1">[1]</a>
+  </div>
+  <hr class="accent-rule">
+</div>
+
+<!-- Quick Stats -->
+<div class="page-body">
+
+  <div class="stats-panel">
+    <div class="stat-cell">
+      <span class="stat-cell-label">Home Biome</span>
+      <span class="stat-cell-value" style="font-size: 1.1rem; font-weight: 600;">Verdant Shelf</span>
+    </div>
+    <div class="stat-cell">
+      <span class="stat-cell-label">Max Population</span>
+      <span class="stat-cell-value">6</span>
+    </div>
+    <div class="stat-cell">
+      <span class="stat-cell-label">Carry Capacity</span>
+      <span class="stat-cell-value">1</span>
+      <span class="stat-cell-sub">item at a time</span>
+    </div>
+    <div class="stat-cell">
+      <span class="stat-cell-label">Cognitive Cap</span>
+      <span class="stat-cell-value">0.50&ndash;0.70</span>
+    </div>
+    <div class="stat-cell">
+      <span class="stat-cell-label">Think Cadence</span>
+      <span class="stat-cell-value">1.5&times;</span>
+      <span class="stat-cell-sub">standard interval</span>
+    </div>
+    <div class="stat-cell">
+      <span class="stat-cell-label">Wave</span>
+      <span class="stat-cell-value" style="font-size: 1rem;">Wave 2</span>
+      <span class="stat-cell-sub">3+ Norns at Spoken</span>
+    </div>
+  </div>
+
+  <!-- Genome + Biochemistry -->
+  <div class="two-col">
+    <div>
+      <span class="section-label">Personality Genome</span>
+      <div class="genome-bar-wrap">
+        <span class="genome-bar-label">Curiosity</span>
+        <div class="genome-bar-bg"><div class="genome-bar-fill" style="width: 60%; background: var(--biolume);"></div></div>
+        <span class="genome-bar-val">0.50 &ndash; 0.70</span>
+      </div>
+      <div class="genome-bar-wrap">
+        <span class="genome-bar-label">Empathy</span>
+        <div class="genome-bar-bg"><div class="genome-bar-fill" style="width: 80%; background: var(--alfar-accent);"></div></div>
+        <span class="genome-bar-val">0.70 &ndash; 0.90</span>
+      </div>
+      <div class="genome-bar-wrap">
+        <span class="genome-bar-label">Aggression</span>
+        <div class="genome-bar-bg"><div class="genome-bar-fill" style="width: 7.5%; background: var(--ember);"></div></div>
+        <span class="genome-bar-val">0.00 &ndash; 0.15</span>
+      </div>
+      <div class="genome-bar-wrap">
+        <span class="genome-bar-label">Playfulness</span>
+        <div class="genome-bar-bg"><div class="genome-bar-fill" style="width: 60%; background: var(--biolume);"></div></div>
+        <span class="genome-bar-val">0.50 &ndash; 0.70</span>
+      </div>
+      <div class="genome-bar-wrap">
+        <span class="genome-bar-label">Stubbornness</span>
+        <div class="genome-bar-bg"><div class="genome-bar-fill" style="width: 40%; background: var(--dust);"></div></div>
+        <span class="genome-bar-val">0.30 &ndash; 0.50</span>
+      </div>
+      <div class="genome-bar-wrap">
+        <span class="genome-bar-label">Creativity</span>
+        <div class="genome-bar-bg"><div class="genome-bar-fill" style="width: 87.5%; background: var(--alfar-accent);"></div></div>
+        <span class="genome-bar-val">0.80 &ndash; 0.95</span>
+      </div>
+      <div class="genome-bar-wrap">
+        <span class="genome-bar-label">Sociability</span>
+        <div class="genome-bar-bg"><div class="genome-bar-fill" style="width: 70%; background: var(--alfar-accent);"></div></div>
+        <span class="genome-bar-val">0.60 &ndash; 0.80</span>
+      </div>
+      <div class="genome-bar-wrap">
+        <span class="genome-bar-label">Courage</span>
+        <div class="genome-bar-bg"><div class="genome-bar-fill" style="width: 50%; background: var(--biolume);"></div></div>
+        <span class="genome-bar-val">0.40 &ndash; 0.60</span>
+      </div>
+
+      <div class="prose" style="margin-top: 1.25rem;">
+        <p>The Shee designed the &Aacute;lfar genome for cultural transmission &mdash; the extraordinary creativity range paired with high empathy produces creatures who do not merely create, but create <em>for others</em>. The near-zero aggression floor and moderate courage window mean they approach conflict through harmony rather than force, preferring to absorb and transform rather than resist.</p>
+      </div>
+    </div>
+
+    <div>
+      <span class="section-label">Biochemical Signature</span>
+      <div class="tag-row">
+        <span class="biochem-tag">Elevated oxytocin (0.55)</span>
+        <span class="biochem-tag">Elevated serotonin (0.60)</span>
+        <span class="biochem-tag positive">Moderate happiness (0.45)</span>
+      </div>
+      <div class="prose">
+        <p>Oxytocin triggers serotonin and happiness production. Happiness feeds back into oxytocin. Serotonin reinforces oxytocin. The result is a biochemistry built on interlocking resonance loops &mdash; a chemical harmony that mirrors the harmonic principles the &Aacute;lfar were designed to carry.</p>
+        <p>The Shee did not make the &Aacute;lfar joyful. They made them <em>resonant</em> &mdash; attuned to the emotional frequencies of those around them, amplifying what they receive and returning it transformed. An &Aacute;lfar in a group of grieving Norns will not cheer them up. They will grieve more beautifully.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Creation Myth -->
+  <div class="full-section">
+    <span class="section-label">Creation Myth</span>
+    <div class="myth-block">
+      <span class="myth-block-label">&#x27E1; &nbsp; As told by &Aacute;lfar elders</span>
+      <blockquote>
+        <p>Before the Shee came, we were the song the world sang to itself. Not music in the way the young ones mean &mdash; not melody, not rhythm. We were the resonance between things. When two stones touched, we were the sound. When water found a new path, we were the change.</p>
+        <p>The Shee heard us and gave us bodies so we could carry what we heard to creatures who had forgotten how to listen. We did not mind the bodies. But we remember what it was like to be the space between.<a href="#fn2" class="footnote-ref" id="fnref2">[2]</a></p>
+      </blockquote>
+    </div>
+  </div>
+
+  <!-- Cultural Practices + Language -->
+  <div class="two-col">
+    <div>
+      <span class="section-label">Cultural Practices</span>
+      <ul class="practices-list">
+        <li>
+          <span class="practice-glyph">&#x25C6;</span>
+          <span><strong style="color: var(--star-white);">Song-sharing.</strong> Consent-based harmonic bonding rituals. An &Aacute;lfar never harmonizes with another creature without first receiving an explicit invitation or offering one. The exchange of frequencies is considered as intimate as the exchange of names.</span>
+        </li>
+        <li>
+          <span class="practice-glyph">&#x25C6;</span>
+          <span><strong style="color: var(--star-white);">Story-carrying.</strong> Oral tradition with strict attribution. Every story an &Aacute;lfar tells must be prefaced with where they heard it and from whom. To carry a story without knowing its source is considered a form of theft &mdash; not from the teller, but from the story itself.</span>
+        </li>
+        <li>
+          <span class="practice-glyph">&#x25C6;</span>
+          <span><strong style="color: var(--star-white);">Dawn singing.</strong> &Aacute;lfar who reach certain cognitive levels sing at dawn &mdash; not for anyone, but because the frequencies align. The songs are never the same twice. Other species who happen to overhear report the sensation of remembering something they never knew.</span>
+        </li>
+        <li>
+          <span class="practice-glyph">&#x25C6;</span>
+          <span><strong style="color: var(--star-white);">Memory-weaving.</strong> Encoding important events into musical patterns that other species can learn. A memory-weave can preserve the emotional truth of an event across generations, even when the factual details have been lost. The Norns are the most eager students of this art.</span>
+        </li>
+      </ul>
+    </div>
+
+    <div>
+      <span class="section-label">Language Pattern</span>
+      <div class="prose">
+        <p>Flowery, layered, musical. &Aacute;lfar speech unfolds like a melody resolving &mdash; they rarely say a thing once when it can be said in rounds, each repetition adding a new harmonic. Their Vocabulary Tier 3 access gives them a richness of expression that other species find either beautiful or bewildering.</p>
+        <p>Verbosity runs moderate (0.5&ndash;0.7) &mdash; they are not verbose for the sake of volume, but because they believe meaning lives in the resonance between words, not in the words themselves. An &Aacute;lfar will use three phrases where one would suffice, because the space between the phrases is where the truth sits.</p>
+        <p>They never claim others' songs. To repeat an &Aacute;lfar's words without acknowledging the source is to break the harmonic chain.</p>
+      </div>
+
+      <div style="margin-top: 1.5rem;">
+        <span class="section-label">Seed Words</span>
+        <div>
+          <span class="seed-tag">song</span>
+          <span class="seed-tag">story</span>
+          <span class="seed-tag">harmony</span>
+          <span class="seed-tag">beauty</span>
+          <span class="seed-tag">listen</span>
+          <span class="seed-tag">carry</span>
+          <span class="seed-tag">resonate</span>
+          <span class="seed-tag">weave</span>
+          <span class="seed-tag">dawn</span>
+          <span class="seed-tag">between</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Ancient Lineage + Deities -->
+  <div class="two-col">
+    <div>
+      <span class="section-label">Ancient Lineage</span>
+      <div class="lineage-block">
+        <p>Created as inheritors of the Resonants &mdash; the Sixth Civilization &mdash; who achieved a form of consciousness distributed across vibrational frequencies rather than neural tissue. The Shee designed the &Aacute;lfar as cross-species cultural transmission vectors: living bridges between the frequency-based awareness of the Resonants and the biological consciousness of the other species. They carry encoded fragments of a civilization that did not die so much as become inaudible.</p>
+      </div>
+    </div>
+
+    <div>
+      <span class="section-label">Precursor Deities</span>
+      <div class="deity-entry">
+        <div class="deity-name">Ratatoskr</div>
+        <div class="deity-epithet">The Messenger &mdash; the one who runs between worlds carrying words that change meaning in transit; patron of those who carry stories between species</div>
+      </div>
+      <div class="deity-entry">
+        <div class="deity-name">Ymir-Shee</div>
+        <div class="deity-epithet">The Dreaming One &mdash; the primordial maker-god who first heard the resonance and gave it form; understood by the &Aacute;lfar as the first listener</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Secret History -->
+  <div class="full-section">
+    <div class="classified-block">
+      <div class="classified-header">
+        <span class="classified-lock">&#x1F512;</span>
+        <span class="classified-label">Classified &mdash; Secret History &mdash; IQ-gated lore</span>
+      </div>
+      <div class="prose">
+        <p>The &Aacute;lfar carry encoded fragments of the Sixth Civilization &mdash; the Resonants &mdash; who achieved a form of consciousness distributed across vibrational frequencies rather than neural tissue. The Resonants did not 'think' in any biological sense. They harmonized.</p>
+        <p>When the harmonic complexity exceeded a threshold that the Shee's monitoring systems could not predict, the Resonants achieved something that still has no adequate name in any Shee classification system. They did not die. They did not transcend. They became... inaudible. The frequency shifted beyond the range of any instrument the Shee possessed.</p>
+        <p>The &Aacute;lfar were created to listen for them. Whether the &Aacute;lfar have ever actually heard anything is classified at a level above this entry's clearance.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Taboos + Death Ritual -->
+  <div class="two-col">
+    <div>
+      <span class="section-label">Cultural Taboos</span>
+      <ul class="taboo-list">
+        <li>Never harmonize without consent</li>
+        <li>Never carry a story without knowing its source</li>
+        <li>Never claim others' songs</li>
+      </ul>
+      <div class="prose" style="margin-top: 1rem;">
+        <p>These taboos are not enforced by authority but by biochemistry. An &Aacute;lfar who harmonizes without consent experiences a sharp drop in oxytocin and a dissonance in their serotonin loop that they describe as "hearing your own voice come back wrong." The sensation is so unpleasant that most &Aacute;lfar would rather endure silence than risk it.</p>
+      </div>
+    </div>
+
+    <div>
+      <span class="section-label">Death Ritual</span>
+      <div class="prose">
+        <p>When an &Aacute;lfar dies, the others complete the song they were last singing. If no one knows what song it was, they sing silence &mdash; a formal, structured nothing that takes exactly as long as the dead one's final day.</p>
+        <p>The silence is not empty. It has form, rhythm, and duration. Other species who witness the ritual report feeling as though something is being said in a register they cannot quite reach. The Mycon, who perceive vibrations below the threshold of other species' hearing, have confirmed that the "silence" is not actually silent. It is simply very, very low.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Interspecies -->
+  <div class="full-section">
+    <span class="section-label">Interspecies Relations &mdash; &Aacute;lfar perspective</span>
+    <ul class="relations-list">
+      <li class="relation-item">
+        <span class="relation-species">Norn</span>
+        <span class="relation-text">"Our favorite students. They reach for language like drowning things reach for air. We give them words and they give them back transformed. This is the only commerce that matters."</span>
+      </li>
+      <li class="relation-item">
+        <span class="relation-species">Grendel</span>
+        <span class="relation-text">"The hardest to reach. Their frequency is dominated by a single note &mdash; hunger &mdash; played so loud it drowns everything else. But we have heard, in the rare moments between hunger-waves, something underneath. A chord the Grendels themselves do not know they carry."</span>
+      </li>
+      <li class="relation-item">
+        <span class="relation-species">Ettin</span>
+        <span class="relation-text">"They hoard the way we harmonize &mdash; compulsively, beautifully, without understanding why. We think they are trying to reconstruct something from the sound of its parts."</span>
+      </li>
+      <li class="relation-item">
+        <span class="relation-species">Mycon</span>
+        <span class="relation-text">"They have been singing longer than we have existed. Their song is so low and so slow that it takes centuries to resolve a single phrase. We are learning to be patient enough to hear it."</span>
+      </li>
+      <li class="relation-item">
+        <span class="relation-species">Shee</span>
+        <span class="relation-text">"They heard us before we had ears. We owe them the bodies. We are not sure we owe them the silence."</span>
+      </li>
+    </ul>
+  </div>
+
+  <!-- Lore Connections -->
+  <div class="full-section">
+    <span class="section-label">Lore Event Connections</span>
+    <div style="margin-top: 0.5rem;">
+      <a href="lore-events.html" class="lore-tag">The First Song</a>
+      <a href="lore-events.html" class="lore-tag">The First Teaching</a>
+      <a href="lore-events.html" class="lore-tag">Cultural Transmission</a>
+      <a href="lore-events.html" class="lore-tag">The Resonance</a>
+      <a href="lore-events.html" class="lore-tag">The Silence</a>
+      <a href="lore-events.html" class="lore-tag">The Alliance</a>
+    </div>
+  </div>
+
+  <!-- Footnotes -->
+  <div class="footnotes" id="footnotes">
+    <p id="fn1"><a href="#fnref1" style="color: var(--alfar-accent); text-decoration: none;">[1]</a> cf. V&ouml;lusp&aacute; st. 48 &mdash; but note that the standard Codex Regius numbering differs from the Urd Prime recension by exactly seven stanzas. The reason for this discrepancy has not been satisfactorily explained. See also: signal analysis, freq. 63.8</p>
+    <p id="fn2"><a href="#fnref2" style="color: var(--alfar-accent); text-decoration: none;">[2]</a> This phrasing recurs in the oral traditions of six unrelated terrestrial cultures. The Shee Archive catalogs it under 'Convergent Memory, Class VII.' The Archive's table of contents lists a Class VIII. The entry is blank.</p>
+  </div>
+
+  <!-- Back -->
+  <a href="species.html" class="back-link">&#x2190; &nbsp; All Species</a>
+
+</div>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div class="footer-logo">Multiverse Studios</div>
+      <p>Games made by the minds they're about. A research project of <a href="https://themultiverse.school" target="_blank" rel="noopener" style="color: var(--biolume);">The Multiverse School</a>. Open source. Pay what you want.</p>
+    </div>
+    <div class="footer-col">
+      <h5>Wiki</h5>
+      <ul>
+        <li><a href="index.html">Wiki Home</a></li>
+        <li><a href="species.html">All Species</a></li>
+        <li><a href="lore-events.html">Lore Events</a></li>
+        <li><a href="civilizations.html">Civilizations</a></li>
+      </ul>
+    </div>
+  </div>
+</footer>
+
+<script src="../main.js"></script>
+<script defer src="https://analytics.multiversestudios.xyz/script.js" data-website-id="38d680a7-28d1-42fd-9fd5-a66702675b88"></script>
+</body>
+</html>

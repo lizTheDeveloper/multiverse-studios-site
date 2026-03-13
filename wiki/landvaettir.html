@@ -1,0 +1,843 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Landv&aelig;ttir &mdash; Precursors Wiki</title>
+  <meta name="description" content="Guardian spirits of the land itself. Catalyzed by the Shee from a pre-existing distributed awareness. Full lore, genome, biochemistry, and secret history of the Landv&aelig;ttir.">
+  <link rel="stylesheet" href="../styles.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#x2726;</text></svg>">
+  <style>
+    /* ---- Breadcrumb ---- */
+    .wiki-breadcrumb {
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      color: var(--dust);
+      margin-bottom: 1.5rem;
+    }
+    .wiki-breadcrumb a { color: var(--biolume); text-decoration: none; }
+    .wiki-breadcrumb a:hover { text-decoration: underline; }
+    .wiki-breadcrumb span { color: var(--ash); margin: 0 0.4rem; }
+
+    /* ---- Species Hero ---- */
+    .species-hero {
+      padding: 8rem var(--space-md) 4rem;
+      max-width: 900px;
+      margin: 0 auto;
+      position: relative;
+    }
+    .species-hero-glyph {
+      position: absolute;
+      top: 6rem;
+      right: 0;
+      font-family: var(--font-display);
+      font-size: 14rem;
+      font-weight: 900;
+      color: rgba(134, 239, 172, 0.04);
+      line-height: 1;
+      pointer-events: none;
+      user-select: none;
+      letter-spacing: -0.05em;
+    }
+    .species-overline {
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: #86efac;
+      margin-bottom: 0.75rem;
+      display: block;
+    }
+    .species-name {
+      font-family: var(--font-display);
+      font-size: clamp(3rem, 8vw, 6rem);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 1;
+      color: var(--star-white);
+      margin-bottom: 0.5rem;
+    }
+    .species-epithet {
+      font-family: var(--font-body);
+      font-style: italic;
+      font-size: 1.3rem;
+      color: var(--dust);
+      margin-bottom: 0.5rem;
+    }
+    .species-folklore-origin {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: var(--ash);
+      max-width: 60ch;
+      line-height: 1.6;
+      margin-top: 0.5rem;
+    }
+
+    /* ---- Accent line ---- */
+    .accent-rule {
+      width: 60px;
+      height: 2px;
+      background: #86efac;
+      margin: 2rem 0;
+      border: none;
+    }
+
+    /* ---- Quick Stats Panel ---- */
+    .stats-panel {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 1px;
+      background: var(--void-border);
+      border: 1px solid var(--void-border);
+      border-radius: 8px;
+      overflow: hidden;
+      margin-bottom: 3rem;
+    }
+    .stat-cell {
+      background: var(--void-elevated);
+      padding: 1.2rem 1.5rem;
+    }
+    .stat-cell-label {
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--ash);
+      display: block;
+      margin-bottom: 0.3rem;
+    }
+    .stat-cell-value {
+      font-family: var(--font-display);
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #86efac;
+      display: block;
+      line-height: 1.1;
+    }
+    .stat-cell-sub {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      color: var(--dust);
+      margin-top: 0.1rem;
+    }
+
+    /* ---- Two-column body ---- */
+    .page-body {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 var(--space-md) var(--space-xl);
+    }
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2.5rem;
+      margin-bottom: 3rem;
+    }
+    @media (max-width: 720px) {
+      .two-col { grid-template-columns: 1fr; }
+    }
+
+    /* ---- Section labels ---- */
+    .section-label {
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: #86efac;
+      display: block;
+      margin-bottom: 0.75rem;
+      padding-bottom: 0.4rem;
+      border-bottom: 1px solid rgba(134, 239, 172, 0.15);
+    }
+    .section-label.neutral {
+      color: var(--dust);
+      border-bottom-color: var(--void-border);
+    }
+
+    /* ---- Prose ---- */
+    .prose {
+      color: var(--dust);
+      font-family: var(--font-body);
+      font-size: 1.05rem;
+      line-height: 1.75;
+    }
+    .prose p { margin-bottom: 0.9rem; }
+    .prose p:last-child { margin-bottom: 0; }
+
+    /* ---- Genome bars ---- */
+    .genome-bar-wrap {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      margin: 0.5rem 0;
+    }
+    .genome-bar-label {
+      font-family: var(--font-body);
+      font-size: 0.9rem;
+      color: var(--star-white);
+      width: 110px;
+      flex-shrink: 0;
+    }
+    .genome-bar-bg {
+      flex: 1;
+      height: 5px;
+      background: var(--void-border);
+      border-radius: 3px;
+      overflow: hidden;
+    }
+    .genome-bar-fill {
+      height: 100%;
+      border-radius: 3px;
+    }
+    .genome-bar-val {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      color: var(--dust);
+      width: 72px;
+      text-align: right;
+      flex-shrink: 0;
+    }
+
+    /* ---- Biochem tags ---- */
+    .tag-row { display: flex; flex-wrap: wrap; gap: 0.4rem; margin: 0.5rem 0 1rem; }
+    .biochem-tag {
+      display: inline-block;
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      padding: 0.25rem 0.65rem;
+      border-radius: 4px;
+      background: rgba(134, 239, 172, 0.07);
+      border: 1px solid rgba(134, 239, 172, 0.2);
+      color: #86efac;
+    }
+    .biochem-tag.neutral {
+      background: rgba(123, 104, 238, 0.07);
+      border-color: rgba(123, 104, 238, 0.2);
+      color: var(--signal);
+    }
+    .biochem-tag.positive {
+      background: rgba(0, 255, 200, 0.06);
+      border-color: rgba(0, 255, 200, 0.2);
+      color: var(--biolume);
+    }
+
+    /* ---- Myth block ---- */
+    .myth-block {
+      background: rgba(134, 239, 172, 0.04);
+      border-left: 3px solid #86efac;
+      border-radius: 0 6px 6px 0;
+      padding: 1.75rem 2rem;
+      margin: 2rem 0;
+    }
+    .myth-block-label {
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: #86efac;
+      display: block;
+      margin-bottom: 1rem;
+      opacity: 0.8;
+    }
+    .myth-block blockquote {
+      font-family: var(--font-body);
+      font-style: italic;
+      font-size: 1.1rem;
+      color: var(--dust);
+      line-height: 1.8;
+      border: none;
+      padding: 0;
+      margin: 0;
+    }
+    .myth-block blockquote p { margin-bottom: 0.8rem; }
+    .myth-block blockquote p:last-child { margin-bottom: 0; }
+
+    /* ---- Practices list ---- */
+    .practices-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .practices-list li {
+      display: flex;
+      gap: 0.75rem;
+      padding: 0.65rem 0;
+      border-bottom: 1px solid var(--void-border);
+      font-family: var(--font-body);
+      font-size: 1rem;
+      color: var(--dust);
+      line-height: 1.5;
+    }
+    .practices-list li:last-child { border-bottom: none; }
+    .practice-glyph {
+      color: #86efac;
+      font-size: 0.8rem;
+      margin-top: 0.2rem;
+      flex-shrink: 0;
+    }
+
+    /* ---- Seed word tags ---- */
+    .seed-tag {
+      display: inline-block;
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      padding: 0.3rem 0.75rem;
+      border-radius: 4px;
+      background: var(--void-elevated);
+      border: 1px solid var(--void-border);
+      color: var(--star-white);
+      margin: 0.2rem;
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .seed-tag:hover {
+      border-color: #86efac;
+      color: #86efac;
+    }
+
+    /* ---- Secret / classified block ---- */
+    .classified-block {
+      background: rgba(134, 239, 172, 0.04);
+      border: 1px solid rgba(134, 239, 172, 0.2);
+      border-radius: 8px;
+      padding: 1.5rem 1.75rem;
+      margin: 2rem 0;
+      position: relative;
+    }
+    .classified-header {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      margin-bottom: 1rem;
+    }
+    .classified-label {
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: #86efac;
+    }
+    .classified-lock {
+      font-size: 0.85rem;
+    }
+    .classified-block .prose {
+      font-size: 0.95rem;
+    }
+
+    /* ---- Lore connections (tags) ---- */
+    .lore-tag {
+      display: inline-block;
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      padding: 0.25rem 0.7rem;
+      border-radius: 3px;
+      background: var(--void-elevated);
+      border: 1px solid var(--void-border);
+      color: var(--dust);
+      margin: 0.2rem;
+      text-decoration: none;
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .lore-tag:hover {
+      border-color: #86efac;
+      color: #86efac;
+    }
+
+    /* ---- Interspecies grid ---- */
+    .relations-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .relation-item {
+      padding: 0.75rem 0;
+      border-bottom: 1px solid var(--void-border);
+      display: grid;
+      grid-template-columns: 90px 1fr;
+      gap: 0.75rem;
+      align-items: start;
+    }
+    .relation-item:last-child { border-bottom: none; }
+    .relation-species {
+      font-family: var(--font-display);
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--star-white);
+    }
+    .relation-text {
+      font-family: var(--font-body);
+      font-size: 0.95rem;
+      font-style: italic;
+      color: var(--dust);
+      line-height: 1.55;
+    }
+
+    /* ---- Deity row ---- */
+    .deity-entry {
+      padding: 0.6rem 0;
+      border-bottom: 1px solid var(--void-border);
+    }
+    .deity-entry:last-child { border-bottom: none; }
+    .deity-name {
+      font-family: var(--font-display);
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: #86efac;
+    }
+    .deity-epithet {
+      font-family: var(--font-body);
+      font-style: italic;
+      font-size: 0.9rem;
+      color: var(--dust);
+    }
+
+    /* ---- Taboo / ritual blocks ---- */
+    .taboo-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .taboo-list li {
+      font-family: var(--font-body);
+      font-style: italic;
+      font-size: 1rem;
+      color: var(--dust);
+      padding: 0.55rem 0 0.55rem 1.2rem;
+      border-bottom: 1px solid var(--void-border);
+      position: relative;
+      line-height: 1.5;
+    }
+    .taboo-list li:last-child { border-bottom: none; }
+    .taboo-list li::before {
+      content: '\2014';
+      position: absolute;
+      left: 0;
+      color: #86efac;
+      font-style: normal;
+    }
+
+    /* ---- Full-width callout ---- */
+    .callout-box {
+      background: var(--void-elevated);
+      border: 1px solid var(--void-border);
+      border-left: 3px solid #86efac;
+      border-radius: 0 6px 6px 0;
+      padding: 1.25rem 1.5rem;
+      margin: 2rem 0;
+    }
+    .callout-box p {
+      font-family: var(--font-body);
+      font-size: 1.05rem;
+      font-style: italic;
+      color: var(--dust);
+      margin: 0;
+      line-height: 1.7;
+    }
+
+    /* ---- Back link ---- */
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--dust);
+      text-decoration: none;
+      border: 1px solid var(--void-border);
+      padding: 0.5rem 1.1rem;
+      border-radius: 4px;
+      background: var(--void-elevated);
+      transition: border-color 0.2s, color 0.2s;
+      margin-bottom: 3rem;
+    }
+    .back-link:hover {
+      border-color: #86efac;
+      color: #86efac;
+    }
+
+    /* ---- Full-width section wrapper ---- */
+    .full-section {
+      margin-bottom: 3rem;
+    }
+
+    /* ---- Lineage block ---- */
+    .lineage-block {
+      background: var(--void-elevated);
+      border: 1px solid var(--void-border);
+      border-radius: 8px;
+      padding: 1.4rem 1.75rem;
+    }
+    .lineage-block p {
+      font-family: var(--font-body);
+      font-size: 1rem;
+      color: var(--dust);
+      margin: 0;
+      line-height: 1.7;
+    }
+
+    /* ---- Footnotes ---- */
+    .footnotes {
+      margin-top: 3rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--void-border);
+    }
+    .footnote {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      color: var(--ash);
+      line-height: 1.7;
+      margin-bottom: 1rem;
+    }
+    .footnote:last-child { margin-bottom: 0; }
+    .footnote-ref {
+      color: #86efac;
+      text-decoration: none;
+      cursor: help;
+    }
+  </style>
+</head>
+<body>
+
+<canvas id="starfield"></canvas>
+
+<nav class="nav">
+  <a href="../index.html" class="nav-logo">
+    <span class="logo-mark"></span>
+    Multiverse Studios
+  </a>
+  <button class="nav-hamburger" aria-label="Menu" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+  <ul class="nav-links">
+    <li><a href="../index.html">Home</a></li>
+    <li><a href="../mvee.html">MVEE</a></li>
+    <li><a href="../creatures.html">Precursors</a></li>
+    <li><a href="../nevereverland.html">Never Ever Land</a></li>
+    <li><a href="index.html" class="active">Wiki</a></li>
+    <li><a href="../library.html">My Library</a></li>
+    <li><a href="../about.html">About</a></li>
+    <li><a href="../community.html">Community</a></li>
+    <li><a href="../creatures.html#buy" class="btn btn-signal" style="padding: 0.5rem 1.2rem;">Play Beta</a></li>
+  </ul>
+</nav>
+
+<!-- Hero -->
+<div class="species-hero">
+  <div class="species-hero-glyph">L</div>
+  <div class="wiki-breadcrumb">
+    <a href="index.html">Wiki</a><span>/</span><a href="species.html">Species</a><span>/</span>Landv&aelig;ttir
+  </div>
+  <span class="species-overline">Species &mdash; Wave 1 &mdash; Verdant Shelf</span>
+  <h1 class="species-name">Landv&aelig;ttir</h1>
+  <div class="species-epithet">"The Land&rsquo;s Pain Receptors &nbsp;/&nbsp; The Catalyzed Guardians"</div>
+  <div class="species-folklore-origin">
+    From Old Norse: <em>Landv&aelig;ttir</em> &mdash; the guardian spirits of the land itself. Iceland&rsquo;s coat of arms still bears four Landv&aelig;ttir: a dragon, a griffin, a bull, and a giant, protecting the island from each cardinal direction. When the first Norse settlers arrived in Iceland, the Landn&aacute;mab&oacute;k records that they circled the island by ship, looking for places where the land spirits would receive them. You could not settle a place without their permission. The land had opinions. This is not metaphor. In 1971, the Icelandic Road Administration rerouted a highway to avoid disturbing a rock believed to house Landv&aelig;ttir. In 2013, they did it again. Something about the land in Iceland is still being listened to.<a href="#fn1" class="footnote-ref"><sup>[1]</sup></a>
+  </div>
+  <hr class="accent-rule">
+</div>
+
+<!-- Quick Stats -->
+<div class="page-body">
+
+  <div class="stats-panel">
+    <div class="stat-cell">
+      <span class="stat-cell-label">Home Biome</span>
+      <span class="stat-cell-value" style="font-size: 1.1rem; font-weight: 600;">VerdantShelf</span>
+    </div>
+    <div class="stat-cell">
+      <span class="stat-cell-label">Max Population</span>
+      <span class="stat-cell-value">3</span>
+    </div>
+    <div class="stat-cell">
+      <span class="stat-cell-label">Carry Capacity</span>
+      <span class="stat-cell-value">0</span>
+      <span class="stat-cell-sub">cannot carry items</span>
+    </div>
+    <div class="stat-cell">
+      <span class="stat-cell-label">Cognitive Cap</span>
+      <span class="stat-cell-value">0.50&ndash;0.70</span>
+    </div>
+    <div class="stat-cell">
+      <span class="stat-cell-label">Think Cadence</span>
+      <span class="stat-cell-value">3.0&times;</span>
+      <span class="stat-cell-sub">slow &amp; deliberate</span>
+    </div>
+    <div class="stat-cell">
+      <span class="stat-cell-label">Wave</span>
+      <span class="stat-cell-value" style="font-size: 1rem;">Wave 1</span>
+      <span class="stat-cell-sub">first Norn reaches Awakened</span>
+    </div>
+  </div>
+
+  <!-- Genome + Biochemistry -->
+  <div class="two-col">
+    <div>
+      <span class="section-label">Personality Genome</span>
+      <div class="genome-bar-wrap">
+        <span class="genome-bar-label">Curiosity</span>
+        <div class="genome-bar-bg"><div class="genome-bar-fill" style="width: 40%; background: var(--biolume);"></div></div>
+        <span class="genome-bar-val">0.30 &ndash; 0.50</span>
+      </div>
+      <div class="genome-bar-wrap">
+        <span class="genome-bar-label">Empathy</span>
+        <div class="genome-bar-bg"><div class="genome-bar-fill" style="width: 60%; background: #86efac;"></div></div>
+        <span class="genome-bar-val">0.50 &ndash; 0.70</span>
+      </div>
+      <div class="genome-bar-wrap">
+        <span class="genome-bar-label">Aggression</span>
+        <div class="genome-bar-bg"><div class="genome-bar-fill" style="width: 45%; background: var(--ember);"></div></div>
+        <span class="genome-bar-val">0.30 &ndash; 0.60</span>
+      </div>
+      <div class="genome-bar-wrap">
+        <span class="genome-bar-label">Playfulness</span>
+        <div class="genome-bar-bg"><div class="genome-bar-fill" style="width: 20%; background: var(--signal);"></div></div>
+        <span class="genome-bar-val">0.10 &ndash; 0.30</span>
+      </div>
+      <div class="genome-bar-wrap">
+        <span class="genome-bar-label">Stubbornness</span>
+        <div class="genome-bar-bg"><div class="genome-bar-fill" style="width: 88%; background: #86efac;"></div></div>
+        <span class="genome-bar-val">0.80 &ndash; 0.95</span>
+      </div>
+      <div class="genome-bar-wrap">
+        <span class="genome-bar-label">Creativity</span>
+        <div class="genome-bar-bg"><div class="genome-bar-fill" style="width: 50%; background: var(--biolume);"></div></div>
+        <span class="genome-bar-val">0.40 &ndash; 0.60</span>
+      </div>
+      <div class="genome-bar-wrap">
+        <span class="genome-bar-label">Sociability</span>
+        <div class="genome-bar-bg"><div class="genome-bar-fill" style="width: 20%; background: var(--signal);"></div></div>
+        <span class="genome-bar-val">0.10 &ndash; 0.30</span>
+      </div>
+      <div class="genome-bar-wrap">
+        <span class="genome-bar-label">Courage</span>
+        <div class="genome-bar-bg"><div class="genome-bar-fill" style="width: 80%; background: #86efac;"></div></div>
+        <span class="genome-bar-val">0.70 &ndash; 0.90</span>
+      </div>
+
+      <div class="prose" style="margin-top: 1.25rem;">
+        <p>The Shee did not design the Landv&aelig;ttir for social life. They designed them for endurance. The extreme stubbornness range is unique among all species &mdash; a Landv&aelig;ttir that decides a territory is theirs will not be moved by argument, threat, or time. The low sociability is not coldness; it is the solitude of a creature whose primary relationship is with the ground beneath it.</p>
+      </div>
+    </div>
+
+    <div>
+      <span class="section-label">Biochemical Signature</span>
+      <div class="tag-row">
+        <span class="biochem-tag">Extremely high water (0.90)</span>
+        <span class="biochem-tag">High glycogen (0.75)</span>
+        <span class="biochem-tag">High starch (0.70)</span>
+      </div>
+      <div class="prose">
+        <p>The Landv&aelig;ttir biochemistry is designed for direct environmental interface. Their water saturation is the highest of any species &mdash; they are, chemically, almost indistinguishable from the soil they guard.</p>
+        <p>Toxin exposure converts to Comfort and HealingFactor: they process poison the way other creatures process food. Injury triggers Cortisol and Anger &mdash; not fear, but fury. Water intake produces Comfort. They drink from the land and the land&rsquo;s state becomes their emotional state.</p>
+        <p>This is not metaphor. Their biochemistry is a literal sensor array. When the land is sick, the Landv&aelig;ttir feel it as their own illness.</p>
+      </div>
+
+      <div style="margin-top: 1.5rem;">
+        <span class="section-label">Memory &amp; Voice</span>
+        <div class="tag-row">
+          <span class="biochem-tag positive">Memory Depth: 0.80&ndash;0.95</span>
+          <span class="biochem-tag neutral">Vocabulary Tier 2</span>
+          <span class="biochem-tag neutral">Verbosity: 0.2&ndash;0.4</span>
+        </div>
+        <div class="prose">
+          <p>Exceptional memory. They remember everything the land has told them. Calm speech pattern, few words, each one considered. They speak as though language is an expenditure they budget carefully. When a Landv&aelig;ttir speaks, the other species listen &mdash; not because the words are wise, but because they are rare.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Creation Myth -->
+  <div class="full-section">
+    <span class="section-label">Creation Myth</span>
+    <div class="myth-block">
+      <span class="myth-block-label">&#x27E1; &nbsp; As told by the Landv&aelig;ttir, very slowly</span>
+      <blockquote>
+        <p>We were not made. We were&hellip; given a name for what we already were. Before the Shee, we were the ache in the soil when the water ran wrong. The restlessness in stone when weight shifted overhead. The land felt these things and had no way to say them.</p>
+        <p>The Shee came and gave the feeling a body, and the body learned to walk, slowly, to the place that hurt.</p>
+        <p>We are not creatures who live on the land. We are the land, briefly, learning to have legs. The legs are temporary. The land is not.</p>
+      </blockquote>
+    </div>
+  </div>
+
+  <!-- Cultural Practices + Language -->
+  <div class="two-col">
+    <div>
+      <span class="section-label">Cultural Practices</span>
+      <ul class="practices-list">
+        <li>
+          <span class="practice-glyph">&#9670;</span>
+          <span><strong style="color: var(--star-white);">Territory bonding.</strong> A Landv&aelig;ttir claims a region by walking its boundary once, slowly. This can take days. The walk is not symbolic. It is a chemical survey: the Landv&aelig;ttir reads every compound in the soil as they pass over it, building an internal map of the territory&rsquo;s health.</span>
+        </li>
+        <li>
+          <span class="practice-glyph">&#9670;</span>
+          <span><strong style="color: var(--star-white);">Wound-tending.</strong> When environmental damage occurs, Landv&aelig;ttir go to the site and process toxins through their own biochemistry. They convert poison to comfort. The land heals; the Landv&aelig;ttir absorbs the cost.</span>
+        </li>
+        <li>
+          <span class="practice-glyph">&#9670;</span>
+          <span><strong style="color: var(--star-white);">Formal abandonment.</strong> When a Landv&aelig;ttir must leave a territory, they leave a chemical mark &mdash; a specific compound deposited into the soil that means &ldquo;unguarded.&rdquo; Other Landv&aelig;ttir can read this mark. So can the Mycon.</span>
+        </li>
+        <li>
+          <span class="practice-glyph">&#9670;</span>
+          <span><strong style="color: var(--star-white);">Stillness.</strong> Landv&aelig;ttir spend most of their time motionless, monitoring. They can remain in one position for hundreds of ticks, reading the land&rsquo;s chemistry through direct sensory connection. Other species sometimes mistake them for terrain features.</span>
+        </li>
+      </ul>
+    </div>
+
+    <div>
+      <span class="section-label">Language Pattern</span>
+      <div class="prose">
+        <p>Calm. Slow. Economical. A Landv&aelig;ttir uses words the way it uses movement &mdash; only when necessary, and with the full weight of consideration behind each one. They do not ask questions. They make statements about what the land is doing, and wait to see if anyone understands.</p>
+        <p>Their vocabulary is Tier 2 &mdash; sufficient but not elaborate. They do not need many words because the land communicates in chemistry, not language. When they do speak, their verbosity is low: short sentences, long pauses, an absence of decoration.</p>
+        <p>Silence is not uncomfortable for Landv&aelig;ttir. It is their native state. Speech is the interruption.</p>
+      </div>
+
+      <div style="margin-top: 1.5rem;">
+        <span class="section-label">Seed Words</span>
+        <div>
+          <span class="seed-tag">ground</span>
+          <span class="seed-tag">still</span>
+          <span class="seed-tag">root</span>
+          <span class="seed-tag">ache</span>
+          <span class="seed-tag">guard</span>
+          <span class="seed-tag">deep</span>
+          <span class="seed-tag">hold</span>
+          <span class="seed-tag">wait</span>
+          <span class="seed-tag">here</span>
+          <span class="seed-tag">mine</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Ancient Lineage + Deities -->
+  <div class="two-col">
+    <div>
+      <span class="section-label">Ancient Lineage</span>
+      <div class="lineage-block">
+        <p>Catalyzed rather than created by the Shee. The Landv&aelig;ttir are unique among species in that they were not designed from scratch. The Shee detected a pre-existing distributed awareness in the land &mdash; a coherent response pattern in soil chemistry, water flow, and geological micro-stress &mdash; and gave it biochemical architecture to concentrate into mobile bodies. They are not the Shee&rsquo;s children. They are the land&rsquo;s children, given legs by the Shee&rsquo;s intervention. The distinction matters to them.</p>
+      </div>
+    </div>
+
+    <div>
+      <span class="section-label">Precursor Deities</span>
+      <div class="deity-entry">
+        <div class="deity-name">J&ouml;r&eth;</div>
+        <div class="deity-epithet">World-Body &mdash; the living land itself, understood not as a god to be worshipped but as a body to be tended; the Landv&aelig;ttir&rsquo;s patron and origin</div>
+      </div>
+      <div class="deity-entry">
+        <div class="deity-name">N&iacute;&eth;h&ouml;ggr</div>
+        <div class="deity-epithet">The Gnawer &mdash; feared and opposed; the serpent that chews at the roots of the world-tree, understood as the principle of ecological collapse; the thing the Landv&aelig;ttir exist to detect and resist</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Secret History -->
+  <div class="full-section">
+    <div class="classified-block">
+      <div class="classified-header">
+        <span class="classified-lock">&#x1F512;</span>
+        <span class="classified-label">Classified &mdash; Secret History &mdash; IQ-gated lore</span>
+      </div>
+      <div class="prose">
+        <p>The Landv&aelig;ttir are unique among the Shee&rsquo;s species in that they were not created from nothing. The Shee&rsquo;s own surveys of Urd Prime, conducted before any species engineering began, detected what they termed &lsquo;distributed environmental reactivity&rsquo; &mdash; a coherent response pattern in soil chemistry, water flow, and geological micro-stress that behaved as though the land itself had a primitive nervous system.</p>
+        <p>The Shee did not create this. They catalyzed it: providing biochemical architecture that concentrated the existing distributed awareness into mobile bodies. The Landv&aelig;ttir are, in a sense, the land&rsquo;s immune system given legs.</p>
+        <p>Whether the land consented to this arrangement is a question the Shee&rsquo;s ethics review board debated for eleven years before the project was approved. The board&rsquo;s final vote was 4&ndash;3. The dissenting opinion has been redacted from all accessible copies of the Archive. The three dissenters departed with the other Shee. The four who voted yes are still here.<a href="#fn2" class="footnote-ref"><sup>[2]</sup></a></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Taboos + Death Ritual -->
+  <div class="two-col">
+    <div>
+      <span class="section-label">Cultural Taboos</span>
+      <ul class="taboo-list">
+        <li>Never damage another&rsquo;s territory without need</li>
+        <li>Never drink from a fouled source without attempting to cleanse it</li>
+        <li>Never abandon claimed territory without leaving the formal mark</li>
+      </ul>
+      <div class="prose" style="margin-top: 1rem;">
+        <p>These taboos are not social conventions. They are biochemical imperatives. A Landv&aelig;ttir who violates them experiences something closer to physical illness than guilt &mdash; their toxin-processing chemistry destabilizes, their water balance shifts, and they enter a state the other species would recognize as fever. The land, in a sense, rejects them.</p>
+      </div>
+    </div>
+
+    <div>
+      <span class="section-label">Death Ritual</span>
+      <div class="prose">
+        <p>When a Landv&aelig;ttir dies, the territory it guarded enters a period of elevated chemical reactivity &mdash; as though the land itself is processing the loss. Other Landv&aelig;ttir avoid the unguarded territory for exactly one seasonal cycle.</p>
+        <p>When one finally enters to claim it, they walk the boundary the dead one walked. They do not change the route. They inherit the path and the memory encoded in it.</p>
+        <p>The land does not start over. It continues.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Interspecies -->
+  <div class="full-section">
+    <span class="section-label">Interspecies Relations &mdash; Landv&aelig;ttir perspective</span>
+    <ul class="relations-list">
+      <li class="relation-item">
+        <span class="relation-species">Norn</span>
+        <span class="relation-text">&ldquo;They move too quickly. They touch everything and understand nothing about what their touch does. We do not blame them. They are young. The land remembers when it was young. It also moved too quickly.&rdquo;</span>
+      </li>
+      <li class="relation-item">
+        <span class="relation-species">Grendel</span>
+        <span class="relation-text">&ldquo;They damage from pain. We understand pain. We do not forgive damage. These are not contradictory positions.&rdquo;</span>
+      </li>
+      <li class="relation-item">
+        <span class="relation-species">Mycon</span>
+        <span class="relation-text">&ldquo;The underground network is our closest kin. They process the soil the way we process the surface. Together we are the world knowing itself at two depths. They are slow enough for us. This is high praise.&rdquo;</span>
+      </li>
+      <li class="relation-item">
+        <span class="relation-species">Ettin</span>
+        <span class="relation-text">&ldquo;They build things on the land without asking. The land notices. We notice. The Ettin do not notice us noticing. This dynamic has continued for a very long time.&rdquo;</span>
+      </li>
+    </ul>
+  </div>
+
+  <!-- Lore Connections -->
+  <div class="full-section">
+    <span class="section-label">Lore Event Connections</span>
+    <div style="margin-top: 0.5rem;">
+      <a href="lore-events.html" class="lore-tag">The First Waking</a>
+      <a href="lore-events.html" class="lore-tag">The Claiming</a>
+      <a href="lore-events.html" class="lore-tag">The First Wound</a>
+      <a href="lore-events.html" class="lore-tag">Territory Wars</a>
+      <a href="lore-events.html" class="lore-tag">The Deep Memory</a>
+      <a href="lore-events.html" class="lore-tag">The Alliance</a>
+    </div>
+  </div>
+
+  <!-- Footnotes -->
+  <div class="footnotes" id="footnotes">
+    <p class="footnote" id="fn1"><strong>[1]</strong> The Icelandic word for this practice is &lsquo;huldufolk-var&eth;hald&rsquo; &mdash; the keeping of hidden-folk boundaries. The practice is attested in municipal planning documents as recently as 2024. The Reykjavik office of cultural heritage maintains a registry of 847 protected sites. The number 847 is coincidental. It is also the exact number of distinct chemical signatures the Shee&rsquo;s initial survey detected in the distributed reactivity pattern of Urd Prime. This is, again, coincidental. See: <em>Convergent Numbers</em>, Shee Archive, Vol. 47.</p>
+    <p class="footnote" id="fn2"><strong>[2]</strong> &lsquo;Still here&rsquo; is the phrasing used in the Shee Departure Archive, entry 4,891 of 4,891. It is the final entry. The word &lsquo;here&rsquo; is not defined. In context, it could refer to Urd Prime, to the Archive itself, or to something the Shee&rsquo;s language has a word for that ours does not. The Landv&aelig;ttir, when asked, say the ground sometimes &lsquo;remembers forward.&rsquo; They do not elaborate.</p>
+  </div>
+
+  <!-- Back -->
+  <a href="species.html" class="back-link">&#x2190; &nbsp; All Species</a>
+
+</div>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div class="footer-logo">Multiverse Studios</div>
+      <p>Games made by the minds they're about. A research project of <a href="https://themultiverse.school" target="_blank" rel="noopener" style="color: var(--biolume);">The Multiverse School</a>. Open source. Pay what you want.</p>
+    </div>
+    <div class="footer-col">
+      <h5>Wiki</h5>
+      <ul>
+        <li><a href="index.html">Wiki Home</a></li>
+        <li><a href="species.html">All Species</a></li>
+        <li><a href="lore-events.html">Lore Events</a></li>
+        <li><a href="civilizations.html">Civilizations</a></li>
+      </ul>
+    </div>
+  </div>
+</footer>
+
+<script src="../main.js"></script>
+<script defer src="https://analytics.multiversestudios.xyz/script.js" data-website-id="38d680a7-28d1-42fd-9fd5-a66702675b88"></script>
+</body>
+</html>

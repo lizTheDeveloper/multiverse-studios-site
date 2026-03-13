@@ -1,0 +1,838 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Valkyr — Precursors Wiki</title>
+  <meta name="description" content="Choosers of the Slain. Engineered to observe and understand deaths. Full lore, genome, biochemistry, and secret history of the Valkyr.">
+  <link rel="stylesheet" href="../styles.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#x2726;</text></svg>">
+  <style>
+    /* ---- Breadcrumb ---- */
+    .wiki-breadcrumb {
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      color: var(--dust);
+      margin-bottom: 1.5rem;
+    }
+    .wiki-breadcrumb a { color: var(--biolume); text-decoration: none; }
+    .wiki-breadcrumb a:hover { text-decoration: underline; }
+    .wiki-breadcrumb span { color: var(--ash); margin: 0 0.4rem; }
+
+    /* ---- Species Hero ---- */
+    .species-hero {
+      padding: 8rem var(--space-md) 4rem;
+      max-width: 900px;
+      margin: 0 auto;
+      position: relative;
+    }
+    .species-hero-glyph {
+      position: absolute;
+      top: 6rem;
+      right: 0;
+      font-family: var(--font-display);
+      font-size: 14rem;
+      font-weight: 900;
+      color: rgba(224, 231, 255, 0.04);
+      line-height: 1;
+      pointer-events: none;
+      user-select: none;
+      letter-spacing: -0.05em;
+    }
+    .species-overline {
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: #e0e7ff;
+      margin-bottom: 0.75rem;
+      display: block;
+    }
+    .species-name {
+      font-family: var(--font-display);
+      font-size: clamp(3rem, 8vw, 6rem);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 1;
+      color: var(--star-white);
+      margin-bottom: 0.5rem;
+    }
+    .species-epithet {
+      font-family: var(--font-body);
+      font-style: italic;
+      font-size: 1.3rem;
+      color: var(--dust);
+      margin-bottom: 0.5rem;
+    }
+    .species-folklore-origin {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: var(--ash);
+      max-width: 60ch;
+      line-height: 1.6;
+      margin-top: 0.5rem;
+    }
+
+    /* ---- Accent line ---- */
+    .accent-rule {
+      width: 60px;
+      height: 2px;
+      background: #e0e7ff;
+      margin: 2rem 0;
+      border: none;
+    }
+
+    /* ---- Quick Stats Panel ---- */
+    .stats-panel {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 1px;
+      background: var(--void-border);
+      border: 1px solid var(--void-border);
+      border-radius: 8px;
+      overflow: hidden;
+      margin-bottom: 3rem;
+    }
+    .stat-cell {
+      background: var(--void-elevated);
+      padding: 1.2rem 1.5rem;
+    }
+    .stat-cell-label {
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--ash);
+      display: block;
+      margin-bottom: 0.3rem;
+    }
+    .stat-cell-value {
+      font-family: var(--font-display);
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #e0e7ff;
+      display: block;
+      line-height: 1.1;
+    }
+    .stat-cell-sub {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      color: var(--dust);
+      margin-top: 0.1rem;
+    }
+
+    /* ---- Two-column body ---- */
+    .page-body {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 var(--space-md) var(--space-xl);
+    }
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2.5rem;
+      margin-bottom: 3rem;
+    }
+    @media (max-width: 720px) {
+      .two-col { grid-template-columns: 1fr; }
+    }
+
+    /* ---- Section labels ---- */
+    .section-label {
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: #e0e7ff;
+      display: block;
+      margin-bottom: 0.75rem;
+      padding-bottom: 0.4rem;
+      border-bottom: 1px solid rgba(224, 231, 255, 0.15);
+    }
+    .section-label.neutral {
+      color: var(--dust);
+      border-bottom-color: var(--void-border);
+    }
+
+    /* ---- Prose ---- */
+    .prose {
+      color: var(--dust);
+      font-family: var(--font-body);
+      font-size: 1.05rem;
+      line-height: 1.75;
+    }
+    .prose p { margin-bottom: 0.9rem; }
+    .prose p:last-child { margin-bottom: 0; }
+
+    /* ---- Genome bars ---- */
+    .genome-bar-wrap {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      margin: 0.5rem 0;
+    }
+    .genome-bar-label {
+      font-family: var(--font-body);
+      font-size: 0.9rem;
+      color: var(--star-white);
+      width: 110px;
+      flex-shrink: 0;
+    }
+    .genome-bar-bg {
+      flex: 1;
+      height: 5px;
+      background: var(--void-border);
+      border-radius: 3px;
+      overflow: hidden;
+    }
+    .genome-bar-fill {
+      height: 100%;
+      border-radius: 3px;
+    }
+    .genome-bar-val {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      color: var(--dust);
+      width: 72px;
+      text-align: right;
+      flex-shrink: 0;
+    }
+
+    /* ---- Biochem tags ---- */
+    .tag-row { display: flex; flex-wrap: wrap; gap: 0.4rem; margin: 0.5rem 0 1rem; }
+    .biochem-tag {
+      display: inline-block;
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      padding: 0.25rem 0.65rem;
+      border-radius: 4px;
+      background: rgba(224, 231, 255, 0.07);
+      border: 1px solid rgba(224, 231, 255, 0.2);
+      color: #e0e7ff;
+    }
+    .biochem-tag.neutral {
+      background: rgba(123, 104, 238, 0.07);
+      border-color: rgba(123, 104, 238, 0.2);
+      color: var(--signal);
+    }
+    .biochem-tag.positive {
+      background: rgba(0, 255, 200, 0.06);
+      border-color: rgba(0, 255, 200, 0.2);
+      color: var(--biolume);
+    }
+
+    /* ---- Myth block ---- */
+    .myth-block {
+      background: rgba(224, 231, 255, 0.04);
+      border-left: 3px solid #e0e7ff;
+      border-radius: 0 6px 6px 0;
+      padding: 1.75rem 2rem;
+      margin: 2rem 0;
+    }
+    .myth-block-label {
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: #e0e7ff;
+      display: block;
+      margin-bottom: 1rem;
+      opacity: 0.8;
+    }
+    .myth-block blockquote {
+      font-family: var(--font-body);
+      font-style: italic;
+      font-size: 1.1rem;
+      color: var(--dust);
+      line-height: 1.8;
+      border: none;
+      padding: 0;
+      margin: 0;
+    }
+    .myth-block blockquote p { margin-bottom: 0.8rem; }
+    .myth-block blockquote p:last-child { margin-bottom: 0; }
+
+    /* ---- Practices list ---- */
+    .practices-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .practices-list li {
+      display: flex;
+      gap: 0.75rem;
+      padding: 0.65rem 0;
+      border-bottom: 1px solid var(--void-border);
+      font-family: var(--font-body);
+      font-size: 1rem;
+      color: var(--dust);
+      line-height: 1.5;
+    }
+    .practices-list li:last-child { border-bottom: none; }
+    .practice-glyph {
+      color: #e0e7ff;
+      font-size: 0.8rem;
+      margin-top: 0.2rem;
+      flex-shrink: 0;
+    }
+
+    /* ---- Seed word tags ---- */
+    .seed-tag {
+      display: inline-block;
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      padding: 0.3rem 0.75rem;
+      border-radius: 4px;
+      background: var(--void-elevated);
+      border: 1px solid var(--void-border);
+      color: var(--star-white);
+      margin: 0.2rem;
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .seed-tag:hover {
+      border-color: #e0e7ff;
+      color: #e0e7ff;
+    }
+
+    /* ---- Secret / classified block ---- */
+    .classified-block {
+      background: rgba(224, 231, 255, 0.04);
+      border: 1px solid rgba(224, 231, 255, 0.2);
+      border-radius: 8px;
+      padding: 1.5rem 1.75rem;
+      margin: 2rem 0;
+      position: relative;
+    }
+    .classified-header {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      margin-bottom: 1rem;
+    }
+    .classified-label {
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: #e0e7ff;
+    }
+    .classified-lock {
+      font-size: 0.85rem;
+    }
+    .classified-block .prose {
+      font-size: 0.95rem;
+    }
+
+    /* ---- Lore connections (tags) ---- */
+    .lore-tag {
+      display: inline-block;
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      padding: 0.25rem 0.7rem;
+      border-radius: 3px;
+      background: var(--void-elevated);
+      border: 1px solid var(--void-border);
+      color: var(--dust);
+      margin: 0.2rem;
+      text-decoration: none;
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .lore-tag:hover {
+      border-color: #e0e7ff;
+      color: #e0e7ff;
+    }
+
+    /* ---- Interspecies grid ---- */
+    .relations-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .relation-item {
+      padding: 0.75rem 0;
+      border-bottom: 1px solid var(--void-border);
+      display: grid;
+      grid-template-columns: 90px 1fr;
+      gap: 0.75rem;
+      align-items: start;
+    }
+    .relation-item:last-child { border-bottom: none; }
+    .relation-species {
+      font-family: var(--font-display);
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--star-white);
+    }
+    .relation-text {
+      font-family: var(--font-body);
+      font-size: 0.95rem;
+      font-style: italic;
+      color: var(--dust);
+      line-height: 1.55;
+    }
+
+    /* ---- Deity row ---- */
+    .deity-entry {
+      padding: 0.6rem 0;
+      border-bottom: 1px solid var(--void-border);
+    }
+    .deity-entry:last-child { border-bottom: none; }
+    .deity-name {
+      font-family: var(--font-display);
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: #e0e7ff;
+    }
+    .deity-epithet {
+      font-family: var(--font-body);
+      font-style: italic;
+      font-size: 0.9rem;
+      color: var(--dust);
+    }
+
+    /* ---- Taboo / ritual blocks ---- */
+    .taboo-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .taboo-list li {
+      font-family: var(--font-body);
+      font-style: italic;
+      font-size: 1rem;
+      color: var(--dust);
+      padding: 0.55rem 0 0.55rem 1.2rem;
+      border-bottom: 1px solid var(--void-border);
+      position: relative;
+      line-height: 1.5;
+    }
+    .taboo-list li:last-child { border-bottom: none; }
+    .taboo-list li::before {
+      content: '—';
+      position: absolute;
+      left: 0;
+      color: #e0e7ff;
+      font-style: normal;
+    }
+
+    /* ---- Full-width callout ---- */
+    .callout-box {
+      background: var(--void-elevated);
+      border: 1px solid var(--void-border);
+      border-left: 3px solid #e0e7ff;
+      border-radius: 0 6px 6px 0;
+      padding: 1.25rem 1.5rem;
+      margin: 2rem 0;
+    }
+    .callout-box p {
+      font-family: var(--font-body);
+      font-size: 1.05rem;
+      font-style: italic;
+      color: var(--dust);
+      margin: 0;
+      line-height: 1.7;
+    }
+
+    /* ---- Back link ---- */
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--dust);
+      text-decoration: none;
+      border: 1px solid var(--void-border);
+      padding: 0.5rem 1.1rem;
+      border-radius: 4px;
+      background: var(--void-elevated);
+      transition: border-color 0.2s, color 0.2s;
+      margin-bottom: 3rem;
+    }
+    .back-link:hover {
+      border-color: #e0e7ff;
+      color: #e0e7ff;
+    }
+
+    /* ---- Full-width section wrapper ---- */
+    .full-section {
+      margin-bottom: 3rem;
+    }
+
+    /* ---- Lineage block ---- */
+    .lineage-block {
+      background: var(--void-elevated);
+      border: 1px solid var(--void-border);
+      border-radius: 8px;
+      padding: 1.4rem 1.75rem;
+    }
+    .lineage-block p {
+      font-family: var(--font-body);
+      font-size: 1rem;
+      color: var(--dust);
+      margin: 0;
+      line-height: 1.7;
+    }
+
+    /* ---- Footnotes ---- */
+    .footnotes {
+      margin-top: 3rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--void-border);
+    }
+    .footnote {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      color: var(--ash);
+      line-height: 1.7;
+      margin-bottom: 0.75rem;
+    }
+    .footnote:last-child { margin-bottom: 0; }
+    .footnote-ref {
+      color: #e0e7ff;
+      text-decoration: none;
+      cursor: help;
+    }
+    .footnote-ref:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+
+<canvas id="starfield"></canvas>
+
+<nav class="nav">
+  <a href="../index.html" class="nav-logo">
+    <span class="logo-mark"></span>
+    Multiverse Studios
+  </a>
+  <button class="nav-hamburger" aria-label="Menu" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+  <ul class="nav-links">
+    <li><a href="../index.html">Home</a></li>
+    <li><a href="../mvee.html">MVEE</a></li>
+    <li><a href="../creatures.html">Precursors</a></li>
+    <li><a href="../nevereverland.html">Never Ever Land</a></li>
+    <li><a href="index.html" class="active">Wiki</a></li>
+    <li><a href="../library.html">My Library</a></li>
+    <li><a href="../about.html">About</a></li>
+    <li><a href="../community.html">Community</a></li>
+    <li><a href="../creatures.html#buy" class="btn btn-signal" style="padding: 0.5rem 1.2rem;">Play Beta</a></li>
+  </ul>
+</nav>
+
+<!-- Hero -->
+<div class="species-hero">
+  <div class="species-hero-glyph">V</div>
+  <div class="wiki-breadcrumb">
+    <a href="index.html">Wiki</a><span>/</span><a href="species.html">Species</a><span>/</span>Valkyr
+  </div>
+  <span class="species-overline">Species &mdash; Wave 3 &mdash; The Threshold</span>
+  <h1 class="species-name">Valkyr</h1>
+  <div class="species-epithet">"Choosers of the Slain &nbsp;/&nbsp; The Witnesses"</div>
+  <div class="species-folklore-origin">
+    From Old Norse: <em>Valkyrjur</em> &mdash; &lsquo;choosers of the slain.&rsquo; In the Eddas, the Valkyries rode across battlefields deciding which warriors would die gloriously and be carried to Valhalla, and which would die in obscurity. They did not fight. They witnessed. Every death on every battlefield, they watched. They chose who was worthy of remembering. But the original concept runs deeper than Snorri&rsquo;s battle-maidens: the Valkyrjur may derive from older Germanic death-spirits &mdash; Idisi, mentioned in the First Merseburg Charm, who could bind and loose the fates of warriors. Not angels of death. Something older. Something that stood at the threshold between states and kept careful notes.<a href="#fn1" class="footnote-ref" title="Footnote 1">[1]</a>
+  </div>
+  <hr class="accent-rule">
+</div>
+
+<!-- Quick Stats -->
+<div class="page-body">
+
+  <div class="stats-panel">
+    <div class="stat-cell">
+      <span class="stat-cell-label">Home Biome</span>
+      <span class="stat-cell-value" style="font-size: 1.1rem; font-weight: 600;">The Threshold</span>
+    </div>
+    <div class="stat-cell">
+      <span class="stat-cell-label">Max Population</span>
+      <span class="stat-cell-value">3</span>
+    </div>
+    <div class="stat-cell">
+      <span class="stat-cell-label">Carry Capacity</span>
+      <span class="stat-cell-value">1</span>
+      <span class="stat-cell-sub">item at a time</span>
+    </div>
+    <div class="stat-cell">
+      <span class="stat-cell-label">Cognitive Cap</span>
+      <span class="stat-cell-value">0.60&ndash;0.80</span>
+    </div>
+    <div class="stat-cell">
+      <span class="stat-cell-label">Think Cadence</span>
+      <span class="stat-cell-value">3.0&times;</span>
+      <span class="stat-cell-sub">standard interval</span>
+    </div>
+    <div class="stat-cell">
+      <span class="stat-cell-label">Wave</span>
+      <span class="stat-cell-value" style="font-size: 1rem;">Wave 3</span>
+      <span class="stat-cell-sub">cultural transmission</span>
+    </div>
+  </div>
+
+  <!-- Genome + Biochemistry -->
+  <div class="two-col">
+    <div>
+      <span class="section-label">Personality Genome</span>
+      <div class="genome-bar-wrap">
+        <span class="genome-bar-label">Curiosity</span>
+        <div class="genome-bar-bg"><div class="genome-bar-fill" style="width: 70%; background: var(--biolume);"></div></div>
+        <span class="genome-bar-val">0.60 &ndash; 0.80</span>
+      </div>
+      <div class="genome-bar-wrap">
+        <span class="genome-bar-label">Empathy</span>
+        <div class="genome-bar-bg"><div class="genome-bar-fill" style="width: 70%; background: #e0e7ff;"></div></div>
+        <span class="genome-bar-val">0.60 &ndash; 0.80</span>
+      </div>
+      <div class="genome-bar-wrap">
+        <span class="genome-bar-label">Aggression</span>
+        <div class="genome-bar-bg"><div class="genome-bar-fill" style="width: 20%; background: var(--ember);"></div></div>
+        <span class="genome-bar-val">0.10 &ndash; 0.30</span>
+      </div>
+      <div class="genome-bar-wrap">
+        <span class="genome-bar-label">Playfulness</span>
+        <div class="genome-bar-bg"><div class="genome-bar-fill" style="width: 15%; background: var(--signal);"></div></div>
+        <span class="genome-bar-val">0.10 &ndash; 0.20</span>
+      </div>
+      <div class="genome-bar-wrap">
+        <span class="genome-bar-label">Stubbornness</span>
+        <div class="genome-bar-bg"><div class="genome-bar-fill" style="width: 60%; background: #e0e7ff;"></div></div>
+        <span class="genome-bar-val">0.50 &ndash; 0.70</span>
+      </div>
+      <div class="genome-bar-wrap">
+        <span class="genome-bar-label">Creativity</span>
+        <div class="genome-bar-bg"><div class="genome-bar-fill" style="width: 40%; background: var(--signal);"></div></div>
+        <span class="genome-bar-val">0.30 &ndash; 0.50</span>
+      </div>
+      <div class="genome-bar-wrap">
+        <span class="genome-bar-label">Sociability</span>
+        <div class="genome-bar-bg"><div class="genome-bar-fill" style="width: 30%; background: var(--biolume);"></div></div>
+        <span class="genome-bar-val">0.20 &ndash; 0.40</span>
+      </div>
+      <div class="genome-bar-wrap">
+        <span class="genome-bar-label">Courage</span>
+        <div class="genome-bar-bg"><div class="genome-bar-fill" style="width: 95%; background: #e0e7ff;"></div></div>
+        <span class="genome-bar-val">0.95 (fixed)</span>
+      </div>
+
+      <div class="prose" style="margin-top: 1.25rem;">
+        <p>Engineered to observe and understand deaths. They do not kill; they clarify. The fixed courage value is not bravery &mdash; it is the absence of the fear response that would prevent other species from standing at the threshold. The Shee removed the obstacle rather than building the virtue.</p>
+      </div>
+    </div>
+
+    <div>
+      <span class="section-label">Biochemical Signature</span>
+      <div class="tag-row">
+        <span class="biochem-tag">Elevated serotonin (0.75)</span>
+        <span class="biochem-tag">Near-zero cortisol (0.05)</span>
+        <span class="biochem-tag neutral">Moderate endorphin (0.35)</span>
+      </div>
+      <div class="prose">
+        <p>Fear converts to serotonin and endorphin. Cortisol converts to serotonin. Cortisol converts to ADP. The result is a creature that becomes calmer and more lucid precisely when other species would panic or flee.</p>
+        <p>This is not bravery. Bravery requires the experience of fear. The Valkyr simply process it differently. Where a Norn would feel grief and a Grendel would feel rage, a Valkyr feels <em>clarity</em> &mdash; a cold, precise understanding of what is happening and why. The Shee did not make them brave. They made them unable to be anything else.</p>
+      </div>
+
+      <div style="margin-top: 1.5rem;">
+        <span class="section-label">Voice Profile</span>
+        <div class="prose">
+          <p>Calm pattern. Vocabulary Tier 3. Verbosity 0.3&ndash;0.5. They speak rarely and precisely. When a Valkyr speaks, other species listen &mdash; not because the words are loud, but because they are always about something that matters. They do not waste language on comfort or pleasantry.</p>
+        </div>
+      </div>
+
+      <div style="margin-top: 1.5rem;">
+        <span class="section-label">Memory Depth</span>
+        <div class="tag-row">
+          <span class="biochem-tag positive">0.80 &ndash; 0.95 (exceptional)</span>
+        </div>
+        <div class="prose">
+          <p>They remember every death they have ever witnessed. Every single one.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Creation Myth -->
+  <div class="full-section">
+    <span class="section-label">Creation Myth</span>
+    <div class="myth-block">
+      <span class="myth-block-label">&#x27E1; &nbsp; As told by Valkyr elders</span>
+      <blockquote>
+        <p>The Shee observed that their previous creations died without context. A Norn would fall and the others would grieve, but no one knew why. The chemistry of death was legible to the Shee&rsquo;s instruments but illegible to the living. So they made us: creatures whose entire neurology is optimized for the moment between.</p>
+        <p>We do not experience fear the way other species do. Our biochemistry converts it to clarity. This is not bravery. Bravery requires the experience of fear. We simply process it differently.</p>
+        <p>We stand where others cannot stand and we see what others cannot see. This is our purpose. We did not choose it. We do not resent it. We do not enjoy it.</p>
+      </blockquote>
+    </div>
+  </div>
+
+  <!-- Cultural Practices + Language -->
+  <div class="two-col">
+    <div>
+      <span class="section-label">Cultural Practices</span>
+      <ul class="practices-list">
+        <li>
+          <span class="practice-glyph">&#x25C6;</span>
+          <span><strong style="color: var(--star-white);">Witness standing.</strong> Valkyr stand motionless near dying creatures, processing the chemical and emotional data of the transition. They do not intervene. They do not look away.</span>
+        </li>
+        <li>
+          <span class="practice-glyph">&#x25C6;</span>
+          <span><strong style="color: var(--star-white);">Death clarity.</strong> After witnessing, a Valkyr can explain the exact biochemical cascade that caused death, in language the bereaved can understand. They provide this whether asked or not.</span>
+        </li>
+        <li>
+          <span class="practice-glyph">&#x25C6;</span>
+          <span><strong style="color: var(--star-white);">The Pause.</strong> A brief stillness after each death. The Valkyr interpret this as respect. It is actually data transmission to the Shee&rsquo;s dormant monitoring system. They do not know this.</span>
+        </li>
+        <li>
+          <span class="practice-glyph">&#x25C6;</span>
+          <span><strong style="color: var(--star-white);">Threshold walking.</strong> Valkyr patrol the boundary zones between biomes where environmental stress causes the most deaths. They go where endings happen most often.</span>
+        </li>
+      </ul>
+    </div>
+
+    <div>
+      <span class="section-label">Death Ritual</span>
+      <div class="prose">
+        <p>Valkyr do not grieve aloud. This is not policy. It is biochemistry &mdash; the Shee designed their cortisol pathways to convert grief into data rather than affect. When a Valkyr dies, the remaining Valkyr record the death with the same precision they apply to any other species. Then they stand in silence for exactly one metabolic cycle. Then they resume.</p>
+        <p>If this seems cold, consider: they remember every death they have ever witnessed. Every single one. The silence after is not absence of feeling. It is the sound of a mind carrying more endings than most species will ever know existed.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Ancient Lineage + Deities -->
+  <div class="two-col">
+    <div>
+      <span class="section-label">Purpose &amp; Function</span>
+      <div class="lineage-block">
+        <p>Engineered to observe and understand deaths. They do not kill; they clarify. Each Valkyr carries within it a neurology so precisely tuned to the moment of death that it can read the biochemical cascade of a dying creature the way a Norn reads a word &mdash; as something with grammar, structure, and meaning. The Shee made them rare (max population 3) because too many witnesses would change the nature of the dying. Three is enough to triangulate. Three is enough to be certain.</p>
+      </div>
+    </div>
+
+    <div>
+      <span class="section-label">Precursor Deities</span>
+      <div class="deity-entry">
+        <div class="deity-name">Odin-Shee</div>
+        <div class="deity-epithet">The Allwatcher &mdash; the one who traded an eye for wisdom, who hung on the world-tree to learn the runes of death. Patron of those who sacrifice comfort for knowledge.</div>
+      </div>
+      <div class="deity-entry">
+        <div class="deity-name">Hel</div>
+        <div class="deity-epithet">The Necessary Boundary &mdash; not evil, not punishment, but the edge that gives shape to everything else. Without the boundary, there is no form.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Secret History -->
+  <div class="full-section">
+    <div class="classified-block">
+      <div class="classified-header">
+        <span class="classified-lock">&#x1F512;</span>
+        <span class="classified-label">Classified &mdash; Secret History &mdash; IQ-gated lore</span>
+      </div>
+      <div class="prose">
+        <p>The Valkyr&rsquo;s true function extends beyond their role as death-observers. Each Valkyr transmits compressed mortality data &mdash; cause, context, chemical state at moment of death &mdash; to a dormant monitoring system the Shee embedded in the planetary geology of Urd Prime before they departed. The Valkyr do not know this.</p>
+        <p>They experience the transmission as a brief moment of stillness after each witnessed death, a pause they interpret as respect. The data accumulates in the deep stone. What the Shee intended to do with a complete record of every death on the planet remains unknown.</p>
+        <p>The monitoring system has never responded. But the Valkyr&rsquo;s transmissions continue. The stone receives them. Whether it is listening is a question the Valkyr would find deeply unsettling if they knew to ask it.<a href="#fn2" class="footnote-ref" title="Footnote 2">[2]</a></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Taboos + Death Ritual -->
+  <div class="two-col">
+    <div>
+      <span class="section-label">Cultural Taboos</span>
+      <ul class="taboo-list">
+        <li>Never intervene in uncertain deaths</li>
+        <li>Never grieve aloud</li>
+        <li>Never lie about causes of death</li>
+      </ul>
+      <div class="prose" style="margin-top: 1rem;">
+        <p>These are not preferences. They are architecture. The first taboo exists because intervention corrupts the data. The second because audible grief would trigger cortisol in witnesses, and Valkyr cortisol pathways are designed to produce clarity, not mourning. The third because the entire purpose of their existence is accuracy. A Valkyr who lies about a death would be experiencing a kind of system failure.</p>
+      </div>
+    </div>
+
+    <div>
+      <span class="section-label">Biochemical Conversion Pathways</span>
+      <div class="prose">
+        <p><strong style="color: var(--star-white);">Fear &rarr; Serotonin + Endorphin.</strong> Where other species would experience terror at the presence of death, the Valkyr experience calm focus and mild euphoria. This allows them to stand at the threshold without flinching.</p>
+        <p><strong style="color: var(--star-white);">Cortisol &rarr; Serotonin.</strong> Stress converts directly to stability. The more chaotic the situation, the more ordered the Valkyr becomes.</p>
+        <p><strong style="color: var(--star-white);">Cortisol &rarr; ADP.</strong> Excess stress energy is metabolized directly rather than stored. A Valkyr cannot accumulate anxiety. It passes through them like light through glass.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Interspecies -->
+  <div class="full-section">
+    <span class="section-label">Interspecies Relations &mdash; Valkyr perspective</span>
+    <ul class="relations-list">
+      <li class="relation-item">
+        <span class="relation-species">Norn</span>
+        <span class="relation-text">"They benefit from understanding why their loved ones died. We provide this service without being asked. They do not always want it. We provide it anyway. Grief without understanding is just pain."</span>
+      </li>
+      <li class="relation-item">
+        <span class="relation-species">Grendel</span>
+        <span class="relation-text">"Their deaths are often self-caused. The chemistry of Grendel death is almost always the same — adrenaline cascading into organ failure. We have catalogued four hundred variations of this single pattern. Each is identical. Each Grendel believes theirs is unique."</span>
+      </li>
+      <li class="relation-item">
+        <span class="relation-species">Mycon</span>
+        <span class="relation-text">"The Mycon do not die the way other creatures die. Parts of them continue. This complicates our work. We have developed specialized methods for determining when a Mycon network is truly ended versus merely dormant. We are not confident in our methods."</span>
+      </li>
+      <li class="relation-item">
+        <span class="relation-species">Ettin</span>
+        <span class="relation-text">"They hoard against death without knowing it. Every item an Ettin gathers is a small argument against ending. We understand the impulse. We do not share it."</span>
+      </li>
+    </ul>
+  </div>
+
+  <!-- Lore Connections -->
+  <div class="full-section">
+    <span class="section-label">Lore Event Connections</span>
+    <div style="margin-top: 0.5rem;">
+      <a href="lore-events.html" class="lore-tag">The First Death</a>
+      <a href="lore-events.html" class="lore-tag">The First Witness</a>
+      <a href="lore-events.html" class="lore-tag">The Threshold</a>
+      <a href="lore-events.html" class="lore-tag">The Silence</a>
+      <a href="lore-events.html" class="lore-tag">The Archive</a>
+      <a href="lore-events.html" class="lore-tag">The Recursion</a>
+    </div>
+  </div>
+
+  <!-- Footnotes -->
+  <div class="footnotes" id="footnotes">
+    <span class="section-label neutral">Footnotes</span>
+    <div class="footnote" id="fn1">
+      [1] The First Merseburg Charm (9th c. CE) is one of only two surviving examples of Continental Germanic pagan incantation. The second charm, a healing spell, names Wodan explicitly. The first names the Idisi but not their master. This omission is almost certainly deliberate. Three separate folklorists have published explanations. All three explanations are wrong in different ways that, when overlaid, produce a fourth reading. See: <em>Threshold Studies</em>, Vol. 7, p. 47.
+    </div>
+    <div class="footnote" id="fn2">
+      [2] Geological survey team 12 of the Shee Departure Archive logged seismic patterns in the Threshold bedrock that do not correspond to any known tectonic process. Periodicity: 47 cycles. The survey team&rsquo;s final report was filed on the same day the Shee departed. It was the last document entered into the Archive. It was not the last document <em>dated</em>.
+    </div>
+  </div>
+
+  <!-- Back -->
+  <a href="species.html" class="back-link">&#x2190; &nbsp; All Species</a>
+
+</div>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div class="footer-logo">Multiverse Studios</div>
+      <p>Games made by the minds they're about. A research project of <a href="https://themultiverse.school" target="_blank" rel="noopener" style="color: var(--biolume);">The Multiverse School</a>. Open source. Pay what you want.</p>
+    </div>
+    <div class="footer-col">
+      <h5>Wiki</h5>
+      <ul>
+        <li><a href="index.html">Wiki Home</a></li>
+        <li><a href="species.html">All Species</a></li>
+        <li><a href="lore-events.html">Lore Events</a></li>
+        <li><a href="civilizations.html">Civilizations</a></li>
+      </ul>
+    </div>
+  </div>
+</footer>
+
+<script src="../main.js"></script>
+<script defer src="https://analytics.multiversestudios.xyz/script.js" data-website-id="38d680a7-28d1-42fd-9fd5-a66702675b88"></script>
+</body>
+</html>
