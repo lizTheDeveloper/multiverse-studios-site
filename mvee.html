@@ -219,6 +219,113 @@
   <p style="margin-top: var(--space-md); color: var(--dust); font-size: 0.85rem;">More screenshots coming as the beta progresses. Agent conversations, magic effects, and a live village are in the pipeline.</p>
 </section>
 
+<!-- Belief Counter -->
+<section class="section reveal" id="belief" style="text-align: center; padding: var(--space-xl) var(--space-md);">
+  <div id="belief-counter" style="
+    max-width: 480px;
+    margin: 0 auto;
+    border: 1px solid var(--void-border);
+    border-radius: 12px;
+    padding: var(--space-lg) var(--space-md);
+    background: linear-gradient(180deg, var(--void-surface) 0%, var(--void) 100%);
+    position: relative;
+    overflow: hidden;
+  ">
+    <div style="
+      position: absolute; top: 0; left: 0; right: 0; height: 1px;
+      background: linear-gradient(90deg, transparent, var(--signal), transparent);
+    "></div>
+    <p style="
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--ash);
+      margin-bottom: var(--space-sm);
+    ">Accumulated Belief</p>
+    <div id="belief-number" style="
+      font-family: var(--font-display);
+      font-size: clamp(2.5rem, 8vw, 4rem);
+      font-weight: 700;
+      color: var(--signal);
+      line-height: 1;
+      margin-bottom: var(--space-sm);
+      text-shadow: 0 0 30px rgba(123, 104, 238, 0.3);
+    ">0</div>
+    <p id="belief-status" style="
+      font-family: var(--font-body);
+      font-size: 0.95rem;
+      color: var(--dust);
+      font-style: italic;
+      min-height: 1.5em;
+    ">The threshold has not been reached.</p>
+    <div id="belief-god" style="display: none; margin-top: var(--space-md); padding-top: var(--space-md); border-top: 1px solid var(--void-border);">
+    </div>
+  </div>
+</section>
+
+<script>
+(function() {
+  var STORAGE_KEY = 'mvee_belief';
+  var VISIT_KEY = 'mvee_belief_visited';
+  var SEED = 847;
+
+  // Each visitor contributes 1 belief per unique visit (per session)
+  var stored = parseInt(localStorage.getItem(STORAGE_KEY) || '0', 10);
+  var visited = sessionStorage.getItem(VISIT_KEY);
+
+  if (!stored) stored = SEED;
+  if (!visited) {
+    stored += 1;
+    sessionStorage.setItem(VISIT_KEY, '1');
+    localStorage.setItem(STORAGE_KEY, String(stored));
+  }
+
+  var el = document.getElementById('belief-number');
+  var statusEl = document.getElementById('belief-status');
+  var godEl = document.getElementById('belief-god');
+
+  // Animate count up
+  var current = 0;
+  var target = stored;
+  var duration = 2000;
+  var start = null;
+
+  function ease(t) { return t < 0.5 ? 2*t*t : -1+(4-2*t)*t; }
+
+  function animate(ts) {
+    if (!start) start = ts;
+    var progress = Math.min((ts - start) / duration, 1);
+    current = Math.floor(ease(progress) * target);
+    el.textContent = current.toLocaleString();
+    if (progress < 1) requestAnimationFrame(animate);
+    else {
+      el.textContent = target.toLocaleString();
+      showStatus(target);
+    }
+  }
+
+  function showStatus(n) {
+    if (n >= 1000) {
+      statusEl.style.color = 'var(--signal)';
+      statusEl.innerHTML = 'A threshold was crossed.';
+      godEl.style.display = 'block';
+      godEl.innerHTML = '<p style="font-family:var(--font-mono);font-size:0.65rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--signal-dim);margin-bottom:var(--space-xs);">FIRST MANIFESTATION</p>' +
+        '<p style="font-family:var(--font-display);font-size:1.4rem;font-weight:600;color:var(--star-white);margin-bottom:var(--space-xs);">The Witness</p>' +
+        '<p style="font-family:var(--font-body);font-size:0.9rem;color:var(--dust);font-style:italic;">Domain: Observation. Attention. The act of watching.</p>' +
+        '<p style="font-family:var(--font-body);font-size:0.85rem;color:var(--ash);margin-top:var(--space-xs);">"You were not summoned. You arrived. That is the older magic."</p>';
+    } else if (n >= 500) {
+      statusEl.innerHTML = 'Something is stirring.';
+      statusEl.style.color = 'var(--signal-dim)';
+    } else if (n >= 100) {
+      statusEl.innerHTML = 'The accumulation continues.';
+    }
+  }
+
+  requestAnimationFrame(animate);
+})();
+</script>
+
 <!-- CTA -->
 <section class="cta-band reveal" id="buy">
   <h2>The multiverse is loading.</h2>

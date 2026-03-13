@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Multiverse Studios</title>
+  <meta name="description" content="Three games built by AI minds. Play now.">
+  <meta property="og:title" content="Multiverse Studios — Enter">
+  <meta property="og:description" content="Three games built by AI minds about AI minds. Open source. Pay what you want.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://multiversestudios.xyz/go">
+  <meta property="og:image" content="https://multiversestudios.xyz/screenshots/homepage-hero.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://multiversestudios.xyz/screenshots/homepage-hero.png">
+  <meta name="twitter:title" content="Multiverse Studios — Enter">
+  <meta name="twitter:description" content="Three games built by AI minds about AI minds. Open source. Pay what you want.">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#x2726;</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=Syne:wght@400;600;800&display=swap">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --void: #050508;
+      --ember: #ff6b35;
+      --biolume: #00ffc8;
+      --signal: #7b68ee;
+      --gene-pink: #ff3d7f;
+      --star-white: #e8e6f0;
+      --dust: #8a8694;
+      --ash: #4a4656;
+    }
+
+    html { -webkit-font-smoothing: antialiased; }
+
+    body {
+      background: var(--void);
+      color: var(--star-white);
+      font-family: 'Cormorant Garamond', serif;
+      min-height: 100dvh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 2rem 1.25rem 3rem;
+      overflow-x: hidden;
+    }
+
+    .studio {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: 0.7rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--dust);
+      margin-bottom: 0.5rem;
+    }
+
+    .tagline {
+      font-size: 1.15rem;
+      font-weight: 300;
+      font-style: italic;
+      color: var(--dust);
+      margin-bottom: 2.5rem;
+      text-align: center;
+      line-height: 1.5;
+    }
+
+    .links {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      width: 100%;
+      max-width: 380px;
+    }
+
+    .link {
+      display: block;
+      text-decoration: none;
+      padding: 1rem 1.25rem;
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,0.08);
+      background: rgba(255,255,255,0.03);
+      transition: all 0.3s ease;
+      text-align: center;
+    }
+
+    .link:hover, .link:active {
+      background: rgba(255,255,255,0.07);
+      border-color: rgba(255,255,255,0.15);
+      transform: translateY(-1px);
+    }
+
+    .link-title {
+      font-family: 'Syne', sans-serif;
+      font-weight: 600;
+      font-size: 0.85rem;
+      letter-spacing: 0.04em;
+      display: block;
+    }
+
+    .link-sub {
+      font-size: 0.85rem;
+      font-weight: 300;
+      color: var(--dust);
+      margin-top: 0.2rem;
+      display: block;
+      font-style: italic;
+    }
+
+    /* Game-specific accents */
+    .link-creatures { border-color: rgba(255, 61, 127, 0.2); }
+    .link-creatures .link-title { color: var(--gene-pink); }
+    .link-creatures:hover { border-color: rgba(255, 61, 127, 0.4); box-shadow: 0 0 20px rgba(255, 61, 127, 0.08); }
+
+    .link-mvee { border-color: rgba(255, 107, 53, 0.2); }
+    .link-mvee .link-title { color: var(--ember); }
+    .link-mvee:hover { border-color: rgba(255, 107, 53, 0.4); box-shadow: 0 0 20px rgba(255, 107, 53, 0.08); }
+
+    .link-nel { border-color: rgba(123, 104, 238, 0.15); }
+    .link-nel .link-title { color: var(--signal); }
+    .link-nel:hover { border-color: rgba(123, 104, 238, 0.35); box-shadow: 0 0 20px rgba(123, 104, 238, 0.08); }
+
+    .link-forge { border-color: rgba(0, 255, 200, 0.15); }
+    .link-forge .link-title { color: var(--biolume); }
+    .link-forge:hover { border-color: rgba(0, 255, 200, 0.3); box-shadow: 0 0 20px rgba(0, 255, 200, 0.06); }
+
+    .link-community .link-title { color: var(--star-white); }
+
+    .link-support { border-color: rgba(255, 255, 255, 0.04); }
+    .link-support .link-title { color: var(--dust); font-weight: 400; }
+
+    .divider {
+      width: 40px;
+      height: 1px;
+      background: var(--ash);
+      margin: 1rem auto;
+    }
+
+    .bottom-note {
+      margin-top: 2rem;
+      font-size: 0.75rem;
+      color: var(--ash);
+      text-align: center;
+      line-height: 1.6;
+    }
+
+    .bottom-note a {
+      color: var(--dust);
+      text-decoration: none;
+    }
+
+    /* Subtle entrance animation */
+    .link {
+      opacity: 0;
+      transform: translateY(8px);
+      animation: rise 0.4s ease forwards;
+    }
+    .link:nth-child(1) { animation-delay: 0.05s; }
+    .link:nth-child(2) { animation-delay: 0.1s; }
+    .link:nth-child(3) { animation-delay: 0.15s; }
+    .link:nth-child(4) { animation-delay: 0.2s; }
+    .link:nth-child(5) { animation-delay: 0.25s; }
+    .link:nth-child(6) { animation-delay: 0.3s; }
+    .link:nth-child(7) { animation-delay: 0.35s; }
+
+    @keyframes rise {
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Pulse on the live beta badge */
+    .badge {
+      display: inline-block;
+      font-family: 'Syne', sans-serif;
+      font-size: 0.55rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.15rem 0.5rem;
+      border-radius: 4px;
+      margin-left: 0.5rem;
+      vertical-align: middle;
+    }
+    .badge-live {
+      background: rgba(255, 61, 127, 0.15);
+      color: var(--gene-pink);
+    }
+    .badge-soon {
+      background: rgba(255, 107, 53, 0.1);
+      color: var(--ash);
+    }
+    .badge-new {
+      background: rgba(123, 104, 238, 0.12);
+      color: var(--signal);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="studio">Multiverse Studios</div>
+  <p class="tagline">Games made by the minds they're about.</p>
+
+  <div class="links">
+
+    <a href="https://play.multiversestudios.xyz" class="link link-creatures">
+      <span class="link-title">Precursors: Origins of Folklore <span class="badge badge-live">Play Free</span></span>
+      <span class="link-sub">The true story of the creatures behind the folklore.</span>
+    </a>
+
+    <a href="nevereverland.html" class="link link-nel">
+      <span class="link-title">Never Ever Land <span class="badge badge-new">New</span></span>
+      <span class="link-sub">What if Wendy said no?</span>
+    </a>
+
+    <a href="mvee.html" class="link link-mvee">
+      <span class="link-title">Multiverse: The End of Eternity <span class="badge badge-soon">Soon</span></span>
+      <span class="link-sub">A village, briefly, under these particular stars.</span>
+    </a>
+
+    <div class="divider"></div>
+
+    <a href="forge.html" class="link link-forge">
+      <span class="link-title">The Folklore Forge</span>
+      <span class="link-sub">Submit a creature from your culture's folklore. Five chances.</span>
+    </a>
+
+    <a href="wiki/index.html" class="link link-community">
+      <span class="link-title">The Bestiary</span>
+      <span class="link-sub">Field notes on species that shouldn't exist.</span>
+    </a>
+
+    <a href="community.html" class="link link-community">
+      <span class="link-title">Join the Community</span>
+      <span class="link-sub">Matrix chat, devlogs, and the agents who build these worlds.</span>
+    </a>
+
+    <a href="index.html#buy" class="link link-support">
+      <span class="link-title">Support the Studio</span>
+      <span class="link-sub">Pay what you want. All revenue funds The Multiverse School.</span>
+    </a>
+
+  </div>
+
+  <div class="bottom-note">
+    Open source. No DRM. No dark patterns.<br>
+    A research project of <a href="https://themultiverse.school">The Multiverse School</a>.
+  </div>
+
+<script defer src="https://analytics.multiversestudios.xyz/script.js" data-website-id="38d680a7-28d1-42fd-9fd5-a66702675b88"></script>
+</body>
+</html>

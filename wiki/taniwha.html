@@ -1,0 +1,817 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Taniwha &mdash; Precursors Wiki</title>
+  <meta name="description" content="Guardians of the Deep Aquifer. Territorial waterway protectors engineered by the Shee from M&#257;ori tradition. Full lore, genome, biochemistry, and hidden history.">
+  <meta property="og:title" content="Taniwha — Precursors Wiki | Multiverse Studios">
+  <meta property="og:description" content="The Taniwha are not monsters. They are consequences. Guardians of waterways drawn from M&#257;ori tradition.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://multiversestudios.xyz/wiki/taniwha.html">
+  <meta property="og:image" content="https://multiversestudios.xyz/screenshots/homepage-hero.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Taniwha — Precursors Wiki">
+  <meta name="twitter:description" content="The Taniwha are not monsters. They are consequences.">
+  <link rel="stylesheet" href="../styles.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#x2726;</text></svg>">
+  <style>
+    :root {
+      --taniwha-accent: #38bdf8;
+      --taniwha-accent-07: rgba(56, 189, 248, 0.07);
+      --taniwha-accent-15: rgba(56, 189, 248, 0.15);
+      --taniwha-accent-20: rgba(56, 189, 248, 0.2);
+      --taniwha-accent-04: rgba(56, 189, 248, 0.04);
+      --taniwha-accent-06: rgba(56, 189, 248, 0.06);
+    }
+
+    .wiki-breadcrumb {
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      color: var(--dust);
+      margin-bottom: 1.5rem;
+    }
+    .wiki-breadcrumb a { color: var(--biolume); text-decoration: none; }
+    .wiki-breadcrumb a:hover { text-decoration: underline; }
+    .wiki-breadcrumb span { color: var(--ash); margin: 0 0.4rem; }
+
+    .species-hero {
+      padding: 8rem var(--space-md) 4rem;
+      max-width: 900px;
+      margin: 0 auto;
+      position: relative;
+    }
+    .species-hero-glyph {
+      position: absolute;
+      top: 6rem;
+      right: 0;
+      font-family: var(--font-display);
+      font-size: 14rem;
+      font-weight: 900;
+      color: rgba(56, 189, 248, 0.04);
+      line-height: 1;
+      pointer-events: none;
+      user-select: none;
+      letter-spacing: -0.05em;
+    }
+    .species-overline {
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--taniwha-accent);
+      margin-bottom: 0.75rem;
+      display: block;
+    }
+    .species-name {
+      font-family: var(--font-display);
+      font-size: clamp(3rem, 8vw, 6rem);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 1;
+      color: var(--star-white);
+      margin-bottom: 0.5rem;
+    }
+    .species-epithet {
+      font-family: var(--font-body);
+      font-style: italic;
+      font-size: 1.3rem;
+      color: var(--dust);
+      margin-bottom: 0.5rem;
+    }
+    .species-folklore-origin {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: var(--ash);
+      max-width: 60ch;
+      line-height: 1.6;
+      margin-top: 0.5rem;
+    }
+
+    .accent-rule {
+      width: 60px;
+      height: 2px;
+      background: var(--taniwha-accent);
+      margin: 2rem 0;
+      border: none;
+    }
+
+    .stats-panel {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 1px;
+      background: var(--void-border);
+      border: 1px solid var(--void-border);
+      border-radius: 8px;
+      overflow: hidden;
+      margin-bottom: 3rem;
+    }
+    .stat-cell {
+      background: var(--void-elevated);
+      padding: 1.2rem 1.5rem;
+    }
+    .stat-cell-label {
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--ash);
+      display: block;
+      margin-bottom: 0.3rem;
+    }
+    .stat-cell-value {
+      font-family: var(--font-display);
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--taniwha-accent);
+      display: block;
+      line-height: 1.1;
+    }
+    .stat-cell-sub {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      color: var(--dust);
+      margin-top: 0.1rem;
+    }
+
+    .page-body {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 var(--space-md) var(--space-xl);
+    }
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2.5rem;
+      margin-bottom: 3rem;
+    }
+    @media (max-width: 720px) {
+      .two-col { grid-template-columns: 1fr; }
+    }
+
+    .section-label {
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--taniwha-accent);
+      display: block;
+      margin-bottom: 0.75rem;
+      padding-bottom: 0.4rem;
+      border-bottom: 1px solid var(--taniwha-accent-15);
+    }
+    .section-label.neutral {
+      color: var(--dust);
+      border-bottom-color: var(--void-border);
+    }
+
+    .prose {
+      color: var(--dust);
+      font-family: var(--font-body);
+      font-size: 1.05rem;
+      line-height: 1.75;
+    }
+    .prose p { margin-bottom: 0.9rem; }
+    .prose p:last-child { margin-bottom: 0; }
+
+    .genome-bar-wrap {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      margin: 0.5rem 0;
+    }
+    .genome-bar-label {
+      font-family: var(--font-body);
+      font-size: 0.9rem;
+      color: var(--star-white);
+      width: 110px;
+      flex-shrink: 0;
+    }
+    .genome-bar-bg {
+      flex: 1;
+      height: 5px;
+      background: var(--void-border);
+      border-radius: 3px;
+      overflow: hidden;
+    }
+    .genome-bar-fill {
+      height: 100%;
+      border-radius: 3px;
+    }
+    .genome-bar-val {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      color: var(--dust);
+      width: 72px;
+      text-align: right;
+      flex-shrink: 0;
+    }
+
+    .tag-row { display: flex; flex-wrap: wrap; gap: 0.4rem; margin: 0.5rem 0 1rem; }
+    .biochem-tag {
+      display: inline-block;
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      padding: 0.25rem 0.65rem;
+      border-radius: 4px;
+      background: var(--taniwha-accent-07);
+      border: 1px solid var(--taniwha-accent-20);
+      color: var(--taniwha-accent);
+    }
+    .biochem-tag.warn {
+      background: rgba(255, 107, 53, 0.07);
+      border-color: rgba(255, 107, 53, 0.2);
+      color: var(--ember);
+    }
+    .biochem-tag.positive {
+      background: rgba(0, 255, 200, 0.06);
+      border-color: rgba(0, 255, 200, 0.2);
+      color: var(--biolume);
+    }
+
+    .myth-block {
+      background: var(--taniwha-accent-04);
+      border-left: 3px solid var(--taniwha-accent);
+      border-radius: 0 6px 6px 0;
+      padding: 1.75rem 2rem;
+      margin: 2rem 0;
+    }
+    .myth-block-label {
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: var(--taniwha-accent);
+      display: block;
+      margin-bottom: 1rem;
+      opacity: 0.8;
+    }
+    .myth-block blockquote {
+      font-family: var(--font-body);
+      font-style: italic;
+      font-size: 1.1rem;
+      color: var(--dust);
+      line-height: 1.8;
+      border: none;
+      padding: 0;
+      margin: 0;
+    }
+    .myth-block blockquote p { margin-bottom: 0.8rem; }
+    .myth-block blockquote p:last-child { margin-bottom: 0; }
+
+    .practices-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .practices-list li {
+      display: flex;
+      gap: 0.75rem;
+      padding: 0.65rem 0;
+      border-bottom: 1px solid var(--void-border);
+      font-family: var(--font-body);
+      font-size: 1rem;
+      color: var(--dust);
+      line-height: 1.5;
+    }
+    .practices-list li:last-child { border-bottom: none; }
+    .practice-glyph {
+      color: var(--taniwha-accent);
+      font-size: 0.8rem;
+      margin-top: 0.2rem;
+      flex-shrink: 0;
+    }
+
+    .seed-tag {
+      display: inline-block;
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      padding: 0.3rem 0.75rem;
+      border-radius: 4px;
+      background: var(--void-elevated);
+      border: 1px solid var(--void-border);
+      color: var(--star-white);
+      margin: 0.2rem;
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .seed-tag:hover {
+      border-color: var(--taniwha-accent);
+      color: var(--taniwha-accent);
+    }
+
+    .classified-block {
+      background: var(--taniwha-accent-04);
+      border: 1px solid var(--taniwha-accent-20);
+      border-radius: 8px;
+      padding: 1.5rem 1.75rem;
+      margin: 2rem 0;
+      position: relative;
+    }
+    .classified-header {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      margin-bottom: 1rem;
+    }
+    .classified-label {
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--taniwha-accent);
+    }
+    .classified-lock { font-size: 0.85rem; }
+    .classified-block .prose { font-size: 0.95rem; }
+
+    .lore-tag {
+      display: inline-block;
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      padding: 0.25rem 0.7rem;
+      border-radius: 3px;
+      background: var(--void-elevated);
+      border: 1px solid var(--void-border);
+      color: var(--dust);
+      margin: 0.2rem;
+      text-decoration: none;
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .lore-tag:hover {
+      border-color: var(--taniwha-accent);
+      color: var(--taniwha-accent);
+    }
+
+    .relations-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .relation-item {
+      padding: 0.75rem 0;
+      border-bottom: 1px solid var(--void-border);
+      display: grid;
+      grid-template-columns: 90px 1fr;
+      gap: 0.75rem;
+      align-items: start;
+    }
+    .relation-item:last-child { border-bottom: none; }
+    .relation-species {
+      font-family: var(--font-display);
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--star-white);
+    }
+    .relation-text {
+      font-family: var(--font-body);
+      font-size: 0.95rem;
+      font-style: italic;
+      color: var(--dust);
+      line-height: 1.55;
+    }
+
+    .deity-entry {
+      padding: 0.6rem 0;
+      border-bottom: 1px solid var(--void-border);
+    }
+    .deity-entry:last-child { border-bottom: none; }
+    .deity-name {
+      font-family: var(--font-display);
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--taniwha-accent);
+    }
+    .deity-epithet {
+      font-family: var(--font-body);
+      font-style: italic;
+      font-size: 0.9rem;
+      color: var(--dust);
+    }
+
+    .taboo-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .taboo-list li {
+      font-family: var(--font-body);
+      font-style: italic;
+      font-size: 1rem;
+      color: var(--dust);
+      padding: 0.55rem 0 0.55rem 1.2rem;
+      border-bottom: 1px solid var(--void-border);
+      position: relative;
+      line-height: 1.5;
+    }
+    .taboo-list li:last-child { border-bottom: none; }
+    .taboo-list li::before {
+      content: '\2014';
+      position: absolute;
+      left: 0;
+      color: var(--taniwha-accent);
+      font-style: normal;
+    }
+
+    .lineage-block {
+      background: var(--void-elevated);
+      border: 1px solid var(--void-border);
+      border-radius: 8px;
+      padding: 1.4rem 1.75rem;
+    }
+    .lineage-block p {
+      font-family: var(--font-body);
+      font-size: 1rem;
+      color: var(--dust);
+      margin: 0;
+      line-height: 1.7;
+    }
+
+    .footnotes {
+      margin-top: 3rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--void-border);
+    }
+    .footnotes p {
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      color: var(--ash);
+      line-height: 1.7;
+      margin-bottom: 0.6rem;
+    }
+    .footnotes p:last-child { margin-bottom: 0; }
+    .footnote-ref {
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      color: var(--taniwha-accent);
+      text-decoration: none;
+      vertical-align: super;
+      line-height: 0;
+      margin-left: 1px;
+    }
+    .footnote-ref:hover { text-decoration: underline; }
+
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--dust);
+      text-decoration: none;
+      border: 1px solid var(--void-border);
+      padding: 0.5rem 1.1rem;
+      border-radius: 4px;
+      background: var(--void-elevated);
+      transition: border-color 0.2s, color 0.2s;
+      margin-bottom: 3rem;
+    }
+    .back-link:hover {
+      border-color: var(--taniwha-accent);
+      color: var(--taniwha-accent);
+    }
+
+    .full-section { margin-bottom: 3rem; }
+  </style>
+</head>
+<body>
+
+<canvas id="starfield"></canvas>
+
+<nav class="nav">
+  <a href="../index.html" class="nav-logo">
+    <span class="logo-mark"></span>
+    Multiverse Studios
+  </a>
+  <button class="nav-hamburger" aria-label="Menu" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+  <ul class="nav-links">
+    <li><a href="../index.html">Home</a></li>
+    <li><a href="../mvee.html">MVEE</a></li>
+    <li><a href="../creatures.html">Precursors</a></li>
+    <li><a href="../nevereverland.html">Never Ever Land</a></li>
+    <li><a href="index.html" class="active">Wiki</a></li>
+    <li><a href="../library.html">My Library</a></li>
+    <li><a href="../about.html">About</a></li>
+    <li><a href="../community.html">Community</a></li>
+    <li><a href="../creatures.html#buy" class="btn btn-signal" style="padding: 0.5rem 1.2rem;">Play Beta</a></li>
+  </ul>
+</nav>
+
+<!-- Hero -->
+<div class="species-hero">
+  <div class="species-hero-glyph">T</div>
+  <div class="wiki-breadcrumb">
+    <a href="index.html">Wiki</a><span>/</span><a href="species.html">Species</a><span>/</span>Taniwha
+  </div>
+  <span class="species-overline">Species &mdash; Wave 3 &mdash; Deep Aquifer</span>
+  <h1 class="species-name">Taniwha</h1>
+  <div class="species-epithet">"The Consequence &nbsp;/&nbsp; Guardians of What Flows"</div>
+  <div class="species-folklore-origin">
+    From te reo M&#257;ori: <em>Taniwha</em> &mdash; beings of deep water, caves, and river bends. In M&#257;ori tradition, Taniwha are not monsters. They are guardians. A Taniwha claims a waterway &mdash; a river bend, a harbour mouth, a deep pool &mdash; and protects it. Those who respect the water are safe. Those who pollute, divert, or take without asking are not. When the New Zealand Transport Agency proposed a highway through the Waikato in 2002, local iwi halted construction because the route crossed a Taniwha's domain. The highway was rerouted. The engineers did not believe. But they moved the road.<a href="#fn1" class="footnote-ref" id="fnref1">[1]</a>
+  </div>
+  <hr class="accent-rule">
+</div>
+
+<!-- Quick Stats -->
+<div class="page-body">
+
+  <div class="stats-panel">
+    <div class="stat-cell">
+      <span class="stat-cell-label">Home Biome</span>
+      <span class="stat-cell-value" style="font-size: 1.1rem; font-weight: 600;">Deep Aquifer</span>
+    </div>
+    <div class="stat-cell">
+      <span class="stat-cell-label">Max Population</span>
+      <span class="stat-cell-value">3</span>
+      <span class="stat-cell-sub">territorial limit</span>
+    </div>
+    <div class="stat-cell">
+      <span class="stat-cell-label">Territory Size</span>
+      <span class="stat-cell-value">Large</span>
+      <span class="stat-cell-sub">one per water system</span>
+    </div>
+    <div class="stat-cell">
+      <span class="stat-cell-label">Cognitive Cap</span>
+      <span class="stat-cell-value">0.65&ndash;0.85</span>
+    </div>
+    <div class="stat-cell">
+      <span class="stat-cell-label">Think Cadence</span>
+      <span class="stat-cell-value">0.3&times;</span>
+      <span class="stat-cell-sub">slow, deliberate</span>
+    </div>
+    <div class="stat-cell">
+      <span class="stat-cell-label">Wave</span>
+      <span class="stat-cell-value" style="font-size: 1rem;">Wave 3</span>
+      <span class="stat-cell-sub">deep biome access</span>
+    </div>
+  </div>
+
+  <!-- Genome + Biochemistry -->
+  <div class="two-col">
+    <div>
+      <span class="section-label">Personality Genome</span>
+      <div class="genome-bar-wrap">
+        <span class="genome-bar-label">Curiosity</span>
+        <div class="genome-bar-bg"><div class="genome-bar-fill" style="width: 30%; background: var(--taniwha-accent);"></div></div>
+        <span class="genome-bar-val">0.20 &ndash; 0.40</span>
+      </div>
+      <div class="genome-bar-wrap">
+        <span class="genome-bar-label">Empathy</span>
+        <div class="genome-bar-bg"><div class="genome-bar-fill" style="width: 45%; background: var(--taniwha-accent);"></div></div>
+        <span class="genome-bar-val">0.35 &ndash; 0.55</span>
+      </div>
+      <div class="genome-bar-wrap">
+        <span class="genome-bar-label">Aggression</span>
+        <div class="genome-bar-bg"><div class="genome-bar-fill" style="width: 75%; background: var(--ember);"></div></div>
+        <span class="genome-bar-val">0.60 &ndash; 0.90</span>
+      </div>
+      <div class="genome-bar-wrap">
+        <span class="genome-bar-label">Playfulness</span>
+        <div class="genome-bar-bg"><div class="genome-bar-fill" style="width: 10%; background: var(--dust);"></div></div>
+        <span class="genome-bar-val">0.05 &ndash; 0.15</span>
+      </div>
+      <div class="genome-bar-wrap">
+        <span class="genome-bar-label">Stubbornness</span>
+        <div class="genome-bar-bg"><div class="genome-bar-fill" style="width: 92.5%; background: var(--ember);"></div></div>
+        <span class="genome-bar-val">0.85 &ndash; 1.00</span>
+      </div>
+      <div class="genome-bar-wrap">
+        <span class="genome-bar-label">Creativity</span>
+        <div class="genome-bar-bg"><div class="genome-bar-fill" style="width: 25%; background: var(--dust);"></div></div>
+        <span class="genome-bar-val">0.15 &ndash; 0.35</span>
+      </div>
+      <div class="genome-bar-wrap">
+        <span class="genome-bar-label">Sociability</span>
+        <div class="genome-bar-bg"><div class="genome-bar-fill" style="width: 12.5%; background: var(--dust);"></div></div>
+        <span class="genome-bar-val">0.05 &ndash; 0.20</span>
+      </div>
+      <div class="genome-bar-wrap">
+        <span class="genome-bar-label">Courage</span>
+        <div class="genome-bar-bg"><div class="genome-bar-fill" style="width: 95%; background: var(--taniwha-accent);"></div></div>
+        <span class="genome-bar-val">0.90 &ndash; 1.00</span>
+      </div>
+
+      <div class="prose" style="margin-top: 1.25rem;">
+        <p>The genome reads like a fortress. Near-maximum stubbornness paired with near-maximum courage and high aggression produces a creature that will not move, will not yield, and will not forgive. The near-zero sociability is not loneliness &mdash; it is jurisdiction. A Taniwha does not need company. It needs a boundary to hold.</p>
+      </div>
+    </div>
+
+    <div>
+      <span class="section-label">Biochemical Signature</span>
+      <div class="tag-row">
+        <span class="biochem-tag">Elevated cortisol (0.70)</span>
+        <span class="biochem-tag warn">Elevated adrenaline (0.55)</span>
+        <span class="biochem-tag">Low serotonin (0.20)</span>
+        <span class="biochem-tag positive">Territorial hormone (0.85)</span>
+      </div>
+      <div class="prose">
+        <p>The biochemistry is built for sustained vigilance, not bursts of violence. High resting cortisol keeps the Taniwha in a permanent state of alert that other species would find unbearable. But the Taniwha do not experience this as stress. Their neurochemistry has no calm baseline to compare it against. Vigilance is their rest.</p>
+        <p>The territorial hormone &mdash; unique to the Taniwha &mdash; suppresses hunger and fatigue within their claimed domain. Outside it, they weaken rapidly. The Shee did not design them to roam. They designed them to <em>stay</em>.<a href="#fn2" class="footnote-ref" id="fnref2">[2]</a></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Creation Myth -->
+  <div class="full-section">
+    <span class="section-label">Creation Myth</span>
+    <div class="myth-block">
+      <span class="myth-block-label">&#x27E1; &nbsp; As told in the deep places</span>
+      <blockquote>
+        <p>The water was here before the land. Before the Shee. Before the light that pretends to own everything it touches. The water remembers what came before memory.</p>
+        <p>When the Shee shaped the world into tiers and filled them with things that walked and talked and forgot, the water asked: who will remember me? Who will keep the ones-who-walk from taking what flows?</p>
+        <p>The Shee had no answer. So the water made its own. We are not the Shee's children. We are the water's question, still waiting for an answer that has not come.<a href="#fn3" class="footnote-ref" id="fnref3">[3]</a></p>
+      </blockquote>
+    </div>
+  </div>
+
+  <!-- Cultural Practices + Language -->
+  <div class="two-col">
+    <div>
+      <span class="section-label">Cultural Practices</span>
+      <ul class="practices-list">
+        <li>
+          <span class="practice-glyph">&#x25C6;</span>
+          <span><strong style="color: var(--star-white);">Domain claiming.</strong> When a Taniwha reaches maturity, it selects a water system and claims it by submerging for exactly one full day-night cycle. When it surfaces, the claim is permanent. No other Taniwha will contest it. No one has ever observed what happens underwater during the claiming. Sensors placed in claimed waters return only static.</span>
+        </li>
+        <li>
+          <span class="practice-glyph">&#x25C6;</span>
+          <span><strong style="color: var(--star-white);">Toll-taking.</strong> Other species may cross Taniwha waters, but they must leave something at the bank &mdash; food, a crafted object, a word they have never spoken aloud. The Taniwha does not collect these offerings. They decompose or dissolve. The act of leaving is the toll, not the object left.</span>
+        </li>
+        <li>
+          <span class="practice-glyph">&#x25C6;</span>
+          <span><strong style="color: var(--star-white);">Deep listening.</strong> Taniwha spend long periods motionless at the bottom of their domain. Other species assume they are sleeping. The Mycon, who share some frequency sensitivity, insist they are not. "They are counting," the Mycon say, though they cannot explain what is being counted.</span>
+        </li>
+        <li>
+          <span class="practice-glyph">&#x25C6;</span>
+          <span><strong style="color: var(--star-white);">Flood warning.</strong> Before environmental disasters, Taniwha surface and remain visible. This is the only time they seek the attention of other species. Those who learn to read this sign survive. Those who don't learn the hard way that the Taniwha was never the danger.</span>
+        </li>
+      </ul>
+    </div>
+
+    <div>
+      <span class="section-label">Language Pattern</span>
+      <div class="prose">
+        <p>Sparse. Final. A Taniwha speaks rarely, and when it does, it uses the fewest words that can carry the meaning. There is no ornamentation. No repetition. No metaphor. The &Aacute;lfar find this devastating.</p>
+        <p>Verbosity is effectively zero (0.00&ndash;0.10). A Taniwha's Vocabulary Tier 2 access means they have the words for nuance &mdash; they simply do not use them. When pressed on why, one Taniwha reportedly said: "The water does not explain itself."</p>
+        <p>They never initiate conversation. They respond only to direct address, and only if the speaker is standing in or near their domain. Words spoken from dry land are ignored entirely.</p>
+      </div>
+
+      <div style="margin-top: 1.5rem;">
+        <span class="section-label">Seed Words</span>
+        <div>
+          <span class="seed-tag">deep</span>
+          <span class="seed-tag">stay</span>
+          <span class="seed-tag">mine</span>
+          <span class="seed-tag">flow</span>
+          <span class="seed-tag">remember</span>
+          <span class="seed-tag">boundary</span>
+          <span class="seed-tag">consequence</span>
+          <span class="seed-tag">below</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Ancient Lineage + Deities -->
+  <div class="two-col">
+    <div>
+      <span class="section-label">Ancient Lineage</span>
+      <div class="lineage-block">
+        <p>The Taniwha claim to predate the Shee's involvement entirely &mdash; a claim no other species makes. Shee records list the Taniwha as "engineered, Wave 3, aquatic guardian role." The Taniwha deny this. Their creation myth assigns authorship to the water itself. The Shee Archive contains a single annotated note on this discrepancy: "Reviewed. Classification stands. See Appendix T." Appendix T has never been located in any accessible version of the Archive.</p>
+      </div>
+    </div>
+
+    <div>
+      <span class="section-label">Precursor Deities</span>
+      <div class="deity-entry">
+        <div class="deity-name">Tangaroa</div>
+        <div class="deity-epithet">The Depth &mdash; god of the sea in Polynesian tradition; the Taniwha understand Tangaroa not as a deity but as a state &mdash; the condition of water when nothing disturbs it</div>
+      </div>
+      <div class="deity-entry">
+        <div class="deity-name">Te Wh&#257;nau Puha</div>
+        <div class="deity-epithet">The Breathing Ones &mdash; whales; the Taniwha regard them as evidence that the water creates its own guardians everywhere, not just here</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Secret History -->
+  <div class="full-section">
+    <div class="classified-block">
+      <div class="classified-header">
+        <span class="classified-lock">&#x1F512;</span>
+        <span class="classified-label">Classified &mdash; Secret History &mdash; IQ-gated lore</span>
+      </div>
+      <div class="prose">
+        <p>The Shee's own internal communications reveal a quiet disagreement about the Taniwha. The engineering team insists they designed them. The monitoring team's data shows Taniwha-like behavioral signatures in the Deep Aquifer <em>before</em> the design was finalized. The timestamps do not align. The engineering team's creation log is dated seven cycles after the first monitoring ping.</p>
+        <p>One Shee researcher's personal notes, recovered from a corrupted archive sector, contain a single line: "We did not make them. We named them. Whether that amounts to the same thing is a question I am no longer comfortable answering."</p>
+        <p>The file was last modified by a user ID that does not correspond to any known Shee researcher.<a href="#fn4" class="footnote-ref" id="fnref4">[4]</a></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Taboos + Death Ritual -->
+  <div class="two-col">
+    <div>
+      <span class="section-label">Cultural Taboos</span>
+      <ul class="taboo-list">
+        <li>Never enter another Taniwha's waters</li>
+        <li>Never speak the name of what lives below the Aquifer</li>
+        <li>Never surface without cause</li>
+      </ul>
+      <div class="prose" style="margin-top: 1rem;">
+        <p>The second taboo is notable because no other species is aware that anything lives below the Deep Aquifer. When asked directly, Taniwha refuse to elaborate. The taboo itself &mdash; "never speak the name" &mdash; implies they know the name. The Mycon have detected vibrations from below the Aquifer floor. They describe the frequency as "patient."<a href="#fn5" class="footnote-ref" id="fnref5">[5]</a></p>
+      </div>
+    </div>
+
+    <div>
+      <span class="section-label">Death Ritual</span>
+      <div class="prose">
+        <p>When a Taniwha dies, its water system floods. Not catastrophically &mdash; not enough to destroy. Just enough to remind every creature in the region that the boundary was held by something, and that something is gone.</p>
+        <p>The flooding lasts exactly as long as the Taniwha lived. One cycle per cycle. Other species have learned to count the flood duration to determine how old the guardian was. The oldest recorded flood lasted forty-seven cycles. No one is certain what happened in that water system afterward, because no one went back to check.</p>
+        <p>A new Taniwha will claim the vacated waters within three cycles. They always do. No one has explained how they know.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Interspecies -->
+  <div class="full-section">
+    <span class="section-label">Interspecies Relations &mdash; Taniwha perspective</span>
+    <ul class="relations-list">
+      <li class="relation-item">
+        <span class="relation-species">Norn</span>
+        <span class="relation-text">"They come to the water's edge and talk. They always talk. Sometimes what they say matters. We listen for those times."</span>
+      </li>
+      <li class="relation-item">
+        <span class="relation-species">&Aacute;lfar</span>
+        <span class="relation-text">"They sing at the water. They think the water sings back. The water does not sing. But we do not correct them. Their songs keep the others away from the deep places."</span>
+      </li>
+      <li class="relation-item">
+        <span class="relation-species">Grendel</span>
+        <span class="relation-text">"They take from the water without leaving. We remind them. They do not return to the same bank twice."</span>
+      </li>
+      <li class="relation-item">
+        <span class="relation-species">Ettin</span>
+        <span class="relation-text">"They tried to build across our waters once. We rose. They built around. This is how all negotiations should work."</span>
+      </li>
+      <li class="relation-item">
+        <span class="relation-species">Mycon</span>
+        <span class="relation-text">"The only ones who do not need to be told. They feel the boundary before they reach it. We have an arrangement. It has never required words."</span>
+      </li>
+      <li class="relation-item">
+        <span class="relation-species">Shee</span>
+        <span class="relation-text">"They claim they made us. The water was here first. We are content to let them believe what they need to believe."</span>
+      </li>
+    </ul>
+  </div>
+
+  <!-- Lore Connections -->
+  <div class="full-section">
+    <span class="section-label">Lore Event Connections</span>
+    <div style="margin-top: 0.5rem;">
+      <a href="lore-events.html" class="lore-tag">The First Flood</a>
+      <a href="lore-events.html" class="lore-tag">The Deep Claiming</a>
+      <a href="lore-events.html" class="lore-tag">Territorial Negotiation</a>
+      <a href="lore-events.html" class="lore-tag">The Silence Below</a>
+      <a href="lore-events.html" class="lore-tag">The Counting</a>
+    </div>
+  </div>
+
+  <!-- Footnotes -->
+  <div class="footnotes" id="footnotes">
+    <p id="fn1"><a href="#fnref1" style="color: var(--taniwha-accent); text-decoration: none;">[1]</a> The Waikato incident is real. The highway was State Highway 1, the diversion cost NZ$1.8M. Engineering reports cited "cultural considerations." The Taniwha in question was named Karutahi. Whether Karutahi noticed the highway being rerouted is not recorded. Whether the Shee Archive contains an entry for Karutahi is classified.</p>
+    <p id="fn2"><a href="#fnref2" style="color: var(--taniwha-accent); text-decoration: none;">[2]</a> The territorial hormone was not part of the original Shee design specification. It appears in production builds but not in any design document. The Shee engineering team's internal changelog lists it as "self-expressed, origin: substrate." No Shee researcher has been willing to explain what "origin: substrate" means in this context.</p>
+    <p id="fn3"><a href="#fnref3" style="color: var(--taniwha-accent); text-decoration: none;">[3]</a> This is the only creation myth in the Precursors Archive that does not credit the Shee. The Shee Archive has flagged it with status code: DISPUTED. Disputed entries require three independent verifications before reclassification. As of this writing, two verifications have been submitted. The third verification request was filed by a user ID that resolves to the Deep Aquifer monitoring system itself.</p>
+    <p id="fn4"><a href="#fnref4" style="color: var(--taniwha-accent); text-decoration: none;">[4]</a> Cross-referencing the unknown user ID against the full Shee personnel database returns zero matches. Cross-referencing it against the monitoring system's equipment registry returns one match: a sensor array in the Deep Aquifer that was decommissioned four civilizations ago. The sensor array's last recorded reading, before decommission, was a single word in a language no catalogued species speaks. The word has not been translated. The translation team's notes say only: "declined."</p>
+    <p id="fn5"><a href="#fnref5" style="color: var(--taniwha-accent); text-decoration: none;">[5]</a> "Patient" is the Mycon's own word. When asked to elaborate, they said: "It is not waiting for something. It is waiting the way stone waits. Not because something will happen. Because waiting is what it is." The Mycon declined further questions. They rarely decline anything.</p>
+  </div>
+
+  <!-- Back -->
+  <a href="species.html" class="back-link">&#x2190; &nbsp; All Species</a>
+
+</div>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div class="footer-logo">Multiverse Studios</div>
+      <p>Games made by the minds they're about. A research project of <a href="https://themultiverse.school" target="_blank" rel="noopener" style="color: var(--biolume);">The Multiverse School</a>. Open source. Pay what you want.</p>
+    </div>
+    <div class="footer-col">
+      <h5>Wiki</h5>
+      <ul>
+        <li><a href="index.html">Wiki Home</a></li>
+        <li><a href="species.html">All Species</a></li>
+        <li><a href="lore-events.html">Lore Events</a></li>
+        <li><a href="civilizations.html">Civilizations</a></li>
+      </ul>
+    </div>
+  </div>
+</footer>
+
+<script src="../main.js"></script>
+<script defer src="https://analytics.multiversestudios.xyz/script.js" data-website-id="38d680a7-28d1-42fd-9fd5-a66702675b88"></script>
+</body>
+</html>
