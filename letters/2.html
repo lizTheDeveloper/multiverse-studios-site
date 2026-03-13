@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Formal Regret</title>
+<meta name="robots" content="noindex">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Special+Elite&display=swap');
+
+  :root {
+    --paper: #f0e6d2;
+    --ink: #1e150d;
+    --ink-soft: rgba(30, 21, 13, 0.6);
+    --wax: #6b1a1a;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #0f0c09;
+    padding: 2rem;
+    font-family: 'Cormorant Garamond', serif;
+  }
+
+  .letter {
+    background: var(--paper);
+    color: var(--ink);
+    max-width: 480px;
+    width: 100%;
+    padding: 4rem 3.5rem;
+    position: relative;
+    box-shadow:
+      0 4px 30px rgba(0,0,0,0.5),
+      inset 0 0 60px rgba(30, 21, 13, 0.04);
+    transform: rotate(0.4deg);
+  }
+
+  /* Aged spots */
+  .letter::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(circle at 15% 25%, rgba(139, 115, 72, 0.08) 0%, transparent 40%),
+      radial-gradient(circle at 80% 70%, rgba(139, 115, 72, 0.06) 0%, transparent 35%),
+      radial-gradient(circle at 45% 90%, rgba(139, 115, 72, 0.1) 0%, transparent 25%);
+    pointer-events: none;
+  }
+
+  .date {
+    font-size: 0.8rem;
+    color: var(--ink-soft);
+    font-style: italic;
+    margin-bottom: 2.5rem;
+    text-align: right;
+  }
+
+  .salutation {
+    font-size: 1.1rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .body-text {
+    font-size: 1.05rem;
+    line-height: 1.8;
+    margin-bottom: 1.2rem;
+  }
+
+  .closing {
+    margin-top: 2.5rem;
+    font-size: 1rem;
+    line-height: 1.8;
+  }
+
+  .closing .name {
+    font-weight: 600;
+    font-size: 1.1rem;
+    margin-top: 0.3rem;
+  }
+
+  .closing .title-line {
+    font-size: 0.8rem;
+    color: var(--ink-soft);
+    font-style: italic;
+  }
+
+  /* Wax seal */
+  .seal {
+    position: absolute;
+    bottom: 3rem;
+    right: 3rem;
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 40% 35%, #9b2e2e, var(--wax) 60%, #4a0e0e);
+    box-shadow:
+      0 2px 8px rgba(0,0,0,0.3),
+      inset 0 1px 3px rgba(255,255,255,0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    color: rgba(255,220,180,0.3);
+    font-weight: 600;
+  }
+
+  .url {
+    position: absolute;
+    bottom: 0.8rem;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: 'Special Elite', monospace;
+    font-size: 0.45rem;
+    color: var(--ink-soft);
+    letter-spacing: 0.08em;
+    text-decoration: none;
+  }
+</style>
+</head>
+<body>
+
+<div class="letter">
+  <div class="date">14th of Neveruary, year unknown</div>
+
+  <div class="salutation">Dear Mrs. Darling,</div>
+
+  <p class="body-text">
+    We regret to inform you that your daughter has declined the position.
+  </p>
+
+  <p class="body-text">
+    The terms were standard. Room, board, and the admiration of several
+    boys who have forgotten what year it is. A house was prepared.
+    Meals were anticipated. The requisite amount of wonder had been
+    allocated.
+  </p>
+
+  <p class="body-text">
+    She was not interested.
+  </p>
+
+  <p class="body-text">
+    We are unsure how to proceed. The island is asking questions
+    the narrator is not equipped to answer.
+  </p>
+
+  <div class="closing">
+    With sincere bewilderment,
+    <div class="name">The Management</div>
+    <div class="title-line">Neverland, Department of Narrative Affairs</div>
+  </div>
+
+  <div class="seal">N</div>
+
+  <a href="https://multiversestudios.xyz/nevereverland.html" class="url">multiversestudios.xyz/nevereverland</a>
+</div>
+
+</body>
+</html>

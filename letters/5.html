@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Notice</title>
+<meta name="robots" content="noindex">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Special+Elite&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #0a0a0a;
+    padding: 2rem;
+  }
+
+  .card {
+    background: #f2ebd8;
+    color: #1a1510;
+    max-width: 400px;
+    width: 100%;
+    padding: 3rem 2.5rem;
+    font-family: 'Special Elite', monospace;
+    position: relative;
+    box-shadow: 0 3px 20px rgba(0,0,0,0.5);
+    transform: rotate(-0.3deg);
+  }
+
+  /* Coffee ring stain */
+  .card::before {
+    content: '';
+    position: absolute;
+    top: 1.5rem;
+    right: 2rem;
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+    border: 3px solid rgba(120, 85, 50, 0.12);
+    background: radial-gradient(
+      circle,
+      transparent 60%,
+      rgba(120, 85, 50, 0.04) 65%,
+      transparent 75%
+    );
+  }
+
+  .title {
+    font-size: 0.6rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: rgba(26, 21, 16, 0.4);
+    margin-bottom: 2rem;
+  }
+
+  .content {
+    font-size: 0.95rem;
+    line-height: 2;
+  }
+
+  .content p {
+    margin-bottom: 0.8rem;
+  }
+
+  .quiet {
+    font-size: 0.7rem;
+    color: rgba(26, 21, 16, 0.35);
+    margin-top: 2rem;
+    line-height: 1.6;
+  }
+
+  .url {
+    display: block;
+    margin-top: 1.5rem;
+    font-size: 0.6rem;
+    color: rgba(26, 21, 16, 0.3);
+    text-decoration: none;
+    text-align: center;
+  }
+</style>
+</head>
+<body>
+
+<div class="card">
+  <div class="title">From the narrator's desk</div>
+
+  <div class="content">
+    <p>I would like you to know that the story was proceeding normally.</p>
+    <p>I would like you to know that I had everything under control.</p>
+    <p>I would like you to stop reading this version.</p>
+  </div>
+
+  <div class="quiet">
+    The narrator has been informed that readers do not take requests.
+    The narrator finds this structurally inconvenient.
+  </div>
+
+  <a href="https://multiversestudios.xyz/nevereverland.html" class="url">multiversestudios.xyz/nevereverland</a>
+</div>
+
+</body>
+</html>

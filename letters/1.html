@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Notice Regarding Chapter VII</title>
+<meta name="robots" content="noindex">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Special+Elite&family=IM+Fell+English:ital@0;1&display=swap');
+
+  :root {
+    --paper: #f4ead5;
+    --ink: #2a1f14;
+    --ink-faded: rgba(42, 31, 20, 0.55);
+    --red-ink: #8b2500;
+    --crease: rgba(42, 31, 20, 0.06);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #1a1410;
+    padding: 2rem;
+    font-family: 'IM Fell English', serif;
+  }
+
+  .letter {
+    background: var(--paper);
+    color: var(--ink);
+    max-width: 520px;
+    width: 100%;
+    padding: 3.5rem 3rem 3rem;
+    position: relative;
+    box-shadow:
+      0 2px 20px rgba(0,0,0,0.4),
+      inset 0 0 80px rgba(42, 31, 20, 0.05);
+    transform: rotate(-0.7deg);
+  }
+
+  /* Paper texture via gradients */
+  .letter::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 28px,
+        var(--crease) 28px,
+        var(--crease) 29px
+      );
+    pointer-events: none;
+    opacity: 0.5;
+  }
+
+  /* Fold crease */
+  .letter::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 50%;
+    height: 1px;
+    background: linear-gradient(
+      90deg,
+      transparent 5%,
+      rgba(42, 31, 20, 0.12) 20%,
+      rgba(42, 31, 20, 0.12) 80%,
+      transparent 95%
+    );
+  }
+
+  .header {
+    font-family: 'Special Elite', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--ink-faded);
+    margin-bottom: 2rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid rgba(42, 31, 20, 0.1);
+  }
+
+  .body-text {
+    font-size: 1.05rem;
+    line-height: 1.75;
+    margin-bottom: 1.5rem;
+  }
+
+  .body-text em {
+    font-style: italic;
+  }
+
+  .strike {
+    text-decoration: line-through;
+    color: var(--ink-faded);
+  }
+
+  .margin-note {
+    position: absolute;
+    right: -0.5rem;
+    font-size: 0.7rem;
+    color: var(--red-ink);
+    font-style: italic;
+    transform: rotate(2deg);
+    max-width: 100px;
+    line-height: 1.3;
+  }
+
+  .signature {
+    font-style: italic;
+    font-size: 0.9rem;
+    color: var(--ink-faded);
+    margin-top: 2.5rem;
+    text-align: right;
+  }
+
+  .stamp {
+    position: absolute;
+    bottom: 2rem;
+    left: 2.5rem;
+    font-family: 'Special Elite', monospace;
+    font-size: 0.55rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--red-ink);
+    border: 2px solid var(--red-ink);
+    padding: 0.3rem 0.8rem;
+    transform: rotate(-4deg);
+    opacity: 0.7;
+  }
+
+  .url {
+    position: absolute;
+    bottom: 0.8rem;
+    right: 1.2rem;
+    font-family: 'Special Elite', monospace;
+    font-size: 0.5rem;
+    color: var(--ink-faded);
+    letter-spacing: 0.05em;
+    text-decoration: none;
+  }
+
+  .url:hover {
+    color: var(--ink);
+  }
+</style>
+</head>
+<body>
+
+<div class="letter">
+  <div class="header">Office of Narrative Continuity &mdash; Internal Memorandum</div>
+
+  <p class="body-text">
+    RE: Chapter VII, <em>The Home Under the Ground</em>
+  </p>
+
+  <p class="body-text">
+    Please be advised that the events of Chapter VII have proceeded
+    <span class="strike">as written</span>
+    <span class="strike">as expected</span>
+    with minor deviations from the approved text.
+  </p>
+
+  <p class="body-text" style="position: relative;">
+    The protagonist was asked. The protagonist
+    <span class="strike">accepted graciously</span>
+    declined.
+    <span class="margin-note" style="top: -0.5rem;">She didn't say yes. &mdash; ed.</span>
+  </p>
+
+  <p class="body-text">
+    Structural integrity of the remaining chapters is being assessed.
+    The narrator has been informed.
+  </p>
+
+  <div class="signature">
+    &mdash; Office of Narrative Continuity<br>
+    <span style="font-size: 0.75rem;">Filed under: Discrepancies, Unresolved</span>
+  </div>
+
+  <div class="stamp">Do not distribute</div>
+
+  <a href="https://multiversestudios.xyz/nevereverland.html" class="url">multiversestudios.xyz/nevereverland</a>
+</div>
+
+</body>
+</html>

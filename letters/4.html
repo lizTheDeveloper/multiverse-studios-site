@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Annotation</title>
+<meta name="robots" content="noindex">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=IM+Fell+English:ital@0;1&family=Caveat:wght@400;500&display=swap');
+
+  :root {
+    --paper: #f5eed8;
+    --ink: #2d1f10;
+    --pencil: #6b5b4a;
+    --red-pencil: #9b3a2a;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #0d0a07;
+    padding: 2rem;
+  }
+
+  .page {
+    background: var(--paper);
+    color: var(--ink);
+    max-width: 500px;
+    width: 100%;
+    padding: 3.5rem 4rem 3.5rem 5rem;
+    position: relative;
+    box-shadow: 0 3px 25px rgba(0,0,0,0.45);
+    font-family: 'IM Fell English', serif;
+    font-size: 1rem;
+    line-height: 1.9;
+    transform: rotate(0.3deg);
+  }
+
+  /* Margin line */
+  .page::before {
+    content: '';
+    position: absolute;
+    left: 3.5rem;
+    top: 0;
+    bottom: 0;
+    width: 1px;
+    background: rgba(180, 60, 60, 0.15);
+  }
+
+  /* Lined paper */
+  .page::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 1.85rem,
+      rgba(42, 31, 20, 0.06) 1.85rem,
+      rgba(42, 31, 20, 0.06) calc(1.85rem + 1px)
+    );
+    pointer-events: none;
+  }
+
+  .printed-text {
+    position: relative;
+    z-index: 1;
+  }
+
+  .annotation {
+    font-family: 'Caveat', cursive;
+    color: var(--red-pencil);
+    position: absolute;
+    z-index: 2;
+    line-height: 1.3;
+  }
+
+  .a1 {
+    top: 2.8rem;
+    left: 0.5rem;
+    font-size: 0.85rem;
+    transform: rotate(-90deg);
+    transform-origin: top left;
+    white-space: nowrap;
+  }
+
+  .a2 {
+    top: 6.5rem;
+    right: 1rem;
+    font-size: 0.95rem;
+    transform: rotate(1.5deg);
+    max-width: 120px;
+    text-align: right;
+  }
+
+  .a3 {
+    bottom: 4rem;
+    left: 0.8rem;
+    font-size: 1.1rem;
+    transform: rotate(-2deg);
+    writing-mode: vertical-rl;
+  }
+
+  .a4 {
+    bottom: 2rem;
+    right: 1.5rem;
+    font-size: 0.8rem;
+    transform: rotate(0.5deg);
+  }
+
+  .underline-wrong {
+    text-decoration: underline;
+    text-decoration-color: var(--red-pencil);
+    text-decoration-style: wavy;
+    text-underline-offset: 3px;
+  }
+
+  .url {
+    position: absolute;
+    bottom: 0.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: monospace;
+    font-size: 0.45rem;
+    color: rgba(42, 31, 20, 0.3);
+    text-decoration: none;
+    z-index: 2;
+    letter-spacing: 0.05em;
+  }
+</style>
+</head>
+<body>
+
+<div class="page">
+
+  <div class="printed-text">
+    <p>
+      &ldquo;Of course I will be your mother,&rdquo; <span class="underline-wrong">Wendy said at once</span>.
+      &ldquo;It is just what I came for. I could feel it even on the way here,
+      in the way the island was holding its breath.&rdquo;
+    </p>
+    <br>
+    <p>
+      She smiled at the Lost Boys and they were no longer lost, in the
+      way that a room is no longer dark once someone has agreed to be
+      the lamp.
+    </p>
+  </div>
+
+  <span class="annotation a1">wrong version</span>
+  <span class="annotation a2">This is not what she said.</span>
+  <span class="annotation a3">no.</span>
+  <span class="annotation a4">see: nevereverland</span>
+
+  <a href="https://multiversestudios.xyz/nevereverland.html" class="url">multiversestudios.xyz/nevereverland</a>
+</div>
+
+</body>
+</html>
