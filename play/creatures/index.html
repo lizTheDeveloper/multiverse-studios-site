@@ -294,6 +294,16 @@
       50% { opacity: 1; box-shadow: 0 0 8px var(--glow-cyan); }
     }
 
+    .title-bar .status-dot.offline {
+      background: var(--glow-amber);
+      animation: pulse-dot-offline 2s ease-in-out infinite;
+    }
+
+    @keyframes pulse-dot-offline {
+      0%, 100% { opacity: 0.2; box-shadow: 0 0 2px var(--glow-amber); }
+      50% { opacity: 0.8; box-shadow: 0 0 6px var(--glow-amber); }
+    }
+
     /* ── CHAT THINKING INDICATOR ── shown while waiting for LLM (MUL-638) */
     .chat-thinking {
       display: none;
@@ -344,10 +354,8 @@
       contain: content; /* P-330: Isolate typing and history layout */
     }
 
-    .chat-container.hidden {
-      opacity: 0;
-      transform: translateY(8px);
-      pointer-events: none;
+    .chat-container.collapsed .chat-mode-bar {
+      display: none;
     }
 
     .chat-input-wrap {
@@ -416,27 +424,105 @@
       opacity: 1;
     }
 
-    /* ── IDLE PROMPT ── shown when no Norn selected */
-    .idle-prompt {
-      position: fixed;
-      bottom: 22px;
-      left: 0;
-      right: 268px;
-      z-index: 100;
-      text-align: center;
-      font-family: var(--font-display);
-      font-size: 15px;
-      font-weight: 300;
-      font-style: italic;
-      color: var(--text-mid);
-      letter-spacing: 0.08em;
-      transition: opacity 0.6s ease;
-      pointer-events: none;
-      text-shadow: 0 0 12px rgba(0,0,0,0.8), 0 0 4px rgba(0,0,0,1);
+    /* ── CHAT MODE BAR ── alien mode selector above input */
+    .chat-mode-bar {
+      display: flex;
+      gap: 2px;
+      margin-bottom: 6px;
+      padding: 0 2px;
     }
 
-    .idle-prompt.hidden {
-      opacity: 0;
+    .chat-mode-btn {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      height: 28px;
+      background: rgba(18, 19, 28, 0.6);
+      border: 1px solid var(--stone-edge);
+      border-radius: 4px;
+      color: var(--text-dim);
+      font-family: var(--font-mono);
+      font-size: 10px;
+      font-weight: 300;
+      letter-spacing: 0.08em;
+      cursor: pointer;
+      transition: all 0.25s ease;
+      text-transform: uppercase;
+    }
+
+    .chat-mode-btn:hover {
+      color: var(--text-mid);
+      border-color: rgba(61, 252, 224, 0.2);
+      background: rgba(18, 19, 28, 0.8);
+    }
+
+    .chat-mode-btn.active {
+      color: var(--glow-cyan);
+      border-color: rgba(61, 252, 224, 0.35);
+      background: rgba(61, 252, 224, 0.06);
+      text-shadow: 0 0 8px rgba(61, 252, 224, 0.3);
+    }
+
+    .chat-mode-btn.active .chat-mode-icon {
+      text-shadow: 0 0 6px var(--glow-cyan);
+    }
+
+    .chat-mode-btn[data-mode="inspiration"].active {
+      color: var(--glow-violet);
+      border-color: rgba(155, 124, 219, 0.35);
+      background: rgba(155, 124, 219, 0.06);
+      text-shadow: 0 0 8px rgba(155, 124, 219, 0.3);
+    }
+
+    .chat-mode-btn[data-mode="inspiration"].active .chat-mode-icon {
+      text-shadow: 0 0 6px var(--glow-violet);
+    }
+
+    .chat-mode-btn[data-mode="inspiration"]:hover {
+      color: var(--glow-violet-dim);
+      border-color: rgba(155, 124, 219, 0.2);
+    }
+
+    .chat-mode-icon {
+      font-size: 12px;
+      line-height: 1;
+    }
+
+    .chat-mode-label {
+      line-height: 1;
+    }
+
+    .chat-mode-indicator {
+      position: absolute;
+      right: 70px;
+      font-family: var(--font-mono);
+      font-size: 9px;
+      font-weight: 300;
+      color: var(--text-dim);
+      letter-spacing: 0.06em;
+      opacity: 0.6;
+      pointer-events: none;
+      transition: color 0.3s ease;
+    }
+
+    .chat-mode-indicator[data-active-mode="inspiration"] {
+      color: var(--glow-violet-dim);
+    }
+
+    .chat-mode-indicator[data-active-mode="dm"],
+    .chat-mode-indicator[data-active-mode="area"] {
+      color: var(--glow-cyan-dim);
+    }
+
+    /* Needs-target pulse for DM/inspiration when no norn selected */
+    .chat-container.needs-target #chat-input {
+      border-color: rgba(240, 200, 80, 0.3);
+    }
+
+    .chat-container.needs-target #chat-input::placeholder {
+      color: var(--glow-amber-dim);
     }
 
     /* ── LOADING SCREEN ── the Substrate waking up */
@@ -1003,15 +1089,15 @@
     }
 
   </style>
-  <script type="module" crossorigin src="/play/creatures/assets/main-oQf1OVkx.js"></script>
+  <script type="module" crossorigin src="/play/creatures/assets/main-D7IOZyOp.js"></script>
   <link rel="modulepreload" crossorigin href="/play/creatures/assets/LifeStage-DLlDtvpU.js">
   <link rel="modulepreload" crossorigin href="/play/creatures/assets/vendor-phaser-CaWnzXme.js">
-  <link rel="modulepreload" crossorigin href="/play/creatures/assets/WorldItem-BOJGFLBV.js">
+  <link rel="modulepreload" crossorigin href="/play/creatures/assets/WorldItem-GBq5izE1.js">
   <link rel="modulepreload" crossorigin href="/play/creatures/assets/EventBus-BDki86ks.js">
-  <link rel="modulepreload" crossorigin href="/play/creatures/assets/LanguageSystem-DHPRrcUx.js">
-  <link rel="modulepreload" crossorigin href="/play/creatures/assets/ChemicalSet-DyoZSYon.js">
-  <link rel="modulepreload" crossorigin href="/play/creatures/assets/PerfTelemetry-BfzOoXCm.js">
-  <link rel="modulepreload" crossorigin href="/play/creatures/assets/UIScene-CBSLdi-n.js">
+  <link rel="modulepreload" crossorigin href="/play/creatures/assets/LanguageSystem-B87kGy-j.js">
+  <link rel="modulepreload" crossorigin href="/play/creatures/assets/ChemicalSet-D_32wrlO.js">
+  <link rel="modulepreload" crossorigin href="/play/creatures/assets/PerfTelemetry-CGidjns_.js">
+  <link rel="modulepreload" crossorigin href="/play/creatures/assets/UIScene-hcvKYaQD.js">
 <link rel="manifest" href="/play/creatures/manifest.webmanifest"><script id="vite-plugin-pwa:register-sw" src="/play/creatures/registerSW.js"></script></head>
 <body>
   <!-- Loading Screen -->
@@ -1054,7 +1140,21 @@
   <div class="creature-roster" id="creature-roster" aria-label="Living creatures"></div>
 
   <!-- Chat -->
-  <div class="chat-container hidden" id="chat-container">
+  <div class="chat-container" id="chat-container">
+    <div class="chat-mode-bar" id="chat-mode-bar">
+      <button class="chat-mode-btn" data-mode="area" title="Area — speak to all nearby creatures as The Hand">
+        <span class="chat-mode-icon">◎</span>
+        <span class="chat-mode-label">area</span>
+      </button>
+      <button class="chat-mode-btn active" data-mode="dm" title="Direct — speak to one creature, heard as The Hand">
+        <span class="chat-mode-icon">◇</span>
+        <span class="chat-mode-label">direct</span>
+      </button>
+      <button class="chat-mode-btn" data-mode="inspiration" title="Inspiration — whisper a thought into a creature's mind">
+        <span class="chat-mode-icon">◆</span>
+        <span class="chat-mode-label">inspire</span>
+      </button>
+    </div>
     <div class="chat-thinking" id="chat-thinking" aria-live="polite" aria-label="thinking">
       <span class="chat-thinking__dots">
         <span class="chat-thinking__dot"></span>
@@ -1064,11 +1164,11 @@
       <span id="chat-thinking-label">◈ thinking...</span>
     </div>
     <div class="chat-input-wrap">
-      <input type="text" id="chat-input" placeholder="select a creature first..." autocomplete="off" spellcheck="false" />
+      <input type="text" id="chat-input" placeholder="speak to the area..." autocomplete="off" spellcheck="false" />
+      <span class="chat-mode-indicator" id="chat-mode-indicator">◇ direct</span>
       <span class="chat-hint">enter ↵</span>
     </div>
   </div>
-  <div class="idle-prompt" id="idle-prompt">touch a norn to commune · <kbd style="font-family:var(--font-mono);font-size:11px;color:var(--glow-cyan-dim);border:1px solid var(--stone-edge);border-radius:2px;padding:0 3px;background:var(--stone-mid)">Tab</kbd> to cycle · drag to wander</div>
 
   <!-- Screen reader announcements -->
   <div id="sr-announce" aria-live="polite" aria-atomic="true" style="position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden;"></div>
@@ -1089,6 +1189,7 @@
         <li id="hint-n-planets"><kbd>N</kbd> planets</li>
         <li><kbd>T</kbd> tools</li>
         <li><kbd>L</kbd> settings</li>
+        <li><kbd>↑↓</kbd><kbd>W</kbd><kbd>S</kbd> pan vertically</li>
         <li><kbd>+</kbd><kbd>−</kbd> zoom</li>
         <li><kbd>[</kbd><kbd>]</kbd> speed 1–10×</li>
         <li><kbd>F5</kbd> save · <kbd>F9</kbd> load</li>
