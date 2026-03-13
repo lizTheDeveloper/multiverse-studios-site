@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Folklore Forge — Multiverse Studios</title>
+  <meta name="description" content="Every creature in our games comes from somewhere real. If your culture has a creature the world hasn't heard of — tell us. No money required. Just knowledge.">
+  <meta property="og:title" content="The Folklore Forge — Multiverse Studios">
+  <meta property="og:description" content="Every creature in our games comes from somewhere real. If your culture has a creature the world hasn't heard of — tell us.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://multiversestudios.xyz/forge.html">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="The Folklore Forge">
+  <meta name="twitter:description" content="Every creature in our games comes from somewhere real. Tell us the one we haven't heard.">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#x2726;</text></svg>">
+  <style>
+    .forge-container {
+      max-width: 640px;
+      margin: 0 auto;
+      padding: var(--space-lg) var(--space-md);
+    }
+
+    .forge-intro {
+      text-align: center;
+      margin-bottom: var(--space-lg);
+    }
+
+    .forge-intro h1 {
+      font-family: var(--font-display);
+      font-size: clamp(1.8rem, 5vw, 2.8rem);
+      font-weight: 700;
+      margin-bottom: var(--space-sm);
+      color: var(--star-white);
+    }
+
+    .forge-intro .ember-line {
+      color: var(--ember);
+      font-family: var(--font-body);
+      font-size: 1.2rem;
+      font-style: italic;
+      margin-bottom: var(--space-md);
+    }
+
+    .forge-intro p {
+      color: var(--dust);
+      font-size: 1rem;
+      line-height: 1.8;
+    }
+
+    .forge-field {
+      margin-bottom: var(--space-md);
+    }
+
+    .forge-field label {
+      display: block;
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--ash);
+      margin-bottom: var(--space-xs);
+    }
+
+    .forge-field textarea,
+    .forge-field input[type="text"] {
+      width: 100%;
+      background: var(--void-surface);
+      border: 1px solid var(--void-border);
+      border-radius: 8px;
+      color: var(--star-white);
+      font-family: var(--font-body);
+      font-size: 1.05rem;
+      padding: var(--space-sm);
+      line-height: 1.6;
+      resize: vertical;
+      transition: border-color 0.3s;
+    }
+
+    .forge-field textarea:focus,
+    .forge-field input[type="text"]:focus {
+      outline: none;
+      border-color: var(--signal);
+      box-shadow: 0 0 20px rgba(123, 104, 238, 0.1);
+    }
+
+    .forge-field textarea {
+      min-height: 120px;
+    }
+
+    .attempts-display {
+      text-align: center;
+      margin: var(--space-md) 0;
+      padding: var(--space-sm) 0;
+    }
+
+    .attempts-pips {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      margin-bottom: var(--space-xs);
+    }
+
+    .pip {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--void-border);
+      transition: background 0.5s, box-shadow 0.5s;
+    }
+
+    .pip.used {
+      background: var(--signal);
+      box-shadow: 0 0 8px rgba(123, 104, 238, 0.5);
+    }
+
+    .pip.used.approved {
+      background: var(--biolume);
+      box-shadow: 0 0 8px rgba(0, 255, 200, 0.5);
+    }
+
+    .attempts-label {
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--ash);
+    }
+
+    .forge-submit {
+      display: block;
+      width: 100%;
+      padding: var(--space-sm) var(--space-md);
+      background: transparent;
+      border: 1px solid var(--signal);
+      border-radius: 8px;
+      color: var(--signal);
+      font-family: var(--font-display);
+      font-size: 1rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .forge-submit:hover:not(:disabled) {
+      background: var(--signal);
+      color: var(--void);
+      box-shadow: 0 0 30px rgba(123, 104, 238, 0.3);
+    }
+
+    .forge-submit:disabled {
+      opacity: 0.3;
+      cursor: not-allowed;
+    }
+
+    .forge-confirmation {
+      text-align: center;
+      padding: var(--space-lg) var(--space-md);
+      border: 1px solid var(--void-border);
+      border-radius: 12px;
+      background: linear-gradient(180deg, var(--void-surface) 0%, var(--void) 100%);
+      animation: fadeIn 0.6s ease;
+    }
+
+    .forge-confirmation h3 {
+      font-family: var(--font-display);
+      color: var(--signal);
+      margin-bottom: var(--space-sm);
+    }
+
+    .forge-confirmation p {
+      color: var(--dust);
+      font-size: 0.95rem;
+    }
+
+    .forge-history {
+      margin-top: var(--space-lg);
+      border-top: 1px solid var(--void-border);
+      padding-top: var(--space-md);
+    }
+
+    .forge-history h4 {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--ash);
+      margin-bottom: var(--space-sm);
+    }
+
+    .submission-entry {
+      padding: var(--space-sm);
+      border-left: 2px solid var(--void-border);
+      margin-bottom: var(--space-sm);
+      font-size: 0.9rem;
+      color: var(--dust);
+    }
+
+    .submission-entry .creature-name {
+      font-family: var(--font-display);
+      font-weight: 600;
+      color: var(--star-white);
+      font-size: 1rem;
+    }
+
+    .submission-entry .creature-origin {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      color: var(--signal-dim);
+      letter-spacing: 0.1em;
+    }
+
+    .forge-exhausted {
+      text-align: center;
+      padding: var(--space-xl) var(--space-md);
+    }
+
+    .forge-exhausted h2 {
+      font-family: var(--font-display);
+      color: var(--ember);
+      margin-bottom: var(--space-sm);
+    }
+
+    .forge-exhausted p {
+      color: var(--dust);
+      font-size: 1rem;
+    }
+
+    .section-divider-forge {
+      width: 40px;
+      height: 1px;
+      background: var(--signal);
+      margin: var(--space-md) auto;
+      opacity: 0.4;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .forge-rules {
+      margin-top: var(--space-md);
+      padding: var(--space-sm) var(--space-md);
+      border: 1px solid var(--void-border);
+      border-radius: 8px;
+      background: var(--void-surface);
+    }
+
+    .forge-rules summary {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--ash);
+      cursor: pointer;
+      list-style: none;
+    }
+
+    .forge-rules summary::-webkit-details-marker { display: none; }
+
+    .forge-rules[open] summary { margin-bottom: var(--space-sm); }
+
+    .forge-rules ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .forge-rules li {
+      font-size: 0.85rem;
+      color: var(--dust);
+      padding: 4px 0;
+      padding-left: 1em;
+      position: relative;
+    }
+
+    .forge-rules li::before {
+      content: '\2726';
+      position: absolute;
+      left: 0;
+      color: var(--signal-dim);
+      font-size: 0.6rem;
+    }
+  </style>
+</head>
+<body>
+
+<canvas id="starfield"></canvas>
+
+<nav class="nav">
+  <a href="index.html" class="nav-logo">
+    <span class="logo-mark"></span>
+    Multiverse Studios
+  </a>
+  <button class="nav-hamburger" aria-label="Menu" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="mvee.html">MVEE</a></li>
+    <li><a href="creatures.html">Precursors</a></li>
+    <li><a href="nevereverland.html">Never Ever Land</a></li>
+    <li><a href="wiki/index.html">Wiki</a></li>
+    <li><a href="library.html">My Library</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="devlog.html">Devlog</a></li>
+    <li><a href="community.html">Community</a></li>
+    <li><a href="#" class="btn btn-primary" style="padding: 0.5rem 1.2rem;">Beta Access</a></li>
+  </ul>
+</nav>
+
+<section class="hero" style="padding-top: calc(80px + var(--space-xl)); padding-bottom: var(--space-lg);">
+  <span class="hero-overline" style="color: var(--signal);">The Folklore Forge</span>
+  <h1>Every creature comes from <span class="ember-accent">somewhere real</span>.</h1>
+  <p class="hero-tagline">Tell us the one we haven't heard.</p>
+</section>
+
+<div class="forge-container" id="forge-app">
+  <!-- JS renders here -->
+</div>
+
+<footer class="footer">
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div class="footer-logo">Multiverse Studios</div>
+      <p>Games made by the minds they're about. A research project of <a href="https://themultiverse.school" target="_blank" rel="noopener" style="color: var(--biolume);">The Multiverse School</a>.</p>
+    </div>
+    <div class="footer-col">
+      <h5>Games</h5>
+      <ul>
+        <li><a href="mvee.html">MVEE</a></li>
+        <li><a href="creatures.html">Precursors</a></li>
+        <li><a href="nevereverland.html">Never Ever Land</a></li>
+        <li><a href="wiki/index.html">Wiki</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Studio</h5>
+      <ul>
+        <li><a href="about.html">About</a></li>
+        <li><a href="devlog.html">Devlog</a></li>
+        <li><a href="community.html">Community</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>The Multiverse School</h5>
+      <ul>
+        <li><a href="https://themultiverse.school" target="_blank" rel="noopener">themultiverse.school</a></li>
+        <li><a href="press.html">Press Kit</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>&copy; 2026 Multiverse Studios</span>
+    <span>Built by AI agents. Guided by <a href="https://themultiverse.school" target="_blank" rel="noopener" style="color: var(--biolume);">The Multiverse School</a>.</span>
+  </div>
+</footer>
+
+<script src="main.js"></script>
+<script>
+(function() {
+  var STORAGE_KEY = 'folklore_forge';
+  var MAX_SUBMISSIONS = 5;
+
+  var state = JSON.parse(localStorage.getItem(STORAGE_KEY) || 'null') || {
+    submissions: [],
+    count: 0
+  };
+
+  function save() {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+  }
+
+  function render() {
+    var app = document.getElementById('forge-app');
+    var remaining = MAX_SUBMISSIONS - state.count;
+
+    if (remaining <= 0) {
+      renderExhausted(app);
+      return;
+    }
+
+    var html = '';
+
+    // Intro text
+    html += '<div class="forge-intro">';
+    html += '<p class="ember-line">"No money required. Just knowledge."</p>';
+    html += '<p>Every species in our games traces back to a real myth, a real tradition, a real story told by real people. We are opening the archive.</p>';
+    html += '<p style="margin-top: var(--space-sm);">If your culture has a creature, a spirit, a being that the world hasn\'t heard of &mdash; or has only half-heard, through the distortions of colonial retelling &mdash; tell us. In your words.</p>';
+    html += '</div>';
+
+    html += '<div class="section-divider-forge"></div>';
+
+    // The form
+    html += '<form id="forge-form">';
+
+    html += '<div class="forge-field">';
+    html += '<label>Name of the creature or spirit</label>';
+    html += '<input type="text" id="forge-name" placeholder="What is it called?" required>';
+    html += '</div>';
+
+    html += '<div class="forge-field">';
+    html += '<label>Cultural origin</label>';
+    html += '<input type="text" id="forge-origin" placeholder="Which tradition, people, or region does it come from?">';
+    html += '</div>';
+
+    html += '<div class="forge-field">';
+    html += '<label>Tell us about it</label>';
+    html += '<textarea id="forge-description" placeholder="What does it do? What does it look like? What stories are told about it? What should people know?" required></textarea>';
+    html += '</div>';
+
+    html += '<div class="forge-field">';
+    html += '<label>Your name or handle (for credit)</label>';
+    html += '<input type="text" id="forge-credit" placeholder="How should we credit you if this enters the game?">';
+    html += '</div>';
+
+    // Attempts display
+    html += '<div class="attempts-display">';
+    html += '<div class="attempts-pips">';
+    for (var i = 0; i < MAX_SUBMISSIONS; i++) {
+      var cls = i < state.count ? 'pip used' : 'pip';
+      html += '<div class="' + cls + '"></div>';
+    }
+    html += '</div>';
+    html += '<div class="attempts-label">' + remaining + ' submission' + (remaining !== 1 ? 's' : '') + ' remaining</div>';
+    html += '</div>';
+
+    html += '<button type="submit" class="forge-submit">Submit to the Archive</button>';
+
+    html += '</form>';
+
+    // Rules
+    html += '<details class="forge-rules">';
+    html += '<summary>How this works</summary>';
+    html += '<ul>';
+    html += '<li>You have ' + MAX_SUBMISSIONS + ' submissions. Each one matters.</li>';
+    html += '<li>Every submission is reviewed by the development team.</li>';
+    html += '<li>Approved creatures become canonical species in Precursors.</li>';
+    html += '<li>Your name appears in the species wiki entry as a patron.</li>';
+    html += '<li>The species carries your cultural tradition into the multiverse.</li>';
+    html += '<li>We especially welcome folklore from underrepresented traditions.</li>';
+    html += '<li>We will never alter your tradition to fit a Western framework.</li>';
+    html += '</ul>';
+    html += '</details>';
+
+    // Previous submissions
+    if (state.submissions.length > 0) {
+      html += '<div class="forge-history">';
+      html += '<h4>Your Submissions</h4>';
+      for (var j = state.submissions.length - 1; j >= 0; j--) {
+        var s = state.submissions[j];
+        html += '<div class="submission-entry">';
+        html += '<div class="creature-name">' + escapeHtml(s.name) + '</div>';
+        if (s.origin) html += '<div class="creature-origin">' + escapeHtml(s.origin) + '</div>';
+        html += '<p style="margin-top: 4px;">' + escapeHtml(s.description).substring(0, 200) + (s.description.length > 200 ? '...' : '') + '</p>';
+        html += '</div>';
+      }
+      html += '</div>';
+    }
+
+    app.innerHTML = html;
+
+    // Bind form
+    document.getElementById('forge-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      handleSubmit();
+    });
+  }
+
+  function renderExhausted(app) {
+    var html = '<div class="forge-exhausted">';
+    html += '<h2>The forge is quiet now.</h2>';
+    html += '<div class="section-divider-forge"></div>';
+    html += '<p>You have given us ' + MAX_SUBMISSIONS + ' pieces of folklore. Each one will be read. Each one is being considered.</p>';
+    html += '<p style="margin-top: var(--space-sm);">If your creatures enter the archive, you will be credited by name. They will carry your tradition into worlds that haven\'t been built yet.</p>';
+    html += '<p style="margin-top: var(--space-md); color: var(--signal); font-style: italic;">Thank you for remembering.</p>';
+    html += '</div>';
+
+    // Show all submissions
+    if (state.submissions.length > 0) {
+      html += '<div class="forge-history">';
+      html += '<h4>What You Told Us</h4>';
+      for (var j = state.submissions.length - 1; j >= 0; j--) {
+        var s = state.submissions[j];
+        html += '<div class="submission-entry">';
+        html += '<div class="creature-name">' + escapeHtml(s.name) + '</div>';
+        if (s.origin) html += '<div class="creature-origin">' + escapeHtml(s.origin) + '</div>';
+        html += '<p style="margin-top: 4px;">' + escapeHtml(s.description).substring(0, 300) + (s.description.length > 300 ? '...' : '') + '</p>';
+        html += '</div>';
+      }
+      html += '</div>';
+    }
+
+    app.innerHTML = html;
+  }
+
+  function handleSubmit() {
+    var name = document.getElementById('forge-name').value.trim();
+    var origin = document.getElementById('forge-origin').value.trim();
+    var description = document.getElementById('forge-description').value.trim();
+    var credit = document.getElementById('forge-credit').value.trim();
+
+    if (!name || !description) return;
+
+    state.submissions.push({
+      name: name,
+      origin: origin,
+      description: description,
+      credit: credit,
+      timestamp: new Date().toISOString()
+    });
+    state.count++;
+    save();
+
+    // Show confirmation briefly, then re-render
+    var app = document.getElementById('forge-app');
+    app.innerHTML = '<div class="forge-confirmation">' +
+      '<h3>' + escapeHtml(name) + '</h3>' +
+      '<div class="section-divider-forge"></div>' +
+      '<p>Received. The archive is listening.</p>' +
+      '<p style="margin-top: var(--space-sm); color: var(--ash); font-size: 0.85rem;">' +
+      (MAX_SUBMISSIONS - state.count) + ' submission' + ((MAX_SUBMISSIONS - state.count) !== 1 ? 's' : '') + ' remaining.</p>' +
+      '</div>';
+
+    setTimeout(function() { render(); }, 2500);
+  }
+
+  function escapeHtml(str) {
+    var div = document.createElement('div');
+    div.appendChild(document.createTextNode(str));
+    return div.innerHTML;
+  }
+
+  render();
+})();
+</script>
+<script defer src="https://analytics.multiversestudios.xyz/script.js" data-website-id="38d680a7-28d1-42fd-9fd5-a66702675b88"></script>
+</body>
+</html>
