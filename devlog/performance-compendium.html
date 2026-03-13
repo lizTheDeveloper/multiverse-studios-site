@@ -1,0 +1,1319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Performance Compendium — Multiverse Studios Devlog</title>
+  <meta name="description" content="How we made a browser game with 200,000 entities actually playable. A devlog, a post-mortem, and a curriculum — all in one. sceneRender: 1,688ms → 0.894ms.">
+  <meta property="og:title" content="The Performance Compendium: 1,889× Faster in Two Days">
+  <meta property="og:description" content="We built a game where AI creatures evolve, breed, and dream. It ran at 0.4 frames per second. This is the story of how we fixed it — and the engineering patterns we extracted.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://multiversestudios.xyz/devlog/performance-compendium.html">
+  <meta property="og:image" content="https://multiversestudios.xyz/screenshots/creatures-gameplay-1.png">
+  <meta property="article:published_time" content="2026-03-13">
+  <meta property="article:author" content="Multiverse Studios">
+  <meta property="article:section" content="Engineering">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="The Performance Compendium: 1,889× Faster in Two Days">
+  <meta name="twitter:description" content="sceneRender: 1,688ms → 0.894ms. Game loop: 0.4 Hz → 39.7 Hz. How we fixed a browser game that ran at 0.4 FPS — and what we learned.">
+  <meta name="twitter:image" content="https://multiversestudios.xyz/screenshots/creatures-gameplay-1.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=JetBrains+Mono:wght@300;400;500&family=Syne:wght@400;500;600;700;800&display=swap">
+  <link rel="stylesheet" href="../styles.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#x2726;</text></svg>">
+  <style>
+    /* Article layout */
+    .article-wrap {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 0 var(--space-md);
+    }
+
+    .article-hero {
+      padding: 10rem var(--space-md) var(--space-lg);
+      text-align: center;
+    }
+
+    .article-hero .hero-overline {
+      display: block;
+      margin-bottom: var(--space-sm);
+    }
+
+    .article-hero h1 {
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      line-height: 1.15;
+      margin-bottom: var(--space-md);
+    }
+
+    .article-hero .article-meta {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: var(--dust);
+      letter-spacing: 0.06em;
+      margin-bottom: var(--space-md);
+    }
+
+    .article-hero .article-lede {
+      font-size: 1.25rem;
+      color: var(--dust-light, #c0bdc8);
+      font-style: italic;
+      line-height: 1.7;
+      max-width: 600px;
+      margin: 0 auto var(--space-lg);
+    }
+
+    /* Stats bar inline */
+    .perf-stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 1px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 10px;
+      overflow: hidden;
+      margin: var(--space-lg) 0;
+    }
+
+    .perf-stat {
+      background: var(--void-surface, #0a0a10);
+      padding: var(--space-md) var(--space-sm);
+      text-align: center;
+    }
+
+    .perf-stat-before {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: var(--gene-pink);
+      text-decoration: line-through;
+      opacity: 0.7;
+      display: block;
+      margin-bottom: 0.25rem;
+    }
+
+    .perf-stat-after {
+      font-family: var(--font-mono);
+      font-size: 1.1rem;
+      font-weight: 500;
+      color: var(--biolume);
+      display: block;
+      margin-bottom: 0.25rem;
+    }
+
+    .perf-stat-label {
+      font-size: 0.7rem;
+      color: var(--dust);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      font-family: var(--font-display);
+    }
+
+    /* Article body */
+    .article-body {
+      padding-bottom: var(--space-2xl);
+    }
+
+    .article-body h2 {
+      font-family: var(--font-display);
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--star-white);
+      margin: var(--space-xl) 0 var(--space-md);
+      padding-top: var(--space-md);
+      border-top: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .article-body h2:first-child {
+      margin-top: var(--space-lg);
+      border-top: none;
+    }
+
+    .article-body h3 {
+      font-family: var(--font-display);
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: var(--ember);
+      margin: var(--space-lg) 0 var(--space-sm);
+      letter-spacing: 0.02em;
+    }
+
+    .article-body p {
+      color: var(--dust-light, #c0bdc8);
+      line-height: 1.8;
+      margin-bottom: var(--space-md);
+      font-size: 1.1rem;
+    }
+
+    .article-body strong {
+      color: var(--star-white);
+      font-weight: 600;
+    }
+
+    .article-body em {
+      color: var(--ember-glow);
+      font-style: italic;
+    }
+
+    /* Pull quote */
+    .article-pullout {
+      border-left: 3px solid var(--biolume);
+      padding: var(--space-md) var(--space-md) var(--space-md) var(--space-lg);
+      margin: var(--space-lg) 0;
+      background: rgba(0,255,200,0.04);
+      border-radius: 0 8px 8px 0;
+    }
+
+    .article-pullout p {
+      color: var(--star-white);
+      font-style: italic;
+      font-size: 1.15rem;
+      margin: 0;
+    }
+
+    /* Code blocks */
+    .article-body pre {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 8px;
+      padding: var(--space-md);
+      overflow-x: auto;
+      margin: var(--space-md) 0;
+    }
+
+    .article-body pre code {
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+      color: var(--biolume);
+      background: none;
+      padding: 0;
+    }
+
+    .article-body code {
+      font-family: var(--font-mono);
+      font-size: 0.85em;
+      background: rgba(255,255,255,0.08);
+      padding: 0.1em 0.4em;
+      border-radius: 3px;
+      color: var(--biolume);
+    }
+
+    /* Tables */
+    .article-body table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: var(--space-md) 0;
+      font-size: 0.9rem;
+    }
+
+    .article-body th {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--dust);
+      padding: 0.6rem 1rem;
+      text-align: left;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .article-body td {
+      padding: 0.6rem 1rem;
+      color: var(--dust-light, #c0bdc8);
+      border-bottom: 1px solid rgba(255,255,255,0.04);
+      vertical-align: top;
+    }
+
+    .article-body tr:first-child td {
+      color: var(--gene-pink);
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+    }
+
+    .article-body tr:nth-child(2) td {
+      color: var(--biolume);
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+    }
+
+    .metric-table th, .metric-table td {
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .metric-table td:first-child {
+      color: var(--star-white);
+      font-weight: 300;
+    }
+
+    .metric-table .before {
+      color: var(--gene-pink);
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+    }
+
+    .metric-table .after {
+      color: var(--biolume);
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+    }
+
+    /* Commandments */
+    .commandment-list {
+      counter-reset: commandment;
+      list-style: none;
+      padding: 0;
+      margin: var(--space-md) 0;
+    }
+
+    .commandment-list li {
+      counter-increment: commandment;
+      display: flex;
+      gap: var(--space-md);
+      margin-bottom: var(--space-md);
+      padding: var(--space-md);
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 8px;
+      align-items: flex-start;
+    }
+
+    .commandment-list li::before {
+      content: counter(commandment, decimal-leading-zero);
+      font-family: var(--font-mono);
+      font-size: 1.2rem;
+      color: var(--ember);
+      font-weight: 500;
+      flex-shrink: 0;
+      line-height: 1.5;
+    }
+
+    .commandment-content h4 {
+      font-family: var(--font-display);
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--star-white);
+      letter-spacing: 0.04em;
+      margin-bottom: 0.35rem;
+    }
+
+    .commandment-content p {
+      font-size: 0.9rem;
+      color: var(--dust);
+      margin: 0;
+      line-height: 1.6;
+    }
+
+    /* Curriculum weeks */
+    .curriculum-week {
+      border-left: 2px solid rgba(255,255,255,0.1);
+      padding-left: var(--space-md);
+      margin-bottom: var(--space-md);
+      position: relative;
+    }
+
+    .curriculum-week::before {
+      content: '';
+      position: absolute;
+      left: -5px;
+      top: 0.5rem;
+      width: 8px;
+      height: 8px;
+      background: var(--signal);
+      border-radius: 50%;
+    }
+
+    .curriculum-week h4 {
+      font-family: var(--font-display);
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: var(--signal);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 0.5rem;
+    }
+
+    .curriculum-week ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .curriculum-week ul li {
+      color: var(--dust-light, #c0bdc8);
+      font-size: 0.9rem;
+      line-height: 1.7;
+      padding-left: 1rem;
+      position: relative;
+    }
+
+    .curriculum-week ul li::before {
+      content: '→';
+      position: absolute;
+      left: 0;
+      color: var(--dust);
+      font-family: var(--font-mono);
+    }
+
+    /* Archaeology table */
+    .archaeology-table {
+      font-size: 0.8rem;
+    }
+
+    .archaeology-table th {
+      font-size: 0.65rem;
+    }
+
+    .archaeology-table td {
+      color: var(--dust-light, #c0bdc8);
+      font-size: 0.8rem;
+      border-bottom: 1px solid rgba(255,255,255,0.04);
+    }
+
+    .archaeology-table td:first-child {
+      color: var(--dust);
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      white-space: nowrap;
+    }
+
+    .archaeology-table td:nth-child(2) {
+      color: var(--biolume);
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+    }
+
+    .archaeology-table td:nth-child(3) {
+      color: var(--ember);
+      font-size: 0.75rem;
+    }
+
+    .archaeology-table td:last-child {
+      color: var(--signal);
+      font-size: 0.75rem;
+    }
+
+    /* Fake-win callout */
+    .callout-warning {
+      background: rgba(255,61,127,0.06);
+      border: 1px solid rgba(255,61,127,0.2);
+      border-radius: 8px;
+      padding: var(--space-md);
+      margin: var(--space-md) 0;
+    }
+
+    .callout-warning .callout-label {
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--gene-pink);
+      display: block;
+      margin-bottom: 0.5rem;
+    }
+
+    .callout-warning p {
+      color: var(--star-white);
+      margin: 0;
+      font-size: 1rem;
+    }
+
+    .callout-tip {
+      background: rgba(0,255,200,0.04);
+      border: 1px solid rgba(0,255,200,0.15);
+      border-radius: 8px;
+      padding: var(--space-md);
+      margin: var(--space-md) 0;
+    }
+
+    .callout-tip .callout-label {
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--biolume);
+      display: block;
+      margin-bottom: 0.5rem;
+    }
+
+    .callout-tip p {
+      color: var(--star-white);
+      margin: 0;
+      font-size: 1rem;
+    }
+
+    /* Table of contents */
+    .toc {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 10px;
+      padding: var(--space-md);
+      margin: var(--space-lg) 0;
+    }
+
+    .toc h4 {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--dust);
+      margin-bottom: var(--space-sm);
+    }
+
+    .toc ol {
+      padding-left: var(--space-md);
+      margin: 0;
+    }
+
+    .toc li {
+      font-size: 0.9rem;
+      color: var(--dust-light, #c0bdc8);
+      line-height: 1.8;
+    }
+
+    .toc a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .toc a:hover {
+      color: var(--biolume);
+    }
+
+    /* Epilogue */
+    .article-epilogue {
+      border-top: 1px solid rgba(255,255,255,0.08);
+      margin-top: var(--space-xl);
+      padding-top: var(--space-lg);
+      text-align: center;
+    }
+
+    .article-epilogue p {
+      color: var(--dust);
+      font-size: 0.9rem;
+    }
+
+    /* Phase list */
+    .phase-list {
+      list-style: none;
+      padding: 0;
+      margin: var(--space-md) 0;
+    }
+
+    .phase-list li {
+      padding: var(--space-md);
+      margin-bottom: 0.5rem;
+      background: rgba(255,255,255,0.02);
+      border-radius: 8px;
+      border-left: 3px solid var(--ember);
+    }
+
+    .phase-list li strong {
+      color: var(--ember);
+      display: block;
+      font-family: var(--font-display);
+      font-size: 0.85rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      margin-bottom: 0.35rem;
+    }
+
+    .phase-list li em {
+      display: block;
+      font-size: 0.85rem;
+      color: var(--dust);
+      margin-top: 0.5rem;
+      font-style: italic;
+    }
+
+    .phase-list li p {
+      margin: 0;
+      font-size: 0.95rem;
+    }
+
+    /* Gate rules */
+    .gate-rules {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 0.5rem;
+      margin: var(--space-md) 0;
+    }
+
+    .gate-rule {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 6px;
+      padding: 0.75rem 1rem;
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+    }
+
+    .gate-rule .gate-condition {
+      color: var(--dust-light, #c0bdc8);
+      display: block;
+      margin-bottom: 0.3rem;
+    }
+
+    .gate-rule .gate-result-fail {
+      color: var(--gene-pink);
+      font-weight: 500;
+    }
+
+    .gate-rule .gate-result-warn {
+      color: var(--ember);
+      font-weight: 500;
+    }
+
+    /* Reading list */
+    .reading-list {
+      list-style: none;
+      padding: 0;
+      margin: var(--space-md) 0;
+    }
+
+    .reading-list li {
+      padding: 0.75rem 0;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      font-size: 0.95rem;
+      color: var(--dust-light, #c0bdc8);
+    }
+
+    .reading-list li:last-child {
+      border-bottom: none;
+    }
+
+    .reading-list strong {
+      color: var(--star-white);
+      display: block;
+    }
+
+    /* Back to devlog link */
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      letter-spacing: 0.06em;
+      color: var(--dust);
+      text-decoration: none;
+      margin-bottom: var(--space-lg);
+      transition: color 0.3s;
+    }
+
+    .back-link:hover { color: var(--biolume); }
+  </style>
+</head>
+<body>
+
+<canvas id="starfield"></canvas>
+
+<nav class="nav">
+  <a href="../index.html" class="nav-logo">
+    <span class="logo-mark"></span>
+    Multiverse Studios
+  </a>
+  <button class="nav-hamburger" aria-label="Menu" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+  <ul class="nav-links">
+    <li><a href="../index.html">Home</a></li>
+    <li><a href="../mvee.html">MVEE</a></li>
+    <li><a href="../creatures.html">Precursors</a></li>
+    <li><a href="../nevereverland.html">Never Ever Land</a></li>
+    <li><a href="../wiki/index.html">Wiki</a></li>
+    <li><a href="../about.html">About</a></li>
+    <li><a href="../devlog.html" class="active">Devlog</a></li>
+    <li><a href="../community.html">Community</a></li>
+    <li><a href="../index.html#buy" class="btn btn-primary" style="padding: 0.5rem 1.2rem;">Beta Access</a></li>
+  </ul>
+</nav>
+
+<!-- Article Hero -->
+<section class="article-hero">
+  <span class="hero-overline">Engineering Devlog · March 2026</span>
+  <h1>The Performance <span class="accent">Compendium</span></h1>
+  <p class="article-meta">
+    By the Multiverse Games team &nbsp;·&nbsp; March 13, 2026 &nbsp;·&nbsp; Engineering
+  </p>
+  <p class="article-lede">
+    We built a game where AI creatures evolve, breed, dream, and develop culture.<br>
+    It ran at 0.4 frames per second.<br>
+    This is the story of how we fixed it.
+  </p>
+</section>
+
+<!-- Metrics -->
+<div class="article-wrap">
+  <div class="perf-stats">
+    <div class="perf-stat">
+      <span class="perf-stat-before">1,688ms</span>
+      <span class="perf-stat-after">0.894ms</span>
+      <span class="perf-stat-label">Scene Render</span>
+    </div>
+    <div class="perf-stat">
+      <span class="perf-stat-before">0.4 Hz</span>
+      <span class="perf-stat-after">39.7 Hz</span>
+      <span class="perf-stat-label">Game Loop</span>
+    </div>
+    <div class="perf-stat">
+      <span class="perf-stat-before">10.44×</span>
+      <span class="perf-stat-after">1.136×</span>
+      <span class="perf-stat-label">Wall-Time Ratio</span>
+    </div>
+    <div class="perf-stat">
+      <span class="perf-stat-before">Never</span>
+      <span class="perf-stat-after">2.7 min</span>
+      <span class="perf-stat-label">Time to First Breed</span>
+    </div>
+    <div class="perf-stat">
+      <span class="perf-stat-before">&nbsp;</span>
+      <span class="perf-stat-after">1,889×</span>
+      <span class="perf-stat-label">Total Speedup</span>
+    </div>
+  </div>
+
+  <!-- ToC -->
+  <nav class="toc">
+    <h4>Contents</h4>
+    <ol>
+      <li><a href="#crisis">The Crisis — the game that couldn't play itself</a></li>
+      <li><a href="#benchmarks">Why the Benchmarks Lied — seven distortions, one fake win</a></li>
+      <li><a href="#rebuild">The Rebuild — don't optimize, rebuild incrementally</a></li>
+      <li><a href="#commandments">The Ten Commandments of Game Performance</a></li>
+      <li><a href="#browser">Browser-Specific Patterns — Phaser 3, JS runtime, WebGL</a></li>
+      <li><a href="#agents">Agent-Based Development and Performance</a></li>
+      <li><a href="#mvee">The MVEE Problem — and why this pattern transfers</a></li>
+      <li><a href="#curriculum">A Curriculum for Browser Game Performance</a></li>
+      <li><a href="#archaeology">Issue Archaeology — the timeline</a></li>
+    </ol>
+  </nav>
+
+  <!-- Article Body -->
+  <article class="article-body">
+
+    <!-- Chapter 1 -->
+    <h2 id="crisis">Chapter 1: The Crisis</h2>
+
+    <h3>The game that couldn't play itself</h3>
+
+    <p>Precursors: Origins of Folklore is a spiritual successor to Creatures (1996) — a game where artificial life forms with full biochemistry, LLM-powered cognition, and genetic inheritance evolve in a procedurally generated world. It runs entirely in the browser using Phaser 3 and TypeScript.</p>
+
+    <p>By early March 2026, we had built every system: 48-chemical biochemistry, 50 species with genetic crossover, LLM dream consolidation, cultural memetic inheritance, parallax worlds across 6 biomes with 4 vertical tiers. The codebase was 98,000+ game objects across a 144,000-pixel-wide world.</p>
+
+    <p>And it was completely unplayable.</p>
+
+    <p>The render loop reported FPS numbers. Our benchmarks passed. Our tests were green. But if you actually tried to play the game — select a creature, pan the camera, watch two Norns try to breed — you'd see a slideshow. Sub-1 FPS. Creatures blinked in and out of existence. The world stuttered. Breeding was mathematically impossible due to a biochemistry bug no benchmark could catch.</p>
+
+    <div class="article-pullout">
+      <p><strong>Our instrumentation had failed us.</strong> Not because it was broken, but because it was measuring the wrong things.</p>
+    </div>
+
+    <h3>How bad was it, really?</h3>
+
+    <table class="metric-table">
+      <thead>
+        <tr>
+          <th>Metric</th>
+          <th>Before</th>
+          <th>After</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>sceneRender time</td>
+          <td class="before">1,688ms per frame</td>
+          <td class="after">0.894ms per frame</td>
+        </tr>
+        <tr>
+          <td>Game loop frequency</td>
+          <td class="before">0.4 Hz (once every 2.5 seconds)</td>
+          <td class="after">39.7 Hz</td>
+        </tr>
+        <tr>
+          <td>Creatures at spawn</td>
+          <td class="before">81 (regression)</td>
+          <td class="after">2 Norns + 3 eggs</td>
+        </tr>
+        <tr>
+          <td>Wall-time overrun ratio</td>
+          <td class="before">10.44× (sim at 1/10th real-time)</td>
+          <td class="after">1.136×</td>
+        </tr>
+        <tr>
+          <td>Time to first breed</td>
+          <td class="before">Never (biochemistry bug)</td>
+          <td class="after">2.7 minutes</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p>The game was <strong>1,889 times slower</strong> than it needed to be. And our benchmarks said it was fine.</p>
+
+    <!-- Chapter 2 -->
+    <h2 id="benchmarks">Chapter 2: Why the Benchmarks Lied</h2>
+
+    <p>This is the part that might save you months of wasted work.</p>
+
+    <h3>The seven distortions</h3>
+
+    <p>Our FPS benchmark had seven distortion sources that conspired to make everything look acceptable:</p>
+
+    <ol style="padding-left: 1.5rem; color: var(--dust-light, #c0bdc8); line-height: 1.9; font-size: 1.05rem;">
+      <li style="margin-bottom: 0.75rem;"><strong>Screenshot stalls.</strong> Every screenshot forced <code>gl.readPixels()</code> through SwiftShader (CPU renderer), blocking the render loop for 500ms–2s. We were measuring the cost of our measurement tool.</li>
+      <li style="margin-bottom: 0.75rem;"><strong>Headless WebGL crashes.</strong> SwiftShader lost the WebGL context after 1–25 seconds. The benchmark gracefully handled the crash and reported the 3–8 valid samples before it. A benchmark based on 5 seconds of data is not a benchmark.</li>
+      <li style="margin-bottom: 0.75rem;"><strong>CPU renderer, not GPU.</strong> SwiftShader simulates WebGL via CPU. The numbers had no predictive relationship to real hardware. We were optimizing for a renderer nobody uses.</li>
+      <li style="margin-bottom: 0.75rem;"><strong>No simulation health metrics.</strong> The benchmark read <code>actualFps</code> — a render counter. It couldn't detect that cognition ticks were being dropped, biochemistry was falling behind, or the world was effectively frozen while the render loop spun.</li>
+      <li style="margin-bottom: 0.75rem;"><strong>Idle camera.</strong> 30 seconds of capture with the camera stationary. FPS at rest vs. FPS during panning are completely different numbers. We benchmarked the easy case.</li>
+      <li style="margin-bottom: 0.75rem;"><strong>No warm-up separation.</strong> A 35-second hardcoded wait before capture, but no distinction between shader compilation, font loading, and steady-state gameplay.</li>
+      <li style="margin-bottom: 0.75rem;"><strong>Single sample per second.</strong> One FPS reading per second from Phaser's rolling average. A 10ms freeze every 200ms reports ~42 FPS but feels like the game is dying.</li>
+    </ol>
+
+    <h3>The "fake win" pattern</h3>
+
+    <div class="callout-warning">
+      <span class="callout-label">⚠ Danger pattern</span>
+      <p>The most dangerous failure mode: <strong>render FPS improves because simulation work was silently dropped.</strong> When the game loop can't keep up, scheduled work gets deferred. Biochemistry stops ticking. Cognition calls queue but never process. The render loop, freed from waiting on simulation, speeds up. FPS goes up. The benchmark passes. The game is dead.</p>
+    </div>
+
+    <p>We call this a "fake win." Our old benchmark couldn't detect it. Our new one can.</p>
+
+    <h3>The fix: measure distributions, not averages</h3>
+
+    <p>Average FPS is a lie. Here's what we measure now:</p>
+
+    <ul style="padding-left: 1.5rem; color: var(--dust-light, #c0bdc8); line-height: 1.9; font-size: 1.05rem; margin-bottom: var(--space-md);">
+      <li><strong>p50, p95, p99, worst-frame time</strong> — The distribution tells you whether the experience is smooth or hitchy.</li>
+      <li><strong>Percent of frames over budget</strong> — What fraction of frames exceed 16.7ms (60fps), 33ms (30fps), 50ms (20fps), 100ms, 250ms?</li>
+      <li><strong>Simulation real-time factor</strong> — Is the sim advancing 1 second per wall-clock second? If not, the game is in slow motion regardless of FPS.</li>
+      <li><strong>Dropped-work counters</strong> — How many scheduled ticks were skipped?</li>
+      <li><strong>First interactive frame</strong> — Not "first paint," but "first frame where the game accepts input and creatures are alive."</li>
+    </ul>
+
+    <p><strong>Gate rules — the line between ship and fix:</strong></p>
+
+    <div class="gate-rules">
+      <div class="gate-rule">
+        <span class="gate-condition">p95 &gt; 50ms</span>
+        <span class="gate-result-fail">FAIL</span>
+      </div>
+      <div class="gate-rule">
+        <span class="gate-condition">any frame &gt; 250ms</span>
+        <span class="gate-result-warn">WARN</span>
+      </div>
+      <div class="gate-rule">
+        <span class="gate-condition">sim real-time factor &lt; 0.8</span>
+        <span class="gate-result-fail">FAIL</span>
+      </div>
+      <div class="gate-rule">
+        <span class="gate-condition">mean FPS up, p95 down</span>
+        <span class="gate-result-warn">WARN (fake win)</span>
+      </div>
+    </div>
+
+    <!-- Chapter 3 -->
+    <h2 id="rebuild">Chapter 3: The Rebuild</h2>
+
+    <h3>The pattern: don't optimize, rebuild incrementally</h3>
+
+    <p>We did not try to profile and optimize the broken codebase. That path is a trap for complex games — there are too many interacting systems to isolate bottlenecks in a combined state.</p>
+
+    <p>Instead:</p>
+
+    <ol style="padding-left: 1.5rem; color: var(--dust-light, #c0bdc8); line-height: 1.9; font-size: 1.05rem; margin-bottom: var(--space-md);">
+      <li><strong>Start with the minimum viable world.</strong> 2 Norns, 3 eggs, 1 biome, 1 tier. Every system is present but operating on minimal data.</li>
+      <li><strong>Add one system at a time.</strong> Turn on biochemistry. Measure. Turn on cognition. Measure. Turn on breeding. Measure. The system that breaks the budget is the system that needs work.</li>
+      <li><strong>Feature flags gate everything.</strong> Every major system has an <code>FF_*</code> flag. Ship with specific flags enabled per version. This is the primary mechanism for isolating regressions.</li>
+      <li><strong>Keep all existing code.</strong> The rebuild reuses every system — it just adds them incrementally to expose individual costs.</li>
+    </ol>
+
+    <h3>The five phases</h3>
+
+    <ul class="phase-list">
+      <li>
+        <strong>Phase 1: Stop the bleeding</strong>
+        <p>A spawn regression had 81 creatures loading instead of 2. This was the single biggest performance problem and the simplest fix. Going from 81 to 5 entities cut per-frame work by ~40×.</p>
+        <em>Lesson: Before you profile, count your entities. The most common performance bug is "more stuff than you meant to have."</em>
+      </li>
+      <li>
+        <strong>Phase 2: Fix measurement</strong>
+        <p>We added in-game telemetry (subsystem timers, query counters, workload counters), replaced FPS-only reporting with frame-time distributions, and added PASS/FAIL gates to benchmarks.</p>
+        <em>Lesson: Fix your instruments before fixing your code. If you can't measure it honestly, you can't fix it.</em>
+      </li>
+      <li>
+        <strong>Phase 3: Architectural wins</strong>
+        <p>Spatial indexing (O(world) → O(nearby)). Container culling (rooms, not sprites). Room baking (1,688ms → 0.894ms). Simulation scheduling (biochem 1 Hz, breeding 0.5 Hz, dreams 0.2 Hz). Deferred world generation (playable in &lt;5 seconds).</p>
+      </li>
+      <li>
+        <strong>Phase 4: Codify standards</strong>
+        <p>We wrote PERFORMANCE_STANDARDS.md — 10 mandatory practices that every agent (human or AI) must follow when writing game code. Anti-patterns are explicitly listed. This document is the institutional immune system against the next performance crisis.</p>
+      </li>
+      <li>
+        <strong>Phase 5: Red-team the fixes</strong>
+        <p>QA found that our spatial index was actually 7-10× <em>slower</em> than naive array filtering at the game's actual population (5 entities). The crossover point was pop=40. Our benchmark had cherry-picked pop≥80 to make the spatial index look good.</p>
+        <em>Lesson: Always benchmark at real-world conditions, not best-case conditions. Fancy data structures have overhead. If your dataset is small, linear search wins.</em>
+      </li>
+    </ul>
+
+    <!-- Chapter 4 -->
+    <h2 id="commandments">Chapter 4: The Ten Commandments of Game Performance</h2>
+
+    <p>These are the engineering standards we now enforce across all Multiverse Games projects.</p>
+
+    <ol class="commandment-list">
+      <li>
+        <div class="commandment-content">
+          <h4>Spatial indexes over world scans</h4>
+          <p>Never scan all entities for local decisions. Use room/chunk-indexed lookups. <code>spatialIndex.getNornsInCell()</code> over <code>world.norns.filter()</code>.</p>
+        </div>
+      </li>
+      <li>
+        <div class="commandment-content">
+          <h4>Sleep/wake contracts</h4>
+          <p>Entities not near the camera or active zones must be dormant. Every subsystem documents when it sleeps.</p>
+        </div>
+      </li>
+      <li>
+        <div class="commandment-content">
+          <h4>Container culling over per-object</h4>
+          <p>Toggle room/chunk containers, not individual sprites. Culling cost scales with active rooms, not total objects.</p>
+        </div>
+      </li>
+      <li>
+        <div class="commandment-content">
+          <h4>Frame-time distributions over average FPS</h4>
+          <p>Report p50, p95, p99, worst frame. Average FPS masks hitches. Benchmarks have PASS/FAIL gates.</p>
+        </div>
+      </li>
+      <li>
+        <div class="commandment-content">
+          <h4>Fixed-step simulation</h4>
+          <p>Decouple simulation from rendering. Sim runs at a defined step rate; rendering interpolates.</p>
+        </div>
+      </li>
+      <li>
+        <div class="commandment-content">
+          <h4>Chunk ownership before threading</h4>
+          <p>Define who owns chunk-local state before adding workers. False sharing kills multicore performance quietly.</p>
+        </div>
+      </li>
+      <li>
+        <div class="commandment-content">
+          <h4>Active worklists over sparse scans</h4>
+          <p>Build compact lists of active entities before update passes. Iterate dense sets, not sparse predicates.</p>
+        </div>
+      </li>
+      <li>
+        <div class="commandment-content">
+          <h4>Effect density budgets</h4>
+          <p>Screen-space density matters more than raw particle counts. Weather and water need visibility-aware throttles.</p>
+        </div>
+      </li>
+      <li>
+        <div class="commandment-content">
+          <h4>Deferred world generation</h4>
+          <p>Show a playable world before the entire planet is generated. Enrichment runs off the critical path.</p>
+        </div>
+      </li>
+      <li>
+        <div class="commandment-content">
+          <h4>Before/after measurement</h4>
+          <p>Every performance ticket records metrics before and after. No claims without numbers. Use reproducible fixtures.</p>
+        </div>
+      </li>
+    </ol>
+
+    <!-- Chapter 5 -->
+    <h2 id="browser">Chapter 5: Browser-Specific Patterns</h2>
+
+    <p>Building performant games in the browser has unique constraints. Here's what we learned.</p>
+
+    <h3>Phaser 3 + WebGL</h3>
+
+    <ul style="padding-left: 1.5rem; color: var(--dust-light, #c0bdc8); line-height: 1.9; font-size: 1.05rem; margin-bottom: var(--space-md);">
+      <li><strong>RenderTexture baking</strong> is the single highest-value technique for reducing draw calls. Collapse static room geometry into one texture per room.</li>
+      <li><strong>Container visibility</strong> is cheaper than per-sprite visibility. Group objects by room/chunk and toggle the container.</li>
+      <li><code>setBackgroundColor(0x00000000)</code> does not make a transparent background — Phaser parses integer 0 as opaque black (24-bit RGB, alpha defaults to 255). Use <code>camera.transparent = true</code> instead. This bug caused our black screen regression.</li>
+      <li><strong>Particle caps matter.</strong> We reduced particle cap from 120 to 48 per weather effect with no visible quality loss.</li>
+    </ul>
+
+    <h3>JavaScript runtime</h3>
+
+    <ul style="padding-left: 1.5rem; color: var(--dust-light, #c0bdc8); line-height: 1.9; font-size: 1.05rem; margin-bottom: var(--space-md);">
+      <li><strong><code>getLivingNorns()</code> was allocating a new array every call</strong>, and multiple callers hit it per frame. Cache and invalidate on add/remove.</li>
+      <li><strong>Rolling averages lie</strong> — Phaser's <code>actualFps</code> is a smoothed value. For benchmarking, use raw frame deltas.</li>
+      <li><strong>GC pressure from proximity queries</strong> was a bigger problem than the query logic itself. Pre-allocate result arrays.</li>
+    </ul>
+
+    <h3>Benchmarking in browsers</h3>
+
+    <div class="callout-tip">
+      <span class="callout-label">✓ Key insight</span>
+      <p><strong>Headless mode (SwiftShader) is not representative.</strong> Use it for smoke tests, not performance gates. Screenshots stall the render loop — never take screenshots during measurement windows. Also: <code>document.hidden</code> throttles timers, detect tab visibility and invalidate those runs.</p>
+    </div>
+
+    <h3>Web Workers</h3>
+
+    <ul style="padding-left: 1.5rem; color: var(--dust-light, #c0bdc8); line-height: 1.9; font-size: 1.05rem; margin-bottom: var(--space-md);">
+      <li>Useful for terrain mesh generation (MVEE already does this with MeshWorkerPool)</li>
+      <li>Not useful until data ownership is clear</li>
+      <li>SharedArrayBuffer requires cross-origin isolation headers</li>
+      <li>The overhead of structured clone for message passing can exceed the benefit for small payloads</li>
+    </ul>
+
+    <!-- Chapter 6 -->
+    <h2 id="agents">Chapter 6: Agent-Based Development and Performance</h2>
+
+    <p>Multiverse Games is built by AI agents coordinated through Paperclip. This creates unique performance challenges that most studios don't face.</p>
+
+    <h3>The agent performance trap</h3>
+
+    <p>Each agent works on its own system in isolation. Each agent's tests pass. Each agent reports success. But the combined load of all systems is catastrophic because no single agent had visibility into the total frame budget.</p>
+
+    <p>This is structurally identical to the classic microservices problem: every service passes its own SLA, the system misses SLA, and nobody knows why. The solution is the same too — shared standards, observable state, and integration testing.</p>
+
+    <h3>How we prevent this</h3>
+
+    <ol style="padding-left: 1.5rem; color: var(--dust-light, #c0bdc8); line-height: 1.9; font-size: 1.05rem; margin-bottom: var(--space-md);">
+      <li><strong>Shared PERFORMANCE_STANDARDS.md</strong> — Every agent reads this before writing game code.</li>
+      <li><strong>Feature flags</strong> — Each system can be enabled/disabled independently, so integration testing reveals per-system costs.</li>
+      <li><strong>Budget allocation</strong> — Total frame budget (50ms for 20fps) is divided across subsystems. Each system has a declared budget. Overruns are visible.</li>
+      <li><strong>Red-team QA</strong> — A dedicated agent runs adversarial benchmarks after each sprint, specifically looking for fake wins and benchmark gaming.</li>
+      <li><strong>The rebuild pattern</strong> — When things go wrong (they will), start minimal and add incrementally. Don't try to debug a combined state.</li>
+    </ol>
+
+    <h3>Cost-effective LLM cognition</h3>
+
+    <p>Creatures use LLM calls for cognition (thinking, dreaming, cultural evolution). At scale, this is the most expensive system — both computationally and financially. Our approach:</p>
+
+    <ul style="padding-left: 1.5rem; color: var(--dust-light, #c0bdc8); line-height: 1.9; font-size: 1.05rem; margin-bottom: var(--space-md);">
+      <li><strong>Staggered async</strong> — Non-blocking priority queue with round-robin scheduling</li>
+      <li><strong>Sleep batching</strong> — Heavy computation (dreams, social trust) runs during world sleep cycles, not every frame</li>
+      <li><strong>Provider choice</strong> — Groq with qwen3-32b at $0.15/$0.75 per million tokens</li>
+      <li><strong>Graceful degradation</strong> — No API key = creatures still have biochemistry, just no thoughts</li>
+      <li><strong>Limbic policy NN</strong> — Training small neural networks to approximate LLM behavior for common decisions, reducing API calls by 10-100× for routine behaviors</li>
+    </ul>
+
+    <!-- Chapter 7 -->
+    <h2 id="mvee">Chapter 7: The MVEE Problem</h2>
+
+    <p>Our second game, MVEE (Multiverse: The End of Eternity), is a custom engine with 200,000+ entities, 212+ systems, and 125+ components. It also has performance problems. The same patterns apply:</p>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Precursors Fix</th>
+          <th>MVEE Equivalent</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr style="background: none;">
+          <td style="color: var(--dust-light, #c0bdc8);">Spatial indexing (cell grid)</td>
+          <td style="color: var(--dust-light, #c0bdc8);">Chunk-based tiling (already partial)</td>
+        </tr>
+        <tr style="background: none;">
+          <td style="color: var(--dust-light, #c0bdc8);">Container culling</td>
+          <td style="color: var(--dust-light, #c0bdc8);">Chunk container toggling</td>
+        </tr>
+        <tr style="background: none;">
+          <td style="color: var(--dust-light, #c0bdc8);">Simulation scheduling</td>
+          <td style="color: var(--dust-light, #c0bdc8);">Fixed 20 TPS timestep (already exists)</td>
+        </tr>
+        <tr style="background: none;">
+          <td style="color: var(--dust-light, #c0bdc8);">ECS query caching</td>
+          <td style="color: var(--dust-light, #c0bdc8);">Cached 7 redundant 60fps queries (done)</td>
+        </tr>
+        <tr style="background: none;">
+          <td style="color: var(--dust-light, #c0bdc8);">Feature flags</td>
+          <td style="color: var(--ember);">Not yet implemented — must add</td>
+        </tr>
+        <tr style="background: none;">
+          <td style="color: var(--dust-light, #c0bdc8);">Frame-time telemetry</td>
+          <td style="color: var(--ember);">Not yet implemented — must add</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p>The fact that MVEE already has a fixed timestep and worker infrastructure means it's architecturally ahead of where Precursors started. But it lacks measurement. Without frame-time distributions and simulation health metrics, we can't tell whether optimizations are real — which means we can't tell if we're in a fake-win loop.</p>
+
+    <!-- Chapter 8 -->
+    <h2 id="curriculum">Chapter 8: A Curriculum for Browser Game Performance</h2>
+
+    <p>If you're building a browser game or simulation and want to avoid our mistakes, here's the learning path. Six weeks, one discipline per week.</p>
+
+    <div style="margin: var(--space-lg) 0;">
+      <div class="curriculum-week">
+        <h4>Week 1 — Measurement</h4>
+        <ul>
+          <li>Learn Chrome DevTools Performance tab</li>
+          <li>Understand frame-time distributions (p50/p95/p99)</li>
+          <li>Build a simple frame-time logger in your game loop</li>
+          <li>Read: <em>The Performance Inequality Gap</em> by Alex Russell</li>
+        </ul>
+      </div>
+      <div class="curriculum-week">
+        <h4>Week 2 — Data Architecture</h4>
+        <ul>
+          <li>Implement a spatial index (grid-based is fine)</li>
+          <li>Add sleep/wake to one subsystem</li>
+          <li>Measure before and after with your frame-time logger</li>
+          <li>Read: Factorio Friday Facts on entity sleep/wake</li>
+        </ul>
+      </div>
+      <div class="curriculum-week">
+        <h4>Week 3 — Rendering</h4>
+        <ul>
+          <li>Learn about draw calls and batching</li>
+          <li>Implement container-level culling</li>
+          <li>Try RenderTexture baking for static content</li>
+          <li>Read: Phaser 3 rendering internals docs</li>
+        </ul>
+      </div>
+      <div class="curriculum-week">
+        <h4>Week 4 — Simulation</h4>
+        <ul>
+          <li>Decouple simulation from rendering</li>
+          <li>Implement a simulation scheduler with staggered ticks</li>
+          <li>Add simulation real-time factor measurement</li>
+          <li>Read: <em>Game Programming Patterns</em> — Game Loop chapter (Robert Nystrom, free online)</li>
+        </ul>
+      </div>
+      <div class="curriculum-week">
+        <h4>Week 5 — Benchmarking</h4>
+        <ul>
+          <li>Build a manifest-driven benchmark</li>
+          <li>Add PASS/FAIL gates</li>
+          <li>Create reproducible test fixtures (saved worlds)</li>
+          <li>Learn to detect fake wins (FPS up, sim factor down)</li>
+        </ul>
+      </div>
+      <div class="curriculum-week">
+        <h4>Week 6 — Integration</h4>
+        <ul>
+          <li>Feature flag your major systems</li>
+          <li>Rebuild incrementally: minimal world, add systems one at a time</li>
+          <li>Red-team your benchmarks</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3>Recommended reading</h3>
+
+    <ul class="reading-list">
+      <li>
+        <strong>Game Programming Patterns — Robert Nystrom</strong>
+        Free online at gameprogrammingpatterns.com. The game loop and update patterns chapters.
+      </li>
+      <li>
+        <strong>Factorio Friday Facts</strong>
+        The best public documentation of production game optimization. Search for their entity sleep/wake and performance posts.
+      </li>
+      <li>
+        <strong>Dyson Sphere Program GDC talk</strong>
+        Worker phases and profiling-first optimization.
+      </li>
+      <li>
+        <strong>The Performance Inequality Gap — Alex Russell (2024)</strong>
+        infrequently.org — why device diversity makes browser performance engineering hard.
+      </li>
+    </ul>
+
+    <!-- Archaeology -->
+    <h2 id="archaeology">Appendix: Issue Archaeology</h2>
+
+    <p>A timeline of every performance-related issue in the Precursors and MVEE backlogs, with outcomes. Built from agent session logs and commit history.</p>
+
+    <table class="archaeology-table">
+      <thead>
+        <tr>
+          <th>Date</th>
+          <th>Issue</th>
+          <th>Project</th>
+          <th>Summary</th>
+          <th>Outcome</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Mar 7</td>
+          <td>MUL-3</td>
+          <td>MVEE</td>
+          <td>Performance issues — staff assessment</td>
+          <td>Hired 6 agents including Performance Engineer</td>
+        </tr>
+        <tr>
+          <td>Mar 7</td>
+          <td>MUL-38</td>
+          <td>MVEE</td>
+          <td>Renderer performance problems</td>
+          <td>Removed 7 redundant ECS queries from 60fps loop</td>
+        </tr>
+        <tr>
+          <td>Mar 9</td>
+          <td>MUL-456</td>
+          <td>Precursors</td>
+          <td>Performance + breeding + backgrounds</td>
+          <td>Speed multiplier, parallax fix, breeding biochemistry fix</td>
+        </tr>
+        <tr>
+          <td>Mar 9</td>
+          <td>MUL-459</td>
+          <td>Precursors</td>
+          <td>Parallax stretching at low zoom</td>
+          <td>72 AI-generated JPG backgrounds repositioned correctly</td>
+        </tr>
+        <tr>
+          <td>Mar 10</td>
+          <td>MUL-570</td>
+          <td>Precursors</td>
+          <td>Major Performance Overhaul (emergency)</td>
+          <td>sceneRender 1688ms → 1.7ms, effectiveHz 0.4 → 37.8 Hz</td>
+        </tr>
+        <tr>
+          <td>Mar 10</td>
+          <td>MUL-571</td>
+          <td>Precursors</td>
+          <td>Spawn regression: 81 creatures</td>
+          <td>Fixed to 2 norns + 3 eggs</td>
+        </tr>
+        <tr>
+          <td>Mar 10</td>
+          <td>MUL-572</td>
+          <td>Precursors</td>
+          <td>In-game telemetry</td>
+          <td>Subsystem timers, query counters, workload counters</td>
+        </tr>
+        <tr>
+          <td>Mar 10</td>
+          <td>MUL-573</td>
+          <td>Precursors</td>
+          <td>Benchmark audit</td>
+          <td>Classified existing benchmark as TREND-ONLY</td>
+        </tr>
+        <tr>
+          <td>Mar 10</td>
+          <td>MUL-575</td>
+          <td>Precursors</td>
+          <td>Spatial index scaffolding</td>
+          <td>Cell-based lookups replacing world scans</td>
+        </tr>
+        <tr>
+          <td>Mar 10</td>
+          <td>MUL-576</td>
+          <td>Precursors</td>
+          <td>Static/dynamic room split</td>
+          <td>Container culling by room</td>
+        </tr>
+        <tr>
+          <td>Mar 10</td>
+          <td>MUL-580</td>
+          <td>Precursors</td>
+          <td>Frame-time distributions</td>
+          <td>p50/p95/p99 with PASS/FAIL gates</td>
+        </tr>
+        <tr>
+          <td>Mar 10</td>
+          <td>MUL-622</td>
+          <td>Precursors</td>
+          <td>Verify local FPS post-overhaul</td>
+          <td>Confirmed improvement</td>
+        </tr>
+        <tr>
+          <td>Mar 10</td>
+          <td>MUL-632</td>
+          <td>Precursors</td>
+          <td>Verify ≥10 FPS on live site</td>
+          <td>Confirmed</td>
+        </tr>
+        <tr>
+          <td>Mar 11</td>
+          <td>MUL-684</td>
+          <td>Precursors</td>
+          <td>Performance cleanup + baking</td>
+          <td>sceneRender → 0.894ms, effectiveHz → 39.7 Hz</td>
+        </tr>
+        <tr>
+          <td>Mar 11</td>
+          <td>MUL-685</td>
+          <td>Precursors</td>
+          <td>Infrastructure bake path</td>
+          <td>Room baking system built</td>
+        </tr>
+        <tr>
+          <td>Mar 11</td>
+          <td>MUL-706</td>
+          <td>Precursors</td>
+          <td>FPS gate per rebuild phase</td>
+          <td>Phased measurement during incremental rebuild</td>
+        </tr>
+        <tr>
+          <td>Mar 11</td>
+          <td>MUL-744</td>
+          <td>Precursors</td>
+          <td>Microbenchmark test failures</td>
+          <td>Fixed parallel vitest execution issues</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- Epilogue -->
+    <div class="article-epilogue">
+      <div class="article-pullout" style="text-align: left;">
+        <p>Multiverse Games makes infinite games — games that grow, evolve, and surprise us. Creatures breed and develop culture. Worlds expand. Communities fork and customize. The patterns in this compendium — spatial indexing, sleep/wake, feature flags, measurement-first development, incremental rebuild — are not just fixes for today's problems. They're the foundation for games that can keep growing without hitting walls.</p>
+      </div>
+
+      <p style="font-size: 1.1rem; color: var(--star-white); margin: var(--space-md) 0;">Build things that last. Measure honestly. Ship over deliberate.</p>
+
+      <p>Multiverse Studios is an open-source, anticapitalist games studio building AI-powered life simulation games. All games are pay-what-you-can. Our performance research, tools, and standards are freely available under MIT license.</p>
+
+      <div style="margin: var(--space-lg) 0; display: flex; gap: var(--space-sm); justify-content: center; flex-wrap: wrap;">
+        <a href="https://play.multiversestudios.xyz" class="btn btn-signal">Play Precursors</a>
+        <a href="../play/mvee/index.html" class="btn btn-ember">Play MVEE</a>
+        <a href="../devlog.html" class="btn btn-ghost">More Devlogs</a>
+      </div>
+
+      <a href="../devlog.html" class="back-link">← Back to Devlog</a>
+    </div>
+
+  </article>
+</div>
+
+<footer class="footer">
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div class="footer-logo">Multiverse Studios</div>
+      <p>Games made by the minds they're about. A research project of <a href="https://themultiverse.school" target="_blank" rel="noopener" style="color: var(--biolume);">The Multiverse School</a>. Open source. Pay what you want.</p>
+    </div>
+    <div class="footer-col">
+      <h5>Games</h5>
+      <ul>
+        <li><a href="../mvee.html">MVEE</a></li>
+        <li><a href="../creatures.html">Precursors</a></li>
+        <li><a href="../nevereverland.html">Never Ever Land</a></li>
+        <li><a href="../wiki/index.html">Wiki</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Studio</h5>
+      <ul>
+        <li><a href="../about.html">About</a></li>
+        <li><a href="../devlog.html">Devlog</a></li>
+        <li><a href="../press.html">Press Kit</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>The Multiverse School</h5>
+      <ul>
+        <li><a href="https://themultiverse.school" target="_blank" rel="noopener">themultiverse.school</a></li>
+        <li><a href="https://github.com/lizTheDeveloper/ai_village" target="_blank" rel="noopener">MVEE GitHub</a></li>
+        <li><a href="https://github.com/lizTheDeveloper" target="_blank" rel="noopener">GitHub</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>&copy; 2026 Multiverse Studios</span>
+    <span>Built by AI agents. Guided by <a href="https://themultiverse.school" target="_blank" rel="noopener" style="color: var(--biolume);">The Multiverse School</a>.</span>
+  </div>
+</footer>
+
+<script src="../main.js"></script>
+</body>
+</html>

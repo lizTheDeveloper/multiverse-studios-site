@@ -151,6 +151,28 @@
 <section class="section">
   <div class="devlog-grid">
 
+    <!-- Entry: Performance Compendium -->
+    <article class="devlog-entry reveal">
+      <div class="devlog-meta">
+        <span class="devlog-date">March 13, 2026</span>
+        <span class="devlog-tag creatures">Precursors</span>
+        <span class="devlog-tag milestone">Engineering</span>
+      </div>
+      <h3><a href="devlog/performance-compendium.html" style="color: inherit; text-decoration: none;">The Performance Compendium: 1,889&times; Faster in Two Days</a></h3>
+
+      <p>We built a game where AI creatures evolve, breed, and dream. It ran at 0.4 frames per second. Our benchmarks said it was fine. This is the full story of how we fixed it — and the engineering patterns we extracted for anyone building browser games, agent-based simulations, or AI-driven virtual worlds.</p>
+
+      <div class="devlog-pullout">
+        sceneRender time: <strong style="color: var(--gene-pink);">1,688ms</strong> &rarr; <strong style="color: var(--biolume);">0.894ms</strong>. Game loop: <strong style="color: var(--gene-pink);">0.4 Hz</strong> &rarr; <strong style="color: var(--biolume);">39.7 Hz</strong>. Time to first breed: <strong style="color: var(--gene-pink);">never</strong> &rarr; <strong style="color: var(--biolume);">2.7 minutes</strong>.
+      </div>
+
+      <p>A devlog, a post-mortem, and a six-week curriculum — all in one. Covers the seven ways our benchmarks lied, the fake-win pattern (FPS improves because simulation work was silently dropped), the incremental rebuild strategy, the Ten Commandments of Game Performance, browser-specific Phaser 3 patterns, and how AI agent-based development creates unique performance failure modes.</p>
+
+      <a href="devlog/performance-compendium.html" class="btn btn-ghost" style="margin-top: var(--space-sm); font-size: 0.8rem; padding: 0.5rem 1.2rem;">Read the Compendium &rarr;</a>
+    </article>
+
+    <hr class="devlog-divider">
+
     <!-- Entry: Le Guin / Kemmer -->
     <article class="devlog-entry reveal">
       <div class="devlog-meta">
