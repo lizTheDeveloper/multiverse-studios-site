@@ -341,7 +341,7 @@
       position: fixed;
       bottom: 0;
       left: 0;
-      right: 268px; /* UIPanel: 240 canvas px × 1.09375 CSS scale = ~263px viewport; +5px clearance */
+      right: 268px; /* UIPanel: 240 canvas px × 1.09375 CSS scale = ~263px viewport; +5px clearance — overridden by ChatBox when no norn selected */
       z-index: 100;
       padding: 0 16px 14px;
       background: linear-gradient(
@@ -1089,15 +1089,15 @@
     }
 
   </style>
-  <script type="module" crossorigin src="/play/creatures/assets/main-D7IOZyOp.js"></script>
+  <script type="module" crossorigin src="/play/creatures/assets/main-CwaI6g3z.js"></script>
   <link rel="modulepreload" crossorigin href="/play/creatures/assets/LifeStage-DLlDtvpU.js">
   <link rel="modulepreload" crossorigin href="/play/creatures/assets/vendor-phaser-CaWnzXme.js">
-  <link rel="modulepreload" crossorigin href="/play/creatures/assets/WorldItem-GBq5izE1.js">
+  <link rel="modulepreload" crossorigin href="/play/creatures/assets/Logger-CF89ua65.js">
   <link rel="modulepreload" crossorigin href="/play/creatures/assets/EventBus-BDki86ks.js">
-  <link rel="modulepreload" crossorigin href="/play/creatures/assets/LanguageSystem-B87kGy-j.js">
-  <link rel="modulepreload" crossorigin href="/play/creatures/assets/ChemicalSet-D_32wrlO.js">
-  <link rel="modulepreload" crossorigin href="/play/creatures/assets/PerfTelemetry-CGidjns_.js">
-  <link rel="modulepreload" crossorigin href="/play/creatures/assets/UIScene-hcvKYaQD.js">
+  <link rel="modulepreload" crossorigin href="/play/creatures/assets/LanguageSystem-Ds4Cjc4i.js">
+  <link rel="modulepreload" crossorigin href="/play/creatures/assets/ChemicalSet-MsPt4dQK.js">
+  <link rel="modulepreload" crossorigin href="/play/creatures/assets/PerfTelemetry-DzPt1QJS.js">
+  <link rel="modulepreload" crossorigin href="/play/creatures/assets/UIScene-DmhUkDEy.js">
 <link rel="manifest" href="/play/creatures/manifest.webmanifest"><script id="vite-plugin-pwa:register-sw" src="/play/creatures/registerSW.js"></script></head>
 <body>
   <!-- Loading Screen -->
@@ -1199,6 +1199,5 @@
     </div>
   </nav>
 
-<script defer src="https://analytics.multiversestudios.xyz/script.js" data-website-id="38d680a7-28d1-42fd-9fd5-a66702675b88"></script>
 </body>
 </html>
