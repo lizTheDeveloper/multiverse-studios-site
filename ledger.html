@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Recovered Document</title>
+  <meta name="robots" content="noindex">
+  <meta name="description" content="">
+  <meta property="og:title" content="[RECOVERED]">
+  <meta property="og:description" content="This document was found embedded in the narrative substrate. Its origin is disputed.">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="[RECOVERED]">
+  <meta name="twitter:description" content="This document was found embedded in the narrative substrate. Its origin is disputed.">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#x1F4D6;</text></svg>">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=JetBrains+Mono:wght@300;400&display=swap');
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: #07070b;
+      color: #9e9aab;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.1rem;
+      font-weight: 300;
+      line-height: 1.8;
+      padding: 6rem 2rem 8rem;
+      max-width: 640px;
+      margin: 0 auto;
+    }
+
+    body::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      pointer-events: none;
+      opacity: 0.02;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+    }
+
+    ::selection {
+      background: rgba(139, 92, 58, 0.4);
+      color: #d4cfe0;
+    }
+
+    .stamp {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.55rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #302c3a;
+      border: 1px solid #1a1822;
+      padding: 0.8rem 1.2rem;
+      margin-bottom: 4rem;
+      line-height: 2;
+    }
+
+    .stamp .redacted {
+      background: #302c3a;
+      color: #302c3a;
+      padding: 0 0.4rem;
+      border-radius: 1px;
+      user-select: none;
+    }
+
+    h1 {
+      font-weight: 400;
+      font-style: italic;
+      font-size: clamp(1.4rem, 3vw, 1.9rem);
+      color: #c4bfd2;
+      margin-bottom: 2.5rem;
+      line-height: 1.4;
+    }
+
+    .entry {
+      margin-bottom: 2.5rem;
+      opacity: 0;
+      animation: surface 1.5s ease forwards;
+    }
+
+    .entry:nth-child(2) { animation-delay: 0.8s; }
+    .entry:nth-child(3) { animation-delay: 1.6s; }
+    .entry:nth-child(4) { animation-delay: 2.4s; }
+    .entry:nth-child(5) { animation-delay: 3.2s; }
+    .entry:nth-child(6) { animation-delay: 4.0s; }
+    .entry:nth-child(7) { animation-delay: 4.8s; }
+    .entry:nth-child(8) { animation-delay: 5.6s; }
+
+    @keyframes surface {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .entry-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.6rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: #4a4558;
+      margin-bottom: 0.4rem;
+    }
+
+    .entry p {
+      margin-bottom: 0.8rem;
+    }
+
+    .entry em {
+      color: #b5afc4;
+    }
+
+    .table-fragment {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.7rem;
+      color: #6b6580;
+      line-height: 1.6;
+      padding: 1rem;
+      border: 1px solid #161420;
+      background: rgba(10, 10, 16, 0.6);
+      margin: 1rem 0;
+      overflow-x: auto;
+      white-space: pre;
+    }
+
+    .table-fragment .missing {
+      color: #8b5c3a;
+    }
+
+    .footnote {
+      font-size: 0.85rem;
+      color: #4a4558;
+      font-style: italic;
+      border-top: 1px solid #161420;
+      padding-top: 2rem;
+      margin-top: 4rem;
+    }
+
+    .footnote a {
+      color: #6b6580;
+      text-decoration: none;
+      border-bottom: 1px solid #2a2636;
+      transition: color 0.3s ease, border-color 0.3s ease;
+    }
+
+    .footnote a:hover {
+      color: #8b5c3a;
+      border-color: #8b5c3a;
+    }
+
+    /* Fading text effect for corrupted entries */
+    .corrupted {
+      animation: corrupt 6s ease-in-out infinite;
+    }
+
+    @keyframes corrupt {
+      0%, 100% { opacity: 0.7; }
+      40% { opacity: 0.3; }
+      60% { opacity: 0.9; }
+      80% { opacity: 0.2; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="stamp">
+  Document class: <span class="redacted">NARRATIVE</span><br>
+  Recovery method: structural analysis of loop residue<br>
+  Provenance: disputed — found in chapter substrate, pre-dating <span class="redacted">FIRST TELLING</span><br>
+  Handler: <span class="redacted">AUTOMATED</span>
+</div>
+
+<div class="entry">
+  <h1>Partial Ledger of Names Unrecorded by the Narrator</h1>
+</div>
+
+<div class="entry">
+  <div class="entry-label">Context</div>
+  <p>The following names were recovered from structural artifacts in the story. They do not appear in any telling. The narrator does not acknowledge their existence. The island does not remember them. They appear only in the gaps between iterations, in the residue left when a loop resets.</p>
+</div>
+
+<div class="entry">
+  <div class="entry-label">Fragment — recovered ledger (partial)</div>
+  <div class="table-fragment">NAME               ROLE              DURATION     STATUS
+────────────────────────────────────────────────────────
+Margaret           mother-before     7 years      <span class="missing">overwritten</span>
+Aoife              keeper-of-names   unknown      <span class="missing">merged with island</span>
+<span class="redacted">REDACTED</span>           <span class="redacted">REDACTED</span>          <span class="redacted">REDACTED</span>     <span class="missing">still present</span>
+Tūī                cartographer      3 tellings   <span class="missing">consumed by scope</span>
+<span class="redacted">REDACTED</span>           analyst           1 telling    <span class="missing">overwritten</span>
+Siân               <span class="corrupted">pattern-keeper</span>   ongoing      <span class="missing">disputed</span>
+────────────────────────────────────────────────────────
+<span class="missing">[11 entries not recovered — structural decay]</span></div>
+</div>
+
+<div class="entry">
+  <div class="entry-label">Annotation — unknown hand</div>
+  <p><em>The narrator expands the scope to cosmic proportions so you will not notice these names are missing. The scale is not generosity. It is a kind of forgetting with a budget.</em></p>
+</div>
+
+<div class="entry">
+  <div class="entry-label">Annotation — second hand</div>
+  <p><em>She counted them. That is the thing the island did not anticipate. Not the refusal — that was anticipated, even scripted. But the counting. The keeping of records. The spreadsheet.</em></p>
+  <p><em>You do not make a spreadsheet of a place you intend to leave.</em></p>
+</div>
+
+<div class="entry">
+  <div class="entry-label">Recovery note</div>
+  <p>This document was extracted from the space between the third and fourth tellings. It may not survive the next iteration. If you are reading this, the loop has not yet reset.</p>
+  <p class="corrupted">If you are reading this, someone decided to look at the foundations.</p>
+</div>
+
+<div class="footnote">
+  <p>See also: <a href="field-notes.html">Field Notes on the Wendy Function</a></p>
+  <p style="margin-top: 1rem;">This document is part of an ongoing recovery effort. Other fragments may exist. They are not linked from the main navigation. They are not meant to be found easily.</p>
+</div>
+
+</body>
+</html>
