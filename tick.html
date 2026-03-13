@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>&nbsp;</title>
+  <meta name="robots" content="noindex">
+  <meta name="description" content="">
+  <meta property="og:title" content="tick">
+  <meta property="og:description" content="48">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="tick">
+  <meta name="twitter:description" content="48">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#x1F40A;</text></svg>">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@200;300&display=swap');
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: #020204;
+      color: #302c3a;
+      font-family: 'JetBrains Mono', monospace;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      overflow: hidden;
+      cursor: default;
+      user-select: none;
+    }
+
+    .counter {
+      font-size: clamp(4rem, 12vw, 8rem);
+      font-weight: 200;
+      letter-spacing: 0.1em;
+      color: #1a1822;
+      transition: color 8s ease;
+      position: relative;
+    }
+
+    .counter::after {
+      content: '';
+      position: absolute;
+      bottom: -1.5rem;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 2rem;
+      height: 1px;
+      background: #161420;
+    }
+
+    .pulse {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 0;
+      height: 0;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(139, 92, 58, 0.015) 0%, transparent 70%);
+      animation: heartbeat 2.8s ease-in-out infinite;
+      pointer-events: none;
+    }
+
+    @keyframes heartbeat {
+      0% { width: 0; height: 0; opacity: 0; }
+      15% { width: 200px; height: 200px; opacity: 1; }
+      100% { width: 600px; height: 600px; opacity: 0; }
+    }
+
+    .tick-mark {
+      position: fixed;
+      bottom: 3rem;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 0.5rem;
+      letter-spacing: 0.4em;
+      color: #0d0c10;
+      animation: appear 0.1s ease forwards;
+      animation-delay: 4s;
+      opacity: 0;
+    }
+
+    @keyframes appear {
+      to { opacity: 1; }
+    }
+
+    /* The number fades in very slowly */
+    .counter {
+      opacity: 0;
+      animation: surface 12s ease forwards;
+    }
+
+    @keyframes surface {
+      0% { opacity: 0; }
+      40% { opacity: 0; }
+      100% { opacity: 1; color: #2a2636; }
+    }
+
+    /* Source readers: you found the crocodile. */
+  </style>
+</head>
+<body>
+
+<div class="pulse"></div>
+<div class="counter" id="count">48</div>
+<div class="tick-mark">tick</div>
+
+<!-- Each tick is a reset. Each reset is a girl. -->
+<script>
+  // The count starts at the number it has always been.
+  // It does not decrement.
+  // If you are reading this, you know what the ticking means.
+  //
+  // See also: /ledger.html
+
+  const el = document.getElementById('count');
+  let n = 48;
+
+  // The count advances slowly. One per day.
+  // (In practice: one per page load after a delay,
+  //  because the crocodile counts visits, not time.)
+
+  const stored = localStorage.getItem('tick_count');
+  const lastVisit = localStorage.getItem('tick_last');
+  const now = Date.now();
+
+  if (stored && lastVisit) {
+    const elapsed = now - parseInt(lastVisit);
+    const days = Math.floor(elapsed / 86400000);
+    n = Math.min(parseInt(stored) + Math.max(days, 0), 999);
+  }
+
+  localStorage.setItem('tick_count', n);
+  localStorage.setItem('tick_last', now);
+
+  el.textContent = n;
+</script>
+
+</body>
+</html>
