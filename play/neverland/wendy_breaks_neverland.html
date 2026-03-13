@@ -567,6 +567,8 @@ function continueStory() {
   updateIterationCounter();
 
   if (hitGenerate) {
+    markFirstPlaythroughComplete();
+    updateARGData('reached_infinite_game');
     setTimeout(() => requestGeneration(), delay);
     return;
   }
@@ -587,6 +589,8 @@ function continueStory() {
       }, 300);
     }, delay);
   } else {
+    markFirstPlaythroughComplete();
+    updateARGData('reached_ending');
     document.getElementById('restart').style.display = 'block';
   }
 }
@@ -603,6 +607,17 @@ function makeChoice(index) {
   storyEl.appendChild(sep);
 
   story.ChooseChoiceIndex(index);
+
+  // Track significant choices for ARG
+  var vars = getInkVariables();
+  if (vars.stayed) updateARGData('chose_to_stay');
+  if (vars.exit_chosen) updateARGData('chose_to_leave');
+  if (vars.hook_spoken_to) updateARGData('spoke_to_hook');
+  if (vars.mermaids_spoken_to) updateARGData('spoke_to_mermaids');
+  if (vars.names_recovered) updateARGData('recovered_names');
+  if (vars.narrator_compromised) updateARGData('narrator_compromised');
+  if (vars.alarm_heard) updateARGData('heard_alarm');
+
   continueStory();
 }
 
@@ -627,6 +642,7 @@ function updateIterationCounter() {
 }
 
 function restartStory() {
+  updateARGData('loop_restart');
   initStory();
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
@@ -850,9 +866,28 @@ function parseHash() {
   return params;
 }
 
+function hasCompletedFirstPlaythrough() {
+  try {
+    return window.localStorage.getItem('nel_first_playthrough_complete') === 'true';
+  } catch(e) { return false; }
+}
+
+function markFirstPlaythroughComplete() {
+  try {
+    window.localStorage.setItem('nel_first_playthrough_complete', 'true');
+    window.localStorage.setItem('nel_first_complete_at', String(Date.now()));
+  } catch(e) {}
+}
+
 function applyJump() {
   const params = parseHash();
   if (!params || !params.jump) return false;
+
+  // Gate: no jumping until you've played through at least once
+  if (!hasCompletedFirstPlaythrough()) {
+    console.log('Jump blocked: first playthrough not complete');
+    return false;
+  }
 
   const knot = params.jump;
   delete params.jump;
@@ -877,6 +912,88 @@ function applyJump() {
 }
 
 // ============================================================
+// ARG USER DATA — cross-game variables for marketing
+// ============================================================
+// These variables use the 'mvs_' prefix and are stored in
+// localStorage on the shared multiversestudios.xyz domain.
+// Other games (Precursors, MVEE) can read them to create
+// cross-game ARG experiences.
+//
+// Keys:
+//   mvs_player_id         — stable anonymous player ID
+//   mvs_nel_milestones    — JSON array of milestone events
+//   mvs_nel_narrator_trust — how much the narrator was engaged with
+//   mvs_nel_loop_count    — how many times the player looped
+//   mvs_nel_choices_made  — total Ink choices made
+//   mvs_nel_endings_seen  — which endings the player has reached
+//   mvs_nel_first_visit   — timestamp of first visit
+//   mvs_nel_last_visit    — timestamp of most recent visit
+
+function getOrCreatePlayerId() {
+  try {
+    var id = window.localStorage.getItem('mvs_player_id');
+    if (id) return id;
+    // Generate a simple anonymous ID
+    id = 'mvs_' + Date.now().toString(36) + '_' + Math.random().toString(36).slice(2, 8);
+    window.localStorage.setItem('mvs_player_id', id);
+    return id;
+  } catch(e) { return null; }
+}
+
+function updateARGData(milestone) {
+  try {
+    getOrCreatePlayerId();
+
+    // Track first/last visit
+    if (!window.localStorage.getItem('mvs_nel_first_visit')) {
+      window.localStorage.setItem('mvs_nel_first_visit', String(Date.now()));
+    }
+    window.localStorage.setItem('mvs_nel_last_visit', String(Date.now()));
+
+    // Update choices count
+    window.localStorage.setItem('mvs_nel_choices_made', String(choiceHistory.length));
+
+    // Track ink variables for narrator trust
+    var vars = getInkVariables();
+    var trust = 0;
+    if (vars.narrator_compromised) trust += 3;
+    if (vars.loop_detected) trust += 2;
+    if (vars.spreadsheet_exists) trust += 1;
+    if (vars.reader_addressed) trust += 2;
+    window.localStorage.setItem('mvs_nel_narrator_trust', String(trust));
+
+    // Loop count
+    var timesRead = 0;
+    try { timesRead = story.variablesState['times_read_opening'] || 0; } catch(e) {}
+    window.localStorage.setItem('mvs_nel_loop_count', String(timesRead));
+
+    // Milestones
+    if (milestone) {
+      var milestones = [];
+      try {
+        milestones = JSON.parse(window.localStorage.getItem('mvs_nel_milestones') || '[]');
+      } catch(e) {}
+      if (milestones.indexOf(milestone) === -1) {
+        milestones.push(milestone);
+        window.localStorage.setItem('mvs_nel_milestones', JSON.stringify(milestones));
+      }
+    }
+
+    // Endings seen
+    if (milestone && (milestone.indexOf('ending') !== -1 || milestone.indexOf('exit') !== -1 || milestone.indexOf('infinite') !== -1)) {
+      var endings = [];
+      try {
+        endings = JSON.parse(window.localStorage.getItem('mvs_nel_endings_seen') || '[]');
+      } catch(e) {}
+      if (endings.indexOf(milestone) === -1) {
+        endings.push(milestone);
+        window.localStorage.setItem('mvs_nel_endings_seen', JSON.stringify(endings));
+      }
+    }
+  } catch(e) {}
+}
+
+// ============================================================
 // LOAD & INIT
 // ============================================================
 
@@ -894,6 +1011,8 @@ async function loadAndInit() {
     window.storyJson = await jsonResponse.json();
 
     initStory();
+    getOrCreatePlayerId();
+    updateARGData('started_ink_game');
 
     if (window.location.hash.includes('jump=')) {
       if (applyJump()) {

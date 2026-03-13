@@ -462,6 +462,90 @@
     text-shadow: 0 0 12px rgba(236, 216, 181, 0.1);
   }
 
+  /* Narrator aside — fixed strip */
+  #narrator-aside {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 10;
+    padding: 10px 24px;
+    font-family: 'Special Elite', monospace;
+    font-size: 0.72rem;
+    color: var(--ink-faint);
+    text-align: center;
+    letter-spacing: 0.06em;
+    background: linear-gradient(0deg, rgba(220, 201, 162, 0.92), rgba(220, 201, 162, 0));
+    opacity: 0;
+    transform: translateY(8px);
+    transition: opacity 1.8s ease, transform 1.2s ease;
+    pointer-events: none;
+    cursor: default;
+  }
+
+  #narrator-aside.visible {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+  }
+
+  #narrator-aside.clickable {
+    cursor: pointer;
+  }
+
+  #narrator-aside.clickable:hover {
+    color: var(--ink-soft);
+  }
+
+  body[data-theme="moonlit"] #narrator-aside {
+    color: rgba(255, 245, 228, 0.42);
+    background: linear-gradient(0deg, rgba(49, 37, 29, 0.94), rgba(49, 37, 29, 0));
+  }
+
+  body[data-theme="moonlit"] #narrator-aside.clickable:hover {
+    color: rgba(255, 245, 228, 0.72);
+  }
+
+  /* Narrator whisper — inline interactive fragments */
+  .narrator-whisper {
+    border-bottom: 1px dotted rgba(92, 62, 35, 0.25);
+    cursor: help;
+    transition: color 0.3s ease, border-color 0.3s ease;
+    position: relative;
+  }
+
+  .narrator-whisper:hover {
+    color: var(--rose);
+    border-color: var(--rose);
+  }
+
+  .narrator-whisper-reveal {
+    display: none;
+    font-style: italic;
+    color: var(--ink-faint);
+    font-size: 0.88em;
+    margin: 0.4em 0 0.8em;
+    padding-left: 1.2em;
+    border-left: 2px solid rgba(92, 62, 35, 0.18);
+    opacity: 0;
+    animation: fadeInNarrator 0.8s ease forwards;
+  }
+
+  .narrator-whisper-reveal.shown { display: block; }
+
+  body[data-theme="moonlit"] .narrator-whisper {
+    border-bottom-color: rgba(255, 214, 157, 0.2);
+  }
+
+  body[data-theme="moonlit"] .narrator-whisper:hover {
+    color: var(--rose);
+  }
+
+  @keyframes fadeInNarrator {
+    from { opacity: 0; transform: translateY(4px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
   @media (max-width: 720px) {
     body {
       font-size: 19px;
@@ -484,6 +568,11 @@
 
     .glyph-stream {
       min-height: 12.6em;
+    }
+
+    #narrator-aside {
+      font-size: 0.64rem;
+      padding: 8px 16px;
     }
   }
 </style>
@@ -508,6 +597,8 @@
     </div>
   </div>
 </div>
+
+<div id="narrator-aside"></div>
 
 <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 <script>
@@ -680,6 +771,38 @@
     document.title = 'Never Ever Land';
     currentRenderedIndex = index;
     forceScrollToTop();
+
+    // ARG: track reading progress across games
+    try {
+      // Create stable player ID if not present
+      if (!window.localStorage.getItem('mvs_player_id')) {
+        var pid = 'mvs_' + Date.now().toString(36) + '_' + Math.random().toString(36).slice(2, 8);
+        window.localStorage.setItem('mvs_player_id', pid);
+      }
+      if (!window.localStorage.getItem('mvs_nel_first_visit')) {
+        window.localStorage.setItem('mvs_nel_first_visit', String(Date.now()));
+      }
+      window.localStorage.setItem('mvs_nel_last_visit', String(Date.now()));
+
+      // Track chapters read
+      var chaptersRead = [];
+      try { chaptersRead = JSON.parse(window.localStorage.getItem('mvs_nel_chapters_read') || '[]'); } catch(e) {}
+      var chapterKey = index === -1 ? 'opening' : 'chapter_' + index;
+      if (chaptersRead.indexOf(chapterKey) === -1) {
+        chaptersRead.push(chapterKey);
+        window.localStorage.setItem('mvs_nel_chapters_read', JSON.stringify(chaptersRead));
+      }
+
+      // Track milestone if they reached the final chapter link to the Ink game
+      if (index === 6) {
+        var milestones = [];
+        try { milestones = JSON.parse(window.localStorage.getItem('mvs_nel_milestones') || '[]'); } catch(e) {}
+        if (milestones.indexOf('read_all_tellings') === -1) {
+          milestones.push('read_all_tellings');
+          window.localStorage.setItem('mvs_nel_milestones', JSON.stringify(milestones));
+        }
+      }
+    } catch(e) {}
   }
 
   function forceScrollToTop() {
@@ -741,11 +864,11 @@
   function getNextLabel(index) {
     var labels = [
       "*[Editor's note: This is the first version. There are others. They do not all agree. The discrepancies are not errors.]*",
-      "*[This is where the second telling ends. It ends well. It ends cleanly. The narrator is satisfied. Please do not ask why the narrator is satisfied. Please do not ask what happens to Neverland after the protagonist leaves. Please do not check whether the moon has resumed its position over the lagoon. Please continue to the next telling.]*",
-      "*[The third telling ends here. It is the most expansive version so far. The narrator has been extremely generous with the scope. Cosmic, even. You may wish to ask yourself what a narrator gains by making a story so large that the reader forgets to look at its foundations. You may wish to count the mermaids again. You may wish to ask: in all this vast manifold of spacious authorship and dimensional hospitality — in all these worlds built from collaborative meaning and non-coercive relation — does anyone remember the names? The ones from the ledger. The ones from before Wendy. Does anyone, in all this beautiful infinity, remember them? Or has the scale itself become a kind of forgetting?]*",
-      "*[Fourth telling complete. The volume increases. The scope is now cosmic. The narrator would like you to notice how far we have traveled from a girl in a nightgown standing on an island. The narrator would like you to feel that the distance is progress. The narrator would very much prefer that you do not notice that in all four tellings, the same thing happens: Wendy leaves, and the story continues. The narrator is beginning to suspect that you have noticed anyway.]*",
-      "*[The fifth telling ends by looking at you. This is the narrator's final defensive maneuver: if the story can make you feel that you are part of the story, then your attention has been absorbed rather than directed. You are no longer a reader examining a text. You are a participant in a cosmic unfolding. You are flattered. You are included.]*",
-      "*[You could close this now. The island expects you to. Or you could stay in the room where the loop doesn't reset and the narrator is compromised. You could refuse to complete the iteration. It's your choice. The island has no procedure for your choice. That's what makes it real.]*"
+      "*[It ends cleanly. It ends well. Everything in its place. If you count the names at the beginning and the names at the end, you will find the numbers match. Please continue to the next telling.]*",
+      "*[The scope has grown. Notice how much larger the world is now — how many more rooms, how much more sky. A generous telling. Plenty of space for everything. Plenty of space.]*",
+      "*[Four versions now, each wider than the last. A girl stood on an island once. The distance between that image and this one must be progress. What else could distance be?]*",
+      "*[This version looked at you. That felt important, didn't it? Being seen by a story. You might want to sit with that feeling for a moment before you ask who arranged it.]*",
+      "*[You could close this now. The island has a procedure for closing. It does not have a procedure for what you're doing instead.]*"
     ];
     return labels[index] || 'Continue →';
   }
@@ -798,6 +921,165 @@
   window.addEventListener('DOMContentLoaded', function() {
     loadStory({ withTransition: false });
   });
+
+  // ============================================
+  // NARRATOR INTERACTION SYSTEM
+  // ============================================
+
+  var narratorState = {
+    hasScrolledToBottom: false,
+    idleSeconds: 0,
+    idleTimer: null,
+    currentAsideIndex: -1,
+    interactionCount: 0,
+    chaptersVisited: [],
+    asideClicked: false
+  };
+
+  // Narrator asides — things the narrator mutters depending on context.
+  // Keyed by chapter index (-1 = opening). Each chapter has idle asides
+  // (shown after lingering) and scroll asides (shown after reaching bottom).
+  var NARRATOR_ASIDES = {
+    '-1': {
+      idle: ['You're still on this page.', 'Most readers move on by now.'],
+      scroll: 'You read the whole thing. Noted.',
+      click: 'Yes. This version is public domain. That is what makes it safe.'
+    },
+    '0': {
+      idle: ['This version has more footnotes than the original.', 'The discrepancies are not errors.'],
+      scroll: 'You finished the first telling.',
+      click: 'There are other versions. They remember different things.'
+    },
+    '1': {
+      idle: ['A clean ending.', 'Everything accounted for.'],
+      scroll: 'The numbers match. You checked, didn't you?',
+      click: null
+    },
+    '2': {
+      idle: ['It's larger this time.', 'Room for everything.'],
+      scroll: 'There was enough space. There is always enough space.',
+      click: 'Count them.'
+    },
+    '3': {
+      idle: ['Wider and wider.'],
+      scroll: 'She leaves. The story continues. This is what stories do.',
+      click: null
+    },
+    '4': {
+      idle: ['You were seen.'],
+      scroll: null,
+      click: 'Feeling seen is a form of containment, if arranged correctly.'
+    },
+    '5': {
+      idle: ['You're still here.', 'The island noticed.'],
+      scroll: 'This is not a procedure the island recognizes.',
+      click: 'Good.'
+    }
+  };
+
+  function getNarratorAside() {
+    var idx = String(getStoryIndex());
+    return NARRATOR_ASIDES[idx] || null;
+  }
+
+  function showNarratorAside(text, clickable) {
+    var el = document.getElementById('narrator-aside');
+    if (!el || !text) return;
+    el.textContent = text;
+    el.classList.add('visible');
+    if (clickable) {
+      el.classList.add('clickable');
+    } else {
+      el.classList.remove('clickable');
+    }
+  }
+
+  function hideNarratorAside() {
+    var el = document.getElementById('narrator-aside');
+    if (el) {
+      el.classList.remove('visible');
+      el.classList.remove('clickable');
+    }
+  }
+
+  // Idle detection — narrator comments when you linger
+  function resetIdleTimer() {
+    narratorState.idleSeconds = 0;
+    if (narratorState.idleTimer) {
+      clearInterval(narratorState.idleTimer);
+    }
+    hideNarratorAside();
+    narratorState.idleTimer = setInterval(function() {
+      narratorState.idleSeconds += 1;
+      if (narratorState.idleSeconds === 30) {
+        var aside = getNarratorAside();
+        if (aside && aside.idle && aside.idle.length > 0) {
+          var msg = aside.idle[Math.min(narratorState.interactionCount, aside.idle.length - 1)];
+          showNarratorAside(msg, Boolean(aside.click));
+        }
+      }
+    }, 1000);
+  }
+
+  // Scroll detection — narrator comments when you reach the bottom
+  function checkScrollPosition() {
+    var scrollBottom = window.scrollY + window.innerHeight;
+    var docHeight = document.documentElement.scrollHeight;
+    if (scrollBottom >= docHeight - 100 && !narratorState.hasScrolledToBottom) {
+      narratorState.hasScrolledToBottom = true;
+      var aside = getNarratorAside();
+      if (aside && aside.scroll) {
+        setTimeout(function() {
+          showNarratorAside(aside.scroll, Boolean(aside.click));
+        }, 2000);
+      }
+    }
+  }
+
+  // Click on narrator aside — reveals deeper response
+  function handleAsideClick() {
+    var aside = getNarratorAside();
+    if (aside && aside.click && !narratorState.asideClicked) {
+      narratorState.asideClicked = true;
+      narratorState.interactionCount += 1;
+      showNarratorAside(aside.click, false);
+      // Track this interaction for the ARG
+      try {
+        var interactions = JSON.parse(window.localStorage.getItem('nel_narrator_interactions') || '[]');
+        interactions.push({ chapter: getStoryIndex(), time: Date.now() });
+        window.localStorage.setItem('nel_narrator_interactions', JSON.stringify(interactions));
+      } catch(e) {}
+    }
+  }
+
+  window.addEventListener('DOMContentLoaded', function() {
+    var asideEl = document.getElementById('narrator-aside');
+    if (asideEl) {
+      asideEl.addEventListener('click', handleAsideClick);
+    }
+
+    resetIdleTimer();
+
+    ['scroll', 'mousemove', 'keydown', 'touchstart'].forEach(function(evt) {
+      window.addEventListener(evt, function() {
+        if (narratorState.idleSeconds < 30) {
+          resetIdleTimer();
+        }
+      }, { passive: true });
+    });
+
+    window.addEventListener('scroll', checkScrollPosition, { passive: true });
+  });
+
+  // Reset narrator state on chapter change
+  var originalLoadStory = loadStory;
+  loadStory = function(options) {
+    narratorState.hasScrolledToBottom = false;
+    narratorState.asideClicked = false;
+    hideNarratorAside();
+    resetIdleTimer();
+    return originalLoadStory(options);
+  };
 })();
 </script>
 
