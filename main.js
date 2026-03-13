@@ -59,6 +59,7 @@
 
 // --- Scroll Reveal ---
 (function initReveal() {
+  document.documentElement.classList.add('js-animations');
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {

@@ -817,13 +817,18 @@ img { max-width: 100%; display: block; }
 }
 
 /* --- Scroll Animations --- */
+/* Default: visible for crawlers, search engines, and social preview bots */
 .reveal {
-  opacity: 0;
-  transform: translateY(30px);
   transition: opacity 0.8s ease, transform 0.8s ease;
 }
 
-.reveal.visible {
+/* Only hide when JS is running (class added by main.js initReveal) */
+.js-animations .reveal {
+  opacity: 0;
+  transform: translateY(30px);
+}
+
+.js-animations .reveal.visible {
   opacity: 1;
   transform: translateY(0);
 }
