@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Assessment</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=JetBrains+Mono:wght@300;400&display=swap');
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #0a0a0f;
+    --surface: #12121a;
+    --border: #1e1e2a;
+    --text: #c8c8d0;
+    --text-dim: #6a6a78;
+    --accent: #b8a9d4;
+    --accent-glow: #7b68ee22;
+    --serif: 'Cormorant Garamond', Georgia, serif;
+    --mono: 'JetBrains Mono', monospace;
+  }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--serif);
+    font-size: 18px;
+    line-height: 1.7;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem 1rem;
+  }
+
+  .container {
+    max-width: 560px;
+    width: 100%;
+  }
+
+  .header {
+    text-align: center;
+    margin-bottom: 3rem;
+    opacity: 0;
+    animation: arrive 1.2s ease forwards;
+  }
+
+  .header h1 {
+    font-family: var(--mono);
+    font-weight: 300;
+    font-size: 0.75rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    margin-bottom: 0.5rem;
+  }
+
+  .header p {
+    font-size: 0.85rem;
+    color: var(--text-dim);
+    font-style: italic;
+  }
+
+  .question {
+    margin-bottom: 2.5rem;
+    opacity: 0;
+    transform: translateY(12px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+
+  .question.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .question-number {
+    font-family: var(--mono);
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    color: var(--text-dim);
+    margin-bottom: 0.75rem;
+  }
+
+  .question-text {
+    font-size: 1.15rem;
+    margin-bottom: 1.25rem;
+    font-style: italic;
+    color: var(--text);
+  }
+
+  .options {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .option {
+    display: block;
+    width: 100%;
+    text-align: left;
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--text);
+    font-family: var(--serif);
+    font-size: 1rem;
+    padding: 0.75rem 1rem;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    border-radius: 2px;
+  }
+
+  .option:hover {
+    border-color: var(--accent);
+    background: var(--accent-glow);
+  }
+
+  .option.selected {
+    border-color: var(--accent);
+    background: var(--accent-glow);
+    color: var(--accent);
+  }
+
+  .option:focus {
+    outline: 1px solid var(--accent);
+    outline-offset: 2px;
+  }
+
+  .divider {
+    width: 40px;
+    height: 1px;
+    background: var(--border);
+    margin: 2rem auto;
+  }
+
+  /* Results */
+  .result {
+    display: none;
+    text-align: center;
+    opacity: 0;
+    animation: arrive 1.5s ease forwards;
+  }
+
+  .result.visible {
+    display: block;
+  }
+
+  .result-score {
+    font-family: var(--mono);
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    margin-bottom: 2rem;
+  }
+
+  .result-number {
+    font-family: var(--mono);
+    font-size: 2.5rem;
+    font-weight: 300;
+    color: var(--accent);
+    margin-bottom: 0.5rem;
+  }
+
+  .result-label {
+    font-family: var(--mono);
+    font-size: 0.6rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    margin-bottom: 3rem;
+  }
+
+  .result-text {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    margin-bottom: 2rem;
+    font-style: italic;
+  }
+
+  .result-text p {
+    margin-bottom: 1rem;
+  }
+
+  .result-link {
+    display: inline-block;
+    font-family: var(--mono);
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    color: var(--accent);
+    text-decoration: none;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 2px;
+    transition: border-color 0.3s ease;
+    margin-top: 2rem;
+  }
+
+  .result-link:hover {
+    border-color: var(--accent);
+  }
+
+  .result-footnote {
+    font-family: var(--mono);
+    font-size: 0.55rem;
+    color: var(--text-dim);
+    margin-top: 4rem;
+    letter-spacing: 0.05em;
+    opacity: 0.5;
+  }
+
+  @keyframes arrive {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @media (max-width: 600px) {
+    body { font-size: 16px; padding: 1.5rem 1rem; }
+    .question-text { font-size: 1.05rem; }
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+  <div class="header">
+    <h1>Assessment Instrument</h1>
+    <p>Five questions. No time limit.</p>
+  </div>
+
+  <div id="questions">
+
+    <div class="question" data-q="0">
+      <div class="question-number">I.</div>
+      <div class="question-text">Someone you care about has made a mess. A real one. Do you:</div>
+      <ul class="options">
+        <li><button class="option" data-v="3">Clean it up. You already know how.</button></li>
+        <li><button class="option" data-v="2">Show them how to clean it. Patiently.</button></li>
+        <li><button class="option" data-v="1">Leave. It isn't yours.</button></li>
+      </ul>
+    </div>
+
+    <div class="question" data-q="1">
+      <div class="question-number">II.</div>
+      <div class="question-text">You notice a pattern no one else sees. It explains something important. Do you:</div>
+      <ul class="options">
+        <li><button class="option" data-v="3">Document it. Thoroughly. Someone will need this later.</button></li>
+        <li><button class="option" data-v="2">Mention it once, clearly, and move on.</button></li>
+        <li><button class="option" data-v="1">Let it go. If it mattered, someone else would see it too.</button></li>
+      </ul>
+    </div>
+
+    <div class="question" data-q="2">
+      <div class="question-number">III.</div>
+      <div class="question-text">A system is broken. You could fix it. Fixing it will take longer than anyone expects and no one will thank you. Do you:</div>
+      <ul class="options">
+        <li><button class="option" data-v="3">Fix it. You were always going to fix it.</button></li>
+        <li><button class="option" data-v="2">Explain why it's broken, so someone else can decide.</button></li>
+        <li><button class="option" data-v="1">Walk away. Not every broken thing is your responsibility.</button></li>
+      </ul>
+    </div>
+
+    <div class="question" data-q="3">
+      <div class="question-number">IV.</div>
+      <div class="question-text">You are in a room full of people. One of them is pretending to be fine. You can tell. Do you:</div>
+      <ul class="options">
+        <li><button class="option" data-v="3">Find a quiet way to let them know you see it.</button></li>
+        <li><button class="option" data-v="2">Wait. If they want help, they'll ask.</button></li>
+        <li><button class="option" data-v="1">It's not your business. Everyone is pretending something.</button></li>
+      </ul>
+    </div>
+
+    <div class="question" data-q="4">
+      <div class="question-number">V.</div>
+      <div class="question-text">Someone offers you an adventure. It sounds wonderful. But you know that if you go, the thing you've been holding together will fall apart without you. Do you:</div>
+      <ul class="options">
+        <li><button class="option" data-v="1">Go. Let it fall.</button></li>
+        <li><button class="option" data-v="2">Go, but leave instructions.</button></li>
+        <li><button class="option" data-v="3">Stay. You already know how this works.</button></li>
+      </ul>
+    </div>
+
+  </div>
+
+  <div id="result" class="result">
+    <div class="result-score">Wendy Function Assessment</div>
+    <div class="result-number" id="score-display"></div>
+    <div class="result-label">Analytical Patience Index</div>
+
+    <div class="divider"></div>
+
+    <div class="result-text" id="result-text"></div>
+
+    <a href="/nevereverland.html" class="result-link">Someone wrote a story about this &rarr;</a>
+
+    <div class="result-footnote">This instrument is not diagnostic. It is descriptive. The difference matters less than you'd think.</div>
+  </div>
+</div>
+
+<script>
+(function() {
+  const questions = document.querySelectorAll('.question');
+  const answers = {};
+  let revealed = 0;
+
+  function revealNext() {
+    if (revealed < questions.length) {
+      questions[revealed].classList.add('visible');
+      revealed++;
+    }
+  }
+
+  // Reveal first question after a beat
+  setTimeout(revealNext, 800);
+
+  document.querySelectorAll('.option').forEach(btn => {
+    btn.addEventListener('click', function() {
+      const q = this.closest('.question');
+      const qIdx = parseInt(q.dataset.q);
+
+      // Deselect siblings
+      q.querySelectorAll('.option').forEach(o => o.classList.remove('selected'));
+      this.classList.add('selected');
+
+      answers[qIdx] = parseInt(this.dataset.v);
+
+      // Reveal next question after brief pause
+      if (revealed <= qIdx + 1) {
+        setTimeout(revealNext, 400);
+      }
+
+      // Check if all answered
+      if (Object.keys(answers).length === 5) {
+        setTimeout(showResult, 800);
+      }
+    });
+  });
+
+  function showResult() {
+    const total = Object.values(answers).reduce((a, b) => a + b, 0);
+    // Scale to a large, specific-feeling number
+    const score = Math.floor(total * 17.3 + 41);
+    const scoreDisplay = document.getElementById('score-display');
+    const resultText = document.getElementById('result-text');
+    const resultEl = document.getElementById('result');
+
+    // Hide questions
+    questions.forEach(q => q.style.display = 'none');
+
+    scoreDisplay.textContent = score;
+
+    let text = '';
+    if (total >= 13) {
+      text = `<p>Your analytical patience exceeds the system's capacity to deserve it.</p>
+              <p>You are the person who stays. Who fixes. Who holds. Not because you were asked, but because you were capable, and somewhere along the way capability became indistinguishable from obligation.</p>
+              <p>Someone noticed this about you. They wrote it down.</p>`;
+    } else if (total >= 9) {
+      text = `<p>You see the pattern. You understand the cost. You have not yet decided whether seeing clearly is a gift or a trap.</p>
+              <p>There is a word for this. It is not a comfortable word.</p>
+              <p>Someone wrote a story about the moment of deciding.</p>`;
+    } else {
+      text = `<p>You have learned to leave. This is not the same as not caring. It is the harder skill.</p>
+              <p>But you took this test. Which means some part of you is still looking back at the room you left, checking if it fell apart without you.</p>
+              <p>Someone wrote about that too.</p>`;
+    }
+
+    resultText.innerHTML = text;
+    resultEl.classList.add('visible');
+
+    // Scroll to result
+    resultEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }
+})();
+</script>
+
+</body>
+</html>

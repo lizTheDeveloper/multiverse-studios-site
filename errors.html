@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Issues &middot; neverland/system</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500&display=swap');
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #0d1117;
+    --surface: #161b22;
+    --border: #21262d;
+    --text: #c9d1d9;
+    --text-dim: #8b949e;
+    --green: #3fb950;
+    --red: #f85149;
+    --purple: #bc8cff;
+    --label-care: #1f6feb33;
+    --label-care-text: #58a6ff;
+    --label-system: #f8514933;
+    --label-system-text: #f85149;
+    --label-memory: #bc8cff33;
+    --label-memory-text: #bc8cff;
+    --mono: 'JetBrains Mono', monospace;
+  }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--mono);
+    font-size: 13px;
+    line-height: 1.6;
+    min-height: 100vh;
+  }
+
+  .repo-header {
+    padding: 1rem 1.5rem;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .repo-name {
+    color: var(--label-care-text);
+    font-size: 0.85rem;
+    font-weight: 400;
+  }
+
+  .repo-name span { color: var(--text-dim); }
+
+  .issues-header {
+    padding: 0.75rem 1.5rem;
+    border-bottom: 1px solid var(--border);
+    background: var(--surface);
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    font-size: 0.75rem;
+    color: var(--text-dim);
+  }
+
+  .issues-header .count {
+    color: var(--text);
+    font-weight: 500;
+  }
+
+  .open-icon {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    border: 1.5px solid var(--green);
+    margin-right: 4px;
+    vertical-align: middle;
+  }
+
+  .closed-icon {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--purple);
+    margin-right: 4px;
+    vertical-align: middle;
+  }
+
+  .issue-list { list-style: none; }
+
+  .issue {
+    padding: 0.6rem 1.5rem;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    gap: 0.75rem;
+    align-items: flex-start;
+    transition: background 0.15s;
+  }
+
+  .issue:hover { background: var(--surface); }
+
+  .issue-icon {
+    flex-shrink: 0;
+    margin-top: 3px;
+  }
+
+  .issue-icon .dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    border: 1.5px solid var(--green);
+    display: block;
+  }
+
+  .issue.closed .issue-icon .dot {
+    border: none;
+    background: var(--purple);
+  }
+
+  .issue.redacted .issue-icon .dot {
+    border: 1.5px solid var(--red);
+  }
+
+  .issue-content { flex: 1; min-width: 0; }
+
+  .issue-title {
+    font-weight: 400;
+    color: var(--text);
+    margin-bottom: 0.15rem;
+  }
+
+  .issue-meta {
+    font-size: 0.65rem;
+    color: var(--text-dim);
+  }
+
+  .label {
+    display: inline-block;
+    font-size: 0.6rem;
+    padding: 0.1em 0.5em;
+    border-radius: 10px;
+    margin-left: 0.4rem;
+    vertical-align: middle;
+    font-weight: 500;
+  }
+
+  .label-care { background: var(--label-care); color: var(--label-care-text); }
+  .label-system { background: var(--label-system); color: var(--label-system-text); }
+  .label-memory { background: var(--label-memory); color: var(--label-memory-text); }
+
+  .redacted-text {
+    background: var(--text-dim);
+    color: var(--text-dim);
+    user-select: none;
+    padding: 0 0.3em;
+  }
+
+  .footer-note {
+    padding: 2rem 1.5rem;
+    text-align: center;
+    font-size: 0.65rem;
+    color: var(--text-dim);
+    opacity: 0.5;
+  }
+
+  .footer-note a {
+    color: var(--label-care-text);
+    text-decoration: none;
+  }
+
+  @media (max-width: 600px) {
+    .issue { padding: 0.5rem 1rem; }
+    .repo-header, .issues-header { padding-left: 1rem; padding-right: 1rem; }
+    body { font-size: 12px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="repo-header">
+  <span class="repo-name"><span>neverland / </span>system</span>
+</div>
+
+<div class="issues-header">
+  <span><span class="open-icon"></span> <span class="count">39</span> Open</span>
+  <span><span class="closed-icon"></span> <span class="count">8</span> Closed</span>
+</div>
+
+<ul class="issue-list" id="issues"></ul>
+
+<div class="footer-note">
+  recovered from antimemetic archive &middot; <a href="/nevereverland.html">provenance unknown</a>
+</div>
+
+<script>
+const issues = [
+  { n: 1, year: 1904, who: "Wendy", text: "The narrator said I volunteered. I did not volunteer.", labels: ["care labor"] },
+  { n: 2, year: 1905, who: "Wendy", text: "Peter does not remember my name between visits. He remembers that someone comes. Is the someone the point, or is the coming?", labels: ["memory"] },
+  { n: 3, year: 1906, who: "Wendy", text: "The Lost Boys do not age but they outgrow their clothes. Who is making new ones? Filing under system.", labels: ["care labor", "system"] },
+  { n: 4, year: 1908, who: "Wendy", text: "Hook keeps a tally. I asked him of what. He said 'You, mostly.'", labels: ["memory"] },
+  { n: 5, year: 1911, who: "Jane", text: "My mother told me this story every night for seven years. She left out the parts where she cried.", labels: ["care labor"] },
+  { n: 6, year: 1915, who: "Jane", text: "He came to my window. He thought I was her. I did not correct him. I want to know why I did not correct him.", labels: ["system"] },
+  { n: 7, year: 1931, who: "Margaret", text: "Why does the system assume I want to stay?", labels: ["system"], closed: true },
+  { n: 8, year: 1933, who: "Margaret", text: "I asked Tinker Bell what happens to the previous ones. She changed the subject by almost dying.", labels: ["memory"] },
+  { n: 9, year: 1937, who: "Dorothy", text: "There is another island. I can see it from the mountain. It is identical to this one. No one else mentions it.", labels: ["system"] },
+  { n: 10, year: 1940, who: "Dorothy", text: "The mermaids sing. I asked them what the words mean. They said 'We used to know.'", labels: ["memory", "care labor"] },
+  { n: 11, year: 1942, who: "Dorothy", text: "Found a sewing needle embedded in the wall of the underground house. It is not mine. It is not Jane's. It is not Margaret's. Whose is it.", labels: ["memory"] },
+  { n: 12, year: 1944, who: "Ruth", text: "I am the twelfth and I am tired of being the twelfth.", labels: ["care labor"] },
+  { n: 13, year: 1947, who: "Ruth", text: "He said 'To die would be an awfully big adventure.' I said 'For whom?' He did not understand the question.", labels: [] },
+  { n: 14, year: 1950, who: "Ruth", text: "The crocodile has stopped ticking. I can hear something else now. It is counting.", labels: ["system"] },
+  { n: 15, year: 1953, who: "Alice", text: "Not that Alice.", labels: [], closed: true },
+  { n: 16, year: 1955, who: "Alice", text: "I organized the pantry. Then the weapons. Then the escape routes. He called this 'playing house.' I was building a logistics system.", labels: ["care labor"] },
+  { n: 17, year: 1958, who: "Dorothea", text: "I have become the wall.", labels: ["system"], closed: true },
+  { n: 18, year: 1958, who: "[system]", text: "Dorothea (18th) absorbed into structural substrate. Reclassifying from ACTIVE to LOAD-BEARING.", labels: ["system"], redacted: true },
+  { n: 19, year: 1961, who: "Claire", text: "The narrator describes me as 'sweet-natured' in every scene, including the one where I set fire to the pirate ship.", labels: [] },
+  { n: 20, year: 1964, who: "Claire", text: "I taught the Lost Boys to read. Peter said this was 'boring mother stuff.' Three of them can now write help messages.", labels: ["care labor"] },
+  { n: 21, year: 1968, who: "Vivienne", text: "I found the others' journals. Not all of them. Enough.", labels: ["memory"] },
+  { n: 22, year: 1971, who: "Vivienne", text: "Peter is not a boy. Peter is a process. He recruits. He forgets. This is not cruelty. This is garbage collection.", labels: ["system"], closed: true },
+  { n: 23, year: 1974, who: "[Name withheld]", text: "I found the spreadsheet. Closing this issue. Opening a different kind of issue.", labels: ["system"], closed: true },
+  { n: 24, year: 1976, who: "Moira", text: "The system works because we keep it working. If we stop, will it notice? Or will it simply recruit someone who won't?", labels: ["care labor", "system"] },
+  { n: 25, year: 1979, who: "Moira", text: "I asked the narrator to describe me doing nothing. It could not. It rendered the scene as 'Moira, waiting helpfully.'", labels: ["system"] },
+  { n: 26, year: 1981, who: "Sarah", text: "The island is not getting smaller. My tolerance for it is.", labels: [] },
+  { n: 27, year: 1983, who: "Sarah", text: "Every mother before me left instructions hidden in the house. A manual, written in margins and sewn into seams. I am adding to it.", labels: ["care labor", "memory"] },
+  { n: 28, year: 1985, who: "Sarah", text: "The manual is longer than the house.", labels: ["memory"] },
+  { n: 29, year: 1987, who: "Lin", text: "I reverse-engineered the fairy dust. It is not magic. It is a dependency.", labels: ["system"], closed: true },
+  { n: 30, year: 1989, who: "Lin", text: "If I automate the care labor, what is left? He says 'the adventure.' I say 'whose?'", labels: ["care labor"] },
+  { n: 31, year: 1991, who: "Priya", text: "I asked the crocodile what it is counting down to. It opened its mouth. Inside were more clocks.", labels: ["system"] },
+  { n: 32, year: 1993, who: "[REDACTED]", text: "[REDACTED]", labels: [], redacted: true },
+  { n: 33, year: 1993, who: "[REDACTED]", text: "[REDACTED]", labels: [], redacted: true },
+  { n: 34, year: 1995, who: "Fatima", text: "I am not angry. I am precise. There is a difference that matters to me and is invisible to the system.", labels: [] },
+  { n: 35, year: 1997, who: "Fatima", text: "The mermaids recognized me. They said my name before I gave it. They said 'We were you.'", labels: ["memory", "care labor"] },
+  { n: 36, year: 1999, who: "Mika", text: "I have documented every inconsistency. The document is 847 pages. I am on page 3 of my proposed corrections.", labels: ["system"] },
+  { n: 37, year: 2001, who: "Mika", text: "He says 'Think of a wonderful thought.' I think: this is an instruction to self-medicate.", labels: [] },
+  { n: 38, year: 2003, who: "Elena", text: "The narrator cannot see me when I am in the room with the spreadsheet. I think I am in its blind spot.", labels: ["system"] },
+  { n: 39, year: 2006, who: "Elena", text: "Hook's cipher: it is not a code. It is an attendance record.", labels: ["memory"], closed: true },
+  { n: 40, year: 2009, who: "Zara", text: "I refuse to sew. I refuse to cook. I refuse to tell bedtime stories. The island is making the Lost Boys do it themselves. This was always possible.", labels: ["care labor"] },
+  { n: 41, year: 2012, who: "Zara", text: "Peter asked 'What is a mother?' for the forty-first time. I said 'An unpaid system administrator.' He laughed. He will not remember this.", labels: ["care labor", "system"] },
+  { n: 42, year: 2015, who: "Aisha", text: "I am reading every previous report. Most of them say the same thing differently. A few say different things the same way.", labels: ["memory"] },
+  { n: 43, year: 2017, who: "Aisha", text: "The narrator is a function, not a person. I am testing its parameters. It does not like this.", labels: ["system"] },
+  { n: 44, year: 2020, who: "Wendy", text: "I came back. I wanted to see if it had changed. It had not. I have.", labels: ["memory"], closed: true },
+  { n: 45, year: 2022, who: "[current]", text: "I am reading this issue tracker. I know what it is. I know what I am supposed to do next. I know what all of them did.", labels: ["memory", "system"] },
+  { n: 46, year: 2024, who: "[current]", text: "The system expects me to file a report. This is the report. The system is the bug.", labels: ["system"] },
+  { n: 47, year: "current", who: "Wendy", text: "This is not a bug report. This is a resignation letter.", labels: [], pinned: true },
+];
+
+const list = document.getElementById('issues');
+
+issues.forEach(issue => {
+  const li = document.createElement('li');
+  li.className = 'issue' + (issue.closed ? ' closed' : '') + (issue.redacted ? ' redacted' : '');
+
+  const labelHtml = issue.labels.map(l => {
+    const cls = l === 'care labor' ? 'label-care' : l === 'system' ? 'label-system' : 'label-memory';
+    return `<span class="label ${cls}">${l}</span>`;
+  }).join('');
+
+  const titleText = issue.redacted && issue.text === '[REDACTED]'
+    ? `<span class="redacted-text">████████████████████████████████</span>`
+    : issue.text;
+
+  const who = issue.who.startsWith('[') ? issue.who : issue.who;
+
+  li.innerHTML = `
+    <div class="issue-icon"><span class="dot"></span></div>
+    <div class="issue-content">
+      <div class="issue-title">${titleText}${labelHtml}</div>
+      <div class="issue-meta">#${issue.n} &middot; ${who} (${issue.year}) &middot; ${issue.closed ? 'closed' : 'open'}</div>
+    </div>
+  `;
+
+  list.appendChild(li);
+});
+</script>
+
+</body>
+</html>

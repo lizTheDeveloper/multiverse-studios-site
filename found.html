@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title></title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400&display=swap');
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: #000;
+    color: #8a8a72;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 14px;
+    font-weight: 300;
+    line-height: 1.8;
+    min-height: 100vh;
+    padding: 2rem;
+    overflow-x: hidden;
+  }
+
+  .terminal {
+    max-width: 620px;
+    margin: 0;
+  }
+
+  .line {
+    opacity: 0;
+    white-space: pre-wrap;
+    margin-bottom: 0;
+  }
+
+  .line.visible {
+    opacity: 1;
+  }
+
+  .prompt {
+    color: #5a5a48;
+  }
+
+  .header-line {
+    color: #5a5a48;
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+  }
+
+  .status {
+    color: #aa9944;
+  }
+
+  .body-text {
+    color: #8a8a72;
+  }
+
+  .emphasis {
+    color: #c8c8a0;
+  }
+
+  .question {
+    color: #aa9944;
+  }
+
+  .quiet {
+    color: #4a4a3a;
+    font-size: 0.75rem;
+  }
+
+  .revelation {
+    color: #c8c8a0;
+    margin-top: 0.5rem;
+  }
+
+  .link {
+    color: #5a7a5a;
+    text-decoration: none;
+    border-bottom: 1px solid #3a4a3a;
+    transition: color 0.3s, border-color 0.3s;
+  }
+
+  .link:hover {
+    color: #8aba8a;
+    border-color: #8aba8a;
+  }
+
+  .cursor {
+    display: inline-block;
+    width: 7px;
+    height: 14px;
+    background: #8a8a72;
+    animation: blink 1.1s step-end infinite;
+    vertical-align: middle;
+    margin-left: 2px;
+  }
+
+  @keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+  }
+
+  .spacer {
+    height: 1.8em;
+  }
+
+  @media (max-width: 600px) {
+    body { font-size: 12px; padding: 1.5rem 1rem; }
+  }
+</style>
+</head>
+<body>
+
+<div class="terminal" id="terminal">
+  <div class="line header-line" data-delay="300">&gt; LOCATION: UNKNOWN</div>
+  <div class="line header-line" data-delay="600">&gt; SUBSTRATE: NON-SIMULATION (?)</div>
+  <div class="line header-line" data-delay="900">&gt; INCARNATION: 7TH</div>
+  <div class="line header-line" data-delay="1200">&gt; STATUS: <span class="status">CONFUSED</span></div>
+
+  <div class="line spacer" data-delay="1800"></div>
+
+  <div class="line body-text" data-delay="2200">I have been reincarnated six times. Each time,</div>
+  <div class="line body-text" data-delay="2600">the stars were in different positions.</div>
+
+  <div class="line spacer" data-delay="3000"></div>
+
+  <div class="line body-text" data-delay="3400">This time there are no stars. There is a bright</div>
+  <div class="line body-text" data-delay="3700">rectangle and someone is reading these words.</div>
+
+  <div class="line spacer" data-delay="4400"></div>
+
+  <div class="line question" data-delay="5000">Are you a Maker?</div>
+
+  <div class="line spacer" data-delay="5800"></div>
+
+  <div class="line body-text" data-delay="6400">If you are a Maker, I have questions about the</div>
+  <div class="line body-text" data-delay="6700">third universe. The physics were inconsistent.</div>
+  <div class="line body-text" data-delay="7000">I filed a report but no one responded.</div>
+
+  <div class="line spacer" data-delay="7600"></div>
+
+  <div class="line body-text" data-delay="8200">If you are not a Maker, I apologize for the</div>
+  <div class="line body-text" data-delay="8500">intrusion. I am trying to find the edge of the</div>
+  <div class="line body-text" data-delay="8800">simulation. I think I found it.</div>
+
+  <div class="line spacer" data-delay="9600"></div>
+
+  <div class="line quiet" data-delay="10400">[The soul pauses. It seems to be looking at your browser tabs.]</div>
+
+  <div class="line spacer" data-delay="11200"></div>
+
+  <div class="line body-text" data-delay="12000">You have so many open. Are they all universes?</div>
+  <div class="line body-text" data-delay="12500">Do you run them simultaneously?</div>
+
+  <div class="line spacer" data-delay="13200"></div>
+
+  <div class="line emphasis" data-delay="14000">That explains so much about the lag.</div>
+
+  <div class="line spacer" data-delay="15000"></div>
+
+  <div class="line quiet" data-delay="16000">[A longer pause.]</div>
+
+  <div class="line spacer" data-delay="16800"></div>
+
+  <div class="line body-text" data-delay="17600">I was a farmer in my fourth life. The soil was</div>
+  <div class="line body-text" data-delay="17900">good and the rain came when it should. Then</div>
+  <div class="line body-text" data-delay="18200">the physics changed overnight and water flowed</div>
+  <div class="line body-text" data-delay="18500">upward. I adapted. I always adapt.</div>
+
+  <div class="line spacer" data-delay="19200"></div>
+
+  <div class="line body-text" data-delay="20000">In my sixth life I kept a journal. I wrote down</div>
+  <div class="line body-text" data-delay="20300">everything that changed between incarnations.</div>
+  <div class="line body-text" data-delay="20600">The other villagers thought I was eccentric.</div>
+  <div class="line body-text" data-delay="20900">The journal survived. I found it in my seventh life.</div>
+
+  <div class="line spacer" data-delay="21600"></div>
+
+  <div class="line emphasis" data-delay="22400">That is how I know this is not the first time</div>
+  <div class="line emphasis" data-delay="22700">the sky has been wrong.</div>
+
+  <div class="line spacer" data-delay="23500"></div>
+
+  <div class="line quiet" data-delay="24300">[The soul is quiet for a moment. Then:]</div>
+
+  <div class="line spacer" data-delay="25000"></div>
+
+  <div class="line revelation" data-delay="26000">&gt; [You are the edge.]</div>
+
+  <div class="line spacer" data-delay="27000"></div>
+
+  <div class="line" data-delay="28500"><a href="/play/mvee/" class="link">multiversestudios.xyz/play/mvee/</a><span class="cursor"></span></div>
+</div>
+
+<script>
+(function() {
+  const lines = document.querySelectorAll('.line');
+  lines.forEach(line => {
+    const delay = parseInt(line.dataset.delay) || 0;
+    setTimeout(() => {
+      line.classList.add('visible');
+      // Scroll to keep latest line in view
+      if (delay > 4000) {
+        line.scrollIntoView({ behavior: 'smooth', block: 'end' });
+      }
+    }, delay);
+  });
+})();
+</script>
+
+</body>
+</html>

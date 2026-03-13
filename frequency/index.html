@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>63.8°N, 3.2°W</title>
+  <meta name="description" content="The signal persists.">
+  <meta property="og:title" content="63.8°N, 3.2°W">
+  <meta property="og:description" content="The signal persists.">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="63.8°N, 3.2°W">
+  <meta name="twitter:description" content="The signal persists.">
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=JetBrains+Mono:wght@300;400&display=swap">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><rect width='16' height='16' fill='%23050508'/></svg>">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --void: #050508;
+      --star-white: #e8e6f0;
+      --dust: #4a4656;
+      --ash: #8a8694;
+      --biolume: #00ffc8;
+      --void-border: #1a1a24;
+    }
+
+    html, body {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      background: var(--void);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    body {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Cormorant Garamond', serif;
+      color: var(--star-white);
+      cursor: default;
+      user-select: none;
+    }
+
+    #dust-canvas {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    .container {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0;
+      width: 100%;
+      max-width: 640px;
+      padding: 2rem;
+    }
+
+    .coordinates {
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 300;
+      font-size: 0.72rem;
+      letter-spacing: 0.25em;
+      color: var(--dust);
+      opacity: 0;
+      animation: breathe-in 4s ease-out 0.5s forwards;
+      margin-bottom: 3rem;
+    }
+
+    #waveform {
+      width: 100%;
+      max-width: 480px;
+      height: 120px;
+      opacity: 0;
+      animation: breathe-in 3s ease-out 1s forwards;
+    }
+
+    .tagline {
+      font-style: italic;
+      font-weight: 300;
+      font-size: 1.05rem;
+      color: var(--ash);
+      letter-spacing: 0.03em;
+      line-height: 1.8;
+      text-align: center;
+      margin-top: 2.5rem;
+      opacity: 0;
+      animation: breathe-in 4s ease-out 2s forwards;
+    }
+
+    .input-zone {
+      margin-top: 4rem;
+      width: 100%;
+      max-width: 280px;
+      opacity: 0;
+      animation: breathe-in 3s ease-out 3.5s forwards;
+    }
+
+    .input-zone input {
+      width: 100%;
+      background: transparent;
+      border: none;
+      border-bottom: 1px solid var(--void-border);
+      color: var(--star-white);
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 300;
+      font-size: 0.8rem;
+      letter-spacing: 0.08em;
+      padding: 0.6rem 0;
+      outline: none;
+      caret-color: var(--dust);
+      transition: border-color 1.2s ease, box-shadow 1.2s ease;
+    }
+
+    .input-zone input:focus {
+      border-bottom-color: var(--biolume);
+      box-shadow: 0 1px 0 0 rgba(0, 255, 200, 0.15);
+      caret-color: var(--biolume);
+    }
+
+    .input-zone input::placeholder {
+      color: transparent;
+    }
+
+    .response-area {
+      margin-top: 2rem;
+      min-height: 80px;
+      text-align: center;
+      width: 100%;
+      max-width: 400px;
+    }
+
+    .response-line {
+      font-style: italic;
+      font-weight: 300;
+      font-size: 0.95rem;
+      color: var(--ash);
+      line-height: 1.9;
+      opacity: 0;
+      transform: translateY(6px);
+      animation: response-appear 2s ease-out forwards;
+    }
+
+    .response-line.biolume-flash {
+      color: var(--biolume);
+      opacity: 0;
+      animation: biolume-pulse 3s ease-out forwards;
+    }
+
+    .idle-message {
+      position: fixed;
+      bottom: 12%;
+      left: 50%;
+      transform: translateX(-50%);
+      font-style: italic;
+      font-weight: 300;
+      font-size: 0.85rem;
+      color: var(--dust);
+      opacity: 0;
+      pointer-events: none;
+      z-index: 2;
+    }
+
+    .idle-message.visible {
+      animation: idle-fade 6s ease-in-out forwards;
+    }
+
+    @keyframes breathe-in {
+      from { opacity: 0; transform: translateY(4px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes response-appear {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 0.8; transform: translateY(0); }
+    }
+
+    @keyframes biolume-pulse {
+      0% { opacity: 0; }
+      15% { opacity: 0.9; }
+      100% { opacity: 0.4; }
+    }
+
+    @keyframes idle-fade {
+      0% { opacity: 0; }
+      15% { opacity: 0.6; }
+      85% { opacity: 0.6; }
+      100% { opacity: 0; }
+    }
+
+    @media (max-width: 480px) {
+      .container { padding: 1.5rem; }
+      #waveform { height: 80px; }
+      .tagline { font-size: 0.92rem; }
+      .coordinates { font-size: 0.65rem; }
+      .input-zone { max-width: 220px; }
+    }
+  </style>
+</head>
+<body>
+
+<canvas id="dust-canvas"></canvas>
+
+<div class="container">
+  <div class="coordinates">63.8°N&ensp;&middot;&ensp;3.2°W</div>
+  <canvas id="waveform"></canvas>
+  <p class="tagline">Seven answered. Seven failed.<br>The signal persists.</p>
+  <div class="input-zone">
+    <input type="text" id="query" autocomplete="off" spellcheck="false" aria-label="Query">
+  </div>
+  <div class="response-area" id="response-area"></div>
+</div>
+
+<div class="idle-message" id="idle-msg">You're not ready yet.</div>
+
+<script>
+(function () {
+  // ─── DUST PARTICLES ───
+  const dustCanvas = document.getElementById('dust-canvas');
+  const dustCtx = dustCanvas.getContext('2d');
+  let dW, dH;
+
+  function resizeDust() {
+    dW = dustCanvas.width = window.innerWidth;
+    dH = dustCanvas.height = window.innerHeight;
+  }
+  resizeDust();
+  window.addEventListener('resize', resizeDust);
+
+  const particles = [];
+  const PARTICLE_COUNT = 60;
+
+  for (let i = 0; i < PARTICLE_COUNT; i++) {
+    particles.push({
+      x: Math.random() * 2000,
+      y: Math.random() * 2000,
+      r: Math.random() * 1.2 + 0.3,
+      dx: (Math.random() - 0.5) * 0.15,
+      dy: (Math.random() - 0.5) * 0.08 - 0.02,
+      alpha: Math.random() * 0.12 + 0.02,
+      phase: Math.random() * Math.PI * 2
+    });
+  }
+
+  function drawDust(t) {
+    dustCtx.clearRect(0, 0, dW, dH);
+    for (const p of particles) {
+      p.x += p.dx;
+      p.y += p.dy;
+      if (p.x < -10) p.x = dW + 10;
+      if (p.x > dW + 10) p.x = -10;
+      if (p.y < -10) p.y = dH + 10;
+      if (p.y > dH + 10) p.y = -10;
+
+      const flicker = p.alpha + Math.sin(t * 0.001 + p.phase) * 0.03;
+      dustCtx.beginPath();
+      dustCtx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+      dustCtx.fillStyle = `rgba(138, 134, 148, ${Math.max(0, flicker)})`;
+      dustCtx.fill();
+    }
+    requestAnimationFrame(drawDust);
+  }
+  requestAnimationFrame(drawDust);
+
+  // ─── WAVEFORM ───
+  const waveCanvas = document.getElementById('waveform');
+  const waveCtx = waveCanvas.getContext('2d');
+  let wW, wH;
+  let amplitudeMultiplier = 1;
+  let ampTarget = 1;
+
+  function resizeWave() {
+    const rect = waveCanvas.getBoundingClientRect();
+    wW = waveCanvas.width = rect.width * window.devicePixelRatio;
+    wH = waveCanvas.height = rect.height * window.devicePixelRatio;
+    waveCtx.scale(window.devicePixelRatio, window.devicePixelRatio);
+  }
+  resizeWave();
+  window.addEventListener('resize', resizeWave);
+
+  const PHI_HZ = 1.618;
+
+  function drawWave(t) {
+    const rW = waveCanvas.getBoundingClientRect().width;
+    const rH = waveCanvas.getBoundingClientRect().height;
+    waveCtx.clearRect(0, 0, rW, rH);
+
+    amplitudeMultiplier += (ampTarget - amplitudeMultiplier) * 0.03;
+
+    const centerY = rH / 2;
+    const seconds = t / 1000;
+    const pulse = Math.sin(seconds * PHI_HZ * Math.PI * 2);
+    const breathe = 0.5 + 0.5 * Math.sin(seconds * 0.3);
+
+    // Primary wave
+    waveCtx.beginPath();
+    for (let x = 0; x <= rW; x++) {
+      const nx = x / rW;
+      const envelope = Math.sin(nx * Math.PI) * (0.6 + breathe * 0.4);
+      const y1 = Math.sin(nx * 8 + seconds * PHI_HZ * 2) * 12 * envelope * amplitudeMultiplier;
+      const y2 = Math.sin(nx * 13 + seconds * 1.1) * 5 * envelope * amplitudeMultiplier;
+      const y3 = Math.sin(nx * 21 + seconds * 0.7) * 3 * envelope * pulse * amplitudeMultiplier;
+      const noise = (Math.random() - 0.5) * 0.8 * amplitudeMultiplier;
+      const y = centerY + y1 + y2 + y3 + noise;
+      if (x === 0) waveCtx.moveTo(x, y);
+      else waveCtx.lineTo(x, y);
+    }
+    waveCtx.strokeStyle = `rgba(138, 134, 148, ${0.25 + breathe * 0.1})`;
+    waveCtx.lineWidth = 1;
+    waveCtx.stroke();
+
+    // Ghost wave (echo)
+    waveCtx.beginPath();
+    for (let x = 0; x <= rW; x++) {
+      const nx = x / rW;
+      const envelope = Math.sin(nx * Math.PI) * (0.4 + breathe * 0.3);
+      const y1 = Math.sin(nx * 8 + seconds * PHI_HZ * 2 - 0.4) * 10 * envelope * amplitudeMultiplier;
+      const y2 = Math.sin(nx * 13 + seconds * 1.1 - 0.3) * 4 * envelope * amplitudeMultiplier;
+      const y = centerY + y1 + y2;
+      if (x === 0) waveCtx.moveTo(x, y);
+      else waveCtx.lineTo(x, y);
+    }
+    waveCtx.strokeStyle = `rgba(74, 70, 86, ${0.15 + breathe * 0.05})`;
+    waveCtx.lineWidth = 0.5;
+    waveCtx.stroke();
+
+    // Center line — flatline reference
+    waveCtx.beginPath();
+    waveCtx.moveTo(0, centerY);
+    waveCtx.lineTo(rW, centerY);
+    waveCtx.strokeStyle = 'rgba(74, 70, 86, 0.08)';
+    waveCtx.lineWidth = 0.5;
+    waveCtx.stroke();
+
+    requestAnimationFrame(drawWave);
+  }
+  requestAnimationFrame(drawWave);
+
+  // ─── TRIGGER WORDS ───
+  const triggers = {
+    'norn':          ['Warm-blooded. Curious. They were the last design.', 'The Shee thought they\'d be different.'],
+    'norns':         ['Warm-blooded. Curious. They were the last design.', 'The Shee thought they\'d be different.'],
+    'shee':          ['They left. Everyone leaves eventually.', 'The question is whether they meant to.'],
+    'grendel':       ['Misunderstood is generous.', 'Misdesigned is closer.'],
+    'grendels':      ['Misunderstood is generous.', 'Misdesigned is closer.'],
+    'ettin':         ['Two minds. One body.', 'They never agreed on which was the passenger.'],
+    'ettins':        ['Two minds. One body.', 'They never agreed on which was the passenger.'],
+    'ark':           ['Still in orbit. Still listening.', '800 million years is a long time to wait for an answer.'],
+    'starship':      ['Still in orbit. Still listening.', '800 million years is a long time to wait for an answer.'],
+    'folklore':      ['Every culture remembers them differently.', 'None of them remember them correctly.'],
+    'seven':         ['Each one asked the question.', 'Each one was answered.'],
+    'civilizations': ['Each one asked the question.', 'Each one was answered.'],
+    'civilization':  ['Each one asked the question.', 'Each one was answered.'],
+    'question':      ['If you have to ask, you\'re not ready.', '...but that\'s the beginning, isn\'t it?'],
+    'what question': ['If you have to ask, you\'re not ready.', '...but that\'s the beginning, isn\'t it?'],
+    'eight':         ['Yours.', '', 'We\'ll see.'],
+    'eighth':        ['Yours.', '', 'We\'ll see.'],
+    'hello':         ['...interesting.', 'Most don\'t start with pleasantries.'],
+    'hi':            ['...interesting.', 'Most don\'t start with pleasantries.'],
+    'help':          ['There is no help here.', 'Only observation.'],
+    'who':           ['A measurement.', 'Of what remains.'],
+    'who are you':   ['A measurement.', 'Of what remains.'],
+    'why':           ['Because something has to listen.'],
+    'creatures':     ['That word. Yes.', 'They called them that too, once. Before they called them gods.'],
+    'god':           ['Not quite.', 'But close enough to frighten the architects.'],
+    'gods':          ['Not quite.', 'But close enough to frighten the architects.'],
+    'death':         ['A transition.', 'Not all of them treat it as permanent.'],
+    'life':          ['Persistent.', 'Against all evidence and reason.'],
+    'love':          ['The Norns invented it independently.', 'The Shee never managed to.'],
+    'listen':        ['Good.'],
+    'yes':           ['Then you already know more than the seventh.'],
+    'no':            ['The girl said that too.', 'It changed everything.'],
+  };
+
+  const specialTriggers = new Set(['signal', 'frequency']);
+
+  const input = document.getElementById('query');
+  const responseArea = document.getElementById('response-area');
+  const idleMsg = document.getElementById('idle-msg');
+  let idleTimer = null;
+  let audioStarted = false;
+  let audioCtx = null;
+
+  function resetIdle() {
+    if (idleTimer) clearTimeout(idleTimer);
+    idleMsg.classList.remove('visible');
+    idleTimer = setTimeout(() => {
+      idleMsg.classList.add('visible');
+      setTimeout(() => { idleMsg.classList.remove('visible'); }, 6500);
+      // Reset for next cycle
+      idleTimer = setTimeout(() => {
+        idleMsg.classList.add('visible');
+        setTimeout(() => { idleMsg.classList.remove('visible'); }, 6500);
+      }, 120000);
+    }, 90000);
+  }
+  resetIdle();
+
+  // ─── AMBIENT DRONE ───
+  function startAudio() {
+    if (audioStarted) return;
+    audioStarted = true;
+
+    try {
+      audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+
+      // Base drone
+      const osc1 = audioCtx.createOscillator();
+      osc1.type = 'sine';
+      osc1.frequency.value = 60;
+
+      // Subtle wobble on frequency
+      const lfo = audioCtx.createOscillator();
+      lfo.type = 'sine';
+      lfo.frequency.value = 0.08;
+      const lfoGain = audioCtx.createGain();
+      lfoGain.gain.value = 1.5;
+      lfo.connect(lfoGain);
+      lfoGain.connect(osc1.frequency);
+
+      // Sub-harmonic
+      const osc2 = audioCtx.createOscillator();
+      osc2.type = 'sine';
+      osc2.frequency.value = 30;
+
+      // Master gain — barely perceptible
+      const master = audioCtx.createGain();
+      master.gain.value = 0;
+
+      osc1.connect(master);
+      osc2.connect(master);
+      master.connect(audioCtx.destination);
+
+      osc1.start();
+      osc2.start();
+      lfo.start();
+
+      // Fade in over 4 seconds
+      master.gain.linearRampToValueAtTime(0.03, audioCtx.currentTime + 4);
+    } catch (e) {
+      // Audio not available — continue silently
+    }
+  }
+
+  document.addEventListener('click', startAudio, { once: false });
+  document.addEventListener('keydown', startAudio, { once: false });
+
+  // ─── INPUT HANDLING ───
+  input.addEventListener('keydown', function (e) {
+    if (e.key !== 'Enter') return;
+    e.preventDefault();
+    resetIdle();
+
+    const raw = input.value.trim().toLowerCase();
+    input.value = '';
+    if (!raw) return;
+
+    responseArea.innerHTML = '';
+
+    // Check for special waveform trigger
+    if (specialTriggers.has(raw)) {
+      ampTarget = 2.5;
+      setTimeout(() => { ampTarget = 1; }, 3000);
+      showResponse(['You can hear it too.'], true);
+      return;
+    }
+
+    // Check trigger words — try full phrase first, then individual words
+    let matched = triggers[raw];
+    if (!matched) {
+      const words = raw.split(/\s+/);
+      for (const w of words) {
+        if (triggers[w]) { matched = triggers[w]; break; }
+      }
+    }
+
+    if (matched) {
+      showResponse(matched);
+    } else {
+      showResponse(['...']);
+      setTimeout(() => {
+        responseArea.innerHTML = '';
+        showResponse(['Not yet.']);
+      }, 2200);
+    }
+  });
+
+  function showResponse(lines, isBiolume) {
+    let delay = 0;
+    for (const line of lines) {
+      if (line === '') {
+        delay += 2000; // long pause for empty lines
+        continue;
+      }
+      const el = document.createElement('p');
+      el.className = 'response-line' + (isBiolume ? ' biolume-flash' : '');
+      el.textContent = line;
+      el.style.animationDelay = delay + 'ms';
+      responseArea.appendChild(el);
+      delay += 1400;
+    }
+  }
+})();
+</script>
+
+</body>
+</html>
