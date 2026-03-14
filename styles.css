@@ -974,6 +974,104 @@ body::after {
   margin-top: var(--space-sm);
 }
 
+/* Ember particles */
+.nel-embers {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 0;
+}
+
+.ember-particle {
+  position: absolute;
+  bottom: 30%;
+  left: var(--x, 50%);
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: var(--ember);
+  box-shadow: 0 0 6px var(--ember), 0 0 14px rgba(255, 107, 53, 0.4);
+  opacity: 0;
+  animation: ember-rise var(--dur, 5s) var(--delay, 0s) infinite ease-in;
+}
+
+@keyframes ember-rise {
+  0%   { transform: translateY(0) translateX(0);                 opacity: 0; }
+  8%   { opacity: 0.9; }
+  60%  { opacity: 0.5; }
+  100% { transform: translateY(-55vh) translateX(var(--drift, 15px)); opacity: 0; }
+}
+
+/* The Loop section */
+.nel-loop-intro {
+  font-family: var(--font-body);
+  font-style: italic;
+  font-size: 1.05rem;
+  color: var(--dust);
+  margin-bottom: var(--space-lg);
+}
+
+.nel-loop-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  margin-bottom: var(--space-lg);
+  counter-reset: none;
+}
+
+.nel-loop-item {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-md);
+  padding: 0.75rem 0;
+  border-bottom: 1px solid var(--void-border);
+  transition: border-color 0.3s;
+}
+
+.nel-loop-item:first-child {
+  border-top: 1px solid var(--void-border);
+}
+
+.nel-loop-item:hover {
+  border-bottom-color: var(--ember);
+}
+
+.nel-loop-num {
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.2em;
+  color: var(--ember-glow);
+  width: 2rem;
+  flex-shrink: 0;
+  text-align: right;
+}
+
+.nel-loop-text {
+  font-family: var(--font-body);
+  font-size: 1.1rem;
+  color: var(--star-white);
+  font-weight: 300;
+}
+
+/* Each refrain is slightly more faded, showing the loop deepening */
+.nel-loop-item:nth-child(2) .nel-loop-refrain { color: var(--dust); font-style: italic; }
+.nel-loop-item:nth-child(3) .nel-loop-refrain { color: #706b7a; font-style: italic; padding-left: 0.5rem; }
+.nel-loop-item:nth-child(4) .nel-loop-refrain { color: #595465; font-style: italic; padding-left: 1rem; }
+.nel-loop-item:nth-child(5) .nel-loop-refrain { color: #474257; font-style: italic; padding-left: 1.5rem; }
+.nel-loop-item:nth-child(6) .nel-loop-refrain { color: var(--ember-glow); font-style: italic; padding-left: 2rem; font-size: 0.95rem; }
+
+.nel-loop-note {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.1em;
+  color: var(--ash);
+  font-style: normal;
+  text-align: center;
+  padding-top: var(--space-sm);
+}
+
 /* Screenshot gallery responsive */
 @media (max-width: 600px) {
   .screenshot-2col { grid-template-columns: 1fr !important; }
