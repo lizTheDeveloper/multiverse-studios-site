@@ -337,22 +337,40 @@ function buildSprites() {
 }
 
 // Also load PixelLab sprites when available
-const PIXELLAB_SPRITES = {}; // urlKey -> HTMLImageElement (if loaded)
+const PIXELLAB_SPRITES = {}; // agentId -> HTMLImageElement (if loaded)
+// name fragment (lowercase) → sprite file key
 const PIXELLAB_MAP = {
-  // name fragments → urlKey (must match generate_agent_sprites.py)
-  'puck':            'puck-ceo',
-  'peggy':           'peggy-cmo',
-  'gilfoyle':        'gilfoyle-devops',
-  'ripley':          'ripley-game-director',
-  'scheherazade':    'scheherazade-folklorist',
-  'huxley':          'huxley-geneticist',
-  'kali':            'kali-persistence',
-  'moss':            'moss-game-systems',
-  'roy':             'roy-staff-swe',
-  'cynthia':         'cynthia-mvee-world-engineer',
-  'sylvia':          'sylvia-performance-critic',
-  'priya':           'priya-qa-engineer',
-  'morgan':          'morgan-community-manager',
+  'puck':                    'puck-ceo',
+  'peggy':                   'peggy-cmo',
+  'gilfoyle':                'gilfoyle-devops',
+  'ripley':                  'ripley-game-director',
+  'scheherazade':            'scheherazade-folklorist',
+  'hard sci-fi':             'hard-sci-fi-consultant',
+  'ui designer':             'ui-designer',
+  'level designer':          'level-designer',
+  'pixel artist':            'pixel-artist',
+  'huxley':                  'huxley-geneticist',
+  'kali':                    'kali-persistence',
+  'moss':                    'moss-game-systems',
+  'roy':                     'roy-staff-swe',
+  'cynthia':                 'cynthia-mvee-world-engineer',
+  'sylvia':                  'sylvia-performance-critic',
+  'community systems':       'community-systems-engineer',
+  'ast founding':            'ast-founding-engineer',
+  'mvee tech lead':          'mvee-tech-lead',
+  'renderer':                'renderer-developer',
+  'llm specialist':          'llm-specialist',
+  'ml engineer':             'ml-engineer',
+  'security engineer':       'security-engineer',
+  'mvee pm':                 'mvee-pm',
+  'precursors pm':           'precursors-pm',
+  'research pm':             'research-pm',
+  'priya':                   'priya-qa-engineer',
+  'playtester':              'playtester',
+  'ast code critic':         'ast-code-critic',
+  'marketing qa':            'marketing-qa',
+  'morgan':                  'morgan-community-manager',
+  'content marketer':        'content-marketer',
 };
 
 function tryLoadPixelLabSprite(agent) {
@@ -601,8 +619,10 @@ function drawFrame() {
     // Draw using PixelLab sprite if loaded and complete
     const plImg = PIXELLAB_SPRITES[agent.id];
     if (plImg && plImg.complete && plImg.naturalWidth > 0) {
-      const imgW = plImg.naturalWidth, imgH = plImg.naturalHeight;
-      ctx.drawImage(plImg, cx, cy - 4, imgW * S / imgW * 48, imgH * S / imgH * 48);
+      // Render PixelLab sprite at 2× pixel-art scale (64→128px), centered on slot
+      const drawW = plImg.naturalWidth  * 2;
+      const drawH = plImg.naturalHeight * 2;
+      ctx.drawImage(plImg, cx - (drawW - CW * S) / 2, cy - drawH + CH * S + 8, drawW, drawH);
     } else {
       // Canvas-drawn sprite
       const spriteKey = `${frame}_${statusKey}`;
