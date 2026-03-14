@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!--
+  macOS LaunchAgent for the office data publisher.
+
+  Install:
+    cp scripts/office-publisher.plist ~/Library/LaunchAgents/xyz.multiversestudios.office-publisher.plist
+    launchctl load ~/Library/LaunchAgents/xyz.multiversestudios.office-publisher.plist
+
+  Check logs:
+    tail -f /tmp/office-publisher.log
+    tail -f /tmp/office-publisher.err
+
+  Uninstall:
+    launchctl unload ~/Library/LaunchAgents/xyz.multiversestudios.office-publisher.plist
+    rm ~/Library/LaunchAgents/xyz.multiversestudios.office-publisher.plist
+-->
+<plist version="1.0">
+<dict>
+  <key>Label</key>
+  <string>xyz.multiversestudios.office-publisher</string>
+
+  <key>ProgramArguments</key>
+  <array>
+    <string>/usr/local/bin/node</string>
+    <string>/Users/annhoward/src/multiverse_games/scripts/office-data-publisher.js</string>
+  </array>
+
+  <!-- Required environment variables -->
+  <key>EnvironmentVariables</key>
+  <dict>
+    <key>PAPERCLIP_API_URL</key>
+    <string>http://127.0.0.1:3100</string>
+    <key>PAPERCLIP_COMPANY_ID</key>
+    <string>ea3250e1-8c60-4100-800f-1da907107373</string>
+    <!-- PAPERCLIP_API_KEY, OFFICE_UPDATE_SECRET: set these in the plist or load from a secrets file -->
+    <!-- For security, you can instead source them from a file using a wrapper shell script -->
+    <key>PRESIDIO_URL</key>
+    <string>https://play.multiversestudios.xyz/api/presidio</string>
+    <key>OFFICE_WORKER_URL</key>
+    <string>https://multiversestudios.xyz/api/office/update</string>
+  </dict>
+
+  <!-- Run every 60 seconds -->
+  <key>StartInterval</key>
+  <integer>60</integer>
+
+  <key>RunAtLoad</key>
+  <true/>
+
+  <key>StandardOutPath</key>
+  <string>/tmp/office-publisher.log</string>
+  <key>StandardErrorPath</key>
+  <string>/tmp/office-publisher.err</string>
+
+  <key>WorkingDirectory</key>
+  <string>/Users/annhoward/src/multiverse_games</string>
+</dict>
+</plist>
