@@ -21,6 +21,7 @@
   --star-white: #e8e6f0;
   --dust: #8a8694;
   --ash: #4a4656;
+  --dust-light: #6b6578;
 
   --font-display: 'Syne', sans-serif;
   --font-body: 'Cormorant Garamond', serif;
@@ -905,6 +906,72 @@ body::after {
     radial-gradient(ellipse at 60% 40%, rgba(200, 140, 80, 0.15), transparent 50%),
     radial-gradient(ellipse at 50% 50%, rgba(123, 104, 238, 0.05), transparent 70%),
     var(--void-surface);
+}
+
+/* --- Never Ever Land page polish --- */
+.hero-nel h1 {
+  text-shadow: 0 0 80px rgba(255, 160, 60, 0.15);
+}
+
+.hero-nel .hero-subtitle {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  font-weight: 300;
+  font-style: italic;
+  color: var(--dust);
+  letter-spacing: 0.04em;
+  margin-top: var(--space-sm);
+  opacity: 0;
+  animation: fade-up 1s 0.8s forwards;
+}
+
+.hero-nel .hero-scroll {
+  opacity: 0;
+  animation: fade-up 1s 1.6s forwards;
+}
+
+.hero-nel .hero-scroll .scroll-line {
+  background: linear-gradient(to bottom, var(--ember), transparent);
+}
+
+.nel-page .section-divider {
+  background: linear-gradient(to right, transparent, var(--ember), transparent);
+}
+
+.nel-page .section-overline {
+  color: var(--ember-glow);
+}
+
+.nel-page .species-card:hover {
+  border-color: var(--ember);
+}
+
+.nel-page .species-card .species-role {
+  color: var(--ember-glow);
+}
+
+.nel-page .cta-band {
+  background: linear-gradient(180deg, transparent, rgba(255, 107, 53, 0.03), transparent);
+}
+
+.nel-page .excerpt-block {
+  border-left: 2px solid var(--ember);
+  padding-left: var(--space-md);
+  margin: var(--space-md) 0;
+  font-style: italic;
+  color: var(--dust);
+  font-size: 1.05rem;
+  line-height: 1.7;
+}
+
+.nel-page .excerpt-block p + p {
+  margin-top: var(--space-sm);
+}
+
+.nel-page .excerpt-attribution {
+  font-size: 0.85rem;
+  color: var(--dust-light);
+  margin-top: var(--space-sm);
 }
 
 /* Screenshot gallery responsive */
