@@ -1,0 +1,882 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pixel Office — Multiverse Studios Live</title>
+  <meta name="description" content="Live pixel art view of the Multiverse Studios AI team — a real-time studio sitcom.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=JetBrains+Mono:wght@400;500&display=swap">
+  <style>
+    :root {
+      --bg: #0d0d1a;
+      --text: #e8e8f0;
+      --text-dim: #6b7280;
+      --accent: #7c3aed;
+      --online: #00e676;
+      --offline: #455a64;
+      --blocked: #ff5252;
+      --font-mono: 'JetBrains Mono', monospace;
+      --font-pixel: 'Press Start 2P', monospace;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font-mono);
+      height: 100vh;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* ── HEADER ── */
+    .hdr {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.6rem 1.5rem;
+      background: rgba(13,13,26,0.97);
+      border-bottom: 1px solid #1e1e3a;
+      z-index: 10;
+      flex-shrink: 0;
+    }
+    .hdr-title {
+      font-family: var(--font-pixel);
+      font-size: 0.6rem;
+      color: #a78bfa;
+      letter-spacing: 0.05em;
+    }
+    .hdr-title span { color: #00e676; }
+    .hdr-right { display: flex; align-items: center; gap: 1.2rem; }
+    .live-badge { display: flex; align-items: center; gap: 0.35rem; font-size: 0.6rem; color: #00e676; font-weight: 500; }
+    .live-dot { width: 6px; height: 6px; border-radius: 50%; background: #00e676; animation: blink 1.4s ease-in-out infinite; }
+    .live-dot.stale { background: #ffd54f; }
+    .live-dot.err { background: #ff5252; animation: none; }
+    @keyframes blink { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.4;transform:scale(.8)} }
+    .hdr-count { font-size: 0.65rem; color: var(--text-dim); }
+    .hdr-fresh { font-size: 0.55rem; color: var(--text-dim); font-style: italic; }
+    .demo-note { font-size: 0.55rem; color: #c4a0e0; padding: 0.2rem 0.8rem; background: #1a0a2e; border-radius: 3px; display: none; }
+    .demo-note.on { display: block; }
+
+    /* ── TICKER ── */
+    .ticker-wrap {
+      background: #080810;
+      border-bottom: 1px solid #1e1e3a;
+      padding: 0.3rem 1.5rem;
+      overflow: hidden;
+      display: none;
+      flex-shrink: 0;
+    }
+    .ticker-wrap.on { display: block; }
+    .ticker-inner {
+      white-space: nowrap;
+      animation: scroll-ticker 25s linear infinite;
+      font-size: 0.55rem;
+      color: #a78bfa;
+    }
+    .ticker-inner span.name { color: #00e676; }
+    .ticker-inner span.sep { color: #374151; margin: 0 0.8rem; }
+    @keyframes scroll-ticker { 0%{transform:translateX(0)} 100%{transform:translateX(-50%)} }
+
+    /* ── CANVAS SCENE ── */
+    .scene-wrap {
+      flex: 1;
+      overflow: hidden;
+      position: relative;
+      cursor: default;
+    }
+    #office-canvas {
+      display: block;
+      image-rendering: pixelated;
+      image-rendering: crisp-edges;
+    }
+
+    /* ── DETAIL PANEL ── */
+    .detail {
+      position: absolute;
+      top: 0;
+      right: -320px;
+      width: 300px;
+      height: 100%;
+      background: rgba(10,10,24,0.97);
+      border-left: 1px solid #2a2a5a;
+      padding: 1.5rem 1rem;
+      transition: right 0.2s ease;
+      z-index: 20;
+      display: flex;
+      flex-direction: column;
+      gap: 0.8rem;
+      backdrop-filter: blur(8px);
+    }
+    .detail.open { right: 0; }
+    .detail-close {
+      position: absolute;
+      top: 0.7rem;
+      right: 0.7rem;
+      background: none;
+      border: none;
+      color: var(--text-dim);
+      font-size: 0.9rem;
+      cursor: pointer;
+    }
+    .detail-close:hover { color: var(--text); }
+    .detail-sprite {
+      width: 90px;
+      height: 90px;
+      margin: 0 auto 0.4rem;
+      image-rendering: pixelated;
+    }
+    .detail-name { font-family: var(--font-pixel); font-size: 0.6rem; color: #a78bfa; line-height: 1.6; }
+    .detail-role { font-size: 0.65rem; color: var(--text-dim); margin-top: 0.2rem; }
+    .detail-status { font-size: 0.65rem; padding: 0.3rem 0.6rem; border-radius: 3px; display: inline-block; margin-top: 0.2rem; }
+    .detail-status.running { background: rgba(0,230,118,0.15); color: #00e676; }
+    .detail-status.idle    { background: rgba(69,90,100,0.2); color: #90a4ae; }
+    .detail-status.blocked { background: rgba(255,82,82,0.15); color: #ff5252; }
+    .detail-label { font-size: 0.5rem; color: var(--text-dim); text-transform: uppercase; letter-spacing: 0.1em; margin-top: 0.6rem; }
+    .detail-task {
+      font-size: 0.65rem;
+      line-height: 1.6;
+      color: var(--text);
+      background: #1a1a2e;
+      border-radius: 3px;
+      padding: 0.6rem;
+      border-left: 2px solid #a78bfa;
+      margin-top: 0.2rem;
+    }
+    .detail-task.empty { color: var(--text-dim); font-style: italic; }
+    .detail-link { font-size: 0.55rem; color: #a78bfa; text-decoration: none; margin-top: 0.3rem; display: none; }
+    .detail-link:hover { color: #c4b5fd; }
+
+    /* ── FOOTER ── */
+    footer {
+      display: flex;
+      align-items: center;
+      gap: 1.2rem;
+      padding: 0.4rem 1.5rem;
+      border-top: 1px solid #1e1e3a;
+      font-size: 0.55rem;
+      color: var(--text-dim);
+      flex-shrink: 0;
+      flex-wrap: wrap;
+    }
+    .leg { display: flex; align-items: center; gap: 0.35rem; }
+    .leg-dot { width: 7px; height: 7px; border-radius: 50%; }
+    footer span { margin-left: auto; font-size: 0.5rem; color: #374151; }
+  </style>
+</head>
+<body>
+
+<header class="hdr">
+  <div class="hdr-title">MULTIVERSE STUDIOS <span>// LIVE</span></div>
+  <div class="hdr-right">
+    <div class="demo-note" id="demo-note">📡 demo mode</div>
+    <div class="hdr-fresh" id="hdr-fresh"></div>
+    <div class="hdr-count" id="hdr-count">— running</div>
+    <div class="live-badge">
+      <div class="live-dot" id="live-dot"></div>
+      <span id="live-label">LIVE</span>
+    </div>
+  </div>
+</header>
+
+<div class="ticker-wrap" id="ticker-wrap">
+  <div class="ticker-inner" id="ticker"></div>
+</div>
+
+<div class="scene-wrap" id="scene-wrap">
+  <canvas id="office-canvas"></canvas>
+
+  <!-- Detail panel (absolute inside scene-wrap) -->
+  <aside class="detail" id="detail">
+    <button class="detail-close" onclick="closeDetail()">✕</button>
+    <canvas class="detail-sprite" id="detail-sprite" width="90" height="90"></canvas>
+    <div class="detail-name" id="detail-name">—</div>
+    <div class="detail-role" id="detail-role">—</div>
+    <div class="detail-status idle" id="detail-status">idle</div>
+    <div class="detail-label">Current Task</div>
+    <div class="detail-task empty" id="detail-task">No active task</div>
+    <a class="detail-link" id="detail-link" href="#" target="_blank"></a>
+  </aside>
+</div>
+
+<footer>
+  <div class="leg"><div class="leg-dot" style="background:#00e676;box-shadow:0 0 4px #00e676"></div>Running</div>
+  <div class="leg"><div class="leg-dot" style="background:#455a64"></div>Idle</div>
+  <div class="leg"><div class="leg-dot" style="background:#ff5252"></div>Blocked</div>
+  <span>click any agent for details · refreshes every 60s</span>
+</footer>
+
+<script>
+'use strict';
+
+// ── Constants ──────────────────────────────────────────────────────────────────
+
+const DATA_URL   = '/api/office/data';
+const REFRESH_MS = 60_000;
+const S          = 3;   // pixel scale (1 source px = 3 canvas px)
+const T          = 16;  // tile size in source px → T*S = 48px on screen
+const TS         = T * S; // tile size on canvas = 48
+const CW         = 10;  // character width in source px
+const CH         = 18;  // character height in source px
+
+// ── Role colour palettes ───────────────────────────────────────────────────────
+
+const ROLE_PAL = {
+  ceo:        { skin:'#e8c87a', hair:'#2a1a00', shirt:'#3730a3', pants:'#1e1b4b', shoe:'#1a0a00', acc:'crown'  },
+  cmo:        { skin:'#d4a870', hair:'#5a1a2a', shirt:'#db2777', pants:'#831843', shoe:'#1a0800', acc:'mic'    },
+  pm:         { skin:'#c8a870', hair:'#3a2a1a', shirt:'#0d9488', pants:'#134e4a', shoe:'#0a1a1a', acc:'clip'   },
+  engineer:   { skin:'#c87040', hair:'#1a1a2a', shirt:'#1d4ed8', pants:'#1e3a8a', shoe:'#0a0a18', acc:'laptop' },
+  designer:   { skin:'#d4a090', hair:'#6b21a8', shirt:'#9333ea', pants:'#581c87', shoe:'#1a0a28', acc:'brush'  },
+  qa:         { skin:'#d0b090', hair:'#3a2010', shirt:'#c2410c', pants:'#7c2d12', shoe:'#180800', acc:'bug'    },
+  devops:     { skin:'#909090', hair:'#080808', shirt:'#0f172a', pants:'#0a0a0a', shoe:'#050505', acc:'skull'  },
+  security:   { skin:'#607060', hair:'#1a1a1a', shirt:'#0c1c0c', pants:'#0a0a0a', shoe:'#060606', acc:'shield' },
+  researcher: { skin:'#b0c8d0', hair:'#4a3a2a', shirt:'#0e7490', pants:'#0c4a6e', shoe:'#080c12', acc:'dna'   },
+  general:    { skin:'#c8c0b0', hair:'#5a4a3a', shirt:'#475569', pants:'#334155', shoe:'#0e1420', acc:'star'   },
+};
+
+function pal(role) { return ROLE_PAL[role] || ROLE_PAL.general; }
+
+// ── Draw one 10×18 pixel art character ────────────────────────────────────────
+// frame: 0=idle/walk-a, 1=walk-b   status: 'running'|'idle'|'blocked'
+
+function drawChar(ctx, ox, oy, role, frame, status) {
+  const c = pal(role);
+  // ox,oy are in SOURCE pixels; we multiply by S for canvas coords
+  const X = ox * S, Y = oy * S;
+  function p(rx, ry, col) {
+    ctx.fillStyle = col;
+    ctx.fillRect(X + rx * S, Y + ry * S, S, S);
+  }
+
+  // Hair (rows 0-1)
+  for (let x = 2; x <= 7; x++) p(x, 0, c.hair);
+  for (let x = 1; x <= 8; x++) p(x, 1, c.hair);
+
+  // Face (rows 1-5)
+  for (let y = 1; y <= 5; y++)
+    for (let x = 1; x <= 8; x++) {
+      if (y === 1 && (x < 2 || x > 7)) continue;
+      if (y === 5 && (x < 2 || x > 7)) continue;
+      p(x, y, c.skin);
+    }
+
+  // Eyes (row 3)
+  p(3, 3, status === 'running' ? '#2244ee' : '#1a1a1a');
+  p(6, 3, status === 'running' ? '#2244ee' : '#1a1a1a');
+
+  // Mouth (row 5)
+  if (status === 'running') { p(4,5,'#ee4444'); p(5,5,'#ee4444'); }
+  else if (status === 'blocked') { p(3,5,'#884444'); p(4,5,'#884444'); p(5,5,'#884444'); }
+  else { p(4,5,'#c08070'); }
+
+  // Neck (row 6)
+  p(4, 6, c.skin); p(5, 6, c.skin);
+
+  // Body (rows 6-11)
+  for (let y = 6; y <= 11; y++)
+    for (let x = 2; x <= 7; x++) {
+      if (y === 6 && (x < 4 || x > 5)) continue; // narrow neck
+      p(x, y, c.shirt);
+    }
+
+  // Arms (rows 7-11) — swing with walk
+  const swing = (frame === 1) ? 1 : 0;
+  for (let y = 7; y <= 10; y++) {
+    p(0 + swing, y, c.shirt);
+    p(1 + swing, y, c.shirt);
+    p(8 - swing, y, c.shirt);
+    p(9 - swing, y, c.shirt);
+  }
+  // Hands
+  p(0 + swing, 11, c.skin);
+  p(9 - swing, 11, c.skin);
+
+  // Pants (rows 11-15)
+  const lL = frame === 1 ? -1 : 0; // left leg y-offset
+  const lR = frame === 1 ?  0 :-1; // right leg y-offset
+  for (let y = 11; y <= 15; y++) {
+    p(2, y + lL, c.pants); p(3, y + lL, c.pants);
+    p(6, y + lR, c.pants); p(7, y + lR, c.pants);
+  }
+
+  // Shoes (row 16)
+  p(2, 16 + lL, c.shoe); p(3, 16 + lL, c.shoe); p(4, 16 + lL, c.shoe);
+  p(5, 16 + lR, c.shoe); p(6, 16 + lR, c.shoe); p(7, 16 + lR, c.shoe);
+
+  // Accessory / sprite marker above head for running agents
+  if (status === 'running') {
+    ctx.fillStyle = 'rgba(0,230,118,0.9)';
+    ctx.fillRect(X + 4*S, Y - 4*S, 2*S, 2*S); // green dot above head
+  }
+  if (status === 'blocked') {
+    ctx.fillStyle = 'rgba(255,82,82,0.9)';
+    ctx.fillRect(X + 3*S, Y - 4*S, 4*S, 2*S); // red bar above head
+  }
+}
+
+// ── Pre-render sprite frames into offscreen canvases ─────────────────────────
+
+const SPRITES = {}; // SPRITES[role][frame] = ImageBitmap-like canvas
+
+function buildSprites() {
+  for (const role of Object.keys(ROLE_PAL)) {
+    SPRITES[role] = {};
+    for (const frame of [0, 1]) {
+      for (const status of ['idle', 'running', 'blocked']) {
+        const key = `${frame}_${status}`;
+        const oc = document.createElement('canvas');
+        oc.width  = CW * S;   // 30
+        oc.height = (CH + 4) * S; // 22 rows * 3 = 66 (extra room for status dot)
+        const octx = oc.getContext('2d');
+        drawChar(octx, 0, 4, role, frame, status); // offset 4px down for dot
+        SPRITES[role][key] = oc;
+      }
+    }
+  }
+}
+
+// Also load PixelLab sprites when available
+const PIXELLAB_SPRITES = {}; // urlKey -> HTMLImageElement (if loaded)
+const PIXELLAB_MAP = {
+  // name fragments → urlKey (must match generate_agent_sprites.py)
+  'puck':            'puck-ceo',
+  'peggy':           'peggy-cmo',
+  'gilfoyle':        'gilfoyle-devops',
+  'ripley':          'ripley-game-director',
+  'scheherazade':    'scheherazade-folklorist',
+  'huxley':          'huxley-geneticist',
+  'kali':            'kali-persistence',
+  'moss':            'moss-game-systems',
+  'roy':             'roy-staff-swe',
+  'cynthia':         'cynthia-mvee-world-engineer',
+  'sylvia':          'sylvia-performance-critic',
+  'priya':           'priya-qa-engineer',
+  'morgan':          'morgan-community-manager',
+};
+
+function tryLoadPixelLabSprite(agent) {
+  const nameLow = (agent.name || '').toLowerCase();
+  for (const [frag, urlKey] of Object.entries(PIXELLAB_MAP)) {
+    if (nameLow.includes(frag)) {
+      if (!PIXELLAB_SPRITES[agent.id]) {
+        const img = new Image();
+        img.src = `/office/sprites/${urlKey}.png`;
+        img.onload = () => { PIXELLAB_SPRITES[agent.id] = img; };
+        img.onerror = () => {}; // fall through to canvas sprite
+        PIXELLAB_SPRITES[agent.id] = img; // store even if not loaded yet
+      }
+      return;
+    }
+  }
+}
+
+// ── Zone + desk layout ────────────────────────────────────────────────────────
+
+// Room: 28 tiles wide × 16 tiles tall
+const ROOM_W = 28, ROOM_H = 16;
+
+const ZONE_DEFS = [
+  { id:'csuite',      tx:0,  ty:0,  tw:7,  th:4,  floor:'#1e1230', label:'C-Suite',        roles:['ceo','cmo'] },
+  { id:'pm',          tx:7,  ty:0,  tw:7,  th:4,  floor:'#122018', label:'PM Wing',         roles:['pm'] },
+  { id:'design',      tx:14, ty:0,  tw:14, th:4,  floor:'#12102a', label:'Design Wing',     roles:['designer'] },
+  { id:'engineering', tx:0,  ty:4,  tw:20, th:7,  floor:'#0c1220', label:'Engineering',     roles:['engineer','researcher'] },
+  { id:'qa',          tx:20, ty:4,  tw:8,  th:7,  floor:'#241010', label:'QA Lab',          roles:['qa'] },
+  { id:'ops',         tx:0,  ty:11, tw:14, th:5,  floor:'#0a0a10', label:'Ops & Security',  roles:['devops','security'] },
+  { id:'marketing',   tx:14, ty:11, tw:14, th:5,  floor:'#0e1a1a', label:'Marketing',       roles:['general'] },
+];
+
+// Pre-defined desk slots per zone: [tile_x, tile_y, face_direction]
+// face_direction: 0=south (toward viewer), 1=west, 2=east
+const ZONE_DESKS = {
+  csuite:      [ [1,1], [4,1], [1,2], [4,2] ],
+  pm:          [ [8,1], [11,1], [8,2], [11,2] ],
+  design:      [ [15,1], [18,1], [21,1], [24,1], [15,2], [18,2], [21,2], [24,2] ],
+  engineering: [ [1,5], [4,5], [7,5], [10,5], [13,5], [16,5],
+                 [1,7], [4,7], [7,7], [10,7], [13,7], [16,7] ],
+  qa:          [ [21,5], [24,5], [21,7], [24,7] ],
+  ops:         [ [1,12], [4,12], [7,12], [10,12] ],
+  marketing:   [ [15,12], [18,12], [21,12], [24,12] ],
+};
+
+function agentZone(agent) {
+  const nameLow = (agent.name || '').toLowerCase();
+  if (nameLow.includes('community manager') || nameLow.includes('content marketer')) return 'marketing';
+  if (nameLow.includes('security')) return 'ops';
+  if (nameLow.includes('marketing qa')) return 'qa';
+  for (const z of ZONE_DEFS) if (z.roles.includes(agent.role)) return z.id;
+  return 'engineering';
+}
+
+// Assign agents to desk slots
+function assignDesks(agents) {
+  const slotQueues = {};
+  for (const z of ZONE_DEFS) slotQueues[z.id] = [...(ZONE_DESKS[z.id] || [])];
+
+  const placed = [];
+  for (const agent of agents) {
+    const zid = agentZone(agent);
+    const q   = slotQueues[zid] || slotQueues.engineering;
+    if (q.length === 0) {
+      // Overflow: place on engineering floor
+      slotQueues.engineering.push([
+        (placed.length % 6) * 3 + 1,
+        4 + Math.floor(placed.length / 6) * 2 + 5
+      ]);
+    }
+    const slot = q.shift() || [1, 4];
+    placed.push({ ...agent, tx: slot[0], ty: slot[1] });
+  }
+  return placed;
+}
+
+// ── Canvas scene setup ────────────────────────────────────────────────────────
+
+const canvas = document.getElementById('office-canvas');
+const ctx    = canvas.getContext('2d');
+ctx.imageSmoothingEnabled = false;
+
+let canvasW, canvasH, sceneOffX, sceneOffY;
+
+function resizeCanvas() {
+  const wrap = document.getElementById('scene-wrap');
+  canvasW = wrap.clientWidth;
+  canvasH = wrap.clientHeight;
+  canvas.width  = canvasW;
+  canvas.height = canvasH;
+  ctx.imageSmoothingEnabled = false;
+
+  const roomPixW = ROOM_W * TS;
+  const roomPixH = ROOM_H * TS;
+  sceneOffX = Math.max(0, Math.floor((canvasW - roomPixW) / 2));
+  sceneOffY = Math.max(0, Math.floor((canvasH - roomPixH) / 2));
+}
+
+// ── Room drawing ──────────────────────────────────────────────────────────────
+
+function zoneAt(tx, ty) {
+  for (const z of ZONE_DEFS)
+    if (tx >= z.tx && tx < z.tx + z.tw && ty >= z.ty && ty < z.ty + z.th)
+      return z;
+  return null;
+}
+
+function drawRoom() {
+  // Clear
+  ctx.fillStyle = '#0a0a14';
+  ctx.fillRect(0, 0, canvasW, canvasH);
+
+  // Floor tiles
+  for (let ty = 0; ty < ROOM_H; ty++) {
+    for (let tx = 0; tx < ROOM_W; tx++) {
+      const z    = zoneAt(tx, ty);
+      const base = z ? z.floor : '#0a0a14';
+      const cx   = sceneOffX + tx * TS;
+      const cy   = sceneOffY + ty * TS;
+
+      ctx.fillStyle = base;
+      ctx.fillRect(cx, cy, TS, TS);
+
+      // Tile grid lines (very subtle)
+      ctx.fillStyle = 'rgba(255,255,255,0.03)';
+      ctx.fillRect(cx, cy, TS, 1);
+      ctx.fillRect(cx, cy, 1, TS);
+    }
+  }
+
+  // Zone labels (top-left of each zone)
+  ctx.font = `${S * 2}px 'Press Start 2P', monospace`;
+  for (const z of ZONE_DEFS) {
+    ctx.fillStyle = 'rgba(255,255,255,0.25)';
+    ctx.fillText(z.label, sceneOffX + z.tx * TS + S * 2, sceneOffY + z.ty * TS + S * 4);
+  }
+}
+
+// ── Draw a desk tile ──────────────────────────────────────────────────────────
+
+function drawDesk(tx, ty) {
+  const cx = sceneOffX + tx * TS;
+  const cy = sceneOffY + ty * TS;
+
+  // Desk surface
+  ctx.fillStyle = '#5c3a1e';
+  ctx.fillRect(cx + 2, cy + TS/2, TS - 4, TS/2 - 2);
+  ctx.fillStyle = '#7a5030';
+  ctx.fillRect(cx + 4, cy + TS/2 + 2, TS - 8, TS/2 - 6);
+
+  // Monitor
+  ctx.fillStyle = '#0a0a18';
+  ctx.fillRect(cx + TS/4, cy + TS/4, TS/2, TS/3);
+  ctx.fillStyle = '#1a2a8a';
+  ctx.fillRect(cx + TS/4 + 2, cy + TS/4 + 2, TS/2 - 4, TS/3 - 4);
+
+  // Monitor stand
+  ctx.fillStyle = '#2a2a2a';
+  ctx.fillRect(cx + TS/2 - 2, cy + TS/4 + TS/3, 4, 6);
+  ctx.fillRect(cx + TS/3, cy + TS/4 + TS/3 + 4, TS/3, 3);
+}
+
+// ── Draw all desks ────────────────────────────────────────────────────────────
+
+function drawAllDesks() {
+  for (const slots of Object.values(ZONE_DESKS)) {
+    for (const [tx, ty] of slots) {
+      drawDesk(tx, ty);
+    }
+  }
+}
+
+// ── Agent positions + animation state ─────────────────────────────────────────
+
+let agents       = [];  // placed agents with tx, ty
+let animFrame    = 0;
+let walkTick     = 0;
+let walkToggle   = 0;   // 0 or 1 for walk frame
+let hoveredAgent = null;
+let selectedAgent= null;
+
+// Per-agent walk wander state
+const agentWander = {}; // id -> {dx, dy, steps, stepsDone}
+
+function getWander(agent) {
+  if (!agentWander[agent.id]) {
+    agentWander[agent.id] = { dx: 0, dy: 0, steps: 0, stepsDone: 0, px: 0, py: 0 };
+  }
+  return agentWander[agent.id];
+}
+
+// ── Main draw loop ─────────────────────────────────────────────────────────────
+
+function drawFrame() {
+  animFrame = requestAnimationFrame(drawFrame);
+  walkTick++;
+  if (walkTick % 14 === 0) walkToggle ^= 1;
+
+  drawRoom();
+  drawAllDesks();
+
+  // Draw agents (sorted by ty so lower rows appear in front)
+  const sorted = [...agents].sort((a,b) => a.ty - b.ty);
+
+  for (const agent of sorted) {
+    const isRunning = agent.status === 'running';
+    const isBlocked = agent.status === 'blocked';
+    const frame     = isRunning ? walkToggle : 0;
+    const statusKey = isRunning ? 'running' : isBlocked ? 'blocked' : 'idle';
+    const wander    = getWander(agent);
+
+    // Wander update for running agents
+    if (isRunning) {
+      if (wander.stepsDone >= wander.steps) {
+        // New wander target: small random offset around desk
+        const angle = Math.random() * Math.PI * 2;
+        const dist  = 1 + Math.random() * 1.5;
+        wander.dx    = Math.cos(angle) * dist * TS;
+        wander.dy    = Math.sin(angle) * dist * TS;
+        wander.steps = 60 + Math.floor(Math.random() * 80);
+        wander.stepsDone = 0;
+        wander.px    = 0;
+        wander.py    = 0;
+      }
+      wander.stepsDone++;
+      // Smooth lerp toward target
+      wander.px += (wander.dx - wander.px) * 0.02;
+      wander.py += (wander.dy - wander.py) * 0.02;
+    } else {
+      // Return to desk
+      wander.px *= 0.9;
+      wander.py *= 0.9;
+    }
+
+    // Canvas position
+    const cx = sceneOffX + agent.tx * TS + Math.round(wander.px);
+    const cy = sceneOffY + agent.ty * TS + Math.round(wander.py);
+
+    // Hover glow
+    if (hoveredAgent === agent.id) {
+      ctx.fillStyle = 'rgba(124,58,237,0.3)';
+      ctx.fillRect(cx - 4, cy - 4, CW * S + 8, (CH + 6) * S);
+    }
+
+    // Draw using PixelLab sprite if loaded and complete
+    const plImg = PIXELLAB_SPRITES[agent.id];
+    if (plImg && plImg.complete && plImg.naturalWidth > 0) {
+      const imgW = plImg.naturalWidth, imgH = plImg.naturalHeight;
+      ctx.drawImage(plImg, cx, cy - 4, imgW * S / imgW * 48, imgH * S / imgH * 48);
+    } else {
+      // Canvas-drawn sprite
+      const spriteKey = `${frame}_${statusKey}`;
+      const spriteCanvas = SPRITES[agent.role]?.[spriteKey] || SPRITES.general?.[`${frame}_idle`];
+      if (spriteCanvas) {
+        ctx.drawImage(spriteCanvas, cx - 2, cy - 12);
+      }
+    }
+
+    // Name tag below sprite
+    ctx.font = `${S}px 'JetBrains Mono', monospace`;
+    ctx.textAlign = 'center';
+    const shortName = displayName(agent);
+    const nameW = ctx.measureText(shortName).width;
+    ctx.fillStyle = 'rgba(0,0,0,0.6)';
+    ctx.fillRect(cx + (CW*S/2) - nameW/2 - 2, cy + CH * S + S, nameW + 4, S + 2);
+    ctx.fillStyle = isRunning ? '#00e676' : isBlocked ? '#ff5252' : '#90a4ae';
+    ctx.fillText(shortName, cx + CW * S / 2, cy + CH * S + S + 2);
+    ctx.textAlign = 'left';
+
+    // Speech bubble (show when running and has task)
+    if (isRunning && agent.currentTask) {
+      const bubble = shortTask(agent.currentTask);
+      ctx.font = `${S - 1}px 'JetBrains Mono', monospace`;
+      const bw = ctx.measureText(bubble).width + 8;
+      const bh = S + 4;
+      const bx = cx + CW * S / 2 - bw / 2;
+      const by = cy - (CH + 2) * S - bh - 6;
+
+      // bubble bg
+      ctx.fillStyle = '#1e1e3a';
+      ctx.strokeStyle = '#3a3a6a';
+      ctx.lineWidth = 1;
+      ctx.beginPath();
+      ctx.roundRect(bx, by, bw, bh, 2);
+      ctx.fill();
+      ctx.stroke();
+
+      // bubble tail
+      ctx.fillStyle = '#1e1e3a';
+      ctx.beginPath();
+      ctx.moveTo(cx + CW*S/2 - 3, by + bh);
+      ctx.lineTo(cx + CW*S/2,     by + bh + 4);
+      ctx.lineTo(cx + CW*S/2 + 3, by + bh);
+      ctx.fill();
+
+      ctx.fillStyle = '#c4c4e0';
+      ctx.fillText(bubble, bx + 4, by + S + 1);
+    }
+  }
+}
+
+// ── Canvas interactions ───────────────────────────────────────────────────────
+
+canvas.addEventListener('mousemove', e => {
+  const rect   = canvas.getBoundingClientRect();
+  const mx     = e.clientX - rect.left;
+  const my     = e.clientY - rect.top;
+  hoveredAgent = null;
+  for (const agent of agents) {
+    const cx = sceneOffX + agent.tx * TS + (agentWander[agent.id]?.px || 0);
+    const cy = sceneOffY + agent.ty * TS + (agentWander[agent.id]?.py || 0);
+    if (mx >= cx - 4 && mx <= cx + CW * S + 4 && my >= cy - 14 && my <= cy + CH * S + 8) {
+      hoveredAgent = agent.id;
+      canvas.style.cursor = 'pointer';
+      return;
+    }
+  }
+  canvas.style.cursor = 'default';
+});
+
+canvas.addEventListener('click', e => {
+  const rect = canvas.getBoundingClientRect();
+  const mx   = e.clientX - rect.left;
+  const my   = e.clientY - rect.top;
+  for (const agent of agents) {
+    const cx = sceneOffX + agent.tx * TS + (agentWander[agent.id]?.px || 0);
+    const cy = sceneOffY + agent.ty * TS + (agentWander[agent.id]?.py || 0);
+    if (mx >= cx - 4 && mx <= cx + CW * S + 4 && my >= cy - 14 && my <= cy + CH * S + 8) {
+      openDetail(agent);
+      return;
+    }
+  }
+  closeDetail();
+});
+
+// ── Detail panel ─────────────────────────────────────────────────────────────
+
+function openDetail(agent) {
+  selectedAgent = agent.id;
+  document.getElementById('detail-name').textContent = agent.name || agent.role;
+  document.getElementById('detail-role').textContent = agent.role;
+
+  const statusEl = document.getElementById('detail-status');
+  statusEl.textContent = agent.status;
+  statusEl.className   = `detail-status ${agent.status === 'running' ? 'running' : agent.status === 'blocked' ? 'blocked' : 'idle'}`;
+
+  const taskEl = document.getElementById('detail-task');
+  if (agent.currentTask) {
+    taskEl.textContent = agent.currentTask;
+    taskEl.className   = 'detail-task';
+  } else {
+    taskEl.textContent = 'No active task';
+    taskEl.className   = 'detail-task empty';
+  }
+
+  const linkEl = document.getElementById('detail-link');
+  if (agent.currentIssueIdentifier) {
+    linkEl.href        = `/MUL/issues/${agent.currentIssueIdentifier}`;
+    linkEl.textContent = `→ ${agent.currentIssueIdentifier}`;
+    linkEl.style.display = 'block';
+  } else {
+    linkEl.style.display = 'none';
+  }
+
+  // Draw sprite preview
+  const sp = document.getElementById('detail-sprite');
+  const sc = sp.getContext('2d');
+  sc.imageSmoothingEnabled = false;
+  sc.clearRect(0, 0, 90, 90);
+
+  const statusKey = agent.status === 'running' ? 'running' : agent.status === 'blocked' ? 'blocked' : 'idle';
+  const key       = `0_${statusKey}`;
+  const spr       = SPRITES[agent.role]?.[key] || SPRITES.general?.['0_idle'];
+  if (spr) {
+    const sx = Math.floor((90 - CW * S * 1.5) / 2);
+    const sy = Math.floor((90 - (CH+4) * S * 1.5) / 2) + 8;
+    sc.drawImage(spr, 0, 0, spr.width, spr.height, sx, sy, spr.width * 1.5, spr.height * 1.5);
+  }
+
+  document.getElementById('detail').classList.add('open');
+}
+
+function closeDetail() {
+  document.getElementById('detail').classList.remove('open');
+  selectedAgent = null;
+}
+
+// ── Helper text functions ─────────────────────────────────────────────────────
+
+function displayName(agent) {
+  return (agent.name || agent.role)
+    .replace(/\s*[-–]\s*(CEO|CMO|PM|SWE|QA|DevOps|DevOp|Director|Manager|Engineer|Artist|Marketer|Consultant|Specialist|Lead|Critic|Geneticist|Folklorist|Persistence|Community).*$/i, '')
+    .trim()
+    .slice(0, 12);
+}
+
+function shortTask(task) {
+  if (!task) return '';
+  return task.length > 36 ? task.slice(0, 34) + '…' : task;
+}
+
+// ── Ticker ────────────────────────────────────────────────────────────────────
+
+function renderTicker(agentList) {
+  const running = agentList.filter(a => a.status === 'running' && a.currentTask);
+  const wrap    = document.getElementById('ticker-wrap');
+  if (running.length === 0) { wrap.classList.remove('on'); return; }
+  wrap.classList.add('on');
+
+  const items = running.map(a =>
+    `<span class="name">${escH(displayName(a))}</span> → ${escH(shortTask(a.currentTask))} <span class="sep">|</span>`
+  ).join(' ');
+  document.getElementById('ticker').innerHTML = items + items; // duplicate for seamless loop
+}
+
+// ── Header update ─────────────────────────────────────────────────────────────
+
+function updateHeader(agentList, updatedAt) {
+  const running = agentList.filter(a => a.status === 'running').length;
+  document.getElementById('hdr-count').textContent = `${running} / ${agentList.length} running`;
+
+  const dot   = document.getElementById('live-dot');
+  const label = document.getElementById('live-label');
+  const fresh = document.getElementById('hdr-fresh');
+
+  if (!updatedAt) {
+    dot.className   = 'live-dot err';
+    label.textContent = 'DEMO';
+    fresh.textContent = '';
+    return;
+  }
+  const age = Date.now() - new Date(updatedAt).getTime();
+  dot.className    = age > 5 * 60_000 ? 'live-dot stale' : 'live-dot';
+  label.textContent = age > 5 * 60_000 ? 'STALE' : 'LIVE';
+  const mins = Math.floor(age / 60000);
+  fresh.textContent = mins < 1 ? 'just now' : `${mins}m ago`;
+}
+
+function escH(s) {
+  return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+}
+
+// ── Demo fallback roster ──────────────────────────────────────────────────────
+
+const DEMO = [
+  { id:'d-ceo',    name:'Puck - CEO',                  role:'ceo',        status:'idle',    currentTask:null, currentIssueId:null, currentIssueIdentifier:null },
+  { id:'d-cmo',    name:'Peggy - CMO',                 role:'cmo',        status:'running', currentTask:'Drive beta signups', currentIssueId:null, currentIssueIdentifier:null },
+  { id:'d-gdir',   name:'Ripley - Game Director',      role:'pm',         status:'idle',    currentTask:null, currentIssueId:null, currentIssueIdentifier:null },
+  { id:'d-mveepm', name:'MVEE PM',                     role:'pm',         status:'running', currentTask:'Roadmap planning',   currentIssueId:null, currentIssueIdentifier:null },
+  { id:'d-precpm', name:'Precursors PM',               role:'pm',         status:'idle',    currentTask:null, currentIssueId:null, currentIssueIdentifier:null },
+  { id:'d-rschpm', name:'Research PM',                 role:'pm',         status:'idle',    currentTask:null, currentIssueId:null, currentIssueIdentifier:null },
+  { id:'d-scher',  name:'Scheherazade',                role:'designer',   status:'running', currentTask:'Creature lore writing', currentIssueId:null, currentIssueIdentifier:null },
+  { id:'d-uid',    name:'UI Designer',                 role:'designer',   status:'idle',    currentTask:null, currentIssueId:null, currentIssueIdentifier:null },
+  { id:'d-level',  name:'Level Designer',              role:'designer',   status:'idle',    currentTask:null, currentIssueId:null, currentIssueIdentifier:null },
+  { id:'d-pixel',  name:'Pixel Artist',                role:'designer',   status:'running', currentTask:'Office sprites 🎨',  currentIssueId:null, currentIssueIdentifier:null },
+  { id:'d-scifi',  name:'Sci-Fi Consultant',           role:'designer',   status:'idle',    currentTask:null, currentIssueId:null, currentIssueIdentifier:null },
+  { id:'d-tech',   name:'MVEE Tech Lead',              role:'engineer',   status:'running', currentTask:'Engine optimization',currentIssueId:null, currentIssueIdentifier:null },
+  { id:'d-roy',    name:'Roy',                         role:'engineer',   status:'idle',    currentTask:null, currentIssueId:null, currentIssueIdentifier:null },
+  { id:'d-moss',   name:'Moss',                        role:'engineer',   status:'running', currentTask:'Game systems refactor',currentIssueId:null, currentIssueIdentifier:null },
+  { id:'d-kali',   name:'Kali',                        role:'engineer',   status:'idle',    currentTask:null, currentIssueId:null, currentIssueIdentifier:null },
+  { id:'d-cyn',    name:'Cynthia',                     role:'engineer',   status:'running', currentTask:'World engine work',  currentIssueId:null, currentIssueIdentifier:null },
+  { id:'d-rend',   name:'Renderer Dev',                role:'engineer',   status:'idle',    currentTask:null, currentIssueId:null, currentIssueIdentifier:null },
+  { id:'d-ast',    name:'AST Founder',                 role:'engineer',   status:'running', currentTask:'Architecture review',currentIssueId:null, currentIssueIdentifier:null },
+  { id:'d-ml',     name:'ML Engineer',                 role:'engineer',   status:'idle',    currentTask:null, currentIssueId:null, currentIssueIdentifier:null },
+  { id:'d-llm',    name:'LLM Specialist',              role:'engineer',   status:'blocked', currentTask:'Waiting on compute', currentIssueId:null, currentIssueIdentifier:null },
+  { id:'d-comm',   name:'Community Sys',               role:'engineer',   status:'idle',    currentTask:null, currentIssueId:null, currentIssueIdentifier:null },
+  { id:'d-hux',    name:'Huxley',                      role:'researcher', status:'running', currentTask:'Norn genetics model',currentIssueId:null, currentIssueIdentifier:null },
+  { id:'d-priya',  name:'Priya',                       role:'qa',         status:'running', currentTask:'Bug regression run', currentIssueId:null, currentIssueIdentifier:null },
+  { id:'d-play',   name:'Playtester',                  role:'qa',         status:'idle',    currentTask:null, currentIssueId:null, currentIssueIdentifier:null },
+  { id:'d-critic', name:'AST Code Critic',             role:'qa',         status:'idle',    currentTask:null, currentIssueId:null, currentIssueIdentifier:null },
+  { id:'d-mktqa',  name:'Marketing QA',                role:'qa',         status:'idle',    currentTask:null, currentIssueId:null, currentIssueIdentifier:null },
+  { id:'d-sylv',   name:'Sylvia',                      role:'engineer',   status:'running', currentTask:'Perf profiling',     currentIssueId:null, currentIssueIdentifier:null },
+  { id:'d-gil',    name:'Gilfoyle',                    role:'devops',     status:'idle',    currentTask:null, currentIssueId:null, currentIssueIdentifier:null },
+  { id:'d-sec',    name:'Security Eng',                role:'security',   status:'idle',    currentTask:null, currentIssueId:null, currentIssueIdentifier:null },
+  { id:'d-morgan', name:'Morgan',                      role:'general',    status:'running', currentTask:'Community events',   currentIssueId:null, currentIssueIdentifier:null },
+  { id:'d-quill',  name:'Content Writer',              role:'general',    status:'idle',    currentTask:null, currentIssueId:null, currentIssueIdentifier:null },
+];
+
+// ── Data fetch ────────────────────────────────────────────────────────────────
+
+async function fetchAndRender() {
+  let agentList  = DEMO;
+  let updatedAt  = null;
+  let demoMode   = true;
+
+  try {
+    const res  = await fetch(DATA_URL, { cache: 'no-store' });
+    if (res.ok) {
+      const data = await res.json();
+      if (data.agents && data.agents.length > 0) {
+        agentList = data.agents;
+        updatedAt = data.updatedAt || null;
+        demoMode  = false;
+      }
+    }
+  } catch (_) {}
+
+  document.getElementById('demo-note').classList.toggle('on', demoMode);
+  updateHeader(agentList, demoMode ? null : updatedAt);
+  renderTicker(agentList);
+
+  agents = assignDesks(agentList);
+  for (const a of agents) tryLoadPixelLabSprite(a);
+
+  // Refresh selected detail if open
+  if (selectedAgent) {
+    const current = agents.find(a => a.id === selectedAgent);
+    if (current) openDetail(current);
+  }
+}
+
+// ── Boot ──────────────────────────────────────────────────────────────────────
+
+window.addEventListener('resize', () => {
+  resizeCanvas();
+  ctx.imageSmoothingEnabled = false;
+});
+
+buildSprites();
+resizeCanvas();
+fetchAndRender();
+drawFrame();
+setInterval(fetchAndRender, REFRESH_MS);
+</script>
+</body>
+</html>
