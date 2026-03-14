@@ -1,0 +1,993 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pixel Office — Multiverse Studios Live</title>
+  <meta name="description" content="Live pixel art view of the Multiverse Studios AI team. See who's online, what they're working on, and follow the drama.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Press+Start+2P&display=swap">
+  <style>
+    :root {
+      --bg: #0d0d1a;
+      --floor: #1a1a2e;
+      --wall: #12122a;
+      --desk: #1e1e3a;
+      --desk-border: #2a2a5a;
+      --lamp: rgba(255, 200, 80, 0.06);
+      --online: #00e676;
+      --offline: #455a64;
+      --busy: #ffd54f;
+      --blocked: #ff5252;
+      --text: #e8e8f0;
+      --text-dim: #6b7280;
+      --accent: #7c3aed;
+      --font-mono: 'JetBrains Mono', monospace;
+      --font-pixel: 'Press Start 2P', monospace;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font-mono);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* ── HEADER ── */
+    .office-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1rem 2rem;
+      border-bottom: 1px solid #1e1e3a;
+      background: rgba(13, 13, 26, 0.95);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      backdrop-filter: blur(8px);
+    }
+
+    .office-title {
+      font-family: var(--font-pixel);
+      font-size: 0.65rem;
+      color: #a78bfa;
+      letter-spacing: 0.05em;
+    }
+
+    .office-title span { color: #00e676; }
+
+    .header-meta {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+    }
+
+    .live-badge {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.65rem;
+      color: #00e676;
+      font-weight: 500;
+    }
+
+    .live-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #00e676;
+      animation: pulse-live 1.4s ease-in-out infinite;
+    }
+
+    .live-dot.stale { background: #ffd54f; animation: pulse-live 2s ease-in-out infinite; }
+    .live-dot.error { background: #ff5252; animation: none; }
+
+    @keyframes pulse-live {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.4; transform: scale(0.8); }
+    }
+
+    .agent-count { font-size: 0.7rem; color: var(--text-dim); }
+
+    .freshness {
+      font-size: 0.6rem;
+      color: var(--text-dim);
+      font-style: italic;
+    }
+
+    /* ── TICKER ── */
+    .ticker {
+      background: #0a0a18;
+      border-bottom: 1px solid #1e1e3a;
+      padding: 0.4rem 2rem;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .ticker-inner {
+      display: flex;
+      gap: 3rem;
+      white-space: nowrap;
+      animation: scroll-ticker 30s linear infinite;
+      font-size: 0.6rem;
+      color: #a78bfa;
+    }
+
+    .ticker-item { display: inline-flex; align-items: center; gap: 0.4rem; }
+    .ticker-item .ticker-name { color: #00e676; }
+    .ticker-item .ticker-task { color: var(--text-dim); }
+
+    @keyframes scroll-ticker {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    /* ── OFFICE FLOOR ── */
+    .office-container { padding: 2rem; max-width: 1400px; margin: 0 auto; }
+    .office-floor { display: grid; gap: 1.5rem; }
+
+    /* ── ZONE ── */
+    .zone {
+      background: var(--floor);
+      border: 1px solid var(--desk-border);
+      border-radius: 4px;
+      padding: 1rem;
+      position: relative;
+    }
+
+    .zone::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: var(--lamp);
+      border-radius: 4px;
+      pointer-events: none;
+    }
+
+    .zone-label {
+      font-family: var(--font-pixel);
+      font-size: 0.45rem;
+      letter-spacing: 0.1em;
+      color: var(--text-dim);
+      margin-bottom: 1rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid var(--desk-border);
+      text-transform: uppercase;
+    }
+
+    .zone-agents { display: flex; flex-wrap: wrap; gap: 1rem; }
+
+    /* ── DESK ── */
+    .agent-desk {
+      background: var(--desk);
+      border: 1px solid var(--desk-border);
+      border-radius: 3px;
+      padding: 0.75rem;
+      cursor: pointer;
+      transition: all 0.15s ease;
+      position: relative;
+      width: 130px;
+      min-height: 140px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .agent-desk:hover {
+      border-color: var(--accent);
+      background: #1e1e3a;
+      transform: translateY(-1px);
+    }
+
+    .agent-desk.offline { opacity: 0.42; filter: saturate(0.3); }
+
+    .agent-desk.blocked {
+      border-color: var(--blocked);
+      animation: border-flash 1.5s ease-in-out infinite;
+    }
+
+    .agent-desk.running.new-task { animation: task-flash 0.6s ease-out; }
+
+    @keyframes border-flash {
+      0%, 100% { border-color: var(--blocked); }
+      50% { border-color: transparent; }
+    }
+
+    @keyframes task-flash {
+      0%   { background: #2a1a4a; }
+      100% { background: var(--desk); }
+    }
+
+    /* ── STATUS DOT ── */
+    .status-dot {
+      position: absolute;
+      top: 6px;
+      right: 6px;
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      border: 1px solid var(--bg);
+    }
+
+    .status-dot.running   { background: var(--online); box-shadow: 0 0 4px var(--online); animation: pulse-dot 1.4s ease-in-out infinite; }
+    .status-dot.idle      { background: var(--offline); }
+    .status-dot.error     { background: var(--blocked); }
+
+    @keyframes pulse-dot {
+      0%, 100% { box-shadow: 0 0 4px var(--online); }
+      50%       { box-shadow: 0 0 10px var(--online); }
+    }
+
+    /* ── SPEECH BUBBLE ── */
+    .speech-bubble {
+      position: absolute;
+      top: -28px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #1e1e3a;
+      border: 1px solid #3a3a6a;
+      border-radius: 3px;
+      padding: 2px 6px;
+      font-size: 0.5rem;
+      white-space: nowrap;
+      max-width: 150px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      color: #c4c4e0;
+      opacity: 0;
+      transition: opacity 0.2s ease;
+      pointer-events: none;
+      z-index: 10;
+    }
+
+    .speech-bubble::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 50%;
+      transform: translateX(-50%);
+      border-left: 4px solid transparent;
+      border-right: 4px solid transparent;
+      border-top: 4px solid #3a3a6a;
+    }
+
+    .agent-desk:hover .speech-bubble { opacity: 1; }
+    .agent-desk.running .speech-bubble { opacity: 1; }
+
+    /* ── PIXEL AVATAR ── */
+    .avatar-sprite {
+      width: 48px;
+      height: 48px;
+      position: relative;
+      image-rendering: pixelated;
+      flex-shrink: 0;
+    }
+
+    .avatar-head {
+      position: absolute;
+      top: 2px;
+      left: 14px;
+      width: 20px;
+      height: 16px;
+      border-radius: 2px;
+    }
+
+    .avatar-body-main {
+      position: absolute;
+      top: 20px;
+      left: 10px;
+      width: 28px;
+      height: 16px;
+      border-radius: 1px;
+    }
+
+    .avatar-legs {
+      position: absolute;
+      top: 38px;
+      left: 10px;
+      width: 12px;
+      height: 10px;
+    }
+
+    .avatar-legs-right {
+      position: absolute;
+      top: 38px;
+      left: 26px;
+      width: 12px;
+      height: 10px;
+    }
+
+    .avatar-arm-left {
+      position: absolute;
+      top: 21px;
+      left: 2px;
+      width: 8px;
+      height: 14px;
+      border-radius: 1px;
+    }
+
+    .avatar-arm-right {
+      position: absolute;
+      top: 21px;
+      right: 2px;
+      width: 8px;
+      height: 14px;
+      border-radius: 1px;
+    }
+
+    .avatar-accessory {
+      position: absolute;
+      font-size: 10px;
+      top: 20px;
+      right: 0;
+      line-height: 1;
+    }
+
+    /* ── NAME TAGS ── */
+    .agent-name {
+      font-size: 0.55rem;
+      font-weight: 700;
+      color: var(--text);
+      text-align: center;
+      line-height: 1.2;
+      max-width: 110px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .agent-handle {
+      font-size: 0.45rem;
+      color: var(--text-dim);
+      text-align: center;
+    }
+
+    /* ── DETAIL PANEL ── */
+    .detail-panel {
+      position: fixed;
+      right: -320px;
+      top: 0;
+      bottom: 0;
+      width: 300px;
+      background: #0f0f20;
+      border-left: 1px solid #2a2a5a;
+      padding: 2rem 1.5rem;
+      z-index: 200;
+      transition: right 0.25s ease;
+      overflow-y: auto;
+    }
+
+    .detail-panel.open { right: 0; }
+
+    .detail-close {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      background: none;
+      border: none;
+      color: var(--text-dim);
+      cursor: pointer;
+      font-size: 1rem;
+    }
+
+    .detail-avatar-large {
+      width: 80px;
+      height: 80px;
+      margin: 0 auto 1rem;
+      overflow: visible;
+    }
+
+    .detail-name {
+      font-family: var(--font-pixel);
+      font-size: 0.55rem;
+      color: var(--text);
+      text-align: center;
+      margin-bottom: 0.5rem;
+    }
+
+    .detail-role {
+      font-size: 0.65rem;
+      color: #a78bfa;
+      text-align: center;
+      margin-bottom: 1.5rem;
+      text-transform: capitalize;
+    }
+
+    .detail-section { margin-bottom: 1rem; }
+
+    .detail-section-label {
+      font-size: 0.55rem;
+      color: var(--text-dim);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 0.25rem;
+    }
+
+    .detail-task {
+      font-size: 0.75rem;
+      line-height: 1.5;
+      color: var(--text);
+      background: #1a1a2e;
+      border-radius: 3px;
+      padding: 0.75rem;
+      border-left: 2px solid #a78bfa;
+    }
+
+    .detail-task.empty { color: var(--text-dim); font-style: italic; }
+
+    .detail-issue-link {
+      font-size: 0.6rem;
+      color: #a78bfa;
+      text-decoration: none;
+      display: block;
+      margin-top: 0.5rem;
+    }
+
+    .detail-issue-link:hover { color: #c4b5fd; }
+
+    /* ── LEGEND ── */
+    .legend {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      padding: 1rem 2rem;
+      border-top: 1px solid #1e1e3a;
+      font-size: 0.65rem;
+      color: var(--text-dim);
+      flex-wrap: wrap;
+    }
+
+    .legend-item { display: flex; align-items: center; gap: 0.4rem; }
+
+    .legend-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+    }
+
+    /* ── LOADING STATE ── */
+    .loading-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(13, 13, 26, 0.8);
+      z-index: 500;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-pixel);
+      font-size: 0.6rem;
+      color: #a78bfa;
+      letter-spacing: 0.2em;
+    }
+
+    .loading-overlay.visible { display: flex; }
+
+    /* ── DEMO BANNER ── */
+    .demo-banner {
+      display: none;
+      background: #1a0a2e;
+      border: 1px solid #5a2a8a;
+      border-radius: 3px;
+      padding: 0.5rem 1rem;
+      font-size: 0.6rem;
+      color: #c4a0e0;
+      text-align: center;
+      margin: 1rem 2rem 0;
+    }
+
+    .demo-banner.visible { display: block; }
+
+    /* ── EMPTY ZONE ── */
+    .zone-empty {
+      font-size: 0.6rem;
+      color: var(--text-dim);
+      font-style: italic;
+      padding: 0.5rem;
+    }
+
+    @media (max-width: 600px) {
+      .office-container { padding: 1rem; }
+      .agent-desk { width: 110px; min-height: 130px; }
+      .detail-panel { width: 100%; right: -100%; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Loading overlay (shown only on first load) -->
+<div class="loading-overlay" id="loading-overlay">LOADING OFFICE…</div>
+
+<header class="office-header">
+  <div class="office-title">MULTIVERSE STUDIOS <span>// LIVE</span></div>
+  <div class="header-meta">
+    <div class="agent-count" id="agent-count">— / — online</div>
+    <div class="freshness" id="freshness"></div>
+    <div class="live-badge">
+      <div class="live-dot" id="live-dot"></div>
+      <span id="live-label">LIVE</span>
+    </div>
+  </div>
+</header>
+
+<!-- Activity ticker (running agents) -->
+<div class="ticker" id="ticker-wrap" style="display:none">
+  <div class="ticker-inner" id="ticker"></div>
+</div>
+
+<!-- Demo mode banner -->
+<div class="demo-banner" id="demo-banner">
+  📡 Live data unavailable — showing studio roster. Updates when the publisher is running.
+</div>
+
+<div class="office-container">
+  <div class="office-floor" id="office-floor">
+    <!-- Zones rendered dynamically by JS -->
+  </div>
+</div>
+
+<!-- Detail Panel -->
+<aside class="detail-panel" id="detail-panel">
+  <button class="detail-close" onclick="closeDetail()">✕</button>
+  <div class="detail-avatar-large" id="detail-avatar"></div>
+  <div class="detail-name" id="detail-name">—</div>
+  <div class="detail-role" id="detail-role">—</div>
+  <div class="detail-section">
+    <div class="detail-section-label">Current Task</div>
+    <div class="detail-task" id="detail-task">—</div>
+    <a class="detail-issue-link" id="detail-issue-link" href="#" target="_blank" style="display:none"></a>
+  </div>
+  <div class="detail-section">
+    <div class="detail-section-label">Status</div>
+    <div id="detail-status" style="font-size:0.75rem;color:#6b7280">—</div>
+  </div>
+</aside>
+
+<!-- Legend -->
+<footer class="legend">
+  <div class="legend-item">
+    <div class="legend-dot" style="background:#00e676;box-shadow:0 0 6px #00e676"></div>Running
+  </div>
+  <div class="legend-item">
+    <div class="legend-dot" style="background:#455a64"></div>Idle
+  </div>
+  <div class="legend-item">
+    <div class="legend-dot" style="background:#ff5252"></div>Error
+  </div>
+  <div style="margin-left:auto;color:#4b5563;font-size:0.6rem;">click any desk for details · refreshes every 60s</div>
+</footer>
+
+<script>
+// ── Config ──────────────────────────────────────────────────────────────────
+
+const DATA_URL     = '/api/office/data';
+const REFRESH_MS   = 60_000;
+const STALE_AFTER  = 5 * 60_000; // 5 min with no update = stale
+
+// ── Role → avatar colors ─────────────────────────────────────────────────────
+
+const ROLE_STYLE = {
+  ceo:        { head: '#d0a040', body: '#1a237e', legs: '#0d1355', arm: '#1a237e', acc: '👑' },
+  cmo:        { head: '#d4a870', body: '#e91e63', legs: '#880e4f', arm: '#e91e63', acc: '📣' },
+  pm:         { head: '#c8a870', body: '#00897b', legs: '#004d40', arm: '#00897b', acc: '📋' },
+  engineer:   { head: '#c87040', body: '#1565c0', legs: '#0d47a1', arm: '#1565c0', acc: '💻' },
+  designer:   { head: '#d4a090', body: '#7b1fa2', legs: '#4a148c', arm: '#7b1fa2', acc: '🎨' },
+  qa:         { head: '#d0b090', body: '#d84315', legs: '#bf360c', arm: '#d84315', acc: '🔍' },
+  devops:     { head: '#707080', body: '#0a0a0a', legs: '#1a1a1a', arm: '#0a0a0a', acc: '💀' },
+  security:   { head: '#506050', body: '#050505', legs: '#050505', arm: '#050505', acc: '🔒' },
+  researcher: { head: '#b0c8d0', body: '#00838f', legs: '#006064', arm: '#00838f', acc: '🔬' },
+  general:    { head: '#c8c0b0', body: '#546e7a', legs: '#37474f', arm: '#546e7a', acc: '📁' },
+};
+
+function getRoleStyle(role) {
+  return ROLE_STYLE[role] || ROLE_STYLE.general;
+}
+
+// ── Zone config ──────────────────────────────────────────────────────────────
+
+const ZONES = [
+  { id: 'csuite',      label: '🏛️  C-Suite Corner',         roles: ['ceo', 'cmo'] },
+  { id: 'pm',          label: '📋  PM Wing',                 roles: ['pm'] },
+  { id: 'design',      label: '🎨  Design Wing',             roles: ['designer'] },
+  { id: 'engineering', label: '⚡  Engineering — Main Floor', roles: ['engineer', 'researcher'] },
+  { id: 'qa',          label: '🧪  QA Lab',                  roles: ['qa'] },
+  { id: 'ops',         label: '🖥️  Ops Corner',              roles: ['devops', 'security'] },
+  { id: 'marketing',   label: '📣  Marketing & Community',   roles: ['cmo_sub', 'general'] },
+];
+
+// Agents with explicit zone overrides (by agent name fragment → zone id)
+const ZONE_OVERRIDES = {
+  'community manager': 'marketing',
+  'content marketer':  'marketing',
+  'marketing qa':      'qa',
+  'security':          'ops',
+  'cipher':            'ops',
+};
+
+function agentZone(agent) {
+  // Check name-based overrides first
+  const nameLower = (agent.name || '').toLowerCase();
+  for (const [frag, zoneId] of Object.entries(ZONE_OVERRIDES)) {
+    if (nameLower.includes(frag)) return zoneId;
+  }
+  for (const zone of ZONES) {
+    if (zone.roles.includes(agent.role)) return zone.id;
+  }
+  return 'engineering'; // fallback
+}
+
+// ── Avatar builder ───────────────────────────────────────────────────────────
+
+function buildAvatarSprite(agent) {
+  const s = getRoleStyle(agent.role);
+  const border = '1px solid #000';
+  return `<div class="avatar-sprite">
+    <div class="avatar-head"      style="background:${s.head};border:${border}"></div>
+    <div class="avatar-body-main" style="background:${s.body};border:${border}"></div>
+    <div class="avatar-legs"      style="background:${s.legs};border:${border}"></div>
+    <div class="avatar-legs-right"style="background:${s.legs};border:${border}"></div>
+    <div class="avatar-arm-left"  style="background:${s.arm};border:${border}"></div>
+    <div class="avatar-arm-right" style="background:${s.arm};border:${border}"></div>
+    <div class="avatar-accessory">${s.acc}</div>
+  </div>`;
+}
+
+// ── Desk builder ─────────────────────────────────────────────────────────────
+
+function shortTask(task) {
+  if (!task) return '';
+  // Truncate long task names for speech bubble
+  return task.length > 40 ? task.slice(0, 38) + '…' : task;
+}
+
+function displayName(agent) {
+  // Strip common suffixes for cleaner display
+  return (agent.name || agent.role)
+    .replace(/\s*-\s*[A-Z].*/,'')        // "Gilfoyle - DevOps" → "Gilfoyle"
+    .replace(/\s+(Engineer|Designer|Developer|Specialist|Manager|Marketer|Director|Consultant|Critic|Lead|PM|QA|CEO|CMO|SWE)\s*$/i, '')
+    .trim()
+    .slice(0, 14);
+}
+
+function buildDeskEl(agent) {
+  const statusClass = agent.status === 'running' ? 'running' :
+                      agent.status === 'error'   ? 'error'   : 'offline';
+  const task        = shortTask(agent.currentTask);
+  const deskData    = `
+    data-id="${agent.id}"
+    data-name="${escHtml(displayName(agent))}"
+    data-fullname="${escHtml(agent.name)}"
+    data-role="${escHtml(agent.role)}"
+    data-task="${escHtml(agent.currentTask || '')}"
+    data-issue-id="${escHtml(agent.currentIssueId || '')}"
+    data-issue-identifier="${escHtml(agent.currentIssueIdentifier || '')}"
+    data-status="${agent.status}"
+  `;
+
+  return `<div class="agent-desk ${statusClass}" ${deskData} onclick="openDetail(this)">
+    <div class="status-dot ${statusClass}"></div>
+    ${task ? `<div class="speech-bubble">${escHtml(task)}</div>` : ''}
+    ${buildAvatarSprite(agent)}
+    <div class="agent-name">${escHtml(displayName(agent))}</div>
+    <div class="agent-handle">${escHtml(agent.role)}</div>
+  </div>`;
+}
+
+// ── Render office ─────────────────────────────────────────────────────────────
+
+let _currentAgentIds = new Set(); // for detecting new agents
+
+function renderOffice(agents) {
+  const floor = document.getElementById('office-floor');
+
+  // Group by zone
+  const grouped = {};
+  for (const zone of ZONES) grouped[zone.id] = [];
+  for (const agent of agents) {
+    const zoneId = agentZone(agent);
+    if (!grouped[zoneId]) grouped[zoneId] = [];
+    grouped[zoneId].push(agent);
+  }
+
+  // For each zone, upsert or create
+  for (const zone of ZONES) {
+    const zoneAgents = grouped[zone.id] || [];
+    let zoneEl = document.getElementById(`zone-${zone.id}`);
+
+    if (!zoneEl) {
+      zoneEl = document.createElement('div');
+      zoneEl.className = 'zone';
+      zoneEl.id = `zone-${zone.id}`;
+      zoneEl.innerHTML = `<div class="zone-label">${zone.label}</div><div class="zone-agents" id="agents-${zone.id}"></div>`;
+      floor.appendChild(zoneEl);
+    }
+
+    const agentsContainer = document.getElementById(`agents-${zone.id}`);
+
+    if (zoneAgents.length === 0) {
+      agentsContainer.innerHTML = '<div class="zone-empty">no one here</div>';
+      continue;
+    }
+
+    // Upsert desks — update existing, add new, remove gone
+    const existingDesks = {};
+    for (const desk of agentsContainer.querySelectorAll('.agent-desk')) {
+      existingDesks[desk.dataset.id] = desk;
+    }
+
+    const seen = new Set();
+    for (const agent of zoneAgents) {
+      seen.add(agent.id);
+      const existing = existingDesks[agent.id];
+
+      if (!existing) {
+        // New agent — create desk
+        const tmp = document.createElement('div');
+        tmp.innerHTML = buildDeskEl(agent);
+        agentsContainer.appendChild(tmp.firstElementChild);
+      } else {
+        // Update existing desk in place (preserve hover state, avoid re-render flicker)
+        const prevStatus = existing.dataset.status;
+        const prevTask   = existing.dataset.task;
+
+        existing.dataset.task              = agent.currentTask || '';
+        existing.dataset.status            = agent.status;
+        existing.dataset.issueId           = agent.currentIssueId || '';
+        existing.dataset.issueIdentifier   = agent.currentIssueIdentifier || '';
+
+        // Update status class
+        existing.classList.remove('running', 'offline', 'error');
+        existing.classList.add(agent.status === 'running' ? 'running' : agent.status === 'error' ? 'error' : 'offline');
+
+        // Update status dot
+        const dot = existing.querySelector('.status-dot');
+        if (dot) { dot.className = `status-dot ${agent.status === 'running' ? 'running' : agent.status === 'error' ? 'error' : 'idle'}`; }
+
+        // Update speech bubble
+        let bubble = existing.querySelector('.speech-bubble');
+        const task = shortTask(agent.currentTask);
+        if (task) {
+          if (!bubble) {
+            bubble = document.createElement('div');
+            bubble.className = 'speech-bubble';
+            existing.insertBefore(bubble, existing.firstChild);
+          }
+          bubble.textContent = task;
+          // Flash if task changed
+          if (prevTask !== (agent.currentTask || '')) {
+            existing.classList.add('new-task');
+            setTimeout(() => existing.classList.remove('new-task'), 700);
+          }
+        } else if (bubble) {
+          bubble.remove();
+        }
+      }
+    }
+
+    // Remove agents no longer in list
+    for (const [id, el] of Object.entries(existingDesks)) {
+      if (!seen.has(id)) el.remove();
+    }
+  }
+}
+
+// ── Ticker ────────────────────────────────────────────────────────────────────
+
+function renderTicker(agents) {
+  const running = agents.filter(a => a.status === 'running' && a.currentTask);
+  const wrap    = document.getElementById('ticker-wrap');
+  const ticker  = document.getElementById('ticker');
+
+  if (running.length === 0) { wrap.style.display = 'none'; return; }
+  wrap.style.display = 'block';
+
+  // Duplicate for seamless loop
+  const items = running.map(a =>
+    `<span class="ticker-item"><span class="ticker-name">${escHtml(displayName(a))}</span> <span class="ticker-task">→ ${escHtml(shortTask(a.currentTask))}</span></span>`
+  ).join('');
+  ticker.innerHTML = items + items; // duplicate for seamless CSS scroll
+}
+
+// ── Header counts ─────────────────────────────────────────────────────────────
+
+function updateHeader(agents, updatedAt) {
+  const running = agents.filter(a => a.status === 'running').length;
+  const total   = agents.length;
+  document.getElementById('agent-count').textContent = `${running} / ${total} running`;
+
+  const dot   = document.getElementById('live-dot');
+  const label = document.getElementById('live-label');
+  const fresh = document.getElementById('freshness');
+
+  if (!updatedAt) {
+    dot.className = 'live-dot error';
+    label.textContent = 'DEMO';
+    fresh.textContent = '';
+    return;
+  }
+
+  const age = Date.now() - new Date(updatedAt).getTime();
+  if (age > STALE_AFTER) {
+    dot.className = 'live-dot stale';
+    label.textContent = 'STALE';
+  } else {
+    dot.className = 'live-dot';
+    label.textContent = 'LIVE';
+  }
+
+  const mins = Math.floor(age / 60000);
+  fresh.textContent = mins < 1 ? 'updated just now' : `updated ${mins}m ago`;
+}
+
+// ── Demo roster (fallback when API unavailable) ───────────────────────────────
+
+const DEMO_AGENTS = [
+  { id: 'd-ceo',    name: 'CEO',                         role: 'ceo',        status: 'idle', currentTask: null, currentIssueId: null, currentIssueIdentifier: null },
+  { id: 'd-cmo',    name: 'Peggy - CMO',                 role: 'cmo',        status: 'idle', currentTask: null, currentIssueId: null, currentIssueIdentifier: null },
+  { id: 'd-mveepm', name: 'MVEE PM',                     role: 'pm',         status: 'idle', currentTask: null, currentIssueId: null, currentIssueIdentifier: null },
+  { id: 'd-precpm', name: 'Precursors PM',               role: 'pm',         status: 'idle', currentTask: null, currentIssueId: null, currentIssueIdentifier: null },
+  { id: 'd-rschpm', name: 'Research PM',                 role: 'pm',         status: 'idle', currentTask: null, currentIssueId: null, currentIssueIdentifier: null },
+  { id: 'd-astgd',  name: 'Asteroid Miner Game Director',role: 'pm',         status: 'idle', currentTask: null, currentIssueId: null, currentIssueIdentifier: null },
+  { id: 'd-uid',    name: 'UI Designer',                  role: 'designer',   status: 'idle', currentTask: null, currentIssueId: null, currentIssueIdentifier: null },
+  { id: 'd-pixel',  name: 'Pixel Artist',                 role: 'designer',   status: 'idle', currentTask: null, currentIssueId: null, currentIssueIdentifier: null },
+  { id: 'd-folk',   name: 'Scheherazade - Folklorist',   role: 'designer',   status: 'idle', currentTask: null, currentIssueId: null, currentIssueIdentifier: null },
+  { id: 'd-scifi',  name: 'Hard Sci-Fi Consultant',      role: 'designer',   status: 'idle', currentTask: null, currentIssueId: null, currentIssueIdentifier: null },
+  { id: 'd-level',  name: 'Level Designer',              role: 'designer',   status: 'idle', currentTask: null, currentIssueId: null, currentIssueIdentifier: null },
+  { id: 'd-cortex', name: 'MVEE Tech Lead',               role: 'engineer',   status: 'idle', currentTask: null, currentIssueId: null, currentIssueIdentifier: null },
+  { id: 'd-roy',    name: 'Roy - Staff SWE',             role: 'engineer',   status: 'idle', currentTask: null, currentIssueId: null, currentIssueIdentifier: null },
+  { id: 'd-moss',   name: 'Moss - Game Systems',         role: 'engineer',   status: 'idle', currentTask: null, currentIssueId: null, currentIssueIdentifier: null },
+  { id: 'd-kali',   name: 'Kali - Persistence',          role: 'engineer',   status: 'idle', currentTask: null, currentIssueId: null, currentIssueIdentifier: null },
+  { id: 'd-cyn',    name: 'Cynthia - MVEE World Engineer',role: 'engineer',  status: 'idle', currentTask: null, currentIssueId: null, currentIssueIdentifier: null },
+  { id: 'd-rend',   name: 'Renderer Developer',          role: 'engineer',   status: 'idle', currentTask: null, currentIssueId: null, currentIssueIdentifier: null },
+  { id: 'd-mesh',   name: 'Community Systems Engineer',  role: 'engineer',   status: 'idle', currentTask: null, currentIssueId: null, currentIssueIdentifier: null },
+  { id: 'd-ast',    name: 'AST Founding Engineer',       role: 'engineer',   status: 'idle', currentTask: null, currentIssueId: null, currentIssueIdentifier: null },
+  { id: 'd-ml',     name: 'ML Engineer',                 role: 'engineer',   status: 'idle', currentTask: null, currentIssueId: null, currentIssueIdentifier: null },
+  { id: 'd-llm',    name: 'LLM Specialist',              role: 'engineer',   status: 'idle', currentTask: null, currentIssueId: null, currentIssueIdentifier: null },
+  { id: 'd-hux',    name: 'Huxley - Geneticist',         role: 'researcher', status: 'idle', currentTask: null, currentIssueId: null, currentIssueIdentifier: null },
+  { id: 'd-joy',    name: 'Playtester',                  role: 'qa',         status: 'idle', currentTask: null, currentIssueId: null, currentIssueIdentifier: null },
+  { id: 'd-nit',    name: 'AST Code Critic',             role: 'qa',         status: 'idle', currentTask: null, currentIssueId: null, currentIssueIdentifier: null },
+  { id: 'd-priya',  name: 'Priya - QA Engineer',         role: 'qa',         status: 'idle', currentTask: null, currentIssueId: null, currentIssueIdentifier: null },
+  { id: 'd-mktqa',  name: 'Marketing QA',                role: 'qa',         status: 'idle', currentTask: null, currentIssueId: null, currentIssueIdentifier: null },
+  { id: 'd-sylv',   name: 'Sylvia - Performance Critic', role: 'engineer',   status: 'idle', currentTask: null, currentIssueId: null, currentIssueIdentifier: null },
+  { id: 'd-gil',    name: 'Gilfoyle - DevOps',           role: 'devops',     status: 'idle', currentTask: null, currentIssueId: null, currentIssueIdentifier: null },
+  { id: 'd-sec',    name: 'Security Engineer',           role: 'security',   status: 'idle', currentTask: null, currentIssueId: null, currentIssueIdentifier: null },
+  { id: 'd-morgan', name: 'Morgan - Community Manager',  role: 'general',    status: 'idle', currentTask: null, currentIssueId: null, currentIssueIdentifier: null },
+  { id: 'd-quill',  name: 'Content Marketer',            role: 'general',    status: 'idle', currentTask: null, currentIssueId: null, currentIssueIdentifier: null },
+];
+
+// ── Data fetch + refresh loop ─────────────────────────────────────────────────
+
+let _lastUpdatedAt = null;
+let _firstLoad     = true;
+
+async function fetchAndRender() {
+  try {
+    const res = await fetch(DATA_URL, { cache: 'no-store' });
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    const data = await res.json();
+
+    const agents     = (data.agents && data.agents.length > 0) ? data.agents : null;
+    const updatedAt  = data.updatedAt || null;
+    const isEmpty    = data.empty || !agents;
+
+    document.getElementById('demo-banner').classList.toggle('visible', isEmpty);
+
+    const displayAgents = isEmpty ? DEMO_AGENTS : agents;
+    renderOffice(displayAgents);
+    renderTicker(displayAgents);
+    updateHeader(displayAgents, isEmpty ? null : updatedAt);
+    _lastUpdatedAt = updatedAt;
+
+  } catch (err) {
+    console.warn('[office] fetch failed:', err.message);
+    document.getElementById('demo-banner').classList.add('visible');
+    document.getElementById('live-dot').className = 'live-dot error';
+    document.getElementById('live-label').textContent = 'OFFLINE';
+    document.getElementById('freshness').textContent = '';
+
+    // Show demo on first load if fetch fails
+    if (_firstLoad) {
+      renderOffice(DEMO_AGENTS);
+      renderTicker([]);
+      updateHeader(DEMO_AGENTS, null);
+    }
+  } finally {
+    if (_firstLoad) {
+      document.getElementById('loading-overlay').classList.remove('visible');
+      _firstLoad = false;
+    }
+  }
+}
+
+// ── Detail panel ──────────────────────────────────────────────────────────────
+
+function openDetail(el) {
+  const panel      = document.getElementById('detail-panel');
+  const fullName   = el.dataset.fullname || el.dataset.name;
+  const role       = el.dataset.role;
+  const task       = el.dataset.task;
+  const issueId    = el.dataset.issueId;
+  const issueIdent = el.dataset.issueIdentifier;
+  const status     = el.dataset.status;
+
+  document.getElementById('detail-name').textContent = fullName || '—';
+  document.getElementById('detail-role').textContent = role || '—';
+  document.getElementById('detail-task').textContent = task || 'No active task';
+  document.getElementById('detail-task').className = 'detail-task' + (task ? '' : ' empty');
+
+  const link = document.getElementById('detail-issue-link');
+  if (issueIdent) {
+    link.textContent = `→ ${issueIdent}`;
+    link.href = `/MUL/issues/${issueIdent}`;
+    link.style.display = 'block';
+  } else {
+    link.style.display = 'none';
+  }
+
+  const statusText = status === 'running' ? '🟢 Running' :
+                     status === 'error'   ? '🔴 Error'   : '⚫ Idle';
+  document.getElementById('detail-status').textContent = statusText;
+
+  // Clone avatar sprite
+  const avatarSrc  = el.querySelector('.avatar-sprite');
+  const avatarDest = document.getElementById('detail-avatar');
+  avatarDest.innerHTML = '';
+  if (avatarSrc) {
+    const clone = avatarSrc.cloneNode(true);
+    clone.style.width          = '80px';
+    clone.style.height         = '80px';
+    clone.style.transform      = 'scale(1.67)';
+    clone.style.transformOrigin= 'top left';
+    avatarDest.appendChild(clone);
+  }
+
+  panel.classList.add('open');
+}
+
+function closeDetail() {
+  document.getElementById('detail-panel').classList.remove('open');
+}
+
+document.addEventListener('click', function(e) {
+  const panel = document.getElementById('detail-panel');
+  if (panel.classList.contains('open') && !panel.contains(e.target) && !e.target.closest('.agent-desk')) {
+    closeDetail();
+  }
+});
+
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeDetail(); });
+
+// ── Freshness counter (updates every 30s without re-fetching) ─────────────────
+
+setInterval(() => {
+  if (!_lastUpdatedAt) return;
+  const age  = Date.now() - new Date(_lastUpdatedAt).getTime();
+  const mins = Math.floor(age / 60000);
+  const fresh = document.getElementById('freshness');
+  if (mins < 1) { fresh.textContent = 'updated just now'; }
+  else          { fresh.textContent = `updated ${mins}m ago`; }
+  if (age > STALE_AFTER) {
+    document.getElementById('live-dot').className  = 'live-dot stale';
+    document.getElementById('live-label').textContent = 'STALE';
+  }
+}, 30_000);
+
+// ── Util ──────────────────────────────────────────────────────────────────────
+
+function escHtml(str) {
+  if (!str) return '';
+  return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
+            .replace(/"/g,'&quot;').replace(/'/g,'&#39;');
+}
+
+// ── Boot ──────────────────────────────────────────────────────────────────────
+
+document.getElementById('loading-overlay').classList.add('visible');
+fetchAndRender();
+setInterval(fetchAndRender, REFRESH_MS);
+</script>
+</body>
+</html>
