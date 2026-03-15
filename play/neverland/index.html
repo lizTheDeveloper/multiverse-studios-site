@@ -489,6 +489,240 @@
     color: rgba(255, 245, 228, 0.72);
   }
 
+  /* ============================================================
+     MARGIN ANNOTATION SYSTEM
+     ============================================================ */
+
+  /* Ink dot — appears on hover over annotatable text, or at annotation position */
+  .ink-dot {
+    position: absolute;
+    left: -18px;
+    top: 0.55em;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: rgba(94, 68, 45, 0.18);
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.2s ease;
+    z-index: 2;
+    flex-shrink: 0;
+  }
+
+  .ink-dot:hover,
+  .ink-dot.has-annotation {
+    background: rgba(131, 83, 50, 0.52);
+    transform: scale(1.4);
+  }
+
+  .ink-dot.has-annotation {
+    background: rgba(94, 68, 45, 0.42);
+  }
+
+  /* Selection ink dot — floats near highlighted text */
+  #selection-dot {
+    position: fixed;
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: rgba(131, 83, 50, 0.7);
+    cursor: pointer;
+    z-index: 200;
+    display: none;
+    transition: opacity 0.25s ease;
+    box-shadow: 0 0 0 3px rgba(131, 83, 50, 0.15);
+  }
+
+  #selection-dot.visible { display: block; }
+
+  /* Margin panel — desktop right side */
+  #margin-panel {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: min(380px, 92vw);
+    z-index: 300;
+    background:
+      linear-gradient(180deg, rgba(255, 248, 232, 0.97), rgba(238, 220, 185, 0.97));
+    border-left: 1px solid rgba(96, 65, 37, 0.18);
+    box-shadow: -12px 0 48px rgba(60, 38, 18, 0.12);
+    transform: translateX(100%);
+    transition: transform 0.36s cubic-bezier(0.34, 1.08, 0.64, 1);
+    display: flex;
+    flex-direction: column;
+    font-family: 'Cormorant Garamond', Georgia, serif;
+  }
+
+  #margin-panel.open { transform: translateX(0); }
+
+  body[data-theme="moonlit"] #margin-panel {
+    background: linear-gradient(180deg, rgba(33, 25, 20, 0.97), rgba(26, 19, 15, 0.97));
+    border-left-color: rgba(255, 220, 160, 0.08);
+    box-shadow: -12px 0 48px rgba(0, 0, 0, 0.32);
+  }
+
+  #margin-panel-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 18px 20px 14px;
+    border-bottom: 1px solid rgba(96, 65, 37, 0.12);
+  }
+
+  #margin-panel-label {
+    font-family: 'Special Elite', monospace;
+    font-size: 0.66rem;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    opacity: 0.72;
+  }
+
+  #margin-panel-close {
+    appearance: none;
+    border: none;
+    background: none;
+    cursor: pointer;
+    color: var(--ink-soft);
+    font-size: 1.1rem;
+    padding: 4px 8px;
+    border-radius: 6px;
+    opacity: 0.62;
+    transition: opacity 0.2s ease;
+    line-height: 1;
+  }
+
+  #margin-panel-close:hover { opacity: 1; }
+
+  #margin-panel-body {
+    flex: 1;
+    overflow-y: auto;
+    padding: 20px;
+  }
+
+  #margin-selected-text {
+    font-size: 0.88rem;
+    color: var(--ink-faint);
+    font-style: italic;
+    border-left: 2px solid rgba(96, 65, 37, 0.22);
+    padding-left: 12px;
+    margin-bottom: 18px;
+    line-height: 1.55;
+  }
+
+  #margin-question {
+    width: 100%;
+    background: rgba(255, 248, 232, 0.48);
+    border: 1px solid rgba(96, 65, 37, 0.2);
+    border-radius: 10px;
+    padding: 12px 14px;
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 1rem;
+    color: var(--ink);
+    line-height: 1.5;
+    resize: vertical;
+    min-height: 80px;
+    box-sizing: border-box;
+    transition: border-color 0.2s ease;
+  }
+
+  #margin-question:focus {
+    outline: none;
+    border-color: rgba(131, 83, 50, 0.42);
+  }
+
+  body[data-theme="moonlit"] #margin-question {
+    background: rgba(10, 15, 22, 0.48);
+    border-color: rgba(255, 220, 160, 0.12);
+    color: var(--ink);
+  }
+
+  #margin-submit {
+    display: inline-block;
+    margin-top: 12px;
+    background: rgba(255, 248, 232, 0.34);
+    border: 1px solid rgba(131, 83, 50, 0.38);
+    color: var(--rose);
+    font-family: 'IM Fell English SC', serif;
+    font-size: 0.92rem;
+    padding: 9px 22px;
+    cursor: pointer;
+    border-radius: 999px;
+    transition: all 0.25s ease;
+  }
+
+  #margin-submit:hover {
+    background: rgba(255, 251, 241, 0.72);
+    color: var(--paper-burn);
+  }
+
+  #margin-submit:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+  }
+
+  #margin-response-area {
+    margin-top: 24px;
+  }
+
+  .margin-narrator-response {
+    font-size: 0.96rem;
+    font-style: italic;
+    color: var(--ink-soft);
+    line-height: 1.7;
+    border-top: 1px solid rgba(96, 65, 37, 0.12);
+    padding-top: 16px;
+    margin-top: 8px;
+    opacity: 0;
+    animation: fadeInNarrator 0.8s ease forwards;
+  }
+
+  .margin-existing-annotation {
+    margin-bottom: 20px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid rgba(96, 65, 37, 0.08);
+  }
+
+  .margin-existing-question {
+    font-size: 0.82rem;
+    color: var(--ink-faint);
+    margin-bottom: 6px;
+    letter-spacing: 0.01em;
+  }
+
+  .margin-generating {
+    font-style: italic;
+    color: var(--text-dim);
+    font-size: 0.9rem;
+    opacity: 0.72;
+  }
+
+  /* Mobile bottom sheet */
+  @media (max-width: 720px) {
+    #margin-panel {
+      top: auto;
+      right: 0;
+      left: 0;
+      bottom: 0;
+      width: 100%;
+      max-height: 72vh;
+      border-left: none;
+      border-top: 1px solid rgba(96, 65, 37, 0.18);
+      border-radius: 20px 20px 0 0;
+      transform: translateY(100%);
+      transition: transform 0.36s cubic-bezier(0.34, 1.08, 0.64, 1);
+      box-shadow: 0 -12px 48px rgba(60, 38, 18, 0.14);
+    }
+
+    #margin-panel.open { transform: translateY(0); }
+
+    body[data-theme="moonlit"] #margin-panel {
+      border-top-color: rgba(255, 220, 160, 0.08);
+    }
+  }
+
+  /* ============================================================ */
+
   /* Narrator aside — fixed strip */
   #narrator-aside {
     position: fixed;
@@ -626,6 +860,22 @@
 </div>
 
 <div id="narrator-aside"></div>
+
+<!-- Margin annotation system -->
+<div id="selection-dot" aria-hidden="true"></div>
+<div id="margin-panel" role="dialog" aria-modal="true" aria-label="Write in the margins">
+  <div id="margin-panel-header">
+    <span id="margin-panel-label">In the margins</span>
+    <button id="margin-panel-close" type="button" aria-label="Close">✕</button>
+  </div>
+  <div id="margin-panel-body">
+    <div id="margin-selected-text"></div>
+    <textarea id="margin-question" placeholder="Write your question here." rows="3"></textarea>
+    <br>
+    <button id="margin-submit" type="button">Ask the narrator</button>
+    <div id="margin-response-area"></div>
+  </div>
+</div>
 
 <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 <script>
@@ -1155,6 +1405,251 @@
     resetIdleTimer();
     return originalLoadStory(options);
   };
+})();
+</script>
+
+<!-- ============================================================
+     MARGIN ANNOTATION SYSTEM
+     Readers interrogate the narrator after 3+ scenes.
+     ============================================================ -->
+<script>
+(function() {
+  var NARRATOR_API = '/api/neverland/annotate';
+  var ANNOTATIONS_API = '/api/neverland/annotations';
+  var MIN_CHAPTERS_FOR_ANNOTATIONS = 3;
+  var currentSelectedText = '';
+  var currentTextHash = '';
+  var panelOpen = false;
+
+  // ── Gating ──────────────────────────────────────────────────
+  function chaptersReadCount() {
+    try {
+      var chapters = JSON.parse(window.localStorage.getItem('mvs_nel_chapters_read') || '[]');
+      return chapters.length;
+    } catch(e) { return 0; }
+  }
+
+  function annotationsEnabled() {
+    return chaptersReadCount() >= MIN_CHAPTERS_FOR_ANNOTATIONS;
+  }
+
+  // ── Text hash ───────────────────────────────────────────────
+  function hashText(str) {
+    var hash = 0;
+    for (var i = 0; i < str.length; i++) {
+      hash = ((hash << 5) - hash) + str.charCodeAt(i);
+      hash |= 0;
+    }
+    return Math.abs(hash).toString(36);
+  }
+
+  // ── Panel ───────────────────────────────────────────────────
+  function openPanel(selectedText, chapter) {
+    var panel = document.getElementById('margin-panel');
+    var selectedEl = document.getElementById('margin-selected-text');
+    var questionEl = document.getElementById('margin-question');
+    var responseArea = document.getElementById('margin-response-area');
+    if (!panel) return;
+
+    currentSelectedText = selectedText;
+    currentTextHash = hashText(selectedText.slice(0, 200) + ':' + chapter);
+
+    selectedEl.textContent = '\u201c' + selectedText.slice(0, 160) + (selectedText.length > 160 ? '\u2026' : '') + '\u201d';
+    questionEl.value = '';
+    responseArea.innerHTML = '';
+    panel.classList.add('open');
+    panelOpen = true;
+    questionEl.focus();
+
+    // Load existing annotations for this passage
+    loadExistingAnnotations(chapter, currentTextHash, responseArea);
+  }
+
+  function closePanel() {
+    var panel = document.getElementById('margin-panel');
+    if (panel) panel.classList.remove('open');
+    panelOpen = false;
+    hideSelectionDot();
+  }
+
+  // ── Selection dot ────────────────────────────────────────────
+  function showSelectionDot(x, y) {
+    var dot = document.getElementById('selection-dot');
+    if (!dot) return;
+    dot.style.left = (x + 6) + 'px';
+    dot.style.top = (y - 20) + 'px';
+    dot.classList.add('visible');
+  }
+
+  function hideSelectionDot() {
+    var dot = document.getElementById('selection-dot');
+    if (dot) dot.classList.remove('visible');
+  }
+
+  // ── Annotation API ───────────────────────────────────────────
+  async function submitAnnotation(chapter, selectedText, textHash, question) {
+    var response = await fetch(NARRATOR_API, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ chapter: chapter, textHash: textHash, selectedText: selectedText, question: question })
+    });
+    if (!response.ok) {
+      var err = await response.json().catch(function() { return {}; });
+      throw new Error(err.error || 'The narrator did not respond.');
+    }
+    return response.json();
+  }
+
+  async function loadExistingAnnotations(chapter, textHash, container) {
+    try {
+      var response = await fetch(ANNOTATIONS_API + '?chapter=' + chapter + '&hash=' + textHash);
+      if (!response.ok) return;
+      var data = await response.json();
+      if (!data.annotations || data.annotations.length === 0) return;
+
+      // Show a subtle indication that others have written here
+      if (data.totalCount > 1) {
+        var otherEl = document.createElement('p');
+        otherEl.style.cssText = 'font-size:0.74rem;color:var(--ink-faint);font-style:italic;margin-bottom:16px;opacity:0.72;';
+        otherEl.textContent = data.totalCount + ' reader' + (data.totalCount !== 1 ? 's have' : ' has') + ' written here.';
+        container.appendChild(otherEl);
+      }
+
+      // Show most recent annotation from another reader
+      var last = data.annotations[data.annotations.length - 1];
+      if (last) {
+        var existing = document.createElement('div');
+        existing.className = 'margin-existing-annotation';
+        existing.innerHTML =
+          '<p class="margin-existing-question">' + escapeHtml(last.question) + '</p>' +
+          '<p class="margin-narrator-response" style="opacity:1;">' + escapeHtml(last.narratorResponse) + '</p>';
+        container.appendChild(existing);
+      }
+    } catch(e) {}
+  }
+
+  function escapeHtml(str) {
+    return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+  }
+
+  // ── Event wiring ─────────────────────────────────────────────
+  document.addEventListener('DOMContentLoaded', function() {
+    var closeBtn = document.getElementById('margin-panel-close');
+    var submitBtn = document.getElementById('margin-submit');
+    var selectionDot = document.getElementById('selection-dot');
+
+    if (closeBtn) closeBtn.addEventListener('click', closePanel);
+
+    // Close on backdrop click (outside panel)
+    document.addEventListener('click', function(e) {
+      if (!panelOpen) return;
+      var panel = document.getElementById('margin-panel');
+      if (panel && !panel.contains(e.target) && e.target !== selectionDot) {
+        closePanel();
+      }
+    });
+
+    // Selection dot opens panel
+    if (selectionDot) {
+      selectionDot.addEventListener('click', function(e) {
+        e.stopPropagation();
+        if (currentSelectedText) {
+          var chapter = typeof getStoryIndex === 'function' ? getStoryIndex() : -1;
+          openPanel(currentSelectedText, chapter);
+        }
+        hideSelectionDot();
+      });
+    }
+
+    // Text selection — show ink dot near selection
+    document.addEventListener('mouseup', function(e) {
+      if (!annotationsEnabled()) return;
+      if (panelOpen) return;
+
+      var sel = window.getSelection();
+      if (!sel || sel.isCollapsed || !sel.toString().trim()) {
+        hideSelectionDot();
+        return;
+      }
+
+      var text = sel.toString().trim();
+      if (text.length < 8 || text.length > 600) {
+        hideSelectionDot();
+        return;
+      }
+
+      // Only within the story body
+      var range = sel.getRangeAt(0);
+      var container = range.commonAncestorContainer;
+      var storyEl = document.getElementById('story');
+      if (!storyEl || !storyEl.contains(container)) {
+        hideSelectionDot();
+        return;
+      }
+
+      currentSelectedText = text;
+      showSelectionDot(e.clientX, e.clientY);
+    });
+
+    // Touch selection support
+    document.addEventListener('touchend', function(e) {
+      if (!annotationsEnabled()) return;
+      if (panelOpen) return;
+      setTimeout(function() {
+        var sel = window.getSelection();
+        if (!sel || sel.isCollapsed || !sel.toString().trim()) return;
+        var text = sel.toString().trim();
+        if (text.length < 8 || text.length > 600) return;
+        var range = sel.getRangeAt(0);
+        var container = range.commonAncestorContainer;
+        var storyEl = document.getElementById('story');
+        if (!storyEl || !storyEl.contains(container)) return;
+        currentSelectedText = text;
+        var rect = range.getBoundingClientRect();
+        showSelectionDot(rect.right, rect.top + window.scrollY);
+      }, 200);
+    }, { passive: true });
+
+    // Submit annotation
+    if (submitBtn) {
+      submitBtn.addEventListener('click', async function() {
+        var questionEl = document.getElementById('margin-question');
+        var responseArea = document.getElementById('margin-response-area');
+        if (!questionEl || !responseArea) return;
+
+        var question = questionEl.value.trim();
+        if (!question) return;
+
+        var chapter = typeof getStoryIndex === 'function' ? getStoryIndex() : -1;
+
+        submitBtn.disabled = true;
+        var loadingEl = document.createElement('p');
+        loadingEl.className = 'margin-generating';
+        loadingEl.textContent = 'The narrator considers\u2026';
+        responseArea.appendChild(loadingEl);
+
+        try {
+          var data = await submitAnnotation(chapter, currentSelectedText, currentTextHash, question);
+          loadingEl.remove();
+          var responseEl = document.createElement('p');
+          responseEl.className = 'margin-narrator-response';
+          responseEl.textContent = data.narratorResponse;
+          responseArea.appendChild(responseEl);
+          questionEl.value = '';
+        } catch(err) {
+          loadingEl.textContent = err.message || 'The narrator did not respond.';
+          loadingEl.style.color = 'var(--rose)';
+        } finally {
+          submitBtn.disabled = false;
+        }
+      });
+    }
+
+    // Keyboard — Escape closes panel
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape' && panelOpen) closePanel();
+    });
+  });
 })();
 </script>
 

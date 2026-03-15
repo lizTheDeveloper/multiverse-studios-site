@@ -1,0 +1,21 @@
+name = "neverland-narrator-worker"
+main = "src/index.ts"
+compatibility_date = "2024-01-01"
+
+[vars]
+ALLOWED_ORIGINS = "https://multiversestudios.xyz,http://localhost:3000,http://localhost:8000,http://127.0.0.1:8000"
+
+# ANTHROPIC_API_KEY is set as a secret via:
+#   wrangler secret put ANTHROPIC_API_KEY
+
+# KV namespace for annotation storage
+# Create via: wrangler kv:namespace create "ANNOTATIONS"
+# Then add the binding ID below
+[[kv_namespaces]]
+binding = "ANNOTATIONS"
+id = "ANNOTATIONS_NAMESPACE_ID"
+
+# Routes — intercept before static host
+[[routes]]
+pattern = "multiversestudios.xyz/api/neverland/*"
+zone_name = "multiversestudios.xyz"
