@@ -1414,8 +1414,9 @@
      ============================================================ -->
 <script>
 (function() {
-  var NARRATOR_API = '/api/neverland/annotate';
-  var ANNOTATIONS_API = '/api/neverland/annotations';
+  var NARRATOR_BASE = 'https://neverland.multiversestudios.xyz';
+  var NARRATOR_API = NARRATOR_BASE + '/api/neverland/annotate';
+  var ANNOTATIONS_API = NARRATOR_BASE + '/api/neverland/annotations';
   var MIN_CHAPTERS_FOR_ANNOTATIONS = 3;
   var currentSelectedText = '';
   var currentTextHash = '';
