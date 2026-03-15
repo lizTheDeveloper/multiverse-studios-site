@@ -450,7 +450,13 @@
   <div id="continuation">
     <div id="continuation-text"></div>
   </div>
-  <div id="restart"><a href="#" onclick="restartStory(); return false;">The loop resets. Read again.</a></div>
+  <div id="restart">
+    <a href="#" onclick="restartStory(); return false;">The loop resets. Read again.</a>
+    <div id="telling-nav" style="display:none;margin-top:1.8em;font-family:'Special Elite',monospace;font-size:11px;color:var(--text-dim);letter-spacing:0.14em;text-align:center;">
+      <div style="margin-bottom:0.7em;opacity:0.62;text-transform:uppercase;letter-spacing:0.22em;">return to a telling</div>
+      <div id="telling-links" style="display:flex;flex-wrap:wrap;gap:6px;justify-content:center;"></div>
+    </div>
+  </div>
 </div>
 
 <!-- inkjs runtime (inlined) -->
@@ -504,6 +510,10 @@ function initStory() {
   document.getElementById('choices').innerHTML = '';
   document.getElementById('continuation').classList.remove('active');
   document.getElementById('restart').style.display = 'none';
+  var navEl = document.getElementById('telling-nav');
+  if (navEl) navEl.style.display = 'none';
+  var linksEl = document.getElementById('telling-links');
+  if (linksEl) linksEl.innerHTML = '';
   continueStory();
 }
 
@@ -592,6 +602,7 @@ function continueStory() {
     markFirstPlaythroughComplete();
     updateARGData('reached_ending');
     document.getElementById('restart').style.display = 'block';
+  showTellingNav();
   }
 }
 
@@ -647,6 +658,33 @@ function restartStory() {
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
+// Slug map matching index.html — for back-navigation to specific tellings
+const TELLING_SLUGS = [
+  { slug: 'the-boy-who-would-not-grow',    label: 'I' },
+  { slug: 'wendy-in-the-night-nursery',    label: 'II' },
+  { slug: 'what-the-map-omits',            label: 'III' },
+  { slug: 'the-names-recovered',           label: 'IV' },
+  { slug: 'the-mermaid-lagoon',            label: 'V' },
+  { slug: 'the-deadlock-question',         label: 'VI' },
+  { slug: 'the-spreadsheet-of-neverland',  label: 'appendix' }
+];
+
+function showTellingNav() {
+  const nav = document.getElementById('telling-nav');
+  const linksEl = document.getElementById('telling-links');
+  if (!nav || !linksEl || linksEl.children.length > 0) return;
+  TELLING_SLUGS.forEach(function(t) {
+    const a = document.createElement('a');
+    a.href = 'index.html#' + t.slug;
+    a.textContent = t.label;
+    a.style.cssText = 'color:var(--ink-soft);text-decoration:none;border:1px solid rgba(99,68,40,0.22);border-radius:999px;padding:5px 12px;font-size:11px;transition:all 0.3s ease;';
+    a.onmouseover = function() { a.style.color = 'var(--accent)'; a.style.borderColor = 'var(--accent-dim)'; };
+    a.onmouseout  = function() { a.style.color = 'var(--ink-soft)'; a.style.borderColor = 'rgba(99,68,40,0.22)'; };
+    linksEl.appendChild(a);
+  });
+  nav.style.display = 'block';
+}
+
 // ============================================================
 // SERVER-SIDE GENERATION
 // ============================================================
@@ -668,6 +706,7 @@ async function requestGeneration() {
   const textEl = document.getElementById('continuation-text');
   contEl.classList.add('active');
   document.getElementById('restart').style.display = 'block';
+  showTellingNav();
 
   const loadingEl = document.createElement('p');
   loadingEl.className = 'generating';

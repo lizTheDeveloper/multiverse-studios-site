@@ -462,6 +462,33 @@
     text-shadow: 0 0 12px rgba(236, 216, 181, 0.1);
   }
 
+  /* Infinite game marginalia — appears at end of tellings after unlock */
+  .infinite-marginalia {
+    margin-top: 3.2em;
+    font-style: italic;
+    font-size: 0.8rem;
+    color: var(--ink-faint);
+    text-align: center;
+    opacity: 0.52;
+    cursor: pointer;
+    letter-spacing: 0.02em;
+    transition: opacity 0.4s ease, color 0.3s ease;
+    user-select: none;
+  }
+
+  .infinite-marginalia:hover {
+    opacity: 0.88;
+    color: var(--ink-soft);
+  }
+
+  body[data-theme="moonlit"] .infinite-marginalia {
+    color: rgba(255, 245, 228, 0.36);
+  }
+
+  body[data-theme="moonlit"] .infinite-marginalia:hover {
+    color: rgba(255, 245, 228, 0.72);
+  }
+
   /* Narrator aside — fixed strip */
   #narrator-aside {
     position: fixed;
@@ -616,6 +643,27 @@
 
   const OPENING_FILE = 'opening_peter_pan.md';
 
+  // Slug-based URL mapping — non-sequential, non-guessable
+  const SLUG_MAP = {
+    'the-boy-who-would-not-grow': 0,
+    'wendy-in-the-night-nursery': 1,
+    'what-the-map-omits': 2,
+    'the-names-recovered': 3,
+    'the-mermaid-lagoon': 4,
+    'the-deadlock-question': 5,
+    'the-spreadsheet-of-neverland': 6
+  };
+
+  const SLUG_LIST = [
+    'the-boy-who-would-not-grow',
+    'wendy-in-the-night-nursery',
+    'what-the-map-omits',
+    'the-names-recovered',
+    'the-mermaid-lagoon',
+    'the-deadlock-question',
+    'the-spreadsheet-of-neverland'
+  ];
+
   const GLYPH_BANKS = [
     '𓀀𓀁𓂀𓃭𓃰𓆣𓆤𓆥𓇋𓇳𓈖𓉔𓊹𓋴𓌳𓍯𓎛𓏏',
     '𒀀𒀭𒁹𒂍𒃲𒄑𒆠𒇷𒈠𒉈𒊕𒋗𒌋𒍣𒎙𒐕'
@@ -662,9 +710,15 @@
   function getStoryIndex() {
     const hash = window.location.hash.slice(1);
     if (hash === '') return -1;
-    const index = parseInt(hash, 10);
-    if (isNaN(index) || index < 0 || index > 6) return -1;
-    return index;
+    // Slug-based lookup
+    if (Object.prototype.hasOwnProperty.call(SLUG_MAP, hash)) return SLUG_MAP[hash];
+    // Legacy numeric support — redirect to slug silently
+    const legacyIndex = parseInt(hash, 10);
+    if (!isNaN(legacyIndex) && legacyIndex >= 0 && legacyIndex <= 6) {
+      window.history.replaceState(null, '', '#' + SLUG_LIST[legacyIndex]);
+      return legacyIndex;
+    }
+    return -1;
   }
 
   function setNextLink(index, label, href) {
@@ -759,7 +813,7 @@
 
     if (index === -1) {
       setNextLinks([
-        { label: "except that isn't what happened at all", href: '#0' },
+        { label: "except that isn't what happened at all", href: '#' + SLUG_LIST[0] },
         { label: 'Chapter VII', href: 'https://www.gutenberg.org/files/16/16-h/16-h.htm#chap07' }
       ]);
     } else if (index === 6) {
@@ -769,7 +823,18 @@
       supportEl.innerHTML = 'If it moved you, you can support the work.\u2002<a href="https://buy.stripe.com/4gM14m4IO4w3f4119L6c007" style="color:var(--rose);text-decoration:none;border-bottom:1px solid rgba(139,91,58,0.35);" target="_blank" rel="noopener">Pay what you want. No obligation.</a>';
       document.getElementById('next-link').appendChild(supportEl);
     } else {
-      setNextLink(index, getNextLabel(index), '#' + (index + 1));
+      setNextLink(index, getNextLabel(index), '#' + SLUG_LIST[index + 1]);
+    }
+
+    // Infinite game marginalia — shown on all tellings after reader has unlocked the game
+    if (index !== 6 && hasUnlockedInfiniteGame()) {
+      var marginaliaEl = document.createElement('p');
+      marginaliaEl.className = 'infinite-marginalia';
+      marginaliaEl.innerHTML = '<em>(The infinite game is also available from here, if you know how to look.)</em>';
+      marginaliaEl.addEventListener('click', function() {
+        window.location.href = 'wendy_breaks_neverland.html';
+      });
+      document.getElementById('next-link').appendChild(marginaliaEl);
     }
 
     document.title = 'Never Ever Land';
@@ -824,6 +889,12 @@
     window.requestAnimationFrame(reset);
     window.setTimeout(reset, 60);
     window.setTimeout(reset, 220);
+  }
+
+  function hasUnlockedInfiniteGame() {
+    try {
+      return window.localStorage.getItem('nel_first_playthrough_complete') === 'true';
+    } catch(e) { return false; }
   }
 
   async function loadStory(options) {
