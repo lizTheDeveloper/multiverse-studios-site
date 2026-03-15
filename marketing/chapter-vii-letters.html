@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chapter VII Letters — Never Ever Land</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&family=IM+Fell+English:ital@0;1&family=Special+Elite&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --paper: #dcc9a2;
+      --paper-dark: #c4a96e;
+      --ink: #38251a;
+      --ink-light: #6b4f3a;
+      --ink-faded: #8a7560;
+      --red-ink: #8b2500;
+      --blue-ink: #2a3d5c;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background: #1a1a1a;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 80px;
+      padding: 80px 20px;
+      font-family: 'Cormorant Garamond', Georgia, serif;
+    }
+
+    .letter {
+      position: relative;
+      max-width: 520px;
+      width: 100%;
+    }
+
+    /* --- Fragment 1: Margin note on a "page" of Peter Pan --- */
+    .fragment-margin-note {
+      background: var(--paper);
+      padding: 48px 56px;
+      border-radius: 2px;
+      box-shadow:
+        0 2px 12px rgba(0,0,0,0.3),
+        inset 0 0 60px rgba(0,0,0,0.05);
+      position: relative;
+    }
+
+    .fragment-margin-note::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: repeating-linear-gradient(
+        transparent,
+        transparent 31px,
+        rgba(0,0,0,0.03) 31px,
+        rgba(0,0,0,0.03) 32px
+      );
+      pointer-events: none;
+    }
+
+    .fragment-margin-note .original-text {
+      font-family: 'IM Fell English', Georgia, serif;
+      font-size: 15px;
+      line-height: 32px;
+      color: var(--ink);
+      opacity: 0.5;
+    }
+
+    .fragment-margin-note .margin-note {
+      position: absolute;
+      right: 16px;
+      top: 55px;
+      transform: rotate(-2deg);
+      font-family: 'Special Elite', monospace;
+      font-size: 13px;
+      color: var(--red-ink);
+      white-space: nowrap;
+      letter-spacing: 0.02em;
+    }
+
+    .fragment-margin-note .url {
+      display: block;
+      margin-top: 24px;
+      font-family: 'Special Elite', monospace;
+      font-size: 10px;
+      color: var(--ink-faded);
+      text-align: right;
+      letter-spacing: 0.05em;
+    }
+
+    /* --- Fragment 2: Formal letter --- */
+    .fragment-letter {
+      background: #f0e8d8;
+      padding: 56px 48px;
+      border-radius: 2px;
+      box-shadow:
+        0 2px 12px rgba(0,0,0,0.3),
+        inset 0 0 40px rgba(0,0,0,0.04);
+    }
+
+    .fragment-letter .letterhead {
+      font-family: 'IM Fell English', Georgia, serif;
+      font-size: 11px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--ink-faded);
+      text-align: center;
+      margin-bottom: 32px;
+      border-bottom: 1px solid var(--paper-dark);
+      padding-bottom: 16px;
+    }
+
+    .fragment-letter .letter-body {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 17px;
+      line-height: 1.7;
+      color: var(--ink);
+    }
+
+    .fragment-letter .letter-body p {
+      margin-bottom: 16px;
+    }
+
+    .fragment-letter .signature {
+      font-family: 'IM Fell English', Georgia, serif;
+      font-style: italic;
+      font-size: 14px;
+      color: var(--ink-light);
+      margin-top: 24px;
+    }
+
+    .fragment-letter .url {
+      display: block;
+      margin-top: 32px;
+      font-family: 'Special Elite', monospace;
+      font-size: 10px;
+      color: var(--ink-faded);
+      text-align: center;
+      letter-spacing: 0.05em;
+    }
+
+    /* --- Fragment 3: Typewriter note --- */
+    .fragment-typewriter {
+      background: #f5f0e6;
+      padding: 48px 44px;
+      border-radius: 2px;
+      box-shadow:
+        0 2px 12px rgba(0,0,0,0.3),
+        inset 0 0 40px rgba(0,0,0,0.03);
+      transform: rotate(-0.5deg);
+    }
+
+    .fragment-typewriter p {
+      font-family: 'Special Elite', monospace;
+      font-size: 15px;
+      line-height: 2;
+      color: var(--ink);
+      letter-spacing: 0.02em;
+    }
+
+    .fragment-typewriter .stamp {
+      display: inline-block;
+      margin-top: 24px;
+      border: 2px solid var(--red-ink);
+      padding: 4px 12px;
+      font-family: 'Special Elite', monospace;
+      font-size: 11px;
+      color: var(--red-ink);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      transform: rotate(-3deg);
+    }
+
+    .fragment-typewriter .url {
+      display: block;
+      margin-top: 20px;
+      font-family: 'Special Elite', monospace;
+      font-size: 10px;
+      color: var(--ink-faded);
+      text-align: right;
+      letter-spacing: 0.05em;
+    }
+
+    /* --- Fragment 4: Spreadsheet cell --- */
+    .fragment-spreadsheet {
+      background: #ffffff;
+      border: 1px solid #ccc;
+      border-radius: 0;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.3);
+      overflow: hidden;
+    }
+
+    .fragment-spreadsheet .toolbar {
+      background: #f0f0f0;
+      border-bottom: 1px solid #ddd;
+      padding: 4px 8px;
+      display: flex;
+      gap: 4px;
+    }
+
+    .fragment-spreadsheet .toolbar span {
+      display: inline-block;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: #ccc;
+    }
+
+    .fragment-spreadsheet table {
+      width: 100%;
+      border-collapse: collapse;
+      font-family: -apple-system, 'Segoe UI', sans-serif;
+      font-size: 13px;
+    }
+
+    .fragment-spreadsheet th {
+      background: #f7f7f7;
+      border: 1px solid #ddd;
+      padding: 4px 12px;
+      font-weight: 400;
+      color: #666;
+      font-size: 11px;
+      text-align: center;
+    }
+
+    .fragment-spreadsheet td {
+      border: 1px solid #e0e0e0;
+      padding: 6px 12px;
+      color: #333;
+    }
+
+    .fragment-spreadsheet .col-header {
+      background: #f7f7f7;
+      color: #666;
+      font-size: 11px;
+      text-align: center;
+      min-width: 80px;
+    }
+
+    .fragment-spreadsheet .cell-name {
+      font-weight: 500;
+    }
+
+    .fragment-spreadsheet .cell-number {
+      text-align: right;
+      font-family: 'SF Mono', 'Consolas', monospace;
+      font-size: 12px;
+      color: #666;
+    }
+
+    .fragment-spreadsheet .cell-status {
+      color: var(--red-ink);
+      font-style: italic;
+      font-size: 12px;
+    }
+
+    .fragment-spreadsheet .url-bar {
+      background: #f7f7f7;
+      border-top: 1px solid #ddd;
+      padding: 6px 12px;
+      font-family: 'Special Elite', monospace;
+      font-size: 10px;
+      color: #999;
+      text-align: center;
+      letter-spacing: 0.05em;
+    }
+
+    /* --- Fragment 5: Narrator's warning --- */
+    .fragment-narrator {
+      background: var(--paper);
+      padding: 40px 48px;
+      border-radius: 2px;
+      box-shadow:
+        0 2px 12px rgba(0,0,0,0.3),
+        inset 0 0 60px rgba(0,0,0,0.05);
+      text-align: center;
+    }
+
+    .fragment-narrator .narrator-text {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 20px;
+      font-style: italic;
+      line-height: 1.6;
+      color: var(--ink);
+    }
+
+    .fragment-narrator .narrator-sig {
+      margin-top: 20px;
+      font-family: 'Special Elite', monospace;
+      font-size: 11px;
+      color: var(--ink-faded);
+      letter-spacing: 0.1em;
+    }
+
+    .fragment-narrator .url {
+      display: block;
+      margin-top: 24px;
+      font-family: 'Special Elite', monospace;
+      font-size: 10px;
+      color: var(--ink-faded);
+      letter-spacing: 0.05em;
+    }
+
+    /* Labels for dev reference */
+    .dev-label {
+      font-family: -apple-system, sans-serif;
+      font-size: 11px;
+      color: #666;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 12px;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- FRAGMENT 1: Margin note on Peter Pan Chapter VII -->
+  <div class="dev-label">Fragment 1 — Margin Note</div>
+  <div class="letter">
+    <div class="fragment-margin-note">
+      <div class="original-text">
+        "I don't want to be their mother," Wendy<br>
+        made her great protest. "I am but a little<br>
+        girl. I have no real experience."<br>
+        <br>
+        "That doesn't matter," said Peter, as if<br>
+        he were the only person in the room who<br>
+        knew anything about it; "what is needed is<br>
+        just a nice motherly person."<br>
+        <br>
+        "Oh dear!" Wendy said, "you see I feel<br>
+        that is exactly what I am."
+      </div>
+      <div class="margin-note">"She didn't say yes. &mdash; ed."</div>
+      <span class="url">multiversestudios.xyz/play/neverland</span>
+    </div>
+  </div>
+
+  <!-- FRAGMENT 2: Formal letter -->
+  <div class="dev-label">Fragment 2 — The Letter</div>
+  <div class="letter">
+    <div class="fragment-letter">
+      <div class="letterhead">Office of Narrative Continuity &bull; Neverland Division</div>
+      <div class="letter-body">
+        <p>Dear Mrs. Darling,</p>
+        <p>We regret to inform you that your daughter has declined the position. The role of Mother has been vacated and no suitable replacement has been identified.</p>
+        <p>The Lost Boys have been notified. Several have asked what "notified" means. One has asked what "mother" means. We consider this a separate issue.</p>
+        <p>Please be advised that the story will continue without her consent, as it was never required.</p>
+      </div>
+      <div class="signature">— The Management</div>
+      <span class="url">multiversestudios.xyz/play/neverland</span>
+    </div>
+  </div>
+
+  <!-- FRAGMENT 3: Typewriter note from the Narrator -->
+  <div class="dev-label">Fragment 3 — Typewriter Warning</div>
+  <div class="letter">
+    <div class="fragment-typewriter">
+      <p>The narrator would like you to stop<br>
+      asking questions about Chapter VII.</p>
+      <p>The discrepancies between tellings<br>
+      are not errors.</p>
+      <p>Please continue reading.</p>
+      <div class="stamp">Handled</div>
+      <span class="url">multiversestudios.xyz/play/neverland</span>
+    </div>
+  </div>
+
+  <!-- FRAGMENT 4: Spreadsheet fragment -->
+  <div class="dev-label">Fragment 4 — The Spreadsheet</div>
+  <div class="letter">
+    <div class="fragment-spreadsheet">
+      <div class="toolbar">
+        <span></span><span></span><span></span>
+      </div>
+      <table>
+        <tr>
+          <th></th>
+          <th class="col-header">A</th>
+          <th class="col-header">B</th>
+          <th class="col-header">C</th>
+        </tr>
+        <tr>
+          <th class="col-header">1</th>
+          <td class="cell-name">Name</td>
+          <td class="cell-name">Duration (days)</td>
+          <td class="cell-name">Exit method</td>
+        </tr>
+        <tr>
+          <th class="col-header">2</th>
+          <td>Margaret</td>
+          <td class="cell-number">312</td>
+          <td class="cell-status">absorbed</td>
+        </tr>
+        <tr>
+          <th class="col-header">3</th>
+          <td>Jane</td>
+          <td class="cell-number">184</td>
+          <td class="cell-status">absorbed</td>
+        </tr>
+        <tr>
+          <th class="col-header">44</th>
+          <td>Clara</td>
+          <td class="cell-number">6</td>
+          <td class="cell-status">absorbed</td>
+        </tr>
+        <tr>
+          <th class="col-header">45</th>
+          <td>Moira</td>
+          <td class="cell-number">891</td>
+          <td class="cell-status">absorbed</td>
+        </tr>
+        <tr>
+          <th class="col-header">46</th>
+          <td>Priya</td>
+          <td class="cell-number">2</td>
+          <td class="cell-status">unknown</td>
+        </tr>
+        <tr>
+          <th class="col-header">47</th>
+          <td style="font-weight: 600;">Wendy</td>
+          <td class="cell-number">—</td>
+          <td class="cell-status" style="color: #2a5c3d; font-weight: 600;">pending</td>
+        </tr>
+      </table>
+      <div class="url-bar">multiversestudios.xyz/play/neverland</div>
+    </div>
+  </div>
+
+  <!-- FRAGMENT 5: Narrator's plea -->
+  <div class="dev-label">Fragment 5 — Narrator's Plea</div>
+  <div class="letter">
+    <div class="fragment-narrator">
+      <div class="narrator-text">
+        "I would like to state, for the record,<br>
+        that the girl went willingly."
+      </div>
+      <div class="narrator-sig">— THE NARRATOR</div>
+      <span class="url">multiversestudios.xyz/play/neverland</span>
+    </div>
+  </div>
+
+</body>
+</html>
