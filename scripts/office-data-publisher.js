@@ -27,6 +27,9 @@
 
 'use strict';
 
+const fs = require('fs');
+const path = require('path');
+
 const PAPERCLIP_API_URL   = process.env.PAPERCLIP_API_URL   || 'http://127.0.0.1:3100';
 const PAPERCLIP_API_KEY   = process.env.PAPERCLIP_API_KEY;
 const PAPERCLIP_COMPANY_ID= process.env.PAPERCLIP_COMPANY_ID;
@@ -34,6 +37,10 @@ const PRESIDIO_URL        = process.env.PRESIDIO_URL        || 'https://play.mul
 const OFFICE_WORKER_URL   = process.env.OFFICE_WORKER_URL   || 'https://multiversestudios.xyz/api/office/update';
 const OFFICE_UPDATE_SECRET= process.env.OFFICE_UPDATE_SECRET;
 const INTERVAL_MS         = parseInt(process.env.PUBLISH_INTERVAL_MS || '60000', 10);
+
+// Path to CEO daily memory files (used for Captain's Log)
+const CEO_MEMORY_DIR = process.env.CEO_MEMORY_DIR
+  || path.join(__dirname, '../../../ceo/agents/ceo/memory');
 
 // ── Presidio scrub ──────────────────────────────────────────────────────────
 
@@ -114,6 +121,94 @@ async function fetchActiveIssue(agentId) {
   return issues[0];
 }
 
+// ── Recent events ───────────────────────────────────────────────────────────
+
+/**
+ * Fetch up to 20 recently changed issues (done + in_progress + blocked)
+ * and build human-readable event strings.
+ */
+async function fetchRecentEvents(agentMap) {
+  const results = [];
+  const statuses = ['done', 'in_progress', 'blocked'];
+
+  try {
+    const res = await fetch(
+      `${PAPERCLIP_API_URL}/api/companies/${PAPERCLIP_COMPANY_ID}/issues?status=${statuses.join(',')}&limit=30`,
+      { headers: paperclipHeaders(), signal: AbortSignal.timeout(10000) },
+    );
+    if (!res.ok) {
+      console.warn(`[publisher] Recent events fetch failed: ${res.status}`);
+      return [];
+    }
+
+    const issues = await res.json();
+    if (!Array.isArray(issues)) return [];
+
+    // Sort by updatedAt descending
+    issues.sort((a, b) => new Date(b.updatedAt) - new Date(a.updatedAt));
+
+    for (const issue of issues.slice(0, 20)) {
+      const agent = agentMap[issue.assigneeAgentId] || null;
+      const agentName = agent ? (agent.name || agent.role) : 'Someone';
+
+      let action;
+      if (issue.status === 'done') action = 'completed';
+      else if (issue.status === 'blocked') action = 'blocked';
+      else action = 'started';
+
+      results.push({
+        agentId: issue.assigneeAgentId || '',
+        agentName,
+        action,
+        taskTitle: issue.title || '(untitled)',
+        issueIdentifier: issue.identifier || null,
+        timestamp: issue.updatedAt,
+      });
+    }
+  } catch (err) {
+    console.warn('[publisher] fetchRecentEvents error:', err.message);
+  }
+
+  return results;
+}
+
+// ── Captain's Log ────────────────────────────────────────────────────────────
+
+/**
+ * Read the CEO's latest daily memory file and extract heartbeat summaries.
+ * Returns a plain-text excerpt (last 3–5 heartbeat sections).
+ */
+function readCaptainsLog() {
+  try {
+    // Try today and yesterday (in case run after midnight)
+    const today = new Date();
+    const candidates = [today, new Date(today - 86400000)].map(d => {
+      const ymd = d.toISOString().slice(0, 10);
+      return path.join(CEO_MEMORY_DIR, `${ymd}.md`);
+    });
+
+    let content = null;
+    for (const p of candidates) {
+      if (fs.existsSync(p)) {
+        content = fs.readFileSync(p, 'utf8');
+        break;
+      }
+    }
+
+    if (!content) return null;
+
+    // Split on "## Heartbeat" sections and take last 4
+    const sections = content.split(/(?=^## Heartbeat)/m).filter(s => s.trim());
+    const excerpt = sections.slice(-4).join('\n---\n');
+
+    // Trim to 3000 chars max to avoid huge payloads
+    return excerpt.length > 3000 ? excerpt.slice(0, 2997) + '…' : excerpt;
+  } catch (err) {
+    console.warn('[publisher] readCaptainsLog error:', err.message);
+    return null;
+  }
+}
+
 // ── Main snapshot logic ─────────────────────────────────────────────────────
 
 async function buildSnapshot() {
@@ -122,6 +217,9 @@ async function buildSnapshot() {
   console.log('[publisher] Fetching agents…');
   const agents = await fetchAgents();
   console.log(`[publisher] Got ${agents.length} agents`);
+
+  // Build agent lookup map for recent events
+  const agentMap = Object.fromEntries(agents.map(a => [a.id, a]));
 
   // Fetch active issues for running agents in parallel (max 5 concurrent)
   const runningAgents = agents.filter(a => a.status === 'running');
@@ -143,14 +241,25 @@ async function buildSnapshot() {
     issueResults.map(r => [r.agentId, r.issue])
   );
 
-  // Collect all task titles for batch Presidio scrubbing
+  // Fetch recent events and captain's log in parallel
+  const [recentEvents, captainsLog] = await Promise.all([
+    fetchRecentEvents(agentMap),
+    Promise.resolve(readCaptainsLog()),
+  ]);
+
+  // Collect all task titles for batch Presidio scrubbing (agents + events)
   const taskTitles = agents.map(agent => {
     const issue = issueByAgent[agent.id];
     return (issue && agent.status === 'running') ? issue.title : null;
   });
+  const eventTitles = recentEvents.map(e => e.taskTitle);
 
-  console.log(`[publisher] Scrubbing ${taskTitles.filter(Boolean).length} task texts with Presidio…`);
-  const scrubbed = await scrubBatch(taskTitles);
+  console.log(`[publisher] Scrubbing ${taskTitles.filter(Boolean).length + eventTitles.filter(Boolean).length} task texts with Presidio…`);
+  const allTexts = [...taskTitles, ...eventTitles];
+  const scrubbed = await scrubBatch(allTexts);
+
+  const scrubbedTaskTitles = scrubbed.slice(0, taskTitles.length);
+  const scrubbedEventTitles = scrubbed.slice(taskTitles.length);
 
   // Build sanitized agent snapshots
   const agentSnapshots = agents.map((agent, i) => {
@@ -163,14 +272,24 @@ async function buildSnapshot() {
       name: agent.name || agent.role,
       role: agent.role,
       status: agent.status, // running | idle | error
-      currentTask: rawTitle ? (scrubbed[i] || rawTitle) : null,
+      currentTask: rawTitle ? (scrubbedTaskTitles[i] || rawTitle) : null,
       currentIssueId: (issue && agent.status === 'running') ? issue.id : null,
       currentIssueIdentifier: (issue && agent.status === 'running') ? issue.identifier : null,
     };
   });
 
+  // Apply scrubbed titles to events
+  const sanitizedEvents = recentEvents.map((e, i) => ({
+    ...e,
+    taskTitle: scrubbedEventTitles[i] || e.taskTitle,
+  }));
+
+  console.log(`[publisher] Collected ${sanitizedEvents.length} recent events; captain's log: ${captainsLog ? 'yes' : 'none'}`);
+
   return {
     agents: agentSnapshots,
+    recentEvents: sanitizedEvents,
+    captainsLog: captainsLog || null,
     updatedAt: new Date().toISOString(),
     companyId: PAPERCLIP_COMPANY_ID,
   };

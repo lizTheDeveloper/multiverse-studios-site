@@ -207,6 +207,7 @@
   <span>click any agent for details · refreshes every 60s</span>
 </footer>
 
+<script src="behaviors.js"></script>
 <script>
 'use strict';
 
@@ -544,6 +545,340 @@ function drawAllDesks() {
   }
 }
 
+// ── Day/night cycle ───────────────────────────────────────────────────────────
+
+function dayNightAlpha() {
+  const h = new Date().getHours() + new Date().getMinutes() / 60;
+  if (h >= 9 && h < 18) return 0;
+  if (h >= 18 && h < 20) return (h - 18) / 2 * 0.5;
+  if (h >= 7  && h < 9)  return (9 - h)  / 2 * 0.5;
+  return 0.5;
+}
+
+// ── Particle system ───────────────────────────────────────────────────────────
+
+const particles = [];
+
+function spawnParticle(x, y, vx, vy, life, col, r) {
+  if (particles.length < 300) particles.push({ x, y, vx, vy, life, maxLife: life, col, r });
+}
+
+function updateParticles() {
+  for (let i = particles.length - 1; i >= 0; i--) {
+    const p = particles[i];
+    p.x += p.vx; p.y += p.vy; p.life--;
+    if (p.life <= 0) particles.splice(i, 1);
+  }
+}
+
+function drawParticles() {
+  for (const p of particles) {
+    ctx.globalAlpha = (p.life / p.maxLife) * 0.75;
+    ctx.fillStyle = p.col;
+    ctx.fillRect(Math.round(p.x), Math.round(p.y), p.r, p.r);
+  }
+  ctx.globalAlpha = 1;
+}
+
+// ── Atmospheric spawners ──────────────────────────────────────────────────────
+
+let coffeeTimer = 0;
+function tickCoffeeSteam(cx, cy) {
+  coffeeTimer++;
+  if (coffeeTimer % 10 === 0) {
+    spawnParticle(cx + (Math.random() - 0.5) * 6, cy, (Math.random() - 0.5) * 0.3, -0.6 - Math.random() * 0.4,
+      35 + Math.floor(Math.random() * 20), '#c0c8e0', 2);
+  }
+}
+
+// ── BOARD door glow ───────────────────────────────────────────────────────────
+
+let boardGlow = 0, boardGlowDir = 1;
+
+function drawBoardDoor() {
+  // 2-tile-wide mysterious door at top-center of room (tx 12–13)
+  boardGlow += boardGlowDir * 0.015;
+  if (boardGlow > 1) boardGlowDir = -1;
+  if (boardGlow < 0) boardGlowDir =  1;
+
+  const bx = sceneOffX + 12 * TS + TS / 4;
+  const by = sceneOffY;
+  const dw = TS * 1.5, dh = TS * 1.6;
+
+  // Glow halo
+  const grad = ctx.createRadialGradient(bx + dw/2, by + dh/2, 2, bx + dw/2, by + dh/2, TS * 2);
+  grad.addColorStop(0, `rgba(124,58,237,${0.25 + boardGlow * 0.3})`);
+  grad.addColorStop(1, 'rgba(124,58,237,0)');
+  ctx.fillStyle = grad;
+  ctx.fillRect(bx - TS, by - TS/2, dw + TS * 2, dh + TS);
+
+  // Door frame
+  ctx.fillStyle = '#1a0a2e';
+  ctx.fillRect(bx - 2, by, dw + 4, dh + 2);
+  // Door face
+  ctx.fillStyle = `rgba(80,20,160,${0.6 + boardGlow * 0.35})`;
+  ctx.fillRect(bx, by + 2, dw, dh - 2);
+  // Door panel detail
+  ctx.fillStyle = `rgba(140,80,240,${0.3 + boardGlow * 0.25})`;
+  ctx.fillRect(bx + 4, by + 6, dw - 8, (dh - 10) / 2);
+  ctx.fillRect(bx + 4, by + 8 + (dh - 10) / 2, dw - 8, (dh - 12) / 2);
+  // Knob
+  ctx.fillStyle = `rgba(220,180,255,${0.8 + boardGlow * 0.2})`;
+  ctx.fillRect(bx + dw - 8, by + dh / 2 - 2, 5, 4);
+  // Label
+  ctx.font = `${S - 1}px 'Press Start 2P', monospace`;
+  ctx.fillStyle = `rgba(210,190,255,${0.75 + boardGlow * 0.25})`;
+  ctx.textAlign = 'center';
+  ctx.fillText('BOARD', bx + dw / 2, by + dh + S * 2);
+  ctx.textAlign = 'left';
+
+  // Spawn occasional purple sparkles from the door crack
+  if (Math.random() < 0.15 * boardGlow) {
+    spawnParticle(bx + Math.random() * dw, by + Math.random() * dh,
+      (Math.random() - 0.5) * 0.8, -0.5 - Math.random() * 0.5,
+      20 + Math.floor(Math.random() * 20), '#c084fc', 2);
+  }
+}
+
+// ── Zone environment drawing ──────────────────────────────────────────────────
+
+function drawCSuiteEnv(wt) {
+  // Exec desk (spanning 2 tiles at 2,1)
+  const dx = sceneOffX + 2 * TS, dy = sceneOffY + 1 * TS;
+  ctx.fillStyle = '#3d2010'; ctx.fillRect(dx + 2, dy + TS * .35, TS * 2 - 4, TS * .65);
+  ctx.fillStyle = '#5a3018'; ctx.fillRect(dx + 6, dy + TS * .38, TS * 2 - 12, TS * .58);
+  // Crown on top wall
+  const crx = sceneOffX + 3 * TS + 8, cry = sceneOffY + 4;
+  ctx.fillStyle = '#f5c518';
+  ctx.fillRect(crx,      cry + 8, 20, 6);   // base band
+  ctx.fillRect(crx,      cry + 2, 4, 8);    // left spike
+  ctx.fillRect(crx + 8,  cry,     4, 10);   // center spike
+  ctx.fillRect(crx + 16, cry + 2, 4, 8);    // right spike
+  ctx.fillStyle = '#cc9900';
+  ctx.fillRect(crx + 2, cry + 10, 4, 4);    // gem left
+  ctx.fillRect(crx + 14, cry + 10, 4, 4);   // gem right
+  // Telescope (5,1)
+  const tx5 = sceneOffX + 5 * TS, ty1 = sceneOffY + 1 * TS;
+  ctx.fillStyle = '#8a7a50'; ctx.fillRect(tx5 + 8,  ty1 + 8,  22, 7);  // barrel
+  ctx.fillStyle = '#b09840'; ctx.fillRect(tx5 + 28, ty1 + 6,  6,  11); // eyepiece
+  ctx.fillStyle = '#6a5a30'; ctx.fillRect(tx5 + 14, ty1 + 14, 4,  18); // stand
+  ctx.fillStyle = '#4a4a4a'; ctx.fillRect(tx5 + 8,  ty1 + 30, 14, 4);  // base
+}
+
+function drawPMEnv(wt) {
+  // Whiteboard on top wall (tx 8-10, ty 0)
+  const wx = sceneOffX + 8 * TS, wy = sceneOffY + 4;
+  ctx.fillStyle = '#2a2a4a'; ctx.fillRect(wx, wy, TS * 2 + 4, TS - 8);       // frame
+  ctx.fillStyle = '#e8e8f4'; ctx.fillRect(wx + 2, wy + 2, TS * 2, TS - 14);  // board
+  // Roadmap lines
+  ctx.fillStyle = '#3a6ae8'; ctx.fillRect(wx + 8,  wy + 8,  24, 2);
+  ctx.fillStyle = '#e84040'; ctx.fillRect(wx + 8,  wy + 14, 16, 2);
+  ctx.fillStyle = '#40a840'; ctx.fillRect(wx + 8,  wy + 20, 28, 2);
+  ctx.fillStyle = '#e8a040'; ctx.fillRect(wx + 8,  wy + 26, 18, 2);
+  // Clip pile on desk (tx 10, ty 2)
+  const cx10 = sceneOffX + 10 * TS, cy2 = sceneOffY + 2 * TS;
+  ctx.fillStyle = '#c8a860'; ctx.fillRect(cx10 + 10, cy2 + 20, 14, 18);
+  ctx.fillStyle = '#a07840'; ctx.fillRect(cx10 + 12, cy2 + 14, 10, 8);
+}
+
+function drawDesignEnv(wt) {
+  // Easel at (16, 1)
+  const ex = sceneOffX + 16 * TS, ey = sceneOffY + 1 * TS;
+  ctx.fillStyle = '#8a6030';
+  ctx.fillRect(ex + TS/2 - 2, ey + 4, 4, TS - 8);            // center pole
+  ctx.fillRect(ex + 10,       ey + TS/2, 3, TS/2 - 2);        // left leg
+  ctx.fillRect(ex + TS - 14,  ey + TS/2, 3, TS/2 - 2);        // right leg
+  ctx.fillStyle = '#e8e0c8'; ctx.fillRect(ex + 8, ey + 4, TS - 16, TS/2 - 2); // canvas
+  ctx.fillStyle = '#a0d0a0'; ctx.fillRect(ex + 10, ey + 6, TS - 20, TS/2 - 6); // painting (green field)
+  ctx.fillStyle = '#6090e0'; ctx.fillRect(ex + 10, ey + 6, TS - 20, (TS/2 - 6) / 3); // sky stripe
+  // Color swatches on palette (tx 19, ty 2)
+  const swx = sceneOffX + 19 * TS, swy = sceneOffY + 2 * TS;
+  ctx.fillStyle = '#c8b890'; ctx.fillRect(swx + 2, swy + 20, 38, 12);
+  ['#ff4040','#ff9040','#ffe040','#40c040','#4080ff','#8040ff'].forEach((c, i) => {
+    ctx.fillStyle = c; ctx.fillRect(swx + 4 + i * 6, swy + 22, 5, 8);
+  });
+  // Graphic tablet (tx 22, ty 1)
+  const tabx = sceneOffX + 22 * TS, taby = sceneOffY + 1 * TS;
+  ctx.fillStyle = '#202030'; ctx.fillRect(tabx + 6, taby + 10, TS - 12, TS - 16);
+  ctx.fillStyle = '#1a3a80'; ctx.fillRect(tabx + 8, taby + 12, TS - 16, TS - 20);
+  ctx.fillStyle = '#e8e8f0'; ctx.fillRect(tabx + TS/2 - 1, taby + 4, 2, 14); // stylus
+  ctx.fillStyle = '#d0d0e8'; ctx.fillRect(tabx + TS/2 - 3, taby + 6, 6, 4);
+}
+
+function drawEngineeringEnv(wt) {
+  // Cable mess strands at the top edge of the zone
+  ctx.strokeStyle = '#252538'; ctx.lineWidth = 1.5;
+  for (let i = 0; i < 6; i++) {
+    const mx = sceneOffX + i * 3 * TS;
+    const my = sceneOffY + 4 * TS;
+    ctx.beginPath();
+    ctx.moveTo(mx + 10, my + TS - 2);
+    ctx.bezierCurveTo(mx + 22, my + TS/2, mx + 34, my + TS - 6, mx + 46, my + TS - 2);
+    ctx.stroke();
+  }
+  // Wall-mounted server rack at right edge of engineering (tx 18-19, ty 4)
+  for (let c = 0; c < 2; c++) {
+    const srx = sceneOffX + (18 + c) * TS, sry = sceneOffY + 4 * TS;
+    ctx.fillStyle = '#111120'; ctx.fillRect(srx + 2, sry + 2, TS - 4, TS - 4);
+    for (let u = 0; u < 3; u++) {
+      ctx.fillStyle = u % 2 === 0 ? '#0d1d0d' : '#12121c';
+      ctx.fillRect(srx + 4, sry + 4 + u * 12, TS - 8, 10);
+      const ledOn = (wt + c * 9 + u * 17) % 50 < 35;
+      ctx.fillStyle = ledOn ? '#00ff50' : '#003015';
+      ctx.fillRect(srx + TS - 9, sry + 6 + u * 12, 3, 3);
+    }
+  }
+}
+
+function drawQAEnv(wt) {
+  // Bug jars shelf at (20, 4)
+  const shx = sceneOffX + 20 * TS, shy = sceneOffY + 4 * TS;
+  ctx.fillStyle = '#5c3a1e'; ctx.fillRect(shx + 2, shy + 26, TS * 2 - 4, 4);
+  const jars = ['#40ff40','#ff4040','#ffff40'];
+  jars.forEach((c, i) => {
+    const jx = shx + 6 + i * 20, jy = shy + 8;
+    ctx.fillStyle = 'rgba(200,240,220,0.25)'; ctx.fillRect(jx,     jy,     12, 18); // glass
+    ctx.fillStyle = c;                         ctx.fillRect(jx + 3, jy + 5, 6,  8); // bug blob
+    ctx.fillStyle = '#1a1a1a';                 ctx.fillRect(jx + 4, jy + 6, 2,  2); ctx.fillRect(jx + 7, jy + 6, 2, 2); // eyes
+    ctx.fillStyle = '#8a6030';                 ctx.fillRect(jx,     jy,     12, 4); // lid
+  });
+  // Traffic light (tx 27, ty 5 - right wall)
+  const tlx = sceneOffX + 27 * TS + 8, tly = sceneOffY + 5 * TS;
+  ctx.fillStyle = '#1e1e1e'; ctx.fillRect(tlx, tly, 12, TS - 4);
+  const redOn  = (wt) % 180 < 90;
+  const grOn   = !redOn;
+  ctx.fillStyle = redOn ? '#ff3030' : '#3a0808'; ctx.fillRect(tlx + 2, tly + 2,  8, 8);
+  ctx.fillStyle = '#3a3000';                      ctx.fillRect(tlx + 2, tly + 13, 8, 8);
+  ctx.fillStyle = grOn  ? '#30d060' : '#083a18'; ctx.fillRect(tlx + 2, tly + 24, 8, 8);
+  // Magnifying glass (tx 24, ty 6)
+  const mgx = sceneOffX + 24 * TS, mgy = sceneOffY + 6 * TS;
+  ctx.strokeStyle = '#c0a840'; ctx.lineWidth = 3;
+  ctx.beginPath(); ctx.arc(mgx + 16, mgy + 16, 10, 0, Math.PI * 2); ctx.stroke();
+  ctx.strokeStyle = '#a08030'; ctx.lineWidth = 2;
+  ctx.beginPath(); ctx.moveTo(mgx + 23, mgy + 23); ctx.lineTo(mgx + 34, mgy + 34); ctx.stroke();
+}
+
+function drawOpsEnv(wt) {
+  // Server racks (tx 0-3, ty 11-12)
+  for (let r = 0; r < 2; r++) {
+    const srx = sceneOffX + r * 2 * TS, sry = sceneOffY + 11 * TS;
+    ctx.fillStyle = '#0c0c18'; ctx.fillRect(srx + 2, sry + 2, TS * 2 - 4, TS * 2 - 4);
+    for (let u = 0; u < 6; u++) {
+      ctx.fillStyle = u % 2 === 0 ? '#111a11' : '#111118';
+      ctx.fillRect(srx + 4, sry + 4 + u * 14, TS * 2 - 8, 12);
+      const ledOn = (wt + r * 7 + u * 11) % 45 < 30;
+      ctx.fillStyle = ledOn ? '#00ff60' : '#002810';
+      ctx.fillRect(srx + TS * 2 - 10, sry + 7 + u * 14, 4, 4);
+    }
+  }
+  // Skull poster (tx 6, ty 11)
+  const skx = sceneOffX + 6 * TS, sky = sceneOffY + 11 * TS;
+  ctx.fillStyle = '#c8c8a8'; ctx.fillRect(skx + 10, sky + 4,  18, 22);  // paper
+  ctx.fillStyle = '#e8e8c0'; ctx.fillRect(skx + 12, sky + 6,  14, 14);  // skull dome
+  ctx.fillStyle = '#0a0a14'; ctx.fillRect(skx + 14, sky + 9,  3,  4);   // left eye
+  ctx.fillStyle = '#0a0a14'; ctx.fillRect(skx + 21, sky + 9,  3,  4);   // right eye
+  ctx.fillStyle = '#0a0a14'; ctx.fillRect(skx + 14, sky + 16, 10, 2);   // teeth slot
+  // Terminal screen (tx 9-10, ty 12)
+  const trx = sceneOffX + 9 * TS, trY = sceneOffY + 12 * TS;
+  ctx.fillStyle = '#080808'; ctx.fillRect(trx + 2, trY + 4, TS * 2 - 4, TS - 8);
+  ctx.fillStyle = '#00ff40';
+  ctx.fillRect(trx + 6, trY + 10, 12, 2);
+  ctx.fillRect(trx + 6, trY + 16, 20, 2);
+  ctx.fillRect(trx + 6, trY + 22, 16, 2);
+  // blinking cursor
+  if ((wt) % 60 < 35) ctx.fillRect(trx + 24, trY + 22, 4, 8);
+}
+
+function drawMarketingEnv(wt) {
+  // Megaphone (tx 15, ty 12)
+  const mpx = sceneOffX + 15 * TS, mpy = sceneOffY + 12 * TS;
+  ctx.fillStyle = '#c04010';
+  ctx.beginPath(); ctx.moveTo(mpx + 8, mpy + 20); ctx.lineTo(mpx + 30, mpy + 12); ctx.lineTo(mpx + 30, mpy + 26); ctx.fill();
+  ctx.fillStyle = '#e06020'; ctx.fillRect(mpx + 4, mpy + 17, 12, 7);
+  ctx.fillStyle = '#c04010'; ctx.fillRect(mpx + 2, mpy + 19, 4, 4);
+  // Social icons on wall (tx 18-21, ty 11)
+  const iconCols = ['#1877f2','#e1306c','#1da1f2','#ff0000'];
+  iconCols.forEach((c, i) => {
+    const ix = sceneOffX + (18 + i) * TS + 6, iy = sceneOffY + 11 * TS + 6;
+    ctx.fillStyle = c; ctx.fillRect(ix, iy, TS - 12, TS - 12);
+    ctx.fillStyle = 'rgba(255,255,255,0.35)';
+    ctx.fillRect(ix + 4, iy + 5,  TS - 20, 3);
+    ctx.fillRect(ix + 4, iy + 11, TS - 20, 3);
+  });
+  // Content calendar whiteboard (tx 22-24, ty 11)
+  const calx = sceneOffX + 22 * TS, caly = sceneOffY + 11 * TS;
+  ctx.fillStyle = '#2a2a4a'; ctx.fillRect(calx, caly, TS * 3, TS - 4);               // frame
+  ctx.fillStyle = '#e8e8f4'; ctx.fillRect(calx + 2, caly + 2, TS * 3 - 4, TS - 8);  // board
+  ctx.fillStyle = '#a060d0'; ctx.fillText('CONTENT CAL', calx + 4, caly + 12);
+  // Fixed calendar cells (no random — deterministic by index)
+  const cellFills = [1,1,1,0,0,0,0,  0,1,0,1,0,0,0,  0,0,1,0,1,1,0];
+  cellFills.forEach((filled, idx) => {
+    const col = idx % 7, row = Math.floor(idx / 7);
+    ctx.fillStyle = filled ? '#a040c0' : 'rgba(0,0,0,0.12)';
+    ctx.fillRect(calx + 4 + col * 18, caly + 16 + row * 8, 15, 6);
+  });
+}
+
+function drawSharedEnv(wt) {
+  // Coffee machine (tx 9, ty 10)
+  const cofx = sceneOffX + 9 * TS, cofy = sceneOffY + 10 * TS;
+  ctx.fillStyle = '#2a2a3a'; ctx.fillRect(cofx + 10, cofy + 6, TS - 20, TS - 10);
+  ctx.fillStyle = '#c04020'; ctx.fillRect(cofx + 12, cofy + 8, TS - 24, 8);
+  ctx.fillStyle = '#606060'; ctx.fillRect(cofx + TS/2 - 4, cofy + TS - 10, 8, 6);
+  ctx.fillStyle = '#404040'; ctx.fillRect(cofx + TS/2 - 8, cofy + TS - 6,  16, 4);
+  tickCoffeeSteam(cofx + TS/2, cofy + 4);
+  // Water cooler (tx 10, ty 10)
+  const wcx = sceneOffX + 10 * TS, wcy = sceneOffY + 10 * TS;
+  ctx.fillStyle = 'rgba(160,210,255,0.5)'; ctx.fillRect(wcx + 14, wcy + 2, 12, 20);
+  ctx.fillStyle = 'rgba(80,140,220,0.35)'; ctx.fillRect(wcx + 16, wcy + 4, 8, 16);
+  ctx.fillStyle = '#d0d8e8';               ctx.fillRect(wcx + 10, wcy + 20, 20, TS - 24);
+  ctx.fillStyle = '#a0b0c8';               ctx.fillRect(wcx + 12, wcy + 26, 8, 4);
+  // Plants (tx 0/12/19, ty 10)
+  [[0, 10], [12, 10], [19, 10]].forEach(([ptx, pty]) => {
+    const px = sceneOffX + ptx * TS, py = sceneOffY + pty * TS;
+    ctx.fillStyle = '#3a1a08'; ctx.fillRect(px + TS/2 - 5, py + TS - 12, 10, 10); // pot
+    ctx.fillStyle = '#c05010'; ctx.fillRect(px + TS/2 - 3, py + TS - 10, 6, 2);   // rim
+    const leaves = [
+      [px + TS/2 - 8, py + TS - 24, 6, 14],
+      [px + TS/2 - 2, py + TS - 28, 6, 18],
+      [px + TS/2 + 3, py + TS - 24, 5, 14],
+    ];
+    ctx.fillStyle = '#2a6010';
+    leaves.forEach(([lx, ly, lw, lh]) => ctx.fillRect(lx, ly, lw, lh));
+    ctx.fillStyle = '#3a8020';
+    ctx.fillRect(px + TS/2 - 5, py + TS - 30, 10, 8);
+  });
+  // Dust motes
+  if (Math.random() < 0.08) {
+    spawnParticle(
+      sceneOffX + Math.random() * ROOM_W * TS,
+      sceneOffY + Math.random() * ROOM_H * TS,
+      (Math.random() - 0.5) * 0.25, -0.15 - Math.random() * 0.15,
+      100, '#8888b0', 1
+    );
+  }
+}
+
+function drawEnvFurniture(wt) {
+  drawCSuiteEnv(wt);
+  drawPMEnv(wt);
+  drawDesignEnv(wt);
+  drawEngineeringEnv(wt);
+  drawQAEnv(wt);
+  drawOpsEnv(wt);
+  drawMarketingEnv(wt);
+  drawSharedEnv(wt);
+  drawBoardDoor();
+}
+
+function drawDayNightOverlay() {
+  const alpha = dayNightAlpha();
+  if (alpha > 0.01) {
+    ctx.fillStyle = `rgba(0,0,18,${alpha})`;
+    ctx.fillRect(sceneOffX, sceneOffY, ROOM_W * TS, ROOM_H * TS);
+  }
+}
+
 // ── Agent positions + animation state ─────────────────────────────────────────
 
 let agents       = [];  // placed agents with tx, ty
@@ -553,15 +888,7 @@ let walkToggle   = 0;   // 0 or 1 for walk frame
 let hoveredAgent = null;
 let selectedAgent= null;
 
-// Per-agent walk wander state
-const agentWander = {}; // id -> {dx, dy, steps, stepsDone}
-
-function getWander(agent) {
-  if (!agentWander[agent.id]) {
-    agentWander[agent.id] = { dx: 0, dy: 0, steps: 0, stepsDone: 0, px: 0, py: 0 };
-  }
-  return agentWander[agent.id];
-}
+// Agent behavior state is managed by behaviors.js (Behaviors module)
 
 // ── Main draw loop ─────────────────────────────────────────────────────────────
 
@@ -572,6 +899,36 @@ function drawFrame() {
 
   drawRoom();
   drawAllDesks();
+  drawEnvFurniture(walkTick);
+  updateParticles();
+
+  // Update all agent behaviors (state machine, particles, social)
+  Behaviors.update(agents, walkTick, {
+    ZONE_DEFS, ZONE_DESKS, agentZone, sceneOffX, sceneOffY, TS, spawnParticle,
+  });
+
+  // Draw faint connection lines between agents sharing a parent task
+  const connPairs = Behaviors.getTaskConnections(agents);
+  if (connPairs.length > 0) {
+    const agentById = {};
+    for (const a of agents) agentById[a.id] = a;
+    ctx.save();
+    ctx.setLineDash([3, 5]);
+    ctx.strokeStyle = 'rgba(124,58,237,0.28)';
+    ctx.lineWidth = 1.5;
+    for (const [id1, id2] of connPairs) {
+      const a1 = agentById[id1], a2 = agentById[id2];
+      if (!a1 || !a2) continue;
+      const o1 = Behaviors.getOffset(id1), o2 = Behaviors.getOffset(id2);
+      ctx.beginPath();
+      ctx.moveTo(sceneOffX + a1.tx * TS + o1.px + CW * S / 2,
+                 sceneOffY + a1.ty * TS + o1.py);
+      ctx.lineTo(sceneOffX + a2.tx * TS + o2.px + CW * S / 2,
+                 sceneOffY + a2.ty * TS + o2.py);
+      ctx.stroke();
+    }
+    ctx.restore();
+  }
 
   // Draw agents (sorted by ty so lower rows appear in front)
   const sorted = [...agents].sort((a,b) => a.ty - b.ty);
@@ -579,69 +936,95 @@ function drawFrame() {
   for (const agent of sorted) {
     const isRunning = agent.status === 'running';
     const isBlocked = agent.status === 'blocked';
-    const frame     = isRunning ? walkToggle : 0;
+    const bhints    = Behaviors.getRenderHints(agent.id);
+    const isMoving  = isRunning
+                   || bhints.state === 'walking'
+                   || bhints.state === 'visiting'
+                   || bhints.state === 'blocked_pacing';
+    const frame     = isMoving ? walkToggle : 0;
     const statusKey = isRunning ? 'running' : isBlocked ? 'blocked' : 'idle';
-    const wander    = getWander(agent);
 
-    // Wander update for running agents
-    if (isRunning) {
-      if (wander.stepsDone >= wander.steps) {
-        // New wander target: small random offset around desk
-        const angle = Math.random() * Math.PI * 2;
-        const dist  = 1 + Math.random() * 1.5;
-        wander.dx    = Math.cos(angle) * dist * TS;
-        wander.dy    = Math.sin(angle) * dist * TS;
-        wander.steps = 60 + Math.floor(Math.random() * 80);
-        wander.stepsDone = 0;
-        wander.px    = 0;
-        wander.py    = 0;
-      }
-      wander.stepsDone++;
-      // Smooth lerp toward target
-      wander.px += (wander.dx - wander.px) * 0.02;
-      wander.py += (wander.dy - wander.py) * 0.02;
-    } else {
-      // Return to desk
-      wander.px *= 0.9;
-      wander.py *= 0.9;
-    }
+    // Canvas position — behaviors.js owns all movement
+    const boff = Behaviors.getOffset(agent.id);
+    const cx = sceneOffX + agent.tx * TS + boff.px;
+    const cy = sceneOffY + agent.ty * TS + boff.py;
 
-    // Canvas position
-    const cx = sceneOffX + agent.tx * TS + Math.round(wander.px);
-    const cy = sceneOffY + agent.ty * TS + Math.round(wander.py);
+    // Determine whether a PixelLab sprite is ready
+    const plImg   = PIXELLAB_SPRITES[agent.id];
+    const hasPlSp = !!(plImg && plImg.complete && plImg.naturalWidth > 0);
+    const plDrawW = hasPlSp ? plImg.naturalWidth  * 2 : CW * S;
+    const plDrawH = hasPlSp ? plImg.naturalHeight * 2 : (CH + 4) * S;
+    const plOffX  = hasPlSp ? -Math.round((plDrawW - CW * S) / 2) : 0;
+    const plOffY  = hasPlSp ? -(plDrawH - CH * S) : -12;
+    // Store hit bounds on agent for click/hover detection
+    agent._hitX = cx + plOffX - 4;
+    agent._hitY = cy + plOffY;
+    agent._hitW = plDrawW + 8;
+    agent._hitH = plDrawH + 8;
 
-    // Hover glow
+    // Hover glow (sized to actual sprite)
     if (hoveredAgent === agent.id) {
       ctx.fillStyle = 'rgba(124,58,237,0.3)';
-      ctx.fillRect(cx - 4, cy - 4, CW * S + 8, (CH + 6) * S);
+      ctx.fillRect(agent._hitX, agent._hitY, agent._hitW, agent._hitH);
     }
 
-    // Draw using PixelLab sprite if loaded and complete
-    const plImg = PIXELLAB_SPRITES[agent.id];
-    if (plImg && plImg.complete && plImg.naturalWidth > 0) {
-      // Render PixelLab sprite at 2× pixel-art scale (64→128px), centered on slot
-      const drawW = plImg.naturalWidth  * 2;
-      const drawH = plImg.naturalHeight * 2;
-      ctx.drawImage(plImg, cx - (drawW - CW * S) / 2, cy - drawH + CH * S + 8, drawW, drawH);
+    // Draw sprite
+    if (hasPlSp) {
+      // 2× pixel-art scale; gentle vertical bob for running agents
+      const bob  = isRunning ? Math.round(Math.sin(walkTick * 0.14) * 2) : 0;
+      const sprX = cx + plOffX;
+      const sprY = cy + plOffY + bob;
+
+      // Status glow aura behind sprite
+      if (isRunning || isBlocked) {
+        ctx.globalAlpha = 0.22;
+        ctx.fillStyle = isRunning ? '#00e676' : '#ff5252';
+        ctx.fillRect(sprX - 4, sprY - 2, plDrawW + 8, plDrawH + 4);
+        ctx.globalAlpha = 1;
+      }
+
+      ctx.drawImage(plImg, sprX, sprY, plDrawW, plDrawH);
+
+      // Status dot/bar above head
+      const dotCX = cx + CW * S / 2;
+      if (isRunning) {
+        ctx.fillStyle = 'rgba(0,230,118,0.9)';
+        ctx.fillRect(dotCX - 4, sprY - 8, 8, 6);
+      } else if (isBlocked) {
+        ctx.fillStyle = 'rgba(255,82,82,0.9)';
+        ctx.fillRect(dotCX - 8, sprY - 8, 16, 6);
+      }
     } else {
       // Canvas-drawn sprite
-      const spriteKey = `${frame}_${statusKey}`;
+      const spriteKey    = `${frame}_${statusKey}`;
       const spriteCanvas = SPRITES[agent.role]?.[spriteKey] || SPRITES.general?.[`${frame}_idle`];
       if (spriteCanvas) {
         ctx.drawImage(spriteCanvas, cx - 2, cy - 12);
       }
     }
 
-    // Name tag below sprite
+    // Name tag below sprite (anchored to bottom of actual sprite)
+    const nameBaseY = cy + plOffY + plDrawH;
     ctx.font = `${S}px 'JetBrains Mono', monospace`;
     ctx.textAlign = 'center';
     const shortName = displayName(agent);
     const nameW = ctx.measureText(shortName).width;
+    ctx.globalAlpha = bhints.sleeping ? 0.55 : 1;
     ctx.fillStyle = 'rgba(0,0,0,0.6)';
-    ctx.fillRect(cx + (CW*S/2) - nameW/2 - 2, cy + CH * S + S, nameW + 4, S + 2);
-    ctx.fillStyle = isRunning ? '#00e676' : isBlocked ? '#ff5252' : '#90a4ae';
-    ctx.fillText(shortName, cx + CW * S / 2, cy + CH * S + S + 2);
+    ctx.fillRect(cx + (CW*S/2) - nameW/2 - 2, nameBaseY + 2, nameW + 4, S + 2);
+    ctx.fillStyle = isRunning ? '#00e676' : isBlocked ? '#ff5252' : bhints.sleeping ? '#455a64' : '#90a4ae';
+    ctx.fillText(shortName, cx + CW * S / 2, nameBaseY + S + 2);
     ctx.textAlign = 'left';
+    ctx.globalAlpha = 1;
+
+    // Chat indicator ("...") above chatting agent
+    if (bhints.chatting) {
+      ctx.font = `${S + 1}px 'JetBrains Mono', monospace`;
+      ctx.textAlign = 'center';
+      ctx.fillStyle = 'rgba(255,213,79,0.85)';
+      ctx.fillText('...', cx + CW * S / 2, cy + plOffY - 4);
+      ctx.textAlign = 'left';
+    }
 
     // Speech bubble (show when running and has task)
     if (isRunning && agent.currentTask) {
@@ -650,7 +1033,7 @@ function drawFrame() {
       const bw = ctx.measureText(bubble).width + 8;
       const bh = S + 4;
       const bx = cx + CW * S / 2 - bw / 2;
-      const by = cy - (CH + 2) * S - bh - 6;
+      const by = cy + plOffY - bh - 8; // above sprite top
 
       // bubble bg
       ctx.fillStyle = '#1e1e3a';
@@ -673,6 +1056,9 @@ function drawFrame() {
       ctx.fillText(bubble, bx + 4, by + S + 1);
     }
   }
+
+  drawParticles();
+  drawDayNightOverlay();
 }
 
 // ── Canvas interactions ───────────────────────────────────────────────────────
@@ -683,9 +1069,9 @@ canvas.addEventListener('mousemove', e => {
   const my     = e.clientY - rect.top;
   hoveredAgent = null;
   for (const agent of agents) {
-    const cx = sceneOffX + agent.tx * TS + (agentWander[agent.id]?.px || 0);
-    const cy = sceneOffY + agent.ty * TS + (agentWander[agent.id]?.py || 0);
-    if (mx >= cx - 4 && mx <= cx + CW * S + 4 && my >= cy - 14 && my <= cy + CH * S + 8) {
+    if (!agent._hitX) continue;
+    if (mx >= agent._hitX && mx <= agent._hitX + agent._hitW &&
+        my >= agent._hitY && my <= agent._hitY + agent._hitH) {
       hoveredAgent = agent.id;
       canvas.style.cursor = 'pointer';
       return;
@@ -699,9 +1085,9 @@ canvas.addEventListener('click', e => {
   const mx   = e.clientX - rect.left;
   const my   = e.clientY - rect.top;
   for (const agent of agents) {
-    const cx = sceneOffX + agent.tx * TS + (agentWander[agent.id]?.px || 0);
-    const cy = sceneOffY + agent.ty * TS + (agentWander[agent.id]?.py || 0);
-    if (mx >= cx - 4 && mx <= cx + CW * S + 4 && my >= cy - 14 && my <= cy + CH * S + 8) {
+    if (!agent._hitX) continue;
+    if (mx >= agent._hitX && mx <= agent._hitX + agent._hitW &&
+        my >= agent._hitY && my <= agent._hitY + agent._hitH) {
       openDetail(agent);
       return;
     }
@@ -877,6 +1263,7 @@ async function fetchAndRender() {
 
   agents = assignDesks(agentList);
   for (const a of agents) tryLoadPixelLabSprite(a);
+  Behaviors.clearStaleState(agents.map(a => a.id));
 
   // Refresh selected detail if open
   if (selectedAgent) {
