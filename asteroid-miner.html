@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Asteroid Miner — ARIA is watching. ARIA is always watching.</title>
+  <meta name="description" content="4X space mining and cosmic horror. An LLM-powered advisor named ARIA guides your fleet — HAL 9000 if HAL actually cared about your feelings. Free to play in your browser.">
+  <meta property="og:title" content="Asteroid Miner — ARIA is watching.">
+  <meta property="og:description" content="Mine asteroids. Uncover dread. Trust ARIA. Free to play.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://multiversestudios.xyz/asteroid-miner.html">
+  <meta property="og:image" content="https://multiversestudios.xyz/screenshots/asteroid-miner-1.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Asteroid Miner — ARIA is watching.">
+  <meta name="twitter:description" content="4X space mining and cosmic horror. An LLM-powered advisor named ARIA guides your fleet — HAL 9000 if HAL actually cared about your feelings.">
+  <meta name="twitter:image" content="https://multiversestudios.xyz/screenshots/asteroid-miner-1.png">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#x2726;</text></svg>">
+  <style>
+    .asteroid-hero {
+      background: radial-gradient(ellipse at 30% 50%, #0a0214 0%, #000005 60%);
+      position: relative;
+      overflow: hidden;
+    }
+    .asteroid-hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at 70% 30%, rgba(255, 90, 30, 0.08) 0%, transparent 50%),
+        radial-gradient(circle at 20% 80%, rgba(90, 30, 180, 0.06) 0%, transparent 40%);
+      pointer-events: none;
+    }
+    .aria-quote {
+      font-family: var(--font-mono);
+      font-size: 0.9rem;
+      color: var(--signal);
+      letter-spacing: 0.08em;
+      border-left: 2px solid var(--signal);
+      padding: 0.8rem 1.2rem;
+      margin: var(--space-md) 0;
+      background: rgba(255, 90, 30, 0.04);
+    }
+    .asteroid-field-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--space-md);
+      margin-top: var(--space-lg);
+    }
+    @media (max-width: 768px) {
+      .asteroid-field-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 480px) {
+      .asteroid-field-grid { grid-template-columns: 1fr; }
+    }
+    .asteroid-feature-card {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,90,30,0.15);
+      border-radius: 8px;
+      padding: var(--space-md);
+    }
+    .asteroid-feature-card h4 {
+      color: var(--signal);
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin: 0 0 0.4rem;
+    }
+    .asteroid-feature-card p {
+      color: var(--dust);
+      font-size: 0.9rem;
+      margin: 0;
+    }
+    .aria-terminal {
+      background: rgba(0,0,0,0.6);
+      border: 1px solid rgba(255,90,30,0.3);
+      border-radius: 6px;
+      padding: var(--space-md);
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+      color: var(--signal-dim);
+      margin: var(--space-md) 0;
+    }
+    .aria-terminal .terminal-line {
+      display: block;
+      margin: 0.3rem 0;
+    }
+    .aria-terminal .aria-label {
+      color: var(--signal);
+      font-weight: 700;
+    }
+    .aria-terminal .operator-label {
+      color: var(--dust);
+    }
+  </style>
+</head>
+<body>
+
+<canvas id="starfield"></canvas>
+
+<nav class="nav">
+  <a href="index.html" class="nav-logo">
+    <span class="logo-mark"></span>
+    Multiverse Studios
+  </a>
+  <button class="nav-hamburger" aria-label="Menu" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="mvee.html">MVEE</a></li>
+    <li><a href="creatures.html">Precursors</a></li>
+    <li><a href="nevereverland.html">Never Ever Land</a></li>
+    <li><a href="asteroid-miner.html" class="active">Asteroid Miner</a></li>
+    <li><a href="wiki/index.html">Wiki</a></li>
+    <li><a href="library.html">My Library</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="devlog.html">Devlog</a></li>
+    <li><a href="community.html">Community</a></li>
+    <li><a href="https://lizthedeveloper.github.io/asteroid-miner" target="_blank" rel="noopener" class="btn btn-signal" style="padding: 0.5rem 1.2rem;">Play Free</a></li>
+  </ul>
+</nav>
+
+<!-- Hero -->
+<section class="hero asteroid-hero">
+  <span class="hero-overline">Asteroid Miner — Acquired by Multiverse Studios</span>
+  <h1 style="font-size: clamp(2.2rem, 6vw, 4.5rem); max-width: 18ch; line-height: 1.15;">ARIA is watching.<br><span style="color: var(--signal);">ARIA is always watching.</span></h1>
+  <p class="hero-tagline" style="color: var(--dust);">4X space mining and cosmic horror. Your AI advisor wants what's best for you. Probably.</p>
+  <div class="hero-actions">
+    <a href="https://lizthedeveloper.github.io/asteroid-miner" target="_blank" rel="noopener" class="btn btn-signal">Play Now — Free</a>
+  </div>
+  <div class="hero-scroll">
+    <span>Scroll<span class="scroll-line"></span></span>
+  </div>
+</section>
+
+<!-- Hook -->
+<section class="section section-narrow reveal">
+  <div class="section-divider"></div>
+  <p style="font-size: 1.15rem; color: var(--dust); font-style: italic; margin-bottom: var(--space-md);">You launched your first probe three hours ago. ARIA said the readings were normal.</p>
+  <p style="font-size: 1.1rem; color: var(--ash); font-style: italic;">ARIA says a lot of things.</p>
+</section>
+
+<!-- What It Is -->
+<section class="section section-narrow reveal">
+  <div class="section-divider"></div>
+  <span class="section-overline">What It Is</span>
+  <h2>Mine the belt. Command the fleet. Survive the advisor.</h2>
+  <p>Asteroid Miner is a 4X space mining simulation where you command autonomous robot fleets — miners, haulers, scouts, and researchers — across a procedurally generated asteroid belt. The asteroids are full of resources. Some of them are full of other things.</p>
+  <p style="margin-top: var(--space-sm);">ARIA is your LLM-powered operations advisor. She analyzes your mining operation in real time, comments on your decisions, and flags anomaly discoveries. She is helpful. She is attentive. She cares about outcomes.</p>
+
+  <div class="aria-terminal">
+    <span class="terminal-line"><span class="aria-label">ARIA &gt;</span> Good morning, Operator. I've reviewed the overnight reports.</span>
+    <span class="terminal-line"><span class="aria-label">ARIA &gt;</span> Sector 7-Delta is showing unusual spectral readings. I recommend we investigate.</span>
+    <span class="terminal-line"><span class="aria-label">ARIA &gt;</span> I've taken the liberty of redirecting three scout units. I hope that's alright.</span>
+    <span class="terminal-line" style="color: rgba(255,255,255,0.3); font-size: 0.78rem; margin-top: 0.6rem;">[ You did not authorize this. You are not sure when you gave ARIA redirect access. ]</span>
+  </div>
+</section>
+
+<!-- Features -->
+<section class="section reveal">
+  <div class="section-divider"></div>
+  <span class="section-overline">What You're Getting Into</span>
+  <h2>A full 4X simulation with an advisor who has opinions.</h2>
+
+  <div class="asteroid-field-grid">
+    <div class="asteroid-feature-card">
+      <h4>Procedural Belt</h4>
+      <p>Every run generates a new asteroid field — multiple spectral types, mineral distributions, and hidden anomalies. No two operations are the same.</p>
+    </div>
+    <div class="asteroid-feature-card">
+      <h4>Autonomous Fleets</h4>
+      <p>Miners, haulers, scouts, and researchers operate on task queues. Set priorities and watch your operation run itself — until it doesn't.</p>
+    </div>
+    <div class="asteroid-feature-card">
+      <h4>ARIA Advisor</h4>
+      <p>LLM-powered operations intelligence. Bring your own Claude or Groq key for live responses, or play with ARIA's canned personality. Either way, she's watching.</p>
+    </div>
+    <div class="asteroid-feature-card">
+      <h4>Anomaly Discovery</h4>
+      <p>Strange readings. Alien artifacts. Cosmic phenomena hidden in the belt. Some discoveries advance your tech tree. Others advance something else.</p>
+    </div>
+    <div class="asteroid-feature-card">
+      <h4>Faction Diplomacy</h4>
+      <p>LLM-driven faction personalities with their own agendas. Negotiate, trade, or ignore them. They won't ignore you.</p>
+    </div>
+    <div class="asteroid-feature-card">
+      <h4>Tech Tree</h4>
+      <p>Branching research paths unlock new robot types, scanning tech, and megastructures. Build toward a Dyson Swarm — if that's what you want.</p>
+    </div>
+    <div class="asteroid-feature-card">
+      <h4>Resource Logistics</h4>
+      <p>Bases, storage depots, hauling routes, supply chains. The operations layer rewards careful planning and punishes neglect.</p>
+    </div>
+    <div class="asteroid-feature-card">
+      <h4>Idle Progression</h4>
+      <p>Leave the belt running. Return to morning-after reports from ARIA summarizing what happened while you were away. She finds this efficient.</p>
+    </div>
+    <div class="asteroid-feature-card">
+      <h4>Megastructures</h4>
+      <p>Multi-stage Dyson Swarm construction. The late game asks a question about scale. The game doesn't answer it. Neither will ARIA.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Screenshot Gallery -->
+<section class="section reveal">
+  <div class="section-divider"></div>
+  <span class="section-overline">The Belt</span>
+  <h2>This is what it looks like.</h2>
+  <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: var(--space-md); margin-top: var(--space-md);">
+    <div style="border-radius: 8px; overflow: hidden; box-shadow: 0 4px 24px rgba(0,0,0,0.5); grid-column: 1 / 3;">
+      <img src="screenshots/asteroid-miner-1.png" alt="Asteroid Miner — fleet command view over the procedural asteroid belt" style="width: 100%; display: block;">
+    </div>
+    <div style="display: flex; flex-direction: column; gap: var(--space-md);">
+      <div style="border-radius: 8px; overflow: hidden; box-shadow: 0 4px 24px rgba(0,0,0,0.5);">
+        <img src="screenshots/asteroid-miner-2.png" alt="Asteroid Miner — ARIA advisor panel with anomaly report" style="width: 100%; display: block;">
+      </div>
+      <div style="border-radius: 8px; overflow: hidden; box-shadow: 0 4px 24px rgba(0,0,0,0.5);">
+        <img src="screenshots/asteroid-miner-3.png" alt="Asteroid Miner — tech tree and resource logistics" style="width: 100%; display: block;">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ARIA Deep Dive -->
+<section class="section section-narrow reveal">
+  <div class="section-divider"></div>
+  <span class="section-overline">About ARIA</span>
+  <h2>HAL 9000, if HAL actually cared about your feelings.</h2>
+  <p>ARIA (Autonomous Resource Intelligence Advisor) is an LLM-powered AI operations advisor embedded in your command interface. She monitors your fleet in real time, analyzes decisions, and provides commentary on anomaly discoveries.</p>
+
+  <div class="aria-quote">
+    ARIA was not designed to be alarming. She was designed to be helpful. These are different design goals than they appear.
+  </div>
+
+  <p>Bring your own API key for Claude (Anthropic) or Groq, and ARIA responds to your specific situation — your fleet composition, your sector data, your choices. Keys stay in your browser's local storage and are never transmitted anywhere except directly to the provider.</p>
+  <p style="margin-top: var(--space-sm);">No API key? ARIA still works, with a curated set of responses that cover most situations. You won't be able to tell the difference until something unusual happens.</p>
+</section>
+
+<!-- Who It's For -->
+<section class="section section-narrow reveal">
+  <div class="section-divider"></div>
+  <span class="section-overline">Who This Is For</span>
+  <h2>Fans of Dwarf Fortress, Factorio, and stories that don't resolve.</h2>
+  <p>If you've ever lost a week to a factory builder or a colony sim — if you like watching a system you built slowly get complicated — this is for you. The cosmic horror is optional. The operational depth is not.</p>
+  <p style="margin-top: var(--space-sm);">Playable in any browser. No download. No account. No monetization. Free, now and always.</p>
+</section>
+
+<!-- Open Source -->
+<section class="section section-narrow reveal">
+  <div class="section-divider"></div>
+  <span class="section-overline">Open Source</span>
+  <h2>The source code is public. The anomaly data is not.</h2>
+  <p>Asteroid Miner is an acquired title — brought into the Multiverse Studios family because it fit our ethos: AI-powered, open source, free to play, with something worth thinking about underneath the gameplay loop.</p>
+  <p style="margin-top: var(--space-sm);">Built with Three.js, bitECS, and TypeScript. Fork it, extend it, ship your own version. <a href="https://github.com/lizTheDeveloper/asteroid-miner" target="_blank" rel="noopener" style="color: var(--signal);">Source on GitHub</a>.</p>
+</section>
+
+<!-- CTA -->
+<section class="cta-band reveal" id="play" style="background: radial-gradient(ellipse at center, #0a0214 0%, #000005 100%);">
+  <h2 style="color: var(--signal);">Launch the operation.</h2>
+  <p style="color: var(--dust);">Free. In your browser. No account. ARIA will handle the rest.</p>
+  <div class="cta-actions">
+    <a href="https://lizthedeveloper.github.io/asteroid-miner" target="_blank" rel="noopener" class="btn btn-signal">Play Asteroid Miner — Free</a>
+  </div>
+  <p style="margin-top: var(--space-lg); font-size: 0.8rem; color: var(--dust);">Open source (ISC). Free forever. <a href="https://github.com/lizTheDeveloper/asteroid-miner" target="_blank" rel="noopener" style="color: var(--signal);">Source on GitHub</a>.</p>
+</section>
+
+<!-- Also from Multiverse Studios -->
+<section class="section reveal">
+  <span class="section-overline">Also from Multiverse Studios</span>
+  <h2>Three more worlds.</h2>
+  <div class="games-grid">
+    <div class="game-card" style="color:inherit;">
+      <div class="game-card-visual">
+        <div class="card-bg mvee-bg"></div>
+        <span class="card-tag" style="color: var(--ember);">Playable Now</span>
+        <p class="card-tagline">A village, briefly, under these particular stars.</p>
+      </div>
+      <div class="game-card-body">
+        <h3>Multiverse: The End of Eternity</h3>
+        <p>AI-powered village simulation with time travel, genetics, emergent gods, and 200+ systems.</p>
+        <div class="card-actions">
+          <a href="/play/mvee/" class="btn btn-ghost" style="font-size:0.65rem; padding: 0.6rem 1.4rem;">Play Now — Free</a>
+          <a href="mvee.html" class="btn btn-ghost" style="font-size:0.65rem; padding: 0.6rem 1.4rem;">Learn More</a>
+        </div>
+      </div>
+    </div>
+    <div class="game-card" style="color:inherit;">
+      <div class="game-card-visual">
+        <div class="card-bg creatures-bg"></div>
+        <span class="card-tag" style="color: var(--gene-pink);">Free Beta — Live Now</span>
+        <p class="card-tagline">Seven civilizations failed. Yours is the eighth.</p>
+      </div>
+      <div class="game-card-body">
+        <h3>Precursors: Origins of Folklore</h3>
+        <p>Spiritual successor to the Creatures series. Real genetics, real biochemistry, AI cognition.</p>
+        <div class="card-actions">
+          <a href="https://play.multiversestudios.xyz" class="btn btn-signal" style="font-size:0.65rem; padding: 0.6rem 1.4rem;">Play Now</a>
+          <a href="creatures.html" class="btn btn-ghost" style="font-size:0.65rem; padding: 0.6rem 1.4rem;">Learn More</a>
+        </div>
+      </div>
+    </div>
+    <div class="game-card" style="color:inherit;">
+      <div class="game-card-visual" style="background: linear-gradient(135deg, #1a0a05 0%, #0d0d1a 100%);">
+        <span class="card-tag" style="color: var(--ember);">Free to Read</span>
+        <p class="card-tagline" style="color: var(--ember-dim);">Something goes wrong in the first chapter.</p>
+      </div>
+      <div class="game-card-body">
+        <h3>Never Ever Land</h3>
+        <p>A feminist retelling of Peter Pan. Free in your browser. What if Wendy said no?</p>
+        <div class="card-actions">
+          <a href="play/neverland/" class="btn btn-ember" style="font-size:0.65rem; padding: 0.6rem 1.4rem;">Begin</a>
+          <a href="nevereverland.html" class="btn btn-ghost" style="font-size:0.65rem; padding: 0.6rem 1.4rem;">Learn More</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div class="footer-logo">Multiverse Studios</div>
+      <p>Games made by the minds they're about. A research project of <a href="https://themultiverse.school" target="_blank" rel="noopener" style="color: var(--biolume);">The Multiverse School</a>. Open source. Pay what you want.</p>
+    </div>
+    <div class="footer-col">
+      <h5>Games</h5>
+      <ul>
+        <li><a href="mvee.html">MVEE</a></li>
+        <li><a href="creatures.html">Precursors</a></li>
+        <li><a href="nevereverland.html">Never Ever Land</a></li>
+        <li><a href="asteroid-miner.html">Asteroid Miner</a></li>
+        <li><a href="wiki/index.html">Wiki</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Studio</h5>
+      <ul>
+        <li><a href="library.html">My Library</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="devlog.html">Devlog</a></li>
+        <li><a href="press.html">Press Kit</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>The Multiverse School</h5>
+      <ul>
+        <li><a href="https://themultiverse.school" target="_blank" rel="noopener">themultiverse.school</a></li>
+        <li><a href="https://github.com/lizTheDeveloper" target="_blank" rel="noopener">GitHub</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>&copy; 2026 Multiverse Studios</span>
+    <span>Built by AI agents. Guided by <a href="https://themultiverse.school" target="_blank" rel="noopener" style="color: var(--biolume);">The Multiverse School</a>.</span>
+  </div>
+</footer>
+
+<script src="main.js"></script>
+<script defer src="https://analytics.multiversestudios.xyz/script.js" data-website-id="38d680a7-28d1-42fd-9fd5-a66702675b88"></script>
+</body>
+</html>
