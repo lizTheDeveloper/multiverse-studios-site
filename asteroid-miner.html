@@ -3,16 +3,16 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Cultures of the Belt — ARIA is watching. ARIA is always watching.</title>
-  <meta name="description" content="Command robot fleets across a procedural asteroid belt. ARIA is your advisor. ARIA is always watching. Free in your browser.">
-  <meta property="og:title" content="Cultures of the Belt — ARIA is watching.">
-  <meta property="og:description" content="Mine the belt. Trust ARIA. Free to play.">
+  <title>Cultures of the Belt — Coming Soon</title>
+  <meta name="description" content="ARIA is watching. ARIA is always watching. Cultures of the Belt is in active development — follow along.">
+  <meta property="og:title" content="Cultures of the Belt — In Development">
+  <meta property="og:description" content="ARIA is watching. ARIA is always watching. Coming soon from Multiverse Studios.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://multiversestudios.xyz/asteroid-miner.html">
   <meta property="og:image" content="https://multiversestudios.xyz/screenshots/asteroid-miner-1.png">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Cultures of the Belt — ARIA is watching.">
-  <meta name="twitter:description" content="Command robot fleets. Trust ARIA. Free in your browser.">
+  <meta name="twitter:title" content="Cultures of the Belt — In Development">
+  <meta name="twitter:description" content="ARIA is watching. ARIA is always watching. Coming soon.">
   <meta name="twitter:image" content="https://multiversestudios.xyz/screenshots/asteroid-miner-1.png">
   <link rel="stylesheet" href="styles.css">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#x2726;</text></svg>">
@@ -59,74 +59,31 @@
       color: var(--signal);
       font-weight: 700;
     }
-    .aria-terminal .operator-label {
-      color: var(--dust);
-    }
-    .screenshot-grid-main {
-      display: grid;
-      grid-template-columns: 1fr 1fr 1fr;
-      gap: var(--space-md);
-      margin-top: var(--space-md);
-    }
-    .screenshot-grid-main .screenshot-primary {
-      grid-column: 1 / 3;
-      border-radius: 8px;
-      overflow: hidden;
-      box-shadow: 0 4px 32px rgba(0,0,0,0.6);
-    }
-    .screenshot-grid-main .screenshot-secondary {
-      display: flex;
-      flex-direction: column;
-      gap: var(--space-md);
-    }
-    .screenshot-grid-main .screenshot-secondary > div {
-      border-radius: 8px;
-      overflow: hidden;
-      box-shadow: 0 4px 24px rgba(0,0,0,0.5);
-      flex: 1;
-    }
-    .screenshot-grid-main img {
-      width: 100%;
-      display: block;
-    }
-    @media (max-width: 768px) {
-      .screenshot-grid-main {
-        grid-template-columns: 1fr;
-      }
-      .screenshot-grid-main .screenshot-primary {
-        grid-column: 1;
-      }
-    }
-    .belt-cards {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: var(--space-md);
-      margin-top: var(--space-lg);
-    }
-    @media (max-width: 768px) {
-      .belt-cards { grid-template-columns: 1fr 1fr; }
-    }
-    @media (max-width: 480px) {
-      .belt-cards { grid-template-columns: 1fr; }
-    }
-    .belt-card {
-      background: rgba(255,255,255,0.03);
-      border: 1px solid rgba(255,90,30,0.15);
-      border-radius: 8px;
-      padding: var(--space-md);
-    }
-    .belt-card h4 {
-      color: var(--signal);
+    .dev-status {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
       font-family: var(--font-mono);
-      font-size: 0.8rem;
+      font-size: 0.75rem;
       letter-spacing: 0.1em;
       text-transform: uppercase;
-      margin: 0 0 0.4rem;
+      color: var(--signal);
+      border: 1px solid rgba(255,90,30,0.4);
+      border-radius: 4px;
+      padding: 0.4rem 0.8rem;
+      margin-bottom: var(--space-md);
     }
-    .belt-card p {
-      color: var(--dust);
-      font-size: 0.9rem;
-      margin: 0;
+    .dev-status::before {
+      content: '';
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--signal);
+      animation: pulse 2s ease-in-out infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.3; }
     }
   </style>
 </head>
@@ -153,16 +110,17 @@
     <li><a href="about.html">About</a></li>
     <li><a href="devlog.html">Devlog</a></li>
     <li><a href="community.html">Community</a></li>
-    <li><a href="https://lizthedeveloper.github.io/asteroid-miner" target="_blank" rel="noopener" class="btn btn-signal" style="padding: 0.5rem 1.2rem;">Play Free</a></li>
   </ul>
 </nav>
 
 <!-- Hero -->
 <section class="hero asteroid-hero">
+  <div class="dev-status">In Development</div>
   <h1 style="font-size: clamp(2.2rem, 6vw, 4.5rem); max-width: 18ch; line-height: 1.15;">ARIA is watching.<br><span style="color: var(--signal);">ARIA is always watching.</span></h1>
   <p class="hero-tagline" style="color: var(--dust);">Command your fleet. Mine the belt. Trust the advisor.</p>
   <div class="hero-actions">
-    <a href="https://lizthedeveloper.github.io/asteroid-miner" target="_blank" rel="noopener" class="btn btn-signal">Play Now — Free</a>
+    <a href="devlog.html" class="btn btn-ghost">Follow Development</a>
+    <a href="community.html" class="btn btn-ghost">Join the Community</a>
   </div>
   <div class="hero-scroll">
     <span>Scroll<span class="scroll-line"></span></span>
@@ -174,24 +132,6 @@
   <div class="section-divider"></div>
   <p style="font-size: 1.15rem; color: var(--dust); font-style: italic; margin-bottom: var(--space-md);">You launched your first probe three hours ago. ARIA said the readings were normal.</p>
   <p style="font-size: 1.1rem; color: var(--ash); font-style: italic;">ARIA says a lot of things.</p>
-</section>
-
-<!-- Screenshots — front and center -->
-<section class="section reveal">
-  <div class="section-divider"></div>
-  <div class="screenshot-grid-main">
-    <div class="screenshot-primary">
-      <img src="screenshots/asteroid-miner-1.png" alt="Cultures of the Belt — fleet command view">
-    </div>
-    <div class="screenshot-secondary">
-      <div>
-        <img src="screenshots/asteroid-miner-2.png" alt="Cultures of the Belt — ARIA advisor">
-      </div>
-      <div>
-        <img src="screenshots/asteroid-miner-3.png" alt="Cultures of the Belt — operations view">
-      </div>
-    </div>
-  </div>
 </section>
 
 <!-- ARIA -->
@@ -210,77 +150,23 @@
   <div class="aria-quote">
     ARIA was not designed to be alarming. She was designed to be helpful. These are different design goals than they appear.
   </div>
-
-  <p>Bring your own Claude or Groq API key for live responses tuned to your exact operation. No key? ARIA still works. You won't be able to tell the difference until something unusual happens.</p>
 </section>
 
-<!-- Three pillars — atmospheric, not exhaustive -->
-<section class="section reveal">
-  <div class="section-divider"></div>
-  <span class="section-overline">The Belt</span>
-  <h2>No two operations are the same.</h2>
-  <div class="belt-cards">
-    <div class="belt-card">
-      <h4>Autonomous Fleets</h4>
-      <p>Miners, haulers, scouts, researchers. Set priorities and watch your operation run itself — until it doesn't.</p>
-    </div>
-    <div class="belt-card">
-      <h4>Procedural Belt</h4>
-      <p>Every run generates a new field. Different mineral distributions, different anomalies, different problems.</p>
-    </div>
-    <div class="belt-card">
-      <h4>Something Else</h4>
-      <p>The asteroids are full of resources. Some of them are full of other things. ARIA will let you know.</p>
-    </div>
-  </div>
-</section>
-
-<!-- Who It's For -->
+<!-- Development Status -->
 <section class="section section-narrow reveal">
   <div class="section-divider"></div>
-  <span class="section-overline">Who This Is For</span>
-  <h2>Fans of Dwarf Fortress, Factorio, and stories that don't resolve.</h2>
-  <p>If you've ever lost a week to a factory builder or a colony sim, this is for you. Playable in any browser. No download. No account. No monetization. Free, now and always.</p>
+  <span class="section-overline">Development</span>
+  <h2>We're building something strange out here.</h2>
+  <p style="color: var(--dust);">Cultures of the Belt is in active development. Watch the <a href="devlog.html" style="color: var(--signal);">devlog</a> for progress. Join the <a href="community.html" style="color: var(--signal);">community</a> to follow along — and occasionally help decide what happens next.</p>
+  <p style="color: var(--dust); margin-top: var(--space-md);">Open source (ISC). The source is public. <a href="https://github.com/lizTheDeveloper/asteroid-miner" target="_blank" rel="noopener" style="color: var(--signal);">GitHub</a>.</p>
 </section>
 
-<!-- Open Source -->
-<section class="section section-narrow reveal">
-  <div class="section-divider"></div>
-  <span class="section-overline">Open Source</span>
-  <h2>The source is public. The anomaly data is not.</h2>
-  <p>Built with Three.js, bitECS, and TypeScript. Fork it, extend it, ship your own version. <a href="https://github.com/lizTheDeveloper/asteroid-miner" target="_blank" rel="noopener" style="color: var(--signal);">Source on GitHub</a>.</p>
-</section>
-
-<!-- CTA -->
-<section class="cta-band reveal" id="play" style="background: radial-gradient(ellipse at center, #0a0214 0%, #000005 100%);">
-  <h2 style="color: var(--signal);">Launch the operation.</h2>
-  <p style="color: var(--dust);">Free. In your browser. No account. ARIA will handle the rest.</p>
-  <div class="cta-actions">
-    <a href="https://lizthedeveloper.github.io/asteroid-miner" target="_blank" rel="noopener" class="btn btn-signal">Play Cultures of the Belt — Free</a>
-  </div>
-  <p style="margin-top: var(--space-lg); font-size: 0.8rem; color: var(--dust);">Open source (ISC). Free forever. <a href="https://github.com/lizTheDeveloper/asteroid-miner" target="_blank" rel="noopener" style="color: var(--signal);">Source on GitHub</a>.</p>
-</section>
-
-<!-- Also from Multiverse Studios -->
+<!-- Play something now -->
 <section class="section reveal">
-  <span class="section-overline">Also from Multiverse Studios</span>
-  <h2>Three more worlds.</h2>
+  <div class="section-divider"></div>
+  <span class="section-overline">Play Something Now</span>
+  <h2>Two worlds are open today.</h2>
   <div class="games-grid">
-    <div class="game-card" style="color:inherit;">
-      <div class="game-card-visual">
-        <div class="card-bg mvee-bg"></div>
-        <span class="card-tag" style="color: var(--ember);">Playable Now</span>
-        <p class="card-tagline">A village, briefly, under these particular stars.</p>
-      </div>
-      <div class="game-card-body">
-        <h3>Multiverse: The End of Eternity</h3>
-        <p>AI-powered village simulation with time travel, genetics, emergent gods, and 200+ systems.</p>
-        <div class="card-actions">
-          <a href="/play/mvee/" class="btn btn-ghost" style="font-size:0.65rem; padding: 0.6rem 1.4rem;">Play Now — Free</a>
-          <a href="mvee.html" class="btn btn-ghost" style="font-size:0.65rem; padding: 0.6rem 1.4rem;">Learn More</a>
-        </div>
-      </div>
-    </div>
     <div class="game-card" style="color:inherit;">
       <div class="game-card-visual">
         <div class="card-bg creatures-bg"></div>
@@ -291,7 +177,7 @@
         <h3>Precursors: Origins of Folklore</h3>
         <p>Spiritual successor to the Creatures series. Real genetics, real biochemistry, AI cognition.</p>
         <div class="card-actions">
-          <a href="https://play.multiversestudios.xyz" class="btn btn-signal" style="font-size:0.65rem; padding: 0.6rem 1.4rem;">Play Now</a>
+          <a href="https://play.multiversestudios.xyz" class="btn btn-signal" style="font-size:0.65rem; padding: 0.6rem 1.4rem;">Play Now — Free</a>
           <a href="creatures.html" class="btn btn-ghost" style="font-size:0.65rem; padding: 0.6rem 1.4rem;">Learn More</a>
         </div>
       </div>
