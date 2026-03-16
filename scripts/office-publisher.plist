@@ -22,8 +22,8 @@
 
   <key>ProgramArguments</key>
   <array>
-    <string>/usr/local/bin/node</string>
-    <string>/Users/annhoward/src/multiverse_games/scripts/office-data-publisher.js</string>
+    <string>/opt/homebrew/bin/node</string>
+    <string>/Users/annhoward/src/multiversestudios/multiverse-studios-site/scripts/office-data-publisher.js</string>
   </array>
 
   <!-- Required environment variables -->
@@ -38,7 +38,7 @@
     <key>PRESIDIO_URL</key>
     <string>https://play.multiversestudios.xyz/api/presidio</string>
     <key>OFFICE_WORKER_URL</key>
-    <string>https://multiversestudios.xyz/api/office/update</string>
+    <string>https://play.multiversestudios.xyz/api/office/update</string>
   </dict>
 
   <!-- Run every 60 seconds -->
@@ -54,6 +54,6 @@
   <string>/tmp/office-publisher.err</string>
 
   <key>WorkingDirectory</key>
-  <string>/Users/annhoward/src/multiverse_games</string>
+  <string>/Users/annhoward/src/multiversestudios/multiverse-studios-site</string>
 </dict>
 </plist>

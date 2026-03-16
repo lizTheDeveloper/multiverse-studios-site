@@ -6,7 +6,7 @@
  * Every 60 seconds (or on-demand):
  *   1. Fetches all agents + their current in-progress issues from Paperclip API
  *   2. Scrubs task text through Microsoft Presidio (deployed on Hetzner)
- *   3. Pushes the sanitized snapshot to the Cloudflare office-data-worker
+ *   3. Pushes the sanitized snapshot to the office-data-service on Hetzner
  *
  * Required env vars (add to ~/.zshrc or a .env file):
  *   PAPERCLIP_API_URL        — e.g. http://127.0.0.1:3100
@@ -14,7 +14,7 @@
  *                               key used by agents (read-only endpoints only used here)
  *   PAPERCLIP_COMPANY_ID     — your company UUID
  *   PRESIDIO_URL             — e.g. https://play.multiversestudios.xyz/api/presidio
- *   OFFICE_WORKER_URL        — e.g. https://multiversestudios.xyz/api/office/update
+ *   OFFICE_WORKER_URL        — e.g. https://play.multiversestudios.xyz/api/office/update
  *   OFFICE_UPDATE_SECRET     — shared secret matching the Cloudflare Worker secret
  *
  * Usage:
@@ -34,7 +34,7 @@ const PAPERCLIP_API_URL   = process.env.PAPERCLIP_API_URL   || 'http://127.0.0.1
 const PAPERCLIP_API_KEY   = process.env.PAPERCLIP_API_KEY;
 const PAPERCLIP_COMPANY_ID= process.env.PAPERCLIP_COMPANY_ID;
 const PRESIDIO_URL        = process.env.PRESIDIO_URL        || 'https://play.multiversestudios.xyz/api/presidio';
-const OFFICE_WORKER_URL   = process.env.OFFICE_WORKER_URL   || 'https://multiversestudios.xyz/api/office/update';
+const OFFICE_WORKER_URL   = process.env.OFFICE_WORKER_URL   || 'https://play.multiversestudios.xyz/api/office/update';
 const OFFICE_UPDATE_SECRET= process.env.OFFICE_UPDATE_SECRET;
 const INTERVAL_MS         = parseInt(process.env.PUBLISH_INTERVAL_MS || '60000', 10);
 
