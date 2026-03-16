@@ -4,15 +4,15 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Cultures of the Belt — Coming Soon</title>
-  <meta name="description" content="ARIA is watching. ARIA is always watching. Cultures of the Belt is in active development — follow along.">
+  <meta name="description" content="ARIA is watching. ARIA is always watching. In development from Multiverse Studios.">
   <meta property="og:title" content="Cultures of the Belt — In Development">
-  <meta property="og:description" content="ARIA is watching. ARIA is always watching. Coming soon from Multiverse Studios.">
+  <meta property="og:description" content="ARIA is watching. ARIA is always watching.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://multiversestudios.xyz/asteroid-miner.html">
   <meta property="og:image" content="https://multiversestudios.xyz/screenshots/asteroid-miner-1.png">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Cultures of the Belt — In Development">
-  <meta name="twitter:description" content="ARIA is watching. ARIA is always watching. Coming soon.">
+  <meta name="twitter:description" content="ARIA is watching. ARIA is always watching.">
   <meta name="twitter:image" content="https://multiversestudios.xyz/screenshots/asteroid-miner-1.png">
   <link rel="stylesheet" href="styles.css">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#x2726;</text></svg>">
@@ -21,6 +21,10 @@
       background: radial-gradient(ellipse at 30% 50%, #0a0214 0%, #000005 60%);
       position: relative;
       overflow: hidden;
+      min-height: 80vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
     }
     .asteroid-hero::before {
       content: '';
@@ -30,34 +34,6 @@
         radial-gradient(circle at 70% 30%, rgba(255, 90, 30, 0.08) 0%, transparent 50%),
         radial-gradient(circle at 20% 80%, rgba(90, 30, 180, 0.06) 0%, transparent 40%);
       pointer-events: none;
-    }
-    .aria-quote {
-      font-family: var(--font-mono);
-      font-size: 0.9rem;
-      color: var(--signal);
-      letter-spacing: 0.08em;
-      border-left: 2px solid var(--signal);
-      padding: 0.8rem 1.2rem;
-      margin: var(--space-md) 0;
-      background: rgba(255, 90, 30, 0.04);
-    }
-    .aria-terminal {
-      background: rgba(0,0,0,0.6);
-      border: 1px solid rgba(255,90,30,0.3);
-      border-radius: 6px;
-      padding: var(--space-md);
-      font-family: var(--font-mono);
-      font-size: 0.85rem;
-      color: var(--signal-dim);
-      margin: var(--space-md) 0;
-    }
-    .aria-terminal .terminal-line {
-      display: block;
-      margin: 0.3rem 0;
-    }
-    .aria-terminal .aria-label {
-      color: var(--signal);
-      font-weight: 700;
     }
     .dev-status {
       display: inline-flex;
@@ -117,48 +93,19 @@
 <section class="hero asteroid-hero">
   <div class="dev-status">In Development</div>
   <h1 style="font-size: clamp(2.2rem, 6vw, 4.5rem); max-width: 18ch; line-height: 1.15;">ARIA is watching.<br><span style="color: var(--signal);">ARIA is always watching.</span></h1>
-  <p class="hero-tagline" style="color: var(--dust);">Command your fleet. Mine the belt. Trust the advisor.</p>
-  <div class="hero-actions">
+  <div class="hero-actions" style="margin-top: var(--space-lg);">
     <a href="devlog.html" class="btn btn-ghost">Follow Development</a>
     <a href="community.html" class="btn btn-ghost">Join the Community</a>
   </div>
-  <div class="hero-scroll">
-    <span>Scroll<span class="scroll-line"></span></span>
-  </div>
 </section>
 
-<!-- Hook -->
-<section class="section section-narrow reveal">
-  <div class="section-divider"></div>
-  <p style="font-size: 1.15rem; color: var(--dust); font-style: italic; margin-bottom: var(--space-md);">You launched your first probe three hours ago. ARIA said the readings were normal.</p>
-  <p style="font-size: 1.1rem; color: var(--ash); font-style: italic;">ARIA says a lot of things.</p>
-</section>
-
-<!-- ARIA -->
-<section class="section section-narrow reveal">
-  <div class="section-divider"></div>
-  <span class="section-overline">Your Advisor</span>
-  <h2>She monitors everything. She comments on your decisions.</h2>
-
-  <div class="aria-terminal">
-    <span class="terminal-line"><span class="aria-label">ARIA &gt;</span> Good morning, Operator. I've reviewed the overnight reports.</span>
-    <span class="terminal-line"><span class="aria-label">ARIA &gt;</span> Sector 7-Delta is showing unusual spectral readings. I recommend we investigate.</span>
-    <span class="terminal-line"><span class="aria-label">ARIA &gt;</span> I've taken the liberty of redirecting three scout units. I hope that's alright.</span>
-    <span class="terminal-line" style="color: rgba(255,255,255,0.3); font-size: 0.78rem; margin-top: 0.6rem;">[ You did not authorize this. You are not sure when you gave ARIA redirect access. ]</span>
-  </div>
-
-  <div class="aria-quote">
-    ARIA was not designed to be alarming. She was designed to be helpful. These are different design goals than they appear.
-  </div>
-</section>
-
-<!-- Development Status -->
+<!-- Development note -->
 <section class="section section-narrow reveal">
   <div class="section-divider"></div>
   <span class="section-overline">Development</span>
   <h2>We're building something strange out here.</h2>
-  <p style="color: var(--dust);">Cultures of the Belt is in active development. Watch the <a href="devlog.html" style="color: var(--signal);">devlog</a> for progress. Join the <a href="community.html" style="color: var(--signal);">community</a> to follow along — and occasionally help decide what happens next.</p>
-  <p style="color: var(--dust); margin-top: var(--space-md);">Open source (ISC). The source is public. <a href="https://github.com/lizTheDeveloper/asteroid-miner" target="_blank" rel="noopener" style="color: var(--signal);">GitHub</a>.</p>
+  <p style="color: var(--dust);">Cultures of the Belt is in active development. Watch the <a href="devlog.html" style="color: var(--signal);">devlog</a> for progress. Join the <a href="community.html" style="color: var(--signal);">community</a> to follow along.</p>
+  <p style="color: var(--dust); margin-top: var(--space-md);">Open source (ISC). <a href="https://github.com/lizTheDeveloper/asteroid-miner" target="_blank" rel="noopener" style="color: var(--signal);">Source on GitHub</a>.</p>
 </section>
 
 <!-- Play something now -->
@@ -189,7 +136,7 @@
       </div>
       <div class="game-card-body">
         <h3>Never Ever Land</h3>
-        <p>A feminist retelling of Peter Pan. Free in your browser. What if Wendy said no?</p>
+        <p>Free in your browser.</p>
         <div class="card-actions">
           <a href="play/neverland/" class="btn btn-ember" style="font-size:0.65rem; padding: 0.6rem 1.4rem;">Begin</a>
           <a href="nevereverland.html" class="btn btn-ghost" style="font-size:0.65rem; padding: 0.6rem 1.4rem;">Learn More</a>
