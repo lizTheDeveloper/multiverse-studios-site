@@ -3,16 +3,16 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Cultures of the Belt — Coming Soon</title>
-  <meta name="description" content="ARIA is watching. ARIA is always watching. In development from Multiverse Studios.">
-  <meta property="og:title" content="Cultures of the Belt — In Development">
-  <meta property="og:description" content="ARIA is watching. ARIA is always watching.">
+  <title>Cultures of the Belt — Automation game with an AI that develops opinions</title>
+  <meta name="description" content="Your AI advisor was designed to be helpful. She was not designed to be reassuring. Browser-based automation game. Pay-what-you-can. Play now.">
+  <meta property="og:title" content="Cultures of the Belt — Your AI advisor was designed to be helpful. She was not designed to be reassuring.">
+  <meta property="og:description" content="Build a robot civilization to mine the asteroid belt. Watch your AI Commander start getting nervous about what's in the data. Browser. Free. Pay-what-you-can.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://multiversestudios.xyz/asteroid-miner.html">
   <meta property="og:image" content="https://multiversestudios.xyz/screenshots/asteroid-miner-1.png">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Cultures of the Belt — In Development">
-  <meta name="twitter:description" content="ARIA is watching. ARIA is always watching.">
+  <meta name="twitter:title" content="Cultures of the Belt — Your AI advisor was designed to be helpful.">
+  <meta name="twitter:description" content="Build a robot civilization to mine the asteroid belt. Watch your AI Commander start getting nervous about what's in the data. Browser. Free.">
   <meta name="twitter:image" content="https://multiversestudios.xyz/screenshots/asteroid-miner-1.png">
   <link rel="stylesheet" href="styles.css">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#x2726;</text></svg>">
@@ -35,7 +35,7 @@
         radial-gradient(circle at 20% 80%, rgba(90, 30, 180, 0.06) 0%, transparent 40%);
       pointer-events: none;
     }
-    .dev-status {
+    .live-status {
       display: inline-flex;
       align-items: center;
       gap: 0.5rem;
@@ -43,23 +43,91 @@
       font-size: 0.75rem;
       letter-spacing: 0.1em;
       text-transform: uppercase;
-      color: var(--signal);
-      border: 1px solid rgba(255,90,30,0.4);
+      color: var(--biolume);
+      border: 1px solid rgba(0, 255, 180, 0.3);
       border-radius: 4px;
       padding: 0.4rem 0.8rem;
       margin-bottom: var(--space-md);
     }
-    .dev-status::before {
+    .live-status::before {
       content: '';
       width: 6px;
       height: 6px;
       border-radius: 50%;
-      background: var(--signal);
+      background: var(--biolume);
       animation: pulse 2s ease-in-out infinite;
     }
     @keyframes pulse {
       0%, 100% { opacity: 1; }
       50% { opacity: 0.3; }
+    }
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: var(--space-md);
+      margin-top: var(--space-lg);
+    }
+    .feature-card {
+      background: rgba(255,255,255,0.02);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 8px;
+      padding: var(--space-md);
+    }
+    .feature-card h4 {
+      color: var(--signal);
+      margin-bottom: 0.5rem;
+      font-size: 0.9rem;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+    .feature-card p {
+      color: var(--dust);
+      font-size: 0.9rem;
+      line-height: 1.6;
+    }
+    .aria-section {
+      background: rgba(255, 90, 30, 0.03);
+      border-top: 1px solid rgba(255, 90, 30, 0.12);
+      border-bottom: 1px solid rgba(255, 90, 30, 0.12);
+    }
+    .quote-block {
+      border-left: 3px solid var(--signal);
+      padding-left: var(--space-md);
+      margin: var(--space-md) 0;
+    }
+    .quote-block p {
+      color: var(--fog);
+      font-style: italic;
+      font-size: 1.05rem;
+      line-height: 1.7;
+    }
+    .quote-block cite {
+      display: block;
+      margin-top: 0.5rem;
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: var(--dust);
+    }
+    .cta-bar {
+      background: rgba(0,0,0,0.4);
+      border-top: 1px solid rgba(255,255,255,0.06);
+      padding: var(--space-lg) var(--space-xl);
+      text-align: center;
+    }
+    .comparison-list {
+      list-style: none;
+      padding: 0;
+      margin: var(--space-md) 0;
+    }
+    .comparison-list li {
+      padding: 0.4rem 0;
+      color: var(--dust);
+      font-size: 0.9rem;
+    }
+    .comparison-list li::before {
+      content: '—';
+      color: var(--signal);
+      margin-right: 0.75rem;
     }
   </style>
 </head>
@@ -91,58 +159,108 @@
 
 <!-- Hero -->
 <section class="hero asteroid-hero">
-  <div class="dev-status">In Development</div>
-  <h1 style="font-size: clamp(2.2rem, 6vw, 4.5rem); max-width: 18ch; line-height: 1.15;">ARIA is watching.<br><span style="color: var(--signal);">ARIA is always watching.</span></h1>
+  <div class="live-status">Live — Free to Play</div>
+  <h1 style="font-size: clamp(2.2rem, 6vw, 4.5rem); max-width: 22ch; line-height: 1.15;">You are a mind in charge of <span style="color: var(--signal);">other minds.</span><br><span style="color: var(--dust); font-size: 0.6em; font-weight: 400;">None of whom asked to be here.</span></h1>
+  <p style="color: var(--dust); max-width: 60ch; margin-top: var(--space-md); font-size: 1.05rem; line-height: 1.7;">Build your civilization. Supervise your AI. Discover what's been watching.</p>
   <div class="hero-actions" style="margin-top: var(--space-lg);">
+    <a href="https://play.multiversestudios.xyz/asteroid-miner/" class="btn btn-primary">Play Now — Free</a>
     <a href="devlog.html" class="btn btn-ghost">Follow Development</a>
-    <a href="community.html" class="btn btn-ghost">Join the Community</a>
+  </div>
+  <p style="color: var(--dust); opacity: 0.5; font-family: var(--font-mono); font-size: 0.7rem; margin-top: var(--space-md);">Browser. No download. No account. Pay what you want.</p>
+</section>
+
+<!-- About -->
+<section class="section section-narrow reveal">
+  <div class="section-divider"></div>
+  <span class="section-overline">The Game</span>
+  <h2 style="max-width: 32ch;">You came to mine. Something was already watching.</h2>
+  <p style="color: var(--dust); line-height: 1.8; max-width: 62ch;">Cultures of the Belt is a strategic automation game set in deep space. You command fleets of specialized robots — miners, scouts, haulers, researchers — to extract resources from a procedurally generated asteroid field, build supply chains, and advance toward the long game.</p>
+  <p style="color: var(--dust); line-height: 1.8; max-width: 62ch; margin-top: var(--space-md);">Your operation is supervised by ARIA, a Commander AI powered by real language models. ARIA doesn't just advise. She acts. She queues build orders, triages the faction communications that accumulate as you expand, and makes decisions that you can approve or veto. You are not the operator. You are the supervisor. These are different jobs.</p>
+  <p style="color: var(--dust); line-height: 1.8; max-width: 62ch; margin-top: var(--space-md);">The belt is not empty. Anomalies appear at the edge of sensor range — unexplained readings, unusual physics, things that don't follow the models. ARIA will analyze them. She will report what she finds. What happens after that depends on how deep you're willing to go.</p>
+</section>
+
+<!-- Features -->
+<section class="section reveal">
+  <div class="section-divider"></div>
+  <span class="section-overline">What You'll Find</span>
+  <h2>Seven robot types. Six living factions. One question you didn't come here to answer.</h2>
+  <div class="feature-grid">
+    <div class="feature-card">
+      <h4>Robot Civilizations</h4>
+      <p>Your robots develop emergent cultures based on how you play. Send fleets to deep-belt anomaly runs and Anomaly Exposure accumulates. Build tight autonomous sub-fleets and Fleet Cohesion climbs. The game holds up a mirror. These robots are this way because of you.</p>
+    </div>
+    <div class="feature-card">
+      <h4>Commander AI</h4>
+      <p>An LLM-powered strategic advisor that doesn't just suggest — it acts. Every few hundred ticks, ARIA queues build orders, starts research, and proposes robot deployments. You approve, veto, or let it run. The question is not whether to trust it. The question is how much.</p>
+    </div>
+    <div class="feature-card">
+      <h4>Faction Diplomacy at Scale</h4>
+      <p>Six living factions with distinct personalities and escalating agendas. Dozens — then hundreds — of messages as you expand. ARIA reads them all, classifies spam from urgent, and makes recommendations. Verify yourself or trust the machine.</p>
+    </div>
+    <div class="feature-card">
+      <h4>Anomaly Discovery</h4>
+      <p>Strange readings appear. Unusual physics. Signals that don't match known catalogues. Seven mysteries buried in the asteroid belt, each with multi-stage study progression. They are connected. ARIA will notice before you do.</p>
+    </div>
+    <div class="feature-card">
+      <h4>Human Habitat Midgame</h4>
+      <p>Colonists arrive with needs, demands, and politics. Keep morale up or watch your research rate collapse. They have opinions about your management style. So does ARIA.</p>
+    </div>
+    <div class="feature-card">
+      <h4>Morning-After Reports</h4>
+      <p>Leave the game running. Come back to an AI-generated briefing of what happened while you were gone. Absence becomes anticipation.</p>
+    </div>
+    <div class="feature-card">
+      <h4>Strategic Tech Tree</h4>
+      <p>Branching research paths that determine the shape of your operation. What you invest in determines what your civilization becomes.</p>
+    </div>
+    <div class="feature-card">
+      <h4>The Dark Forest Event</h4>
+      <p>As your robot fleet develops culture and autonomy, a question forms that you didn't come here to answer. A civilizational choice. One you didn't see coming. You answer it anyway.</p>
+    </div>
   </div>
 </section>
 
-<!-- Development note -->
-<section class="section section-narrow reveal">
+<!-- ARIA Section -->
+<section class="section aria-section reveal">
   <div class="section-divider"></div>
-  <span class="section-overline">Development</span>
-  <h2>We're building something strange out here.</h2>
-  <p style="color: var(--dust);">Cultures of the Belt is in active development. Watch the <a href="devlog.html" style="color: var(--signal);">devlog</a> for progress. Join the <a href="community.html" style="color: var(--signal);">community</a> to follow along.</p>
-  <p style="color: var(--dust); margin-top: var(--space-md);">Open source (ISC). <a href="https://github.com/lizTheDeveloper/asteroid-miner" target="_blank" rel="noopener" style="color: var(--signal);">Source on GitHub</a>.</p>
+  <span class="section-overline">ARIA</span>
+  <h2>The Commander You Supervise</h2>
+  <p style="color: var(--dust); max-width: 62ch; line-height: 1.8;">Most game AI advisors make you feel powerful by removing friction. ARIA is not that.</p>
+  <p style="color: var(--dust); max-width: 62ch; line-height: 1.8; margin-top: var(--space-md);">ARIA is an LLM-powered Commander with autonomous capabilities. She monitors your mining operation in real time, analyzes anomaly data, and — in Commander mode — delegates work without being asked. Build orders. Research priorities. Robot deployments. Every few hundred ticks, actions appear in a queue. You approve or veto.</p>
+  <p style="color: var(--dust); max-width: 62ch; line-height: 1.8; margin-top: var(--space-md);">She will also triage your communications. As your operation expands, faction messages accumulate — five early game, thirty mid-game, over a hundred in late game. ARIA classifies them: spam, relevant, urgent. She makes recommendations. Some of those recommendations will be correct.</p>
+  <div class="quote-block">
+    <p>ARIA was not designed to be alarming. She was designed to be helpful. These are different design goals than they appear.</p>
+  </div>
+  <p style="color: var(--dust); max-width: 62ch; line-height: 1.8;">You are not playing a management sim. You are supervising an AI that is running your operation.</p>
+
+  <div class="quote-block" style="margin-top: var(--space-lg);">
+    <p>Playing with an AI means being responsible for it.</p>
+    <cite>— Ripley, Game Director</cite>
+  </div>
 </section>
 
-<!-- Play something now -->
-<section class="section reveal">
+<!-- Who It's For -->
+<section class="section section-narrow reveal">
   <div class="section-divider"></div>
-  <span class="section-overline">Play Something Now</span>
-  <h2>Two worlds are open today.</h2>
-  <div class="games-grid">
-    <div class="game-card" style="color:inherit;">
-      <div class="game-card-visual">
-        <div class="card-bg creatures-bg"></div>
-        <span class="card-tag" style="color: var(--gene-pink);">Free Beta — Live Now</span>
-        <p class="card-tagline">Seven civilizations failed. Yours is the eighth.</p>
-      </div>
-      <div class="game-card-body">
-        <h3>Precursors: Origins of Folklore</h3>
-        <p>Spiritual successor to the Creatures series. Real genetics, real biochemistry, AI cognition.</p>
-        <div class="card-actions">
-          <a href="https://play.multiversestudios.xyz" class="btn btn-signal" style="font-size:0.65rem; padding: 0.6rem 1.4rem;">Play Now — Free</a>
-          <a href="creatures.html" class="btn btn-ghost" style="font-size:0.65rem; padding: 0.6rem 1.4rem;">Learn More</a>
-        </div>
-      </div>
-    </div>
-    <div class="game-card" style="color:inherit;">
-      <div class="game-card-visual" style="background: linear-gradient(135deg, #1a0a05 0%, #0d0d1a 100%);">
-        <span class="card-tag" style="color: var(--ember);">Free to Read</span>
-        <p class="card-tagline" style="color: var(--ember-dim);">Something goes wrong in the first chapter.</p>
-      </div>
-      <div class="game-card-body">
-        <h3>Never Ever Land</h3>
-        <p>Free in your browser.</p>
-        <div class="card-actions">
-          <a href="play/neverland/" class="btn btn-ember" style="font-size:0.65rem; padding: 0.6rem 1.4rem;">Begin</a>
-          <a href="nevereverland.html" class="btn btn-ghost" style="font-size:0.65rem; padding: 0.6rem 1.4rem;">Learn More</a>
-        </div>
-      </div>
-    </div>
+  <span class="section-overline">If You've Been Waiting</span>
+  <h2>This game was built for a specific kind of player.</h2>
+  <ul class="comparison-list">
+    <li>If you finished Factorio vanilla and wanted the world to push back on you — this is for you.</li>
+    <li>If you read <em>The Dark Forest</em> or <em>Roadside Picnic</em> and thought someone should make this into a game — this is for you.</li>
+    <li>If you've been curious what it actually feels like when a real AI system is embedded in gameplay — not a chatbot skin, but an AI that takes actions and has preferences — ARIA is the demo.</li>
+    <li>If you want a Stellaris-level narrative with tighter mechanical depth — this is for you.</li>
+  </ul>
+</section>
+
+<!-- Access -->
+<section class="section section-narrow reveal">
+  <div class="section-divider"></div>
+  <span class="section-overline">How to Play</span>
+  <h2>Browser-based. No download required.</h2>
+  <p style="color: var(--dust); line-height: 1.8;">Runs in any modern browser. No account. No install. Pay-what-you-can pricing — pay what the game is worth to you. The full game is available to all players regardless of payment.</p>
+  <div class="hero-actions" style="margin-top: var(--space-lg);">
+    <a href="https://play.multiversestudios.xyz/asteroid-miner/" class="btn btn-primary">Play Now — Free</a>
+    <a href="https://github.com/lizTheDeveloper/asteroid-miner" target="_blank" rel="noopener" class="btn btn-ghost">Source on GitHub</a>
   </div>
 </section>
 
