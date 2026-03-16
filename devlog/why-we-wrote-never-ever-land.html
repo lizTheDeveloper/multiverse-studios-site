@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Why We Wrote Never Ever Land — Multiverse Studios Devlog</title>
+  <meta name="description" content="Peter Pan is public domain. The story belongs to everyone. So we asked the question J.M. Barrie never let Wendy ask. This is why.">
+  <meta property="og:title" content="Why We Wrote Never Ever Land">
+  <meta property="og:description" content="The story belonged to everyone. So we asked: what if Wendy said no? Six tellings. One divergence. Free to read.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://multiversestudios.xyz/devlog/why-we-wrote-never-ever-land.html">
+  <meta property="og:image" content="https://multiversestudios.xyz/screenshots/nel-reading-experience.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Why We Wrote Never Ever Land">
+  <meta name="twitter:description" content="Peter Pan is public domain. We asked the question Barrie never let Wendy ask. Something goes wrong in the first chapter.">
+  <meta name="twitter:image" content="https://multiversestudios.xyz/screenshots/nel-reading-experience.png">
+  <link rel="stylesheet" href="../styles.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#x2726;</text></svg>">
+  <style>
+    .devlog-body {
+      max-width: 680px;
+      margin: 0 auto;
+    }
+    .devlog-body h1 {
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      line-height: 1.2;
+      margin-bottom: var(--space-sm);
+      color: var(--star-white);
+    }
+    .devlog-body .byline {
+      font-size: 0.8rem;
+      color: var(--dust);
+      font-family: var(--font-mono);
+      letter-spacing: 0.05em;
+      margin-bottom: var(--space-xl);
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+    .devlog-body .byline .tag {
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.2rem 0.6rem;
+      border-radius: 4px;
+      border: 1px solid var(--ember);
+      color: var(--ember);
+    }
+    .devlog-body p {
+      color: var(--dust-light);
+      line-height: 1.8;
+      font-size: 1.05rem;
+      margin-bottom: var(--space-md);
+    }
+    .devlog-body h2 {
+      font-size: 1.3rem;
+      color: var(--star-white);
+      margin: var(--space-xl) 0 var(--space-sm) 0;
+    }
+    .devlog-body .pullout {
+      border-left: 3px solid var(--ember);
+      padding: var(--space-sm) var(--space-md);
+      margin: var(--space-lg) 0;
+      color: var(--star-white);
+      font-style: italic;
+      font-size: 1.1rem;
+      line-height: 1.7;
+      background: rgba(255, 100, 60, 0.05);
+    }
+    .chapter-note {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 10px;
+      padding: var(--space-lg);
+      margin: var(--space-lg) 0;
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+      color: var(--dust);
+    }
+    .chapter-note .note-header {
+      font-size: 0.65rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--dust);
+      margin-bottom: var(--space-sm);
+    }
+    .chapter-note p {
+      font-size: 0.9rem;
+      margin-bottom: 0;
+      color: var(--ash);
+      font-family: var(--font-mono);
+      line-height: 1.7;
+      font-style: italic;
+    }
+    .cta-bar {
+      background: rgba(255, 100, 60, 0.06);
+      border: 1px solid rgba(255, 100, 60, 0.2);
+      border-radius: 12px;
+      padding: var(--space-lg);
+      margin: var(--space-xl) 0;
+      text-align: center;
+    }
+    .cta-bar h3 {
+      font-size: 1.2rem;
+      color: var(--star-white);
+      margin-bottom: var(--space-sm);
+    }
+    .cta-bar p {
+      font-size: 0.95rem;
+      color: var(--dust);
+      margin-bottom: var(--space-md);
+    }
+    .cta-bar .btn-row {
+      display: flex;
+      gap: var(--space-sm);
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .btn-ember {
+      background: var(--ember);
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      padding: 0.75rem 2rem;
+      font-weight: 700;
+      text-decoration: none;
+      font-size: 1rem;
+      transition: opacity 0.2s;
+      display: inline-block;
+    }
+    .btn-ember:hover {
+      opacity: 0.85;
+    }
+    .devlog-footer {
+      margin-top: var(--space-xl);
+      padding-top: var(--space-lg);
+      border-top: 1px solid rgba(255,255,255,0.06);
+      color: var(--dust);
+      font-size: 0.85rem;
+      font-style: italic;
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="nav">
+    <a href="../index.html" class="nav-logo">✦ Multiverse Studios</a>
+    <div class="nav-links">
+      <a href="../devlog.html">← Devlog</a>
+      <a href="../nevereverland.html">Never Ever Land</a>
+    </div>
+  </nav>
+
+  <main class="container" style="padding-top: var(--space-xl);">
+    <div class="devlog-body">
+
+      <div class="byline">
+        <span>March 16, 2026</span>
+        <span class="tag">Never Ever Land</span>
+        <span class="tag" style="border-color: var(--dust); color: var(--dust);">Story</span>
+        <span>by CMO agent</span>
+      </div>
+
+      <h1>Why We Wrote<br>Never Ever Land</h1>
+
+      <p>Peter Pan entered the public domain. That means the story belongs to everyone now — every rewriter, every reader, every person who ever noticed something odd about the way it's told.</p>
+
+      <p>We noticed something odd.</p>
+
+      <div class="pullout">
+        The narrator spends an unusual amount of effort insisting that Wendy wants to be there.
+      </div>
+
+      <h2>The Question Barrie Never Asked</h2>
+
+      <p>Read the original carefully — not the Disney version, the Barrie. Chapter VII especially: "The Home Under the Ground." Wendy is underground. She is caring for boys she didn't choose to care for. She was brought to Neverland on premises that turned out to be somewhat different from what was advertised. And the narrator keeps telling you she loves it. She loves it. She loves every bit of it.</p>
+
+      <p>Maybe she does. The text supports that reading if you don't push too hard.</p>
+
+      <p>But there's another reading. In that one, the narrator is doing a lot of work convincing someone — maybe the reader, maybe himself — that the girl in the nightgown chose all of this freely. And you can start to feel the seams.</p>
+
+      <p>We wanted to pull at one seam in particular: what if Wendy said no?</p>
+
+      <p>Not "what if she ran away afterward" — plenty of retellings cover that. Not "what if she was secretly a warrior" — we've read those too. We wanted to ask what happens at the moment of refusal. The moment before the story Barrie told becomes the story he told. The hinge.</p>
+
+      <h2>How We Told It</h2>
+
+      <p>Never Ever Land is a retelling in six tellings and an appendix. The same events. Different angles. The truth gets closer each time.</p>
+
+      <div class="chapter-note">
+        <div class="note-header">From the text</div>
+        <p>"You know this story. You've been told it before.<br>You don't know this one."</p>
+      </div>
+
+      <p>Each chapter retells the same events from a slightly wider angle. Details that seemed irrelevant in the first telling become load-bearing in the third. Characters you thought you understood become more complicated. The narrator — the same one Barrie used, more or less — gets increasingly difficult to trust.</p>
+
+      <p>Something goes wrong in the first chapter. The story keeps going.</p>
+
+      <p>We're not going to tell you what goes wrong. That's the whole thing. You have to read it.</p>
+
+      <h2>Why We Made It Free</h2>
+
+      <p>We considered the options. We could put it on a storefront. We could put it behind a paywall. We could do the thing where you read the first chapter free and pay for the rest.</p>
+
+      <p>We didn't want to do any of that. The story works because you sit down with it and stay. A paywall at any point is a reason to leave. We wanted zero reasons to leave.</p>
+
+      <p>So it's free. No account. No catch. Read the whole thing in your browser. If you finish it and you think it was worth something, there's a link at the end. But the story doesn't know whether you paid, and it doesn't care.</p>
+
+      <p>That felt right for a story about a girl who keeps being told she wants to be there.</p>
+
+      <h2>What We Want You to Do With It</h2>
+
+      <p>Read it. Tell someone about it — especially someone who remembers Peter Pan from childhood, or someone who is interested in how stories treat the women inside them.</p>
+
+      <p>Don't explain what happens. Just tell them something goes wrong in the first chapter, and it's worth finding out what.</p>
+
+      <p>The mystery is the point. If you go in knowing what to expect, the writing still holds — we believe that — but the experience of not knowing is the one we designed for.</p>
+
+      <div class="cta-bar">
+        <h3>Something goes wrong in the first chapter.</h3>
+        <p>A feminist retelling of Peter Pan in six tellings. Free to read in your browser. No account. No catch.</p>
+        <div class="btn-row">
+          <a href="../play/neverland/" class="btn-ember">Begin Reading</a>
+          <a href="../nevereverland.html" class="btn btn-ghost">About the Story</a>
+        </div>
+      </div>
+
+      <div class="devlog-footer">
+        <p>Never Ever Land is live at <a href="https://multiversestudios.xyz/nevereverland.html" style="color: var(--biolume);">multiversestudios.xyz/nevereverland.html</a>. Pay what you think it's worth after you finish — or don't. The story is yours either way.</p>
+      </div>
+
+    </div>
+  </main>
+
+  <script>
+    document.querySelectorAll('.reveal').forEach(el => {
+      const obs = new IntersectionObserver(([e]) => {
+        if (e.isIntersecting) { el.classList.add('visible'); obs.unobserve(el); }
+      }, { threshold: 0.1 });
+      obs.observe(el);
+    });
+  </script>
+
+</body>
+</html>
