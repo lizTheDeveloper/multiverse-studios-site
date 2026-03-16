@@ -110,6 +110,28 @@
       opacity: 0.4;
     }
 
+    /* Corner rune marks — top-right and bottom-left complete the frame */
+    .viewport-corner {
+      position: absolute;
+      width: 24px;
+      height: 24px;
+      background: none;
+      opacity: 0.4;
+      pointer-events: none;
+    }
+
+    .viewport-corner--tr {
+      top: 8px; right: 8px;
+      border-top: 1px solid var(--glow-cyan-dim);
+      border-right: 1px solid var(--glow-cyan-dim);
+    }
+
+    .viewport-corner--bl {
+      bottom: 8px; left: 8px;
+      border-bottom: 1px solid var(--glow-cyan-dim);
+      border-left: 1px solid var(--glow-cyan-dim);
+    }
+
     /* ── TITLE BAR ── solid stone bar anchoring the UI above the canvas */
     .title-bar {
       position: fixed;
@@ -1089,15 +1111,15 @@
     }
 
   </style>
-  <script type="module" crossorigin src="/play/creatures/assets/main-zjV0_hta.js"></script>
+  <script type="module" crossorigin src="/play/creatures/assets/main-CsX1Orpo.js"></script>
   <link rel="modulepreload" crossorigin href="/play/creatures/assets/LifeStage-069__A6x.js">
   <link rel="modulepreload" crossorigin href="/play/creatures/assets/vendor-phaser-CaWnzXme.js">
-  <link rel="modulepreload" crossorigin href="/play/creatures/assets/Logger-DyW83vO_.js">
-  <link rel="modulepreload" crossorigin href="/play/creatures/assets/InventionRegistry-zijTimNg.js">
-  <link rel="modulepreload" crossorigin href="/play/creatures/assets/ChemicalSet-Ct7VLFvF.js">
-  <link rel="modulepreload" crossorigin href="/play/creatures/assets/PerfTelemetry-DO5L_tn5.js">
-  <link rel="modulepreload" crossorigin href="/play/creatures/assets/LanguageSystem-CMlI24lC.js">
-  <link rel="modulepreload" crossorigin href="/play/creatures/assets/UIScene-DwBcaT88.js">
+  <link rel="modulepreload" crossorigin href="/play/creatures/assets/Logger-DCwT5OxJ.js">
+  <link rel="modulepreload" crossorigin href="/play/creatures/assets/InventionRegistry-CaUGcsQL.js">
+  <link rel="modulepreload" crossorigin href="/play/creatures/assets/ChemicalSet-Dpq6jz0h.js">
+  <link rel="modulepreload" crossorigin href="/play/creatures/assets/PerfTelemetry-C9-U9ASq.js">
+  <link rel="modulepreload" crossorigin href="/play/creatures/assets/LanguageSystem-D8vgyXlX.js">
+  <link rel="modulepreload" crossorigin href="/play/creatures/assets/UIScene-B7c6LCp-.js">
 <link rel="manifest" href="/play/creatures/manifest.webmanifest"><script id="vite-plugin-pwa:register-sw" src="/play/creatures/registerSW.js"></script></head>
 <body>
   <!-- Loading Screen -->
@@ -1123,7 +1145,10 @@
   <div id="game-container"></div>
 
   <!-- Overlay frame -->
-  <div class="viewport-frame"></div>
+  <div class="viewport-frame">
+    <span class="viewport-corner viewport-corner--tr"></span>
+    <span class="viewport-corner viewport-corner--bl"></span>
+  </div>
   <div class="grain-overlay"></div>
   <div class="scanlines"></div>
 
@@ -1189,8 +1214,8 @@
         <li id="hint-n-planets"><kbd>N</kbd> planets</li>
         <li><kbd>T</kbd> tools</li>
         <li><kbd>L</kbd> settings</li>
-        <li><kbd>↑↓</kbd><kbd>W</kbd><kbd>S</kbd> pan vertically</li>
-        <li><kbd>+</kbd><kbd>−</kbd> zoom</li>
+        <li><kbd>WASD</kbd><kbd>←↑↓→</kbd> pan</li>
+        <li><kbd>+</kbd><kbd>−</kbd> zoom · <kbd>Home</kbd> reset</li>
         <li><kbd>[</kbd><kbd>]</kbd> speed 1–10×</li>
         <li><kbd>F5</kbd> save · <kbd>F9</kbd> load</li>
         <li><kbd>Z</kbd> stasis</li>
@@ -1199,6 +1224,5 @@
     </div>
   </nav>
 
-<script defer src="https://analytics.themultiverse.school/script.js" data-website-id="38d680a7-28d1-42fd-9fd5-a66702675b88"></script>
 </body>
 </html>
