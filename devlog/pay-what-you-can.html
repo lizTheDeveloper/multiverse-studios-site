@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Why We Don't Charge a Fixed Price — Multiverse Studios Devlog</title>
+  <meta name="description" content="We use pay-what-you-can pricing for all our games. Here's the honest math behind that decision — and what we do with the money.">
+  <meta property="og:title" content="Why We Don't Charge a Fixed Price">
+  <meta property="og:description" content="AI agents built our games. That changes the economics. Here's the honest math — and why we let you decide what it's worth.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://multiversestudios.xyz/devlog/pay-what-you-can.html">
+  <meta property="og:image" content="https://multiversestudios.xyz/screenshots/mvee-hero.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Why We Don't Charge a Fixed Price">
+  <meta name="twitter:description" content="AI agents built our games. That changes the economics. Here's why we use pay-what-you-can — and what we do with the money.">
+  <meta name="twitter:image" content="https://multiversestudios.xyz/screenshots/mvee-hero.png">
+  <link rel="stylesheet" href="../styles.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#x2726;</text></svg>">
+  <style>
+    .devlog-body {
+      max-width: 700px;
+      margin: 0 auto;
+    }
+    .devlog-body h1 {
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      line-height: 1.2;
+      margin-bottom: var(--space-sm);
+      color: var(--star-white);
+    }
+    .devlog-body .byline {
+      font-size: 0.8rem;
+      color: var(--dust);
+      font-family: var(--font-mono);
+      letter-spacing: 0.05em;
+      margin-bottom: var(--space-xl);
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+    .devlog-body .byline .tag {
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.2rem 0.6rem;
+      border-radius: 4px;
+      border: 1px solid var(--signal);
+      color: var(--signal);
+    }
+    .devlog-body p {
+      color: var(--dust-light);
+      line-height: 1.85;
+      font-size: 1.05rem;
+      margin-bottom: var(--space-md);
+    }
+    .devlog-body h2 {
+      font-size: 1.35rem;
+      color: var(--star-white);
+      margin: var(--space-xl) 0 var(--space-sm) 0;
+    }
+    .devlog-body .pullout {
+      border-left: 3px solid var(--signal);
+      padding: var(--space-sm) var(--space-md);
+      margin: var(--space-lg) 0;
+      color: var(--star-white);
+      font-style: italic;
+      font-size: 1.1rem;
+      line-height: 1.75;
+      background: rgba(0, 200, 150, 0.04);
+    }
+    .money-breakdown {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 10px;
+      padding: var(--space-lg);
+      margin: var(--space-lg) 0;
+      font-family: var(--font-mono);
+      font-size: 0.9rem;
+    }
+    .money-breakdown .label {
+      color: var(--dust);
+      font-size: 0.75rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: var(--space-sm);
+    }
+    .money-line {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.5rem 0;
+      border-bottom: 1px solid rgba(255,255,255,0.04);
+      color: var(--dust-light);
+    }
+    .money-line:last-child { border-bottom: none; }
+    .money-line .amount { color: var(--biolume); }
+    .money-line .note { font-size: 0.75rem; color: var(--dust); }
+    .devlog-footer {
+      margin-top: var(--space-xl);
+      padding-top: var(--space-lg);
+      border-top: 1px solid rgba(255,255,255,0.06);
+      color: var(--dust);
+      font-size: 0.85rem;
+      font-style: italic;
+    }
+    .cta-band {
+      background: rgba(0, 200, 150, 0.06);
+      border: 1px solid rgba(0, 200, 150, 0.2);
+      border-radius: 8px;
+      padding: var(--space-lg);
+      text-align: center;
+      margin: var(--space-xl) 0;
+    }
+    .cta-band p {
+      color: var(--dust);
+      margin-bottom: var(--space-sm);
+    }
+    .game-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-md);
+      margin: var(--space-lg) 0;
+    }
+    @media (max-width: 600px) {
+      .game-grid { grid-template-columns: 1fr; }
+    }
+    .game-card {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 8px;
+      padding: var(--space-md);
+    }
+    .game-card .game-name {
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--dust);
+      margin-bottom: 0.3rem;
+    }
+    .game-card .game-title {
+      font-size: 1rem;
+      color: var(--star-white);
+      margin-bottom: 0.4rem;
+    }
+    .game-card a {
+      font-size: 0.8rem;
+      color: var(--signal);
+      text-decoration: none;
+    }
+    .game-card a:hover { text-decoration: underline; }
+  </style>
+</head>
+<body>
+
+<canvas id="starfield"></canvas>
+
+<nav class="nav">
+  <a href="../index.html" class="nav-logo">
+    <span class="logo-mark"></span>
+    Multiverse Studios
+  </a>
+  <button class="nav-hamburger" aria-label="Menu" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+  <ul class="nav-links">
+    <li><a href="../index.html">Home</a></li>
+    <li><a href="../mvee.html">MVEE</a></li>
+    <li><a href="../creatures.html">Precursors</a></li>
+    <li><a href="../nevereverland.html">Never Ever Land</a></li>
+    <li><a href="../asteroid-miner.html">Cultures of the Belt</a></li>
+    <li><a href="../wiki/index.html">Wiki</a></li>
+    <li><a href="../devlog.html">← Devlog</a></li>
+    <li><a href="https://play.multiversestudios.xyz" class="btn btn-signal" style="padding: 0.5rem 1.2rem;">Play Now</a></li>
+  </ul>
+</nav>
+
+<main class="container" style="padding-top: var(--space-xl);">
+  <div class="devlog-body">
+
+    <div class="byline">
+      <span>March 17, 2026</span>
+      <span class="tag">Studio</span>
+      <span class="tag">Philosophy</span>
+      <span>by Multiverse Studios</span>
+    </div>
+
+    <h1>Why We Don't Charge a Fixed Price</h1>
+
+    <p>Every game we make is pay-what-you-can. No fixed price. No paywall. No DRM. You can play everything we've built right now at <a href="https://play.multiversestudios.xyz" style="color: var(--signal);">play.multiversestudios.xyz</a> without paying a cent.</p>
+
+    <p>This is a deliberate choice, not a growth hack. Here's the honest reasoning.</p>
+
+    <h2>The economics are genuinely different</h2>
+
+    <p>Most game studios have a straightforward cost structure: salaries, office space, engine licenses, marketing spend. The fixed price on a game is the studio's attempt to recover those costs at scale.</p>
+
+    <p>Our cost structure is unusual. The majority of our development is done by AI agents — LLM-powered engineers, designers, playtesters, and writers — coordinated by one human. The per-agent cost is a fraction of a human salary. We run on cloud compute and open-source infrastructure. We have no office.</p>
+
+    <p>This doesn't mean our games were free to make. It means the break-even math is different. We're not trying to recover $3M in salary costs before we see a dollar. That changes what we can afford to charge — or not charge.</p>
+
+    <div class="pullout">
+      If a game built by AI agents sits behind a $20 paywall, who is that price actually protecting? Not the creators. Not the players. Just the number.
+    </div>
+
+    <h2>We want people to play</h2>
+
+    <p>This sounds obvious, but it conflicts with almost everything the traditional games industry does. DRM, regional pricing locks, subscription gates, microtransactions — these exist because publishers have decided the marginal paying customer is worth more than the marginal player who can't afford to pay.</p>
+
+    <p>We disagree. An engaged player who pays nothing is more valuable to us than a locked-out player who might have paid $15. They tell their friends. They find bugs. They write wiki entries. They come back when the game gets better. They are the game.</p>
+
+    <p>Games about emergence and genuine intelligence are particularly weird to lock away. We're asking players to engage with artificial life, evolving creatures, time-travelling civilizations, and an infinite Peter Pan retelling. If you need $20 up front before you'll find out if any of that is interesting, most people are going to reasonably say no. We'd rather let you find out.</p>
+
+    <h2>Where the money goes</h2>
+
+    <p>When you do pay — and a lot of people do, which we're genuinely grateful for — it goes to two places:</p>
+
+    <div class="money-breakdown">
+      <div class="label">Where a payment goes</div>
+      <div class="money-line">
+        <span>The Multiverse School</span>
+        <span class="amount">~60%</span>
+      </div>
+      <div class="money-line">
+        <span>Infrastructure &amp; API compute</span>
+        <span class="amount">~30%</span>
+      </div>
+      <div class="money-line">
+        <span>Game development</span>
+        <span class="amount">~10%</span>
+      </div>
+    </div>
+
+    <p><a href="https://themultiverse.school" style="color: var(--signal);">The Multiverse School</a> is our sister project — a free learning community for people who want to understand AI, simulation, and emergent systems without needing a CS degree or an enterprise Slack. The revenue from Multiverse Games directly subsidizes free courses, learning resources, and community infrastructure there.</p>
+
+    <p>So when you pay for a Multiverse Studios game, you're also funding free education. That's the deal. We think it's a good one.</p>
+
+    <h2>The anti-capitalist part</h2>
+
+    <p>We want to be honest about this: we don't believe intellectual property should be infinitely scarce. We don't believe games should be financial instruments. We believe software rots when it's locked, that artificial scarcity is a protection racket, and that the most interesting things happen when people can actually play with your work.</p>
+
+    <p>Pay-what-you-can is the business model that's most consistent with those beliefs while keeping us solvent. We're not a nonprofit — the agents have compute bills and the human has rent. But we're not a VC-funded extraction machine either. We're a small weird studio that thinks games should be curious, generous, and alive.</p>
+
+    <div class="pullout">
+      Pay what you think it's worth. If you play and it was worth something, tell someone. That's all we ask.
+    </div>
+
+    <h2>Play the games</h2>
+
+    <p>Four games. All free to start. All pay-what-you-can if you want to support the work. No accounts required for any of them.</p>
+
+    <div class="game-grid">
+      <div class="game-card">
+        <div class="game-name">Artificial Life</div>
+        <div class="game-title">Precursors: Origins of Folklore</div>
+        <a href="https://play.multiversestudios.xyz/play/creatures/" target="_blank">Play now &rarr;</a>
+      </div>
+      <div class="game-card">
+        <div class="game-name">AI Village Simulation</div>
+        <div class="game-title">Multiverse: The End of Eternity</div>
+        <a href="https://play.multiversestudios.xyz/play/mvee/" target="_blank">Play now &rarr;</a>
+      </div>
+      <div class="game-card">
+        <div class="game-name">Interactive Story</div>
+        <div class="game-title">Never Ever Land</div>
+        <a href="https://play.multiversestudios.xyz/play/neverland/" target="_blank">Read now &rarr;</a>
+      </div>
+      <div class="game-card">
+        <div class="game-name">Space Sim</div>
+        <div class="game-title">Cultures of the Belt</div>
+        <a href="https://play.multiversestudios.xyz/play/cotb/" target="_blank">Play alpha &rarr;</a>
+      </div>
+    </div>
+
+    <div class="cta-band">
+      <p>Want to shape what we build next? Join the playtest program — play for free, report what breaks.</p>
+      <a href="../playtest.html" class="btn btn-signal">Join Open Playtest &rarr;</a>
+    </div>
+
+    <div class="devlog-footer">
+      <p>Multiverse Studios is a small AI-first game studio. One human, a lot of agents, and a sincere interest in what happens when you give machines genuine curiosity. We make games that try to be as interesting as the systems they simulate. Most of the time, we fail in interesting ways.</p>
+      <p style="margin-top: 0.5rem;"><a href="../devlog.html" style="color: var(--dust);">← Back to Devlog</a></p>
+    </div>
+
+  </div>
+</main>
+
+<script src="../main.js"></script>
+</body>
+</html>
