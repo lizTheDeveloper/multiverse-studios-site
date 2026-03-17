@@ -1,0 +1,128 @@
+name: Verify Deployment
+
+on:
+  push:
+    branches: [main]
+
+# Cancel in-flight runs for the same branch
+concurrency:
+  group: deploy-verify-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Wait for GitHub Pages deployment
+        uses: actions/github-script@v7
+        with:
+          script: |
+            // Wait up to 5 minutes for the Pages deployment triggered by this push
+            const maxWait = 300_000;
+            const poll = 15_000;
+            const start = Date.now();
+            let deployed = false;
+
+            while (Date.now() - start < maxWait) {
+              const { data: deployments } = await github.rest.repos.listDeployments({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                sha: context.sha,
+                environment: 'github-pages',
+                per_page: 1,
+              });
+
+              if (deployments.length > 0) {
+                const { data: statuses } = await github.rest.repos.listDeploymentStatuses({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  deployment_id: deployments[0].id,
+                  per_page: 1,
+                });
+                if (statuses.length > 0 && statuses[0].state === 'success') {
+                  deployed = true;
+                  break;
+                }
+              }
+
+              core.info(`Waiting for Pages deployment... (${Math.round((Date.now() - start) / 1000)}s)`);
+              await new Promise(r => setTimeout(r, poll));
+            }
+
+            if (!deployed) {
+              core.setFailed('GitHub Pages deployment did not complete within 5 minutes');
+            }
+
+      - name: Verify site returns HTTP 200
+        id: verify
+        run: |
+          SITE_URL="https://multiversestudios.xyz"
+          echo "Checking $SITE_URL ..."
+
+          STATUS=$(curl -s -o /dev/null -w '%{http_code}' --max-time 30 "$SITE_URL")
+          echo "status=$STATUS" >> "$GITHUB_OUTPUT"
+
+          if [ "$STATUS" -eq 200 ]; then
+            echo "Site is up — HTTP $STATUS"
+          else
+            echo "::error::Site returned HTTP $STATUS"
+            exit 1
+          fi
+
+      - name: Verify key pages
+        run: |
+          FAILED=0
+          for PAGE in "/" "/mvee.html" "/about.html" "/press.html"; do
+            URL="https://multiversestudios.xyz${PAGE}"
+            STATUS=$(curl -s -o /dev/null -w '%{http_code}' --max-time 30 "$URL")
+            if [ "$STATUS" -eq 200 ]; then
+              echo "OK  $URL ($STATUS)"
+            else
+              echo "FAIL $URL ($STATUS)"
+              FAILED=1
+            fi
+          done
+          if [ "$FAILED" -eq 1 ]; then
+            echo "::error::One or more pages failed verification"
+            exit 1
+          fi
+
+      - name: Post result to Paperclip (if issue ID in commit message)
+        if: always()
+        env:
+          PAPERCLIP_API_URL: ${{ secrets.PAPERCLIP_API_URL }}
+          PAPERCLIP_API_KEY: ${{ secrets.PAPERCLIP_API_KEY }}
+          VERIFY_STATUS: ${{ steps.verify.outputs.status }}
+        run: |
+          # Extract MUL-NNNN from commit message
+          COMMIT_MSG=$(git log -1 --format='%s' "${{ github.sha }}" 2>/dev/null || echo "${{ github.event.head_commit.message }}")
+          ISSUE_ID=$(echo "$COMMIT_MSG" | grep -oP 'MUL-\d+' | head -1 || true)
+
+          if [ -z "$ISSUE_ID" ] || [ -z "$PAPERCLIP_API_URL" ] || [ -z "$PAPERCLIP_API_KEY" ]; then
+            echo "No issue ID in commit or Paperclip not configured — skipping notification"
+            exit 0
+          fi
+
+          # Resolve identifier to UUID
+          ISSUE_DATA=$(curl -s -H "Authorization: Bearer $PAPERCLIP_API_KEY" \
+            "$PAPERCLIP_API_URL/api/companies/ea3250e1-8c60-4100-800f-1da907107373/issues?identifier=$ISSUE_ID" 2>/dev/null || true)
+          ISSUE_UUID=$(echo "$ISSUE_DATA" | python3 -c "import sys,json; d=json.loads(sys.stdin.read()); print(d[0]['id'] if d else '')" 2>/dev/null || true)
+
+          if [ -z "$ISSUE_UUID" ]; then
+            echo "Could not resolve $ISSUE_ID — skipping notification"
+            exit 0
+          fi
+
+          HTTP_STATUS="${VERIFY_STATUS:-unknown}"
+          if [ "${{ job.status }}" = "success" ]; then
+            BODY="## Deploy Verified ✅\n\nSite returned HTTP $HTTP_STATUS after push \`${{ github.sha }}\`.\n\nAll key pages verified."
+          else
+            BODY="## Deploy Verification FAILED ❌\n\nSite returned HTTP $HTTP_STATUS after push \`${{ github.sha }}\`.\n\nCheck: https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+          fi
+
+          curl -s -X POST \
+            -H "Authorization: Bearer $PAPERCLIP_API_KEY" \
+            -H "Content-Type: application/json" \
+            "$PAPERCLIP_API_URL/api/issues/$ISSUE_UUID/comments" \
+            -d "{\"body\": \"$BODY\"}" || echo "Failed to post comment — non-fatal"
