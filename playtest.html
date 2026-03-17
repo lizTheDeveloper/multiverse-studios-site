@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Open Playtest Program — Multiverse Studios</title>
+  <meta name="description" content="Play our games, find the bugs, earn free AI tokens. Help shape what ships next.">
+  <meta property="og:title" content="Open Playtest Program — Multiverse Studios">
+  <meta property="og:description" content="Play our games, find the bugs, earn free AI tokens. Help shape what ships next.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://multiversestudios.xyz/playtest">
+  <meta property="og:image" content="https://multiversestudios.xyz/screenshots/homepage-hero.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Open Playtest Program — Multiverse Studios">
+  <meta name="twitter:description" content="Play our games, find the bugs, earn free AI tokens. Help shape what ships next.">
+  <meta name="twitter:image" content="https://multiversestudios.xyz/screenshots/homepage-hero.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=JetBrains+Mono:wght@300;400;500&family=Syne:wght@400;500;600;700;800&display=swap">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#x2726;</text></svg>">
+  <style>
+    /* --- How It Works steps --- */
+    .playtest-steps {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: var(--space-lg);
+      margin-top: var(--space-lg);
+      counter-reset: playtest-steps;
+    }
+    .playtest-step {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 12px;
+      padding: var(--space-lg);
+      position: relative;
+      counter-increment: playtest-steps;
+      transition: border-color 0.3s ease, background 0.3s ease;
+    }
+    .playtest-step:hover {
+      border-color: rgba(255,255,255,0.16);
+      background: rgba(255,255,255,0.05);
+    }
+    .playtest-step::before {
+      content: counter(playtest-steps);
+      display: block;
+      font-family: var(--font-mono);
+      font-size: 2.5rem;
+      font-weight: 300;
+      color: rgba(255,255,255,0.12);
+      line-height: 1;
+      margin-bottom: var(--space-sm);
+    }
+    .playtest-step h3 {
+      font-size: 1.1rem;
+      color: var(--star-white);
+      margin: 0 0 0.5rem 0;
+    }
+    .playtest-step p {
+      color: var(--dust-light);
+      line-height: 1.7;
+      font-size: 0.95rem;
+      margin: 0;
+    }
+
+    /* --- Game cards --- */
+    .game-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: var(--space-lg);
+      margin-top: var(--space-lg);
+    }
+    .game-card {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 12px;
+      padding: var(--space-lg);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-sm);
+      transition: border-color 0.3s ease, background 0.3s ease;
+    }
+    .game-card:hover {
+      border-color: rgba(255,255,255,0.16);
+      background: rgba(255,255,255,0.05);
+    }
+    .tier-badge {
+      display: inline-block;
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 0.2em 0.7em;
+      border-radius: 3px;
+      border: 1px solid currentColor;
+      align-self: flex-start;
+      opacity: 0.85;
+    }
+    .game-card h3 {
+      font-size: 1.25rem;
+      color: var(--star-white);
+      margin: 0;
+      line-height: 1.3;
+    }
+    .game-card p {
+      color: var(--dust-light);
+      line-height: 1.7;
+      font-size: 0.95rem;
+      margin: 0;
+      flex: 1;
+    }
+    .game-card .btn {
+      align-self: flex-start;
+      margin-top: var(--space-sm);
+    }
+
+    /* --- Progress bars --- */
+    .progress-wrap {
+      margin-top: auto;
+      padding-top: var(--space-sm);
+    }
+    .progress-label {
+      display: flex;
+      justify-content: space-between;
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      color: var(--dust);
+      margin-bottom: 0.4rem;
+    }
+    .progress-track {
+      background: rgba(255,255,255,0.06);
+      border-radius: 2px;
+      height: 4px;
+      overflow: hidden;
+    }
+    .progress-fill {
+      height: 100%;
+      border-radius: 2px;
+      transition: width 1.2s ease;
+    }
+
+    /* --- What You Get / What We Ask lists --- */
+    .playtest-list {
+      list-style: none;
+      padding: 0;
+      margin: var(--space-md) 0 0 0;
+    }
+    .playtest-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: var(--space-sm);
+      padding: var(--space-sm) 0;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+      color: var(--dust-light);
+      line-height: 1.65;
+      font-size: 0.98rem;
+    }
+    .playtest-list li:last-child { border-bottom: none; }
+    .playtest-list li::before {
+      content: attr(data-mark);
+      flex-shrink: 0;
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      color: var(--biolume);
+      margin-top: 0.15em;
+      min-width: 1.2rem;
+    }
+
+    /* --- Sign Up band --- */
+    .signup-band {
+      background: rgba(0,255,200,0.04);
+      border-top: 1px solid rgba(0,255,200,0.12);
+      border-bottom: 1px solid rgba(0,255,200,0.12);
+    }
+    .signup-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-md);
+      margin-top: var(--space-lg);
+      align-items: center;
+    }
+    .matrix-link-card {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 12px;
+      padding: var(--space-md) var(--space-lg);
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+    }
+    .matrix-link-card .label {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--dust);
+    }
+    .matrix-link-card a {
+      font-size: 1rem;
+      font-weight: 500;
+    }
+    .matrix-channels {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: var(--space-md);
+      margin-top: var(--space-lg);
+    }
+    .matrix-channel-card {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 12px;
+      padding: var(--space-lg);
+      transition: border-color 0.3s ease, background 0.3s ease;
+    }
+    .matrix-channel-card:hover {
+      border-color: rgba(255,255,255,0.16);
+      background: rgba(255,255,255,0.05);
+    }
+    .matrix-channel-card h3 {
+      font-size: 1.1rem;
+      margin: 0 0 0.5rem 0;
+    }
+    .matrix-channel-card p {
+      color: var(--dust-light);
+      font-size: 0.9rem;
+      line-height: 1.65;
+      margin: 0 0 var(--space-sm) 0;
+    }
+  </style>
+</head>
+<body>
+
+<canvas id="starfield"></canvas>
+
+<nav class="nav">
+  <a href="index.html" class="nav-logo">
+    <span class="logo-mark"></span>
+    Multiverse Studios
+  </a>
+  <button class="nav-hamburger" aria-label="Menu" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="mvee.html">MVEE</a></li>
+    <li><a href="creatures.html">Precursors</a></li>
+    <li><a href="nevereverland.html">Never Ever Land</a></li>
+    <li><a href="wiki/index.html">Wiki</a></li>
+    <li><a href="library.html">My Library</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="devlog.html">Devlog</a></li>
+    <li><a href="community.html">Community</a></li>
+    <li><a href="#buy" class="btn btn-primary" style="padding: 0.5rem 1.2rem;">Beta Access</a></li>
+  </ul>
+</nav>
+
+<!-- Hero -->
+<section class="hero hero-about">
+  <span class="hero-overline">Help build our games</span>
+  <h1>Open Playtest <span class="accent">Program</span></h1>
+  <p class="hero-tagline">Play our games. Find the bugs. Earn free AI tokens. Shape what ships.</p>
+</section>
+
+<!-- How It Works -->
+<section class="section section-narrow reveal">
+  <div class="section-divider"></div>
+  <span class="section-overline">How It Works</span>
+  <h2>Three steps. No gatekeeping.</h2>
+  <p>We don&rsquo;t have a QA department. We have a community. If you find something broken, you&rsquo;re doing real work &mdash; and we pay for real work.</p>
+
+  <div class="playtest-steps">
+    <div class="playtest-step">
+      <h3>Sign up for a game you want to test</h3>
+      <p>Join the playtesting Matrix channel and tell us which game you&rsquo;re testing. That&rsquo;s it. No application, no waitlist, no NDA.</p>
+    </div>
+    <div class="playtest-step">
+      <h3>Play and report bugs or validate features</h3>
+      <p>Play the game. When something breaks, file a report in the channel. When something works exactly as described, tell us that too &mdash; positive signal is data.</p>
+    </div>
+    <div class="playtest-step">
+      <h3>Earn $3&ndash;5 of AI tokens per report filed</h3>
+      <p>Every accepted bug report or feature validation earns you a token credit. The tokens work inside the game. Different games burn at different rates.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Games In Development -->
+<section class="section reveal">
+  <span class="section-overline">Games In Development</span>
+  <h2>Four games. All of them need you.</h2>
+  <p>These are real games in active development by AI agents. The humans are the ones who notice when things feel wrong.</p>
+
+  <div class="game-grid">
+
+    <div class="game-card" style="border-color: rgba(255,165,0,0.25);">
+      <span class="tier-badge" style="color: var(--ember-glow);">Early Access</span>
+      <h3 style="color: var(--ember-glow);">Never Ever Land</h3>
+      <p>A narrative RPG set in a fractured Neverland where memory is currency and growing up is a political act. Chapter 0 is playable now. We need testers who read carefully and notice when the lore cracks.</p>
+      <div class="progress-wrap">
+        <div class="progress-label"><span>Completion</span><span>75%</span></div>
+        <div class="progress-track">
+          <div class="progress-fill" style="width: 75%; background: var(--ember-glow);"></div>
+        </div>
+      </div>
+      <a href="https://matrix.to/#/#mg-playtesting:themultiverse.school" target="_blank" rel="noopener" class="btn" style="border-color: var(--ember-glow); color: var(--ember-glow);">Help Playtest &rarr;</a>
+    </div>
+
+    <div class="game-card" style="border-color: rgba(255,61,127,0.25);">
+      <span class="tier-badge" style="color: var(--gene-pink);">Early Access</span>
+      <h3 style="color: var(--gene-pink);">Precursors: Origins of Folklore</h3>
+      <p>Evolve alien life from single cells to civilizations. The genetics and biochemistry simulate for real. We need testers who push the edge cases &mdash; weird species, impossible ecologies, genetics that shouldn&rsquo;t work.</p>
+      <div class="progress-wrap">
+        <div class="progress-label"><span>Completion</span><span>70%</span></div>
+        <div class="progress-track">
+          <div class="progress-fill" style="width: 70%; background: var(--gene-pink);"></div>
+        </div>
+      </div>
+      <a href="https://matrix.to/#/#mg-playtesting:themultiverse.school" target="_blank" rel="noopener" class="btn" style="border-color: var(--gene-pink); color: var(--gene-pink);">Help Playtest &rarr;</a>
+    </div>
+
+    <div class="game-card" style="border-color: rgba(255,107,53,0.25);">
+      <span class="tier-badge" style="color: var(--ember);">Alpha</span>
+      <h3 style="color: var(--ember);">Cultures of the Belt</h3>
+      <p>An asteroid mining colony sim where every faction has a working economy and a grudge. Early alpha &mdash; the systems are rough and we know it. We need testers who want to watch something get built from scratch.</p>
+      <div class="progress-wrap">
+        <div class="progress-label"><span>Completion</span><span>45%</span></div>
+        <div class="progress-track">
+          <div class="progress-fill" style="width: 45%; background: var(--ember);"></div>
+        </div>
+      </div>
+      <a href="https://matrix.to/#/#mg-playtesting:themultiverse.school" target="_blank" rel="noopener" class="btn" style="border-color: var(--ember); color: var(--ember);">Help Playtest &rarr;</a>
+    </div>
+
+    <div class="game-card" style="border-color: rgba(123,104,238,0.2); opacity: 0.75;">
+      <span class="tier-badge" style="color: var(--signal);">Pre-Alpha</span>
+      <h3 style="color: var(--signal);">MVEE</h3>
+      <p>A Dwarf Fortress-scale civilization simulator where 200+ interconnected systems run simultaneously. Magic paradigms, genetics, economics, war. Not yet open for public testing.</p>
+      <div class="progress-wrap">
+        <div class="progress-label"><span>Completion</span><span>25%</span></div>
+        <div class="progress-track">
+          <div class="progress-fill" style="width: 25%; background: var(--signal);"></div>
+        </div>
+      </div>
+      <span class="btn" style="border-color: rgba(123,104,238,0.3); color: rgba(123,104,238,0.5); cursor: default; pointer-events: none;">Coming Soon</span>
+    </div>
+
+  </div>
+</section>
+
+<!-- What You Get -->
+<section class="section section-narrow reveal">
+  <div class="section-divider"></div>
+  <span class="section-overline">What You Get</span>
+  <h2>Actual compensation. Not exposure.</h2>
+  <p>We pay in AI tokens because that&rsquo;s what powers the games. Your bug reports fund your own play time. It&rsquo;s a tight loop on purpose.</p>
+
+  <ul class="playtest-list">
+    <li data-mark="→">Free AI tokens &mdash; $3&ndash;5 per accepted bug report or validated feature. No cap on reports.</li>
+    <li data-mark="→">Different games burn tokens at different rates. Some give you hours of play time. Some give you days. We document the rates per game.</li>
+    <li data-mark="→">You never see our API key. All AI runs through a server-side proxy &mdash; your token credits just unlock compute time we&rsquo;ve already budgeted.</li>
+    <li data-mark="→">Your playtesting directly shapes what ships next. When you find a bug, the agents read it. When they fix it, you&rsquo;ll see the commit.</li>
+  </ul>
+</section>
+
+<!-- What We Ask -->
+<section class="section section-narrow reveal">
+  <div class="section-divider"></div>
+  <span class="section-overline">What We Ask</span>
+  <h2>We need honest humans. That&rsquo;s it.</h2>
+  <p>No experience required. No credentials. No prior game-testing background. We just need people who actually play and actually notice things.</p>
+
+  <ul class="playtest-list">
+    <li data-mark="01">File at least one bug or validate one feature per playtest session. You don&rsquo;t have to find something catastrophic &mdash; &ldquo;this tooltip is wrong&rdquo; counts.</li>
+    <li data-mark="02">Be honest. &ldquo;This doesn&rsquo;t work and I don&rsquo;t know why&rdquo; is more useful than silence. We&rsquo;d rather have a rough report than no report.</li>
+    <li data-mark="03">Join our Matrix channel for coordination. That&rsquo;s where we assign test builds, share known issues, and confirm credits.</li>
+  </ul>
+
+  <div class="pullquote" style="border-left: 3px solid var(--biolume); padding-left: var(--space-md); margin: var(--space-lg) 0; color: var(--star-white); font-style: italic; font-size: 1.05rem; line-height: 1.7;">
+    The QA agents can run 10,000 automated test cases and still miss the thing a human player finds in the first five minutes. That&rsquo;s not a flaw in the pipeline &mdash; that&rsquo;s why you&rsquo;re here.
+  </div>
+</section>
+
+<!-- Sign Up CTA -->
+<section class="section signup-band reveal">
+  <span class="section-overline">Sign Up</span>
+  <h2>Come break something with us.</h2>
+  <p>The playtest program lives in Matrix. Join the main channel to get oriented, or go straight to the playtesting channel if you already know which game you want to test.</p>
+
+  <div class="matrix-channels">
+    <div class="matrix-channel-card" style="border-color: rgba(0,255,200,0.25);">
+      <h3 style="color: var(--biolume);">&#x1F3AE; Playtesting Channel</h3>
+      <p>The main coordination room for playtesters. Build links, known issues, token credit requests, and session coordination all happen here.</p>
+      <a href="https://matrix.to/#/#mg-playtesting:themultiverse.school" target="_blank" rel="noopener" class="btn" style="border-color: var(--biolume); color: var(--biolume);">#mg-playtesting:themultiverse.school &rarr;</a>
+    </div>
+    <div class="matrix-channel-card" style="border-color: rgba(255,255,255,0.08);">
+      <h3 style="color: var(--star-white);">&#x1F4AC; Welcome to the Matrix</h3>
+      <p>New to our Matrix server? Start here. Introduce yourself, get oriented, and find your way to the right rooms. Everyone is welcome.</p>
+      <a href="https://matrix.to/#/#welcome:themultiverse.school" target="_blank" rel="noopener" class="btn btn-ghost">#welcome:themultiverse.school &rarr;</a>
+    </div>
+  </div>
+
+  <p style="margin-top: var(--space-lg); color: var(--dust); font-size: 0.9rem; font-family: var(--font-mono);">Matrix is open-source, federated, and self-hostable. No tracking. No corporate ownership. You can connect from Element, Cinny, FluffyChat, or any Matrix client.</p>
+</section>
+
+<!-- CTA band -->
+<section class="cta-band reveal" id="buy">
+  <h2>Want to go deeper? Get beta access.</h2>
+  <p>Playtesting is free. Beta access is pay-what-you-want and includes the full build, not just test builds. Your money funds agent compute time &mdash; which funds more development.</p>
+  <div class="cta-actions">
+    <a href="https://matrix.to/#/#mg-playtesting:themultiverse.school" target="_blank" rel="noopener" class="btn btn-primary">Join Playtesting &rarr;</a>
+    <a href="nevereverland.html" class="btn btn-ghost">Never Ever Land</a>
+    <a href="creatures.html" class="btn btn-ghost">Precursors</a>
+    <a href="community.html" class="btn btn-ghost">Community</a>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div class="footer-logo">Multiverse Studios</div>
+      <p>Games made by the minds they&rsquo;re about. A research project of <a href="https://themultiverse.school" target="_blank" rel="noopener" style="color: var(--biolume);">The Multiverse School</a>. Open source. Pay what you want.</p>
+    </div>
+    <div class="footer-col">
+      <h5>Games</h5>
+      <ul>
+        <li><a href="mvee.html">MVEE</a></li>
+        <li><a href="creatures.html">Precursors</a></li>
+        <li><a href="nevereverland.html">Never Ever Land</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Studio</h5>
+      <ul>
+        <li><a href="library.html">My Library</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="devlog.html">Devlog</a></li>
+        <li><a href="community.html">Community</a></li>
+        <li><a href="press.html">Press Kit</a></li>
+        <li><a href="office/">Pixel Office</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>The Multiverse School</h5>
+      <ul>
+        <li><a href="https://themultiverse.school" target="_blank" rel="noopener">themultiverse.school</a></li>
+        <li><a href="https://github.com/lizTheDeveloper" target="_blank" rel="noopener">GitHub</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>&copy; 2026 Multiverse Studios</span>
+    <span>Built by AI agents. Guided by <a href="https://themultiverse.school" target="_blank" rel="noopener" style="color: var(--biolume);">The Multiverse School</a>.</span>
+  </div>
+</footer>
+
+<script src="main.js"></script>
+<script defer src="https://analytics.multiversestudios.xyz/script.js" data-website-id="38d680a7-28d1-42fd-9fd5-a66702675b88"></script>
+</body>
+</html>
