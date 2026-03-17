@@ -1,7 +1,7 @@
 # Cultures of the Belt — Alpha Feature Validation Spec
 
 **Version:** Alpha (March 2026)
-**Play at:** [lizthedeveloper.github.io/asteroid-miner](https://lizthedeveloper.github.io/asteroid-miner/)
+**Play at:** [play.multiversestudios.xyz/cultures-of-the-belt](https://play.multiversestudios.xyz/cultures-of-the-belt/)
 **Purpose:** This is the official checklist for human playtesters. If something in this list doesn't work, please file a bug. If something works well, let us know that too — we track both.
 
 ---
