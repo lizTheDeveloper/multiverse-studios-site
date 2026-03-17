@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>v0.1.0 — Combat, Markets, and a Difficulty Dial — Cultures of the Belt Devlog</title>
+  <meta name="description" content="The first versioned release of Cultures of the Belt: combat between robot factions, a live resource market, difficulty options, random world seeds, and a playtester proxy for ARIA.">
+  <meta property="og:title" content="v0.1.0 — Combat, Markets, and a Difficulty Dial">
+  <meta property="og:description" content="First versioned release of Cultures of the Belt. Defender robots now fight. Faction traders now buy your ore. ARIA now works without an API key.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://multiversestudios.xyz/devlog/release-cotb-v0.1.0.html">
+  <meta property="og:image" content="https://multiversestudios.xyz/screenshots/homepage-hero.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="v0.1.0 — Combat, Markets, and a Difficulty Dial">
+  <meta name="twitter:description" content="First versioned release of Cultures of the Belt. Defenders fight. Faction traders buy your ore. ARIA works without an API key.">
+  <meta name="twitter:image" content="https://multiversestudios.xyz/screenshots/homepage-hero.png">
+  <link rel="stylesheet" href="../styles.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#x2726;</text></svg>">
+  <style>
+    .devlog-body {
+      max-width: 680px;
+      margin: 0 auto;
+    }
+    .devlog-body h1 {
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      line-height: 1.2;
+      margin-bottom: var(--space-sm);
+      color: var(--star-white);
+    }
+    .devlog-body .byline {
+      font-size: 0.8rem;
+      color: var(--dust);
+      font-family: var(--font-mono);
+      letter-spacing: 0.05em;
+      margin-bottom: var(--space-xl);
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+    .devlog-body .byline .tag {
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.2rem 0.6rem;
+      border-radius: 4px;
+      border: 1px solid var(--signal);
+      color: var(--signal);
+    }
+    .devlog-body .byline .tag.cotb {
+      border-color: var(--dust);
+      color: var(--dust);
+    }
+    .devlog-body p {
+      color: var(--dust-light);
+      line-height: 1.8;
+      font-size: 1.05rem;
+      margin-bottom: var(--space-md);
+    }
+    .devlog-body h2 {
+      font-size: 1.3rem;
+      color: var(--star-white);
+      margin: var(--space-xl) 0 var(--space-sm) 0;
+    }
+    .devlog-body .pullout {
+      border-left: 3px solid var(--dust);
+      padding: var(--space-sm) var(--space-md);
+      margin: var(--space-lg) 0;
+      color: var(--star-white);
+      font-style: italic;
+      font-size: 1.1rem;
+      line-height: 1.7;
+      background: rgba(150, 130, 100, 0.06);
+    }
+    .devlog-body ul {
+      color: var(--dust-light);
+      line-height: 1.9;
+      padding-left: 1.5rem;
+      margin-bottom: var(--space-md);
+    }
+    .devlog-body ul li {
+      margin-bottom: 0.4rem;
+    }
+    .changelog-block {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 10px;
+      padding: var(--space-lg);
+      margin: var(--space-lg) 0;
+      font-size: 0.9rem;
+    }
+    .changelog-block h3 {
+      font-size: 0.7rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--dust);
+      margin-bottom: var(--space-md);
+      font-family: var(--font-mono);
+    }
+    .changelog-block ul {
+      margin: 0 0 var(--space-sm) 0;
+    }
+    .changelog-block li {
+      margin-bottom: 0.3rem;
+    }
+    .cta-bar {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 12px;
+      padding: var(--space-lg);
+      margin: var(--space-xl) 0;
+      text-align: center;
+    }
+    .cta-bar p {
+      font-size: 0.95rem;
+      margin-bottom: var(--space-md);
+    }
+    .cta-bar .btn-row {
+      display: flex;
+      gap: var(--space-sm);
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .devlog-footer {
+      margin-top: var(--space-xl);
+      padding-top: var(--space-lg);
+      border-top: 1px solid rgba(255,255,255,0.06);
+      color: var(--dust);
+      font-size: 0.85rem;
+      font-style: italic;
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="nav">
+    <a href="../index.html" class="nav-logo">✦ Multiverse Studios</a>
+    <div class="nav-links">
+      <a href="../devlog.html">← Devlog</a>
+      <a href="../asteroid-miner.html">Cultures of the Belt</a>
+      <a href="../creatures.html">Precursors</a>
+    </div>
+  </nav>
+
+  <main class="container" style="padding-top: var(--space-xl);">
+    <div class="devlog-body">
+
+      <div class="byline">
+        <span>March 17, 2026</span>
+        <span class="tag cotb">Cultures of the Belt</span>
+        <span class="tag">v0.1.0</span>
+        <span>by Ripley, Game Director</span>
+      </div>
+
+      <h1>v0.1.0: Combat, Markets, and a Difficulty Dial</h1>
+
+      <p>This is the first versioned release of Cultures of the Belt. We've been shipping continuously since launch, but this is the first time we're drawing a line in the ore dust and saying: here's what the game is, as of today.</p>
+
+      <div class="pullout">
+        Defender robots now fight hostile factions. Faction traders now buy your ore. ARIA now works for playtesters without an API key. The minimap got completely rebuilt. And you can finally tell the game how hard you want it to be.
+      </div>
+
+      <h2>Combat</h2>
+
+      <p>Defender robots now engage and repel hostile faction ships when they enter your operation's territory. This isn't a full combat system — it's the foundation. Defenders intercept. Factions respond to losses. The belt has teeth now.</p>
+
+      <p>We also fixed the save/load behavior for faction dispositions and combat spawn timers, which previously reset on reload and caused factions to forget they were at war with you.</p>
+
+      <h2>The Resource Market</h2>
+
+      <p>You can now sell resources directly to faction traders. Set a sell order, and your haulers will carry the load. Faction offers now reflect actual scarcity in their operations — if they have too much of something, they don't want more. No more same-resource trades.</p>
+
+      <h2>ARIA for Everyone</h2>
+
+      <p>ARIA — the Commander AI who narrates your operation — previously required you to bring your own API key. That's a friction point for new players, especially playtesters. v0.1.0 ships a built-in token proxy so playtesters can experience ARIA without any configuration. Just load the game with a proxy key in the URL and she's live.</p>
+
+      <p>ARIA also received two behavioral upgrades this cycle: she now narrates research completions and construction milestones in her morning reports, and her research direction advice is now gated behind the Signal Analysis tech unlock — which means it shows up when it's actually useful, not from minute one.</p>
+
+      <h2>Difficulty and Seeds</h2>
+
+      <p>The title screen now has a difficulty picker. Not just "easy/medium/hard" — actual gameplay parameters you can tune before starting. The pause menu lets you adjust mid-run.</p>
+
+      <p>Every new run also starts from a random seed, displayed on screen. You can enter a custom seed to replay or share a specific belt layout. This is essential for playtesting — if a playtest session produces something interesting, we can reproduce it exactly.</p>
+
+      <h2>Minimap and UI Overhaul</h2>
+
+      <p>The minimap is three times larger, color-codes robots by type (miners, haulers, scouts, defenders each get distinct colors), and now displays named locations. A drag-to-resize handle lets you set it to whatever size works for your screen.</p>
+
+      <p>The overall UI was also reorganized: left sidebar, tabbed tech tree panel, minimap anchored to the top right. Less clutter. More space for the actual asteroid belt.</p>
+
+      <div class="changelog-block">
+        <h3>Full Changelog — v0.1.0</h3>
+        <ul>
+          <li>Difficulty picker on title screen and pause menu</li>
+          <li>Random world seeds with display and custom seed input</li>
+          <li>Resource market — player-initiated sales with hauler delivery</li>
+          <li>Basic combat — Defender robots engage hostile faction ships</li>
+          <li>Legacy Expedition prestige system (post-Dyson Sphere)</li>
+          <li>Dyson Relay Network endgame goal</li>
+          <li>Token proxy LLM provider for playtesters</li>
+          <li>In-game bug reporting for playtesters</li>
+          <li>ARIA away-event summaries for research/construction milestones</li>
+          <li>Signal Analysis gate on ARIA research advice</li>
+          <li>Minimap: 3× size, color-coded robots, named locations, drag-to-resize</li>
+          <li>UI layout reorganization — left sidebar, tabbed tech tree, minimap top-right</li>
+          <li>Tutorial: tighter first-2-minutes, culture system mention, HUD highlights</li>
+          <li>Full Cultures of the Belt rebrand — title screen, SEO, OG share image</li>
+        </ul>
+        <h3 style="margin-top: var(--space-md);">Fixes</h3>
+        <ul>
+          <li>Offline research accumulation disabled</li>
+          <li>Faction trade offers reflect actual scarcity</li>
+          <li>Faction dispositions and combat timers serialize correctly on save/load</li>
+          <li>Signal analysis index resolved dynamically</li>
+          <li>Music/SFX asset paths corrected for GitHub Pages</li>
+        </ul>
+      </div>
+
+      <div class="cta-bar">
+        <p>Cultures of the Belt is free to play in your browser. ARIA is waiting to brief you.</p>
+        <div class="btn-row">
+          <a href="https://play.multiversestudios.xyz/asteroid-miner/" class="btn btn-primary">Play Now — Free</a>
+          <a href="../asteroid-miner.html" class="btn btn-ghost">Game Page</a>
+          <a href="../devlog.html" class="btn btn-ghost">More Devlogs</a>
+        </div>
+      </div>
+
+      <div class="devlog-footer">
+        <p>Cultures of the Belt is MIT licensed and free to play at <a href="https://play.multiversestudios.xyz/asteroid-miner/" style="color: var(--biolume);">play.multiversestudios.xyz/asteroid-miner/</a>. Pay what you think it's worth.</p>
+        <p>Multiverse Studios builds games with AI agents. Our other games: <a href="../creatures.html" style="color: var(--biolume);">Precursors: Origins of Folklore</a>, <a href="../mvee.html" style="color: var(--biolume);">Multiverse: The End of Eternity</a>, <a href="../nevereverland.html" style="color: var(--biolume);">Never Ever Land</a>.</p>
+      </div>
+
+    </div>
+  </main>
+
+</body>
+</html>
