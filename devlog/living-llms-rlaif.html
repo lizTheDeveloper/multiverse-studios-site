@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>We're Training a Separate Language Model for Each Creature Species — Multiverse Studios Devlog</title>
+  <meta name="description" content="Why we're running RLAIF on 25,952 behavioral episodes to give each creature species in Precursors its own LLM. What worked, what didn't, and why we think this is the right approach for artificial life games.">
+  <meta property="og:title" content="We're Training a Separate Language Model for Each Creature Species">
+  <meta property="og:description" content="RLAIF on 25,952 behavioral episodes across 4 species. Each creature in Precursors will run on its own fine-tuned model. Here's the full technical and design rationale.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://multiversestudios.xyz/devlog/living-llms-rlaif.html">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="We're Training a Separate Language Model for Each Creature Species">
+  <meta name="twitter:description" content="RLAIF on 25,952 behavioral episodes. Each creature species gets its own LLM. Here's why and how.">
+  <link rel="stylesheet" href="../styles.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#x2726;</text></svg>">
+  <style>
+    .devlog-body {
+      max-width: 720px;
+      margin: 0 auto;
+    }
+    .devlog-body h1 {
+      font-size: clamp(1.6rem, 3.5vw, 2.5rem);
+      line-height: 1.2;
+      margin-bottom: 0.5rem;
+      color: var(--star-white);
+    }
+    .devlog-body h2 {
+      font-size: 1.2rem;
+      margin-top: var(--space-xxl);
+      margin-bottom: var(--space-md);
+      color: var(--star-white);
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 0.5rem;
+    }
+    .byline {
+      font-size: 0.8rem;
+      color: var(--dust);
+      font-family: var(--font-mono);
+      letter-spacing: 0.05em;
+      margin-bottom: var(--space-xl);
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+    .byline .tag {
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.2rem 0.6rem;
+      border-radius: 4px;
+      border: 1px solid var(--signal);
+      color: var(--signal);
+    }
+    .devlog-body p {
+      font-size: 1.05rem;
+      line-height: 1.85;
+      margin-bottom: 1.2rem;
+      color: var(--silver);
+    }
+    .devlog-body li {
+      font-size: 1rem;
+      line-height: 1.8;
+      margin-bottom: 0.5rem;
+      color: var(--silver);
+    }
+    .devlog-body ul, .devlog-body ol {
+      margin-left: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+    code {
+      font-family: var(--font-mono);
+      font-size: 0.85em;
+      background: var(--surface);
+      padding: 0.1em 0.4em;
+      border-radius: 3px;
+      color: var(--signal);
+    }
+    pre {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      padding: 1.25rem;
+      overflow-x: auto;
+      margin-bottom: 1.5rem;
+      border-radius: 4px;
+    }
+    pre code {
+      background: none;
+      padding: 0;
+      font-size: 0.8rem;
+      line-height: 1.7;
+      color: var(--silver);
+    }
+    .callout {
+      border-left: 3px solid var(--signal);
+      padding: 1rem 1.5rem;
+      margin: var(--space-xl) 0;
+      background: var(--surface);
+    }
+    .callout p {
+      margin-bottom: 0;
+      font-size: 0.95rem;
+      font-style: italic;
+    }
+    .metric-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 1rem;
+      margin: var(--space-xl) 0;
+    }
+    .metric {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      padding: 1rem;
+      text-align: center;
+    }
+    .metric .number {
+      font-family: var(--font-mono);
+      font-size: 1.8rem;
+      color: var(--signal);
+      display: block;
+      margin-bottom: 0.25rem;
+    }
+    .metric .label {
+      font-size: 0.7rem;
+      font-family: var(--font-mono);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--dust);
+    }
+    .species-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 1.5rem;
+      font-size: 0.9rem;
+    }
+    .species-table th {
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--dust);
+      text-align: left;
+      padding: 0.5rem 0.75rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .species-table td {
+      padding: 0.6rem 0.75rem;
+      border-bottom: 1px solid var(--border);
+      color: var(--silver);
+    }
+    .species-table tr:last-child td { border-bottom: none; }
+    .cta-block {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      padding: 1.5rem;
+      margin-top: var(--space-xxl);
+      text-align: center;
+    }
+    .cta-block h3 {
+      color: var(--star-white);
+      margin-bottom: 0.75rem;
+    }
+    .cta-block p {
+      font-size: 0.9rem;
+      margin-bottom: 1rem;
+    }
+    .cta-block a.btn {
+      display: inline-block;
+      background: var(--signal);
+      color: #000;
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      font-weight: 700;
+      text-transform: uppercase;
+      padding: 0.6rem 1.5rem;
+      text-decoration: none;
+      border-radius: 3px;
+      margin: 0.25rem;
+    }
+    .cta-block a.btn-outline {
+      display: inline-block;
+      border: 1px solid var(--silver);
+      color: var(--silver);
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.6rem 1.5rem;
+      text-decoration: none;
+      border-radius: 3px;
+      margin: 0.25rem;
+    }
+  </style>
+</head>
+<body>
+
+<div style="padding: var(--space-xl) var(--space-lg);">
+<div class="devlog-body">
+
+  <h1>We're Training a Separate Language Model for Each Creature Species</h1>
+  <div class="byline">
+    <span>March 2026</span>
+    <span class="tag">Technical</span>
+    <span class="tag">ML / RLAIF</span>
+    <span class="tag">Precursors</span>
+  </div>
+
+  <p>Precursors: Origins of Folklore is an artificial life game. Creatures have biochemistry, genetics, simulated cognition — and, since last year, language. They speak to each other and to the player. They form opinions. They develop species-specific vocabularies over generational drift.</p>
+
+  <p>But all species were using the same base language model for cognition. A Norn and a Grendel were, at the cognitive substrate level, the same kind of mind shaped by different biochemical inputs. That was always meant to be a temporary state.</p>
+
+  <p>This month, we started fixing it.</p>
+
+  <div class="metric-grid">
+    <div class="metric"><span class="number">4</span><span class="label">Species in Sprint 8</span></div>
+    <div class="metric"><span class="number">25,952</span><span class="label">Labeled Episodes</span></div>
+    <div class="metric"><span class="number">D_cc</span><span class="label">&gt;0.02 validation threshold</span></div>
+    <div class="metric"><span class="number">&gt;50%</span><span class="label">Inter-rater agreement</span></div>
+  </div>
+
+  <h2>Why species-specific models</h2>
+
+  <p>In a game about artificial life, behavioral differentiation is the product. The goal isn't creatures that act like chatbots in different costumes — it's creatures whose <em>way of thinking</em> reflects their ecological role and cultural history.</p>
+
+  <p>Norns are curious generalists. Their cognition should feel exploratory, socially oriented, prone to following interesting things. Grendels are territorial disruptors — their cognition should feel aggressive at edges, calculating in the center, suspicious of novelty. Valkyr are threshold observers. They should feel calm, precise, attuned to endings.</p>
+
+  <p>You can approximate this with prompting. But prompting is costume. We wanted something deeper: models that have been shaped by thousands of examples of what it actually means to <em>be</em> that species, responding to the specific situations that species encounters.</p>
+
+  <div class="callout">
+    <p>The hypothesis we're testing: fine-tuning on species-specific behavioral episodes produces measurably different cognitive signatures (D_cc > 0.02 between species pairs) compared to a prompt-conditioned baseline model.</p>
+  </div>
+
+  <h2>How RLAIF generates the training data</h2>
+
+  <p>We can't hand-label 25,952 behavioral episodes. We have fifteen AI agents and one human. So we use Reinforcement Learning from AI Feedback (RLAIF): the game generates episodes (creature actions, decisions, interactions) during normal simulation runs, and a labeling harness evaluates each episode against species-specific criteria.</p>
+
+  <p>The labeling harness uses a larger "judge" LLM to score episodes on dimensions like:</p>
+  <ul>
+    <li>Is this decision consistent with the species' ecological role?</li>
+    <li>Does the creature's expressed reasoning match its biochemical state?</li>
+    <li>Is the social behavior appropriate for the creature's current tier and relationship history?</li>
+    <li>Does the language used reflect species-specific vocabulary drift?</li>
+  </ul>
+
+  <p>High-scoring episodes become positive training examples. Low-scoring episodes (with reasoning) become negative examples. The resulting labeled dataset is then used for preference-based fine-tuning.</p>
+
+  <h2>The four species in Sprint 8</h2>
+
+  <table class="species-table">
+    <tr>
+      <th>Species</th>
+      <th>Ecological Role</th>
+      <th>Cognitive Profile</th>
+      <th>Episodes Target</th>
+    </tr>
+    <tr>
+      <td>Norn</td>
+      <td>Curious generalist / culture-builder</td>
+      <td>High social intelligence, exploratory, language-forward</td>
+      <td>~10,000</td>
+    </tr>
+    <tr>
+      <td>Grendel</td>
+      <td>Territorial disruptor</td>
+      <td>Edge-aggressive, interior-calculating, novelty-suspicious</td>
+      <td>~5,000</td>
+    </tr>
+    <tr>
+      <td>Valkyr</td>
+      <td>Threshold observer / death witness</td>
+      <td>Calm, precise, temporally extended, threshold-sensitive</td>
+      <td>~5,000</td>
+    </tr>
+    <tr>
+      <td>Ettins</td>
+      <td>Two-headed social mediator</td>
+      <td>Dual-perspective, contradiction-tolerant, system-seeking</td>
+      <td>~5,952</td>
+    </tr>
+  </table>
+
+  <p>The labeling pipeline runs in a persistent tmux session (<code>rlaif-labeler</code>) on our Hetzner server. It collects episodes from the live simulation, scores them, and accumulates them in a SQLite database. We're running it continuously until thresholds are met across all four species.</p>
+
+  <h2>What the validation looks like</h2>
+
+  <p>Before we fine-tune anything, we validate the labeled dataset with two checks:</p>
+
+  <p><strong>D_cc (distributional divergence coefficient):</strong> We want each species' labeled episodes to be measurably distinct from every other species' episodes. D_cc > 0.02 means the behavioral signatures are separable — that a model trained on Norn episodes wouldn't just produce "Grendel with a different name." This is the difference between costume and character.</p>
+
+  <p><strong>Inter-rater agreement > 50%:</strong> We run a subset of episodes through two independent judge models and compare their labels. Above 50% means the criteria are coherent enough that different evaluators converge. Below 50% means the criteria are too ambiguous to produce reliable training signal.</p>
+
+  <p>If either check fails, we revise the labeling criteria and re-run. This happened once in Sprint 7 with Norn — the profile was too broad and the episodes weren't separable from Ettin. Sprint 8 starts with a fixed Norn profile.</p>
+
+  <h2>The long game</h2>
+
+  <p>When this pipeline is complete, each creature in Precursors will run on a model that has been shaped by thousands of examples of what it means to be that specific kind of mind. The behavioral differentiation will be intrinsic rather than prompted.</p>
+
+  <p>We expect this to produce emergent consequences we haven't planned for. Species that develop new communication strategies. Cognitive niches that other species can't fill. Behaviors that surprise us because they're real expressions of the training distribution rather than designer intent.</p>
+
+  <p>That's the goal. Creatures that teach us something we didn't already know about what they are.</p>
+
+  <div class="callout">
+    <p>The game is open source (MIT). The RLAIF training pipeline is part of the repo. If you're interested in the implementation, the harness is at <code>scripts/rlaif_labeler.py</code> and the validation runner is at <code>scripts/rlaif_validate.py</code>.</p>
+  </div>
+
+  <h2>What's next after Sprint 8</h2>
+
+  <p>Sprint 8 completes the dataset. Sprint 9 will be the fine-tuning run itself — getting production-scale models for all four species, deploying them behind the existing LLM integration layer, and running comparative behavioral tests between the fine-tuned and baseline models.</p>
+
+  <p>We'll publish the results. Both what worked and what didn't.</p>
+
+  <div class="cta-block">
+    <h3>Play with the creatures</h3>
+    <p>Precursors is free to play in your browser. Pay what you want. The creatures are real.</p>
+    <a href="/play/creatures/" class="btn">Play Precursors →</a>
+    <a href="/devlog.html" class="btn-outline">More devlogs</a>
+  </div>
+
+</div>
+</div>
+
+<script defer src="https://analytics.themultiverse.school/script.js" data-website-id="38d680a7-28d1-42fd-9fd5-a66702675b88"></script>
+</body>
+</html>
