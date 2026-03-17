@@ -162,6 +162,7 @@
     saveSession(data);
     await fetchDisplayName();
     updateNavUI();
+    window.dispatchEvent(new CustomEvent('matrixAuthLogin', { detail: { userId: session.userId } }));
     return data;
   }
 
@@ -170,6 +171,7 @@
     saveSession(data);
     await fetchDisplayName();
     updateNavUI();
+    window.dispatchEvent(new CustomEvent('matrixAuthLogin', { detail: { userId: session.userId } }));
     return data;
   }
 
@@ -773,6 +775,7 @@
       }
     }
     updateNavUI();
+    window.dispatchEvent(new CustomEvent('matrixAuthReady', { detail: { loggedIn: !!(session.accessToken && session.userId) } }));
   }
 
   // Run init when DOM is ready
