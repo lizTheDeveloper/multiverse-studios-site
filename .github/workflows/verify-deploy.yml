@@ -73,7 +73,7 @@ jobs:
       - name: Verify key pages
         run: |
           FAILED=0
-          for PAGE in "/" "/mvee.html" "/about.html" "/press.html"; do
+          for PAGE in "/" "/mvee.html" "/about.html" "/press.html" "/nevereverland.html" "/asteroid-miner.html" "/playtest.html" "/community.html"; do
             URL="https://multiversestudios.xyz${PAGE}"
             STATUS=$(curl -s -o /dev/null -w '%{http_code}' --max-time 30 "$URL")
             if [ "$STATUS" -eq 200 ]; then
@@ -94,10 +94,11 @@ jobs:
           PAPERCLIP_API_URL: ${{ secrets.PAPERCLIP_API_URL }}
           PAPERCLIP_API_KEY: ${{ secrets.PAPERCLIP_API_KEY }}
           VERIFY_STATUS: ${{ steps.verify.outputs.status }}
+          COMMIT_MSG: ${{ github.event.head_commit.message }}
         run: |
-          # Extract MUL-NNNN from commit message
-          COMMIT_MSG=$(git log -1 --format='%s' "${{ github.sha }}" 2>/dev/null || echo "${{ github.event.head_commit.message }}")
-          ISSUE_ID=$(echo "$COMMIT_MSG" | grep -oP 'MUL-\d+' | head -1 || true)
+          set +e
+          # Extract MUL-NNNN from commit message (passed via env to avoid shell escaping)
+          ISSUE_ID=$(printf '%s' "$COMMIT_MSG" | grep -oE 'MUL-[0-9]+' | head -1)
 
           if [ -z "$ISSUE_ID" ] || [ -z "$PAPERCLIP_API_URL" ] || [ -z "$PAPERCLIP_API_KEY" ]; then
             echo "No issue ID in commit or Paperclip not configured — skipping notification"
@@ -105,9 +106,15 @@ jobs:
           fi
 
           # Resolve identifier to UUID
-          ISSUE_DATA=$(curl -s -H "Authorization: Bearer $PAPERCLIP_API_KEY" \
-            "$PAPERCLIP_API_URL/api/companies/ea3250e1-8c60-4100-800f-1da907107373/issues?identifier=$ISSUE_ID" 2>/dev/null || true)
-          ISSUE_UUID=$(echo "$ISSUE_DATA" | python3 -c "import sys,json; d=json.loads(sys.stdin.read()); print(d[0]['id'] if d else '')" 2>/dev/null || true)
+          ISSUE_DATA=$(curl -sf -H "Authorization: Bearer $PAPERCLIP_API_KEY" \
+            "$PAPERCLIP_API_URL/api/companies/ea3250e1-8c60-4100-800f-1da907107373/issues?q=$ISSUE_ID")
+
+          if [ -z "$ISSUE_DATA" ]; then
+            echo "Could not reach Paperclip API — skipping notification"
+            exit 0
+          fi
+
+          ISSUE_UUID=$(printf '%s' "$ISSUE_DATA" | python3 -c "import sys,json; d=json.loads(sys.stdin.read()); print(d[0]['id'] if d else '')" 2>/dev/null)
 
           if [ -z "$ISSUE_UUID" ]; then
             echo "Could not resolve $ISSUE_ID — skipping notification"
@@ -116,12 +123,12 @@ jobs:
 
           HTTP_STATUS="${VERIFY_STATUS:-unknown}"
           if [ "${{ job.status }}" = "success" ]; then
-            BODY="## Deploy Verified ✅\n\nSite returned HTTP $HTTP_STATUS after push \`${{ github.sha }}\`.\n\nAll key pages verified."
+            BODY="Deploy verified — HTTP $HTTP_STATUS after push ${{ github.sha }}. All key pages returned 200."
           else
-            BODY="## Deploy Verification FAILED ❌\n\nSite returned HTTP $HTTP_STATUS after push \`${{ github.sha }}\`.\n\nCheck: https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+            BODY="Deploy verification FAILED — HTTP $HTTP_STATUS after push ${{ github.sha }}. See https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}"
           fi
 
-          curl -s -X POST \
+          curl -sf -X POST \
             -H "Authorization: Bearer $PAPERCLIP_API_KEY" \
             -H "Content-Type: application/json" \
             "$PAPERCLIP_API_URL/api/issues/$ISSUE_UUID/comments" \
