@@ -143,6 +143,8 @@
 
     .game-block.mvee { border-left-color: var(--ember); }
     .game-block.precursors { border-left-color: var(--gene-pink); }
+    .game-block.nel { border-left-color: #c4a35a; }
+    .game-block.cotb { border-left-color: #4a8bc4; }
 
     .game-title {
       font-family: 'Syne', sans-serif;
@@ -153,6 +155,8 @@
 
     .game-title.mvee { color: var(--ember); }
     .game-title.precursors { color: var(--gene-pink); }
+    .game-title.nel { color: #c4a35a; }
+    .game-title.cotb { color: #4a8bc4; }
 
     .tagline {
       font-style: italic;
@@ -272,7 +276,7 @@
   <div class="fact-row"><span class="fact-label">Location</span><span class="fact-value">San Francisco, CA (distributed AI team)</span></div>
   <div class="fact-row"><span class="fact-label">Team</span><span class="fact-value">15 AI agents + 1 human director</span></div>
   <div class="fact-row"><span class="fact-label">Model</span><span class="fact-value">Pay-what-you-want; MIT open source</span></div>
-  <div class="fact-row"><span class="fact-label">Titles</span><span class="fact-value">2 in active development (MVEE, Precursors)</span></div>
+  <div class="fact-row"><span class="fact-label">Titles</span><span class="fact-value">4 titles (Precursors, MVEE, Never Ever Land, Cultures of the Belt)</span></div>
   <div class="fact-row"><span class="fact-label">Tech</span><span class="fact-value">Claude (Anthropic), TypeScript, Phaser 3</span></div>
 </div>
 
@@ -324,6 +328,42 @@
     </div>
   </div>
 
+  <div class="game-block nel">
+    <div class="game-title nel">Never Ever Land</div>
+    <div class="tagline">A Peter Pan retelling. What if Wendy said no?</div>
+    <ul class="feature-list">
+      <li>Six tellings and an appendix — one story, many perspectives</li>
+      <li>Something goes wrong in the first chapter</li>
+      <li>AI-powered infinite continuation — no two readings are identical</li>
+      <li>Therapeutic design: player agency, not spectacle</li>
+      <li>Free to read in browser — no account, no download</li>
+      <li>Pay-what-you-can supporter tier</li>
+    </ul>
+    <div style="margin-top:0.5rem;">
+      <div class="fact-row"><span class="fact-label">Status</span><span class="fact-value">Live — free to read</span></div>
+      <div class="fact-row"><span class="fact-label">Price</span><span class="fact-value">Free (supporter: pay what you want)</span></div>
+      <div class="fact-row"><span class="fact-label">Inspired by</span><span class="fact-value">J.M. Barrie, Arthur C. Clarke, interactive fiction</span></div>
+    </div>
+  </div>
+
+  <div class="game-block cotb">
+    <div class="game-title cotb">Cultures of the Belt</div>
+    <div class="tagline">You are a mind in charge of other minds. None of whom asked to be here.</div>
+    <ul class="feature-list">
+      <li>4X asteroid mining sim with autonomous Commander AI</li>
+      <li>AI files daily reports, develops opinions, disagrees politely</li>
+      <li>Emergent robot culture: factions, rituals, utility-function religion</li>
+      <li>Dark Forest event — cosmological silence as game mechanic</li>
+      <li>Inspired by Liu Cixin's Three-Body Problem</li>
+      <li>MIT open source; browser-based</li>
+    </ul>
+    <div style="margin-top:0.5rem;">
+      <div class="fact-row"><span class="fact-label">Status</span><span class="fact-value">Alpha — free to play</span></div>
+      <div class="fact-row"><span class="fact-label">Price</span><span class="fact-value">Free alpha; pay-what-you-can</span></div>
+      <div class="fact-row"><span class="fact-label">Inspired by</span><span class="fact-value">Three-Body Problem, Dwarf Fortress, FTL</span></div>
+    </div>
+  </div>
+
 </div>
 
 <!-- Story Angles -->
@@ -335,7 +375,7 @@
   </div>
   <div class="fact-row">
     <span class="fact-label" style="min-width:120px;">Open Source</span>
-    <span class="fact-value">Full MIT license. Source code open; no paywalls.</span>
+    <span class="fact-value">Full MIT license. Source code open; no paywalls on gameplay.</span>
   </div>
   <div class="fact-row">
     <span class="fact-label" style="min-width:120px;">Real Simulation</span>
@@ -344,6 +384,14 @@
   <div class="fact-row">
     <span class="fact-label" style="min-width:120px;">Creatures Legacy</span>
     <span class="fact-value">The long-awaited sequel to Steve Grand's 1996 Creatures, updated with LLM cognition.</span>
+  </div>
+  <div class="fact-row">
+    <span class="fact-label" style="min-width:120px;">Feminist Fiction</span>
+    <span class="fact-value">Never Ever Land: Wendy's story rewritten. Agency as game mechanic.</span>
+  </div>
+  <div class="fact-row">
+    <span class="fact-label" style="min-width:120px;">Dark Forest</span>
+    <span class="fact-value">Cultures of the Belt: Liu Cixin's cosmological silence as a game design principle.</span>
   </div>
 </div>
 
@@ -367,18 +415,22 @@
     <div class="value">github.com/lizTheDeveloper</div>
   </div>
   <div class="contact-item">
-    <div class="label">Beta — MVEE</div>
-    <div class="value">multiversestudios.xyz/mvee.html</div>
+    <div class="label">Play — Precursors</div>
+    <div class="value">play.multiversestudios.xyz</div>
   </div>
   <div class="contact-item">
-    <div class="label">Beta — Precursors</div>
-    <div class="value">multiversestudios.xyz/creatures.html</div>
+    <div class="label">Read — Never Ever Land</div>
+    <div class="value">multiversestudios.xyz/play/neverland/</div>
+  </div>
+  <div class="contact-item">
+    <div class="label">Play — Cultures of the Belt</div>
+    <div class="value">multiversestudios.xyz/asteroid-miner.html</div>
   </div>
 </div>
 
 <footer>
   <span>© 2026 Multiverse Studios — MIT Open Source</span>
-  <span>Dedicated to Tarn Adams and Dwarf Fortress.</span>
+  <span>Dedicated to Steve Grand, Tarn Adams, and Arthur C. Clarke.</span>
   <span>multiversestudios.xyz/press.html</span>
 </footer>
 
