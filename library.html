@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Game Library — Multiverse Studios</title>
-  <meta name="description" content="Look up your Multiverse Studios purchases by email and access your game downloads.">
+  <meta name="description" content="Your Multiverse Studios game library. Sign in to see your playtesting access and supporter games.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=JetBrains+Mono:wght@300;400;500&family=Syne:wght@400;500;600;700;800&display=swap">
@@ -42,87 +42,49 @@
       font-size: 1.2rem;
     }
 
-    /* ── Lookup form ── */
+    /* ── Library section ── */
     .library-section {
-      max-width: 680px;
+      max-width: 760px;
       margin: 0 auto;
       padding: 0 var(--space-md) var(--space-xl);
     }
-    .lookup-form {
-      display: flex;
-      flex-direction: column;
-      gap: var(--space-sm);
-    }
-    .lookup-form label {
-      font-family: var(--font-mono);
-      font-size: 0.72rem;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--dust);
-    }
-    .lookup-input-row {
-      display: flex;
-      gap: 0.75rem;
-      align-items: stretch;
-    }
-    .lookup-email {
-      flex: 1;
+
+    /* ── Login prompt ── */
+    .login-prompt {
       background: var(--void-elevated);
       border: 1px solid var(--void-border);
-      border-radius: 6px;
-      padding: 0.75rem 1rem;
-      font-family: var(--font-body);
-      font-size: 1.05rem;
-      color: var(--star-white);
-      outline: none;
-      transition: border-color 0.2s;
+      border-radius: 10px;
+      padding: var(--space-lg) var(--space-md);
+      text-align: center;
     }
-    .lookup-email::placeholder {
-      color: var(--dust);
-      opacity: 0.55;
-    }
-    .lookup-email:focus {
-      border-color: var(--biolume);
-      box-shadow: 0 0 0 2px rgba(0, 255, 200, 0.12);
-    }
-    .btn-biolume {
-      background: var(--biolume);
-      color: #050508;
-      border: none;
-      border-radius: 6px;
-      padding: 0.75rem 1.5rem;
+    .login-prompt h2 {
       font-family: var(--font-display);
-      font-weight: 700;
-      font-size: 0.92rem;
-      letter-spacing: 0.04em;
-      cursor: pointer;
-      white-space: nowrap;
-      transition: opacity 0.2s, box-shadow 0.2s;
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin-bottom: var(--space-sm);
     }
-    .btn-biolume:hover:not(:disabled) {
-      opacity: 0.88;
-      box-shadow: 0 0 18px rgba(0, 255, 200, 0.35);
-    }
-    .btn-biolume:disabled {
-      opacity: 0.45;
-      cursor: not-allowed;
+    .login-prompt p {
+      color: var(--dust);
+      margin-bottom: var(--space-md);
+      font-size: 1rem;
+      max-width: 420px;
+      margin-left: auto;
+      margin-right: auto;
+      line-height: 1.65;
     }
 
-    /* ── States ── */
-    .lookup-status {
-      min-height: 1.4rem;
+    /* ── Library loading ── */
+    .library-loading {
+      text-align: center;
+      padding: var(--space-lg);
       font-family: var(--font-mono);
-      font-size: 0.8rem;
-      letter-spacing: 0.06em;
-    }
-    .status-loading {
+      font-size: 0.82rem;
       color: var(--biolume);
+      letter-spacing: 0.08em;
       display: flex;
       align-items: center;
-      gap: 0.5rem;
-    }
-    .status-error {
-      color: #ff6b6b;
+      justify-content: center;
+      gap: 0.6rem;
     }
     .spinner {
       width: 14px;
@@ -137,131 +99,176 @@
       to { transform: rotate(360deg); }
     }
 
-    /* ── Results ── */
-    .results-area {
-      display: none;
-      margin-top: var(--space-lg);
+    /* ── Logged-in header ── */
+    .library-user-header {
+      margin-bottom: var(--space-lg);
     }
-    .results-area.visible {
-      display: block;
-    }
-    .results-heading {
+    .library-user-header h2 {
       font-family: var(--font-display);
-      font-size: 1.3rem;
+      font-size: 1.6rem;
       font-weight: 600;
-      letter-spacing: 0.05em;
-      text-transform: uppercase;
-      color: var(--dust);
-      margin-bottom: var(--space-md);
-      text-align: center;
+      margin-bottom: 0.35rem;
     }
-    .download-cards {
+    .library-user-header p {
+      color: var(--dust);
+      font-size: 0.95rem;
+    }
+
+    /* ── Game cards ── */
+    .game-cards {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
       gap: var(--space-md);
     }
-    .download-card {
+    .game-card-lib {
       background: var(--void-elevated);
       border: 1px solid var(--void-border);
-      border-radius: 8px;
+      border-radius: 10px;
       padding: var(--space-md);
       display: flex;
       flex-direction: column;
-      gap: var(--space-sm);
+      gap: 0.75rem;
+      transition: border-color 0.2s;
     }
-    .download-card-header {
+    .game-card-lib:hover {
+      border-color: rgba(255,255,255,0.18);
+    }
+    .game-card-header {
       display: flex;
-      align-items: center;
+      align-items: flex-start;
       gap: var(--space-sm);
     }
-    .download-card-icon {
-      font-size: 2.2rem;
+    .game-card-icon {
+      font-size: 2rem;
+      line-height: 1;
+      flex-shrink: 0;
     }
-    .download-card h3 {
+    .game-card-meta {
+      flex: 1;
+      min-width: 0;
+    }
+    .game-card-meta h3 {
       font-family: var(--font-display);
-      font-size: 1.2rem;
+      font-size: 1.15rem;
       font-weight: 700;
       line-height: 1.3;
+      margin-bottom: 0.3rem;
     }
-    .download-card p {
-      color: var(--dust);
-      font-size: 1rem;
-      line-height: 1.6;
-      flex: 1;
+    .tier-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
     }
-    .download-card .download-btn {
-      align-self: flex-start;
-      margin-top: var(--space-xs);
-    }
-    .download-tag {
+    .tier-pill {
       font-family: var(--font-mono);
-      font-size: 0.68rem;
+      font-size: 0.65rem;
       letter-spacing: 0.1em;
       text-transform: uppercase;
-      padding: 0.2em 0.6em;
-      border-radius: 3px;
-      background: rgba(0, 255, 200, 0.08);
+      padding: 0.2em 0.7em;
+      border-radius: 999px;
+      border: 1px solid;
+    }
+    .tier-pill-playtester {
       color: var(--biolume);
-      border: 1px solid rgba(0, 255, 200, 0.18);
+      border-color: rgba(0, 255, 200, 0.35);
+      background: rgba(0, 255, 200, 0.07);
     }
-    .purchase-meta {
-      font-family: var(--font-mono);
-      font-size: 0.68rem;
-      letter-spacing: 0.06em;
+    .tier-pill-supporter {
+      color: var(--gene-pink, #ff3d7f);
+      border-color: rgba(255, 61, 127, 0.35);
+      background: rgba(255, 61, 127, 0.07);
+    }
+    .tier-pill-free {
       color: var(--dust);
-      opacity: 0.7;
-      margin-top: 0.15rem;
+      border-color: rgba(255,255,255,0.15);
+      background: transparent;
     }
-
-    /* ── Empty state ── */
-    .empty-state {
-      text-align: center;
-      padding: var(--space-lg) var(--space-md);
-      background: var(--void-elevated);
-      border: 1px solid var(--void-border);
-      border-radius: 8px;
+    .tier-pill-dev-stage {
+      color: var(--signal, #7b68ee);
+      border-color: rgba(123, 104, 238, 0.3);
+      background: rgba(123, 104, 238, 0.07);
     }
-    .empty-state-glyph {
-      font-size: 2.5rem;
-      margin-bottom: var(--space-sm);
-      opacity: 0.5;
-    }
-    .empty-state h3 {
-      font-family: var(--font-display);
-      font-size: 1.3rem;
-      font-weight: 600;
-      margin-bottom: 0.5rem;
-      color: var(--star-white);
-    }
-    .empty-state p {
+    .game-card-desc {
       color: var(--dust);
-      font-size: 1rem;
-      max-width: 420px;
-      margin: 0 auto var(--space-sm);
-      line-height: 1.65;
-    }
-    .empty-state a {
-      color: var(--signal);
-    }
-    .empty-state a:hover {
-      color: var(--biolume);
-    }
-
-    /* ── Note box ── */
-    .note-box {
-      background: rgba(123, 104, 238, 0.06);
-      border: 1px solid rgba(123, 104, 238, 0.2);
-      border-radius: 6px;
-      padding: var(--space-sm) var(--space-md);
-      margin-top: var(--space-md);
       font-size: 0.95rem;
-      color: var(--dust);
-      text-align: center;
+      line-height: 1.55;
+      flex: 1;
     }
-    .note-box a {
+    .game-card-actions {
+      display: flex;
+      gap: 0.6rem;
+      flex-wrap: wrap;
+      align-items: center;
+      margin-top: auto;
+    }
+    .btn-sm {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 0.82rem;
+      letter-spacing: 0.04em;
+      padding: 0.5rem 1rem;
+      border-radius: 5px;
+      border: 1px solid;
+      cursor: pointer;
+      text-decoration: none;
+      transition: opacity 0.2s, box-shadow 0.2s;
+      white-space: nowrap;
+    }
+    .btn-sm:hover:not([disabled]) {
+      opacity: 0.85;
+    }
+    .btn-sm-primary {
+      background: var(--biolume);
+      color: #050508;
+      border-color: var(--biolume);
+    }
+    .btn-sm-ghost {
+      background: transparent;
+      color: var(--star-white);
+      border-color: var(--void-border);
+    }
+    .btn-sm[disabled] {
+      opacity: 0.4;
+      cursor: not-allowed;
+    }
+    .game-unavailable .game-card-icon,
+    .game-unavailable .game-card-meta h3 {
+      opacity: 0.6;
+    }
+
+    /* ── Playtest CTA strip ── */
+    .playtest-cta {
+      background: rgba(0,255,200,0.04);
+      border: 1px solid rgba(0,255,200,0.15);
+      border-radius: 8px;
+      padding: var(--space-sm) var(--space-md);
+      margin-top: var(--space-lg);
+      display: flex;
+      align-items: center;
+      gap: var(--space-md);
+      flex-wrap: wrap;
+    }
+    .playtest-cta p {
+      flex: 1;
+      color: var(--dust);
+      font-size: 0.95rem;
+      min-width: 200px;
+    }
+    .playtest-cta p strong {
+      color: var(--biolume);
+    }
+
+    /* ── Support CTA / email link ── */
+    .support-note {
+      margin-top: var(--space-lg);
+      text-align: center;
+      color: var(--dust);
+      font-size: 0.88rem;
+    }
+    .support-note a {
       color: var(--signal);
     }
-    .note-box a:hover {
+    .support-note a:hover {
       color: var(--biolume);
     }
   </style>
@@ -294,37 +301,48 @@
 <div class="library-hero">
   <div class="library-glyph">&#x1F4DA;</div>
   <h1>Your <span style="color: var(--biolume);">Game Library</span></h1>
-  <p>Enter your purchase email to access your downloads.</p>
+  <p>Sign in to see your playtester access and game collection.</p>
 </div>
 
 <div class="library-section">
+  <!-- Loading state (while matrix-auth.js initializes) -->
+  <div id="state-loading" class="library-loading" aria-live="polite">
+    <span class="spinner"></span><span>Loading&hellip;</span>
+  </div>
 
-  <form class="lookup-form" id="lookup-form" novalidate>
-    <label for="lookup-email">Purchase email address</label>
-    <div class="lookup-input-row">
-      <input
-        type="email"
-        id="lookup-email"
-        class="lookup-email"
-        placeholder="you@example.com"
-        autocomplete="email"
-        required
-      >
-      <button type="submit" class="btn-biolume" id="lookup-btn">
-        Look up my library
-      </button>
+  <!-- Logged-out state -->
+  <div id="state-loggedout" class="login-prompt" style="display:none;" aria-live="polite">
+    <h2>Sign in to view your library</h2>
+    <p>Your library shows the games you&rsquo;ve signed up to playtest or supported. Sign in with your Multiverse Studios Matrix account to see your access.</p>
+    <button class="btn btn-primary" id="btn-login" onclick="window.matrixAuth && window.matrixAuth.showLoginModal()">
+      Sign in with Matrix
+    </button>
+    <p style="margin-top: var(--space-md); font-size: 0.85rem;">
+      Don&rsquo;t have an account?
+      <a href="https://matrix.to/#/#welcome:themultiverse.school" target="_blank" rel="noopener" style="color: var(--biolume);">Join our Matrix server</a>
+    </p>
+  </div>
+
+  <!-- Logged-in state -->
+  <div id="state-loggedin" style="display:none;" aria-live="polite">
+    <div class="library-user-header">
+      <h2>Welcome back, <span id="lib-display-name" style="color: var(--biolume);">—</span></h2>
+      <p id="lib-subtitle">Loading your library&hellip;</p>
     </div>
-    <div class="lookup-status" id="lookup-status" aria-live="polite"></div>
-  </form>
 
-  <div class="results-area" id="results-area" aria-live="polite">
-    <!-- populated by JS -->
+    <div class="game-cards" id="game-cards">
+      <!-- populated by JS -->
+    </div>
+
+    <div class="playtest-cta" id="playtest-cta" style="display:none;">
+      <p><strong>Not a playtester yet?</strong> Join the playtesting channel on Matrix to unlock Playtester access across all available games.</p>
+      <a href="playtest.html" class="btn-sm btn-sm-primary">Join Playtesting &rarr;</a>
+    </div>
+
+    <div class="support-note">
+      Questions about your library? <a href="mailto:ann@multiversestudios.xyz">ann@multiversestudios.xyz</a>
+    </div>
   </div>
-
-  <div class="note-box">
-    Purchased elsewhere, or having trouble? Email <a href="mailto:ann@multiversegames.com">ann@multiversegames.com</a> with your receipt and we'll get you sorted.
-  </div>
-
 </div>
 
 <footer class="footer">
@@ -339,16 +357,16 @@
         <li><a href="mvee.html">MVEE</a></li>
         <li><a href="creatures.html">Precursors</a></li>
         <li><a href="nevereverland.html">Never Ever Land</a></li>
-    <li><a href="asteroid-miner.html">Cultures of the Belt</a></li>
+        <li><a href="asteroid-miner.html">Cultures of the Belt</a></li>
       </ul>
     </div>
     <div class="footer-col">
       <h5>Studio</h5>
       <ul>
         <li><a href="library.html">My Library</a></li>
-    <li><a href="about.html">About</a></li>
+        <li><a href="about.html">About</a></li>
         <li><a href="devlog.html">Devlog</a></li>
-    <li><a href="community.html">Community</a></li>
+        <li><a href="community.html">Community</a></li>
       </ul>
     </div>
     <div class="footer-col">
@@ -367,150 +385,242 @@
 
 <script src="main.js"></script>
 <script>
-  (function () {
-    const form      = document.getElementById('lookup-form');
-    const emailEl   = document.getElementById('lookup-email');
-    const btn       = document.getElementById('lookup-btn');
-    const statusEl  = document.getElementById('lookup-status');
-    const resultsEl = document.getElementById('results-area');
+(function () {
+  'use strict';
 
-    function setStatus(html, type) {
-      statusEl.innerHTML = html;
-      statusEl.className = 'lookup-status' + (type ? ' status-' + type : '');
-    }
+  var HOMESERVER = 'https://matrix.multiversestudios.xyz';
 
-    function clearStatus() {
-      statusEl.innerHTML = '';
-      statusEl.className = 'lookup-status';
-    }
+  // Playtest room alias — joining this room = Playtester status for all open games
+  var PLAYTEST_ROOM_ALIAS = '#mg-playtesting:themultiverse.school';
 
-    function hideResults() {
-      resultsEl.classList.remove('visible');
-      resultsEl.innerHTML = '';
-    }
+  // Game catalog — all Multiverse Studios titles
+  var GAMES = [
+    {
+      id: 'nel',
+      name: 'Never Ever Land',
+      icon: '\uD83C\uDF19',
+      devStage: 'Early Access',
+      desc: 'A narrative RPG set in a fractured Neverland. Memory is currency. Growing up is a political act.',
+      playUrl: 'nevereverland.html',
+      available: true,
+    },
+    {
+      id: 'precursors',
+      name: 'Precursors',
+      icon: '\uD83E\uDDEC',
+      devStage: 'Early Access',
+      desc: 'Evolve alien life from single cells to civilizations. Real genetics. Real biochemistry. Weird ecologies.',
+      playUrl: 'creatures.html',
+      available: true,
+    },
+    {
+      id: 'cotb',
+      name: 'Cultures of the Belt',
+      icon: '\uD83E\uDE90',
+      devStage: 'Alpha',
+      desc: 'Asteroid mining colony sim. Every faction has a working economy and a grudge. Early alpha.',
+      playUrl: 'asteroid-miner.html',
+      available: true,
+    },
+    {
+      id: 'mvee',
+      name: 'MVEE',
+      icon: '\uD83C\uDFDB\uFE0F',
+      devStage: 'Pre-Alpha',
+      desc: 'Dwarf Fortress-scale civilization sim. 200+ interconnected systems. Not yet open for public testing.',
+      playUrl: null,
+      available: false,
+    },
+  ];
 
-    function formatDate(dateStr) {
-      if (!dateStr) return '';
-      try {
-        return new Date(dateStr).toLocaleDateString('en-US', {
-          year: 'numeric', month: 'long', day: 'numeric'
-        });
-      } catch (e) {
-        return dateStr;
-      }
-    }
+  // ── DOM refs ───────────────────────────────────────────────
 
-    function renderPurchases(purchases) {
-      const cards = purchases.map(function (p) {
-        const icon    = p.icon    ? p.icon    : '&#x2726;';
-        const game    = p.game    ? p.game    : 'Game';
-        const version = p.version ? p.version : '';
-        const url     = p.downloadUrl;
-        const date    = p.purchasedAt ? 'Purchased ' + formatDate(p.purchasedAt) : '';
+  var stateLoading  = document.getElementById('state-loading');
+  var stateLoggedOut = document.getElementById('state-loggedout');
+  var stateLoggedIn = document.getElementById('state-loggedin');
+  var libDisplayName = document.getElementById('lib-display-name');
+  var libSubtitle    = document.getElementById('lib-subtitle');
+  var gameCardsEl    = document.getElementById('game-cards');
+  var playtestCta    = document.getElementById('playtest-cta');
 
-        const downloadBtn = url
-          ? '<a href="' + url + '" target="_blank" rel="noopener" class="btn btn-signal download-btn">Download &rarr;</a>'
-          : '<span style="font-family:var(--font-mono);font-size:0.78rem;color:var(--dust);">Download link coming soon</span>';
+  // ── Matrix helpers ─────────────────────────────────────────
 
-        return [
-          '<div class="download-card">',
-          '  <div class="download-card-header">',
-          '    <span class="download-card-icon">' + icon + '</span>',
-          '    <div>',
-          '      <h3>' + game + '</h3>',
-          version ? '      <span class="download-tag">' + version + '</span>' : '',
-          date    ? '      <div class="purchase-meta">' + date + '</div>' : '',
-          '    </div>',
-          '  </div>',
-          '  ' + downloadBtn,
-          '</div>',
-        ].join('\n');
-      });
-
-      resultsEl.innerHTML = [
-        '<p class="results-heading">Your Downloads</p>',
-        '<div class="download-cards">',
-        cards.join('\n'),
-        '</div>',
-      ].join('\n');
-
-      resultsEl.classList.add('visible');
-    }
-
-    function renderEmpty() {
-      resultsEl.innerHTML = [
-        '<div class="empty-state">',
-        '  <div class="empty-state-glyph">&#x1F50D;</div>',
-        '  <h3>No purchases found</h3>',
-        '  <p>We couldn\'t find any orders linked to that address. Double-check the email you used at checkout, or contact us if you think something\'s wrong.</p>',
-        '  <p>',
-        '    <a href="https://support.stripe.com" target="_blank" rel="noopener">Stripe support</a>',
-        '    &nbsp;&middot;&nbsp;',
-        '    <a href="mailto:ann@multiversegames.com">ann@multiversegames.com</a>',
-        '  </p>',
-        '</div>',
-      ].join('\n');
-
-      resultsEl.classList.add('visible');
-    }
-
-    form.addEventListener('submit', function (e) {
-      e.preventDefault();
-
-      const email = emailEl.value.trim();
-      if (!email || !email.includes('@')) {
-        setStatus('Please enter a valid email address.', 'error');
-        emailEl.focus();
-        return;
-      }
-
-      btn.disabled = true;
-      hideResults();
-      setStatus(
-        '<span class="spinner"></span><span>Looking up your library&hellip;</span>',
-        'loading'
-      );
-
-      fetch('https://api.multiversestudios.xyz/library/lookup', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email: email }),
-      })
-        .then(function (res) {
-          if (!res.ok) {
-            return res.json().catch(function () {
-              return { error: 'Server error (' + res.status + ')' };
-            }).then(function (data) {
-              throw new Error(data.error || 'Server error (' + res.status + ')');
-            });
-          }
-          return res.json();
-        })
-        .then(function (data) {
-          clearStatus();
-          btn.disabled = false;
-
-          if (data.error) {
-            setStatus('Something went wrong: ' + data.error, 'error');
-            return;
-          }
-
-          if (!data.purchases || data.purchases.length === 0) {
-            renderEmpty();
-          } else {
-            renderPurchases(data.purchases);
-          }
-        })
-        .catch(function (err) {
-          clearStatus();
-          btn.disabled = false;
-          setStatus(
-            'Could not reach the server. Check your connection and try again.',
-            'error'
-          );
-        });
+  function matrixFetch(path, accessToken) {
+    return fetch(HOMESERVER + path, {
+      headers: { 'Authorization': 'Bearer ' + accessToken },
+    }).then(function (res) {
+      if (!res.ok) throw new Error('HTTP ' + res.status);
+      return res.json();
     });
-  }());
+  }
+
+  function resolveRoomAlias(alias) {
+    var encoded = encodeURIComponent(alias);
+    return fetch(HOMESERVER + '/_matrix/client/v3/directory/room/' + encoded)
+      .then(function (res) {
+        if (!res.ok) return null;
+        return res.json().then(function (d) { return d.room_id || null; });
+      })
+      .catch(function () { return null; });
+  }
+
+  function getJoinedRooms(accessToken) {
+    return matrixFetch('/_matrix/client/v3/joined_rooms', accessToken)
+      .then(function (d) { return d.joined_rooms || []; })
+      .catch(function () { return []; });
+  }
+
+  // ── Tier resolution ────────────────────────────────────────
+
+  function resolveTiers(joinedRooms, playtestRoomId) {
+    var isPlaytester = !!(playtestRoomId && joinedRooms.indexOf(playtestRoomId) !== -1);
+    return {
+      isPlaytester: isPlaytester,
+    };
+  }
+
+  // ── Rendering ──────────────────────────────────────────────
+
+  function tierPillHtml(label, cls) {
+    return '<span class="tier-pill ' + cls + '">' + label + '</span>';
+  }
+
+  function renderGameCard(game, tiers) {
+    var pills = '';
+
+    if (!game.available) {
+      pills += tierPillHtml(game.devStage, 'tier-pill-dev-stage');
+    } else if (tiers.isPlaytester) {
+      pills += tierPillHtml('Playtester', 'tier-pill-playtester');
+      pills += tierPillHtml(game.devStage, 'tier-pill-dev-stage');
+    } else {
+      pills += tierPillHtml('Free', 'tier-pill-free');
+      pills += tierPillHtml(game.devStage, 'tier-pill-dev-stage');
+    }
+
+    var playBtn = '';
+    if (game.available && game.playUrl) {
+      playBtn = '<a href="' + game.playUrl + '" class="btn-sm btn-sm-primary">Play &rarr;</a>';
+    } else if (!game.available) {
+      playBtn = '<span class="btn-sm btn-sm-ghost" disabled>Coming Soon</span>';
+    }
+
+    return [
+      '<div class="game-card-lib' + (game.available ? '' : ' game-unavailable') + '">',
+      '  <div class="game-card-header">',
+      '    <span class="game-card-icon">' + game.icon + '</span>',
+      '    <div class="game-card-meta">',
+      '      <h3>' + game.name + '</h3>',
+      '      <div class="tier-pills">' + pills + '</div>',
+      '    </div>',
+      '  </div>',
+      '  <p class="game-card-desc">' + game.desc + '</p>',
+      '  <div class="game-card-actions">' + playBtn + '</div>',
+      '</div>',
+    ].join('\n');
+  }
+
+  function renderLibrary(userId, displayName, tiers) {
+    var name = displayName || userId || 'Explorer';
+    libDisplayName.textContent = name;
+
+    if (tiers.isPlaytester) {
+      libSubtitle.textContent = 'Playtester — you have early access to all open games.';
+      playtestCta.style.display = 'none';
+    } else {
+      libSubtitle.textContent = 'You have free access to all available games. Join playtesting for early-access builds and token credits.';
+      playtestCta.style.display = '';
+    }
+
+    gameCardsEl.innerHTML = GAMES.map(function (g) {
+      return renderGameCard(g, tiers);
+    }).join('\n');
+  }
+
+  // ── Show state helpers ─────────────────────────────────────
+
+  function show(el) { el.style.display = ''; }
+  function hide(el) { el.style.display = 'none'; }
+
+  function showLoading() {
+    show(stateLoading); hide(stateLoggedOut); hide(stateLoggedIn);
+  }
+  function showLoggedOut() {
+    hide(stateLoading); show(stateLoggedOut); hide(stateLoggedIn);
+  }
+  function showLoggedIn() {
+    hide(stateLoading); hide(stateLoggedOut); show(stateLoggedIn);
+  }
+
+  // ── Main flow ──────────────────────────────────────────────
+
+  async function loadLibrary() {
+    showLoading();
+
+    var auth = window.matrixAuth;
+    if (!auth || !auth.isLoggedIn()) {
+      showLoggedOut();
+      return;
+    }
+
+    showLoggedIn();
+    libDisplayName.textContent = auth.getUserId() || '—';
+    libSubtitle.textContent = 'Loading your library\u2026';
+    gameCardsEl.innerHTML = '<div class="library-loading"><span class="spinner"></span><span>Checking room membership\u2026</span></div>';
+
+    try {
+      var accessToken = auth.getAccessToken();
+      var [playtestRoomId, joinedRooms] = await Promise.all([
+        resolveRoomAlias(PLAYTEST_ROOM_ALIAS),
+        getJoinedRooms(accessToken),
+      ]);
+
+      var tiers = resolveTiers(joinedRooms, playtestRoomId);
+
+      // Try to get display name from Matrix profile
+      var displayName = null;
+      try {
+        var userId = auth.getUserId();
+        var profileRes = await fetch(
+          HOMESERVER + '/_matrix/client/v3/profile/' + encodeURIComponent(userId),
+          { headers: { 'Authorization': 'Bearer ' + accessToken } }
+        );
+        if (profileRes.ok) {
+          var profile = await profileRes.json();
+          displayName = profile.displayname || null;
+        }
+      } catch (_) { /* best-effort */ }
+
+      renderLibrary(auth.getUserId(), displayName, tiers);
+    } catch (err) {
+      console.error('Library load error:', err);
+      libSubtitle.textContent = 'Could not load your library. Try refreshing.';
+      gameCardsEl.innerHTML = '';
+    }
+  }
+
+  // ── Init ───────────────────────────────────────────────────
+
+  // Wait for matrix-auth.js to signal ready (fires after DOM load + session restore)
+  window.addEventListener('matrixAuthReady', function (e) {
+    loadLibrary();
+  });
+
+  // Re-render on login/logout
+  window.addEventListener('matrixAuthLogin', function () {
+    loadLibrary();
+  });
+  window.addEventListener('matrixAuthLogout', function () {
+    showLoggedOut();
+  });
+
+  // If matrixAuth is already ready before our listener registered, run now
+  if (window.matrixAuth && window.matrixAuth.isLoggedIn !== undefined) {
+    // Small delay to let matrix-auth.js finish its init tick
+    setTimeout(loadLibrary, 50);
+  }
+
+}());
 </script>
 <script src="matrix-auth.js"></script>
 <script src="matrix-chat.js"></script>
