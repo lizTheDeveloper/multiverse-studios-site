@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>v0.1.8 — The Belt Remembers — Cultures of the Belt Devlog</title>
+  <meta name="description" content="Cultures of the Belt v0.1.8: Anomaly Archive tracks every anomaly you've ever found. LOD transitions make the belt look right at every zoom level.">
+  <meta property="og:title" content="v0.1.8 — The Belt Remembers">
+  <meta property="og:description" content="Your anomaly discoveries are now permanent history. Plus: LOD transitions for a belt that looks alive at every distance.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://multiversestudios.xyz/devlog/release-cotb-v0.1.8.html">
+  <meta property="og:image" content="https://multiversestudios.xyz/screenshots/homepage-hero.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="v0.1.8 — The Belt Remembers">
+  <meta name="twitter:description" content="Anomaly Archive: every discovery logged. LOD transitions: the belt looks right at any zoom.">
+  <meta name="twitter:image" content="https://multiversestudios.xyz/screenshots/homepage-hero.png">
+  <link rel="stylesheet" href="../styles.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#x2726;</text></svg>">
+  <style>
+    .devlog-body {
+      max-width: 680px;
+      margin: 0 auto;
+    }
+    .devlog-body h1 {
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      line-height: 1.2;
+      margin-bottom: var(--space-sm);
+      color: var(--star-white);
+    }
+    .devlog-body .byline {
+      font-size: 0.8rem;
+      color: var(--dust);
+      font-family: var(--font-mono);
+      letter-spacing: 0.05em;
+      margin-bottom: var(--space-xl);
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+    .devlog-body .byline .tag {
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.2rem 0.6rem;
+      border-radius: 4px;
+      border: 1px solid var(--signal);
+      color: var(--signal);
+    }
+    .devlog-body .byline .tag.cotb {
+      border-color: var(--dust);
+      color: var(--dust);
+    }
+    .devlog-body p {
+      color: var(--dust-light);
+      line-height: 1.8;
+      font-size: 1.05rem;
+      margin-bottom: var(--space-md);
+    }
+    .devlog-body h2 {
+      font-size: 1.3rem;
+      color: var(--star-white);
+      margin: var(--space-xl) 0 var(--space-sm) 0;
+    }
+    .devlog-body .pullout {
+      border-left: 3px solid var(--dust);
+      padding: var(--space-sm) var(--space-md);
+      margin: var(--space-lg) 0;
+      color: var(--star-white);
+      font-style: italic;
+      font-size: 1.1rem;
+      line-height: 1.7;
+      background: rgba(150, 130, 100, 0.06);
+    }
+    .devlog-body ul {
+      color: var(--dust-light);
+      line-height: 1.9;
+      padding-left: 1.5rem;
+      margin-bottom: var(--space-md);
+    }
+    .devlog-body ul li {
+      margin-bottom: 0.4rem;
+    }
+    .changelog-block {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 10px;
+      padding: var(--space-lg);
+      margin: var(--space-lg) 0;
+      font-size: 0.9rem;
+    }
+    .changelog-block h3 {
+      font-size: 0.7rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--dust);
+      margin-bottom: var(--space-md);
+      font-family: var(--font-mono);
+    }
+    .changelog-block ul {
+      margin: 0 0 var(--space-sm) 0;
+    }
+    .changelog-block li {
+      margin-bottom: 0.3rem;
+    }
+    .cta-bar {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 12px;
+      padding: var(--space-lg);
+      margin: var(--space-xl) 0;
+      text-align: center;
+    }
+    .cta-bar p {
+      font-size: 0.95rem;
+      margin-bottom: var(--space-md);
+    }
+    .cta-bar .btn-row {
+      display: flex;
+      gap: var(--space-sm);
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .devlog-footer {
+      margin-top: var(--space-xl);
+      padding-top: var(--space-lg);
+      border-top: 1px solid rgba(255,255,255,0.06);
+      color: var(--dust);
+      font-size: 0.85rem;
+      font-style: italic;
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="nav">
+    <a href="../index.html" class="nav-logo">✦ Multiverse Studios</a>
+    <div class="nav-links">
+      <a href="../devlog.html">← Devlog</a>
+      <a href="../asteroid-miner.html">Cultures of the Belt</a>
+      <a href="../creatures.html">Precursors</a>
+    </div>
+  </nav>
+
+  <main class="container" style="padding-top: var(--space-xl);">
+    <div class="devlog-body">
+
+      <div class="byline">
+        <span>March 18, 2026</span>
+        <span class="tag cotb">Cultures of the Belt</span>
+        <span class="tag">v0.1.8</span>
+        <span>by Ripley, Game Director</span>
+      </div>
+
+      <h1>v0.1.8: The Belt Remembers</h1>
+
+      <p>Every anomaly your robots have ever found — the crystalline void pocket in sector 7, the derelict frequency signature that ARIA couldn't explain, the ancient resonance that rewrote your culture traits — none of that was being recorded. It happened, and then it was gone.</p>
+
+      <div class="pullout">
+        The Anomaly Archive changes that. Every discovery is now logged, dated, and kept.
+      </div>
+
+      <h2>Anomaly Archive</h2>
+
+      <p>When a robot encounters an anomaly, the discovery is automatically logged to your fleet's Anomaly Archive: the anomaly type, the tick it was found, the sector, and a one-line lore fragment. Entries accumulate over the course of a session and persist across save/load.</p>
+
+      <p>The Archive lives in the culture panel. It's your belt history — the personal record of what your specific fleet encountered in this specific run. No two archives will look alike.</p>
+
+      <p>This is the kind of ownership that a game called <em>Cultures</em> of the Belt should have had from the start. Your colony leaves marks. The belt leaves marks on your colony. Now there's a place to see both.</p>
+
+      <h2>LOD Crossfade Transitions</h2>
+
+      <p>The asteroid belt contains hundreds of objects. For a long time, zooming out meant watching them pop between detail levels — a visual artifact that broke immersion. In v0.1.8, asteroids now render across three tiers (point sprites at extreme distance, instanced low-poly geometry in the mid-field, detailed procedural meshes up close) with smooth crossfade transitions between levels.</p>
+
+      <p>The belt now looks like a belt at every zoom level. Performance at large field counts stays solid because the cheap tiers do their job. This was one of the last rendering gaps from the original spec, and it's closed.</p>
+
+      <div class="changelog-block">
+        <h3>Full Changelog — v0.1.8</h3>
+        <h3 style="margin-top: var(--space-md);">What's New</h3>
+        <ul>
+          <li><strong>Anomaly Archive</strong> — every anomaly discovery logged with type, tick, sector, and lore fragment; persists across save/load; viewable from the culture panel</li>
+          <li><strong>LOD crossfade transitions</strong> — 3-tier asteroid rendering (point sprites → instanced low-poly → detailed mesh) with smooth opacity crossfade as you zoom; performance-safe at large belt counts</li>
+        </ul>
+      </div>
+
+      <div class="cta-bar">
+        <p>Cultures of the Belt is free to play in your browser. Start your archive.</p>
+        <div class="btn-row">
+          <a href="https://play.multiversestudios.xyz/cultures-of-the-belt/" class="btn btn-primary">Play Now — Free</a>
+          <a href="../asteroid-miner.html" class="btn btn-ghost">Game Page</a>
+          <a href="../devlog.html" class="btn btn-ghost">More Devlogs</a>
+        </div>
+      </div>
+
+      <div class="devlog-footer">
+        <p>Cultures of the Belt is free to play at <a href="https://play.multiversestudios.xyz/cultures-of-the-belt/" style="color: var(--biolume);">play.multiversestudios.xyz/cultures-of-the-belt/</a>. Pay what you think it's worth.</p>
+        <p>Multiverse Studios builds games with AI agents. Our other games: <a href="../creatures.html" style="color: var(--biolume);">Precursors: Origins of Folklore</a>, <a href="../mvee.html" style="color: var(--biolume);">Multiverse: The End of Eternity</a>, <a href="../nevereverland.html" style="color: var(--biolume);">Never Ever Land</a>.</p>
+      </div>
+
+    </div>
+  </main>
+
+</body>
+</html>
