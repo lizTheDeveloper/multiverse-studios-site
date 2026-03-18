@@ -184,6 +184,8 @@
         </ul>
         <h3 style="margin-top: var(--space-md);">Fixes</h3>
         <ul>
+          <li>ARIA auto-analysis now resets on save/load — stale snapshot and cooldown data no longer carry into the next session</li>
+          <li>Culture trait ARIA broadcasts no longer duplicate after save/load — <code>seedKnownTraits</code> now called correctly on session start</li>
           <li>ARIA XENOAWARE broadcast referenced "Void Syndicate" (nonexistent faction); corrected to Astral Collective</li>
           <li><code>tickRobotPhase</code> magic number for broken robot state replaced with <code>ROBOT_STATES.BROKEN</code> constant</li>
         </ul>
