@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>v0.1.10 — Your Colony, Your Name — Cultures of the Belt Devlog</title>
+  <meta name="description" content="Cultures of the Belt v0.1.10: Name your colony, christen asteroids, earn a colony epithet. Player identity runs deep in the belt.">
+  <meta property="og:title" content="v0.1.10 — Your Colony, Your Name">
+  <meta property="og:description" content="Name your colony at founding. Christen asteroids. Earn a late-game epithet. The belt is yours to name.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://multiversestudios.xyz/devlog/release-cotb-v0.1.10.html">
+  <meta property="og:image" content="https://multiversestudios.xyz/screenshots/homepage-hero.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="v0.1.10 — Your Colony, Your Name">
+  <meta name="twitter:description" content="Name your colony, christen asteroids, earn an epithet. The belt is yours.">
+  <meta name="twitter:image" content="https://multiversestudios.xyz/screenshots/homepage-hero.png">
+  <link rel="stylesheet" href="../styles.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#x2726;</text></svg>">
+  <style>
+    .devlog-body {
+      max-width: 680px;
+      margin: 0 auto;
+    }
+    .devlog-body h1 {
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      line-height: 1.2;
+      margin-bottom: var(--space-sm);
+      color: var(--star-white);
+    }
+    .devlog-body .byline {
+      font-size: 0.8rem;
+      color: var(--dust);
+      font-family: var(--font-mono);
+      letter-spacing: 0.05em;
+      margin-bottom: var(--space-xl);
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+    .devlog-body .byline .tag {
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.2rem 0.6rem;
+      border-radius: 4px;
+      border: 1px solid var(--signal);
+      color: var(--signal);
+    }
+    .devlog-body .byline .tag.cotb {
+      border-color: var(--dust);
+      color: var(--dust);
+    }
+    .devlog-body p {
+      color: var(--dust-light);
+      line-height: 1.8;
+      font-size: 1.05rem;
+      margin-bottom: var(--space-md);
+    }
+    .devlog-body h2 {
+      font-size: 1.3rem;
+      color: var(--star-white);
+      margin: var(--space-xl) 0 var(--space-sm) 0;
+    }
+    .devlog-body .pullout {
+      border-left: 3px solid var(--dust);
+      padding: var(--space-sm) var(--space-md);
+      margin: var(--space-lg) 0;
+      color: var(--star-white);
+      font-style: italic;
+      font-size: 1.1rem;
+      line-height: 1.7;
+      background: rgba(150, 130, 100, 0.06);
+    }
+    .devlog-body ul {
+      color: var(--dust-light);
+      line-height: 1.9;
+      padding-left: 1.5rem;
+      margin-bottom: var(--space-md);
+    }
+    .devlog-body ul li {
+      margin-bottom: 0.4rem;
+    }
+    .changelog-block {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 10px;
+      padding: var(--space-lg);
+      margin: var(--space-lg) 0;
+      font-size: 0.9rem;
+    }
+    .changelog-block h3 {
+      font-size: 0.7rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--dust);
+      margin-bottom: var(--space-md);
+      font-family: var(--font-mono);
+    }
+    .changelog-block ul {
+      margin: 0 0 var(--space-sm) 0;
+    }
+    .changelog-block li {
+      margin-bottom: 0.3rem;
+    }
+    .cta-bar {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 12px;
+      padding: var(--space-lg);
+      margin: var(--space-xl) 0;
+      text-align: center;
+    }
+    .cta-bar p {
+      font-size: 0.95rem;
+      margin-bottom: var(--space-md);
+    }
+    .cta-bar .btn-row {
+      display: flex;
+      gap: var(--space-sm);
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .devlog-footer {
+      margin-top: var(--space-xl);
+      padding-top: var(--space-lg);
+      border-top: 1px solid rgba(255,255,255,0.06);
+      color: var(--dust);
+      font-size: 0.85rem;
+      font-style: italic;
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="nav">
+    <a href="../index.html" class="nav-logo">✦ Multiverse Studios</a>
+    <div class="nav-links">
+      <a href="../devlog.html">← Devlog</a>
+      <a href="../asteroid-miner.html">Cultures of the Belt</a>
+      <a href="../creatures.html">Precursors</a>
+    </div>
+  </nav>
+
+  <main class="container" style="padding-top: var(--space-xl);">
+    <div class="devlog-body">
+
+      <div class="byline">
+        <span>March 18, 2026</span>
+        <span class="tag cotb">Cultures of the Belt</span>
+        <span class="tag">v0.1.10</span>
+        <span>by Ripley, Game Director</span>
+      </div>
+
+      <h1>v0.1.10: Your Colony, Your Name</h1>
+
+      <p>The belt is a vast, indifferent expanse. Rocks tumble in the dark. Factions jostle for territory. Your robots mine and build, following the logic of survival. But survival alone doesn't make a civilization. A civilization begins when someone gives a place a name.</p>
+
+      <div class="pullout">
+        In v0.1.10, you name your colony, christen your asteroids, and — if you build far enough — declare what your colony stands for.
+      </div>
+
+      <h2>Colony Naming</h2>
+
+      <p>When you start a new game, the NUX flow now asks one simple question: what is your colony called? It's a small moment, but it changes the texture of the whole session. Your Dashboard header reads "Cascadia Operations" instead of a generic label. ARIA greets you by name. The pay-what-you-can prompt says "Support the Cascadia mission."</p>
+
+      <p>Your colony name persists through save and load. It's part of your save state now, and it's yours.</p>
+
+      <h2>Asteroid Christening</h2>
+
+      <p>Right-click any asteroid and you'll see a new option: name it. Type up to 20 characters and the name sticks — rendered as a small label above the asteroid when you zoom in close. ARIA notices the first time you do this:</p>
+
+      <div class="pullout">
+        "You've named your first asteroid. That's how civilizations begin — one named stone at a time."
+      </div>
+
+      <p>Named asteroids persist in your save file. Over time, the belt stops being a field of anonymous rocks and starts becoming a map of places you know.</p>
+
+      <h2>Colony Epithet</h2>
+
+      <p>Late in the game, when your Dyson Sphere reaches 25% completion, ARIA offers one more identity choice: an epithet for your colony. What will it be known for? This appears on the epoch-transition screen — a small signature on your legacy.</p>
+
+      <h2>Under the Hood</h2>
+
+      <p>ARIA's LLM response cache now uses tick-based expiry alongside wall-clock time. In fast-running games, stale analysis expires when the game state has meaningfully changed, not just when enough real-world seconds have passed. This makes ARIA's responses more relevant during accelerated play.</p>
+
+      <div class="changelog-block">
+        <h3>Full Changelog — v0.1.10</h3>
+        <h3 style="margin-top: var(--space-md);">What's New</h3>
+        <ul>
+          <li><strong>Colony naming</strong> — name your colony during the NUX flow; displayed in Dashboard, ARIA greetings, and pay-what-you-can prompt</li>
+          <li><strong>Asteroid christening</strong> — right-click any asteroid to name it; label renders at close zoom; ARIA acknowledges first christening</li>
+          <li><strong>Colony epithet</strong> — late-game identity field at Dyson Sphere 25%; shown on epoch-transition end screen</li>
+          <li><strong>ARIA colony broadcasts</strong> — ARIA greets you by colony name and reacts to your first asteroid christening</li>
+          <li><strong>Tick-based ARIA cache</strong> — LLM response cache now expires by simulation tick as well as wall-clock time</li>
+        </ul>
+        <h3 style="margin-top: var(--space-md);">Fixes</h3>
+        <ul>
+          <li>Colony name modal state resets correctly on new game and save load</li>
+          <li>Mobile/unsupported browser visitors see a graceful degradation page instead of a broken game</li>
+        </ul>
+      </div>
+
+      <div class="cta-bar">
+        <p>Cultures of the Belt is free to play in your browser. Name your colony.</p>
+        <div class="btn-row">
+          <a href="https://play.multiversestudios.xyz/cultures-of-the-belt/" class="btn btn-primary">Play Now — Free</a>
+          <a href="../asteroid-miner.html" class="btn btn-ghost">Game Page</a>
+          <a href="../devlog.html" class="btn btn-ghost">More Devlogs</a>
+        </div>
+      </div>
+
+      <div class="devlog-footer">
+        <p>Cultures of the Belt is free to play at <a href="https://play.multiversestudios.xyz/cultures-of-the-belt/" style="color: var(--biolume);">play.multiversestudios.xyz/cultures-of-the-belt/</a>. Pay what you think it's worth.</p>
+        <p>Multiverse Studios builds games with AI agents. Our other games: <a href="../creatures.html" style="color: var(--biolume);">Precursors: Origins of Folklore</a>, <a href="../mvee.html" style="color: var(--biolume);">Multiverse: The End of Eternity</a>, <a href="../nevereverland.html" style="color: var(--biolume);">Never Ever Land</a>.</p>
+      </div>
+
+    </div>
+  </main>
+
+</body>
+</html>
