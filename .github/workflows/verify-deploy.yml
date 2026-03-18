@@ -73,7 +73,7 @@ jobs:
       - name: Verify key pages
         run: |
           FAILED=0
-          for PAGE in "/" "/mvee.html" "/about.html" "/press.html" "/nevereverland.html" "/asteroid-miner.html" "/playtest.html" "/community.html"; do
+          for PAGE in "/" "/mvee.html" "/about.html" "/press.html" "/nevereverland.html" "/cultures-of-the-belt/" "/playtest.html" "/community.html"; do
             URL="https://multiversestudios.xyz${PAGE}"
             STATUS=$(curl -s -o /dev/null -w '%{http_code}' --max-time 30 "$URL")
             if [ "$STATUS" -eq 200 ]; then
