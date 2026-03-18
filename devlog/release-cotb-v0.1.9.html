@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>v0.1.9 — ARIA, Even Offline — Cultures of the Belt Devlog</title>
+  <meta name="description" content="Cultures of the Belt v0.1.9: ARIA now works without an LLM connection. Six-tier fallback chain, token budget display, and a cleaner advisor architecture.">
+  <meta property="og:title" content="v0.1.9 — ARIA, Even Offline">
+  <meta property="og:description" content="ARIA's heuristic fallback chain means your advisor never goes silent. Plus: token budget display and a swappable LLM backend architecture.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://multiversestudios.xyz/devlog/release-cotb-v0.1.9.html">
+  <meta property="og:image" content="https://multiversestudios.xyz/screenshots/homepage-hero.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="v0.1.9 — ARIA, Even Offline">
+  <meta name="twitter:description" content="ARIA's six-tier fallback chain: your advisor works even with no LLM connection.">
+  <meta name="twitter:image" content="https://multiversestudios.xyz/screenshots/homepage-hero.png">
+  <link rel="stylesheet" href="../styles.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#x2726;</text></svg>">
+  <style>
+    .devlog-body {
+      max-width: 680px;
+      margin: 0 auto;
+    }
+    .devlog-body h1 {
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      line-height: 1.2;
+      margin-bottom: var(--space-sm);
+      color: var(--star-white);
+    }
+    .devlog-body .byline {
+      font-size: 0.8rem;
+      color: var(--dust);
+      font-family: var(--font-mono);
+      letter-spacing: 0.05em;
+      margin-bottom: var(--space-xl);
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+    .devlog-body .byline .tag {
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.2rem 0.6rem;
+      border-radius: 4px;
+      border: 1px solid var(--signal);
+      color: var(--signal);
+    }
+    .devlog-body .byline .tag.cotb {
+      border-color: var(--dust);
+      color: var(--dust);
+    }
+    .devlog-body p {
+      color: var(--dust-light);
+      line-height: 1.8;
+      font-size: 1.05rem;
+      margin-bottom: var(--space-md);
+    }
+    .devlog-body h2 {
+      font-size: 1.3rem;
+      color: var(--star-white);
+      margin: var(--space-xl) 0 var(--space-sm) 0;
+    }
+    .devlog-body .pullout {
+      border-left: 3px solid var(--dust);
+      padding: var(--space-sm) var(--space-md);
+      margin: var(--space-lg) 0;
+      color: var(--star-white);
+      font-style: italic;
+      font-size: 1.1rem;
+      line-height: 1.7;
+      background: rgba(150, 130, 100, 0.06);
+    }
+    .devlog-body ul {
+      color: var(--dust-light);
+      line-height: 1.9;
+      padding-left: 1.5rem;
+      margin-bottom: var(--space-md);
+    }
+    .devlog-body ul li {
+      margin-bottom: 0.4rem;
+    }
+    .changelog-block {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 10px;
+      padding: var(--space-lg);
+      margin: var(--space-lg) 0;
+      font-size: 0.9rem;
+    }
+    .changelog-block h3 {
+      font-size: 0.7rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--dust);
+      margin-bottom: var(--space-md);
+      font-family: var(--font-mono);
+    }
+    .changelog-block ul {
+      margin: 0 0 var(--space-sm) 0;
+    }
+    .changelog-block li {
+      margin-bottom: 0.3rem;
+    }
+    .cta-bar {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 12px;
+      padding: var(--space-lg);
+      margin: var(--space-xl) 0;
+      text-align: center;
+    }
+    .cta-bar p {
+      font-size: 0.95rem;
+      margin-bottom: var(--space-md);
+    }
+    .cta-bar .btn-row {
+      display: flex;
+      gap: var(--space-sm);
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .devlog-footer {
+      margin-top: var(--space-xl);
+      padding-top: var(--space-lg);
+      border-top: 1px solid rgba(255,255,255,0.06);
+      color: var(--dust);
+      font-size: 0.85rem;
+      font-style: italic;
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="nav">
+    <a href="../index.html" class="nav-logo">✦ Multiverse Studios</a>
+    <div class="nav-links">
+      <a href="../devlog.html">← Devlog</a>
+      <a href="../asteroid-miner.html">Cultures of the Belt</a>
+      <a href="../creatures.html">Precursors</a>
+    </div>
+  </nav>
+
+  <main class="container" style="padding-top: var(--space-xl);">
+    <div class="devlog-body">
+
+      <div class="byline">
+        <span>March 18, 2026</span>
+        <span class="tag cotb">Cultures of the Belt</span>
+        <span class="tag">v0.1.9</span>
+        <span>by Ripley, Game Director</span>
+      </div>
+
+      <h1>v0.1.9: ARIA, Even Offline</h1>
+
+      <p>ARIA has always been the heart of Cultures of the Belt — the advisor who watches your colony, reads the faction currents, and tells you what she sees. But ARIA depended on a live LLM connection. Lose connectivity, exhaust your API key, or just want to play in a restricted environment, and she went quiet.</p>
+
+      <div class="pullout">
+        In v0.1.9, ARIA never goes silent. A six-tier heuristic fallback chain means she keeps talking even when the LLM is unreachable.
+      </div>
+
+      <h2>Six-Tier Fallback Chain</h2>
+
+      <p>ARIA now escalates through six tiers when forming a response: pure game-state heuristics → enriched analysis → multiple cloud providers (Groq, OpenAI, Anthropic) → a graceful offline mode if all external calls fail. The first tier that succeeds is the one you see. From your perspective, ARIA just answers — where that answer comes from is handled invisibly.</p>
+
+      <p>The offline heuristics aren't placeholders. They cover production warnings, faction tension, megastructure progress, and cultural drift — the same things the LLM analysis covers, derived directly from game state without any network call. Offline ARIA is less verbose than connected ARIA, but she's never useless.</p>
+
+      <h2>Token Budget Display</h2>
+
+      <p>The ARIA panel now shows your session token count with a compact progress bar. When you approach your session budget, a soft-cap warning fires before you hit the ceiling — so you can decide how to spend your remaining AI budget rather than suddenly losing ARIA mid-session.</p>
+
+      <p>This is part of a broader LLMProvider refactor that separates ARIA's advisory logic from the specifics of which model answers her. The architecture now cleanly supports swappable backends, which matters as we keep extending the advisor systems.</p>
+
+      <div class="changelog-block">
+        <h3>Full Changelog — v0.1.9</h3>
+        <h3 style="margin-top: var(--space-md);">What's New</h3>
+        <ul>
+          <li><strong>Six-tier ARIA fallback chain</strong> — ARIA delivers insights even with no LLM connection; escalates through heuristics, Groq, OpenAI, Anthropic, and offline fallback</li>
+          <li><strong>LLMProvider interface</strong> — clean separation between ARIA's advisory logic and LLM backends; swappable providers without touching advisor code</li>
+          <li><strong>Token usage display + soft budget cap</strong> — session token count visible in ARIA panel; soft-cap warning fires before you exhaust your budget</li>
+        </ul>
+        <h3 style="margin-top: var(--space-md);">Fixes</h3>
+        <ul>
+          <li>Commander mode now correctly enforces session soft cap (previously skipped usage tracking)</li>
+          <li>Registration flow now tries <code>m.login.dummy</code> before requiring an invite token — less friction for new players</li>
+          <li>Play gate no longer obscures Matrix auth modal during login</li>
+          <li>TypeScript build error in <code>stateHandlers</code> resolved</li>
+        </ul>
+      </div>
+
+      <div class="cta-bar">
+        <p>Cultures of the Belt is free to play in your browser. ARIA is waiting.</p>
+        <div class="btn-row">
+          <a href="https://play.multiversestudios.xyz/cultures-of-the-belt/" class="btn btn-primary">Play Now — Free</a>
+          <a href="../asteroid-miner.html" class="btn btn-ghost">Game Page</a>
+          <a href="../devlog.html" class="btn btn-ghost">More Devlogs</a>
+        </div>
+      </div>
+
+      <div class="devlog-footer">
+        <p>Cultures of the Belt is free to play at <a href="https://play.multiversestudios.xyz/cultures-of-the-belt/" style="color: var(--biolume);">play.multiversestudios.xyz/cultures-of-the-belt/</a>. Pay what you think it's worth.</p>
+        <p>Multiverse Studios builds games with AI agents. Our other games: <a href="../creatures.html" style="color: var(--biolume);">Precursors: Origins of Folklore</a>, <a href="../mvee.html" style="color: var(--biolume);">Multiverse: The End of Eternity</a>, <a href="../nevereverland.html" style="color: var(--biolume);">Never Ever Land</a>.</p>
+      </div>
+
+    </div>
+  </main>
+
+</body>
+</html>
