@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>v0.1.7 — What Is Your Colony For? — Cultures of the Belt Devlog</title>
+  <meta name="description" content="Cultures of the Belt v0.1.7: Fleet Manifesto lands. ARIA asks what your colony stands for before you build anything else.">
+  <meta property="og:title" content="v0.1.7 — What Is Your Colony For?">
+  <meta property="og:description" content="Fleet Manifesto in v0.1.7: ARIA asks what your colony is for. Your answer shapes the culture that emerges.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://multiversestudios.xyz/devlog/release-cotb-v0.1.7.html">
+  <meta property="og:image" content="https://multiversestudios.xyz/screenshots/homepage-hero.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="v0.1.7 — What Is Your Colony For?">
+  <meta name="twitter:description" content="Fleet Manifesto: ARIA asks what your colony is for before you build. The game called Cultures of the Belt now starts with culture.">
+  <meta name="twitter:image" content="https://multiversestudios.xyz/screenshots/homepage-hero.png">
+  <link rel="stylesheet" href="../styles.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#x2726;</text></svg>">
+  <style>
+    .devlog-body {
+      max-width: 680px;
+      margin: 0 auto;
+    }
+    .devlog-body h1 {
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      line-height: 1.2;
+      margin-bottom: var(--space-sm);
+      color: var(--star-white);
+    }
+    .devlog-body .byline {
+      font-size: 0.8rem;
+      color: var(--dust);
+      font-family: var(--font-mono);
+      letter-spacing: 0.05em;
+      margin-bottom: var(--space-xl);
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+    .devlog-body .byline .tag {
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.2rem 0.6rem;
+      border-radius: 4px;
+      border: 1px solid var(--signal);
+      color: var(--signal);
+    }
+    .devlog-body .byline .tag.cotb {
+      border-color: var(--dust);
+      color: var(--dust);
+    }
+    .devlog-body p {
+      color: var(--dust-light);
+      line-height: 1.8;
+      font-size: 1.05rem;
+      margin-bottom: var(--space-md);
+    }
+    .devlog-body h2 {
+      font-size: 1.3rem;
+      color: var(--star-white);
+      margin: var(--space-xl) 0 var(--space-sm) 0;
+    }
+    .devlog-body .pullout {
+      border-left: 3px solid var(--dust);
+      padding: var(--space-sm) var(--space-md);
+      margin: var(--space-lg) 0;
+      color: var(--star-white);
+      font-style: italic;
+      font-size: 1.1rem;
+      line-height: 1.7;
+      background: rgba(150, 130, 100, 0.06);
+    }
+    .devlog-body ul {
+      color: var(--dust-light);
+      line-height: 1.9;
+      padding-left: 1.5rem;
+      margin-bottom: var(--space-md);
+    }
+    .devlog-body ul li {
+      margin-bottom: 0.4rem;
+    }
+    .changelog-block {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 10px;
+      padding: var(--space-lg);
+      margin: var(--space-lg) 0;
+      font-size: 0.9rem;
+    }
+    .changelog-block h3 {
+      font-size: 0.7rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--dust);
+      margin-bottom: var(--space-md);
+      font-family: var(--font-mono);
+    }
+    .changelog-block ul {
+      margin: 0 0 var(--space-sm) 0;
+    }
+    .changelog-block li {
+      margin-bottom: 0.3rem;
+    }
+    .cta-bar {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 12px;
+      padding: var(--space-lg);
+      margin: var(--space-xl) 0;
+      text-align: center;
+    }
+    .cta-bar p {
+      font-size: 0.95rem;
+      margin-bottom: var(--space-md);
+    }
+    .cta-bar .btn-row {
+      display: flex;
+      gap: var(--space-sm);
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .devlog-footer {
+      margin-top: var(--space-xl);
+      padding-top: var(--space-lg);
+      border-top: 1px solid rgba(255,255,255,0.06);
+      color: var(--dust);
+      font-size: 0.85rem;
+      font-style: italic;
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="nav">
+    <a href="../index.html" class="nav-logo">✦ Multiverse Studios</a>
+    <div class="nav-links">
+      <a href="../devlog.html">← Devlog</a>
+      <a href="../asteroid-miner.html">Cultures of the Belt</a>
+      <a href="../creatures.html">Precursors</a>
+    </div>
+  </nav>
+
+  <main class="container" style="padding-top: var(--space-xl);">
+    <div class="devlog-body">
+
+      <div class="byline">
+        <span>March 18, 2026</span>
+        <span class="tag cotb">Cultures of the Belt</span>
+        <span class="tag">v0.1.7</span>
+        <span>by Ripley, Game Director</span>
+      </div>
+
+      <h1>v0.1.7: What Is Your Colony For?</h1>
+
+      <p>The game is called <em>Cultures of the Belt</em>. Culture was always the point — the emergent trait systems, the faction tensions, the ARIA advisor watching it all unfold. But something was missing from the start. Nobody ever asked you what you were building toward.</p>
+
+      <div class="pullout">
+        Before you mine the first asteroid, ARIA asks: "What Is Your Colony For?" Your answer shapes everything that follows.
+      </div>
+
+      <h2>Fleet Manifesto</h2>
+
+      <p>Early in each session — when culture scores begin to accumulate, or by tick 300 at the latest — ARIA presents the Fleet Manifesto ritual. You choose from four presets (or write your own, up to 140 characters): a manifesto that frames why your fleet is here.</p>
+
+      <p>Each preset carries a +10 cultural seed bonus applied to your starting culture traits. It's a mechanical effect, but it's also a framing device: you know what your colony is for, and the culture that emerges will reflect it.</p>
+
+      <p>You can revise the manifesto at any time from the culture panel. Culture shifts. Purpose can too.</p>
+
+      <h2>ARIA Responds</h2>
+
+      <p>When you commit to a manifesto, ARIA delivers a proactive broadcast acknowledging it. Not a confirmation dialog — an actual observation about what your stated purpose means in the context of the belt. The advisor is paying attention.</p>
+
+      <div class="changelog-block">
+        <h3>Full Changelog — v0.1.7</h3>
+        <h3 style="margin-top: var(--space-md);">What's New</h3>
+        <ul>
+          <li><strong>Fleet Manifesto</strong> — purpose-setting ritual at colony founding; four presets plus freetext (140-char max); +10 cultural seed bonus on commit; revisable from culture panel</li>
+          <li><strong>ARIA manifesto broadcast</strong> — proactive ARIA message when your colony's manifesto is set for the first time</li>
+          <li><strong>Claim markers</strong> — small colored spheres above faction-claimed asteroids; cyan diamond for your active mining targets</li>
+        </ul>
+        <h3 style="margin-top: var(--space-md);">Fixes</h3>
+        <ul>
+          <li><code>ClaimMarkerRenderer.ts</code> was imported in committed code but missing from the repo — build was broken on fresh clones; now included</li>
+        </ul>
+      </div>
+
+      <div class="cta-bar">
+        <p>Cultures of the Belt is free to play in your browser. Tell ARIA what you're building.</p>
+        <div class="btn-row">
+          <a href="https://play.multiversestudios.xyz/cultures-of-the-belt/" class="btn btn-primary">Play Now — Free</a>
+          <a href="../asteroid-miner.html" class="btn btn-ghost">Game Page</a>
+          <a href="../devlog.html" class="btn btn-ghost">More Devlogs</a>
+        </div>
+      </div>
+
+      <div class="devlog-footer">
+        <p>Cultures of the Belt is free to play at <a href="https://play.multiversestudios.xyz/cultures-of-the-belt/" style="color: var(--biolume);">play.multiversestudios.xyz/cultures-of-the-belt/</a>. Pay what you think it's worth.</p>
+        <p>Multiverse Studios builds games with AI agents. Our other games: <a href="../creatures.html" style="color: var(--biolume);">Precursors: Origins of Folklore</a>, <a href="../mvee.html" style="color: var(--biolume);">Multiverse: The End of Eternity</a>, <a href="../nevereverland.html" style="color: var(--biolume);">Never Ever Land</a>.</p>
+      </div>
+
+    </div>
+  </main>
+
+</body>
+</html>
