@@ -7,6 +7,7 @@
   'use strict';
 
   const HOMESERVER = 'https://matrix.multiversestudios.xyz';
+  const AUTH_PROXY = 'https://api.multiversestudios.xyz/auth/matrix';
 
   // ── Utilities ──────────────────────────────────────────────
 
@@ -29,9 +30,10 @@
   }
 
   // ── Session State ──────────────────────────────────────────
+  // The Matrix access token is held server-side in an HttpOnly cookie (mx_session).
+  // Only non-sensitive identifiers are stored client-side.
 
   let session = {
-    accessToken: storageGet('mx_access_token'),
     userId: storageGet('mx_user_id'),
     deviceId: storageGet('mx_device_id'),
     homeserver: storageGet('mx_homeserver') || HOMESERVER,
@@ -39,120 +41,68 @@
   };
 
   function saveSession(data) {
-    session.accessToken = data.access_token;
     session.userId = data.user_id;
     session.deviceId = data.device_id;
     session.homeserver = HOMESERVER;
-    storageSet('mx_access_token', data.access_token);
     storageSet('mx_user_id', data.user_id);
     storageSet('mx_device_id', data.device_id);
     storageSet('mx_homeserver', HOMESERVER);
   }
 
   function clearSession() {
-    session.accessToken = null;
     session.userId = null;
     session.deviceId = null;
     session.displayName = null;
-    storageRemove('mx_access_token');
     storageRemove('mx_user_id');
     storageRemove('mx_device_id');
     storageRemove('mx_homeserver');
   }
 
-  // ── Matrix API ─────────────────────────────────────────────
+  // ── Auth Proxy API ─────────────────────────────────────────
+  // All auth calls go through the server-side proxy at AUTH_PROXY.
+  // The Matrix access token never touches the browser — it lives in an
+  // HttpOnly cookie managed by the proxy.
 
-  async function matrixFetch(method, path, body, auth) {
-    const opts = { method, headers: {} };
-    if (body) {
+  async function proxyFetch(method, path, body) {
+    const opts = { method, credentials: 'include', headers: {} };
+    if (body !== undefined) {
       opts.headers['Content-Type'] = 'application/json';
       opts.body = JSON.stringify(body);
     }
-    if (auth && session.accessToken) {
-      opts.headers['Authorization'] = 'Bearer ' + session.accessToken;
-    }
-    const res = await fetch(HOMESERVER + path, opts);
+    const res = await fetch(AUTH_PROXY + path, opts);
     const json = await res.json();
     if (!res.ok) {
-      throw new Error(json.error || json.errcode || ('HTTP ' + res.status));
+      throw new Error(json.error || ('HTTP ' + res.status));
     }
     return json;
   }
 
   async function apiLogin(username, password) {
-    return matrixFetch('POST', '/_matrix/client/v3/login', {
-      type: 'm.login.password',
-      identifier: { type: 'm.id.user', user: username },
-      password: password,
-    });
+    return proxyFetch('POST', '/login', { username, password });
   }
 
-  async function apiRegister(username, password, token) {
-    // Synapse UIA is multi-stage: 1) get session, 2) token stage, 3) dummy stage
-
-    // Stage 1: Initial request to get session and required flows
-    var res1 = await fetch(HOMESERVER + '/_matrix/client/v3/register', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ username: username, password: password }),
-    });
-    var json1 = await res1.json();
-    if (res1.ok) return json1; // Completed without UIA
-
-    if (!json1.session) {
-      throw new Error(json1.error || 'Registration failed');
-    }
-
-    var uiaSession = json1.session;
-
-    // Stage 2: Complete registration_token stage
-    var res2 = await fetch(HOMESERVER + '/_matrix/client/v3/register', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        username: username,
-        password: password,
-        auth: { type: 'm.login.registration_token', token: token, session: uiaSession },
-      }),
-    });
-    var json2 = await res2.json();
-    if (res2.ok) return json2; // Completed after token stage
-
-    // Stage 3: Complete dummy stage
-    if (json2.completed && json2.completed.indexOf('m.login.registration_token') !== -1) {
-      var res3 = await fetch(HOMESERVER + '/_matrix/client/v3/register', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          username: username,
-          password: password,
-          auth: { type: 'm.login.dummy', session: uiaSession },
-        }),
-      });
-      var json3 = await res3.json();
-      if (res3.ok) return json3;
-      throw new Error(json3.error || 'Registration failed at final stage');
-    }
-
-    throw new Error(json2.error || 'Invalid invite token');
+  async function apiRegister(username, password) {
+    return proxyFetch('POST', '/register', { username, password });
   }
 
   async function apiWhoami() {
-    return matrixFetch('GET', '/_matrix/client/v3/account/whoami', null, true);
+    return proxyFetch('GET', '/whoami', undefined);
   }
 
   async function apiGetProfile(userId) {
-    return matrixFetch('GET', '/_matrix/client/v3/profile/' + encodeURIComponent(userId));
+    // Profile is a public Matrix endpoint — no auth needed, direct call fine.
+    const res = await fetch(HOMESERVER + '/_matrix/client/v3/profile/' + encodeURIComponent(userId));
+    const json = await res.json();
+    if (!res.ok) throw new Error(json.error || ('HTTP ' + res.status));
+    return json;
   }
 
   async function apiLogout() {
-    return matrixFetch('POST', '/_matrix/client/v3/logout', {}, true);
+    return proxyFetch('POST', '/logout', {});
   }
 
-  async function apiRequestOpenIdToken(userId) {
-    return matrixFetch('POST',
-      '/_matrix/client/v3/user/' + encodeURIComponent(userId) + '/openid/request_token',
-      {}, true);
+  async function apiRequestOpenIdToken() {
+    return proxyFetch('POST', '/openid-token', {});
   }
 
   // ── High-Level Auth Functions ──────────────────────────────
@@ -166,8 +116,8 @@
     return data;
   }
 
-  async function register(username, password, token) {
-    const data = await apiRegister(username, password, token);
+  async function register(username, password) {
+    const data = await apiRegister(username, password);
     saveSession(data);
     await fetchDisplayName();
     updateNavUI();
@@ -192,7 +142,7 @@
   }
 
   async function validateSession() {
-    if (!session.accessToken || !session.userId) {
+    if (!session.userId) {
       clearSession();
       return false;
     }
@@ -207,10 +157,10 @@
   }
 
   async function getOpenIdToken() {
-    if (!session.userId || !session.accessToken) {
+    if (!session.userId) {
       throw new Error('Not logged in');
     }
-    return apiRequestOpenIdToken(session.userId);
+    return apiRequestOpenIdToken();
   }
 
   // ── Inject Styles ─────────────────────────────────────────
@@ -220,7 +170,7 @@
 #mx-auth-overlay {
   position: fixed;
   inset: 0;
-  z-index: 10000;
+  z-index: 100000;
   background: rgba(5,5,8,0.85);
   backdrop-filter: blur(6px);
   display: flex;
@@ -422,7 +372,7 @@
   pointer-events: none;
   transform: translateY(-4px);
   transition: opacity 0.15s, transform 0.15s;
-  z-index: 10001;
+  z-index: 100001;
 }
 #mx-auth-nav-user.open #mx-auth-dropdown {
   opacity: 1;
@@ -465,7 +415,7 @@
   font-family: var(--font-mono, monospace);
   font-size: 12px;
   padding: 8px 16px;
-  z-index: 10002;
+  z-index: 100002;
   opacity: 0;
   pointer-events: none;
   transition: opacity 0.2s, transform 0.2s;
@@ -498,7 +448,7 @@
         <div id="mx-auth-error"></div>
         <div class="mx-auth-field">
           <label for="mx-auth-username">Username</label>
-          <input type="text" id="mx-auth-username" autocomplete="username" placeholder="@user:matrix.multiversestudios.xyz">
+          <input type="text" id="mx-auth-username" autocomplete="username" placeholder="username">
         </div>
         <div class="mx-auth-field">
           <label for="mx-auth-password">Password</label>
@@ -507,10 +457,6 @@
         <div class="mx-auth-field" id="mx-auth-confirm-field" style="display:none;">
           <label for="mx-auth-confirm">Confirm Password</label>
           <input type="password" id="mx-auth-confirm" autocomplete="new-password">
-        </div>
-        <div class="mx-auth-field" id="mx-auth-token-field" style="display:none;">
-          <label for="mx-auth-token">Invite Token</label>
-          <input type="text" id="mx-auth-token" placeholder="Beta access token" autocomplete="off">
         </div>
         <button id="mx-auth-submit">Sign In</button>
       </div>
@@ -531,8 +477,6 @@
   const elPassword = document.getElementById('mx-auth-password');
   const elConfirm = document.getElementById('mx-auth-confirm');
   const elConfirmField = document.getElementById('mx-auth-confirm-field');
-  const elToken = document.getElementById('mx-auth-token');
-  const elTokenField = document.getElementById('mx-auth-token-field');
   const elSubmit = document.getElementById('mx-auth-submit');
   const tabs = overlay.querySelectorAll('.mx-auth-tab');
 
@@ -544,7 +488,6 @@
     elUsername.value = '';
     elPassword.value = '';
     elConfirm.value = '';
-    elToken.value = '';
     elUsername.focus();
   }
 
@@ -569,7 +512,6 @@
       t.classList.toggle('active', t.dataset.tab === tab);
     });
     elConfirmField.style.display = tab === 'register' ? '' : 'none';
-    elTokenField.style.display = tab === 'register' ? '' : 'none';
     elSubmit.textContent = tab === 'login' ? 'Sign In' : 'Create Account';
     elPassword.autocomplete = tab === 'login' ? 'current-password' : 'new-password';
     elError.classList.remove('visible');
@@ -595,9 +537,13 @@
       return;
     }
 
-    // Strip leading @ and domain if full Matrix ID entered
+    // Strip server part from any Matrix ID format:
+    //   @user:server.tld  →  user
+    //   user:server.tld   →  user  (e.g. pasted from a different client)
     if (username.startsWith('@')) {
       username = username.split(':')[0].substring(1);
+    } else if (username.includes(':')) {
+      username = username.split(':')[0];
     }
 
     if (activeTab === 'register') {
@@ -609,11 +555,6 @@
         showError('Password must be at least 8 characters.');
         return;
       }
-      var token = elToken.value.trim();
-      if (!token) {
-        showError('An invite token is required to create an account.');
-        return;
-      }
     }
 
     elSubmit.disabled = true;
@@ -623,7 +564,7 @@
       if (activeTab === 'login') {
         await login(username, password);
       } else {
-        await register(username, password, token);
+        await register(username, password);
       }
       hideModal();
       showToast('Signed in as ' + escapeHtml(session.displayName || session.userId));
@@ -671,7 +612,7 @@
 
     navLi = document.createElement('li');
 
-    if (session.accessToken && session.userId) {
+    if (session.userId) {
       // Logged in state
       var displayLabel = escapeHtml(session.displayName || session.userId);
       navLi.innerHTML =
@@ -768,14 +709,15 @@
   // ── Initialize ─────────────────────────────────────────────
 
   async function init() {
-    if (session.accessToken) {
+    if (session.userId) {
+      // Validate the server-side session cookie is still live.
       var valid = await validateSession();
       if (!valid) {
         clearSession();
       }
     }
     updateNavUI();
-    window.dispatchEvent(new CustomEvent('matrixAuthReady', { detail: { loggedIn: !!(session.accessToken && session.userId) } }));
+    window.dispatchEvent(new CustomEvent('matrixAuthReady', { detail: { loggedIn: !!session.userId } }));
   }
 
   // Run init when DOM is ready
@@ -787,11 +729,17 @@
 
   // ── Public API ─────────────────────────────────────────────
 
+  // NOTE: getAccessToken() is intentionally absent from the public API.
+  // Exposing the raw Matrix token to any script on the page widens the XSS
+  // exfiltration surface. Use getOpenIdToken() for delegated auth instead.
+  // If you need authenticated Matrix API calls from game code, add a dedicated
+  // method here that proxies the specific call without leaking the token.
   window.matrixAuth = {
-    isLoggedIn: function() { return !!(session.accessToken && session.userId); },
+    isLoggedIn: function() { return !!session.userId; },
     getUserId: function() { return session.userId; },
-    getAccessToken: function() { return session.accessToken; },
     getOpenIdToken: function() { return getOpenIdToken(); },
+    getJoinedRooms: function() { return proxyFetch('GET', '/joined-rooms', undefined).then(function(d) { return d.joined_rooms || []; }).catch(function() { return []; }); },
+    getProfile: function(userId) { return apiGetProfile(userId); },
     login: function(user, pass) { return login(user, pass); },
     logout: function() { return logout(); },
     showLoginModal: function() { showModal(); },

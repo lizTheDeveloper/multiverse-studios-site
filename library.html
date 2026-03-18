@@ -569,29 +569,17 @@
     gameCardsEl.innerHTML = '<div class="library-loading"><span class="spinner"></span><span>Checking room membership\u2026</span></div>';
 
     try {
-      var accessToken = auth.getAccessToken();
-      var [playtestRoomId, joinedRooms] = await Promise.all([
+      var userId = auth.getUserId();
+      var [playtestRoomId, joinedRooms, profile] = await Promise.all([
         resolveRoomAlias(PLAYTEST_ROOM_ALIAS),
-        getJoinedRooms(accessToken),
+        auth.getJoinedRooms(),
+        auth.getProfile(userId).catch(function() { return null; }),
       ]);
 
       var tiers = resolveTiers(joinedRooms, playtestRoomId);
+      var displayName = (profile && profile.displayname) || null;
 
-      // Try to get display name from Matrix profile
-      var displayName = null;
-      try {
-        var userId = auth.getUserId();
-        var profileRes = await fetch(
-          HOMESERVER + '/_matrix/client/v3/profile/' + encodeURIComponent(userId),
-          { headers: { 'Authorization': 'Bearer ' + accessToken } }
-        );
-        if (profileRes.ok) {
-          var profile = await profileRes.json();
-          displayName = profile.displayname || null;
-        }
-      } catch (_) { /* best-effort */ }
-
-      renderLibrary(auth.getUserId(), displayName, tiers);
+      renderLibrary(userId, displayName, tiers);
     } catch (err) {
       console.error('Library load error:', err);
       libSubtitle.textContent = 'Could not load your library. Try refreshing.';
