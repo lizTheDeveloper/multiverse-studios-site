@@ -159,14 +159,38 @@
 
 <!-- Hero -->
 <section class="hero asteroid-hero">
-  <div class="live-status">Live — Free Account Required</div>
+  <div class="live-status">Live · Free to Play</div>
   <h1 style="font-size: clamp(2.2rem, 6vw, 4.5rem); max-width: 22ch; line-height: 1.15;">You are a mind in charge of <span style="color: var(--signal);">other minds.</span><br><span style="color: var(--dust); font-size: 0.6em; font-weight: 400;">None of whom asked to be here.</span></h1>
   <p style="color: var(--dust); max-width: 60ch; margin-top: var(--space-md); font-size: 1.05rem; line-height: 1.7;">Build your civilization. Supervise your AI. Discover what's been watching.</p>
   <div class="hero-actions" style="margin-top: var(--space-lg);">
-    <a href="https://play.multiversestudios.xyz/cultures-of-the-belt/" class="btn btn-primary">Play Now — Free</a>
-    <a href="devlog.html" class="btn btn-ghost">Follow Development</a>
+    <a href="https://play.multiversestudios.xyz/cultures-of-the-belt/" class="btn btn-primary" data-umami-event="cta-play-cotb">Play Free in Your Browser</a>
+    <a href="devlog.html" class="btn btn-ghost" data-umami-event="cta-devlog-cotb">Follow Development</a>
   </div>
-  <p style="color: var(--dust); opacity: 0.5; font-family: var(--font-mono); font-size: 0.7rem; margin-top: var(--space-md);">Browser. No download. Free account required — quick to create. Pay what the game is worth to you.</p>
+  <p style="color: var(--dust); opacity: 0.5; font-family: var(--font-mono); font-size: 0.7rem; margin-top: var(--space-md);">Browser. No download. 30-second signup — no credit card. Pay what the game earns.</p>
+</section>
+
+<!-- Game Preview Screenshots -->
+<section class="section reveal" style="padding-top: var(--space-lg);">
+  <div style="display: grid; grid-template-columns: 2fr 1fr; gap: var(--space-md);">
+    <figure style="margin: 0;">
+      <img src="screenshots/asteroid-miner-1.png"
+        alt="Cultures of the Belt — Robot mining operation in the asteroid belt with ARIA Commander panel"
+        style="width: 100%; border-radius: 12px; border: 1px solid rgba(0,255,180,0.15); display: block;">
+    </figure>
+    <div style="display: flex; flex-direction: column; gap: var(--space-md);">
+      <figure style="margin: 0; flex: 1;">
+        <img src="screenshots/asteroid-miner-2.png"
+          alt="Cultures of the Belt — ARIA Commander filing operational report"
+          style="width: 100%; height: 100%; object-fit: cover; border-radius: 12px; border: 1px solid rgba(0,255,180,0.1); display: block;">
+      </figure>
+      <figure style="margin: 0; flex: 1;">
+        <img src="screenshots/asteroid-miner-3.png"
+          alt="Cultures of the Belt — Faction diplomacy and anomaly discoveries"
+          style="width: 100%; height: 100%; object-fit: cover; border-radius: 12px; border: 1px solid rgba(0,255,180,0.1); display: block;">
+      </figure>
+    </div>
+  </div>
+  <p style="text-align: center; color: var(--dust); font-family: var(--font-mono); font-size: 0.72rem; margin-top: var(--space-sm); opacity: 0.6;">Alpha build — browser. Updated continuously.</p>
 </section>
 
 <!-- About -->
@@ -177,6 +201,15 @@
   <p style="color: var(--dust); line-height: 1.8; max-width: 62ch;">Cultures of the Belt is a strategic automation game set in deep space. You command fleets of specialized robots — miners, scouts, haulers, researchers — to extract resources from a procedurally generated asteroid field, build supply chains, and advance toward the long game.</p>
   <p style="color: var(--dust); line-height: 1.8; max-width: 62ch; margin-top: var(--space-md);">Your operation is supervised by ARIA, a Commander AI powered by real language models. ARIA doesn't just advise. She acts. She queues build orders, triages the faction communications that accumulate as you expand, and makes decisions that you can approve or veto. You are not the operator. You are the supervisor. These are different jobs.</p>
   <p style="color: var(--dust); line-height: 1.8; max-width: 62ch; margin-top: var(--space-md);">The belt is not empty. Anomalies appear at the edge of sensor range — unexplained readings, unusual physics, things that don't follow the models. ARIA will analyze them. She will report what she finds. What happens after that depends on how deep you're willing to go.</p>
+</section>
+
+<!-- ARIA Transmission Teaser -->
+<section class="section section-narrow reveal" style="text-align: center;">
+  <div class="section-divider"></div>
+  <div class="quote-block" style="border-left: none; border-top: 1px solid rgba(255,90,30,0.2); padding: var(--space-md) 0 0 0; text-align: left; max-width: 55ch; margin: 0 auto;">
+    <p style="font-family: var(--font-mono); font-size: 0.85rem; color: var(--signal); font-style: normal; letter-spacing: 0.03em; line-height: 1.8;">ARIA TRANSMISSION 0047-C<br><br>"Anomaly at grid reference 7-Epsilon is not geological. I have logged this finding. I recommend we discuss it at your earliest convenience. I have not yet filed this in the public operations report."</p>
+    <cite style="color: var(--dust); font-size: 0.72rem;">— Commander ARIA, Week 3 operational log</cite>
+  </div>
 </section>
 
 <!-- Features -->
@@ -259,7 +292,7 @@
   <h2>Browser-based. No download required.</h2>
   <p style="color: var(--dust); line-height: 1.8;">Runs in any modern browser. Free account required &mdash; quick to create, no credit card. No install. Pay-what-you-can pricing — pay what the game is worth to you. The full game is available to all players regardless of payment.</p>
   <div class="hero-actions" style="margin-top: var(--space-lg);">
-    <a href="https://play.multiversestudios.xyz/cultures-of-the-belt/" class="btn btn-primary">Create Account &amp; Play Free</a>
+    <a href="https://play.multiversestudios.xyz/cultures-of-the-belt/" class="btn btn-primary" data-umami-event="cta-play-cotb">Create Account &amp; Play Free</a>
     <a href="https://github.com/lizTheDeveloper/asteroid-miner" target="_blank" rel="noopener" class="btn btn-ghost">Source on GitHub</a>
   </div>
   <p style="color: var(--dust); opacity: 0.6; font-size: 0.85rem; margin-top: var(--space-md);">Already have an account? <a href="https://play.multiversestudios.xyz/cultures-of-the-belt/" style="color: var(--biolume);">Sign in and play &rarr;</a></p>
@@ -270,9 +303,9 @@
   <h3 style="color: var(--star-white); margin-bottom: var(--space-sm);">Support the Development</h3>
   <p style="color: var(--dust); max-width: 52ch; margin: 0 auto var(--space-md);">Cultures of the Belt is free to play. If it earns a place in your rotation, pay what it's worth to you. Every contribution goes directly toward continued development.</p>
   <div class="hero-actions" style="justify-content: center;">
-    <a href="https://play.multiversestudios.xyz/cultures-of-the-belt/" class="btn btn-primary">Play Free</a>
+    <a href="https://play.multiversestudios.xyz/cultures-of-the-belt/" class="btn btn-primary" data-umami-event="cta-play-cotb">Play Free</a>
     <a href="https://buy.stripe.com/3cI5kCa380fN2hfbOp6c008" class="btn btn-ghost" data-pwyc-game="cotb" data-umami-event="click-buy-cotb">Support the Game</a>
-    <a href="community.html" class="btn btn-ghost">Join the Community</a>
+    <a href="community.html" class="btn btn-ghost" data-umami-event="cta-community-cotb">Join the Community</a>
   </div>
 </section>
 
