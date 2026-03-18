@@ -169,6 +169,11 @@
   <h1>Feedback & Bug Reports</h1>
   <p class="subtitle">Found a bug? Have an idea? We read everything. Submissions go directly to our team.</p>
 
+  <div id="signInPrompt" style="display:none; margin-bottom: var(--space-md); padding: 1rem; background: var(--void-surface); border: 1px solid var(--void-border); border-radius: 6px; display: flex; align-items: center; gap: var(--space-sm); flex-wrap: wrap;">
+    <span style="font-family: var(--font-body); color: var(--dust); flex: 1;">Sign in to submit feedback.</span>
+    <button type="button" class="submit-btn" id="signInBtn" onclick="window.matrixAuth && window.matrixAuth.showLoginModal()" style="align-self: auto; padding: 0.6rem 1.5rem; font-size: 0.9rem;">Sign in with Matrix</button>
+  </div>
+
   <form class="feedback-form" id="feedbackForm">
     <div class="form-row">
       <div class="form-group">
@@ -182,9 +187,11 @@
       <div class="form-group">
         <label for="feedbackGame">Game</label>
         <select id="feedbackGame" name="game" required>
-          <option value="general">General / Both</option>
+          <option value="general">General / All Games</option>
           <option value="creatures_next">Precursors: Origins of Folklore</option>
           <option value="mvee">Multiverse: The End of Eternity</option>
+          <option value="cultures_of_the_belt">Cultures of the Belt</option>
+          <option value="never_ever_land">Never Ever Land</option>
         </select>
       </div>
     </div>
@@ -265,6 +272,7 @@
   const submitBtn = document.getElementById('submitBtn');
   const typeSelect = document.getElementById('feedbackType');
   const gameSelect = document.getElementById('feedbackGame');
+  const signInPrompt = document.getElementById('signInPrompt');
 
   // Pre-fill game from URL param
   const params = new URLSearchParams(window.location.search);
@@ -281,8 +289,34 @@
   });
   form.classList.toggle('show-bug', typeSelect.value === 'bug_report');
 
+  // Auth gating: update UI based on login state
+  function updateAuthState() {
+    const loggedIn = window.matrixAuth && window.matrixAuth.isLoggedIn();
+    submitBtn.disabled = !loggedIn;
+    signInPrompt.style.display = loggedIn ? 'none' : 'flex';
+  }
+
+  // Init: disable submit until auth is confirmed
+  submitBtn.disabled = true;
+  signInPrompt.style.display = 'flex';
+
+  window.addEventListener('matrixAuthReady', updateAuthState);
+  window.addEventListener('matrixAuthLogin', updateAuthState);
+  window.addEventListener('matrixAuthLogout', updateAuthState);
+
+  if (window.matrixAuth && window.matrixAuth.isLoggedIn !== undefined) {
+    setTimeout(updateAuthState, 50);
+  }
+
   form.addEventListener('submit', async function(e) {
     e.preventDefault();
+
+    const auth = window.matrixAuth;
+    if (!auth || !auth.isLoggedIn()) {
+      auth && auth.showLoginModal();
+      return;
+    }
+
     submitBtn.disabled = true;
     submitBtn.textContent = 'Submitting...';
     status.className = 'form-status';
@@ -294,6 +328,7 @@
       title: document.getElementById('feedbackTitle').value.trim(),
       description: document.getElementById('feedbackDescription').value.trim(),
       browser: navigator.userAgent,
+      userId: auth.getUserId(),
     };
 
     const contact = document.getElementById('feedbackContact').value.trim();
@@ -327,12 +362,13 @@
       status.textContent = 'Error: ' + (err.message || 'Could not submit. Please try again.');
       status.style.display = 'block';
     } finally {
-      submitBtn.disabled = false;
+      submitBtn.disabled = !auth.isLoggedIn();
       submitBtn.textContent = 'Submit';
     }
   });
 })();
 </script>
+<script src="matrix-auth.js"></script>
 <script defer src="https://analytics.themultiverse.school/script.js" data-website-id="38d680a7-28d1-42fd-9fd5-a66702675b88"></script>
 </body>
 </html>

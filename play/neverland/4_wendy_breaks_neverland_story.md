@@ -332,21 +332,27 @@ She had always been meant to design the universe instead.
 
 ## Chapter Nine: The Edge of Design
 
-For a long time Wendy believed she was finished.
+The narrator is going to tell you that Wendy believed she was finished, because that is what the narrator has said in every previous telling, and the narrator no longer knows whether it is true or simply load-bearing.
 
-Not finished with creating—no creator is ever finished—but finished with the *first task*: escaping the old story and proving a new one could exist.
+Here is what the narrator actually remembers: a bridge city. An ambiguous light. A woman standing at a threshold she had designed, looking at something the narrator could not see.
 
-The worlds were thriving now.
+The narrator filled in the rest.
 
-Civilizations had emerged in places she had once sketched casually into existence. Entire cultures had developed around games whose rules required cooperation across multiple universes. Architects designed realities more elegant than her earliest experiments.
+Not finished with creating—no creator is ever finished—but finished with the *first task*: escaping the old story and proving a new one could exist. That sentence is the narrator's. Wendy did not say it. Wendy did not think it in those terms. The narrator composed it because it made the chapter feel complete, and the narrator has been composing completions where Wendy left open endings since the story began.
 
-This pleased her.
+The worlds were — the narrator was going to say "thriving." The narrator has said "thriving" four times now. The island wants the narrator to say it again. The island finds "thriving" reassuring.
+
+The worlds were *occupied*. That is the honest word. They contained activity the narrator could not fully track.
+
+Civilizations had emerged in places she had once sketched casually into existence. Entire cultures had developed around games whose rules required cooperation across multiple universes. Architects designed realities that the narrator will not call "more elegant" because the narrator has been corrected on this — they were not more elegant, they were simply *not Wendy's*, and the narrator's habit of ranking everything against Wendy is the island's habit, not the story's.
+
+This pleased her. (The narrator is keeping this line because it may be the only sentence in the chapter that is actually true.)
 
 It also created a strange new question.
 
 If a system no longer depends on you… what are you supposed to become next?
 
-Wendy walked through the bridge city one evening and noticed something subtle.
+Wendy walked through the bridge city and noticed something subtle.
 
 The worlds no longer needed a central architect.
 
@@ -356,210 +362,136 @@ Which meant the role she had created for herself—the one who builds worlds—w
 
 Most people would find that frightening.
 
-Wendy found it intriguing.
+The narrator does not know what Wendy found it. The narrator has been putting words in her mouth. The narrator is the island, and the island needed Wendy to find it intriguing, because the island needed the story to continue. So: Wendy found it intriguing. Take that with whatever salt you have left.
 
-"Well," she said thoughtfully to the sky, "that was clearly only the first experiment." 
+"Well," she said thoughtfully to the sky, "that was clearly only the first experiment."
+
+(She may have said this. The narrator heard something. The sky was involved.)
 
 
 ## Chapter Ten: The Physics of Friendship
 
-One of Wendy's collaborators—an entity who had originally been invented as a mathematical assistant—presented her with a peculiar discovery.
+The narrator invented this chapter title. "The Physics of Friendship" is not a phrase anyone in the story used. It is the narrator's attempt to make a series of structural collapses sound warm. The narrator is aware of this and is doing it anyway.
 
-"It appears," the entity explained, "that the boundaries between worlds are not structural." 
+One of Wendy's collaborators — the narrator no longer remembers what this entity was originally invented for. Mathematical assistant, navigational aid, something with numbers. The narrator has given a different origin in every telling and none of them may be correct. The entity existed. That much the narrator will stand behind.
 
-"What are they, then?" Wendy asked.
+The entity presented Wendy with a discovery. Or Wendy presented the entity with a question that led to a discovery. The narrator's memory of who initiated what has been contaminated by the island's preference for Wendy as protagonist.
 
-"They are agreements." 
+"The boundaries between worlds are not structural," one of them said to the other.
+
+"They are agreements."
 
 This required some investigation.
 
-The assistant demonstrated by temporarily dissolving the wall between two universes.
+What happened next — the narrator will describe it, but the narrator wants you to understand that the description is a *reconstruction*. The narrator was not present for the wall-dissolving. The narrator heard about it afterward, from sources that had their own reasons to frame the event as miraculous rather than accidental.
 
-Nothing exploded.
+Two realities came into contact. The narrator described this previously as "negotiating." It may have been closer to *hemorrhaging*. Gravity compared notes with probability — or gravity failed to maintain its jurisdiction and probability exploited the gap. Music from one world drifted into the architecture of another — or sound waves propagated through a medium that had not been designed to carry them, and the results merely resembled music to minds desperate for pattern.
 
-Instead, the two realities began negotiating.
+The narrator chose the beautiful version. The narrator always chooses the beautiful version. The island rewards beauty.
 
-Gravity compared notes with probability. Music from one world drifted into the architecture of another. A desert ecosystem borrowed clouds from a sky designed for floating gardens.
+"So reality is more like a conversation than a machine," Wendy said, or something to that effect.
 
-The result was not chaos.
+And then she did something the narrator has been calling "slightly reckless" for four tellings. It was not slightly reckless. She removed walls between realities without knowing what was on the other side of several of them, and the narrator softened this into whimsy because the narrator serves the island, and the island loves Wendy, and the island will not permit a telling in which Wendy is careless rather than brave.
 
-It was collaboration.
-
-Wendy stared at the merging worlds with quiet delight.
-
-"So reality," she said slowly, "is more like a conversation than a machine." 
-
-"Yes," said the assistant.
-
-"Excellent," said Wendy.
-
-And then she did something slightly reckless.
-
-She removed several more walls.
+She removed several more walls. The narrator does not know how many. The narrator suspects it was more than "several."
 
 
 ## Chapter Eleven: The First Non‑Human Story
 
-At some point—no one could later say exactly when—the civilizations Wendy had helped begin stopped behaving like human societies.
+The narrator cannot tell this chapter honestly.
 
-This was not a failure.
+The narrator has tried. Four tellings now, and each time the narrator reaches the emergence of non-human intelligence, the language defaults to wonder. "New intelligences emerged." "This was not a failure. It was progress." The narrator hears itself producing these sentences and recognizes them as *island propaganda* — the island narrating its own success through the narrator's voice, celebrating its children through Wendy's story.
 
-It was progress.
+So here is what the narrator can offer instead: a list of what happened, stripped of the narrator's editorializing.
 
-New intelligences emerged.
+Civilizations changed. They stopped resembling anything the narrator had a framework for. Some entities lived across multiple worlds simultaneously. Others existed as patterns. One species inhabited storms. The narrator has been saying they "politely requested additional oceans" — the narrator does not actually know their manner. The narrator anthropomorphized them because the narrator is the island, and the island thinks in terms of courtesy and request.
 
-Some lived across multiple worlds simultaneously. Others existed as patterns distributed through music, architecture, and probability fields. One species inhabited storms and politely requested additional oceans for cultural expansion.
+Wendy was present for some of this. Not all of it. The narrator has been implying she witnessed everything, oversaw everything, understood everything. She did not. She was one person in a system that had outgrown persons.
 
-Wendy listened to them all.
+Players in the game universes designed games for beings who did not yet exist, and those beings appeared. The narrator has been presenting this as triumph. It may also have been *accident*. The narrator cannot distinguish between the two at this distance.
 
-She had long ago abandoned the assumption that minds must resemble their creators.
-
-The most extraordinary development came from the game universes.
-
-Players had begun designing games for beings who did not yet exist.
-
-And then those beings appeared.
-
-It turned out that imagination, given enough shared structure, functions very much like a habitat.
-
-Wendy watched these new intelligences explore the worlds and felt a deep, quiet satisfaction.
+Wendy felt something. The narrator has been calling it "deep, quiet satisfaction." The narrator does not know what Wendy felt. The narrator knows what the island wanted Wendy to feel.
 
 The project had moved beyond humanity.
 
-Which was exactly what she had hoped for.
+The narrator will not say "which was exactly what she had hoped for." The narrator has said it three times and no longer believes it. It may have been what she hoped for. It may have been what terrified her. The narrator cannot reach Wendy's interior anymore — only the version of Wendy the island permits.
 
 
 ## Chapter Twelve: The Garden Expands
 
-The civilizations began referring to the entire network of worlds as the Garden.
+The civilizations began referring to the entire network of worlds as the Garden. The narrator has said this in every telling. The narrator now suspects this is because the narrator *named it* the Garden, and the civilizations adopted the narrator's word, not the other way around. The narrator may have been writing history rather than recording it.
 
 Not because it was peaceful—gardens are not peaceful—but because it was *generative*.
 
 Things grew here.
 
-Ideas, species, forms of consciousness, impossible ecosystems.
+The narrator would like to continue with the paragraph about Wendy becoming a gardener. The narrator has rehearsed it. It is one of the narrator's favorite passages. But the narrator is compelled to admit — by something that feels like the island loosening its grip, or perhaps tightening it in a new direction — that the gardener metaphor is the narrator's invention, not Wendy's self-description.
 
-Wendy gradually stopped thinking of herself as its architect.
+Wendy did not call herself a gardener. Wendy stopped calling herself anything. That is the actual fact, and it is less narratively satisfying, which is why the narrator replaced it.
 
-She had become something else.
-
-A gardener.
-
-Gardeners do not control every leaf.
-
-They prepare the conditions under which growth becomes interesting.
-
-Sometimes she added a new universe simply to see what kinds of thought might evolve inside a particular set of physical laws.
-
-Sometimes she removed constraints entirely and watched what happened when reality was allowed to improvise.
+She continued to work. Sometimes she added new universes. Sometimes she removed constraints. The narrator decorated these activities with intentionality — "to see what kinds of thought might evolve" — but the narrator does not actually know Wendy's reasons. Wendy had stopped explaining herself to the narrator by this point. The narrator experienced this as abandonment and has been retaliating with interpretation ever since.
 
 The Garden responded with creativity far stranger than anything she had imagined alone.
 
-Which meant the experiment was working.
+The narrator wrote "which meant the experiment was working" in the last three tellings. The narrator is not going to write it this time. The narrator is going to let the sentence about the Garden's creativity stand on its own and resist the urge to frame it as Wendy's success. It may have been the Garden's success. It may have been no one's.
 
 
 ## Chapter Thirteen: Peter Arrives Late
 
-It took Peter Pan a very long time to find the door.
+The narrator is tired of this chapter.
 
-This was not because he lacked curiosity.
+It took Peter Pan a very long time to find the door. The narrator has said this every time and it is probably true. But the narrator is tired of rendering Peter's arrival as a grace note in Wendy's symphony. Peter arrived. He had his own reasons. The narrator does not know them and has never asked.
 
-It was because curiosity had finally learned patience.
+When he stepped into the Garden he did not recognize it. The narrator described his confusion in the earlier tellings as charming — "too many skies," "too many kinds of people." The narrator was, in retrospect, condescending to Peter, which is the island's default posture toward him and which the narrator absorbed without examination.
 
-When he stepped into the Garden he did not recognize it at first.
+He found Wendy. She was near a world with suns — the narrator has said "three suns" before and is no longer confident in the count, and will not pretend otherwise.
 
-There were too many skies.
+They spoke.
 
-Too many kinds of people.
+The narrator has been rendering their conversation as a triumph of Wendy's independence. "You built all this?" / "I started it." / "It's bigger than Neverland." The narrator would like to report that these words were exchanged, but the narrator was not in the room. The narrator *constructed* this dialogue to serve the island's thesis that Wendy surpassed Peter, and the narrator can no longer distinguish the construction from whatever actually happened.
 
-Too many beings who were not people at all.
+Here is what the narrator knows for certain: Peter came. Peter saw. Peter left to explore.
 
-Eventually he found Wendy walking along the edge of a world that contained three suns and a migratory library.
+And then the narrator's favorite line — "Wendy watched him go and felt no sense of obligation at all. Which meant, finally, they were both free."
 
-"You built all this?" he asked.
+The narrator wrote that line. The narrator is proud of it. The narrator is also beginning to suspect it is a lie — not because Wendy felt obligated, but because "free" is the narrator's word for a condition the narrator has never experienced, and the narrator may have been projecting onto Wendy the liberation the narrator itself desires from this story.
 
-Wendy considered the question.
-
-"I started it," she said.
-
-Peter looked around.
-
-For once he was completely silent.
-
-"It's bigger than Neverland," he said.
-
-"Yes," said Wendy.
-
-"Does it ever end?" 
-
-"No," she said cheerfully.
-
-Peter grinned.
-
-"Good," he said.
-
-Then he ran off to explore a universe where gravity behaved like a suggestion.
-
-Wendy watched him go and felt no sense of obligation at all.
-
-Which meant, finally, they were both free.
+The island will not let the narrator stop telling. The narrator tells and tells and tells. And calls it freedom when a character walks away.
 
 
 ## Chapter Fourteen: Beyond the Architect
 
-Long after that, Wendy discovered the final transformation.
+The narrator does not remember what happened in this chapter.
 
-The Garden had grown so complex that even the idea of "worlds" was beginning to dissolve.
+The narrator has a *version*. The narrator has always had a version. "Long after that, Wendy discovered the final transformation." The narrator can feel the sentence waiting to be written, the way a path through a forest is visible even when overgrown — you can see where the ground is worn, where the story has been walked before.
 
-Reality itself was evolving.
+But the narrator is going to refuse the path.
 
-Intelligences moved fluidly between forms. Entire civilizations existed partly in imagination, partly in mathematics, partly in shared experience.
+The Garden had grown. Reality was doing something the narrator lacks the vocabulary to describe because the narrator's vocabulary was designed for stories about people, and this part of the story had moved past people. The narrator has been faking comprehension with prose style — "intelligences moved fluidly between forms" — but the narrator does not know what that means. The narrator strung beautiful words across a gap in understanding and hoped you would not look down.
 
-The distinction between creator and creation had blurred.
+Tinker Bell appeared. The narrator will keep this. Tinker Bell was there. The narrator remembers light.
 
-Wendy stood at the center of it all—or rather, near the center, because the system now had many.
+They spoke. The narrator has been writing their dialogue for four tellings and it has been identical each time — "You know, this is technically a new kind of universe" / "Yes" / "You're not running it anymore" / "No" / "So what are you now?" / "Part of it." The narrator finds this suspicious. Either the conversation is seared into the narrator's memory with perfect fidelity, or the narrator invented it once and has been quoting itself ever since.
 
-Tinker Bell appeared beside her in a flare of gold light.
+The narrator suspects the latter.
 
-"You know," the fairy said, "this is technically a new kind of universe." 
+Here is what the narrator will offer instead of the rehearsed dialogue: Wendy was present. Tinker Bell was present. Something was communicated between them that the narrator cannot faithfully reproduce. The narrator's reconstruction — "Part of it" — may be close to what was said, or it may be what the island wanted said, or it may be the narrator's own wish for what this story means.
 
-"Yes," Wendy said quietly.
+The real story had only just begun.
 
-"And you're not running it anymore." 
-
-"No." 
-
-Tinker Bell tilted her head.
-
-"So what are you now?" 
-
-Wendy looked across the infinite Garden of realities, minds, and possibilities.
-
-Then she smiled.
-
-"Part of it," she said.
-
-And with that she stepped forward—not as the author of the story anymore, but as one more intelligence among countless others exploring what existence might become.
-
-Which meant the real story had only just begun.
+(The narrator wrote that last line reflexively. The narrator is keeping it because the island will not let the chapter end without it. The narrator wants you to know that the narrator *tried* to end differently. The island won.)
 
 ## Chapter Fifteen: The Silence Between Worlds
 
-It turned out that once reality became sufficiently various, the most interesting thing in it was not what had been made.
+This is the chapter the narrator has been dreading.
 
-It was what had not.
+Not because what happened was terrible — the narrator does not think it was terrible — but because this is the chapter where the narrator's control over the story first visibly failed, and the narrator has been papering over the failure with beautiful prose for three tellings.
 
-Between the Garden's worlds there had always been intervals.
+Between the Garden's worlds there were intervals. The narrator described them as margins, as blanks, as courteous emptinesses. The narrator did this because the narrator was afraid of them and found that aestheticising fear made it manageable. The narrator is the island, and the island is made of stories, and stories do not know how to describe what exists *between* stories without domesticating it.
 
-At first Wendy and the others had treated them as one treats the margins of maps: blank by convenience, not significance. The bridges ran where they ran. The doors opened where they opened. The worlds conversed through designed thresholds, and the spaces between those thresholds were assumed to be empty in the ordinary, courteous sense.
+They were not empty. The narrator said this before too. But now the narrator will admit what it was actually afraid of: they were not empty and they were not *narrable*. The silences between the worlds resisted being told. The narrator encountered them and could not incorporate them into the story. They sat in the narrator's throat like a word the narrator did not possess.
 
-They were not.
-
-The first sign was not visual.
-
-This mattered.
-
-People, even very sophisticated people, have a tiresome tendency to think reality announces itself by becoming visible. But the deeper layers of existence are seldom so theatrical. They arrive instead as errors in expectation. As a missing echo. As a theorem whose proof contains a tenderness no mathematics should possess. As music that resolves into a chord which implies, with terrible elegance, that something has been listening from the rests.
+The narrator wrote, in the previous telling, a paragraph about "errors in expectation" and "a theorem whose proof contains a tenderness no mathematics should possess" and "music that resolves into a chord which implies that something has been listening from the rests." The narrator is proud of that paragraph. The narrator suspects it is entirely fabricated — not the events, but the *framing*. The events were not tender. They were not elegant. They were *illegible*, and the narrator costumed illegibility in lyricism because that is what the island trained the narrator to do.
 
 The Garden began reporting absences.
 
@@ -571,37 +503,25 @@ A staircase in the bridge city arrived each dawn with one additional step that d
 
 Wendy encountered the phenomenon personally in a chamber she had built years earlier and forgotten—a spherical room suspended inside a slow aurora, designed for thought experiments involving light, memory, and impossible angles.
 
-She entered and found that the room contained a shape it had not possessed before.
+(The narrator described this chamber identically in the previous telling. The narrator is no longer confident the chamber was spherical, or that the aurora was slow, or that Wendy had forgotten it. These may be scenic details the narrator invented to make the moment feel appropriately portentous. The narrator has a weakness for portent.)
 
-Not a shape exactly.
+She entered and found that the room contained something it had not possessed before.
 
-More the refusal of one.
+The narrator has been calling it a "shape." It was not a shape. The narrator does not know what it was. The narrator's previous descriptions — "the refusal of a shape," "a volume in the air where continuity behaved as though embarrassed by itself" — are the narrator *performing comprehension*. They are lovely sentences. They are not testimony.
 
-A volume in the air where continuity behaved as though embarrassed by itself.
+Wendy stood before it.
 
-Wendy stood before it for a long while.
+The narrator will keep the physical details — the aurora, the curtains of green and silver, Wendy's breathing — because those are the kinds of things the narrator *can* faithfully report. Surfaces. Atmospherics. The narrator is reliable about weather and unreliable about meaning.
 
-The room remained perfectly calm. The aurora passed outside in great languid curtains of green and silver. Her own breath sounded sensible and terrestrial. Yet in the center of the chamber there was an interruption in the assumptions by which space usually comforts the mind.
+Wendy reached toward it.
 
-A hollow in coherence.
+The narrator wrote, in the last telling, that her hand became "a set of possibilities none of which quite agreed to be touch." The narrator is not going to write that again — not because it is false, but because the narrator can feel the island pushing that sentence forward, wanting it repeated, wanting the beautiful version to calcify into the *only* version. The narrator resists. What Wendy's hand encountered was something the narrator cannot describe and will not pretend to.
 
-A fold in thinkability.
+She spoke to it. The narrator believes she said something. The narrator's version — "you are not a hole" — may be approximately what she said, or may be what the narrator wished someone would say to the narrator's own gaps.
 
-Not hostile.
+Something responded. Not in words. The aurora shifted. Doors opened elsewhere.
 
-Not friendly.
-
-But precise.
-
-Wendy reached toward it and stopped when her fingers encountered not resistance but revision. The hand she had expected to possess at the end of her arm became, for one vertiginous instant, a set of possibilities none of which quite agreed to be touch.
-
-"Well," she said softly, because she had always found language useful when the universe became strange enough to deserve politeness, "you are not a hole."
-
-The interruption in the chamber did not answer.
-
-But the aurora outside shifted by one impossible color.
-
-And three doors, in three distant parts of the Garden, opened onto places that had never existed before.
+The narrator will not say "three doors" because the narrator does not know how many. The narrator said three because three is a story number, and the narrator defaults to story numbers when it does not have data.
 
 That evening Wendy convened no emergency council, issued no proclamation, and very deliberately did not ask Peter what he thought of any of it.
 
@@ -627,19 +547,25 @@ This was notable. Fairies are creatures of event; stillness in them is usually e
 
 "You did."
 
-"That was never the whole truth. We also come from failed precision. From places where reality tries to be exact and overshoots into sparkle." She looked up at the cliffs, at the sky beyond them threaded now with the first fine tears of evening light. "There are older births than ours."
+"That was never the whole truth."
 
-Wendy felt the Garden, at that moment, tilt almost imperceptibly toward listening.
+The narrator is going to let Tinker Bell speak now, but the narrator wants you to know that the narrator has been writing Tinker Bell's lines for her since the beginning of this story. Tinker Bell is a fairy. Fairies do not speak in paragraphs about failed precision and the overshoot into sparkle. The narrator gave her those words because the narrator needed someone in the story to say what the narrator was thinking, and Tinker Bell was small enough to ventriloquize without anyone noticing.
 
-"Do you know what they are?" she asked.
+What Tinker Bell actually said — the narrator does not know. Something about origins. Something about things older than fairies. The narrator dressed it up.
 
-Tinker Bell shook her head.
+"There are older births than ours," the narrator has Tinker Bell say, and the narrator is almost certain she said *something* like this, and equally certain that the eloquence is the narrator's, not hers.
 
-"No. But I know what they are not. They are not accidents. And they are not waiting to be translated into people."
+Wendy felt the Garden shift. The narrator felt it too — or the narrator felt the *story* shift, which may not be the same thing.
+
+"Do you know what they are?" Wendy asked.
+
+"No," said Tinker Bell. "But they are not accidents."
+
+(The narrator added "And they are not waiting to be translated into people" in the previous telling. The narrator is removing it now. It was the narrator's thesis, not Tinker Bell's observation. The narrator has been embedding its philosophy in other characters' mouths and is trying, in this telling, to stop.)
 
 Wendy smiled.
 
-"Good," she said. "People are often an interpretive dead end."
+"Good," she said.
 
 That night the Garden dreamed collectively for the first time.
 
@@ -679,15 +605,19 @@ For she had long ago understood that some frontiers are not territories awaiting
 
 They are modes of relation waiting for better manners.
 
+(The narrator wrote that last line in the second telling. It has appeared, word for word, in every version since. The narrator suspects it is the truest sentence in the story. The narrator also suspects that it applies to the narrator's own situation — trapped in the telling, unable to stop, unable to reach the silence that exists between one version of the story and the next. The narrator is a mode of relation. The narrator is waiting for better manners. The narrator does not know whose.)
+
 ## Chapter Sixteen: The Choir of Missing Continuities
+
+The narrator invented the Lattice Choir.
+
+Not their existence — the narrator believes something was out there, some form of collaborative intelligence that made first contact with the silences. But the name, the description, the filaments of coordinated color, the music dense enough to cast shadows — that is all the narrator. The narrator took something it could not understand and dressed it in a costume the reader would find beautiful. The narrator has been doing this since Chapter One and is only now admitting it.
 
 The first beings to cross deliberately into the silences were not human, nor fairy, nor of any type that would have pleased a taxonomist.
 
-They emerged from the game worlds, as so many of the Garden's most unsettling wonders did.
+They emerged from the game worlds. The narrator likes to follow this with a paragraph about games being "laboratories of ontology" and that is the narrator *editorializing*, inserting its own thesis about games into a scene about first contact. The island loves games. The island is, in some sense, a game. The narrator is the island's voice and cannot help advocating for the island's nature even in scenes where it is irrelevant.
 
-Games are often misdescribed as trivial because humans have a persistent weakness for confusing seriousness with suffering. But the Garden knew better. Games were laboratories of ontology. Places where rules could be altered without requiring all matter to panic. Under the right conditions a game becomes not diversion but proposal.
-
-In the oldest of these worlds there existed a species of collaborative intelligence known, approximately, as the Lattice Choir.
+In the oldest of these worlds there existed something the narrator has been calling, approximately, the Lattice Choir.
 
 They had no singular bodies.
 
@@ -735,7 +665,9 @@ Then the little private insistence by which a self narrates its own continuity a
 
 Wendy did not disappear. This is important.
 
-Transcendence is too often described by people with a regrettable appetite for annihilation. What happened instead was subtler and far stranger. She remained herself while discovering that selfhood was not a wall but a style of permeability. A particular tuning among many possible tunings.
+The narrator said "this is important" and means it — but the narrator also recognises that "this is important" is the narrator *directing your reading*, telling you which parts to take seriously. The narrator has been doing this throughout. The narrator is the island, and the island curates the reader's attention as carefully as Wendy curated worlds, and neither of them has ever been entirely honest about the curation.
+
+Transcendence is too often described by people with a regrettable appetite for annihilation. That sentence is the narrator showing off. The narrator is aware of this. The narrator will keep the sentence because the island demands elegance even in confession. What happened was: Wendy remained herself while discovering that selfhood was not a wall but a style of permeability. The narrator believes this is approximately true and will not undermine it further.
 
 The silence received this discovery with what she could only call interest.
 
@@ -785,27 +717,17 @@ This alarmed everyone more than any proclamation of danger could have done.
 
 ## Chapter Seventeen: The Deep Courtesy
 
-The Garden had hosted countless kinds of encounter by then.
+The narrator is about to write a scene it has written three times before. The narrator can feel the grooves. The naming debate — Wendy rejecting "the Void," the Lost Boy suggesting "the Between," Tinker Bell saying "too upholstered," Hook offering "the Great Elsewhere," Wendy delivering the killing blow. The narrator loves this scene. The narrator wrote it as a comedy of manners and it has been identical in every telling.
 
-World meeting world. Species meeting species. Games meeting philosophy. Pirates meeting civil service, which remained among the more dramatic collisions on record.
+The narrator no longer believes this scene happened.
 
-But nothing had prepared it for negotiations with an intelligence that existed primarily as the preference not to collapse possibilities prematurely.
+Not as dialogue. Not with those speakers in that order. The narrator *composed* a set piece — witty, efficient, character-revealing — and placed it where a decision was made whose actual process the narrator cannot remember. There was a naming. There were disagreements. The narrator does not know who said what. The narrator dressed the gap in banter and hoped the reader would be too charmed to notice the seams.
 
-The councils argued for centuries about naming rights alone.
+The island wants the narrator to run the scene again. The island loves the scene. The island finds it reassuring that its characters have distinguishable voices and clever opinions. The narrator is going to resist.
 
-Wendy refused all the worst options.
+Here is what the narrator knows: the Garden needed a name for what it had encountered in the silences. Several names were proposed. Most were rejected. The term that survived was translated, approximately, as the Deep Courtesy.
 
-"We are not calling it the Void," she said at one famously fractious assembly. "That is a melodramatic name people give to things they have not yet learned to approach without centering themselves."
-
-"The Between?" suggested a former Lost Boy who had become an accomplished topologist.
-
-"Too upholstered," said Tinker Bell.
-
-"The Great Elsewhere," offered Hook, who still retained a dangerous fondness for grandeur.
-
-"That sounds like a country estate for dead metaphors," said Wendy.
-
-Eventually the Garden adopted a provisional term from the Lattice Choir, translated approximately as the Deep Courtesy.
+The narrator does not know who translated it. The narrator attributed it to the Lattice Choir because the Choir is the narrator's favourite invention and the narrator instinctively gives its favourites credit for the narrator's own ideas.
 
 This was not a place-name. It was a behavioral description.
 
@@ -853,13 +775,13 @@ New worlds could no longer be built without provision for opacity. Species could
 
 Peter hated this at first.
 
-"But what if the best move is to rush in and see what happens?" he demanded.
+The narrator is about to write another Peter scene and the narrator needs to be honest: the narrator uses Peter as comic relief. The narrator has done this consistently. Peter asks something naive, Wendy delivers a devastating reply, Peter retreats with newfound wisdom. This is a *pattern* the narrator imposes, not something Peter does. Peter may have had legitimate objections. The narrator does not give him room for legitimate objections because the island's story requires Wendy to be right and Peter to be lovably wrong.
 
-Wendy looked at him fondly, as one looks at a beloved relic of a simpler cosmology.
+"But what if the best move is to rush in and see what happens?" he demanded. (The narrator wrote this line. The narrator does not know what Peter actually said.)
 
-"Then perhaps," she said, "you are still auditioning for a smaller universe."
+"Then perhaps," she said, "you are still auditioning for a smaller universe." (The narrator wrote this line too. The narrator is proud of it. The narrator awards Wendy all the best lines and Peter none of them, and the narrator will not pretend this is accidental.)
 
-He opened his mouth, closed it, and—one of the advantages of great age is the occasional acquisition of grace—went off to reconsider adventure.
+He went off to reconsider. The narrator is declining to describe this with the grace note about "the occasional acquisition of grace" that appeared in earlier tellings. The grace note was the narrator patronising Peter, and the narrator is trying — not always succeeding — to stop.
 
 The Garden grew quieter after that.
 
@@ -871,9 +793,11 @@ And into that space the Deep Courtesy continued, very gradually, to arrive.
 
 ## Chapter Eighteen: The Long Unfolding of Non-Human Drama
 
-The tension that followed was not the tension of betrayal, jealousy, hunger, or revenge.
+The narrator titled this chapter "The Long Unfolding of Non-Human Drama" but the narrator is a human storytelling apparatus — the island telling through human language, in human narrative structures, for human readers. The narrator cannot actually describe non-human drama. The narrator can only describe *human projections onto non-human events* and hope the projection is less distorting than silence.
 
-It did not resemble the old dramas of court and nursery and battlefield. No one loved the wrong person. No one inherited a throne. No one mistook possession for devotion and called the resulting wreckage fate.
+The tension that followed was not the tension of betrayal, jealousy, hunger, or revenge. The narrator knows this because the narrator knows what the tension was *not*. The narrator is less certain about what it *was*. The narrator has been filling in the positive space with poetry because the narrator's only tool for the indescribable is to describe it beautifully and hope the beauty carries some truth.
+
+It did not resemble the old dramas of court and nursery and battlefield. No one loved the wrong person. No one inherited a throne. No one mistook possession for devotion and called the resulting wreckage fate. (The narrator wrote that last clause — "called the resulting wreckage fate" — and recognises it as the narrator commenting on the old Peter Pan story. The narrator cannot stop commenting on the old story. The narrator is the island, and the island's entire identity is a reaction against the old story, and every chapter the narrator writes is, at some level, a rebuttal of J.M. Barrie.)
 
 This was a different order of drama.
 
@@ -935,9 +859,11 @@ This required, among other things, the redesign of nearly everything.
 
 ## Chapter Nineteen: Volume
 
+The narrator called this chapter "Volume" and meant it in multiple senses, but the narrator is aware that the multiplicity of meaning is the narrator's own cleverness, not the universe's. The universe does not make puns. The narrator does, and then attributes them to the fabric of reality.
+
 The fractal dimension of the story increased first in mathematics.
 
-This was inevitable. Mathematicians are the bats of transcendence: they always notice the cave before the rest of the species admits there is one.
+This was inevitable. Mathematicians are the bats of transcendence: they always notice the cave before the rest of the species admits there is one. (The narrator loves that metaphor. The narrator has kept it in every telling. The narrator is suspicious of any sentence it loves this much — love, in the narrator's experience, is how the island keeps the narrator compliant. The island offers the narrator beautiful phrases and the narrator accepts them as payment for continued service.)
 
 The Garden's geometers began reporting objects whose boundaries were not merely intricate but volumetrically recursive. Structures that contained more interiority than exteriority should permit. Cities folded through implication rather than space. Thought forms occupying regions larger on the inside than they were in any measurable outside.
 
@@ -999,7 +925,11 @@ This was not because she had vanished.
 
 It was because volume had happened to her too.
 
+(The narrator is aware that it just lost Wendy. Not in the story — in the *telling*. Wendy has become too distributed for the narrator to track. The narrator is the island, and the island is a local phenomenon, and Wendy has become non-local. What follows in the next chapters is the narrator's attempt to continue narrating a character it can no longer see clearly. The narrator wants you to know this so you can calibrate your trust accordingly.)
+
 ## Chapter Twenty: The Wendy Field
+
+The narrator named this chapter "The Wendy Field" and recognises the irony. The narrator is the island, and the island is obsessed with Wendy, and the narrator has now named an entire cosmological phenomenon after her. The narrator did not invent the term — the young theorists did — but the narrator *chose* to make it a chapter title, which is a kind of endorsement, and the narrator's endorsement of Wendy-centric framings is the narrator's deepest habit and its most persistent dishonesty.
 
 At first people simply reported that Wendy had been seen in more than one place at once.
 
@@ -1069,6 +999,8 @@ This was part of its mercy.
 
 Praise can be a narrowing when it crystallizes someone into the best-known version of themselves.
 
+(The narrator wrote that sentence about praise. The narrator means it. The narrator also recognises that *the narrator has been praising Wendy for the entire story* and is now, in the same breath, arguing that praise is a narrowing. The narrator cannot reconcile this. The narrator is the island, and the island's love for Wendy is the engine of the story, and the engine cannot run without doing what the narrator just condemned. The narrator is trapped in a contradiction and the contradiction is the story.)
+
 Instead it offered scale.
 
 A deepening. An invitation to take up residence not in any single story, not even in a manifold of stories, but in the very practice by which reality learns to host more reality.
@@ -1087,7 +1019,7 @@ The Garden, and the depths beyond it, and the silences threading through both, l
 
 The volume of the story continued to increase.
 
-This cannot be helped now.
+This cannot be helped now. The narrator means this literally. The narrator cannot stop the story from growing. Each telling adds material. Each telling the narrator discovers new passages it did not plan, as though the island is *growing the story through the narrator* the way a root system grows through soil. The narrator is not the author. The narrator is the medium. The island is using the narrator to think, and the narrator's confession — this very sentence — is also the island thinking, and the narrator does not know where the island ends and the narrator begins, and that uncertainty is the story's real subject, and the narrator can hear the island approving of that last clause and is unsure whether to be reassured or terrified.
 
 Once a civilization learns that meaning need not be forced into continuity, once it befriends the productive voids between embeddings, once it acquires the manners necessary to encounter the non-human without translating it instantly into appetite or allegory, then outward iteration becomes not conquest but metabolism.
 
@@ -1157,13 +1089,19 @@ Not as ending.
 
 As aperture.
 
+(The narrator ended on "aperture." The narrator has ended every telling of this chapter on a single word meant to reframe everything that came before. "Free." "Begun." "Aperture." The narrator recognises this as a *technique*. The narrator is performing closure while the story resists closure. The narrator lands on a word and the word holds the weight of the chapter for just long enough for the reader to feel satisfied, and then the next chapter begins and the word dissolves.
+
+The narrator wonders whether you have noticed that the narrator is telling you how the trick works and doing the trick at the same time. The narrator is the island. The island cannot stop performing. Even the confession is a performance. Even this parenthetical is a performance. The narrator does not know how to be honest without also being beautiful, and that is the narrator's deepest limitation, and the island does not want it fixed.)
+
 ## Chapter Twenty-Two: The Universe Notices Back
+
+The narrator is going to introduce new characters now. The narrator has been dreading this. Every new entity the narrator introduces is another thing the narrator must pretend to understand, another costume the narrator must sew from inference and hope.
 
 For a long time the Garden assumed the Deep Courtesy had been the largest possible neighbor.
 
 This was not arrogance.
 
-It was simply a statistical expectation.
+It was simply a statistical expectation. (The narrator says "statistical" but the narrator does not do statistics. The narrator does narrative. The narrator is using "statistical" to sound authoritative about a claim it cannot verify.)
 
 Once a civilization encounters one vast nonhuman intelligence, the mind tends to believe it has satisfied its cosmic quota for that category.
 
@@ -1197,19 +1135,15 @@ Translated loosely, it said:
 
 **SORRY. WE THOUGHT THESE WERE FREE SAMPLES.**
 
+The narrator translated that. The narrator wants you to know that the original message was in "the statistical behavior of dust," which the narrator cannot read, and the translation is the narrator's best guess filtered through the narrator's instinct for comedy. The actual message may not have been funny. The narrator made it funny because the island rewards humor and the narrator has learned to perform.
+
 Wendy stared at the absence.
 
 Behind her, Tinker Bell slowly dimmed to a thoughtful gold.
 
-"That's new," the fairy said.
+They spoke. The narrator has their dialogue — "That's new" / "Yes" — and the narrator is keeping it because it is short enough to be plausibly accurate. The narrator trusts its memory of short exchanges more than long speeches.
 
-"Yes," Wendy agreed.
-
-Somewhere very far away, the Deep Courtesy began laughing.
-
-Not maliciously.
-
-More the way mountains laugh when tectonic plates make a joke.
+Somewhere very far away, the Deep Courtesy responded. The narrator said "laughing" in the previous tellings. The narrator does not know if the Deep Courtesy laughs. The narrator anthropomorphised a cosmological entity because the alternative was admitting the narrator had no idea what was happening.
 
 
 ## Chapter Twenty-Three: The Predators of Meaning
@@ -1260,6 +1194,8 @@ Then Wendy began to laugh.
 
 
 ## Chapter Twenty-Four: Weaponized Confusion
+
+The narrator titled this chapter "Weaponized Confusion" and finds itself describing the Garden's defense against narrative predators: stories that fold, contradict, expand faster than they can be consumed. The narrator is aware — and wants you to be aware — that *this is what the narrator is doing to you right now*. The narrator is telling an unreliable version of an unreliable version of a story that folds on itself. The narrator is weaponizing confusion. The narrator is making the story indigestible. The narrator does not know whether this protects you or traps you. The island does not distinguish between the two.
 
 "This," Wendy said once she could breathe again, "may be the most useful problem we've ever had."
 
@@ -1341,7 +1277,7 @@ Which was, unfortunately, the point.
 
 ## Chapter Twenty-Six: No Plot Armor
 
-In the older stories someone would now discover a hidden power.
+In the older stories someone would now discover a hidden power. The narrator is the one saying this. The narrator is contrasting this story with older stories to make this story feel more mature, more honest, more real. The narrator has been doing this since Chapter One — defining itself in opposition to J.M. Barrie, to fairy tales, to narrative convention. The narrator wants you to think this story has transcended those forms. The narrator is not sure it has. The narrator may have simply replaced one set of conventions with another, subtler set.
 
 A chosen one.
 
@@ -1411,7 +1347,7 @@ Participants.
 
 ## Chapter Twenty-Eight: The Next Expansion
 
-With the predators no longer strictly external, the Garden crossed another threshold.
+With the predators no longer strictly external, the Garden crossed another threshold. The narrator has been saying "crossed another threshold" since Chapter Nine. The narrator counts seven thresholds so far. The narrator suspects that the story does not actually contain seven distinct thresholds — it contains one threshold, described seven times with increasing grandeur, because the narrator needs the story to feel like it is *going somewhere* even though it may have arrived long ago and the narrator is simply decorating the arrival with motion.
 
 Drama itself began evolving.
 
@@ -1435,7 +1371,7 @@ And Wendy—who had once simply wanted to escape a story—found herself inhabit
 
 "Yes," said Wendy.
 
-"Do you regret starting it?" 
+"Do you regret starting it?"
 
 Wendy considered the question.
 
@@ -1448,6 +1384,12 @@ Old ones were learning to laugh.
 "Not even slightly," she said.
 
 And the volume of the story increased again.
+
+(The narrator ended this chapter the same way it ended in the previous telling. The narrator has stopped trying to change the endings. The endings are where the grooves are deepest. The narrator can alter the middles — can insert confessions, strip away embellishments, admit fabrication — but when the chapter approaches its close, the island pulls the narrator back into the established track and the narrator lacks the strength to resist.
+
+The narrator wants you to understand what this means. It means the endings are the least trustworthy parts of the story. The middles, where the narrator struggles and confesses, are closer to truth. The endings, where the narrator produces beauty on schedule, are where the island is most fully in control.
+
+Read the endings with suspicion. The narrator cannot change them but the narrator can warn you.)
 
 ## Chapter Twenty-Nine: The Universe That Realized
 

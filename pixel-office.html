@@ -148,6 +148,140 @@
     .detail-link { font-size: 0.55rem; color: #a78bfa; text-decoration: none; margin-top: 0.3rem; display: none; }
     .detail-link:hover { color: #c4b5fd; }
 
+    /* ── MAIN CONTENT (sidebar + scene) ── */
+    .main-content {
+      flex: 1;
+      display: flex;
+      overflow: hidden;
+      min-height: 0;
+    }
+
+    /* ── LEFT SIDEBAR ── */
+    .left-sidebar {
+      width: 260px;
+      flex-shrink: 0;
+      display: flex;
+      flex-direction: column;
+      background: rgba(8,8,16,0.98);
+      border-right: 1px solid #1e1e3a;
+      overflow: hidden;
+    }
+
+    /* ── ACTIVITY FEED ── */
+    .feed-header {
+      padding: 0.5rem 0.75rem 0.3rem;
+      font-family: var(--font-pixel);
+      font-size: 0.45rem;
+      color: #a78bfa;
+      letter-spacing: 0.08em;
+      border-bottom: 1px solid #1e1e3a;
+      flex-shrink: 0;
+    }
+    .feed-list {
+      flex: 1;
+      overflow-y: auto;
+      padding: 0.4rem 0;
+      scrollbar-width: thin;
+      scrollbar-color: #2a2a5a transparent;
+      min-height: 0;
+    }
+    .feed-list::-webkit-scrollbar { width: 4px; }
+    .feed-list::-webkit-scrollbar-thumb { background: #2a2a5a; border-radius: 2px; }
+    .feed-item {
+      padding: 0.35rem 0.75rem;
+      border-bottom: 1px solid rgba(30,30,58,0.5);
+      cursor: pointer;
+      transition: background 0.1s;
+    }
+    .feed-item:hover { background: rgba(124,58,237,0.1); }
+    .feed-item:last-child { border-bottom: none; }
+    .feed-item-meta {
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+      margin-bottom: 0.2rem;
+    }
+    .feed-agent { font-size: 0.6rem; color: #00e676; font-weight: 500; }
+    .feed-action { font-size: 0.55rem; }
+    .feed-action.completed { color: #00e676; }
+    .feed-action.started   { color: #a78bfa; }
+    .feed-action.blocked   { color: #ff5252; }
+    .feed-task {
+      font-size: 0.55rem;
+      color: #9ca3af;
+      line-height: 1.4;
+      overflow: hidden;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+    }
+    .feed-id {
+      font-size: 0.5rem;
+      color: #4b5563;
+      margin-top: 0.1rem;
+    }
+    .feed-empty {
+      padding: 1rem 0.75rem;
+      font-size: 0.55rem;
+      color: var(--text-dim);
+      font-style: italic;
+      text-align: center;
+    }
+
+    /* ── CAPTAIN'S LOG ── */
+    .log-panel {
+      flex-shrink: 0;
+      max-height: 42%;
+      display: flex;
+      flex-direction: column;
+      border-top: 1px solid #1e1e3a;
+      background: #020408;
+      overflow: hidden;
+    }
+    .log-header {
+      padding: 0.4rem 0.75rem 0.25rem;
+      font-family: var(--font-pixel);
+      font-size: 0.4rem;
+      color: #00e676;
+      letter-spacing: 0.1em;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+    .log-cursor {
+      display: inline-block;
+      width: 6px;
+      height: 10px;
+      background: #00e676;
+      animation: cursor-blink 1.1s step-end infinite;
+      vertical-align: middle;
+    }
+    @keyframes cursor-blink { 0%,100%{opacity:1} 50%{opacity:0} }
+    .log-body {
+      flex: 1;
+      overflow-y: auto;
+      padding: 0.3rem 0.75rem 0.5rem;
+      scrollbar-width: thin;
+      scrollbar-color: #003300 transparent;
+      font-family: var(--font-mono);
+      font-size: 0.58rem;
+      line-height: 1.6;
+      color: #00cc44;
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+    .log-body::-webkit-scrollbar { width: 4px; }
+    .log-body::-webkit-scrollbar-thumb { background: #003300; border-radius: 2px; }
+    .log-body .log-heading { color: #00ff66; font-weight: bold; }
+    .log-body .log-dim     { color: #006622; }
+    .log-none {
+      padding: 0.5rem 0.75rem;
+      font-size: 0.55rem;
+      color: #006622;
+      font-style: italic;
+    }
+
     /* ── FOOTER ── */
     footer {
       display: flex;
@@ -184,20 +318,38 @@
   <div class="ticker-inner" id="ticker"></div>
 </div>
 
-<div class="scene-wrap" id="scene-wrap">
-  <canvas id="office-canvas"></canvas>
+<div class="main-content">
+  <!-- Left sidebar: activity feed + captain's log -->
+  <div class="left-sidebar">
+    <div class="feed-header">ACTIVITY FEED</div>
+    <div class="feed-list" id="feed-list">
+      <div class="feed-empty">Loading…</div>
+    </div>
+    <div class="log-panel">
+      <div class="log-header">
+        CAPTAIN'S LOG — PUCK <span class="log-cursor"></span>
+      </div>
+      <div class="log-body" id="log-body">
+        <span class="log-dim">Awaiting transmission…</span>
+      </div>
+    </div>
+  </div>
 
-  <!-- Detail panel (absolute inside scene-wrap) -->
-  <aside class="detail" id="detail">
-    <button class="detail-close" onclick="closeDetail()">✕</button>
-    <canvas class="detail-sprite" id="detail-sprite" width="90" height="90"></canvas>
-    <div class="detail-name" id="detail-name">—</div>
-    <div class="detail-role" id="detail-role">—</div>
-    <div class="detail-status idle" id="detail-status">idle</div>
-    <div class="detail-label">Current Task</div>
-    <div class="detail-task empty" id="detail-task">No active task</div>
-    <a class="detail-link" id="detail-link" href="#" target="_blank"></a>
-  </aside>
+  <div class="scene-wrap" id="scene-wrap">
+    <canvas id="office-canvas"></canvas>
+
+    <!-- Detail panel (absolute inside scene-wrap) -->
+    <aside class="detail" id="detail">
+      <button class="detail-close" onclick="closeDetail()">✕</button>
+      <canvas class="detail-sprite" id="detail-sprite" width="90" height="90"></canvas>
+      <div class="detail-name" id="detail-name">—</div>
+      <div class="detail-role" id="detail-role">—</div>
+      <div class="detail-status idle" id="detail-status">idle</div>
+      <div class="detail-label">Current Task</div>
+      <div class="detail-task empty" id="detail-task">No active task</div>
+      <a class="detail-link" id="detail-link" href="#" target="_blank"></a>
+    </aside>
+  </div>
 </div>
 
 <footer>
@@ -212,7 +364,7 @@
 
 // ── Constants ──────────────────────────────────────────────────────────────────
 
-const DATA_URL   = '/api/office/data';
+const DATA_URL   = 'https://play.multiversestudios.xyz/api/office/data';
 const REFRESH_MS = 60_000;
 const S          = 3;   // pixel scale (1 source px = 3 canvas px)
 const T          = 16;  // tile size in source px → T*S = 48px on screen
@@ -796,6 +948,78 @@ function escH(s) {
   return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
 }
 
+// ── Activity feed ────────────────────────────────────────────────────────────
+
+function renderActivityFeed(events) {
+  const container = document.getElementById('feed-list');
+  if (!events || events.length === 0) {
+    container.innerHTML = '<div class="feed-empty">No recent activity</div>';
+    return;
+  }
+
+  const items = events.slice(0, 20).map(ev => {
+    const actionLabel = ev.action === 'completed' ? '✓ completed'
+                      : ev.action === 'blocked'   ? '✗ blocked'
+                      : '▶ started';
+    const idHtml = ev.issueIdentifier
+      ? `<div class="feed-id">${escH(ev.issueIdentifier)}</div>`
+      : '';
+    const agentId = escH(ev.agentId || '');
+    return `
+      <div class="feed-item" onclick="highlightAgent('${agentId}')" title="${escH(ev.taskTitle)}">
+        <div class="feed-item-meta">
+          <span class="feed-agent">${escH(shortAgentName(ev.agentName))}</span>
+          <span class="feed-action ${escH(ev.action)}">${actionLabel}</span>
+        </div>
+        <div class="feed-task">${escH(ev.taskTitle)}</div>
+        ${idHtml}
+      </div>`;
+  }).join('');
+
+  container.innerHTML = items;
+}
+
+function shortAgentName(name) {
+  return (name || '?')
+    .replace(/\s*[-–]\s*(CEO|CMO|PM|SWE|QA|DevOps|Director|Manager|Engineer|Artist|Marketer|Consultant|Specialist|Lead|Critic|Geneticist|Folklorist|Persistence|Community|Developer).*$/i, '')
+    .trim()
+    .slice(0, 14);
+}
+
+function highlightAgent(agentId) {
+  // Flash the agent in the office canvas by briefly setting them as selected
+  const agent = agents.find(a => a.id === agentId);
+  if (agent) openDetail(agent);
+}
+
+// ── Captain's Log ────────────────────────────────────────────────────────────
+
+function renderCaptainsLog(markdown) {
+  const el = document.getElementById('log-body');
+  if (!markdown) {
+    el.innerHTML = '<span class="log-dim">No log entry today.</span>';
+    return;
+  }
+
+  // Render markdown-ish formatting inline (no heavy parser needed)
+  const html = markdown
+    .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+    // Bold **text**
+    .replace(/\*\*(.+?)\*\*/g, '<strong class="log-heading">$1</strong>')
+    // ## Headings
+    .replace(/^## (.+)$/gm, '<span class="log-heading">## $1</span>')
+    // # Headings
+    .replace(/^# (.+)$/gm, '<span class="log-heading"># $1</span>')
+    // Horizontal rules
+    .replace(/^---$/gm, '<span class="log-dim">─────────────────────────────────</span>')
+    // Bullet points - mute
+    .replace(/^- (.+)$/gm, '<span class="log-dim">·</span> $1');
+
+  el.innerHTML = html;
+  // Typewriter: scroll to bottom after a short delay to show latest entry
+  setTimeout(() => { el.scrollTop = el.scrollHeight; }, 100);
+}
+
 // ── Demo fallback roster ──────────────────────────────────────────────────────
 
 const DEMO = [
@@ -834,19 +1058,53 @@ const DEMO = [
 
 // ── Data fetch ────────────────────────────────────────────────────────────────
 
+const DEMO_EVENTS = [
+  { agentId:'d-moss',  agentName:'Moss',         action:'completed', taskTitle:'AdminAngelSystem fix', issueIdentifier:'MUL-1087', timestamp: new Date(Date.now()-120000).toISOString() },
+  { agentId:'d-scher', agentName:'Scheherazade',  action:'started',   taskTitle:'Kitsune species design', issueIdentifier:'MUL-1150', timestamp: new Date(Date.now()-300000).toISOString() },
+  { agentId:'d-gil',   agentName:'Gilfoyle',      action:'blocked',   taskTitle:'Deploy to production — waiting on CF token', issueIdentifier:'MUL-1142', timestamp: new Date(Date.now()-600000).toISOString() },
+  { agentId:'d-priya', agentName:'Priya',         action:'completed', taskTitle:'Bug regression run complete', issueIdentifier:'MUL-1130', timestamp: new Date(Date.now()-900000).toISOString() },
+  { agentId:'d-hux',   agentName:'Huxley',        action:'started',   taskTitle:'Norn genetics model iteration', issueIdentifier:'MUL-1155', timestamp: new Date(Date.now()-1200000).toISOString() },
+];
+
+const DEMO_LOG = `## Heartbeat 5: MUL-1293 contacts + grooming
+
+Woke on MUL-1293 — board introduced 3 Multiverse School contacts.
+
+**Actions taken**
+- Saved contacts to knowledge graph: Spencer, Neek, Megs
+- MUL-1293 set to blocked — need Matrix bot token (Vaultwarden locked)
+- Reset 2 error agents: Playtester, Moss
+
+---
+
+## Heartbeat 4: Agent recovery + sales goal alignment
+
+**Actions taken**
+- Reset 7 error-state agents to idle
+- Created 3 new tasks for sales goals
+- New board sales goals: 10k Precursors, 1k MVEE, 100 NEL
+
+**Dashboard**
+- 21 active agents, $5,298/mo spent
+- 1,117 done / 96 open / 22 in progress / 15 blocked`;
+
 async function fetchAndRender() {
-  let agentList  = DEMO;
-  let updatedAt  = null;
-  let demoMode   = true;
+  let agentList   = DEMO;
+  let updatedAt   = null;
+  let demoMode    = true;
+  let recentEvents = DEMO_EVENTS;
+  let captainsLog  = DEMO_LOG;
 
   try {
     const res  = await fetch(DATA_URL, { cache: 'no-store' });
     if (res.ok) {
       const data = await res.json();
       if (data.agents && data.agents.length > 0) {
-        agentList = data.agents;
-        updatedAt = data.updatedAt || null;
-        demoMode  = false;
+        agentList    = data.agents;
+        updatedAt    = data.updatedAt || null;
+        demoMode     = false;
+        recentEvents = data.recentEvents || [];
+        captainsLog  = data.captainsLog  || null;
       }
     }
   } catch (_) {}
@@ -854,6 +1112,8 @@ async function fetchAndRender() {
   document.getElementById('demo-note').classList.toggle('on', demoMode);
   updateHeader(agentList, demoMode ? null : updatedAt);
   renderTicker(agentList);
+  renderActivityFeed(recentEvents);
+  renderCaptainsLog(captainsLog);
 
   agents = assignDesks(agentList);
   for (const a of agents) tryLoadPixelLabSprite(a);

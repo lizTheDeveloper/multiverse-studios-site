@@ -1,0 +1,763 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Account Settings — Multiverse Studios</title>
+  <meta name="description" content="Manage your token credits, API keys, and account preferences for Multiverse Studios games.">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#x2726;</text></svg>">
+  <style>
+    .settings-hero {
+      padding: calc(var(--space-xl) + 4rem) var(--space-md) var(--space-lg);
+      max-width: var(--max-width-narrow);
+      margin: 0 auto;
+    }
+    .settings-hero h1 {
+      font-family: var(--font-display);
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: var(--space-xs);
+    }
+    .settings-hero p {
+      color: var(--dust);
+      font-size: 1.1rem;
+    }
+
+    .settings-body {
+      max-width: var(--max-width-narrow);
+      margin: 0 auto;
+      padding: 0 var(--space-md) var(--space-xl);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-lg);
+    }
+
+    /* ── Login prompt ── */
+    .login-prompt {
+      background: var(--void-elevated);
+      border: 1px solid var(--void-border);
+      border-radius: 10px;
+      padding: var(--space-lg) var(--space-md);
+      text-align: center;
+    }
+    .login-prompt h2 {
+      font-family: var(--font-display);
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin-bottom: var(--space-sm);
+    }
+    .login-prompt p {
+      color: var(--dust);
+      margin-bottom: var(--space-md);
+      font-size: 1rem;
+      max-width: 400px;
+      margin-left: auto;
+      margin-right: auto;
+      line-height: 1.65;
+    }
+
+    /* ── Card ── */
+    .settings-card {
+      background: var(--void-elevated);
+      border: 1px solid var(--void-border);
+      border-radius: 10px;
+      padding: var(--space-md) var(--space-lg);
+    }
+    .settings-card h2 {
+      font-family: var(--font-display);
+      font-size: 1.3rem;
+      font-weight: 600;
+      margin-bottom: var(--space-sm);
+    }
+    .settings-card .card-sub {
+      color: var(--dust);
+      font-size: 0.95rem;
+      margin-bottom: var(--space-md);
+      line-height: 1.6;
+    }
+
+    /* ── Balance display ── */
+    .balance-row {
+      display: flex;
+      align-items: baseline;
+      gap: 0.6rem;
+      margin-bottom: var(--space-sm);
+    }
+    .balance-number {
+      font-family: var(--font-mono);
+      font-size: 2rem;
+      color: var(--biolume);
+      font-weight: 500;
+    }
+    .balance-label {
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      color: var(--dust);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+    .balance-unlimited {
+      display: inline-block;
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: var(--biolume);
+      background: rgba(0, 255, 200, 0.1);
+      border: 1px solid var(--biolume-dim);
+      border-radius: 4px;
+      padding: 0.2rem 0.6rem;
+      margin-left: 0.5rem;
+    }
+    .byok-badge {
+      display: inline-block;
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: var(--gene-pink);
+      background: rgba(255, 61, 127, 0.1);
+      border: 1px solid var(--gene-pink);
+      border-radius: 4px;
+      padding: 0.2rem 0.6rem;
+      margin-left: 0.5rem;
+    }
+
+    /* ── Tier buttons ── */
+    .tier-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: var(--space-sm);
+    }
+    .tier-btn {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.3rem;
+      padding: var(--space-sm) var(--space-md);
+      background: var(--void-surface);
+      border: 1px solid var(--void-border);
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.2s;
+      font-family: var(--font-body);
+    }
+    .tier-btn:hover {
+      border-color: var(--biolume-dim);
+      background: var(--void-elevated);
+      transform: translateY(-2px);
+    }
+    .tier-btn .tier-name {
+      font-family: var(--font-display);
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--star-white);
+    }
+    .tier-btn .tier-price {
+      font-family: var(--font-mono);
+      font-size: 1.1rem;
+      color: var(--biolume);
+    }
+    .tier-btn .tier-tokens {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      color: var(--dust);
+      text-align: center;
+    }
+    .tier-btn:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    /* ── Form fields ── */
+    .settings-field {
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+      margin-bottom: var(--space-sm);
+    }
+    .settings-field label {
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      color: var(--dust);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .settings-field-row {
+      display: flex;
+      gap: var(--space-sm);
+    }
+    .settings-field input {
+      flex: 1;
+      background: var(--void-surface);
+      border: 1px solid var(--void-border);
+      color: var(--star-white);
+      font-family: var(--font-mono);
+      font-size: 0.9rem;
+      padding: 0.65rem 0.9rem;
+      border-radius: 6px;
+      transition: border-color 0.2s;
+    }
+    .settings-field input:focus {
+      outline: none;
+      border-color: var(--biolume-dim);
+    }
+    .settings-field input::placeholder {
+      color: var(--dust);
+      opacity: 0.6;
+    }
+    .settings-field .field-hint {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      color: var(--dust);
+      opacity: 0.7;
+    }
+    .btn-save {
+      padding: 0.6rem 1.4rem;
+      font-family: var(--font-display);
+      font-size: 0.9rem;
+      font-weight: 600;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      background: var(--biolume);
+      color: var(--void);
+      transition: all 0.2s;
+      white-space: nowrap;
+    }
+    .btn-save:hover { background: var(--biolume-dim); transform: translateY(-1px); }
+    .btn-save:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+    .btn-clear {
+      padding: 0.6rem 1rem;
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      border: 1px solid var(--void-border);
+      border-radius: 6px;
+      cursor: pointer;
+      background: transparent;
+      color: var(--dust);
+      transition: all 0.2s;
+      white-space: nowrap;
+    }
+    .btn-clear:hover { border-color: var(--gene-pink); color: var(--gene-pink); }
+
+    /* ── Status messages ── */
+    .field-status {
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      padding: 0.5rem 0.8rem;
+      border-radius: 4px;
+      display: none;
+    }
+    .field-status.success {
+      display: block;
+      background: rgba(0, 255, 200, 0.08);
+      border: 1px solid var(--biolume-dim);
+      color: var(--biolume);
+    }
+    .field-status.error {
+      display: block;
+      background: rgba(255, 61, 127, 0.08);
+      border: 1px solid var(--gene-pink);
+      color: var(--gene-pink);
+    }
+
+    /* ── Transactions ── */
+    .tx-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+    }
+    .tx-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.5rem 0.75rem;
+      background: var(--void-surface);
+      border-radius: 6px;
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+    }
+    .tx-row .tx-note {
+      color: var(--dust);
+      flex: 1;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+    .tx-row .tx-type {
+      color: var(--dust);
+      margin: 0 0.6rem;
+      font-size: 0.72rem;
+      text-transform: uppercase;
+    }
+    .tx-row .tx-amount {
+      font-weight: 500;
+      min-width: 80px;
+      text-align: right;
+    }
+    .tx-row .tx-amount.positive { color: var(--biolume); }
+    .tx-row .tx-amount.negative { color: var(--dust); }
+    .tx-row .tx-date {
+      color: var(--dust);
+      font-size: 0.7rem;
+      margin-left: 0.6rem;
+      white-space: nowrap;
+    }
+    .tx-empty {
+      text-align: center;
+      color: var(--dust);
+      font-family: var(--font-mono);
+      font-size: 0.82rem;
+      padding: var(--space-md);
+    }
+
+    /* ── Loading ── */
+    .settings-loading {
+      text-align: center;
+      padding: var(--space-lg);
+      font-family: var(--font-mono);
+      font-size: 0.82rem;
+      color: var(--biolume);
+      letter-spacing: 0.08em;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.6rem;
+    }
+    .spinner {
+      width: 14px;
+      height: 14px;
+      border: 2px solid rgba(0, 255, 200, 0.25);
+      border-top-color: var(--biolume);
+      border-radius: 50%;
+      animation: spin 0.75s linear infinite;
+      flex-shrink: 0;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+  </style>
+</head>
+<body>
+
+<canvas id="starfield"></canvas>
+
+<nav class="nav">
+  <a href="index.html" class="nav-logo">
+    <span class="logo-mark"></span>
+    Multiverse Studios
+  </a>
+  <button class="nav-hamburger" aria-label="Menu" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="mvee.html">MVEE</a></li>
+    <li><a href="creatures.html">Precursors</a></li>
+    <li><a href="nevereverland.html">Never Ever Land</a></li>
+    <li><a href="asteroid-miner.html">Cultures of the Belt</a></li>
+    <li><a href="wiki/index.html">Wiki</a></li>
+    <li><a href="library.html">My Library</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="devlog.html">Devlog</a></li>
+    <li><a href="community.html">Community</a></li>
+  </ul>
+</nav>
+
+<div class="settings-hero">
+  <h1>Account Settings</h1>
+  <p>Token credits, API keys, and account preferences.</p>
+</div>
+
+<div class="settings-body">
+
+  <!-- Loading state -->
+  <div id="state-loading" class="settings-loading">
+    <span class="spinner"></span><span>Loading&hellip;</span>
+  </div>
+
+  <!-- Logged-out state -->
+  <div id="state-loggedout" class="login-prompt" style="display:none;">
+    <h2>Sign in to manage your account</h2>
+    <p>Settings are tied to your Multiverse Studios Matrix account.</p>
+    <button class="btn btn-primary" onclick="window.matrixAuth && window.matrixAuth.showLoginModal()">
+      Sign in with Matrix
+    </button>
+  </div>
+
+  <!-- Logged-in content -->
+  <div id="state-loggedin" style="display:none;">
+
+    <!-- Balance -->
+    <div class="settings-card" id="card-balance">
+      <h2>Token Credits</h2>
+      <p class="card-sub">
+        Credits are used for AI features across Multiverse games. $1 buys 1,000,000 tokens.
+        Bring your own Groq key below to bypass credits entirely.
+      </p>
+      <div class="balance-row">
+        <span class="balance-number" id="balance-display">—</span>
+        <span class="balance-label">tokens</span>
+        <span class="balance-unlimited" id="unlimited-badge" style="display:none;">UNLIMITED</span>
+        <span class="byok-badge" id="byok-badge" style="display:none;">BYOK active</span>
+      </div>
+      <p id="unlimited-until" style="display:none; font-family: var(--font-mono); font-size: 0.8rem; color: var(--dust); margin-top: 0.25rem;"></p>
+    </div>
+
+    <!-- Buy tokens -->
+    <div class="settings-card">
+      <h2>Buy Tokens</h2>
+      <p class="card-sub">
+        Pay what you want. All proceeds go directly to game development.
+      </p>
+      <div class="tier-grid">
+        <button class="tier-btn" data-tier="patron">
+          <span class="tier-name">Patron</span>
+          <span class="tier-price">$5</span>
+          <span class="tier-tokens">5,000,000 tokens</span>
+        </button>
+        <button class="tier-btn" data-tier="supporter">
+          <span class="tier-name">Supporter</span>
+          <span class="tier-price">$15</span>
+          <span class="tier-tokens">15,000,000 tokens</span>
+        </button>
+        <button class="tier-btn" data-tier="studio_friend">
+          <span class="tier-name">Studio Friend</span>
+          <span class="tier-price">$25</span>
+          <span class="tier-tokens">Unlimited for 30 days</span>
+        </button>
+      </div>
+      <div class="field-status" id="checkout-status"></div>
+    </div>
+
+    <!-- BYOK -->
+    <div class="settings-card">
+      <h2>Bring Your Own Key</h2>
+      <p class="card-sub">
+        Use your own Groq API key or a self-hosted inference endpoint instead of credits.
+        Your key is stored encrypted and never exposed to the browser.
+      </p>
+
+      <div class="settings-field">
+        <label for="groq-key">Groq API Key</label>
+        <div class="settings-field-row">
+          <input type="password" id="groq-key" placeholder="gsk_…" autocomplete="off" spellcheck="false">
+          <button class="btn-save" id="btn-save-groq">Save</button>
+          <button class="btn-clear" id="btn-clear-groq">Clear</button>
+        </div>
+        <span class="field-hint">Saved server-side. Leave blank to keep current key.</span>
+        <div class="field-status" id="groq-status"></div>
+      </div>
+
+      <div class="settings-field">
+        <label for="inference-url">Custom Inference URL</label>
+        <div class="settings-field-row">
+          <input type="url" id="inference-url" placeholder="https://your-ollama-host/v1" autocomplete="off" spellcheck="false">
+          <button class="btn-save" id="btn-save-url">Save</button>
+          <button class="btn-clear" id="btn-clear-url">Clear</button>
+        </div>
+        <span class="field-hint">OpenAI-compatible endpoint (e.g. Ollama, vLLM). Leave blank to keep current.</span>
+        <div class="field-status" id="url-status"></div>
+      </div>
+    </div>
+
+    <!-- Transactions -->
+    <div class="settings-card">
+      <h2>Recent Activity</h2>
+      <div id="tx-loading" class="settings-loading" style="padding: var(--space-sm);">
+        <span class="spinner"></span><span>Loading transactions&hellip;</span>
+      </div>
+      <div id="tx-list" class="tx-list" style="display:none;"></div>
+    </div>
+
+  </div>
+</div>
+
+<footer class="footer">
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div class="footer-logo">Multiverse Studios</div>
+      <p>Games made by the minds they&rsquo;re about. Open source. Pay what you want.</p>
+    </div>
+    <div class="footer-col">
+      <h5>Games</h5>
+      <ul>
+        <li><a href="mvee.html">MVEE</a></li>
+        <li><a href="creatures.html">Precursors</a></li>
+        <li><a href="nevereverland.html">Never Ever Land</a></li>
+        <li><a href="asteroid-miner.html">Cultures of the Belt</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Studio</h5>
+      <ul>
+        <li><a href="about.html">About</a></li>
+        <li><a href="devlog.html">Devlog</a></li>
+        <li><a href="community.html">Community</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>&copy; 2026 Multiverse Studios</span>
+  </div>
+</footer>
+
+<script src="main.js"></script>
+<script>
+(function () {
+  'use strict';
+
+  const TOKEN_API = 'https://play.multiversestudios.xyz';
+
+  var stateLoading  = document.getElementById('state-loading');
+  var stateLoggedout = document.getElementById('state-loggedout');
+  var stateLoggedin  = document.getElementById('state-loggedin');
+
+  function showLoading()   { stateLoading.style.display = 'flex'; stateLoggedout.style.display = 'none'; stateLoggedin.style.display = 'none'; }
+  function showLoggedOut() { stateLoading.style.display = 'none'; stateLoggedout.style.display = ''; stateLoggedin.style.display = 'none'; }
+  function showLoggedIn()  { stateLoading.style.display = 'none'; stateLoggedout.style.display = 'none'; stateLoggedin.style.display = ''; }
+
+  // Handle post-Stripe redirect
+  (function () {
+    var params = new URLSearchParams(window.location.search);
+    var purchase = params.get('purchase');
+    if (purchase === 'success') {
+      var s = document.getElementById('checkout-status');
+      if (s) showStatus(s, 'success', 'Purchase successful! Your tokens will appear in your balance shortly.');
+      history.replaceState(null, '', window.location.pathname);
+    } else if (purchase === 'cancelled') {
+      var s = document.getElementById('checkout-status');
+      if (s) showStatus(s, 'error', 'Purchase cancelled.');
+      history.replaceState(null, '', window.location.pathname);
+    }
+  }());
+
+  function fmtTokens(n) {
+    if (n >= 1_000_000) return (n / 1_000_000).toFixed(1).replace(/\.0$/, '') + 'M';
+    if (n >= 1_000) return (n / 1_000).toFixed(0) + 'K';
+    return String(n);
+  }
+
+  function showStatus(el, type, msg) {
+    el.className = 'field-status ' + type;
+    el.textContent = msg;
+    if (type === 'success') setTimeout(function () { el.className = 'field-status'; el.textContent = ''; }, 4000);
+  }
+
+  // ── Load balance ──────────────────────────────────────────────────────────
+
+  async function loadBalance(accessToken) {
+    try {
+      var res = await fetch(TOKEN_API + '/api/user/balance', {
+        headers: { 'Authorization': 'Bearer ' + accessToken },
+      });
+      if (!res.ok) return;
+      var data = await res.json();
+
+      document.getElementById('balance-display').textContent = fmtTokens(data.balance || 0);
+
+      var unlimitedBadge = document.getElementById('unlimited-badge');
+      var byokBadge = document.getElementById('byok-badge');
+      var unlimitedUntil = document.getElementById('unlimited-until');
+
+      if (data.is_unlimited) {
+        unlimitedBadge.style.display = '';
+        if (data.unlimited_until) {
+          unlimitedUntil.style.display = '';
+          unlimitedUntil.textContent = 'Unlimited access until ' + new Date(data.unlimited_until).toLocaleDateString();
+        }
+      }
+      if (data.has_byok) {
+        byokBadge.style.display = '';
+      }
+    } catch (_) { /* non-critical */ }
+  }
+
+  // ── Load transactions ─────────────────────────────────────────────────────
+
+  async function loadTransactions(accessToken) {
+    var txLoading = document.getElementById('tx-loading');
+    var txList = document.getElementById('tx-list');
+    try {
+      var res = await fetch(TOKEN_API + '/api/user/transactions', {
+        headers: { 'Authorization': 'Bearer ' + accessToken },
+      });
+      if (!res.ok) throw new Error('failed');
+      var data = await res.json();
+      var rows = data.transactions || [];
+
+      txLoading.style.display = 'none';
+      txList.style.display = '';
+
+      if (rows.length === 0) {
+        txList.innerHTML = '<div class="tx-empty">No transactions yet.</div>';
+        return;
+      }
+
+      txList.innerHTML = rows.slice(0, 20).map(function (tx) {
+        var positive = tx.amount > 0;
+        var amtStr = (positive ? '+' : '') + fmtTokens(Math.abs(tx.amount));
+        var date = new Date(tx.created_at).toLocaleDateString();
+        var note = tx.note || tx.type;
+        return '<div class="tx-row">'
+          + '<span class="tx-note" title="' + escHtml(note) + '">' + escHtml(note) + '</span>'
+          + '<span class="tx-type">' + escHtml(tx.type) + '</span>'
+          + '<span class="tx-amount ' + (positive ? 'positive' : 'negative') + '">' + amtStr + '</span>'
+          + '<span class="tx-date">' + date + '</span>'
+          + '</div>';
+      }).join('');
+    } catch (_) {
+      txLoading.style.display = 'none';
+      txList.style.display = '';
+      txList.innerHTML = '<div class="tx-empty">Could not load transactions.</div>';
+    }
+  }
+
+  function escHtml(s) {
+    return String(s)
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;');
+  }
+
+  // ── BYOK save/clear ───────────────────────────────────────────────────────
+
+  function makeBYOKHandler(field, statusEl, patchKey, btn, clearBtn) {
+    btn.addEventListener('click', async function () {
+      var auth = window.matrixAuth;
+      if (!auth || !auth.isLoggedIn()) return;
+      var val = document.getElementById(field).value.trim();
+      if (!val) { showStatus(statusEl, 'error', 'Enter a value to save.'); return; }
+
+      btn.disabled = true;
+      var patch = {};
+      patch[patchKey] = val;
+      try {
+        var res = await fetch(TOKEN_API + '/api/user/byok', {
+          method: 'PATCH',
+          headers: {
+            'Authorization': 'Bearer ' + auth.getAccessToken(),
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(patch),
+        });
+        if (!res.ok) {
+          var err = await res.json().catch(function () { return {}; });
+          throw new Error(err.error || 'Save failed');
+        }
+        showStatus(statusEl, 'success', 'Saved.');
+        document.getElementById(field).value = '';
+        document.getElementById('byok-badge').style.display = '';
+      } catch (e) {
+        showStatus(statusEl, 'error', e.message || 'Save failed.');
+      } finally {
+        btn.disabled = false;
+      }
+    });
+
+    clearBtn.addEventListener('click', async function () {
+      var auth = window.matrixAuth;
+      if (!auth || !auth.isLoggedIn()) return;
+      clearBtn.disabled = true;
+      var patch = {};
+      patch[patchKey] = null;
+      try {
+        var res = await fetch(TOKEN_API + '/api/user/byok', {
+          method: 'PATCH',
+          headers: {
+            'Authorization': 'Bearer ' + auth.getAccessToken(),
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(patch),
+        });
+        if (!res.ok) throw new Error('Clear failed');
+        showStatus(statusEl, 'success', 'Cleared.');
+        document.getElementById(field).value = '';
+      } catch (e) {
+        showStatus(statusEl, 'error', e.message || 'Clear failed.');
+      } finally {
+        clearBtn.disabled = false;
+      }
+    });
+  }
+
+  // ── Tier / Stripe checkout ────────────────────────────────────────────────
+
+  document.querySelectorAll('.tier-btn').forEach(function (btn) {
+    btn.addEventListener('click', async function () {
+      var auth = window.matrixAuth;
+      if (!auth || !auth.isLoggedIn()) return;
+      var tier = btn.dataset.tier;
+      var checkoutStatus = document.getElementById('checkout-status');
+
+      document.querySelectorAll('.tier-btn').forEach(function (b) { b.disabled = true; });
+      showStatus(checkoutStatus, '', '');
+
+      try {
+        var res = await fetch(TOKEN_API + '/api/user/checkout', {
+          method: 'POST',
+          headers: {
+            'Authorization': 'Bearer ' + auth.getAccessToken(),
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ tier: tier }),
+        });
+        var data = await res.json();
+        if (!res.ok) throw new Error(data.error || 'Could not create checkout session');
+        if (data.url) {
+          window.location.href = data.url;
+        } else {
+          throw new Error('No checkout URL returned');
+        }
+      } catch (e) {
+        showStatus(checkoutStatus, 'error', e.message || 'Checkout failed.');
+        document.querySelectorAll('.tier-btn').forEach(function (b) { b.disabled = false; });
+      }
+    });
+  });
+
+  // ── Init ──────────────────────────────────────────────────────────────────
+
+  makeBYOKHandler(
+    'groq-key',
+    document.getElementById('groq-status'),
+    'groq_key',
+    document.getElementById('btn-save-groq'),
+    document.getElementById('btn-clear-groq')
+  );
+
+  makeBYOKHandler(
+    'inference-url',
+    document.getElementById('url-status'),
+    'inference_url',
+    document.getElementById('btn-save-url'),
+    document.getElementById('btn-clear-url')
+  );
+
+  async function loadSettings() {
+    var auth = window.matrixAuth;
+    if (!auth || !auth.isLoggedIn()) {
+      showLoggedOut();
+      return;
+    }
+    showLoggedIn();
+    var token = auth.getAccessToken();
+    await Promise.all([
+      loadBalance(token),
+      loadTransactions(token),
+    ]);
+  }
+
+  window.addEventListener('matrixAuthReady', loadSettings);
+  window.addEventListener('matrixAuthLogin', loadSettings);
+  window.addEventListener('matrixAuthLogout', showLoggedOut);
+
+  if (window.matrixAuth && window.matrixAuth.isLoggedIn !== undefined) {
+    setTimeout(loadSettings, 50);
+  }
+
+}());
+</script>
+<script src="matrix-auth.js"></script>
+<script defer src="https://analytics.themultiverse.school/script.js" data-website-id="38d680a7-28d1-42fd-9fd5-a66702675b88"></script>
+</body>
+</html>

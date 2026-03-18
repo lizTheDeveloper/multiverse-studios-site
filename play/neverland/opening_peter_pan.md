@@ -1430,7 +1430,3 @@ Then all went on their knees, and holding out their arms cried, “O Wendy lady,
 “Very well,” she said, “I will do my best. Come inside at once, you naughty children; I am sure your feet are damp. And before I put you to bed I have just time to finish the story of Cinderella.”
 
 In they went; I don’t know how there was room for them, but you can squeeze very tight in the Neverland. And that was the first of the many joyous evenings they had with Wendy. By and by she tucked them up in the great bed in the home under the trees, but she herself slept that night in the little house, and Peter kept watch outside with drawn sword, for the pirates could be heard carousing far away and the wolves were on the prowl. The little house looked so cosy and safe in the darkness, with a bright light showing through its blinds, and the chimney smoking beautifully, and Peter standing on guard. After a time he fell asleep, and some unsteady fairies had to climb over him on their way home from an orgy. Any of the other boys obstructing the fairy path at night they would have mischiefed, but they just tweaked Peter’s nose and passed on.
-
----
-
-Source: [Project Gutenberg, `Peter and Wendy`](https://www.gutenberg.org/files/16/16-h/16-h.htm)

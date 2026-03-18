@@ -13,7 +13,7 @@ Work through each section. For each item, mark it as:
 - ❌ **Broken** — describe what happens instead
 - ⚠️ **Partially works** — note what's wrong
 
-File bugs at [GitHub Issues](https://github.com/lizTheDeveloper/asteroid-miner/issues) with the spec item number (e.g. `T-3`, `M-7`).
+File bugs via the [feedback form](https://multiversestudios.xyz/feedback.html?type=bug) with the spec item number (e.g. `T-3`, `M-7`).
 
 ---
 
@@ -177,7 +177,7 @@ These are confirmed bugs we're already tracking — no need to re-file:
 
 ## Filing Bugs
 
-**GitHub Issues:** [github.com/lizTheDeveloper/asteroid-miner/issues](https://github.com/lizTheDeveloper/asteroid-miner/issues)
+**Feedback Form:** [multiversestudios.xyz/feedback.html?type=bug](https://multiversestudios.xyz/feedback.html?type=bug)
 
 **Good bug report includes:**
 1. Spec item number (e.g. "T-3")

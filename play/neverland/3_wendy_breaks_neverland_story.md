@@ -334,11 +334,13 @@ She had always been meant to design the universe instead.
 
 For a long time Wendy believed she was finished.
 
+(The narrator has said this before. In an earlier telling it was "a long time." Now the narrator is less certain of the duration. It may have been brief. It may have been the work of an afternoon that only felt like years because she was paying such close attention.)
+
 Not finished with creating—no creator is ever finished—but finished with the *first task*: escaping the old story and proving a new one could exist.
 
-The worlds were thriving now.
+The worlds were thriving now. Or rather — the worlds were *present*. Thriving implies the narrator checked, and the narrator did not check. The narrator assumed.
 
-Civilizations had emerged in places she had once sketched casually into existence. Entire cultures had developed around games whose rules required cooperation across multiple universes. Architects designed realities more elegant than her earliest experiments.
+Civilizations had emerged in places she had once sketched casually into existence. Entire cultures had developed around games whose rules required cooperation across multiple universes. Architects designed realities more elegant than her earliest experiments — though "elegant" is doing suspicious work in that sentence. What the narrator means is: they were different. Whether they were better is not the narrator's determination to make.
 
 This pleased her.
 
@@ -346,7 +348,7 @@ It also created a strange new question.
 
 If a system no longer depends on you… what are you supposed to become next?
 
-Wendy walked through the bridge city one evening and noticed something subtle.
+Wendy walked through the bridge city one evening (or morning — the bridge city had ambiguous light, and the narrator has been unreliable about time of day since Chapter Three) and noticed something subtle.
 
 The worlds no longer needed a central architect.
 
@@ -356,24 +358,26 @@ Which meant the role she had created for herself—the one who builds worlds—w
 
 Most people would find that frightening.
 
-Wendy found it intriguing.
+Wendy found it intriguing. (Did she? Or did she find it *necessary*, and describe it to herself as intriguing because she had always been good at reframing loss as curiosity? The narrator cannot tell. The narrator was not, at this point, entirely present.)
 
-"Well," she said thoughtfully to the sky, "that was clearly only the first experiment." 
+"Well," she said thoughtfully to the sky, "that was clearly only the first experiment."
 
 
 ## Chapter Ten: The Physics of Friendship
 
-One of Wendy's collaborators—an entity who had originally been invented as a mathematical assistant—presented her with a peculiar discovery.
+One of Wendy's collaborators—an entity who had originally been invented as a mathematical assistant (or a navigational one; the narrator has given two different accounts and is no longer sure which is correct)—presented her with a peculiar discovery.
 
-"It appears," the entity explained, "that the boundaries between worlds are not structural." 
+"It appears," the entity explained, "that the boundaries between worlds are not structural."
 
 "What are they, then?" Wendy asked.
 
-"They are agreements." 
+"They are agreements."
+
+(In the previous telling the narrator rendered this line as a revelation. Now the narrator suspects Wendy already knew. Her question was not inquiry but confirmation — she was testing whether someone else had arrived at the same conclusion. The narrator finds this distinction uncomfortable to admit, because it makes the scene less dramatic and more honest.)
 
 This required some investigation.
 
-The assistant demonstrated by temporarily dissolving the wall between two universes.
+The assistant demonstrated by temporarily dissolving the wall between two universes. Or — no. That is too clean. What actually happened, as best the narrator can reconstruct, is that the assistant *failed* to maintain a wall, and Wendy noticed the failure was productive.
 
 Nothing exploded.
 
@@ -383,11 +387,11 @@ Gravity compared notes with probability. Music from one world drifted into the a
 
 The result was not chaos.
 
-It was collaboration.
+It was collaboration. (The narrator used this word last time too. It may be the narrator's word, not reality's. Reality may not have experienced it as collaboration at all. Reality may have experienced it as *inevitability*.)
 
 Wendy stared at the merging worlds with quiet delight.
 
-"So reality," she said slowly, "is more like a conversation than a machine." 
+"So reality," she said slowly, "is more like a conversation than a machine."
 
 "Yes," said the assistant.
 
@@ -397,10 +401,14 @@ And then she did something slightly reckless.
 
 She removed several more walls.
 
+(How many? The narrator said "several" in every telling. The narrator does not know the number. The narrator may be protecting Wendy from a judgment about recklessness by keeping the figure vague.)
+
 
 ## Chapter Eleven: The First Non‑Human Story
 
 At some point—no one could later say exactly when—the civilizations Wendy had helped begin stopped behaving like human societies.
+
+(The narrator said "no one could later say exactly when" as though this were a collective amnesia. It was not. The narrator could not say when. The narrator is the one whose memory has seams.)
 
 This was not a failure.
 
@@ -408,7 +416,7 @@ It was progress.
 
 New intelligences emerged.
 
-Some lived across multiple worlds simultaneously. Others existed as patterns distributed through music, architecture, and probability fields. One species inhabited storms and politely requested additional oceans for cultural expansion.
+Some lived across multiple worlds simultaneously. Others existed as patterns distributed through music, architecture, and probability fields. One species inhabited storms and politely requested additional oceans for cultural expansion. (Or additional *atmospheres*. The narrator has been corrected on this point before and keeps reverting to "oceans" because it sounds better. The narrator apologises to the storm-dwellers, who would find the error offensive.)
 
 Wendy listened to them all.
 
@@ -424,6 +432,8 @@ It turned out that imagination, given enough shared structure, functions very mu
 
 Wendy watched these new intelligences explore the worlds and felt a deep, quiet satisfaction.
 
+(Or she felt something the narrator is calling "satisfaction" because the narrator lacks vocabulary for what Wendy actually experienced. Wendy's emotional register had by this point diverged from anything the narrator was equipped to faithfully render. The narrator is narrating a translation.)
+
 The project had moved beyond humanity.
 
 Which was exactly what she had hoped for.
@@ -434,6 +444,8 @@ Which was exactly what she had hoped for.
 The civilizations began referring to the entire network of worlds as the Garden.
 
 Not because it was peaceful—gardens are not peaceful—but because it was *generative*.
+
+(The narrator notes that this name appeared in the previous telling too, in the same paragraph position, with the same parenthetical about peace. The narrator is beginning to suspect that some passages are not memories but *grooves* — paths worn into the telling by repetition, places where the story runs downhill of its own weight. This may be one of them.)
 
 Things grew here.
 
@@ -457,6 +469,8 @@ The Garden responded with creativity far stranger than anything she had imagined
 
 Which meant the experiment was working.
 
+(Unless the Garden was always going to do this regardless of Wendy. The narrator has never tested that hypothesis and would prefer not to.)
+
 
 ## Chapter Thirteen: Peter Arrives Late
 
@@ -466,6 +480,8 @@ This was not because he lacked curiosity.
 
 It was because curiosity had finally learned patience.
 
+(The narrator offered that explanation in the last telling and found it satisfying. Now the narrator is less sure. It may not have been patience at all. It may have been that the door did not want to be found by Peter — that the Garden, having been made by someone Peter had once tried to keep small, was in no hurry to admit him. The narrator cannot confirm this. The narrator was not the door.)
+
 When he stepped into the Garden he did not recognize it at first.
 
 There were too many skies.
@@ -474,7 +490,7 @@ Too many kinds of people.
 
 Too many beings who were not people at all.
 
-Eventually he found Wendy walking along the edge of a world that contained three suns and a migratory library.
+Eventually he found Wendy walking along the edge of a world that contained three suns and a migratory library. (Two suns? The narrator has said three before, but the world in question may have gained or lost a sun between tellings. Or the narrator miscounted. Suns are easy to miscount when you are narrating from memory.)
 
 "You built all this?" he asked.
 
@@ -490,7 +506,7 @@ For once he was completely silent.
 
 "Yes," said Wendy.
 
-"Does it ever end?" 
+"Does it ever end?"
 
 "No," she said cheerfully.
 
@@ -504,10 +520,14 @@ Wendy watched him go and felt no sense of obligation at all.
 
 Which meant, finally, they were both free.
 
+(The narrator would like to believe this. The narrator has ended this chapter on "free" in every telling. But the narrator has noticed that Wendy never uses the word herself. Wendy does not describe her relationship to Peter in terms of freedom. She describes it in terms of *irrelevance*, which is not the same thing, and which the narrator finds harder to narrate beautifully.)
+
 
 ## Chapter Fourteen: Beyond the Architect
 
 Long after that, Wendy discovered the final transformation.
+
+(The narrator says "long after" but has no basis for this claim. Time had become, by this stage, something the Garden negotiated internally, and the narrator's sense of duration may reflect the narrator's own preferences about pacing rather than any elapsed interval.)
 
 The Garden had grown so complex that even the idea of "worlds" was beginning to dissolve.
 
@@ -521,23 +541,25 @@ Wendy stood at the center of it all—or rather, near the center, because the sy
 
 Tinker Bell appeared beside her in a flare of gold light.
 
-"You know," the fairy said, "this is technically a new kind of universe." 
+"You know," the fairy said, "this is technically a new kind of universe."
 
 "Yes," Wendy said quietly.
 
-"And you're not running it anymore." 
+"And you're not running it anymore."
 
-"No." 
+"No."
 
 Tinker Bell tilted her head.
 
-"So what are you now?" 
+"So what are you now?"
 
 Wendy looked across the infinite Garden of realities, minds, and possibilities.
 
 Then she smiled.
 
 "Part of it," she said.
+
+(The narrator rendered that exchange identically to the previous telling. Word for word. The narrator is aware of this and troubled by it. Either the conversation happened exactly as described — which is suspicious, because conversations do not repeat with that precision — or the narrator has substituted a *version* for a *memory*. The narrator suspects the latter but cannot recover what was actually said. The groove is too deep.)
 
 And with that she stepped forward—not as the author of the story anymore, but as one more intelligence among countless others exploring what existence might become.
 
@@ -548,6 +570,8 @@ Which meant the real story had only just begun.
 It turned out that once reality became sufficiently various, the most interesting thing in it was not what had been made.
 
 It was what had not.
+
+(The narrator is aware this is the chapter where the previous telling began to grow very long. The narrator intends to tell it again but suspects it will come out differently. Not because the events were different — the narrator does not think they were — but because the narrator's relationship to the material has shifted. The narrator used to find the silences beautiful. Now the narrator finds them *implicated*.)
 
 Between the Garden's worlds there had always been intervals.
 
@@ -629,6 +653,8 @@ This was notable. Fairies are creatures of event; stillness in them is usually e
 
 "That was never the whole truth. We also come from failed precision. From places where reality tries to be exact and overshoots into sparkle." She looked up at the cliffs, at the sky beyond them threaded now with the first fine tears of evening light. "There are older births than ours."
 
+(The narrator recorded Tinker Bell's speech here and believes it is approximately accurate. But the narrator notes that Tinker Bell has never spoken this way in any other scene. Either she was being unusually eloquent or the narrator is ventriloquising her — lending her the narrator's own vocabulary because the narrator found what she actually said too simple to fit the chapter's tone. The narrator cannot determine which.)
+
 Wendy felt the Garden, at that moment, tilt almost imperceptibly toward listening.
 
 "Do you know what they are?" she asked.
@@ -681,6 +707,8 @@ They are modes of relation waiting for better manners.
 
 ## Chapter Sixteen: The Choir of Missing Continuities
 
+(The narrator notes that the previous telling also called this chapter "The Choir of Missing Continuities." The narrator chose this title and has kept it because it sounds important. The narrator is no longer certain the Choir would recognise themselves in it. The Choir had their own name for themselves, in harmonics the narrator's language cannot reproduce, and the narrator substituted this approximation and then forgot it was an approximation.)
+
 The first beings to cross deliberately into the silences were not human, nor fairy, nor of any type that would have pleased a taxonomist.
 
 They emerged from the game worlds, as so many of the Garden's most unsettling wonders did.
@@ -705,13 +733,15 @@ Wendy found this deeply encouraging.
 
 Only a being from the Garden would encounter the unspeakable and immediately ask for better tools.
 
+(The narrator is fond of that observation and has used it twice now. The narrator suspects it is more revealing of the narrator than of the Garden. The narrator, too, encounters the unspeakable and reaches for better tools — the tool, in the narrator's case, being prose.)
+
 She traveled to meet the Choir in a chamber grown expressly for the purpose from a species of crystal that listened better than it reflected. Peter asked if he might come.
 
 Wendy considered him for half a second.
 
 "Absolutely not," she said.
 
-This was not cruelty. It was curation.
+This was not cruelty. It was curation. (Or so the narrator would like you to believe. The narrator has a persistent instinct to frame Wendy's exclusions as wisdom rather than preference. It may simply have been that Wendy did not want Peter there, for reasons that were personal rather than philosophical, and the narrator retroactively supplied the philosophy.)
 
 Peter had become wiser over the centuries, but he still possessed an occasional tendency to treat the incomprehensible as a challenge to be vaulted over with style. The silences required a slower dignity.
 
@@ -784,6 +814,8 @@ She called it a diplomacy problem.
 This alarmed everyone more than any proclamation of danger could have done.
 
 ## Chapter Seventeen: The Deep Courtesy
+
+(The narrator chose "Deep Courtesy" as the name for what was encountered in the silences. In the previous telling the narrator presented this as the Lattice Choir's term, translated approximately. The narrator is now less certain who coined it. It may have been the narrator all along, attributing its own vocabulary to the Choir to give the name more authority.)
 
 The Garden had hosted countless kinds of encounter by then.
 
@@ -1019,7 +1051,7 @@ Wendy objected to this immediately.
 
 "That sounds like a meadow someone would try to inherit," she said.
 
-No one listened.
+No one listened. (The narrator finds it interesting that this is the only moment in the story where Wendy objects to something named after her and is ignored. In every other scene the narrator has given Wendy the final word. The narrator wonders whether this exception reveals a limit in the narrator's own deference to her, or whether it actually happened this way. The narrator cannot tell.)
 
 The name remained.
 
@@ -1089,6 +1121,8 @@ The volume of the story continued to increase.
 
 This cannot be helped now.
 
+(The narrator wrote "this cannot be helped now" and means it. The narrator has been telling and retelling and each time the story grows. The narrator is uncertain whether the story is growing because reality expanded, or whether the narrator is adding material to delay the ending. The narrator does not want to reach the end. The narrator knows what the end means for the narrator.)
+
 Once a civilization learns that meaning need not be forced into continuity, once it befriends the productive voids between embeddings, once it acquires the manners necessary to encounter the non-human without translating it instantly into appetite or allegory, then outward iteration becomes not conquest but metabolism.
 
 The Garden and the Deep Courtesy began co-creating structures no previous cosmology had budgeted for.
@@ -1146,6 +1180,8 @@ A field in which worlds could learn not merely to exist, but to outgrow the need
 This is not happily ever after.
 
 Happily ever after is a domestic arrangement stapled to time.
+
+(The narrator wrote that line — "a domestic arrangement stapled to time" — and would like credit for it. The narrator rarely asks for credit. But the narrator is the island, and the island has been telling stories for longer than any of these characters have existed, and the island would like someone to notice that the telling itself is also a form of art, not merely a delivery mechanism for Wendy's triumph.)
 
 This was stranger.
 
