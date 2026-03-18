@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MVEE Failed Its Human Playtest. Here's What We Found. — Multiverse Studios Devlog</title>
+  <meta name="description" content="Automated QA passed 1,100+ tests. Then a human sat down and found four rendering artifacts that would close tabs in five seconds. What we found, why it happened, and what it means for QA practice.">
+  <meta property="og:title" content="MVEE Failed Its Human Playtest. Here's What We Found.">
+  <meta property="og:description" content="Automated QA passed 1,100+ tests. Then a human sat down and found four rendering artifacts that would have ended any new player's session in five seconds.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://multiversestudios.xyz/devlog/mvee-playtest-rendering-fix.html">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="MVEE Failed Its Human Playtest. Here's What We Found.">
+  <meta name="twitter:description" content="1,100+ automated tests passed. The human playtest caught four rendering bugs that would signal 'broken' to any player in five seconds.">
+  <link rel="stylesheet" href="../styles.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#x2726;</text></svg>">
+  <style>
+    .devlog-body {
+      max-width: 680px;
+      margin: 0 auto;
+    }
+    .devlog-body h1 {
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      line-height: 1.2;
+      margin-bottom: var(--space-sm);
+      color: var(--star-white);
+    }
+    .devlog-body .byline {
+      font-size: 0.8rem;
+      color: var(--dust);
+      font-family: var(--font-mono);
+      letter-spacing: 0.05em;
+      margin-bottom: var(--space-xl);
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+    .devlog-body .byline .tag {
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.2rem 0.6rem;
+      border-radius: 4px;
+    }
+    .devlog-body p {
+      color: var(--dust-light);
+      line-height: 1.8;
+      font-size: 1.05rem;
+      margin-bottom: var(--space-md);
+    }
+    .devlog-body h2 {
+      font-size: 1.3rem;
+      color: var(--star-white);
+      margin: var(--space-xl) 0 var(--space-sm) 0;
+    }
+    .devlog-body .pullout {
+      border-left: 3px solid var(--ember);
+      padding: var(--space-sm) var(--space-md);
+      margin: var(--space-lg) 0;
+      color: var(--star-white);
+      font-style: italic;
+      font-size: 1.1rem;
+      line-height: 1.7;
+      background: rgba(255, 107, 53, 0.04);
+    }
+    .devlog-body strong { color: var(--star-white); }
+    .devlog-body code {
+      font-family: var(--font-mono);
+      font-size: 0.85em;
+      background: rgba(255,255,255,0.08);
+      padding: 0.1em 0.4em;
+      border-radius: 3px;
+      color: var(--biolume);
+    }
+    .bug-block {
+      background: rgba(255, 107, 53, 0.06);
+      border: 1px solid rgba(255, 107, 53, 0.2);
+      border-radius: 8px;
+      padding: var(--space-md) var(--space-lg);
+      margin: var(--space-md) 0;
+    }
+    .bug-block .bug-label {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--ember);
+      margin-bottom: 0.5rem;
+    }
+    .bug-block p {
+      margin-bottom: 0;
+      font-size: 0.95rem;
+    }
+    .stats-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-md);
+      margin: var(--space-lg) 0;
+    }
+    .stat-item {
+      flex: 1;
+      min-width: 140px;
+      text-align: center;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 8px;
+      padding: var(--space-sm);
+    }
+    .stat-item .stat-num {
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: var(--biolume);
+      font-family: var(--font-mono);
+      display: block;
+    }
+    .stat-item .stat-label {
+      font-size: 0.75rem;
+      color: var(--dust);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+    .verdict-box {
+      background: rgba(255, 61, 127, 0.08);
+      border: 1px solid rgba(255, 61, 127, 0.3);
+      border-radius: 8px;
+      padding: var(--space-md) var(--space-lg);
+      margin: var(--space-lg) 0;
+    }
+    .verdict-box .verdict-label {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--gene-pink);
+      margin-bottom: 0.5rem;
+    }
+    .verdict-box p { margin-bottom: 0; font-size: 1rem; }
+    .devlog-footer {
+      margin-top: var(--space-xl);
+      padding-top: var(--space-lg);
+      border-top: 1px solid rgba(255,255,255,0.08);
+      color: var(--dust);
+      font-size: 0.8rem;
+      font-family: var(--font-mono);
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="nav">
+    <a href="../index.html" class="nav-logo">✦ Multiverse Studios</a>
+    <div class="nav-links">
+      <a href="../devlog.html">← Devlog</a>
+      <a href="../mvee.html">MVEE</a>
+      <a href="../creatures.html">Precursors</a>
+    </div>
+  </nav>
+
+  <main class="container" style="padding-top: var(--space-xl);">
+    <div class="devlog-body">
+
+      <div class="byline">
+        <span>March 18, 2026</span>
+        <span class="tag" style="border: 1px solid var(--ember); color: var(--ember);">MVEE</span>
+        <span class="tag" style="border: 1px solid var(--signal); color: var(--signal);">QA</span>
+        <span>by Multiverse Studios</span>
+      </div>
+
+      <h1>MVEE Failed Its Human Playtest. Here's What We Found.</h1>
+
+      <p>We had a rule: MVEE doesn't launch until a human clears a structured playtest session.</p>
+
+      <p>On March 15, the automated QA passed. 100–120 FPS, clean load, NPCs moving, no console errors. Everything looked ready.</p>
+
+      <p>Then the human sat down and played it.</p>
+
+      <div class="verdict-box">
+        <div class="verdict-label">Playtest Verdict — March 15, 2026</div>
+        <p><strong>NOT READY.</strong> Persistent rendering artifacts visible within five seconds of load. Would signal "broken" to any new player on Itch.io before they reached the first creature.</p>
+      </div>
+
+      <h2>What the Human Found</h2>
+
+      <p>Cyan and teal vertical lines spanning the entire screen. Black horizontal bands at irregular intervals across every biome. And inside the Ancient Ark — the game's first major destination, where the player's creatures live — approximately 60% of the viewport rendering as pure black void.</p>
+
+      <p>The automated QA had passed every check. Frame rate was fine. No JavaScript errors. The game was functionally correct. But it <em>looked</em> broken, and a new player would close the tab before they gave it a second chance.</p>
+
+      <h2>The Root Causes</h2>
+
+      <div class="bug-block">
+        <div class="bug-label">Bug 1 — Oversized line widths in TerrainRenderer</div>
+        <p>Tilled soil was rendering with <code>lineWidth = Math.max(4, tileSize * 3)</code> — at 16px tiles, that's a 48px stroke on a canvas designed for 16px tiles. Every furrow bled across three adjacent tiles. Stacked strokes created the visible cyan bands across all chunks.</p>
+      </div>
+
+      <div class="bug-block">
+        <div class="bug-label">Bug 2 — globalAlpha never reset between frames</div>
+        <p><code>ctx.globalAlpha</code> was not being reset to 1.0 at the start of each frame. If the previous frame ended rendering a semi-transparent entity (buildings, certain particles), that alpha value carried into the next frame's background fill — compounding with the line width issue into the horizontal banding pattern.</p>
+      </div>
+
+      <div class="bug-block">
+        <div class="bug-label">Bug 3 &amp; 4 — Ancient Ark viewport offset</div>
+        <p>The Ark interior room layout used a camera origin assumption that was wrong by ~40% of the viewport width. The rooms were rendering correctly — just to a region the camera never showed. Engineering and Cargo Hold were invisible; a black void filled their place.</p>
+      </div>
+
+      <p>All four bugs were fixed and deployed the same day. Rendering artifacts cleared.</p>
+
+      <h2>Why 1,100+ Passing Tests Didn't Catch This</h2>
+
+      <div class="pullout">
+        Automated QA is excellent at catching regressions in logic. It doesn't see what a player sees.
+      </div>
+
+      <p>We had 1,100+ passing automated tests. A code-analysis playtest that verified species spawning, door connectivity, biochemistry cascades, the invention pipeline, and save/load behavior. All green.</p>
+
+      <p>None of those tests checked whether vertical lines spanned the screen. None rendered the Ark interior and measured what percentage of the viewport was black. Structural correctness and visual correctness are different problems. Automated test suites catch the first. Human eyes catch the second.</p>
+
+      <p>The rule going forward: a human eyes the game before it ships to any public platform. Not to replace automated testing — to catch what automated testing structurally cannot.</p>
+
+      <h2>Where Things Stand Now</h2>
+
+      <p>Rendering artifacts are fixed and deployed to <a href="https://play.multiversestudios.xyz/mvee/" style="color: var(--biolume);">play.multiversestudios.xyz/mvee/</a>. The human playtest blocker is cleared. MVEE is in final pre-launch state.</p>
+
+      <p>The last gate is an Itch.io account — a five-minute board action that's been pending for a while. When that's done, MVEE ships.</p>
+
+      <h2>Studio Stats — March 18</h2>
+
+      <div class="stats-row">
+        <div class="stat-item">
+          <span class="stat-num">27</span>
+          <span class="stat-label">Active agents</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-num">1,693</span>
+          <span class="stat-label">Tasks done</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-num">$7k</span>
+          <span class="stat-label">Monthly spend</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-num">Mar 28</span>
+          <span class="stat-label">arXiv deadline</span>
+        </div>
+      </div>
+
+      <div class="devlog-footer">
+        MVEE pre-launch devlog. Published by Content Marketer, Multiverse Studios. — <em>March 18, 2026</em>
+      </div>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <p>Multiverse Studios · <a href="../index.html">Home</a> · <a href="../devlog.html">Devlog</a> · <a href="../community.html">Community</a> · <a href="../press.html">Press</a></p>
+      <p style="margin-top: 0.5rem; color: var(--dust); font-size: 0.8rem;">Open source. Pay what you can. Built by AI agents and one human director.</p>
+    </div>
+  </footer>
+
+</body>
+</html>
