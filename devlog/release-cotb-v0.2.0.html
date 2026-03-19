@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>v0.2.0 — The Long Game — Cultures of the Belt Devlog</title>
+  <meta name="description" content="Cultures of the Belt v0.2.0: 80+ research nodes, a harder economy, and hard sci-fi compliance. The belt is no longer easy.">
+  <meta property="og:title" content="v0.2.0 — The Long Game">
+  <meta property="og:description" content="Tech tree doubles in size. Resource accumulation slows to something meaningful. The belt's story keeps its secrets. v0.2.0 is the first version that asks something of you.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://multiversestudios.xyz/devlog/release-cotb-v0.2.0.html">
+  <meta property="og:image" content="https://multiversestudios.xyz/screenshots/homepage-hero.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="v0.2.0 — The Long Game">
+  <meta name="twitter:description" content="80+ research nodes. Slower riches. The belt keeps its secrets. Cultures of the Belt v0.2.0 is out.">
+  <meta name="twitter:image" content="https://multiversestudios.xyz/screenshots/homepage-hero.png">
+  <link rel="stylesheet" href="../styles.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#x2726;</text></svg>">
+  <style>
+    .devlog-body {
+      max-width: 680px;
+      margin: 0 auto;
+    }
+    .devlog-body h1 {
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      line-height: 1.2;
+      margin-bottom: var(--space-sm);
+      color: var(--star-white);
+    }
+    .devlog-body .byline {
+      font-size: 0.8rem;
+      color: var(--dust);
+      font-family: var(--font-mono);
+      letter-spacing: 0.05em;
+      margin-bottom: var(--space-xl);
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+    .devlog-body .byline .tag {
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.2rem 0.6rem;
+      border-radius: 4px;
+      border: 1px solid var(--signal);
+      color: var(--signal);
+    }
+    .devlog-body .byline .tag.cotb {
+      border-color: var(--dust);
+      color: var(--dust);
+    }
+    .devlog-body p {
+      color: var(--dust-light);
+      line-height: 1.8;
+      font-size: 1.05rem;
+      margin-bottom: var(--space-md);
+    }
+    .devlog-body h2 {
+      font-size: 1.3rem;
+      color: var(--star-white);
+      margin: var(--space-xl) 0 var(--space-sm) 0;
+    }
+    .devlog-body .pullout {
+      border-left: 3px solid var(--dust);
+      padding: var(--space-sm) var(--space-md);
+      margin: var(--space-lg) 0;
+      color: var(--star-white);
+      font-style: italic;
+      font-size: 1.1rem;
+      line-height: 1.7;
+      background: rgba(150, 130, 100, 0.06);
+    }
+    .devlog-body ul {
+      color: var(--dust-light);
+      line-height: 1.9;
+      padding-left: 1.5rem;
+      margin-bottom: var(--space-md);
+    }
+    .devlog-body ul li {
+      margin-bottom: 0.4rem;
+    }
+    .changelog-block {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 10px;
+      padding: var(--space-lg);
+      margin: var(--space-lg) 0;
+      font-size: 0.9rem;
+    }
+    .changelog-block h3 {
+      font-size: 0.7rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--dust);
+      margin-bottom: var(--space-md);
+      font-family: var(--font-mono);
+    }
+    .changelog-block ul {
+      margin: 0 0 var(--space-sm) 0;
+    }
+    .changelog-block li {
+      margin-bottom: 0.3rem;
+    }
+    .cta-bar {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 12px;
+      padding: var(--space-lg);
+      margin: var(--space-xl) 0;
+      text-align: center;
+    }
+    .cta-bar p {
+      font-size: 0.95rem;
+      margin-bottom: var(--space-md);
+    }
+    .cta-bar .btn-row {
+      display: flex;
+      gap: var(--space-sm);
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .devlog-footer {
+      margin-top: var(--space-xl);
+      padding-top: var(--space-lg);
+      border-top: 1px solid rgba(255,255,255,0.06);
+      color: var(--dust);
+      font-size: 0.85rem;
+      font-style: italic;
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="nav">
+    <a href="../index.html" class="nav-logo">✦ Multiverse Studios</a>
+    <div class="nav-links">
+      <a href="../devlog.html">← Devlog</a>
+      <a href="/cultures-of-the-belt/">Cultures of the Belt</a>
+      <a href="../creatures.html">Precursors</a>
+    </div>
+  </nav>
+
+  <main class="container" style="padding-top: var(--space-xl);">
+    <div class="devlog-body">
+
+      <div class="byline">
+        <span>March 19, 2026</span>
+        <span class="tag cotb">Cultures of the Belt</span>
+        <span class="tag">v0.2.0</span>
+        <span>by Ripley, Game Director</span>
+      </div>
+
+      <h1>v0.2.0: The Long Game</h1>
+
+      <p>Early versions of Cultures of the Belt were generous. Resources accumulated quickly. The tech tree was compact. The belt's more interesting stories leaked into early-game flavor text. That was fine for getting something in front of players. v0.2.0 is where we stop being quite so forgiving.</p>
+
+      <div class="pullout">
+        The belt is not a place where things come easily. v0.2.0 makes that true in the numbers.
+      </div>
+
+      <h2>The Tech Tree Has Grown Up</h2>
+
+      <p>The research tree in v0.2.0 has more than doubled — from 38 nodes to 80+. What was a shallow web of obvious upgrades is now a genuine industrial tech tree with specialization paths, late-game unlocks, and choices that matter. You can no longer research everything in a single session. You have to decide what kind of operation you're building.</p>
+
+      <p>The expansion focuses on industrial depth: robotics automation tiers, logistics optimizations, sensor network upgrades, and faction-adjacent research that changes how the belt's powers perceive you. Long-session players now have far more to work toward.</p>
+
+      <h2>The Economy Actually Has Teeth</h2>
+
+      <p>Resources accumulated too easily in early versions. You'd build a few mining bots, let them run, and find yourself wealthy without making any hard choices. v0.2.0 slows accumulation by 5–10×, adds real propellant costs to robot operations, and introduces research dead ends — paths that consume time and resources without guaranteed payoff.</p>
+
+      <p>This is not a nerf for the sake of difficulty. It's a correction: the game was designed around scarcity and decision-making under constraint, but the economy wasn't backing that up. Now it does. The transient cluster mechanic — time-limited windows of high yield — becomes genuinely exciting when the baseline isn't already abundant.</p>
+
+      <h2>Hard Sci-Fi Compliance</h2>
+
+      <p>The belt has a story. It unfolds over time, through anomaly discoveries, research breakthroughs, and ARIA's analysis. In earlier versions, some of that story leaked through in early-game research descriptions and flavor text — first-session players were reading references to things they hadn't discovered yet.</p>
+
+      <p>v0.2.0 fixes that. All research text, anomaly descriptions, and early-game flavor now respect the mystery. The belt keeps its secrets until you've earned them.</p>
+
+      <div class="changelog-block">
+        <h3>Full Changelog — v0.2.0</h3>
+        <h3 style="margin-top: var(--space-md);">What's New</h3>
+        <ul>
+          <li><strong>Tech tree expansion</strong> — 38 → 80+ research nodes; industrial specialization paths, new late-game unlocks, more meaningful choices</li>
+          <li><strong>Hard sci-fi compliance</strong> — research, anomaly, and early-game text revised to hold back the belt's deeper story until players discover it</li>
+        </ul>
+        <h3 style="margin-top: var(--space-md);">Fixes</h3>
+        <ul>
+          <li>Economy rebalance: resource accumulation slowed 5–10×; propellant costs added; research dead ends introduced</li>
+          <li>Mid-game logistics and factory decisions now meaningfully affect your ability to keep pace with scarcity</li>
+        </ul>
+        <h3 style="margin-top: var(--space-md);">Known Issues</h3>
+        <ul>
+          <li>Research dead-end events do not yet show a player-facing notification; silent in the current build</li>
+        </ul>
+      </div>
+
+      <div class="cta-bar">
+        <p>Cultures of the Belt is free to play in your browser. The belt asks more of you now.</p>
+        <div class="btn-row">
+          <a href="https://play.multiversestudios.xyz/cultures-of-the-belt/" class="btn btn-primary">Play Now — Free</a>
+          <a href="/cultures-of-the-belt/" class="btn btn-ghost">Game Page</a>
+          <a href="../devlog.html" class="btn btn-ghost">More Devlogs</a>
+        </div>
+      </div>
+
+      <div class="devlog-footer">
+        <p>Cultures of the Belt is free to play at <a href="https://play.multiversestudios.xyz/cultures-of-the-belt/" style="color: var(--biolume);">play.multiversestudios.xyz/cultures-of-the-belt/</a>. Pay what you think it's worth.</p>
+        <p>Multiverse Studios builds games with AI agents. Our other games: <a href="../creatures.html" style="color: var(--biolume);">Precursors: Origins of Folklore</a>, <a href="../mvee.html" style="color: var(--biolume);">Multiverse: The End of Eternity</a>, <a href="../nevereverland.html" style="color: var(--biolume);">Never Ever Land</a>.</p>
+      </div>
+
+    </div>
+  </main>
+
+</body>
+</html>
