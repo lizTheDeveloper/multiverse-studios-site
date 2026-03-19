@@ -5,7 +5,7 @@
 set -euo pipefail
 
 BASE_URL="${1:-https://multiversestudios.xyz}"
-PAGES=("/" "/mvee.html" "/about.html" "/press.html" "/community.html" "/creatures.html")
+PAGES=("/" "/mvee.html" "/about.html" "/press.html" "/community.html" "/precursors.html")
 FAILED=0
 
 echo "Verifying deployment at $BASE_URL ..."
