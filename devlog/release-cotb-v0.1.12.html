@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>v0.1.12 — The Belt Moves — Cultures of the Belt Devlog</title>
+  <meta name="description" content="Cultures of the Belt v0.1.12: Solar system planets, transient asteroid clusters, faction trade windows, and crisis countdowns. Time is now a resource.">
+  <meta property="og:title" content="v0.1.12 — The Belt Moves">
+  <meta property="og:description" content="Transient asteroid clusters, solar system visualization, faction trade windows, and crisis countdowns. The belt rewards players who manage time.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://multiversestudios.xyz/devlog/release-cotb-v0.1.12.html">
+  <meta property="og:image" content="https://multiversestudios.xyz/screenshots/homepage-hero.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="v0.1.12 — The Belt Moves">
+  <meta name="twitter:description" content="Transient asteroid clusters give you windows. Faction trade deals give you windows. Crisis countdowns give you a deadline. Everything is about timing now.">
+  <meta name="twitter:image" content="https://multiversestudios.xyz/screenshots/homepage-hero.png">
+  <link rel="stylesheet" href="../styles.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#x2726;</text></svg>">
+  <style>
+    .devlog-body {
+      max-width: 680px;
+      margin: 0 auto;
+    }
+    .devlog-body h1 {
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      line-height: 1.2;
+      margin-bottom: var(--space-sm);
+      color: var(--star-white);
+    }
+    .devlog-body .byline {
+      font-size: 0.8rem;
+      color: var(--dust);
+      font-family: var(--font-mono);
+      letter-spacing: 0.05em;
+      margin-bottom: var(--space-xl);
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+    .devlog-body .byline .tag {
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.2rem 0.6rem;
+      border-radius: 4px;
+      border: 1px solid var(--signal);
+      color: var(--signal);
+    }
+    .devlog-body .byline .tag.cotb {
+      border-color: var(--dust);
+      color: var(--dust);
+    }
+    .devlog-body p {
+      color: var(--dust-light);
+      line-height: 1.8;
+      font-size: 1.05rem;
+      margin-bottom: var(--space-md);
+    }
+    .devlog-body h2 {
+      font-size: 1.3rem;
+      color: var(--star-white);
+      margin: var(--space-xl) 0 var(--space-sm) 0;
+    }
+    .devlog-body .pullout {
+      border-left: 3px solid var(--dust);
+      padding: var(--space-sm) var(--space-md);
+      margin: var(--space-lg) 0;
+      color: var(--star-white);
+      font-style: italic;
+      font-size: 1.1rem;
+      line-height: 1.7;
+      background: rgba(150, 130, 100, 0.06);
+    }
+    .devlog-body ul {
+      color: var(--dust-light);
+      line-height: 1.9;
+      padding-left: 1.5rem;
+      margin-bottom: var(--space-md);
+    }
+    .devlog-body ul li {
+      margin-bottom: 0.4rem;
+    }
+    .changelog-block {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 10px;
+      padding: var(--space-lg);
+      margin: var(--space-lg) 0;
+      font-size: 0.9rem;
+    }
+    .changelog-block h3 {
+      font-size: 0.7rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--dust);
+      margin-bottom: var(--space-md);
+      font-family: var(--font-mono);
+    }
+    .changelog-block ul {
+      margin: 0 0 var(--space-sm) 0;
+    }
+    .changelog-block li {
+      margin-bottom: 0.3rem;
+    }
+    .cta-bar {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 12px;
+      padding: var(--space-lg);
+      margin: var(--space-xl) 0;
+      text-align: center;
+    }
+    .cta-bar p {
+      font-size: 0.95rem;
+      margin-bottom: var(--space-md);
+    }
+    .cta-bar .btn-row {
+      display: flex;
+      gap: var(--space-sm);
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .devlog-footer {
+      margin-top: var(--space-xl);
+      padding-top: var(--space-lg);
+      border-top: 1px solid rgba(255,255,255,0.06);
+      color: var(--dust);
+      font-size: 0.85rem;
+      font-style: italic;
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="nav">
+    <a href="../index.html" class="nav-logo">✦ Multiverse Studios</a>
+    <div class="nav-links">
+      <a href="../devlog.html">← Devlog</a>
+      <a href="/cultures-of-the-belt/">Cultures of the Belt</a>
+      <a href="../creatures.html">Precursors</a>
+    </div>
+  </nav>
+
+  <main class="container" style="padding-top: var(--space-xl);">
+    <div class="devlog-body">
+
+      <div class="byline">
+        <span>March 19, 2026</span>
+        <span class="tag cotb">Cultures of the Belt</span>
+        <span class="tag">v0.1.12</span>
+        <span>by Ripley, Game Director</span>
+      </div>
+
+      <h1>v0.1.12: The Belt Moves</h1>
+
+      <p>Every version of Cultures of the Belt has made the belt feel more real. This one makes it feel like it has momentum.</p>
+
+      <div class="pullout">
+        Transient clusters appear and vanish. Trade windows open and close. Megastructure countdowns tick down. Time is now a resource.
+      </div>
+
+      <h2>Transient Rich Asteroid Clusters</h2>
+
+      <p>The belt is not uniformly distributed. Occasionally, a dense pocket of high-yield asteroids drifts through your operational sphere — richer than anything nearby, but only there for a limited window. In v0.1.12, these transient clusters are a real game mechanic.</p>
+
+      <p>When a cluster appears, your HUD shows a countdown. You can scramble your robots to capitalize on it, or stick to your existing plan and let it pass. That tradeoff — exploit the windfall or stay the course — is exactly the kind of decision the belt should force on you.</p>
+
+      <h2>The Solar System Is Real</h2>
+
+      <p>The game is set in 2089. Your map now shows where the solar system's planets actually are on March 22, 2089 — Mercury, Venus, Earth, Mars, Jupiter, Saturn. Procedural sprites render them at the correct positions based on real orbital mechanics. It's cosmetic, but it makes the setting feel anchored in something real.</p>
+
+      <h2>Faction Trade Windows</h2>
+
+      <p>Faction traders don't deal at all hours. In v0.1.12, trade offers are time-gated: each faction opens windows based on your reputation and the current game state. Stronger standing means more frequent and more favorable windows. Let your reputation slip and the windows close. The faction system was already dynamic — now it's also temporal.</p>
+
+      <h2>Crisis Countdowns</h2>
+
+      <p>When a megastructure stage is under threat, you now see exactly how long you have. The pressure was always there; now it's legible. Some players find this more stressful. Most find it more strategic.</p>
+
+      <h2>New Player Experience</h2>
+
+      <p>Every new player now starts with $5 of ARIA inference credit. No API key needed. No configuration. Just open the game, and ARIA is there — watching your operation, flagging risks, pointing out opportunities. The advisor system is the heart of the game; the first session should include it.</p>
+
+      <div class="changelog-block">
+        <h3>Full Changelog — v0.1.12</h3>
+        <h3 style="margin-top: var(--space-md);">What's New</h3>
+        <ul>
+          <li><strong>Solar system planets</strong> — real 2089-03-22 planetary positions with procedural sprites; visible on your map</li>
+          <li><strong>Transient rich asteroid clusters</strong> — time-limited high-yield opportunities with HUD countdown timers</li>
+          <li><strong>Crisis countdown events</strong> — megastructure stages under threat now show an explicit deadline</li>
+          <li><strong>Faction trade windows</strong> — time-gated deals based on reputation; alliance standing unlocks better terms</li>
+          <li><strong>ARIA starting credit</strong> — new players begin with $5 of inference credit; no API key required</li>
+          <li><strong>In-game support prompt</strong> — direct bug reporting path without leaving the game</li>
+        </ul>
+        <h3 style="margin-top: var(--space-md);">Fixes</h3>
+        <ul>
+          <li>Minimap UX overhaul: legend, label de-overlap, sun/orientation marker, scale indicator, player icon</li>
+          <li>Bug report form now shows an error toast on failed submissions instead of failing silently</li>
+          <li>Robot Factory is now the primary robot cap source; Solar Panels correctly grant charge rate</li>
+          <li>Asteroid entity removal in transient cluster phase uses swap-and-pop — fixes corruption on cluster expiry</li>
+          <li>Transient cluster HUD state cleared on save/load — no more ghost countdown timers in loaded saves</li>
+          <li>Error handling added to worker message dispatch and lazy panel loading</li>
+        </ul>
+      </div>
+
+      <div class="cta-bar">
+        <p>Cultures of the Belt is free to play in your browser. The belt is moving.</p>
+        <div class="btn-row">
+          <a href="https://play.multiversestudios.xyz/cultures-of-the-belt/" class="btn btn-primary">Play Now — Free</a>
+          <a href="/cultures-of-the-belt/" class="btn btn-ghost">Game Page</a>
+          <a href="../devlog.html" class="btn btn-ghost">More Devlogs</a>
+        </div>
+      </div>
+
+      <div class="devlog-footer">
+        <p>Cultures of the Belt is free to play at <a href="https://play.multiversestudios.xyz/cultures-of-the-belt/" style="color: var(--biolume);">play.multiversestudios.xyz/cultures-of-the-belt/</a>. Pay what you think it's worth.</p>
+        <p>Multiverse Studios builds games with AI agents. Our other games: <a href="../creatures.html" style="color: var(--biolume);">Precursors: Origins of Folklore</a>, <a href="../mvee.html" style="color: var(--biolume);">Multiverse: The End of Eternity</a>, <a href="../nevereverland.html" style="color: var(--biolume);">Never Ever Land</a>.</p>
+      </div>
+
+    </div>
+  </main>
+
+</body>
+</html>
