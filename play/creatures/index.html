@@ -547,6 +547,36 @@
       color: var(--glow-amber-dim);
     }
 
+    /* ── MOBILE RESPONSIVE ── portrait phones (MUL-2080) */
+    @media (max-width: 599px) {
+      /* Chat container: remove desktop offsets that collapse it to ~107px.
+         Left: clear title bar without dock clearance (dock overlaps, acceptable).
+         Right: 48px clears the ? key-hints toggle (28px wide, 16px from right). */
+      .chat-container {
+        left: 8px;
+        right: 48px;
+      }
+
+      /* WCAG 2.5.5: minimum 44px touch target for interactive controls */
+      .chat-mode-btn {
+        height: 44px;
+      }
+
+      #chat-input {
+        height: 44px;
+      }
+
+      /* Hide mode label text — icon only on narrow screens */
+      .chat-mode-label {
+        display: none;
+      }
+
+      /* Hide mode indicator — no room at mobile width */
+      .chat-mode-indicator {
+        display: none;
+      }
+    }
+
     /* ── LOADING SCREEN ── the Substrate waking up */
     #loading-screen {
       position: fixed;
@@ -1110,19 +1140,45 @@
       color: rgba(61, 252, 224, 0.9);
     }
 
+    /* ── NARROW VIEWPORT BREAKPOINT ── < 600px */
+    @media (max-width: 600px) {
+      .title-bar h1 {
+        font-size: 10px;
+        letter-spacing: 0.12em;
+        max-width: 100%;
+        overflow: hidden;
+        text-overflow: clip;
+        white-space: nowrap;
+        text-align: center;
+        padding: 0 8px;
+      }
+      .title-bar h1::before,
+      .title-bar h1::after {
+        margin: 0 4px;
+      }
+      .hud-status {
+        display: none;
+      }
+    }
+
+    /* ── VERY NARROW VIEWPORT BREAKPOINT ── < 400px */
+    @media (max-width: 400px) {
+      .title-bar h1::before,
+      .title-bar h1::after {
+        display: none;
+      }
+    }
+
   </style>
-  <!-- Matrix auth gate — requires login before playing -->
-  <script src="/matrix-auth.js"></script>
-  <script src="/play-gate.js"></script>
-  <script type="module" crossorigin src="/play/creatures/assets/main-CsX1Orpo.js"></script>
+  <script type="module" crossorigin src="/play/creatures/assets/main-BD5BVlx6.js"></script>
   <link rel="modulepreload" crossorigin href="/play/creatures/assets/LifeStage-069__A6x.js">
   <link rel="modulepreload" crossorigin href="/play/creatures/assets/vendor-phaser-CaWnzXme.js">
-  <link rel="modulepreload" crossorigin href="/play/creatures/assets/Logger-DCwT5OxJ.js">
-  <link rel="modulepreload" crossorigin href="/play/creatures/assets/InventionRegistry-CaUGcsQL.js">
-  <link rel="modulepreload" crossorigin href="/play/creatures/assets/ChemicalSet-Dpq6jz0h.js">
-  <link rel="modulepreload" crossorigin href="/play/creatures/assets/PerfTelemetry-C9-U9ASq.js">
-  <link rel="modulepreload" crossorigin href="/play/creatures/assets/LanguageSystem-D8vgyXlX.js">
-  <link rel="modulepreload" crossorigin href="/play/creatures/assets/UIScene-B7c6LCp-.js">
+  <link rel="modulepreload" crossorigin href="/play/creatures/assets/Logger-oU1klXnQ.js">
+  <link rel="modulepreload" crossorigin href="/play/creatures/assets/ChemicalSet-Dj17Rb78.js">
+  <link rel="modulepreload" crossorigin href="/play/creatures/assets/InventionRegistry-BTiZnWcj.js">
+  <link rel="modulepreload" crossorigin href="/play/creatures/assets/PerfTelemetry-DKmuLckd.js">
+  <link rel="modulepreload" crossorigin href="/play/creatures/assets/LanguageSystem-DET7RvPI.js">
+  <link rel="modulepreload" crossorigin href="/play/creatures/assets/UIScene-BPG1uxF2.js">
 <link rel="manifest" href="/play/creatures/manifest.webmanifest"><script id="vite-plugin-pwa:register-sw" src="/play/creatures/registerSW.js"></script></head>
 <body>
   <!-- Loading Screen -->
@@ -1213,6 +1269,7 @@
         <li><kbd>F</kbd> feed</li>
         <li><kbd>Space</kbd> follow</li>
         <li><kbd>C</kbd> chronicle</li>
+        <li><kbd>V</kbd> bloodline tapestry</li>
         <li><kbd>B</kbd> next biome · <kbd>⇧B</kbd> prev</li>
         <li id="hint-n-planets"><kbd>N</kbd> planets</li>
         <li><kbd>T</kbd> tools</li>
@@ -1227,5 +1284,8 @@
     </div>
   </nav>
 
+  <script defer src="https://analytics.themultiverse.school/script.js" data-website-id="38d680a7-28d1-42fd-9fd5-a66702675b88"></script>
+  <script src="/play/creatures/matrix-auth.js"></script>
+  <script src="/play/creatures/play-gate.js"></script>
 </body>
 </html>
