@@ -24,54 +24,49 @@ if (!process.env.SESSION_ENCRYPTION_KEY) {
 }
 
 // ---------------------------------------------------------------------------
-// Session store (in-memory; sufficient at current scale)
+// Session data shape (stored encrypted inside the cookie itself)
 // ---------------------------------------------------------------------------
 
-interface SessionEntry {
-  encryptedToken: string;
-  iv: string;
-  authTag: string;
+interface SessionData {
+  accessToken: string;
   userId: string;
   deviceId: string;
   expiresAt: number;
 }
 
-const sessions = new Map<string, SessionEntry>();
-
-// Prune expired sessions once per hour.
-setInterval(() => {
-  const now = Date.now();
-  for (const [id, s] of sessions) {
-    if (s.expiresAt < now) sessions.delete(id);
-  }
-}, 60 * 60 * 1000).unref();
-
 // ---------------------------------------------------------------------------
-// Crypto helpers
+// Crypto helpers — encrypt/decrypt arbitrary JSON payloads
 // ---------------------------------------------------------------------------
 
-function encrypt(token: string): { encrypted: string; iv: string; authTag: string } {
+/**
+ * Encrypts a JSON-serialisable value with AES-256-GCM and returns a compact
+ * URL-safe base64 string: <iv_b64>.<ciphertext_b64>.<authTag_b64>
+ */
+function encryptJSON(value: unknown): string {
   const iv = crypto.randomBytes(12);
   const cipher = crypto.createCipheriv('aes-256-gcm', SESSION_KEY, iv);
-  const encrypted = Buffer.concat([cipher.update(token, 'utf8'), cipher.final()]);
-  return {
-    encrypted: encrypted.toString('hex'),
-    iv: iv.toString('hex'),
-    authTag: cipher.getAuthTag().toString('hex'),
-  };
+  const plain = Buffer.from(JSON.stringify(value), 'utf8');
+  const ciphertext = Buffer.concat([cipher.update(plain), cipher.final()]);
+  const authTag = cipher.getAuthTag();
+  return [iv, ciphertext, authTag].map(b => b.toString('base64url')).join('.');
 }
 
-function decrypt(encrypted: string, iv: string, authTag: string): string {
-  const decipher = crypto.createDecipheriv(
-    'aes-256-gcm',
-    SESSION_KEY,
-    Buffer.from(iv, 'hex'),
-  );
-  decipher.setAuthTag(Buffer.from(authTag, 'hex'));
-  return Buffer.concat([
-    decipher.update(Buffer.from(encrypted, 'hex')),
-    decipher.final(),
-  ]).toString('utf8');
+/**
+ * Decrypts a value produced by encryptJSON. Returns null if decryption fails
+ * (tampered, wrong key, malformed input).
+ */
+function decryptJSON<T>(encoded: string): T | null {
+  try {
+    const parts = encoded.split('.');
+    if (parts.length !== 3) return null;
+    const [iv, ciphertext, authTag] = parts.map(p => Buffer.from(p, 'base64url'));
+    const decipher = crypto.createDecipheriv('aes-256-gcm', SESSION_KEY, iv);
+    decipher.setAuthTag(authTag);
+    const plain = Buffer.concat([decipher.update(ciphertext), decipher.final()]);
+    return JSON.parse(plain.toString('utf8')) as T;
+  } catch {
+    return null;
+  }
 }
 
 // ---------------------------------------------------------------------------
@@ -81,7 +76,7 @@ function decrypt(encrypted: string, iv: string, authTag: string): string {
 const COOKIE_OPTS = {
   httpOnly: true,
   secure: true,
-  sameSite: 'strict' as const,
+  sameSite: 'lax' as const,
   domain: '.multiversestudios.xyz',
   path: '/',
   maxAge: SESSION_TTL_MS,
@@ -96,32 +91,19 @@ function clearCookie(res: Response): void {
 }
 
 // ---------------------------------------------------------------------------
-// Session resolution
+// Session resolution — self-contained encrypted cookie; no server-side store
 // ---------------------------------------------------------------------------
 
-function resolveSession(req: Request): SessionEntry | null {
-  const sessionId = (req.cookies as Record<string, string>)?.[COOKIE_NAME];
-  if (!sessionId) return null;
-  const s = sessions.get(sessionId);
-  if (!s || s.expiresAt < Date.now()) {
-    if (s) sessions.delete(sessionId);
-    return null;
-  }
-  return s;
+function resolveSession(req: Request): SessionData | null {
+  const raw = (req.cookies as Record<string, string>)?.[COOKIE_NAME];
+  if (!raw) return null;
+  const data = decryptJSON<SessionData>(raw);
+  if (!data || data.expiresAt < Date.now()) return null;
+  return data;
 }
 
 function resolveToken(req: Request): string | null {
-  const s = resolveSession(req);
-  if (!s) return null;
-  try {
-    return decrypt(s.encryptedToken, s.iv, s.authTag);
-  } catch {
-    return null;
-  }
-}
-
-function getSessionId(req: Request): string | undefined {
-  return (req.cookies as Record<string, string>)?.[COOKIE_NAME];
+  return resolveSession(req)?.accessToken ?? null;
 }
 
 // ---------------------------------------------------------------------------
@@ -163,18 +145,18 @@ function sanitizeUsername(raw: unknown): string | null {
 // Session creation helper (shared by login + register)
 // ---------------------------------------------------------------------------
 
+/**
+ * Encrypts session data into a compact cookie value. No server-side store —
+ * the cookie IS the session, verified by the encryption key on each request.
+ */
 function createSession(accessToken: string, userId: string, deviceId: string): string {
-  const { encrypted, iv, authTag } = encrypt(accessToken);
-  const sessionId = crypto.randomUUID();
-  sessions.set(sessionId, {
-    encryptedToken: encrypted,
-    iv,
-    authTag,
+  const payload: SessionData = {
+    accessToken,
     userId,
     deviceId,
     expiresAt: Date.now() + SESSION_TTL_MS,
-  });
-  return sessionId;
+  };
+  return encryptJSON(payload);
 }
 
 // ---------------------------------------------------------------------------
@@ -290,10 +272,8 @@ router.get('/whoami', async (req: Request, res: Response) => {
 
 // POST /auth/matrix/logout
 router.post('/logout', async (req: Request, res: Response) => {
-  const sessionId = getSessionId(req);
   const token = resolveToken(req);
 
-  if (sessionId) sessions.delete(sessionId);
   clearCookie(res);
 
   if (token) {
