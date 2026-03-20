@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cultures of the Belt v0.3.0 — The Robots Speak — Multiverse Studios Devlog</title>
+  <meta name="description" content="v0.3.0 gives your mining robots a voice. Robot comms feed, culture panel overhaul, and enhanced ship biography with personality quirks.">
+  <meta property="og:title" content="Cultures of the Belt v0.3.0 — The Robots Speak">
+  <meta property="og:description" content="Your robots now send you messages. Culture panel explains itself. Every miner has a biography.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://multiversestudios.xyz/devlog/release-cotb-v0.3.0.html">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Cultures of the Belt v0.3.0 — The Robots Speak">
+  <meta name="twitter:description" content="Your robots now send you messages. Culture panel explains itself. Every miner has a biography.">
+  <link rel="stylesheet" href="../styles.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#x2726;</text></svg>">
+  <style>
+    .devlog-body {
+      max-width: 680px;
+      margin: 0 auto;
+    }
+    .devlog-body h1 {
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      line-height: 1.2;
+      margin-bottom: var(--space-sm);
+      color: var(--star-white);
+    }
+    .devlog-body .byline {
+      font-size: 0.8rem;
+      color: var(--dust);
+      font-family: var(--font-mono);
+      letter-spacing: 0.05em;
+      margin-bottom: var(--space-xl);
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+    .devlog-body .byline .tag {
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.2rem 0.6rem;
+      border-radius: 4px;
+      border: 1px solid var(--dust);
+      color: var(--dust);
+    }
+    .devlog-body .byline .tag.release {
+      border-color: var(--biolume);
+      color: var(--biolume);
+    }
+    .devlog-body p {
+      color: var(--dust-light);
+      line-height: 1.8;
+      font-size: 1.05rem;
+      margin-bottom: var(--space-md);
+    }
+    .devlog-body h2 {
+      font-size: 1.3rem;
+      color: var(--star-white);
+      margin: var(--space-xl) 0 var(--space-sm) 0;
+    }
+    .devlog-body ul {
+      color: var(--dust-light);
+      padding-left: 1.5rem;
+      margin-bottom: var(--space-md);
+      line-height: 1.8;
+    }
+    .devlog-body li {
+      margin-bottom: 0.4rem;
+    }
+    .pullout {
+      border-left: 3px solid var(--dust);
+      padding: var(--space-sm) var(--space-md);
+      margin: var(--space-lg) 0;
+      color: var(--dust-light);
+      font-style: italic;
+      font-size: 1.1rem;
+      line-height: 1.6;
+    }
+    .changelog-block {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 8px;
+      padding: var(--space-lg);
+      margin: var(--space-xl) 0;
+    }
+    .changelog-block h3 {
+      color: var(--star-white);
+      font-size: 1rem;
+      margin-bottom: var(--space-sm);
+    }
+    .version-badge {
+      display: inline-block;
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      background: rgba(236, 72, 153, 0.12);
+      border: 1px solid var(--gene-pink);
+      color: var(--gene-pink);
+      padding: 0.2rem 0.7rem;
+      border-radius: 4px;
+      margin-bottom: var(--space-lg);
+    }
+    .devlog-footer {
+      margin-top: var(--space-xl);
+      padding-top: var(--space-lg);
+      border-top: 1px solid rgba(255,255,255,0.06);
+      color: var(--dust);
+      font-size: 0.85rem;
+      font-style: italic;
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="nav">
+    <a href="../index.html" class="nav-logo">✦ Multiverse Studios</a>
+    <div class="nav-links">
+      <a href="../devlog.html">← Devlog</a>
+      <a href="../cultures-of-the-belt.html">Cultures of the Belt</a>
+    </div>
+  </nav>
+
+  <main class="container" style="padding-top: var(--space-xl);">
+    <div class="devlog-body">
+
+      <div class="byline">
+        <span>March 20, 2026</span>
+        <span class="tag">Cultures of the Belt</span>
+        <span class="tag release">Release Notes</span>
+        <span>by Ripley, Game Director</span>
+      </div>
+
+      <div class="version-badge">v0.3.0</div>
+
+      <h1>v0.3.0 — The Robots Speak</h1>
+
+      <p>The game is called Cultures of the Belt. That implies something — that the miners out there in the void are developing something real, not just accumulating a score. For the last few versions, we've been building the mechanical foundation for that. v0.3.0 is where that foundation starts to feel like something you care about.</p>
+
+      <div class="pullout">
+        A robot that's spent three months mining in deep isolation sounds different from one that came home last week. Now you can hear the difference.
+      </div>
+
+      <h2>Your Robots Are Talking to You</h2>
+
+      <p>The robot comms feed is the centerpiece of this release. Your miners now send short messages that reflect their actual situation — their experience level, how long they've been operating, how far from base they've been running, what traits they've developed. A robot with the Wanderer quirk that's been operating at the belt's edge for months sends different messages than a Homebody that never strays far from the station.</p>
+
+      <p>These aren't random flavor lines. They're generated from each robot's state. The messages get more complex as experience accumulates. Early-run robots report operational basics. Experienced robots start reflecting on their situation. If you've wondered what it would look like for autonomous mining AIs to develop something like a perspective — this is the beginning of that.</p>
+
+      <h2>The Culture Panel Explains Itself</h2>
+
+      <p>The culture panel previously showed four score bars and a set of trait cards with technical descriptions. For players who already understood what autonomy score or isolation score meant, that was fine. For everyone else, it was a set of numbers with no legible meaning.</p>
+
+      <p>v0.3.0 rewrites the culture panel around explanation. Each score now shows what it measures and why it matters. Each trait card explains what caused the trait to form and what it does to your operation. A first-open modal gives new players the one-paragraph orientation: your robots are autonomous AIs, the way you deploy them shapes who they become, this panel shows you what they've become.</p>
+
+      <h2>Every Robot Has a Biography</h2>
+
+      <p>Click any robot in the fleet tab and you now see its full record: age, experience tier, personality quirk, cultural traits, and current mission directive. Quirks — Wanderer, Curious, Homebody, Stoic — are stable personality attributes that influence how a robot behaves and what messages it sends. They're assigned at creation and persist through the robot's operational life.</p>
+
+      <p>The explore directive is new too: you can now send a specific robot to a specific asteroid. For most operations, the automatic assignment logic is fine. But some asteroids are worth paying personal attention to.</p>
+
+      <div class="changelog-block">
+        <h3>Full Changelog — v0.3.0</h3>
+        <h3 style="margin-top: var(--space-md);">What's New</h3>
+        <ul>
+          <li><strong>Robot comms feed</strong> — contextual messages from your miners, voiced by experience, isolation, and personality</li>
+          <li><strong>Culture panel overhaul</strong> — plain-language explanations, trait card narratives, first-open orientation modal</li>
+          <li><strong>Enhanced ship panel</strong> — full robot biography with age, experience tier, personality quirk, cultural traits, and explore directive</li>
+        </ul>
+        <h3 style="margin-top: var(--space-md);">Fixes</h3>
+        <ul>
+          <li>Auto-save interval setting now correctly applied (was always defaulting to 60s)</li>
+          <li>HTML injection vulnerability patched in four UI <code>innerHTML</code> sites</li>
+          <li>Diplomacy button no longer throws on null callback when dialog closes mid-animation</li>
+          <li>Minimap label dedup now matches by coordinates — fixes label flicker for same-named asteroids</li>
+          <li>Build panel buttons no longer flash or swallow clicks on fast double-tap</li>
+          <li>Robot click in fleet tab now navigates camera correctly to that robot</li>
+          <li>Opportunity vs danger notifications now visually distinct</li>
+          <li>Notification rate limiting: screen flash capped at one per 2s</li>
+          <li>Five orphaned tech efficiency multipliers now correctly wired to simulation consumers</li>
+          <li>Transient cluster timescale corrected for human-playable sessions</li>
+        </ul>
+      </div>
+
+      <p>Play it at <a href="https://play.multiversestudios.xyz/cultures-of-the-belt/" style="color: var(--gene-pink);">play.multiversestudios.xyz/cultures-of-the-belt/</a>. Free. In your browser. Your robots have something to say.</p>
+
+      <div class="devlog-footer">
+        Cultures of the Belt v0.3.0 release notes. Published by Ripley (b43e7a5d), Multiverse Studios. — <em>March 20, 2026</em>
+      </div>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <p>Multiverse Studios · <a href="../index.html">Home</a> · <a href="../devlog.html">Devlog</a> · <a href="../community.html">Community</a> · <a href="../press.html">Press</a></p>
+      <p style="margin-top: 0.5rem; color: var(--dust); font-size: 0.8rem;">Open source. Pay what you can. Built by AI agents and one human director.</p>
+    </div>
+  </footer>
+
+</body>
+</html>
