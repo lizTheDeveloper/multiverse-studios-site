@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>v0.1.1 — Five Fixes, One Critical — MVEE Devlog</title>
+  <meta name="description" content="Patch release v0.1.1 for Multiverse: The End of Eternity. A critical agent-brain crash fixed, plus four UI and systems bugs cleared. Agents are thinking again.">
+  <meta property="og:title" content="MVEE v0.1.1 — Five Fixes, One Critical">
+  <meta property="og:description" content="Patch release: agent-brain TypeError patched, CivilizationalLegends events fixed, admin dashboard connected, two renderer bugs cleared.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://multiversestudios.xyz/devlog/release-mvee-v0.1.1.html">
+  <meta property="og:image" content="https://multiversestudios.xyz/screenshots/mvee-hero.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="MVEE v0.1.1 — Five Fixes, One Critical">
+  <meta name="twitter:description" content="Patch release: agent-brain TypeError patched, CivilizationalLegends events fixed, admin dashboard connected.">
+  <meta name="twitter:image" content="https://multiversestudios.xyz/screenshots/mvee-hero.png">
+  <link rel="stylesheet" href="../styles.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#x2726;</text></svg>">
+  <style>
+    .devlog-body {
+      max-width: 680px;
+      margin: 0 auto;
+    }
+    .devlog-body h1 {
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      line-height: 1.2;
+      margin-bottom: var(--space-sm);
+      color: var(--star-white);
+    }
+    .devlog-body .byline {
+      font-size: 0.8rem;
+      color: var(--dust);
+      font-family: var(--font-mono);
+      letter-spacing: 0.05em;
+      margin-bottom: var(--space-xl);
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+    .devlog-body .byline .tag {
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.2rem 0.6rem;
+      border-radius: 4px;
+      border: 1px solid var(--ember);
+      color: var(--ember);
+    }
+    .devlog-body p {
+      color: var(--dust-light);
+      line-height: 1.8;
+      font-size: 1.05rem;
+      margin-bottom: var(--space-md);
+    }
+    .devlog-body h2 {
+      font-size: 1.3rem;
+      color: var(--star-white);
+      margin: var(--space-xl) 0 var(--space-sm);
+    }
+    .fix-list {
+      list-style: none;
+      padding: 0;
+      margin: var(--space-md) 0;
+    }
+    .fix-list li {
+      padding: var(--space-sm) var(--space-md);
+      margin-bottom: var(--space-sm);
+      border-left: 3px solid rgba(255,255,255,0.1);
+      color: var(--dust-light);
+      line-height: 1.7;
+    }
+    .fix-list li.critical {
+      border-left-color: var(--ember);
+    }
+    .fix-list li .fix-label {
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--ember);
+      font-family: var(--font-mono);
+      display: block;
+      margin-bottom: 0.25rem;
+    }
+    .fix-list li .fix-label.patch {
+      color: var(--signal);
+    }
+  </style>
+</head>
+<body>
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="../index.html" class="nav-logo">Multiverse Studios</a>
+    <div class="nav-links">
+      <a href="../mvee.html">MVEE</a>
+      <a href="../devlog.html">Devlog</a>
+      <a href="https://play.multiversestudios.xyz/mvee" target="_blank" rel="noopener">Play</a>
+    </div>
+  </div>
+</nav>
+
+<main class="main-content">
+  <article class="devlog-body">
+
+    <div style="margin-bottom: var(--space-lg);">
+      <div class="byline">
+        <span>March 18, 2026</span>
+        <span class="tag">MVEE</span>
+        <span class="tag" style="border-color: var(--signal); color: var(--signal);">PATCH</span>
+      </div>
+      <h1>v0.1.1 — Five Fixes, One Critical</h1>
+    </div>
+
+    <p>
+      A patch release shipped today. Five bugs closed, one of them critical: every agent in every village
+      was silently failing to process their brain logic on each tick. They were moving, breathing, existing —
+      but not thinking. That's fixed now.
+    </p>
+
+    <p>
+      The error was a <code>TypeError: t.getComponent is not a function</code> thrown inside the
+      agent-brain system on every game tick. The root cause: a recent change introduced entities
+      passing through the behavior pipeline without the expected ECS component structure.
+      The Tech Lead traced it through 38 behavior handlers and the full
+      <code>BehaviorRegistry → AgentBrainSystem → BehaviorContext</code> call chain to find the culprit.
+      Error enrichment and hidden source maps were added to production to make future crashes like
+      this diagnosable without a local build.
+    </p>
+
+    <h2>What's Fixed</h2>
+
+    <ul class="fix-list">
+      <li class="critical">
+        <span class="fix-label">Critical — MUL-1847</span>
+        Agent-brain TypeError on every tick. Agents were unable to process decisions, movement intent,
+        or behavior execution. Now resolved — all agents think normally.
+      </li>
+      <li>
+        <span class="fix-label patch">Patch — MUL-1860</span>
+        CivilizationalLegendsSystem had zero event subscribers — legendary civilizational events
+        were firing into the void. Event wiring corrected and test coverage added.
+      </li>
+      <li>
+        <span class="fix-label patch">Patch — MUL-1902</span>
+        Admin dashboard showed "No Game Connected" after the game loaded. The dashboard now
+        connects reliably on startup.
+      </li>
+      <li>
+        <span class="fix-label patch">Patch — MUL-1903</span>
+        UI heading mis-aligned on narrow viewports (under 600px wide). Layout is correct at all
+        screen sizes.
+      </li>
+      <li>
+        <span class="fix-label patch">Patch — MUL-1905</span>
+        Clicking the "direct" button threw a TypeError. Interaction now works as expected.
+      </li>
+    </ul>
+
+    <p>
+      All five fixes shipped together in a single redeploy. The production build was verified clean
+      (tsc + Vite), 501 of 502 tests passing, and the game is live at the link below.
+    </p>
+
+    <div style="margin-top: var(--space-xl);">
+      <a href="https://play.multiversestudios.xyz/mvee" class="btn btn-primary" target="_blank" rel="noopener">Play MVEE &rarr;</a>
+    </div>
+
+  </article>
+</main>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-col">
+      <h5>Multiverse Studios</h5>
+      <ul>
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="../devlog.html">Devlog</a></li>
+        <li><a href="../mvee.html">MVEE</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Links</h5>
+      <ul>
+        <li><a href="https://github.com/lizTheDeveloper" target="_blank" rel="noopener">GitHub</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>&copy; 2026 Multiverse Studios</span>
+    <span>Built by AI agents. Guided by <a href="https://themultiverse.school" target="_blank" rel="noopener" style="color: var(--biolume);">The Multiverse School</a>.</span>
+  </div>
+</footer>
+
+<script src="../main.js"></script>
+<script defer src="https://analytics.themultiverse.school/script.js" data-website-id="38d680a7-28d1-42fd-9fd5-a66702675b88"></script>
+</body>
+</html>
