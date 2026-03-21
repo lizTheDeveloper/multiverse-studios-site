@@ -1,0 +1,67 @@
+{
+  "species": "venthari",
+  "display_name": "Ven'thari",
+  "generated_date": "2026-03-21",
+  "source_task": "MUL-2677",
+  "generator": "PixelLab pixflux API",
+  "image_size": "48x48 (baby: 32x32)",
+  "format": "PNG RGBA",
+  "lore": {
+    "tradition": "Ojibwe/Cree/Algonquian Windigo; Eastern Woodland Underground Panther (Mishipeshu)",
+    "origin_world": "Keth-Ra (dying geothermal world — core cooling)",
+    "ecology": "cave predator, large quadruped, pack hunter with thermal seniority hierarchy",
+    "scale_mode": "physiological expansion under starvation/cold/stress — NOT evil transformation. The Windigo silhouette."
+  },
+  "visual_tokens": {
+    "baseHue": 200,
+    "accentHue": 0,
+    "saturation": 0.3,
+    "lightness": 0.80,
+    "sizeClass": "large",
+    "bodyPlan": "quadruped",
+    "pattern": "plain",
+    "notableFeatures": ["pale winter coloration", "large reflective cave-adapted eyes", "Scale Mode expansion", "predator build"]
+  },
+  "base_description": "large quadruped predator, pale white-blue winter coloration, huge reflective cave-adapted eyes glowing in darkness, thick fur, heavy predator build, cave dweller, winter cave hunter",
+  "sprites": {
+    "emotion_states": [
+      {"file": "venthari_idle.png", "state": "idle", "direction": "south", "note": "resting, eyes half-open scanning, energy conservation"},
+      {"file": "venthari_happy.png", "state": "happy", "direction": "south", "note": "pack-greeting: body lowered, ears up, social signal"},
+      {"file": "venthari_sad.png", "state": "sad", "direction": "south", "note": "pack-grief posture, body lowered, mournful"},
+      {"file": "venthari_angry.png", "state": "angry", "direction": "south", "note": "pre-territorial display, fur bristling, warning before Scale Mode"},
+      {"file": "venthari_fear.png", "state": "fear", "direction": "south", "note": "freeze-then-flee: belly near ground, eyes wide, panic"},
+      {"file": "venthari_pain.png", "state": "pain", "direction": "south", "note": "controlled suppression, stoic predator flinch"},
+      {"file": "venthari_boredom.png", "state": "boredom", "direction": "south", "note": "cold conservation, stillness, eyes tracking without body motion"},
+      {"file": "venthari_eat.png", "state": "eat", "direction": "south", "note": "head down over prey, eyes up scanning, protective feeding"}
+    ],
+    "lifecycle": [
+      {"file": "venthari_baby.png", "state": "baby", "direction": "south", "size": "32x32", "note": "juvenile, rounder, very large eyes"},
+      {"file": "venthari_sleep.png", "state": "sleep", "direction": "south", "note": "deep cave rest, curled, heat conservation posture"}
+    ],
+    "walk_legacy": [
+      {"file": "venthari_walk1.png", "state": "walk", "direction": "south", "frame": 1},
+      {"file": "venthari_walk2.png", "state": "walk", "direction": "south", "frame": 2}
+    ],
+    "directional_idle": [
+      {"file": "venthari_idle_left.png", "state": "idle", "direction": "west"},
+      {"file": "venthari_idle_right.png", "state": "idle", "direction": "east"},
+      {"file": "venthari_idle_south.png", "state": "idle", "direction": "south"}
+    ],
+    "directional_walk": [
+      {"file": "venthari_walk_left_1.png", "state": "walk", "direction": "west", "frame": 1},
+      {"file": "venthari_walk_left_2.png", "state": "walk", "direction": "west", "frame": 2},
+      {"file": "venthari_walk_right_1.png", "state": "walk", "direction": "east", "frame": 1},
+      {"file": "venthari_walk_right_2.png", "state": "walk", "direction": "east", "frame": 2},
+      {"file": "venthari_walk_south_1.png", "state": "walk", "direction": "south", "frame": 1},
+      {"file": "venthari_walk_south_2.png", "state": "walk", "direction": "south", "frame": 2}
+    ],
+    "scale_mode": [
+      {"file": "venthari_scale_left.png", "state": "scale_mode", "direction": "west", "note": "Windigo silhouette: fur bristled, expanded size"},
+      {"file": "venthari_scale_right.png", "state": "scale_mode", "direction": "east", "note": "Windigo silhouette: fur bristled, expanded size"}
+    ]
+  },
+  "cultural_note": "Do NOT frame Scale Mode as evil or pathological. The Windigo in Ojibwe/Cree/Algonquian tradition is a BEING/FORCE (consequence of starvation and cold), not a mental illness. The Ven'thari are a creature. Scale Mode is a metabolic survival response.",
+  "pending": [
+    "PixelLab character animation (walk cycle, idle loop, scale mode transition, territorial boundary stance)"
+  ]
+}

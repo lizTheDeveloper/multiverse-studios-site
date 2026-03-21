@@ -1,0 +1,81 @@
+{
+  "batch": "sprint9-theme-c",
+  "generated_date": "2026-03-18",
+  "source_doc": "games/mvee/docs/species-batch-2026-03-18.md",
+  "task_refs": [
+    "MUL-1995",
+    "MUL-1997",
+    "MUL-2010"
+  ],
+  "generator": "PixelLab pixflux API",
+  "image_size": "48x48",
+  "format": "PNG RGBA",
+  "species": [
+    {
+      "id": "peuchen_vel",
+      "name": "Peuch\u00e9n-Vel",
+      "tradition": "Mapuche",
+      "region": "Southern South America",
+      "game": "Precursors + MVEE (migration candidate)",
+      "sprites": [
+        "peuchen_vel_idle.png",
+        "peuchen_vel_happy.png"
+      ]
+    },
+    {
+      "id": "mboi_tuivel",
+      "name": "Mboi-Tu'i-Vel",
+      "tradition": "Guaran\u00ed",
+      "region": "South-Central South America",
+      "game": "Cross-game",
+      "sprites": [
+        "mboi_tuivel_idle.png",
+        "mboi_tuivel_happy.png"
+      ]
+    },
+    {
+      "id": "bouda_kin",
+      "name": "Bouda-Kin",
+      "tradition": "Berber/Amazigh",
+      "region": "North Africa",
+      "game": "Cross-game",
+      "sprites": [
+        "bouda_kin_idle.png",
+        "bouda_kin_happy.png"
+      ]
+    },
+    {
+      "id": "anzar_vel",
+      "name": "Anzar-Vel",
+      "tradition": "Kabyle Berber",
+      "region": "North Africa",
+      "game": "Precursors-native",
+      "sprites": [
+        "anzar_vel_idle.png",
+        "anzar_vel_happy.png"
+      ]
+    },
+    {
+      "id": "yelbegen_rin",
+      "name": "Yelbegen-Rin",
+      "tradition": "Altai Turkic",
+      "region": "Central Asia",
+      "game": "Cross-game",
+      "sprites": [
+        "yelbegen_rin_idle.png",
+        "yelbegen_rin_happy.png"
+      ]
+    },
+    {
+      "id": "lus_vel",
+      "name": "Lus-Vel",
+      "tradition": "Mongolian",
+      "region": "Central Asia",
+      "game": "Cross-game",
+      "sprites": [
+        "lus_vel_idle.png",
+        "lus_vel_happy.png"
+      ]
+    }
+  ]
+}

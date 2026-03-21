@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" role="img" aria-label="Eternal Return glyph" style="color: #757575">
+  <!--
+    Eternal Return Glyph — static variant
+    Four-pointed symbol for cross-game use.
+    Use fill="currentColor" context to adapt to dark/light backgrounds.
+    Scales cleanly at 16px, 32px, 64px.
+  -->
+  <path
+    fill="currentColor"
+    fill-rule="evenodd"
+    d="M50,5 L57,43 L95,50 L57,57 L50,95 L43,57 L5,50 L43,43 Z
+       M50,45 L55,50 L50,55 L45,50 Z"
+  />
+</svg>

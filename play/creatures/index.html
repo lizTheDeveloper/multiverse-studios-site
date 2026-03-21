@@ -47,6 +47,12 @@
       --rune-glow: rgba(61, 252, 224, 0.15);
       --font-display: 'Cormorant Garamond', 'Garamond', serif;
       --font-mono: 'JetBrains Mono', 'Menlo', monospace;
+
+      /* Layout dimensions */
+      --layout-dock-width: 220px;
+      --layout-panel-width: 263px;
+      --layout-bottom-bar-height: 56px;
+      --layout-title-bar-height: 36px;
     }
 
     * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -358,12 +364,41 @@
       40% { opacity: 1; transform: scale(1.1); box-shadow: 0 0 4px var(--glow-cyan); }
     }
 
-    /* ── CHAT INPUT ── carved channel at the bottom */
-    .chat-container {
+    /* ── BOTTOM BAR ── flex container for dock + chat + panel spacer */
+    #bottom-bar {
       position: fixed;
       bottom: 0;
-      left: 224px; /* Clear dock-system: 12px left offset + ~208px dock width (label + 6 slots + padding) */
-      right: 268px; /* UIPanel: 240 canvas px × 1.09375 CSS scale = ~263px viewport; +5px clearance — overridden by ChatBox when no norn selected */
+      left: 0;
+      right: 0;
+      display: flex;
+      align-items: flex-end;
+      z-index: 100;
+      pointer-events: none;
+    }
+
+    .bottom-zone-left {
+      flex: 0 0 auto;
+      pointer-events: auto;
+    }
+
+    .bottom-zone-center {
+      flex: 1 1 0%;
+      min-width: 0;
+      pointer-events: auto;
+    }
+
+    .bottom-zone-right {
+      flex: 0 0 var(--layout-panel-width);
+      pointer-events: none;
+    }
+
+    /* When no norn is selected, collapse the right spacer */
+    .bottom-zone-right.hidden {
+      flex-basis: 0;
+    }
+
+    /* ── CHAT INPUT ── carved channel at the bottom */
+    .chat-container {
       z-index: 100;
       padding: 0 16px 14px;
       background: linear-gradient(
@@ -549,12 +584,19 @@
 
     /* ── MOBILE RESPONSIVE ── portrait phones (MUL-2080) */
     @media (max-width: 599px) {
-      /* Chat container: remove desktop offsets that collapse it to ~107px.
-         Left: clear title bar without dock clearance (dock overlaps, acceptable).
-         Right: 48px clears the ? key-hints toggle (28px wide, 16px from right). */
+      /* On mobile, hide the dock zone and panel spacer so chat spans full width */
+      .bottom-zone-left { display: none; }
+      .bottom-zone-right { flex-basis: 0 !important; }
+
       .chat-container {
-        left: 8px;
-        right: 48px;
+        padding-left: 8px;
+        padding-right: 48px; /* 48px clears the ? key-hints toggle */
+      }
+
+      /* Key-hints: reset to simple bottom-right on mobile */
+      .key-hints {
+        right: 16px;
+        bottom: var(--layout-bottom-bar-height);
       }
 
       /* WCAG 2.5.5: minimum 44px touch target for interactive controls */
@@ -848,8 +890,8 @@
     /* ── KEYBINDING HINTS ── collapsible alien glyph toggle, bottom-right */
     .key-hints {
       position: fixed;
-      bottom: 62px;
-      right: 16px;
+      bottom: var(--layout-bottom-bar-height);
+      right: var(--layout-panel-width);
       z-index: 200;
       pointer-events: auto;
     }
@@ -939,9 +981,6 @@
     }
     /* ── DOCK SYSTEM ── 6-slot item stasis pocket, bottom-left */
     #dock-system {
-      position: fixed;
-      bottom: 12px;
-      left: 12px;
       z-index: 200;
       display: flex;
       align-items: center;
@@ -950,6 +989,7 @@
       border: 1px solid rgba(61, 252, 224, 0.18);
       border-radius: 4px;
       padding: 4px 8px;
+      margin: 0 0 12px 12px;
       pointer-events: auto;
       opacity: 0.72;
       transition: opacity 0.25s ease;
@@ -1170,15 +1210,15 @@
     }
 
   </style>
-  <script type="module" crossorigin src="/play/creatures/assets/main-BD5BVlx6.js"></script>
+  <script type="module" crossorigin src="/play/creatures/assets/main-BKXtge0j.js"></script>
   <link rel="modulepreload" crossorigin href="/play/creatures/assets/LifeStage-069__A6x.js">
   <link rel="modulepreload" crossorigin href="/play/creatures/assets/vendor-phaser-CaWnzXme.js">
-  <link rel="modulepreload" crossorigin href="/play/creatures/assets/Logger-oU1klXnQ.js">
-  <link rel="modulepreload" crossorigin href="/play/creatures/assets/ChemicalSet-Dj17Rb78.js">
-  <link rel="modulepreload" crossorigin href="/play/creatures/assets/InventionRegistry-BTiZnWcj.js">
-  <link rel="modulepreload" crossorigin href="/play/creatures/assets/PerfTelemetry-DKmuLckd.js">
-  <link rel="modulepreload" crossorigin href="/play/creatures/assets/LanguageSystem-DET7RvPI.js">
-  <link rel="modulepreload" crossorigin href="/play/creatures/assets/UIScene-BPG1uxF2.js">
+  <link rel="modulepreload" crossorigin href="/play/creatures/assets/Logger-BIETK-dL.js">
+  <link rel="modulepreload" crossorigin href="/play/creatures/assets/ChemicalSet-BN3dzCmh.js">
+  <link rel="modulepreload" crossorigin href="/play/creatures/assets/InventionRegistry-CAl4rlO6.js">
+  <link rel="modulepreload" crossorigin href="/play/creatures/assets/PerfTelemetry-Bt4uPQP9.js">
+  <link rel="modulepreload" crossorigin href="/play/creatures/assets/LanguageSystem-w2x5qvNj.js">
+  <link rel="modulepreload" crossorigin href="/play/creatures/assets/DevMode-CJIc63j7.js">
 <link rel="manifest" href="/play/creatures/manifest.webmanifest"><script id="vite-plugin-pwa:register-sw" src="/play/creatures/registerSW.js"></script></head>
 <body>
   <!-- Loading Screen -->
@@ -1223,34 +1263,44 @@
   <!-- Creature roster — populated by NornSelector via EventBus -->
   <div class="creature-roster" id="creature-roster" aria-label="Living creatures"></div>
 
-  <!-- Chat -->
-  <div class="chat-container" id="chat-container">
-    <div class="chat-mode-bar" id="chat-mode-bar">
-      <button class="chat-mode-btn" data-mode="area" title="Area — speak to all nearby creatures as The Hand">
-        <span class="chat-mode-icon">◎</span>
-        <span class="chat-mode-label">area</span>
-      </button>
-      <button class="chat-mode-btn active" data-mode="dm" title="Direct — speak to one creature, heard as The Hand">
-        <span class="chat-mode-icon">◇</span>
-        <span class="chat-mode-label">direct</span>
-      </button>
-      <button class="chat-mode-btn" data-mode="inspiration" title="Inspiration — whisper a thought into a creature's mind">
-        <span class="chat-mode-icon">◆</span>
-        <span class="chat-mode-label">inspire</span>
-      </button>
+  <!-- Bottom bar: dock + chat + panel spacer -->
+  <div id="bottom-bar">
+    <div class="bottom-zone-left" id="bottom-zone-left">
+      <!-- DockSystem appends #dock-system here at runtime -->
     </div>
-    <div class="chat-thinking" id="chat-thinking" aria-live="polite" aria-label="thinking">
-      <span class="chat-thinking__dots">
-        <span class="chat-thinking__dot"></span>
-        <span class="chat-thinking__dot"></span>
-        <span class="chat-thinking__dot"></span>
-      </span>
-      <span id="chat-thinking-label">◈ thinking...</span>
+    <div class="bottom-zone-center">
+      <div class="chat-container" id="chat-container">
+        <div class="chat-mode-bar" id="chat-mode-bar">
+          <button class="chat-mode-btn" data-mode="area" title="Area — speak to all nearby creatures as The Hand">
+            <span class="chat-mode-icon">◎</span>
+            <span class="chat-mode-label">area</span>
+          </button>
+          <button class="chat-mode-btn active" data-mode="dm" title="Direct — speak to one creature, heard as The Hand">
+            <span class="chat-mode-icon">◇</span>
+            <span class="chat-mode-label">direct</span>
+          </button>
+          <button class="chat-mode-btn" data-mode="inspiration" title="Inspiration — whisper a thought into a creature's mind">
+            <span class="chat-mode-icon">◆</span>
+            <span class="chat-mode-label">inspire</span>
+          </button>
+        </div>
+        <div class="chat-thinking" id="chat-thinking" aria-live="polite" aria-label="thinking">
+          <span class="chat-thinking__dots">
+            <span class="chat-thinking__dot"></span>
+            <span class="chat-thinking__dot"></span>
+            <span class="chat-thinking__dot"></span>
+          </span>
+          <span id="chat-thinking-label">◈ thinking...</span>
+        </div>
+        <div class="chat-input-wrap">
+          <input type="text" id="chat-input" placeholder="speak to the area..." autocomplete="off" spellcheck="false" />
+          <span class="chat-mode-indicator" id="chat-mode-indicator">◇ direct</span>
+          <span class="chat-hint">enter ↵</span>
+        </div>
+      </div>
     </div>
-    <div class="chat-input-wrap">
-      <input type="text" id="chat-input" placeholder="speak to the area..." autocomplete="off" spellcheck="false" />
-      <span class="chat-mode-indicator" id="chat-mode-indicator">◇ direct</span>
-      <span class="chat-hint">enter ↵</span>
+    <div class="bottom-zone-right" id="bottom-zone-right">
+      <!-- Spacer for Phaser UIPanel -->
     </div>
   </div>
 

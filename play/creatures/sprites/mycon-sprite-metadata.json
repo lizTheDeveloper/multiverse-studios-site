@@ -1,0 +1,41 @@
+{
+  "species": "Mycon",
+  "task": "MUL-2676",
+  "generatedAt": "2026-03-21",
+  "generator": "PixelLab PixFlux API v1",
+  "style": {
+    "size": "48x48 (baby: 32x32)",
+    "outline": "single color black outline",
+    "shading": "basic shading",
+    "detail": "medium detail",
+    "background": "transparent"
+  },
+  "palette": {
+    "base": "#5C4033 (deep ochre-brown)",
+    "bioluminescence": "#A8D08D (pale green-gold)",
+    "spores": "#9B8EC4 (soft violet-grey)",
+    "growth": "#D4A843 (warm amber)",
+    "warning": "#D45B2A (bright orange-red)"
+  },
+  "lore": "Each visible Mycon is a fingertip of a 2-billion-year-old planetary consciousness. The cap and tendrils are a node in an underground network that spans the entire world. Emotional states are expressed through bioluminescent pulse patterns, not facial expression.",
+  "sprites": {
+    "mycon_idle.png": {"state": "idle", "direction": "south", "size": 48, "seed": 3000},
+    "mycon_idle_south.png": {"state": "idle", "direction": "south", "size": 48, "seed": 3020},
+    "mycon_idle_left.png": {"state": "idle", "direction": "west", "size": 48, "seed": 3021},
+    "mycon_idle_right.png": {"state": "idle", "direction": "east", "size": 48, "seed": 3022},
+    "mycon_grow.png": {"state": "grow", "direction": "south", "size": 48, "seed": 3030, "note": "emerge from ground animation"},
+    "mycon_retract.png": {"state": "retract", "direction": "south", "size": 48, "seed": 3031, "note": "withdraw into ground animation"},
+    "mycon_happy.png": {"state": "happy", "direction": "south", "size": 48, "seed": 3001},
+    "mycon_sad.png": {"state": "sad", "direction": "south", "size": 48, "seed": 3002},
+    "mycon_angry.png": {"state": "angry", "direction": "south", "size": 48, "seed": 3003},
+    "mycon_fear.png": {"state": "fear", "direction": "south", "size": 48, "seed": 3004},
+    "mycon_pain.png": {"state": "pain", "direction": "south", "size": 48, "seed": 3005},
+    "mycon_boredom.png": {"state": "boredom", "direction": "south", "size": 48, "seed": 3006},
+    "mycon_eat.png": {"state": "eat", "direction": "south", "size": 48, "seed": 3007},
+    "mycon_spore_pod.png": {"state": "spore_pod", "direction": "south", "size": 48, "seed": 3008},
+    "mycon_baby.png": {"state": "baby", "direction": "south", "size": 32, "seed": 3009},
+    "mycon_sleep.png": {"state": "sleep", "direction": "south", "size": 48, "seed": 3010},
+    "mycon_walk1.png": {"state": "sway_1", "direction": "south", "size": 48, "seed": 3040, "note": "idle sway animation frame 1"},
+    "mycon_walk2.png": {"state": "sway_2", "direction": "south", "size": 48, "seed": 3041, "note": "idle sway animation frame 2"}
+  }
+}

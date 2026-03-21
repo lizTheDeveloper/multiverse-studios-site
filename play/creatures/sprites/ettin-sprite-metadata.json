@@ -1,0 +1,161 @@
+{
+  "species": "Ettin",
+  "task": "MUL-2673",
+  "notes": "Two-headed desert engineers. TWO HEADS are the primary visual identity.",
+  "sprites": [
+    {
+      "file": "ettin_idle.png",
+      "size": "64x64",
+      "view": "side",
+      "direction": "south",
+      "seed": 2300
+    },
+    {
+      "file": "ettin_happy.png",
+      "size": "64x64",
+      "view": "side",
+      "direction": "south",
+      "seed": 2301
+    },
+    {
+      "file": "ettin_sad.png",
+      "size": "64x64",
+      "view": "side",
+      "direction": "south",
+      "seed": 2302
+    },
+    {
+      "file": "ettin_angry.png",
+      "size": "64x64",
+      "view": "side",
+      "direction": "south",
+      "seed": 2303
+    },
+    {
+      "file": "ettin_fear.png",
+      "size": "64x64",
+      "view": "side",
+      "direction": "south",
+      "seed": 2304
+    },
+    {
+      "file": "ettin_pain.png",
+      "size": "64x64",
+      "view": "side",
+      "direction": "south",
+      "seed": 2305
+    },
+    {
+      "file": "ettin_boredom.png",
+      "size": "64x64",
+      "view": "side",
+      "direction": "south",
+      "seed": 2306
+    },
+    {
+      "file": "ettin_eat.png",
+      "size": "64x64",
+      "view": "side",
+      "direction": "south",
+      "seed": 2307
+    },
+    {
+      "file": "ettin_trinket.png",
+      "size": "64x64",
+      "view": "side",
+      "direction": "south",
+      "seed": 2308
+    },
+    {
+      "file": "ettin_baby.png",
+      "size": "48x48",
+      "view": "side",
+      "direction": "south",
+      "seed": 2309
+    },
+    {
+      "file": "ettin_sleep.png",
+      "size": "64x64",
+      "view": "side",
+      "direction": "south",
+      "seed": 2310
+    },
+    {
+      "file": "ettin_walk1.png",
+      "size": "64x64",
+      "view": "side",
+      "direction": "south",
+      "seed": 2320
+    },
+    {
+      "file": "ettin_walk2.png",
+      "size": "64x64",
+      "view": "side",
+      "direction": "south",
+      "seed": 2321
+    },
+    {
+      "file": "ettin_idle_left.png",
+      "size": "64x64",
+      "view": "side",
+      "direction": "west",
+      "seed": 2330
+    },
+    {
+      "file": "ettin_idle_right.png",
+      "size": "64x64",
+      "view": "side",
+      "direction": "east",
+      "seed": 2331
+    },
+    {
+      "file": "ettin_idle_north.png",
+      "size": "64x64",
+      "view": "side",
+      "direction": "north",
+      "seed": 2332
+    },
+    {
+      "file": "ettin_walk_left_1.png",
+      "size": "64x64",
+      "view": "side",
+      "direction": "west",
+      "seed": 2340
+    },
+    {
+      "file": "ettin_walk_left_2.png",
+      "size": "64x64",
+      "view": "side",
+      "direction": "west",
+      "seed": 2341
+    },
+    {
+      "file": "ettin_walk_right_1.png",
+      "size": "64x64",
+      "view": "side",
+      "direction": "east",
+      "seed": 2342
+    },
+    {
+      "file": "ettin_walk_right_2.png",
+      "size": "64x64",
+      "view": "side",
+      "direction": "east",
+      "seed": 2343
+    },
+    {
+      "file": "ettin_walk_north_1.png",
+      "size": "64x64",
+      "view": "side",
+      "direction": "north",
+      "seed": 2346
+    },
+    {
+      "file": "ettin_walk_north_2.png",
+      "size": "64x64",
+      "view": "side",
+      "direction": "north",
+      "seed": 2347
+    }
+  ]
+}
