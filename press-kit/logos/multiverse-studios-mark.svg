@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100" role="img" aria-label="Multiverse Studios">
+  <defs>
+    <!-- Portal gradients — each ring is a different "universe" -->
+    <linearGradient id="ring1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#00ffc8"/>
+      <stop offset="100%" stop-color="#0a8f6f"/>
+    </linearGradient>
+    <linearGradient id="ring2" x1="100%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#7b68ee"/>
+      <stop offset="100%" stop-color="#4a2fb8"/>
+    </linearGradient>
+    <linearGradient id="ring3" x1="50%" y1="0%" x2="50%" y2="100%">
+      <stop offset="0%" stop-color="#ff6b9d"/>
+      <stop offset="100%" stop-color="#c2185b"/>
+    </linearGradient>
+    <filter id="glow-sm">
+      <feGaussianBlur stdDeviation="1.5" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+
+  <!-- Three interlocking rings — overlapping dimensions -->
+  <!-- Ring 1: teal, top-left lean -->
+  <ellipse cx="42" cy="44" rx="28" ry="32" fill="none" stroke="url(#ring1)" stroke-width="3.5" transform="rotate(-20 42 44)" filter="url(#glow-sm)" opacity="0.9"/>
+
+  <!-- Ring 2: purple, center-right lean -->
+  <ellipse cx="56" cy="46" rx="28" ry="32" fill="none" stroke="url(#ring2)" stroke-width="3.5" transform="rotate(25 56 46)" filter="url(#glow-sm)" opacity="0.85"/>
+
+  <!-- Ring 3: pink, subtle tilt -->
+  <ellipse cx="50" cy="52" rx="26" ry="30" fill="none" stroke="url(#ring3)" stroke-width="3" transform="rotate(5 50 52)" filter="url(#glow-sm)" opacity="0.75"/>
+
+  <!-- Center spark — the convergence point -->
+  <circle cx="50" cy="48" r="4" fill="#ffffff" opacity="0.95"/>
+  <circle cx="50" cy="48" r="7" fill="none" stroke="#ffffff" stroke-width="0.8" opacity="0.4"/>
+</svg>

@@ -3,11 +3,12 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-require("dotenv/config");
 const express_1 = __importDefault(require("express"));
 const cors_1 = __importDefault(require("cors"));
+const cookie_parser_1 = __importDefault(require("cookie-parser"));
 const express_rate_limit_1 = __importDefault(require("express-rate-limit"));
 const stripe_js_1 = require("./stripe.js");
+const matrix_auth_js_1 = require("./matrix-auth.js");
 // ---------------------------------------------------------------------------
 // Startup validation — fail loudly rather than serve broken responses.
 // ---------------------------------------------------------------------------
@@ -20,6 +21,8 @@ if (!process.env.STRIPE_SECRET_KEY) {
 // ---------------------------------------------------------------------------
 const PORT = parseInt(process.env.PORT ?? '4000', 10);
 const ALLOWED_ORIGIN = process.env.ALLOWED_ORIGIN ?? 'https://multiversestudios.xyz';
+// Regex matching any https subdomain (or apex) of multiversestudios.xyz, plus localhost.
+const MULTIVERSESTUDIOS_ORIGIN_RE = /^https:\/\/([a-z0-9-]+\.)?multiversestudios\.xyz(:\d+)?$|^https?:\/\/localhost(:\d+)?$/;
 // Characters that would break Stripe's search query syntax.
 const STRIPE_INJECTION_RE = /['"\\]/g;
 // Reasonably strict email pattern — not RFC 5321 exhaustive, but enough to
@@ -30,16 +33,14 @@ const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 // ---------------------------------------------------------------------------
 const app = (0, express_1.default)();
 app.set('trust proxy', 1); // Required for rate-limiter behind Traefik/nginx.
+app.use((0, cookie_parser_1.default)());
 // ---------------------------------------------------------------------------
 // Middleware
 // ---------------------------------------------------------------------------
-app.use((0, cors_1.default)({
+// CORS for /library routes (existing behaviour).
+const libraryCors = (0, cors_1.default)({
     origin: (origin, callback) => {
-        // Allow requests with no Origin header (server-to-server, curl, etc.)
-        // and localhost for local development.
-        if (!origin ||
-            origin === ALLOWED_ORIGIN ||
-            /^https?:\/\/localhost(:\d+)?$/.test(origin)) {
+        if (!origin || origin === ALLOWED_ORIGIN || /^https?:\/\/localhost(:\d+)?$/.test(origin)) {
             callback(null, true);
         }
         else {
@@ -48,8 +49,25 @@ app.use((0, cors_1.default)({
     },
     methods: ['GET', 'POST', 'OPTIONS'],
     allowedHeaders: ['Content-Type'],
-}));
+});
+// CORS for /auth/matrix routes — credentials required, any multiversestudios.xyz subdomain allowed.
+const authCors = (0, cors_1.default)({
+    origin: (origin, callback) => {
+        if (!origin || MULTIVERSESTUDIOS_ORIGIN_RE.test(origin)) {
+            callback(null, true);
+        }
+        else {
+            callback(new Error(`CORS: origin '${origin}' not allowed`));
+        }
+    },
+    credentials: true,
+    methods: ['GET', 'POST', 'OPTIONS'],
+    allowedHeaders: ['Content-Type'],
+});
 app.use(express_1.default.json({ limit: '16kb' }));
+// Auth routes use their own CORS (credentials + broader origin allowlist).
+app.use('/auth/matrix', authCors, matrix_auth_js_1.router);
+app.use(libraryCors);
 app.use((0, express_rate_limit_1.default)({
     windowMs: 60 * 1000, // 1 minute
     max: 10,

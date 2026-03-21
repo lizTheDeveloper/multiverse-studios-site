@@ -338,18 +338,24 @@ function buildSprites() {
 }
 
 // Also load PixelLab sprites when available
-const PIXELLAB_SPRITES = {}; // agentId -> HTMLImageElement (if loaded)
+const PIXELLAB_SPRITES = {};      // agentId -> HTMLImageElement (idle/default)
+const PIXELLAB_POSE_SPRITES = {}; // agentId -> {working, meeting, athome} -> HTMLImageElement
 // name fragment (lowercase) → sprite file key
 const PIXELLAB_MAP = {
   'puck':                    'puck-ceo',
   'peggy':                   'peggy-cmo',
+  'brad':                    'brad-the-suit',
   'gilfoyle':                'gilfoyle-devops',
   'ripley':                  'ripley-game-director',
   'scheherazade':            'scheherazade-folklorist',
+  'fermi':                   'hard-sci-fi-consultant',
   'hard sci-fi':             'hard-sci-fi-consultant',
+  'iris':                    'ui-designer',
   'ui designer':             'ui-designer',
+  'mira':                    'level-designer',
   'level designer':          'level-designer',
   'pixel artist':            'pixel-artist',
+  'palette':                 'pixel-artist',
   'huxley':                  'huxley-geneticist',
   'kali':                    'kali-persistence',
   'moss':                    'moss-game-systems',
@@ -357,21 +363,33 @@ const PIXELLAB_MAP = {
   'cynthia':                 'cynthia-mvee-world-engineer',
   'sylvia':                  'sylvia-performance-critic',
   'community systems':       'community-systems-engineer',
-  'ast founding':            'ast-founding-engineer',
+  'tycho':                   'ast-founding-engineer',
+  'founding engineer':       'ast-founding-engineer',
   'mvee tech lead':          'mvee-tech-lead',
   'renderer':                'renderer-developer',
+  'vox':                     'llm-specialist',
   'llm specialist':          'llm-specialist',
+  'boltzmann':               'ml-engineer',
   'ml engineer':             'ml-engineer',
+  'argus':                   'security-engineer',
   'security engineer':       'security-engineer',
+  'meridian':                'mvee-pm',
   'mvee pm':                 'mvee-pm',
+  'lore':                    'precursors-pm',
   'precursors pm':           'precursors-pm',
+  'vesper':                  'research-pm',
   'research pm':             'research-pm',
   'priya':                   'priya-qa-engineer',
   'playtester':              'playtester',
-  'ast code critic':         'ast-code-critic',
+  'ceres':                   'ast-code-critic',
+  'code critic':             'ast-code-critic',
+  'pixel - marketing':       'marketing-qa',
   'marketing qa':            'marketing-qa',
   'morgan':                  'morgan-community-manager',
+  'nova':                    'content-marketer',
   'content marketer':        'content-marketer',
+  'octavia':                 'octavia-octalysis-analyst',
+  'fern':                    'fern-folkfork-pm',
 };
 
 function tryLoadPixelLabSprite(agent) {
@@ -385,9 +403,40 @@ function tryLoadPixelLabSprite(agent) {
         img.onerror = () => {}; // fall through to canvas sprite
         PIXELLAB_SPRITES[agent.id] = img; // store even if not loaded yet
       }
+      // Also pre-load pose variants (working, meeting, athome)
+      if (!PIXELLAB_POSE_SPRITES[agent.id]) {
+        PIXELLAB_POSE_SPRITES[agent.id] = {};
+        for (const pose of ['working', 'meeting', 'athome']) {
+          const poseImg = new Image();
+          poseImg.src = `/office/sprites/${urlKey}_${pose}.png`;
+          poseImg.onload = () => { PIXELLAB_POSE_SPRITES[agent.id][pose] = poseImg; };
+          poseImg.onerror = () => {}; // silently fall back to idle sprite
+        }
+      }
       return;
     }
   }
+}
+
+// Returns the best available sprite image for an agent given their current behavior state.
+// Falls back to idle sprite if pose variant isn't loaded yet.
+function getPoseSprite(agentId, behaviorState) {
+  const idleImg = PIXELLAB_SPRITES[agentId];
+  const poseMap = PIXELLAB_POSE_SPRITES[agentId];
+  if (!poseMap) return idleImg;
+  let pose = null;
+  if (behaviorState === 'working' || behaviorState === 'blocked_pacing') {
+    pose = 'working';
+  } else if (behaviorState === 'chatting' || behaviorState === 'visiting') {
+    pose = 'meeting';
+  } else if (behaviorState === 'sleeping') {
+    pose = 'athome';
+  }
+  if (pose) {
+    const poseImg = poseMap[pose];
+    if (poseImg && poseImg.complete && poseImg.naturalWidth > 0) return poseImg;
+  }
+  return idleImg;
 }
 
 // ── Zone + desk layout ────────────────────────────────────────────────────────
@@ -396,7 +445,7 @@ function tryLoadPixelLabSprite(agent) {
 const ROOM_W = 28, ROOM_H = 16;
 
 const ZONE_DEFS = [
-  { id:'csuite',      tx:0,  ty:0,  tw:7,  th:4,  floor:'#1e1230', label:'C-Suite',        roles:['ceo','cmo'] },
+  { id:'csuite',      tx:0,  ty:0,  tw:7,  th:4,  floor:'#1e1230', label:'C-Suite',        roles:['ceo','cmo','cfo'] },
   { id:'pm',          tx:7,  ty:0,  tw:7,  th:4,  floor:'#122018', label:'PM Wing',         roles:['pm'] },
   { id:'design',      tx:14, ty:0,  tw:14, th:4,  floor:'#12102a', label:'Design Wing',     roles:['designer'] },
   { id:'engineering', tx:0,  ty:4,  tw:20, th:7,  floor:'#0c1220', label:'Engineering',     roles:['engineer','researcher'] },
@@ -949,8 +998,8 @@ function drawFrame() {
     const cx = sceneOffX + agent.tx * TS + boff.px;
     const cy = sceneOffY + agent.ty * TS + boff.py;
 
-    // Determine whether a PixelLab sprite is ready
-    const plImg   = PIXELLAB_SPRITES[agent.id];
+    // Determine whether a PixelLab sprite is ready (use pose variant if available)
+    const plImg   = getPoseSprite(agent.id, bhints.state);
     const hasPlSp = !!(plImg && plImg.complete && plImg.naturalWidth > 0);
     const plDrawW = hasPlSp ? plImg.naturalWidth  * 2 : CW * S;
     const plDrawH = hasPlSp ? plImg.naturalHeight * 2 : (CH + 4) * S;

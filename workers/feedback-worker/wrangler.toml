@@ -6,5 +6,14 @@ compatibility_date = "2024-01-01"
 MATRIX_HOMESERVER = "https://matrix.multiversestudios.xyz"
 MATRIX_ROOM_ID = "!pQqsRZBEIHWLodysbV:matrix.multiversestudios.xyz"
 ALLOWED_ORIGINS = "https://multiversestudios.xyz,http://localhost:3000,http://localhost:3001,http://localhost:5173"
+# SECURITY_MATRIX_ROOM_ID = "!yourSecurityRoomId:matrix.multiversestudios.xyz"  # set to enable security alerts room
 
 # MATRIX_ACCESS_TOKEN is set as a secret via `wrangler secret put MATRIX_ACCESS_TOKEN`
+
+# KV namespace for per-user rate limiting (5 submissions/hour)
+# Create with: wrangler kv namespace create RATE_LIMIT_KV
+# Then replace the id below with the output from that command
+[[kv_namespaces]]
+binding = "RATE_LIMIT_KV"
+id = "REPLACE_WITH_KV_NAMESPACE_ID"
+preview_id = "REPLACE_WITH_KV_PREVIEW_NAMESPACE_ID"

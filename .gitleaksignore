@@ -1,0 +1,5 @@
+# Client-side proxy keys intentionally embedded in playtest URLs
+00a13af0a03853998b61ab5cba8ec2da5d240039:playtest.html:generic-api-key:332
+9592234a4776f69f9a122b04c7f73120149a4119:playtest.html:generic-api-key:332
+# PixelLab key was in history (now removed from source, env var required)
+a79b1c16ba86a0d4b7a52d27a729f09b480cb5d7:office/generate_agent_sprites.py:generic-api-key:19

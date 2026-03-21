@@ -1,19 +1,32 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 80" width="320" height="80" role="img" aria-label="Multiverse Studios">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 80" width="360" height="80" role="img" aria-label="Multiverse Studios">
   <defs>
-    <radialGradient id="orb-light" cx="35%" cy="30%" r="70%">
+    <linearGradient id="r1-l" x1="0%" y1="0%" x2="100%" y2="100%">
       <stop offset="0%" stop-color="#00cc9f"/>
-      <stop offset="55%" stop-color="#5a4fcf"/>
-      <stop offset="100%" stop-color="#1a1a2e"/>
-    </radialGradient>
+      <stop offset="100%" stop-color="#087a5c"/>
+    </linearGradient>
+    <linearGradient id="r2-l" x1="100%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#5a4fcf"/>
+      <stop offset="100%" stop-color="#3a2a8f"/>
+    </linearGradient>
+    <linearGradient id="r3-l" x1="50%" y1="0%" x2="50%" y2="100%">
+      <stop offset="0%" stop-color="#e05580"/>
+      <stop offset="100%" stop-color="#a01550"/>
+    </linearGradient>
   </defs>
 
   <!-- White background -->
-  <rect width="320" height="80" fill="#ffffff" rx="4"/>
+  <rect width="360" height="80" fill="#ffffff" rx="4"/>
 
-  <!-- Logo orb -->
-  <circle cx="40" cy="40" r="28" fill="url(#orb-light)" opacity="0.9"/>
+  <!-- Mark: three interlocking rings -->
+  <g transform="translate(8, 8) scale(0.65)">
+    <ellipse cx="42" cy="44" rx="28" ry="32" fill="none" stroke="url(#r1-l)" stroke-width="4" transform="rotate(-20 42 44)" opacity="0.9"/>
+    <ellipse cx="56" cy="46" rx="28" ry="32" fill="none" stroke="url(#r2-l)" stroke-width="4" transform="rotate(25 56 46)" opacity="0.85"/>
+    <ellipse cx="50" cy="52" rx="26" ry="30" fill="none" stroke="url(#r3-l)" stroke-width="3.5" transform="rotate(5 50 52)" opacity="0.75"/>
+    <circle cx="50" cy="48" r="4" fill="#1a1a2e" opacity="0.9"/>
+    <circle cx="50" cy="48" r="7" fill="none" stroke="#1a1a2e" stroke-width="0.8" opacity="0.3"/>
+  </g>
 
-  <!-- Wordmark: Multiverse Studios -->
-  <text x="80" y="34" font-family="'Syne', 'Helvetica Neue', Arial, sans-serif" font-weight="800" font-size="22" fill="#0a0a14" letter-spacing="1">MULTIVERSE</text>
-  <text x="81" y="56" font-family="'JetBrains Mono', 'Courier New', monospace" font-weight="400" font-size="13" fill="#555566" letter-spacing="3">STUDIOS</text>
+  <!-- Wordmark -->
+  <text x="82" y="34" font-family="'Syne', 'Helvetica Neue', Arial, sans-serif" font-weight="800" font-size="22" fill="#0a0a14" letter-spacing="1.5">MULTIVERSE</text>
+  <text x="83" y="56" font-family="'JetBrains Mono', 'Courier New', monospace" font-weight="400" font-size="13" fill="#555566" letter-spacing="3.5">STUDIOS</text>
 </svg>

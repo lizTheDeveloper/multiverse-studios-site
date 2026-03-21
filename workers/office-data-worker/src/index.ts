@@ -33,8 +33,19 @@ export interface AgentSnapshot {
   currentIssueIdentifier: string | null;
 }
 
+export interface RecentEvent {
+  agentId: string;
+  agentName: string;
+  action: 'completed' | 'started' | 'blocked';
+  taskTitle: string;
+  issueIdentifier: string | null;
+  timestamp: string; // ISO
+}
+
 export interface OfficeSnapshot {
   agents: AgentSnapshot[];
+  recentEvents: RecentEvent[];
+  captainsLog: string | null; // latest CEO daily note excerpt (markdown)
   updatedAt: string; // ISO timestamp
   companyId: string;
 }
@@ -134,7 +145,7 @@ export default {
       await env.OFFICE_DATA.put('snapshot', JSON.stringify(body), { expirationTtl: 600 });
 
       return new Response(
-        JSON.stringify({ ok: true, agents: body.agents.length }),
+        JSON.stringify({ ok: true, agents: body.agents.length, events: body.recentEvents?.length ?? 0 }),
         { status: 200, headers: { ...cors, 'Content-Type': 'application/json' } },
       );
     }

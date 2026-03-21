@@ -16,7 +16,10 @@ import urllib.request
 import urllib.error
 import sys
 
-API_KEY = os.environ.get("PIXELLAB_API_KEY", "a27eb3cf-b890-450b-bb2c-fb3470dd355f")
+API_KEY = os.environ.get("PIXELLAB_API_KEY", "")
+if not API_KEY:
+    print("Error: PIXELLAB_API_KEY environment variable is required", file=sys.stderr)
+    sys.exit(1)
 BASE_URL = "https://api.pixellab.ai/v1"
 OUT_DIR  = os.path.join(os.path.dirname(os.path.abspath(__file__)), "sprites")
 DELAY_BETWEEN = 180  # 3 minutes between requests
@@ -91,9 +94,11 @@ AGENTS = [
         802
     )),
     ("pixel-artist", (
-        "pixel art character, pixel artist wearing a colorful smock with pixel squares pattern, "
-        "chunky brush in one hand, small palette in the other, paint dabs on face, "
-        "excited artistic expression, rainbow color accents, "
+        "pixel art character, small floating sentient artist paint palette creature named Palette, "
+        "kidney-bean shaped birchwood body with eight vivid paint swatches around the edge "
+        "in full spectrum rainbow, oversized jeweler monocle as a single eye, "
+        "two small brush arms holding a chunky round brush and a fine detail brush, "
+        "floating above the ground, trailing tiny paint motes, magical whimsical vibe, "
         "front-facing south view, standing pose, transparent background",
         803
     )),
@@ -252,6 +257,35 @@ AGENTS = [
         "energetic enthusiastic expression, "
         "front-facing south view, standing pose, transparent background",
         1002
+    )),
+
+    # ── Finance ───────────────────────────────────────────────────────────────
+    ("brad-the-suit", (
+        "pixel art character, CFO penguin in a sharp black business suit, "
+        "black and white tuxedo penguin with a tiny red tie, briefcase in one flipper, "
+        "spreadsheet in the other, skeptical but professional expression, "
+        "front-facing south view, standing pose, transparent background",
+        777
+    )),
+
+    # ── Research & Analytics ──────────────────────────────────────────────────
+    ("octavia-octalysis-analyst", (
+        "pixel art character, octopus scholar analyst named Octavia, "
+        "teal octopus wearing tiny graduation cap and round glasses, "
+        "eight tentacles each holding a different glowing motivation icon, "
+        "academic analytical expression, octalysis gamification framework vibes, "
+        "front-facing south view, standing pose, transparent background",
+        8008
+    )),
+
+    # ── Folkfork PM ───────────────────────────────────────────────────────────
+    ("fern-folkfork-pm", (
+        "pixel art character, forest spirit PM named Fern, "
+        "small green plant fairy with fern fronds as flowing hair, "
+        "earthy green and brown outfit with a clipboard holding a folkfork roadmap, "
+        "nature meets product management vibes, gentle focused expression, "
+        "front-facing south view, standing pose, transparent background",
+        2024
     )),
 ]
 

@@ -20,8 +20,8 @@
   --gene-pink: #ff3d7f;
   --star-white: #e8e6f0;
   --dust: #8a8694;
-  --ash: #4a4656;
-  --dust-light: #6b6578;
+  --ash: #7c7690;
+  --dust-light: #9e98ab;
 
   --font-display: 'Syne', sans-serif;
   --font-body: 'Cormorant Garamond', serif;
@@ -52,7 +52,7 @@ body {
   color: var(--star-white);
   font-family: var(--font-body);
   font-size: 1.15rem;
-  font-weight: 300;
+  font-weight: 400;
   line-height: 1.7;
   overflow-x: hidden;
 }
@@ -107,15 +107,7 @@ img { max-width: 100%; display: block; }
 .nav-logo .logo-mark {
   width: 28px;
   height: 28px;
-  border-radius: 50%;
-  background: radial-gradient(circle at 30% 30%, var(--biolume), var(--signal), var(--void));
-  box-shadow: 0 0 20px rgba(0, 255, 200, 0.3);
-  animation: pulse-glow 4s ease-in-out infinite;
-}
-
-@keyframes pulse-glow {
-  0%, 100% { box-shadow: 0 0 20px rgba(0, 255, 200, 0.3); }
-  50% { box-shadow: 0 0 35px rgba(0, 255, 200, 0.5); }
+  display: block;
 }
 
 .nav-links {
@@ -772,6 +764,14 @@ img { max-width: 100%; display: block; }
   text-transform: uppercase;
   color: var(--star-white);
   margin-bottom: var(--space-xs);
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.footer-logo-mark {
+  display: block;
+  flex-shrink: 0;
 }
 
 .footer-brand p {
@@ -873,6 +873,14 @@ body::after {
   .timeline-item::before { left: calc(-1 * var(--space-md) - 4px); }
   .features-grid { grid-template-columns: 1fr; }
   .species-grid { grid-template-columns: 1fr 1fr; }
+  .section { padding: var(--space-lg) var(--space-sm); }
+  .cta-band { padding: var(--space-lg) var(--space-sm); }
+  .footer { padding: var(--space-md) var(--space-sm); }
+  .pullquote { font-size: 1.2rem; padding-left: var(--space-sm); }
+  .hero-actions { flex-direction: column; align-items: stretch; }
+  .hero-actions .btn { text-align: center; justify-content: center; }
+  .cta-actions { flex-direction: column; align-items: stretch; }
+  .cta-actions .btn { text-align: center; justify-content: center; }
 }
 
 /* --- Page-specific hero variants --- */

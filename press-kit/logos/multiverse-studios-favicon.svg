@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32" role="img" aria-label="Multiverse Studios">
+  <defs>
+    <linearGradient id="r1-f" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#00ffc8"/>
+      <stop offset="100%" stop-color="#0a8f6f"/>
+    </linearGradient>
+    <linearGradient id="r2-f" x1="100%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#7b68ee"/>
+      <stop offset="100%" stop-color="#4a2fb8"/>
+    </linearGradient>
+    <linearGradient id="r3-f" x1="50%" y1="0%" x2="50%" y2="100%">
+      <stop offset="0%" stop-color="#ff6b9d"/>
+      <stop offset="100%" stop-color="#c2185b"/>
+    </linearGradient>
+  </defs>
+
+  <g transform="translate(0.5, 0) scale(0.32)">
+    <ellipse cx="42" cy="44" rx="28" ry="32" fill="none" stroke="url(#r1-f)" stroke-width="5" transform="rotate(-20 42 44)" opacity="0.9"/>
+    <ellipse cx="56" cy="46" rx="28" ry="32" fill="none" stroke="url(#r2-f)" stroke-width="5" transform="rotate(25 56 46)" opacity="0.85"/>
+    <ellipse cx="50" cy="52" rx="26" ry="30" fill="none" stroke="url(#r3-f)" stroke-width="4.5" transform="rotate(5 50 52)" opacity="0.75"/>
+    <circle cx="50" cy="48" r="5" fill="#ffffff" opacity="0.95"/>
+  </g>
+</svg>

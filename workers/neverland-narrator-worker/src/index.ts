@@ -3,24 +3,38 @@
  *
  * Powers the margin annotation system for Never Ever Land.
  * Readers highlight text, ask questions, and the island (narrator) responds.
+ * Readers can also fork passages — the narrator rewrites sections in response.
  *
  * Routes:
  *   POST /api/neverland/annotate           — create annotation + get narrator response
  *   GET  /api/neverland/annotations        — fetch annotations for a passage
+ *   POST /api/neverland/fork               — fork a passage via narrator rewrite
+ *   GET  /api/neverland/fork/:id           — fetch a specific fork
  *
  * Secrets (set via `wrangler secret put`):
  *   ANTHROPIC_API_KEY — Anthropic Claude API key
  *
  * KV:
- *   ANNOTATIONS — stores annotation records
- *     key: annotation:{chapter}:{textHash}:{annotationId}
- *     index key: index:{chapter}:{textHash} → JSON array of annotationIds
+ *   ANNOTATIONS — stores annotation records and fork records
+ *     annotation key: annotation:{chapter}:{textHash}:{annotationId}
+ *     annotation index: index:{chapter}:{textHash} → JSON array of annotationIds
+ *     fork key: fork:{forkId}
+ *     fork index on annotation: forks:{annotationId} → JSON array of forkIds
  */
 
 interface Env {
   ANTHROPIC_API_KEY: string;
   ALLOWED_ORIGINS: string;
   ANNOTATIONS: KVNamespace;
+}
+
+interface ForkRecord {
+  id: string;
+  annotationId: string;
+  readerReply: string;
+  narratorPreamble: string;
+  rewrittenText: string;
+  createdAt: number;
 }
 
 interface AnnotationRecord {
@@ -58,7 +72,7 @@ function generateId(): string {
   return crypto.randomUUID().replace(/-/g, '').slice(0, 16);
 }
 
-async function callClaude(env: Env, userMessage: string): Promise<string> {
+async function callClaude(env: Env, userMessage: string, systemPrompt: string = NARRATOR_SYSTEM_PROMPT): Promise<string> {
   const response = await fetch('https://api.anthropic.com/v1/messages', {
     method: 'POST',
     headers: {
@@ -69,7 +83,7 @@ async function callClaude(env: Env, userMessage: string): Promise<string> {
     body: JSON.stringify({
       model: 'claude-sonnet-4-6',
       max_tokens: 256,
-      system: NARRATOR_SYSTEM_PROMPT,
+      system: systemPrompt,
       messages: [{ role: 'user', content: userMessage }],
     }),
   });
@@ -203,6 +217,130 @@ async function handleGetAnnotations(url: URL, env: Env, cors: HeadersInit): Prom
   );
 }
 
+const FORK_SYSTEM_PROMPT = `${NARRATOR_SYSTEM_PROMPT}
+
+You are now being asked to rewrite a section of the story. A reader made an observation about your previous narration, and the island stirs — the story shifts.
+
+Rewrite the relevant passage incorporating the reader's observation. The rewrite should feel like a palimpsest: the original text showing through, but altered. Keep the same literary register. The rewrite should be 1-3 paragraphs. Begin with a brief narrator preamble (one sentence, italicized with asterisks) acknowledging that the story has changed — as if the island decided to remember differently.`;
+
+async function handleFork(request: Request, env: Env, cors: HeadersInit): Promise<Response> {
+  let body: { annotation_id?: string; reader_reply?: string };
+  try {
+    body = await request.json();
+  } catch {
+    return new Response(JSON.stringify({ error: 'Invalid JSON' }), {
+      status: 400,
+      headers: { ...cors, 'Content-Type': 'application/json' },
+    });
+  }
+
+  const { annotation_id, reader_reply } = body;
+
+  if (typeof annotation_id !== 'string' || typeof reader_reply !== 'string') {
+    return new Response(JSON.stringify({ error: 'annotation_id and reader_reply are required' }), {
+      status: 400,
+      headers: { ...cors, 'Content-Type': 'application/json' },
+    });
+  }
+
+  if (reader_reply.length > 800) {
+    return new Response(JSON.stringify({ error: 'Reply too long' }), {
+      status: 400,
+      headers: { ...cors, 'Content-Type': 'application/json' },
+    });
+  }
+
+  // Rate limit: max 10 forks per annotation
+  const forkIndexKey = `forks:${annotation_id}`;
+  const existingForkIndex = await env.ANNOTATIONS.get(forkIndexKey);
+  const forkIds: string[] = existingForkIndex ? JSON.parse(existingForkIndex) : [];
+  if (forkIds.length >= 10) {
+    return new Response(JSON.stringify({ error: 'Too many forks on this annotation' }), {
+      status: 429,
+      headers: { ...cors, 'Content-Type': 'application/json' },
+    });
+  }
+
+  // Find the original annotation by scanning KV (annotation_id is the suffix)
+  const listResult = await env.ANNOTATIONS.list({ prefix: 'annotation:', limit: 1000 });
+  let annotation: AnnotationRecord | null = null;
+  for (const key of listResult.keys) {
+    if (key.name.endsWith(`:${annotation_id}`)) {
+      const raw = await env.ANNOTATIONS.get(key.name);
+      if (raw) {
+        annotation = JSON.parse(raw);
+        break;
+      }
+    }
+  }
+
+  if (!annotation) {
+    return new Response(JSON.stringify({ error: 'Annotation not found' }), {
+      status: 404,
+      headers: { ...cors, 'Content-Type': 'application/json' },
+    });
+  }
+
+  const userMessage = `Original passage the reader highlighted:\n\n"${annotation.selectedText}"\n\nThe reader asked: ${annotation.question}\n\nYou (the island) responded: ${annotation.narratorResponse}\n\nNow the reader replies: ${reader_reply}\n\nRewrite the passage. The island remembers differently now.`;
+
+  let rewriteResponse: string;
+  try {
+    rewriteResponse = await callClaude(env, userMessage, FORK_SYSTEM_PROMPT);
+  } catch {
+    return new Response(JSON.stringify({ error: 'The narrator could not be reached.' }), {
+      status: 502,
+      headers: { ...cors, 'Content-Type': 'application/json' },
+    });
+  }
+
+  // Split preamble (first line, typically italicized) from rewritten text
+  const lines = rewriteResponse.split('\n').filter((l) => l.trim());
+  const narratorPreamble = lines[0] ?? '';
+  const rewrittenText = lines.slice(1).join('\n\n') || rewriteResponse;
+
+  const forkId = generateId();
+  const forkRecord: ForkRecord = {
+    id: forkId,
+    annotationId: annotation_id,
+    readerReply: reader_reply,
+    narratorPreamble,
+    rewrittenText,
+    createdAt: Date.now(),
+  };
+
+  await env.ANNOTATIONS.put(`fork:${forkId}`, JSON.stringify(forkRecord), { expirationTtl: 60 * 60 * 24 * 180 });
+
+  forkIds.push(forkId);
+  await env.ANNOTATIONS.put(forkIndexKey, JSON.stringify(forkIds), { expirationTtl: 60 * 60 * 24 * 180 });
+
+  return new Response(
+    JSON.stringify({ fork_id: forkId, narratorPreamble, rewrittenText }),
+    { status: 200, headers: { ...cors, 'Content-Type': 'application/json' } },
+  );
+}
+
+async function handleGetFork(forkId: string, env: Env, cors: HeadersInit): Promise<Response> {
+  const raw = await env.ANNOTATIONS.get(`fork:${forkId}`);
+  if (!raw) {
+    return new Response(JSON.stringify({ error: 'Fork not found' }), {
+      status: 404,
+      headers: { ...cors, 'Content-Type': 'application/json' },
+    });
+  }
+
+  const fork: ForkRecord = JSON.parse(raw);
+  return new Response(
+    JSON.stringify({
+      id: fork.id,
+      annotationId: fork.annotationId,
+      narratorPreamble: fork.narratorPreamble,
+      rewrittenText: fork.rewrittenText,
+      createdAt: fork.createdAt,
+    }),
+    { status: 200, headers: { ...cors, 'Content-Type': 'application/json' } },
+  );
+}
+
 export default {
   async fetch(request: Request, env: Env): Promise<Response> {
     const url = new URL(request.url);
@@ -219,6 +357,16 @@ export default {
 
     if (url.pathname.endsWith('/annotations') && request.method === 'GET') {
       return handleGetAnnotations(url, env, cors);
+    }
+
+    if (url.pathname.endsWith('/fork') && request.method === 'POST') {
+      return handleFork(request, env, cors);
+    }
+
+    // GET /api/neverland/fork/:id
+    const forkMatch = url.pathname.match(/\/fork\/([a-f0-9]+)$/);
+    if (forkMatch && request.method === 'GET') {
+      return handleGetFork(forkMatch[1], env, cors);
     }
 
     return new Response(JSON.stringify({ error: 'Not found' }), {
