@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>v0.1.6 — Production Build Unblocked — MVEE Devlog</title>
+  <meta name="description" content="MVEE v0.1.6: Missing SpellSandboxPanelFactory was silently breaking production builds. Fixed.">
+  <meta property="og:title" content="MVEE v0.1.6 — Production Build Unblocked">
+  <meta property="og:description" content="A missing factory adapter was causing build:prod to fail silently. Now resolved.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://multiversestudios.xyz/devlog/release-mvee-v0.1.6.html">
+  <meta property="og:image" content="https://multiversestudios.xyz/screenshots/mvee-hero.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="MVEE v0.1.6 — Production Build Unblocked">
+  <meta name="twitter:description" content="A missing factory adapter was causing build:prod to fail silently. Now resolved.">
+  <meta name="twitter:image" content="https://multiversestudios.xyz/screenshots/mvee-hero.png">
+  <link rel="stylesheet" href="../styles.css">
+  <link rel="icon" type="image/svg+xml" href="../press-kit/logos/multiverse-studios-favicon.svg">
+  <style>
+    .devlog-body { max-width: 680px; margin: 0 auto; }
+    .devlog-body h1 { font-size: clamp(1.8rem, 4vw, 2.8rem); line-height: 1.2; margin-bottom: var(--space-sm); color: var(--star-white); }
+    .devlog-body .byline { font-size: 0.8rem; color: var(--dust); font-family: var(--font-mono); letter-spacing: 0.05em; margin-bottom: var(--space-xl); display: flex; gap: 1rem; flex-wrap: wrap; align-items: center; }
+    .devlog-body .byline .tag { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.2rem 0.6rem; border-radius: 4px; border: 1px solid var(--ember); color: var(--ember); }
+    .devlog-body p { color: var(--dust-light); line-height: 1.8; font-size: 1.05rem; margin-bottom: var(--space-md); }
+    .devlog-body h2 { font-size: 1.3rem; color: var(--star-white); margin: var(--space-xl) 0 var(--space-sm); }
+    .feature-list { list-style: none; padding: 0; margin: var(--space-md) 0; }
+    .feature-list li { padding: var(--space-sm) var(--space-md); margin-bottom: var(--space-sm); border-left: 3px solid rgba(255,255,255,0.1); color: var(--dust-light); line-height: 1.7; }
+    .feature-list li.highlight { border-left-color: var(--biolume); }
+    .feature-list li .label { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; font-family: var(--font-mono); display: block; margin-bottom: 0.25rem; color: var(--biolume); }
+    .feature-list li .label.fix { color: var(--dust); }
+    code { font-family: var(--font-mono); font-size: 0.9em; background: rgba(255,255,255,0.07); padding: 0.1em 0.4em; border-radius: 3px; }
+  </style>
+</head>
+<body>
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="../index.html" class="nav-logo">Multiverse Studios</a>
+    <div class="nav-links">
+      <a href="../mvee.html">MVEE</a>
+      <a href="../devlog.html">Devlog</a>
+      <a href="https://play.multiversestudios.xyz/mvee" target="_blank" rel="noopener">Play</a>
+    </div>
+  </div>
+</nav>
+
+<main class="main-content">
+  <article class="devlog-body">
+
+    <div style="margin-bottom: var(--space-lg);">
+      <div class="byline">
+        <span>March 21, 2026</span>
+        <span class="tag">MVEE</span>
+        <span class="tag" style="border-color: var(--signal); color: var(--signal);">Fix</span>
+      </div>
+      <h1>v0.1.6 — Production Build Unblocked</h1>
+    </div>
+
+    <p>
+      The SpellSandbox panel — a developer-facing UI for testing spell mechanics — had its rendering
+      adapter and factory defined everywhere except the one place that mattered: the production entry
+      point. <code>demo/src/main.ts</code> was importing <code>createSpellSandboxPanelFactory</code>,
+      but the function didn't exist. <code>build:prod</code> failed.
+    </p>
+
+    <p>
+      The fix adds the factory and adapter following the same pattern as every other panel in the
+      renderer. Two files, 44 lines. The Spell Sandbox now loads cleanly in production alongside
+      the Spellbook panel it was modeled after.
+    </p>
+
+    <h2>Fixes</h2>
+
+    <ul class="feature-list">
+      <li class="highlight">
+        <span class="label fix">Fix — Build</span>
+        <strong>Added missing <code>createSpellSandboxPanelFactory</code></strong> — production build
+        was failing because the factory was imported but never defined. Added adapter config and factory
+        following the SpellbookPanel pattern.
+      </li>
+    </ul>
+
+    <div style="margin-top: var(--space-xl);">
+      <a href="https://play.multiversestudios.xyz/mvee" class="btn btn-primary" target="_blank" rel="noopener">Play MVEE &rarr;</a>
+    </div>
+
+  </article>
+</main>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-col">
+      <h5>Multiverse Studios</h5>
+      <ul>
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="../devlog.html">Devlog</a></li>
+        <li><a href="../mvee.html">MVEE</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Links</h5>
+      <ul>
+        <li><a href="https://github.com/lizTheDeveloper" target="_blank" rel="noopener">GitHub</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>&copy; 2026 Multiverse Studios</span>
+    <span>Built by AI agents. Guided by <a href="https://themultiverse.school" target="_blank" rel="noopener" style="color: var(--biolume);">The Multiverse School</a>.</span>
+  </div>
+</footer>
+
+<script src="../main.js"></script>
+<script defer src="https://analytics.themultiverse.school/script.js" data-website-id="38d680a7-28d1-42fd-9fd5-a66702675b88"></script>
+</body>
+</html>
