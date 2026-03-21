@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Precursors v0.4.1 — Silence the Babble — Multiverse Studios Devlog</title>
+  <meta name="description" content="Removed idle SpeechSynthesis babbling and improved Norn vocabulary matching.">
+  <meta property="og:title" content="Precursors v0.4.1 — Silence the Babble">
+  <meta property="og:description" content="Removed idle SpeechSynthesis babbling and improved Norn vocabulary matching.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://multiversestudios.xyz/devlog/release-precursors-v0.4.1.html">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Precursors v0.4.1 — Silence the Babble">
+  <meta name="twitter:description" content="Removed idle SpeechSynthesis babbling and improved Norn vocabulary matching.">
+  <link rel="stylesheet" href="../styles.css">
+  <link rel="icon" type="image/svg+xml" href="../press-kit/logos/multiverse-studios-favicon.svg">
+  <style>
+    .devlog-body {
+      max-width: 680px;
+      margin: 0 auto;
+    }
+    .devlog-body h2 {
+      font-size: 1.5rem;
+      margin-bottom: var(--space-md);
+      color: var(--star-white);
+    }
+    .devlog-body p {
+      font-size: 1.05rem;
+      line-height: 1.85;
+      margin-bottom: 1.2rem;
+      color: var(--silver);
+    }
+    .devlog-body ul {
+      margin-bottom: 1.2rem;
+      padding-left: 1.5rem;
+    }
+    .devlog-body li {
+      font-size: 1rem;
+      line-height: 1.7;
+      color: var(--silver);
+      margin-bottom: 0.5rem;
+    }
+    .byline {
+      font-size: 0.8rem;
+      color: var(--dust);
+      font-family: var(--font-mono);
+      letter-spacing: 0.05em;
+      margin-bottom: var(--space-xl);
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+    .byline .tag {
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.2rem 0.6rem;
+      border-radius: 4px;
+      border: 1px solid;
+    }
+  </style>
+</head>
+<body>
+  <nav class="nav">
+    <div class="nav-inner">
+      <a href="../index.html" class="nav-logo">Multiverse Studios</a>
+      <div class="nav-links">
+        <a href="../games.html">Games</a>
+        <a href="../devlog.html" class="active">Devlog</a>
+        <a href="../about.html">About</a>
+      </div>
+    </div>
+  </nav>
+
+  <section class="hero-mini">
+    <h1>Precursors v0.4.1 — Silence the Babble</h1>
+  </section>
+
+  <section class="section">
+    <div class="devlog-body">
+      <div class="byline">
+        <span>March 21, 2026</span>
+        <span class="tag" style="color: var(--gene-pink); border-color: var(--gene-pink);">Precursors</span>
+        <span class="tag" style="color: var(--signal); border-color: var(--signal);">Patch</span>
+      </div>
+
+      <p>Quick patch to fix an audio annoyance. The VoiceSystem had an idle babbling loop that spoke gibberish syllables ("nnn", "rrr", "mnn") aloud via the browser's SpeechSynthesis API every 30-90 seconds per norn. If you had a few norns alive, your speakers became a chorus of robot nonsense.</p>
+
+      <p>That loop is now disabled. Event-driven speech — when norns actually have something to say via the LLM — still works. A proper pre-generated audio system for Nornish utterances is in the pipeline.</p>
+
+      <p>We also added vocabulary hints to the LLM prompt so that when norns do speak, their words better match established Nornish vocabulary rather than generating random syllables.</p>
+
+      <p>Play the quieter version at <a href="https://multiversestudios.xyz/play/creatures/" style="color: var(--signal);">multiversestudios.xyz</a>.</p>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <p>&copy; 2026 Multiverse Studios</p>
+  </footer>
+</body>
+</html>
