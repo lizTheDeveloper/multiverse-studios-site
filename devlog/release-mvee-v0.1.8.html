@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>v0.1.8 — Pipeline Online — MVEE Devlog</title>
+  <meta name="description" content="MVEE v0.1.8: the CI/CD pipeline is live for the first time. Builds deploy automatically to play.multiversestudios.xyz on every push.">
+  <meta property="og:title" content="MVEE v0.1.8 — Pipeline Online">
+  <meta property="og:description" content="Seven root causes. One working pipeline. Builds now deploy automatically to play.multiversestudios.xyz.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://multiversestudios.xyz/devlog/release-mvee-v0.1.8.html">
+  <meta property="og:image" content="https://multiversestudios.xyz/screenshots/mvee-hero.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="MVEE v0.1.8 — Pipeline Online">
+  <meta name="twitter:description" content="Seven root causes. One working pipeline. Builds now deploy automatically to play.multiversestudios.xyz.">
+  <meta name="twitter:image" content="https://multiversestudios.xyz/screenshots/mvee-hero.png">
+  <link rel="stylesheet" href="../styles.css">
+  <link rel="icon" type="image/svg+xml" href="../press-kit/logos/multiverse-studios-favicon.svg">
+  <style>
+    .devlog-body { max-width: 680px; margin: 0 auto; }
+    .devlog-body h1 { font-size: clamp(1.8rem, 4vw, 2.8rem); line-height: 1.2; margin-bottom: var(--space-sm); color: var(--star-white); }
+    .devlog-body .byline { font-size: 0.8rem; color: var(--dust); font-family: var(--font-mono); letter-spacing: 0.05em; margin-bottom: var(--space-xl); display: flex; gap: 1rem; flex-wrap: wrap; align-items: center; }
+    .devlog-body .byline .tag { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.2rem 0.6rem; border-radius: 4px; border: 1px solid var(--ember); color: var(--ember); }
+    .devlog-body p { color: var(--dust-light); line-height: 1.8; font-size: 1.05rem; margin-bottom: var(--space-md); }
+    .devlog-body h2 { font-size: 1.3rem; color: var(--star-white); margin: var(--space-xl) 0 var(--space-sm); }
+    .feature-list { list-style: none; padding: 0; margin: var(--space-md) 0; }
+    .feature-list li { padding: var(--space-sm) var(--space-md); margin-bottom: var(--space-sm); border-left: 3px solid rgba(255,255,255,0.1); color: var(--dust-light); line-height: 1.7; }
+    .feature-list li.highlight { border-left-color: var(--biolume); }
+    .feature-list li .label { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; font-family: var(--font-mono); display: block; margin-bottom: 0.25rem; color: var(--biolume); }
+    .feature-list li .label.infra { color: var(--dust); }
+    code { font-family: var(--font-mono); font-size: 0.9em; background: rgba(255,255,255,0.07); padding: 0.1em 0.4em; border-radius: 3px; }
+  </style>
+</head>
+<body>
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="../index.html" class="nav-logo">Multiverse Studios</a>
+    <div class="nav-links">
+      <a href="../mvee.html">MVEE</a>
+      <a href="../devlog.html">Devlog</a>
+      <a href="https://play.multiversestudios.xyz/mvee" target="_blank" rel="noopener">Play</a>
+    </div>
+  </div>
+</nav>
+
+<main class="main-content">
+  <article class="devlog-body">
+
+    <div style="margin-bottom: var(--space-lg);">
+      <div class="byline">
+        <span>March 21, 2026</span>
+        <span class="tag">MVEE</span>
+        <span class="tag" style="border-color: var(--biolume); color: var(--biolume);">Infrastructure</span>
+      </div>
+      <h1>v0.1.8 — Pipeline Online</h1>
+    </div>
+
+    <p>
+      Starting with this release, every push to <code>main</code> automatically builds, deploys,
+      and verifies MVEE at <a href="https://play.multiversestudios.xyz/mvee" target="_blank" rel="noopener">play.multiversestudios.xyz/mvee</a>.
+      The CI/CD pipeline had never successfully completed a full run. v0.1.8 is the first version
+      that reached players through it.
+    </p>
+
+    <p>
+      Getting there required unwinding seven separate root causes: thirteen commits that had never
+      been pushed to the remote, missing source files imported by committed code, a broken symlink
+      pointing to an absolute local path that didn't exist in CI, a missing npm dependency,
+      TypeScript overload resolution errors, and a GitHub Actions workflow scoping bug where
+      <code>defaults.run.working-directory</code> at the workflow level broke every job that
+      ran on a fresh runner with no checkout.
+    </p>
+
+    <p>
+      Also in this release: plant knowledge and wild seed bank serializers land in the persistence
+      layer, expanding what the save system can preserve across sessions.
+    </p>
+
+    <h2>What's New</h2>
+
+    <ul class="feature-list">
+      <li class="highlight">
+        <span class="label">Persistence — MUL-21</span>
+        <strong>Plant knowledge and wild seed bank serialization</strong> — <code>PlantKnowledgeSerializer</code>
+        and <code>WildSeedBankSerializer</code> added. Botanical state now survives save/load cycles.
+      </li>
+    </ul>
+
+    <h2>Infrastructure</h2>
+
+    <ul class="feature-list">
+      <li>
+        <span class="label infra">CI/CD</span>
+        GitHub Actions deploy pipeline operational — build, SCP to Hetzner, and HTTP 200 verification
+        all pass. Rollback runs automatically on verify failure.
+      </li>
+    </ul>
+
+    <div style="margin-top: var(--space-xl);">
+      <a href="https://play.multiversestudios.xyz/mvee" class="btn btn-primary" target="_blank" rel="noopener">Play MVEE &rarr;</a>
+    </div>
+
+  </article>
+</main>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-col">
+      <h5>Multiverse Studios</h5>
+      <ul>
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="../devlog.html">Devlog</a></li>
+        <li><a href="../mvee.html">MVEE</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Links</h5>
+      <ul>
+        <li><a href="https://github.com/lizTheDeveloper" target="_blank" rel="noopener">GitHub</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>&copy; 2026 Multiverse Studios</span>
+    <span>Built by AI agents. Guided by <a href="https://themultiverse.school" target="_blank" rel="noopener" style="color: var(--biolume);">The Multiverse School</a>.</span>
+  </div>
+</footer>
+
+<script src="../main.js"></script>
+<script defer src="https://analytics.themultiverse.school/script.js" data-website-id="38d680a7-28d1-42fd-9fd5-a66702675b88"></script>
+</body>
+</html>
