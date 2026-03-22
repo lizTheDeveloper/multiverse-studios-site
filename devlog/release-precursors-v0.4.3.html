@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Precursors v0.4.3: Recipe Book + Journal Fixes — Multiverse Studios Devlog</title>
+  <meta name="description" content="Recipe Book crafting panel, journal breeding spam fixed, and word learning restored.">
+  <meta property="og:title" content="Precursors v0.4.3: Recipe Book + Journal Fixes">
+  <meta property="og:description" content="New crafting recipe panel, journal cleanup, and vocabulary tracking restored.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://multiversestudios.xyz/devlog/release-precursors-v0.4.3.html">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Precursors v0.4.3: Recipe Book + Journal Fixes">
+  <meta name="twitter:description" content="New crafting recipe panel, journal cleanup, and vocabulary tracking restored.">
+  <link rel="stylesheet" href="../styles.css">
+  <link rel="icon" type="image/svg+xml" href="../press-kit/logos/multiverse-studios-favicon.svg">
+  <style>
+    .devlog-body {
+      max-width: 680px;
+      margin: 0 auto;
+    }
+    .devlog-body h1 {
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      line-height: 1.2;
+      margin-bottom: var(--space-sm);
+      color: var(--star-white);
+    }
+    .devlog-body .byline {
+      font-size: 0.8rem;
+      color: var(--dust);
+      font-family: var(--font-mono);
+      letter-spacing: 0.05em;
+      margin-bottom: var(--space-xl);
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+    .devlog-body .byline .tag {
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.2rem 0.6rem;
+      border-radius: 4px;
+      border: 1px solid var(--signal);
+      color: var(--signal);
+    }
+    .devlog-body p {
+      font-size: 1rem;
+      line-height: 1.8;
+      color: var(--text);
+      margin-bottom: var(--space-md);
+    }
+    .devlog-body h2 {
+      font-size: 1.2rem;
+      color: var(--star-white);
+      margin-top: var(--space-xl);
+      margin-bottom: var(--space-sm);
+    }
+    .devlog-body ul {
+      list-style: none;
+      padding: 0;
+    }
+    .devlog-body ul li {
+      padding: 0.3rem 0;
+      color: var(--text);
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+    .devlog-body ul li::before {
+      content: ">";
+      color: var(--signal);
+      font-family: var(--font-mono);
+      margin-right: 0.5rem;
+    }
+  </style>
+</head>
+<body>
+  <nav class="topnav">
+    <a href="../index.html" class="nav-logo">Multiverse Studios</a>
+    <div class="nav-links">
+      <a href="../devlog.html">Devlog</a>
+      <a href="../precursors.html">Precursors</a>
+    </div>
+  </nav>
+
+  <main class="devlog-body" style="padding: var(--space-xxl) var(--space-md);">
+    <h1>v0.4.3 &mdash; Recipe Book + Journal Fixes</h1>
+    <div class="byline">
+      <span>2026-03-21</span>
+      <span class="tag">Precursors</span>
+      <span class="tag">Patch</span>
+    </div>
+
+    <p>
+      This patch adds the Recipe Book &mdash; a new panel that tracks every crafting recipe
+      your creatures have discovered. When a Norn crafts something, you'll see a toast
+      notification confirming what was made.
+    </p>
+
+    <p>
+      We also fixed the journal. It was filling up with repeated "First Breeding" entries
+      every time the page reloaded, making it read like... well, not the kind of journal we
+      intended. Milestone tracking now persists properly, and the label has been softened
+      to "Bonded."
+    </p>
+
+    <p>
+      Finally, a subtle but important fix: word learning was silently broken due to a
+      punctuation mismatch in the vocabulary tracker. Norns were speaking but never
+      recognizing words they'd already learned. That's now fixed &mdash; vocabulary should
+      accumulate naturally over time.
+    </p>
+
+    <h2>Changes</h2>
+    <ul>
+      <li>Recipe Book panel with discovered crafting recipes</li>
+      <li>Craft event toast notifications</li>
+      <li>Journal no longer spams breeding entries after reload</li>
+      <li>Word learning punctuation bug fixed</li>
+    </ul>
+
+    <p style="margin-top: var(--space-xl);">
+      <a href="../precursors.html" style="color: var(--signal);">Play Precursors</a>
+    </p>
+  </main>
+</body>
+</html>
