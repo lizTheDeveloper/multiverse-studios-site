@@ -106,7 +106,7 @@ define(['./workbox-4367cb6e'], (function (workbox) { 'use strict';
     "revision": "9ad23313ed4b2605e2b5bf338c1e45ab"
   }, {
     "url": "index.html",
-    "revision": "0e583e2e65b72ce9dd40365d900f7fbe"
+    "revision": "408d0fe32cad478286ed00f201143266"
   }, {
     "url": "icon.svg",
     "revision": "457261aa1e8a86cef3c76ffc0990c7cf"
@@ -6894,7 +6894,7 @@ define(['./workbox-4367cb6e'], (function (workbox) { 'use strict';
     "url": "assets/norn-test-B9luF_7l.js",
     "revision": null
   }, {
-    "url": "assets/main-D1ARWIhL.js",
+    "url": "assets/main-Cb-ihync.js",
     "revision": null
   }, {
     "url": "assets/diagnostic-DnOxNkau.js",
@@ -6933,7 +6933,7 @@ define(['./workbox-4367cb6e'], (function (workbox) { 'use strict';
     "url": "assets/InventionRegistry-CmKwifur.js",
     "revision": null
   }, {
-    "url": "assets/GameScene-l98pVAIm.js",
+    "url": "assets/GameScene-D0QBY1dE.js",
     "revision": null
   }, {
     "url": "assets/DevMode-BboY5-9J.js",
