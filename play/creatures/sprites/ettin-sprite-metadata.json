@@ -1,161 +1,51 @@
 {
-  "species": "Ettin",
-  "task": "MUL-2673",
-  "notes": "Two-headed desert engineers. TWO HEADS are the primary visual identity.",
-  "sprites": [
-    {
-      "file": "ettin_idle.png",
-      "size": "64x64",
+  "species": "ettin",
+  "reference": "ettins/test-pixflux-v17-200px.png",
+  "generation_method": "PixelLab pixflux with v17 init_image (static) + animate-with-text (animations)",
+  "generation_params": {
+    "static_sprites": {
+      "api": "pixellab-pixflux",
+      "init_image_strength": 200,
+      "generation_size": "200x200",
+      "output_size": "64x64 (48x48 for baby)",
       "view": "side",
-      "direction": "south",
-      "seed": 2300
+      "outline": "single color black outline",
+      "shading": "basic shading",
+      "post_process": "LANCZOS→256px, quantize 32 colors, NEAREST→64px, white bg removal"
     },
-    {
-      "file": "ettin_happy.png",
-      "size": "64x64",
-      "view": "side",
-      "direction": "south",
-      "seed": 2301
-    },
-    {
-      "file": "ettin_sad.png",
-      "size": "64x64",
-      "view": "side",
-      "direction": "south",
-      "seed": 2302
-    },
-    {
-      "file": "ettin_angry.png",
-      "size": "64x64",
-      "view": "side",
-      "direction": "south",
-      "seed": 2303
-    },
-    {
-      "file": "ettin_fear.png",
-      "size": "64x64",
-      "view": "side",
-      "direction": "south",
-      "seed": 2304
-    },
-    {
-      "file": "ettin_pain.png",
-      "size": "64x64",
-      "view": "side",
-      "direction": "south",
-      "seed": 2305
-    },
-    {
-      "file": "ettin_boredom.png",
-      "size": "64x64",
-      "view": "side",
-      "direction": "south",
-      "seed": 2306
-    },
-    {
-      "file": "ettin_eat.png",
-      "size": "64x64",
-      "view": "side",
-      "direction": "south",
-      "seed": 2307
-    },
-    {
-      "file": "ettin_trinket.png",
-      "size": "64x64",
-      "view": "side",
-      "direction": "south",
-      "seed": 2308
-    },
-    {
-      "file": "ettin_baby.png",
-      "size": "48x48",
-      "view": "side",
-      "direction": "south",
-      "seed": 2309
-    },
-    {
-      "file": "ettin_sleep.png",
-      "size": "64x64",
-      "view": "side",
-      "direction": "south",
-      "seed": 2310
-    },
-    {
-      "file": "ettin_walk1.png",
-      "size": "64x64",
-      "view": "side",
-      "direction": "south",
-      "seed": 2320
-    },
-    {
-      "file": "ettin_walk2.png",
-      "size": "64x64",
-      "view": "side",
-      "direction": "south",
-      "seed": 2321
-    },
-    {
-      "file": "ettin_idle_left.png",
-      "size": "64x64",
-      "view": "side",
-      "direction": "west",
-      "seed": 2330
-    },
-    {
-      "file": "ettin_idle_right.png",
-      "size": "64x64",
-      "view": "side",
-      "direction": "east",
-      "seed": 2331
-    },
-    {
-      "file": "ettin_idle_north.png",
-      "size": "64x64",
-      "view": "side",
-      "direction": "north",
-      "seed": 2332
-    },
-    {
-      "file": "ettin_walk_left_1.png",
-      "size": "64x64",
-      "view": "side",
-      "direction": "west",
-      "seed": 2340
-    },
-    {
-      "file": "ettin_walk_left_2.png",
-      "size": "64x64",
-      "view": "side",
-      "direction": "west",
-      "seed": 2341
-    },
-    {
-      "file": "ettin_walk_right_1.png",
-      "size": "64x64",
-      "view": "side",
-      "direction": "east",
-      "seed": 2342
-    },
-    {
-      "file": "ettin_walk_right_2.png",
-      "size": "64x64",
-      "view": "side",
-      "direction": "east",
-      "seed": 2343
-    },
-    {
-      "file": "ettin_walk_north_1.png",
-      "size": "64x64",
-      "view": "side",
-      "direction": "north",
-      "seed": 2346
-    },
-    {
-      "file": "ettin_walk_north_2.png",
-      "size": "64x64",
-      "view": "side",
-      "direction": "north",
-      "seed": 2347
+    "animations": {
+      "api": "pixellab-animate-with-text",
+      "size": "64x64 (native)",
+      "n_frames": 4,
+      "reference_image": "matching 64px idle pose",
+      "post_process": "BFS flood-fill background removal from corners"
     }
-  ]
+  },
+  "sprites": {
+    "emotional_states": [
+      "ettin_idle.png", "ettin_happy.png", "ettin_sad.png", "ettin_angry.png",
+      "ettin_fear.png", "ettin_pain.png", "ettin_boredom.png", "ettin_eat.png",
+      "ettin_trinket.png", "ettin_sleep.png", "ettin_baby.png"
+    ],
+    "directional_idles": [
+      "ettin_idle_south.png", "ettin_idle_left.png", "ettin_idle_right.png"
+    ],
+    "walk_static_frames": [
+      "ettin_walk1.png", "ettin_walk2.png",
+      "ettin_walk_south_1.png", "ettin_walk_south_2.png",
+      "ettin_walk_left_1.png", "ettin_walk_left_2.png",
+      "ettin_walk_right_1.png", "ettin_walk_right_2.png"
+    ],
+    "animations": {
+      "walk_south": ["ettin_walk_south_f0.png", "ettin_walk_south_f1.png", "ettin_walk_south_f2.png", "ettin_walk_south_f3.png"],
+      "walk_left": ["ettin_walk_left_f0.png", "ettin_walk_left_f1.png", "ettin_walk_left_f2.png", "ettin_walk_left_f3.png"],
+      "walk_right": ["ettin_walk_right_f0.png", "ettin_walk_right_f1.png", "ettin_walk_right_f2.png", "ettin_walk_right_f3.png"],
+      "idle_breathing": ["ettin_idle_breathing_f0.png", "ettin_idle_breathing_f1.png", "ettin_idle_breathing_f2.png", "ettin_idle_breathing_f3.png"]
+    }
+  },
+  "total_static_sprites": 22,
+  "total_animation_frames": 16,
+  "board_approved_reference": "ettins/test-pixflux-v17-200px.png",
+  "source_200px": "ettins/*_200.png",
+  "notes": "All static sprites generated using v17 as init_image at strength 200, then post-processed 200px→64px. Animations generated via animate-with-text using 64px idle poses as reference. Two heads clearly visible in all sprites. Directions: left, right, south (NO north per board directive)."
 }

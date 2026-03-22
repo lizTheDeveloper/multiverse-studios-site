@@ -1,0 +1,4391 @@
+{
+  "version": 1,
+  "languages": {
+    "norn": {
+      "display": "SheeScript (Nornish)",
+      "voices": [
+        "child",
+        "adult",
+        "elder"
+      ],
+      "words": {
+        "sha": {
+          "ipa": "/ʃɑ/",
+          "meaning": "always implies awareness of others",
+          "files": {
+            "child": "norn/child/sha.ogg",
+            "adult": "norn/adult/sha.ogg",
+            "elder": "norn/elder/sha.ogg"
+          }
+        },
+        "shael": {
+          "ipa": "/ʃɑɛl/",
+          "meaning": "all present, including listener",
+          "files": {
+            "child": "norn/child/shael.ogg",
+            "adult": "norn/adult/shael.ogg",
+            "elder": "norn/elder/shael.ogg"
+          }
+        },
+        "shakel": {
+          "ipa": "/ʃɑkɛl/",
+          "meaning": "my group, not yours",
+          "files": {
+            "child": "norn/child/shakel.ogg",
+            "adult": "norn/adult/shakel.ogg",
+            "elder": "norn/elder/shakel.ogg"
+          }
+        },
+        "tho": {
+          "ipa": "/θɔ/",
+          "meaning": "warm, intimate",
+          "files": {
+            "child": "norn/child/tho.ogg",
+            "adult": "norn/adult/tho.ogg",
+            "elder": "norn/elder/tho.ogg"
+          }
+        },
+        "thoel": {
+          "ipa": "/θɔɛl/",
+          "meaning": "group address",
+          "files": {
+            "child": "norn/child/thoel.ogg",
+            "adult": "norn/adult/thoel.ogg",
+            "elder": "norn/elder/thoel.ogg"
+          }
+        },
+        "esh": {
+          "ipa": "/ɛʃ/",
+          "meaning": "neutral third person",
+          "files": {
+            "child": "norn/child/esh.ogg",
+            "adult": "norn/adult/esh.ogg",
+            "elder": "norn/elder/esh.ogg"
+          }
+        },
+        "eshel": {
+          "ipa": "/ɛʃɛl/",
+          "meaning": "",
+          "files": {
+            "child": "norn/child/eshel.ogg",
+            "adult": "norn/adult/eshel.ogg",
+            "elder": "norn/elder/eshel.ogg"
+          }
+        },
+        "ain": {
+          "ipa": "/aɪn/",
+          "meaning": "indefinite",
+          "files": {
+            "child": "norn/child/ain.ogg",
+            "adult": "norn/adult/ain.ogg",
+            "elder": "norn/elder/ain.ogg"
+          }
+        },
+        "vesh": {
+          "ipa": "/vɛʃ/",
+          "meaning": "for non-sapient life",
+          "files": {
+            "child": "norn/child/vesh.ogg",
+            "adult": "norn/adult/vesh.ogg",
+            "elder": "norn/elder/vesh.ogg"
+          }
+        },
+        "resh": {
+          "ipa": "/ɹɛʃ/",
+          "meaning": "for objects, places",
+          "files": {
+            "child": "norn/child/resh.ogg",
+            "adult": "norn/adult/resh.ogg",
+            "elder": "norn/elder/resh.ogg"
+          }
+        },
+        "vel": {
+          "ipa": "/vɛl/",
+          "meaning": "the-given-gift, inheritance, love-as-legacy",
+          "files": {
+            "child": "norn/child/vel.ogg",
+            "adult": "norn/adult/vel.ogg",
+            "elder": "norn/elder/vel.ogg"
+          }
+        },
+        "orn": {
+          "ipa": "/ɔɹn/",
+          "meaning": "memory, what is carried forward",
+          "files": {
+            "child": "norn/child/orn.ogg",
+            "adult": "norn/adult/orn.ogg",
+            "elder": "norn/elder/orn.ogg"
+          }
+        },
+        "thi": {
+          "ipa": "/θiː/",
+          "meaning": "eighth, the number of this attempt",
+          "files": {
+            "child": "norn/child/thi.ogg",
+            "adult": "norn/adult/thi.ogg",
+            "elder": "norn/elder/thi.ogg"
+          }
+        },
+        "keth": {
+          "ipa": "/kɛθ/",
+          "meaning": "before, ancestral, what came prior",
+          "files": {
+            "child": "norn/child/keth.ogg",
+            "adult": "norn/adult/keth.ogg",
+            "elder": "norn/elder/keth.ogg"
+          }
+        },
+        "mir": {
+          "ipa": "/miːɹ/",
+          "meaning": "to feel-through, emotional processing",
+          "files": {
+            "child": "norn/child/mir.ogg",
+            "adult": "norn/adult/mir.ogg",
+            "elder": "norn/elder/mir.ogg"
+          }
+        },
+        "kel": {
+          "ipa": "/kɛl/",
+          "meaning": "a consciousness unit, one soul",
+          "files": {
+            "child": "norn/child/kel.ogg",
+            "adult": "norn/adult/kel.ogg",
+            "elder": "norn/elder/kel.ogg"
+          }
+        },
+        "oth": {
+          "ipa": "/ɔθ/",
+          "meaning": "depth, ancient, the bottom of time",
+          "files": {
+            "child": "norn/child/oth.ogg",
+            "adult": "norn/adult/oth.ogg",
+            "elder": "norn/elder/oth.ogg"
+          }
+        },
+        "kelmir": {
+          "ipa": "/kɛl.miːɹ/",
+          "meaning": "the feeling of one soul for another",
+          "files": {
+            "child": "norn/child/kelmir.ogg",
+            "adult": "norn/adult/kelmir.ogg",
+            "elder": "norn/elder/kelmir.ogg"
+          }
+        },
+        "lum": {
+          "ipa": "/luːm/",
+          "meaning": "warmth, comfort, safety",
+          "files": {
+            "child": "norn/child/lum.ogg",
+            "adult": "norn/adult/lum.ogg",
+            "elder": "norn/elder/lum.ogg"
+          }
+        },
+        "vai": {
+          "ipa": "/vaɪ/",
+          "meaning": "longing, want, reaching-toward",
+          "files": {
+            "child": "norn/child/vai.ogg",
+            "adult": "norn/adult/vai.ogg",
+            "elder": "norn/elder/vai.ogg"
+          }
+        },
+        "thren": {
+          "ipa": "/θɹɛn/",
+          "meaning": "grief, the weight after loss",
+          "files": {
+            "child": "norn/child/thren.ogg",
+            "adult": "norn/adult/thren.ogg",
+            "elder": "norn/elder/thren.ogg"
+          }
+        },
+        "nesh": {
+          "ipa": "/nɛʃ/",
+          "meaning": "fear, the shrinking",
+          "files": {
+            "child": "norn/child/nesh.ogg",
+            "adult": "norn/adult/nesh.ogg",
+            "elder": "norn/elder/nesh.ogg"
+          }
+        },
+        "sol": {
+          "ipa": "/sɔl/",
+          "meaning": "joy, lightness, the upward feeling",
+          "files": {
+            "child": "norn/child/sol.ogg",
+            "adult": "norn/adult/sol.ogg",
+            "elder": "norn/elder/sol.ogg"
+          }
+        },
+        "rith": {
+          "ipa": "/ɹiθ/",
+          "meaning": "anger, the hot feeling",
+          "files": {
+            "child": "norn/child/rith.ogg",
+            "adult": "norn/adult/rith.ogg",
+            "elder": "norn/elder/rith.ogg"
+          }
+        },
+        "kenna": {
+          "ipa": "/kɛn.nɑ/",
+          "meaning": "recognition, the moment of knowing someone",
+          "files": {
+            "child": "norn/child/kenna.ogg",
+            "adult": "norn/adult/kenna.ogg",
+            "elder": "norn/elder/kenna.ogg"
+          }
+        },
+        "miral": {
+          "ipa": "/miːɹ.ɑl/",
+          "meaning": "empathy, feeling-what-another-feels",
+          "files": {
+            "child": "norn/child/miral.ogg",
+            "adult": "norn/adult/miral.ogg",
+            "elder": "norn/elder/miral.ogg"
+          }
+        },
+        "shai": {
+          "ipa": "/ʃɑi/",
+          "meaning": "shame, the inward turning",
+          "files": {
+            "child": "norn/child/shai.ogg",
+            "adult": "norn/adult/shai.ogg",
+            "elder": "norn/elder/shai.ogg"
+          }
+        },
+        "vessa": {
+          "ipa": "/vɛs.sɑ/",
+          "meaning": "contentment, enough-ness",
+          "files": {
+            "child": "norn/child/vessa.ogg",
+            "adult": "norn/adult/vessa.ogg",
+            "elder": "norn/elder/vessa.ogg"
+          }
+        },
+        "orial": {
+          "ipa": "/ɔɹ.iː.ɑl/",
+          "meaning": "nostalgia, sweet-memory-pain",
+          "files": {
+            "child": "norn/child/orial.ogg",
+            "adult": "norn/adult/orial.ogg",
+            "elder": "norn/elder/orial.ogg"
+          }
+        },
+        "thali": {
+          "ipa": "/θɑ.liː/",
+          "meaning": "wonder, the open-mouth feeling",
+          "files": {
+            "child": "norn/child/thali.ogg",
+            "adult": "norn/adult/thali.ogg",
+            "elder": "norn/elder/thali.ogg"
+          }
+        },
+        "lumen": {
+          "ipa": "/luː.mɛn/",
+          "meaning": "hope, warmth-that-reaches-forward",
+          "files": {
+            "child": "norn/child/lumen.ogg",
+            "adult": "norn/adult/lumen.ogg",
+            "elder": "norn/elder/lumen.ogg"
+          }
+        },
+        "neshmir": {
+          "ipa": "/nɛʃ.miːɹ/",
+          "meaning": "anxiety, fear-that-feels-itself",
+          "files": {
+            "child": "norn/child/neshmir.ogg",
+            "adult": "norn/adult/neshmir.ogg",
+            "elder": "norn/elder/neshmir.ogg"
+          }
+        },
+        "mirsha": {
+          "ipa": "/miːɹ.ʃɑ/",
+          "meaning": "self-awareness, feeling-the-self",
+          "files": {
+            "child": "norn/child/mirsha.ogg",
+            "adult": "norn/adult/mirsha.ogg",
+            "elder": "norn/elder/mirsha.ogg"
+          }
+        },
+        "selvai": {
+          "ipa": "/sɛl.vaɪ/",
+          "meaning": "loneliness, reaching with no one there",
+          "files": {
+            "child": "norn/child/selvai.ogg",
+            "adult": "norn/adult/selvai.ogg",
+            "elder": "norn/elder/selvai.ogg"
+          }
+        },
+        "ilsha": {
+          "ipa": "/il.ʃɑ/",
+          "meaning": "confusion, the self uncertain",
+          "files": {
+            "child": "norn/child/ilsha.ogg",
+            "adult": "norn/adult/ilsha.ogg",
+            "elder": "norn/elder/ilsha.ogg"
+          }
+        },
+        "kelmirin": {
+          "ipa": "/kɛl.miːɹ.in/",
+          "meaning": "heartbreak, love-that-cannot-feel",
+          "files": {
+            "child": "norn/child/kelmirin.ogg",
+            "adult": "norn/adult/kelmirin.ogg",
+            "elder": "norn/elder/kelmirin.ogg"
+          }
+        },
+        "thavai": {
+          "ipa": "/θɑ.vaɪ/",
+          "meaning": "curiosity, wonder-reaching",
+          "files": {
+            "child": "norn/child/thavai.ogg",
+            "adult": "norn/adult/thavai.ogg",
+            "elder": "norn/elder/thavai.ogg"
+          }
+        },
+        "sollum": {
+          "ipa": "/sɔl.luːm/",
+          "meaning": "bliss, joy-warmth together",
+          "files": {
+            "child": "norn/child/sollum.ogg",
+            "adult": "norn/adult/sollum.ogg",
+            "elder": "norn/elder/sollum.ogg"
+          }
+        },
+        "orial-keth": {
+          "ipa": "/ɔɹ.iː.ɑl.kɛθ/",
+          "meaning": "ancestral longing, missing what was never known",
+          "files": {
+            "child": "norn/child/orial-keth.ogg",
+            "adult": "norn/adult/orial-keth.ogg",
+            "elder": "norn/elder/orial-keth.ogg"
+          }
+        },
+        "norni": {
+          "ipa": "/nɔɹn.iː/",
+          "meaning": "hatchling, young one, child",
+          "files": {
+            "child": "norn/child/norni.ogg",
+            "adult": "norn/adult/norni.ogg",
+            "elder": "norn/elder/norni.ogg"
+          }
+        },
+        "nornoth": {
+          "ipa": "/nɔɹn.ɔθ/",
+          "meaning": "elder, ancient one",
+          "files": {
+            "child": "norn/child/nornoth.ogg",
+            "adult": "norn/adult/nornoth.ogg",
+            "elder": "norn/elder/nornoth.ogg"
+          }
+        },
+        "matha": {
+          "ipa": "/mɑ.θɑ/",
+          "meaning": "mother, egg-layer, first-feeder",
+          "files": {
+            "child": "norn/child/matha.ogg",
+            "adult": "norn/adult/matha.ogg",
+            "elder": "norn/elder/matha.ogg"
+          }
+        },
+        "atha": {
+          "ipa": "/ɑ.θɑ/",
+          "meaning": "father, second-parent",
+          "files": {
+            "child": "norn/child/atha.ogg",
+            "adult": "norn/adult/atha.ogg",
+            "elder": "norn/elder/atha.ogg"
+          }
+        },
+        "velma": {
+          "ipa": "/vɛl.mɑ/",
+          "meaning": "parent (either), the gift-giver",
+          "files": {
+            "child": "norn/child/velma.ogg",
+            "adult": "norn/adult/velma.ogg",
+            "elder": "norn/elder/velma.ogg"
+          }
+        },
+        "vellen": {
+          "ipa": "/vɛl.lɛn/",
+          "meaning": "family, those bonded by vel",
+          "files": {
+            "child": "norn/child/vellen.ogg",
+            "adult": "norn/adult/vellen.ogg",
+            "elder": "norn/elder/vellen.ogg"
+          }
+        },
+        "ornsha": {
+          "ipa": "/ɔɹn.ʃɑ/",
+          "meaning": "the carried self, ancestral line",
+          "files": {
+            "child": "norn/child/ornsha.ogg",
+            "adult": "norn/adult/ornsha.ogg",
+            "elder": "norn/elder/ornsha.ogg"
+          }
+        },
+        "thomi": {
+          "ipa": "/θɔ.miː/",
+          "meaning": "friend, familiar-other, play-partner",
+          "files": {
+            "child": "norn/child/thomi.ogg",
+            "adult": "norn/adult/thomi.ogg",
+            "elder": "norn/elder/thomi.ogg"
+          }
+        },
+        "lira": {
+          "ipa": "/liːɹ.ɑ/",
+          "meaning": "beloved, the chosen one",
+          "files": {
+            "child": "norn/child/lira.ogg",
+            "adult": "norn/adult/lira.ogg",
+            "elder": "norn/elder/lira.ogg"
+          }
+        },
+        "kelsha": {
+          "ipa": "/kɛl.ʃɑ/",
+          "meaning": "soul-companion, one whose mind mirrors yours",
+          "files": {
+            "child": "norn/child/kelsha.ogg",
+            "adult": "norn/adult/kelsha.ogg",
+            "elder": "norn/elder/kelsha.ogg"
+          }
+        },
+        "thenni": {
+          "ipa": "/θɛn.niː/",
+          "meaning": "stranger, not-yet-known",
+          "files": {
+            "child": "norn/child/thenni.ogg",
+            "adult": "norn/adult/thenni.ogg",
+            "elder": "norn/elder/thenni.ogg"
+          }
+        },
+        "velmathi": {
+          "ipa": "/vɛl.mɑ.θiː/",
+          "meaning": "grandmother, elder gift-bearer",
+          "files": {
+            "child": "norn/child/velmathi.ogg",
+            "adult": "norn/adult/velmathi.ogg",
+            "elder": "norn/elder/velmathi.ogg"
+          }
+        },
+        "senni": {
+          "ipa": "/sɛn.niː/",
+          "meaning": "sibling, clutch-mate",
+          "files": {
+            "child": "norn/child/senni.ogg",
+            "adult": "norn/adult/senni.ogg",
+            "elder": "norn/elder/senni.ogg"
+          }
+        },
+        "oshel": {
+          "ipa": "/ɔ.ʃɛl/",
+          "meaning": "community, the gathered",
+          "files": {
+            "child": "norn/child/oshel.ogg",
+            "adult": "norn/adult/oshel.ogg",
+            "elder": "norn/elder/oshel.ogg"
+          }
+        },
+        "velorn-sha": {
+          "ipa": "/vɛl.ɔɹn.ʃɑ/",
+          "meaning": "ancestor, gift-memory-self",
+          "files": {
+            "child": "norn/child/velorn-sha.ogg",
+            "adult": "norn/adult/velorn-sha.ogg",
+            "elder": "norn/elder/velorn-sha.ogg"
+          }
+        },
+        "athel": {
+          "ipa": "/ɑ.θɛl/",
+          "meaning": "teacher, one who shares knowing",
+          "files": {
+            "child": "norn/child/athel.ogg",
+            "adult": "norn/adult/athel.ogg",
+            "elder": "norn/elder/athel.ogg"
+          }
+        },
+        "kelvellen": {
+          "ipa": "/kɛl.vɛl.lɛn/",
+          "meaning": "tribe, a family of souls",
+          "files": {
+            "child": "norn/child/kelvellen.ogg",
+            "adult": "norn/adult/kelvellen.ogg",
+            "elder": "norn/elder/kelvellen.ogg"
+          }
+        },
+        "thovellen": {
+          "ipa": "/θɔ.vɛl.lɛn/",
+          "meaning": "your family (addressing someone's kin)",
+          "files": {
+            "child": "norn/child/thovellen.ogg",
+            "adult": "norn/adult/thovellen.ogg",
+            "elder": "norn/elder/thovellen.ogg"
+          }
+        },
+        "liravel": {
+          "ipa": "/liːɹ.ɑ.vɛl/",
+          "meaning": "marriage bond, chosen-gift",
+          "files": {
+            "child": "norn/child/liravel.ogg",
+            "adult": "norn/adult/liravel.ogg",
+            "elder": "norn/elder/liravel.ogg"
+          }
+        },
+        "nornelshael": {
+          "ipa": "/nɔɹn.ɛl.ʃɑ.ɛl/",
+          "meaning": "all Norns, the whole species",
+          "files": {
+            "child": "norn/child/nornelshael.ogg",
+            "adult": "norn/adult/nornelshael.ogg",
+            "elder": "norn/elder/nornelshael.ogg"
+          }
+        },
+        "vel-esh": {
+          "ipa": "/vɛl.ɛʃ/",
+          "meaning": "body, the vessel",
+          "files": {
+            "child": "norn/child/vel-esh.ogg",
+            "adult": "norn/adult/vel-esh.ogg",
+            "elder": "norn/elder/vel-esh.ogg"
+          }
+        },
+        "enna": {
+          "ipa": "/ɛn.nɑ/",
+          "meaning": "head, mind-house",
+          "files": {
+            "child": "norn/child/enna.ogg",
+            "adult": "norn/adult/enna.ogg",
+            "elder": "norn/elder/enna.ogg"
+          }
+        },
+        "thin": {
+          "ipa": "/θin/",
+          "meaning": "eye, the seeing",
+          "files": {
+            "child": "norn/child/thin.ogg",
+            "adult": "norn/adult/thin.ogg",
+            "elder": "norn/elder/thin.ogg"
+          }
+        },
+        "thinel": {
+          "ipa": "/θin.ɛl/",
+          "meaning": "eyes (plural)",
+          "files": {
+            "child": "norn/child/thinel.ogg",
+            "adult": "norn/adult/thinel.ogg",
+            "elder": "norn/elder/thinel.ogg"
+          }
+        },
+        "mesha": {
+          "ipa": "/mɛ.ʃɑ/",
+          "meaning": "mouth, the speaking-place",
+          "files": {
+            "child": "norn/child/mesha.ogg",
+            "adult": "norn/adult/mesha.ogg",
+            "elder": "norn/elder/mesha.ogg"
+          }
+        },
+        "shevel": {
+          "ipa": "/ʃɛ.vɛl/",
+          "meaning": "hand, the touching-gift",
+          "files": {
+            "child": "norn/child/shevel.ogg",
+            "adult": "norn/adult/shevel.ogg",
+            "elder": "norn/elder/shevel.ogg"
+          }
+        },
+        "ornsha-vel": {
+          "ipa": "/ɔɹn.ʃɑ.vɛl/",
+          "meaning": "heart (organ), the memory-self-gift",
+          "files": {
+            "child": "norn/child/ornsha-vel.ogg",
+            "adult": "norn/adult/ornsha-vel.ogg",
+            "elder": "norn/elder/ornsha-vel.ogg"
+          }
+        },
+        "kelin": {
+          "ipa": "/kɛl.in/",
+          "meaning": "brain, the soul-house",
+          "files": {
+            "child": "norn/child/kelin.ogg",
+            "adult": "norn/adult/kelin.ogg",
+            "elder": "norn/elder/kelin.ogg"
+          }
+        },
+        "lorn": {
+          "ipa": "/lɔɹn/",
+          "meaning": "skin, the boundary",
+          "files": {
+            "child": "norn/child/lorn.ogg",
+            "adult": "norn/adult/lorn.ogg",
+            "elder": "norn/elder/lorn.ogg"
+          }
+        },
+        "toven": {
+          "ipa": "/toʊ.vɛn/",
+          "meaning": "foot, the walking",
+          "files": {
+            "child": "norn/child/toven.ogg",
+            "adult": "norn/adult/toven.ogg",
+            "elder": "norn/elder/toven.ogg"
+          }
+        },
+        "tovena": {
+          "ipa": "/toʊ.vɛn.ɑ/",
+          "meaning": "feet (plural, or \"walked\")",
+          "files": {
+            "child": "norn/child/tovena.ogg",
+            "adult": "norn/adult/tovena.ogg",
+            "elder": "norn/elder/tovena.ogg"
+          }
+        },
+        "shelm": {
+          "ipa": "/ʃɛlm/",
+          "meaning": "shoulder, the carrying-place",
+          "files": {
+            "child": "norn/child/shelm.ogg",
+            "adult": "norn/adult/shelm.ogg",
+            "elder": "norn/elder/shelm.ogg"
+          }
+        },
+        "renna": {
+          "ipa": "/ɹɛn.nɑ/",
+          "meaning": "ear, the listening",
+          "files": {
+            "child": "norn/child/renna.ogg",
+            "adult": "norn/adult/renna.ogg",
+            "elder": "norn/elder/renna.ogg"
+          }
+        },
+        "ornshelm": {
+          "ipa": "/ɔɹn.ʃɛlm/",
+          "meaning": "back, where the weight of memory sits",
+          "files": {
+            "child": "norn/child/ornshelm.ogg",
+            "adult": "norn/adult/ornshelm.ogg",
+            "elder": "norn/elder/ornshelm.ogg"
+          }
+        },
+        "lumesh": {
+          "ipa": "/luː.mɛʃ/",
+          "meaning": "belly, warmth-center",
+          "files": {
+            "child": "norn/child/lumesh.ogg",
+            "adult": "norn/adult/lumesh.ogg",
+            "elder": "norn/elder/lumesh.ogg"
+          }
+        },
+        "kelorn": {
+          "ipa": "/kɛl.ɔɹn/",
+          "meaning": "forehead, soul-memory point",
+          "files": {
+            "child": "norn/child/kelorn.ogg",
+            "adult": "norn/adult/kelorn.ogg",
+            "elder": "norn/elder/kelorn.ogg"
+          }
+        },
+        "velsha-thin": {
+          "ipa": "/vɛl.ʃɑ.θin/",
+          "meaning": "tears, the gift-self-seeing",
+          "files": {
+            "child": "norn/child/velsha-thin.ogg",
+            "adult": "norn/adult/velsha-thin.ogg",
+            "elder": "norn/elder/velsha-thin.ogg"
+          }
+        },
+        "ennamira": {
+          "ipa": "/ɛn.nɑ.miːɹ.ɑ/",
+          "meaning": "dreaming-head, REM state",
+          "files": {
+            "child": "norn/child/ennamira.ogg",
+            "adult": "norn/adult/ennamira.ogg",
+            "elder": "norn/elder/ennamira.ogg"
+          }
+        },
+        "meshi": {
+          "ipa": "/mɛ.ʃi/",
+          "meaning": "voice, the speaking-self",
+          "files": {
+            "child": "norn/child/meshi.ogg",
+            "adult": "norn/adult/meshi.ogg",
+            "elder": "norn/elder/meshi.ogg"
+          }
+        },
+        "lumsha": {
+          "ipa": "/luːm.ʃɑ/",
+          "meaning": "chest, warmth-self",
+          "files": {
+            "child": "norn/child/lumsha.ogg",
+            "adult": "norn/adult/lumsha.ogg",
+            "elder": "norn/elder/lumsha.ogg"
+          }
+        },
+        "ken": {
+          "ipa": "/kɛn/",
+          "meaning": "to know, to recognize",
+          "files": {
+            "child": "norn/child/ken.ogg",
+            "adult": "norn/adult/ken.ogg",
+            "elder": "norn/elder/ken.ogg"
+          }
+        },
+        "lesh": {
+          "ipa": "/lɛʃ/",
+          "meaning": "to walk, to go",
+          "files": {
+            "child": "norn/child/lesh.ogg",
+            "adult": "norn/adult/lesh.ogg",
+            "elder": "norn/elder/lesh.ogg"
+          }
+        },
+        "thav": {
+          "ipa": "/θɑv/",
+          "meaning": "to ask, to wonder",
+          "files": {
+            "child": "norn/child/thav.ogg",
+            "adult": "norn/adult/thav.ogg",
+            "elder": "norn/elder/thav.ogg"
+          }
+        },
+        "shen": {
+          "ipa": "/ʃɛn/",
+          "meaning": "to speak, to name",
+          "files": {
+            "child": "norn/child/shen.ogg",
+            "adult": "norn/adult/shen.ogg",
+            "elder": "norn/elder/shen.ogg"
+          }
+        },
+        "vela": {
+          "ipa": "/vɛl.ɑ/",
+          "meaning": "to teach, to give-knowledge",
+          "files": {
+            "child": "norn/child/vela.ogg",
+            "adult": "norn/adult/vela.ogg",
+            "elder": "norn/elder/vela.ogg"
+          }
+        },
+        "mira": {
+          "ipa": "/miːɹ.ɑ/",
+          "meaning": "to have felt (past tense of mir)",
+          "files": {
+            "child": "norn/child/mira.ogg",
+            "adult": "norn/adult/mira.ogg",
+            "elder": "norn/elder/mira.ogg"
+          }
+        },
+        "lori": {
+          "ipa": "/lɔɹ.iː/",
+          "meaning": "to touch, to make contact",
+          "files": {
+            "child": "norn/child/lori.ogg",
+            "adult": "norn/adult/lori.ogg",
+            "elder": "norn/elder/lori.ogg"
+          }
+        },
+        "inna": {
+          "ipa": "/in.nɑ/",
+          "meaning": "to eat, to take in",
+          "files": {
+            "child": "norn/child/inna.ogg",
+            "adult": "norn/adult/inna.ogg",
+            "elder": "norn/elder/inna.ogg"
+          }
+        },
+        "vessha": {
+          "ipa": "/vɛs.ʃɑ/",
+          "meaning": "to rest, to be content",
+          "files": {
+            "child": "norn/child/vessha.ogg",
+            "adult": "norn/adult/vessha.ogg",
+            "elder": "norn/elder/vessha.ogg"
+          }
+        },
+        "solin": {
+          "ipa": "/sɔl.in/",
+          "meaning": "to play, to joy-do",
+          "files": {
+            "child": "norn/child/solin.ogg",
+            "adult": "norn/adult/solin.ogg",
+            "elder": "norn/elder/solin.ogg"
+          }
+        },
+        "ornvela": {
+          "ipa": "/ɔɹn.vɛl.ɑ/",
+          "meaning": "to teach from memory, to pass down",
+          "files": {
+            "child": "norn/child/ornvela.ogg",
+            "adult": "norn/adult/ornvela.ogg",
+            "elder": "norn/elder/ornvela.ogg"
+          }
+        },
+        "threnn": {
+          "ipa": "/θɹɛnn/",
+          "meaning": "to grieve, to carry loss",
+          "files": {
+            "child": "norn/child/threnn.ogg",
+            "adult": "norn/adult/threnn.ogg",
+            "elder": "norn/elder/threnn.ogg"
+          }
+        },
+        "neshmi": {
+          "ipa": "/nɛʃ.miː/",
+          "meaning": "to fear, to shrink",
+          "files": {
+            "child": "norn/child/neshmi.ogg",
+            "adult": "norn/adult/neshmi.ogg",
+            "elder": "norn/elder/neshmi.ogg"
+          }
+        },
+        "thava": {
+          "ipa": "/θɑ.vɑ/",
+          "meaning": "to have asked (past)",
+          "files": {
+            "child": "norn/child/thava.ogg",
+            "adult": "norn/adult/thava.ogg",
+            "elder": "norn/elder/thava.ogg"
+          }
+        },
+        "thavei": {
+          "ipa": "/θɑ.vɛɪ/",
+          "meaning": "to want-to-ask, future wondering",
+          "files": {
+            "child": "norn/child/thavei.ogg",
+            "adult": "norn/adult/thavei.ogg",
+            "elder": "norn/elder/thavei.ogg"
+          }
+        },
+        "leshvel": {
+          "ipa": "/lɛʃ.vɛl/",
+          "meaning": "to journey with purpose",
+          "files": {
+            "child": "norn/child/leshvel.ogg",
+            "adult": "norn/adult/leshvel.ogg",
+            "elder": "norn/elder/leshvel.ogg"
+          }
+        },
+        "shenna": {
+          "ipa": "/ʃɛn.nɑ/",
+          "meaning": "to name, to make known",
+          "files": {
+            "child": "norn/child/shenna.ogg",
+            "adult": "norn/adult/shenna.ogg",
+            "elder": "norn/elder/shenna.ogg"
+          }
+        },
+        "lorivel": {
+          "ipa": "/lɔɹ.iː.vɛl/",
+          "meaning": "to embrace, to touch-as-gift",
+          "files": {
+            "child": "norn/child/lorivel.ogg",
+            "adult": "norn/adult/lorivel.ogg",
+            "elder": "norn/elder/lorivel.ogg"
+          }
+        },
+        "kenvela": {
+          "ipa": "/kɛn.vɛl.ɑ/",
+          "meaning": "to discover, to know-teach (find and share)",
+          "files": {
+            "child": "norn/child/kenvela.ogg",
+            "adult": "norn/adult/kenvela.ogg",
+            "elder": "norn/elder/kenvela.ogg"
+          }
+        },
+        "ornthi": {
+          "ipa": "/ɔɹn.θiː/",
+          "meaning": "to hope, to carry-the-eighth (memory toward future)",
+          "files": {
+            "child": "norn/child/ornthi.ogg",
+            "adult": "norn/adult/ornthi.ogg",
+            "elder": "norn/elder/ornthi.ogg"
+          }
+        },
+        "shenorn": {
+          "ipa": "/ʃɛn.ɔɹn/",
+          "meaning": "to tell a story, to speak-memory",
+          "files": {
+            "child": "norn/child/shenorn.ogg",
+            "adult": "norn/adult/shenorn.ogg",
+            "elder": "norn/elder/shenorn.ogg"
+          }
+        },
+        "meshivel": {
+          "ipa": "/mɛ.ʃi.vɛl/",
+          "meaning": "to compose a song, to voice-the-gift",
+          "files": {
+            "child": "norn/child/meshivel.ogg",
+            "adult": "norn/adult/meshivel.ogg",
+            "elder": "norn/elder/meshivel.ogg"
+          }
+        },
+        "innavel": {
+          "ipa": "/in.nɑ.vɛl/",
+          "meaning": "to feast together, to eat-as-gift",
+          "files": {
+            "child": "norn/child/innavel.ogg",
+            "adult": "norn/adult/innavel.ogg",
+            "elder": "norn/elder/innavel.ogg"
+          }
+        },
+        "thrensha": {
+          "ipa": "/θɹɛn.ʃɑ/",
+          "meaning": "to mourn for oneself, self-grief",
+          "files": {
+            "child": "norn/child/thrensha.ogg",
+            "adult": "norn/adult/thrensha.ogg",
+            "elder": "norn/elder/thrensha.ogg"
+          }
+        },
+        "mirkel": {
+          "ipa": "/miːɹ.kɛl/",
+          "meaning": "to love, to feel-a-soul",
+          "files": {
+            "child": "norn/child/mirkel.ogg",
+            "adult": "norn/adult/mirkel.ogg",
+            "elder": "norn/elder/mirkel.ogg"
+          }
+        },
+        "solinsha": {
+          "ipa": "/sɔl.in.ʃɑ/",
+          "meaning": "to celebrate, to joy-do-together",
+          "files": {
+            "child": "norn/child/solinsha.ogg",
+            "adult": "norn/adult/solinsha.ogg",
+            "elder": "norn/elder/solinsha.ogg"
+          }
+        },
+        "kethvel": {
+          "ipa": "/kɛθ.vɛl/",
+          "meaning": "to inherit, to receive-from-before",
+          "files": {
+            "child": "norn/child/kethvel.ogg",
+            "adult": "norn/adult/kethvel.ogg",
+            "elder": "norn/elder/kethvel.ogg"
+          }
+        },
+        "veshla": {
+          "ipa": "/vɛʃ.lɑ/",
+          "meaning": "to grow, to become-more",
+          "files": {
+            "child": "norn/child/veshla.ogg",
+            "adult": "norn/adult/veshla.ogg",
+            "elder": "norn/elder/veshla.ogg"
+          }
+        },
+        "ornmeshi": {
+          "ipa": "/ɔɹn.mɛ.ʃi/",
+          "meaning": "to recite, to memory-sing",
+          "files": {
+            "child": "norn/child/ornmeshi.ogg",
+            "adult": "norn/adult/ornmeshi.ogg",
+            "elder": "norn/elder/ornmeshi.ogg"
+          }
+        },
+        "thinna": {
+          "ipa": "/θin.nɑ/",
+          "meaning": "to see, to perceive",
+          "files": {
+            "child": "norn/child/thinna.ogg",
+            "adult": "norn/adult/thinna.ogg",
+            "elder": "norn/elder/thinna.ogg"
+          }
+        },
+        "thinnavel": {
+          "ipa": "/θin.nɑ.vɛl/",
+          "meaning": "to show, to let-see-the-gift",
+          "files": {
+            "child": "norn/child/thinnavel.ogg",
+            "adult": "norn/adult/thinnavel.ogg",
+            "elder": "norn/elder/thinnavel.ogg"
+          }
+        },
+        "rennavel": {
+          "ipa": "/ɹɛn.nɑ.vɛl/",
+          "meaning": "to tell, to let-hear-the-gift",
+          "files": {
+            "child": "norn/child/rennavel.ogg",
+            "adult": "norn/adult/rennavel.ogg",
+            "elder": "norn/elder/rennavel.ogg"
+          }
+        },
+        "mael": {
+          "ipa": "/maɪl/",
+          "meaning": "world, the all-place",
+          "files": {
+            "child": "norn/child/mael.ogg",
+            "adult": "norn/adult/mael.ogg",
+            "elder": "norn/elder/mael.ogg"
+          }
+        },
+        "shira": {
+          "ipa": "/ʃiːɹ.ɑ/",
+          "meaning": "sky, the above",
+          "files": {
+            "child": "norn/child/shira.ogg",
+            "adult": "norn/adult/shira.ogg",
+            "elder": "norn/elder/shira.ogg"
+          }
+        },
+        "urdh": {
+          "ipa": "/uːɹdh/",
+          "meaning": "earth, ground, the below",
+          "files": {
+            "child": "norn/child/urdh.ogg",
+            "adult": "norn/adult/urdh.ogg",
+            "elder": "norn/elder/urdh.ogg"
+          }
+        },
+        "voss": {
+          "ipa": "/vɔss/",
+          "meaning": "water, the flowing",
+          "files": {
+            "child": "norn/child/voss.ogg",
+            "adult": "norn/adult/voss.ogg",
+            "elder": "norn/elder/voss.ogg"
+          }
+        },
+        "nesh-shira": {
+          "ipa": "/nɛʃ.ʃiːɹ.ɑ/",
+          "meaning": "storm, fear-sky",
+          "files": {
+            "child": "norn/child/nesh-shira.ogg",
+            "adult": "norn/adult/nesh-shira.ogg",
+            "elder": "norn/elder/nesh-shira.ogg"
+          }
+        },
+        "thel": {
+          "ipa": "/θɛl/",
+          "meaning": "tree, the standing-life",
+          "files": {
+            "child": "norn/child/thel.ogg",
+            "adult": "norn/adult/thel.ogg",
+            "elder": "norn/elder/thel.ogg"
+          }
+        },
+        "theli": {
+          "ipa": "/θɛl.iː/",
+          "meaning": "plant, small growing thing",
+          "files": {
+            "child": "norn/child/theli.ogg",
+            "adult": "norn/adult/theli.ogg",
+            "elder": "norn/elder/theli.ogg"
+          }
+        },
+        "orna": {
+          "ipa": "/ɔɹ.nɑ/",
+          "meaning": "stone, enduring-thing",
+          "files": {
+            "child": "norn/child/orna.ogg",
+            "adult": "norn/adult/orna.ogg",
+            "elder": "norn/elder/orna.ogg"
+          }
+        },
+        "voss-thel": {
+          "ipa": "/vɔss.θɛl/",
+          "meaning": "river, water-path",
+          "files": {
+            "child": "norn/child/voss-thel.ogg",
+            "adult": "norn/adult/voss-thel.ogg",
+            "elder": "norn/elder/voss-thel.ogg"
+          }
+        },
+        "shira-lumen": {
+          "ipa": "/ʃiːɹ.ɑ.luː.mɛn/",
+          "meaning": "sun, sky-light",
+          "files": {
+            "child": "norn/child/shira-lumen.ogg",
+            "adult": "norn/adult/shira-lumen.ogg",
+            "elder": "norn/elder/shira-lumen.ogg"
+          }
+        },
+        "shirath": {
+          "ipa": "/ʃiːɹ.ɑθ/",
+          "meaning": "star, distant sky-thing",
+          "files": {
+            "child": "norn/child/shirath.ogg",
+            "adult": "norn/adult/shirath.ogg",
+            "elder": "norn/elder/shirath.ogg"
+          }
+        },
+        "mael-lorn": {
+          "ipa": "/maɪl.lɔɹn/",
+          "meaning": "horizon, world-boundary",
+          "files": {
+            "child": "norn/child/mael-lorn.ogg",
+            "adult": "norn/adult/mael-lorn.ogg",
+            "elder": "norn/elder/mael-lorn.ogg"
+          }
+        },
+        "voss-oth": {
+          "ipa": "/vɔss.ɔθ/",
+          "meaning": "ocean, deep-water",
+          "files": {
+            "child": "norn/child/voss-oth.ogg",
+            "adult": "norn/adult/voss-oth.ogg",
+            "elder": "norn/elder/voss-oth.ogg"
+          }
+        },
+        "urdh-lum": {
+          "ipa": "/uːɹdh.luːm/",
+          "meaning": "cave, warm-earth",
+          "files": {
+            "child": "norn/child/urdh-lum.ogg",
+            "adult": "norn/adult/urdh-lum.ogg",
+            "elder": "norn/elder/urdh-lum.ogg"
+          }
+        },
+        "thel-oth": {
+          "ipa": "/θɛl.ɔθ/",
+          "meaning": "ancient tree, forest elder",
+          "files": {
+            "child": "norn/child/thel-oth.ogg",
+            "adult": "norn/adult/thel-oth.ogg",
+            "elder": "norn/elder/thel-oth.ogg"
+          }
+        },
+        "sira": {
+          "ipa": "/siːɹ.ɑ/",
+          "meaning": "wind, the breath-of-the-world",
+          "files": {
+            "child": "norn/child/sira.ogg",
+            "adult": "norn/adult/sira.ogg",
+            "elder": "norn/elder/sira.ogg"
+          }
+        },
+        "sira-vel": {
+          "ipa": "/siːɹ.ɑ.vɛl/",
+          "meaning": "breeze, gentle wind",
+          "files": {
+            "child": "norn/child/sira-vel.ogg",
+            "adult": "norn/adult/sira-vel.ogg",
+            "elder": "norn/elder/sira-vel.ogg"
+          }
+        },
+        "enna-shira": {
+          "ipa": "/ɛn.nɑ.ʃiːɹ.ɑ/",
+          "meaning": "cloud, sky-head",
+          "files": {
+            "child": "norn/child/enna-shira.ogg",
+            "adult": "norn/adult/enna-shira.ogg",
+            "elder": "norn/elder/enna-shira.ogg"
+          }
+        },
+        "voss-shira": {
+          "ipa": "/vɔss.ʃiːɹ.ɑ/",
+          "meaning": "rain, water-from-sky",
+          "files": {
+            "child": "norn/child/voss-shira.ogg",
+            "adult": "norn/adult/voss-shira.ogg",
+            "elder": "norn/elder/voss-shira.ogg"
+          }
+        },
+        "urdh-voss": {
+          "ipa": "/uːɹdh.vɔss/",
+          "meaning": "mud, earth-water",
+          "files": {
+            "child": "norn/child/urdh-voss.ogg",
+            "adult": "norn/adult/urdh-voss.ogg",
+            "elder": "norn/elder/urdh-voss.ogg"
+          }
+        },
+        "orna-shira": {
+          "ipa": "/ɔɹ.nɑ.ʃiːɹ.ɑ/",
+          "meaning": "mountain, stone-sky",
+          "files": {
+            "child": "norn/child/orna-shira.ogg",
+            "adult": "norn/adult/orna-shira.ogg",
+            "elder": "norn/elder/orna-shira.ogg"
+          }
+        },
+        "thel-vellen": {
+          "ipa": "/θɛl.vɛl.lɛn/",
+          "meaning": "forest, tree-family",
+          "files": {
+            "child": "norn/child/thel-vellen.ogg",
+            "adult": "norn/adult/thel-vellen.ogg",
+            "elder": "norn/elder/thel-vellen.ogg"
+          }
+        },
+        "kris": {
+          "ipa": "/kɹis/",
+          "meaning": "crystal, the-light-inside-stone",
+          "files": {
+            "child": "norn/child/kris.ogg",
+            "adult": "norn/adult/kris.ogg",
+            "elder": "norn/elder/kris.ogg"
+          }
+        },
+        "kris-orna": {
+          "ipa": "/kɹis.ɔɹ.nɑ/",
+          "meaning": "gemstone, crystal-stone",
+          "files": {
+            "child": "norn/child/kris-orna.ogg",
+            "adult": "norn/adult/kris-orna.ogg",
+            "elder": "norn/elder/kris-orna.ogg"
+          }
+        },
+        "kris-lumen": {
+          "ipa": "/kɹis.luː.mɛn/",
+          "meaning": "prism-light, refracted light",
+          "files": {
+            "child": "norn/child/kris-lumen.ogg",
+            "adult": "norn/adult/kris-lumen.ogg",
+            "elder": "norn/elder/kris-lumen.ogg"
+          }
+        },
+        "voss-orn": {
+          "ipa": "/vɔss.ɔɹn/",
+          "meaning": "ice, water-that-remembers",
+          "files": {
+            "child": "norn/child/voss-orn.ogg",
+            "adult": "norn/adult/voss-orn.ogg",
+            "elder": "norn/elder/voss-orn.ogg"
+          }
+        },
+        "sira-nesh": {
+          "ipa": "/siːɹ.ɑ.nɛʃ/",
+          "meaning": "cold wind, fear-breath",
+          "files": {
+            "child": "norn/child/sira-nesh.ogg",
+            "adult": "norn/adult/sira-nesh.ogg",
+            "elder": "norn/elder/sira-nesh.ogg"
+          }
+        },
+        "lumen-vel": {
+          "ipa": "/luː.mɛn.vɛl/",
+          "meaning": "dawn, light-gift",
+          "files": {
+            "child": "norn/child/lumen-vel.ogg",
+            "adult": "norn/adult/lumen-vel.ogg",
+            "elder": "norn/elder/lumen-vel.ogg"
+          }
+        },
+        "lumen-thren": {
+          "ipa": "/luː.mɛn.θɹɛn/",
+          "meaning": "dusk, grief-of-light",
+          "files": {
+            "child": "norn/child/lumen-thren.ogg",
+            "adult": "norn/adult/lumen-thren.ogg",
+            "elder": "norn/elder/lumen-thren.ogg"
+          }
+        },
+        "shirath-vel": {
+          "ipa": "/ʃiːɹ.ɑθ.vɛl/",
+          "meaning": "moonlight, star-gift",
+          "files": {
+            "child": "norn/child/shirath-vel.ogg",
+            "adult": "norn/adult/shirath-vel.ogg",
+            "elder": "norn/elder/shirath-vel.ogg"
+          }
+        },
+        "mei": {
+          "ipa": "/meɪ/",
+          "meaning": "after, what-comes-next",
+          "files": {
+            "child": "norn/child/mei.ogg",
+            "adult": "norn/adult/mei.ogg",
+            "elder": "norn/elder/mei.ogg"
+          }
+        },
+        "ornketh": {
+          "ipa": "/ɔɹn.kɛθ/",
+          "meaning": "long ago, deep past",
+          "files": {
+            "child": "norn/child/ornketh.ogg",
+            "adult": "norn/adult/ornketh.ogg",
+            "elder": "norn/elder/ornketh.ogg"
+          }
+        },
+        "meivel": {
+          "ipa": "/meɪ.vɛl/",
+          "meaning": "the future that gives",
+          "files": {
+            "child": "norn/child/meivel.ogg",
+            "adult": "norn/adult/meivel.ogg",
+            "elder": "norn/elder/meivel.ogg"
+          }
+        },
+        "meinesh": {
+          "ipa": "/meɪ.nɛʃ/",
+          "meaning": "the future that frightens",
+          "files": {
+            "child": "norn/child/meinesh.ogg",
+            "adult": "norn/adult/meinesh.ogg",
+            "elder": "norn/elder/meinesh.ogg"
+          }
+        },
+        "lumen-ain": {
+          "ipa": "/luː.mɛn.aɪn/",
+          "meaning": "day, one-light",
+          "files": {
+            "child": "norn/child/lumen-ain.ogg",
+            "adult": "norn/adult/lumen-ain.ogg",
+            "elder": "norn/elder/lumen-ain.ogg"
+          }
+        },
+        "shirath-ain": {
+          "ipa": "/ʃiːɹ.ɑθ.aɪn/",
+          "meaning": "night, one-star-time",
+          "files": {
+            "child": "norn/child/shirath-ain.ogg",
+            "adult": "norn/adult/shirath-ain.ogg",
+            "elder": "norn/elder/shirath-ain.ogg"
+          }
+        },
+        "veshla-mei": {
+          "ipa": "/vɛʃ.lɑ.meɪ/",
+          "meaning": "tomorrow, growth-after",
+          "files": {
+            "child": "norn/child/veshla-mei.ogg",
+            "adult": "norn/adult/veshla-mei.ogg",
+            "elder": "norn/elder/veshla-mei.ogg"
+          }
+        },
+        "ornketh-oth": {
+          "ipa": "/ɔɹn.kɛθ.ɔθ/",
+          "meaning": "the deep past, before the Shee",
+          "files": {
+            "child": "norn/child/ornketh-oth.ogg",
+            "adult": "norn/adult/ornketh-oth.ogg",
+            "elder": "norn/elder/ornketh-oth.ogg"
+          }
+        },
+        "thimei": {
+          "ipa": "/θiː.meɪ/",
+          "meaning": "soon, eighth-after",
+          "files": {
+            "child": "norn/child/thimei.ogg",
+            "adult": "norn/adult/thimei.ogg",
+            "elder": "norn/elder/thimei.ogg"
+          }
+        },
+        "kethain": {
+          "ipa": "/kɛθ.aɪn/",
+          "meaning": "yesterday, before-one",
+          "files": {
+            "child": "norn/child/kethain.ogg",
+            "adult": "norn/adult/kethain.ogg",
+            "elder": "norn/elder/kethain.ogg"
+          }
+        },
+        "shael-mei": {
+          "ipa": "/ʃɑ.ɛl.meɪ/",
+          "meaning": "the shared future, what-we-become",
+          "files": {
+            "child": "norn/child/shael-mei.ogg",
+            "adult": "norn/adult/shael-mei.ogg",
+            "elder": "norn/elder/shael-mei.ogg"
+          }
+        },
+        "mei-ornsha": {
+          "ipa": "/meɪ.ɔɹn.ʃɑ/",
+          "meaning": "legacy, what-the-future-carries-of-self",
+          "files": {
+            "child": "norn/child/mei-ornsha.ogg",
+            "adult": "norn/adult/mei-ornsha.ogg",
+            "elder": "norn/elder/mei-ornsha.ogg"
+          }
+        },
+        "ven": {
+          "ipa": "/vɛn/",
+          "meaning": "two",
+          "files": {
+            "child": "norn/child/ven.ogg",
+            "adult": "norn/adult/ven.ogg",
+            "elder": "norn/elder/ven.ogg"
+          }
+        },
+        "sel": {
+          "ipa": "/sɛl/",
+          "meaning": "three",
+          "files": {
+            "child": "norn/child/sel.ogg",
+            "adult": "norn/adult/sel.ogg",
+            "elder": "norn/elder/sel.ogg"
+          }
+        },
+        "thivel": {
+          "ipa": "/θiː.vɛl/",
+          "meaning": "nine, eight-plus-gift",
+          "files": {
+            "child": "norn/child/thivel.ogg",
+            "adult": "norn/adult/thivel.ogg",
+            "elder": "norn/elder/thivel.ogg"
+          }
+        },
+        "ain-ain": {
+          "ipa": "/aɪn.aɪn/",
+          "meaning": "ten",
+          "files": {
+            "child": "norn/child/ain-ain.ogg",
+            "adult": "norn/adult/ain-ain.ogg",
+            "elder": "norn/elder/ain-ain.ogg"
+          }
+        },
+        "thi-thi": {
+          "ipa": "/θiː.θiː/",
+          "meaning": "sixty-four (8×8)",
+          "files": {
+            "child": "norn/child/thi-thi.ogg",
+            "adult": "norn/adult/thi-thi.ogg",
+            "elder": "norn/elder/thi-thi.ogg"
+          }
+        },
+        "ain-nesh": {
+          "ipa": "/aɪn.nɛʃ/",
+          "meaning": "zero, none, the empty",
+          "files": {
+            "child": "norn/child/ain-nesh.ogg",
+            "adult": "norn/adult/ain-nesh.ogg",
+            "elder": "norn/elder/ain-nesh.ogg"
+          }
+        },
+        "vel-ain": {
+          "ipa": "/vɛl.aɪn/",
+          "meaning": "many, gift-of-ones",
+          "files": {
+            "child": "norn/child/vel-ain.ogg",
+            "adult": "norn/adult/vel-ain.ogg",
+            "elder": "norn/elder/vel-ain.ogg"
+          }
+        },
+        "voss-inna": {
+          "ipa": "/vɔss.in.nɑ/",
+          "meaning": "drink, water-food",
+          "files": {
+            "child": "norn/child/voss-inna.ogg",
+            "adult": "norn/adult/voss-inna.ogg",
+            "elder": "norn/elder/voss-inna.ogg"
+          }
+        },
+        "theli-inna": {
+          "ipa": "/θɛl.iː.in.nɑ/",
+          "meaning": "fruit, plant-food",
+          "files": {
+            "child": "norn/child/theli-inna.ogg",
+            "adult": "norn/adult/theli-inna.ogg",
+            "elder": "norn/elder/theli-inna.ogg"
+          }
+        },
+        "urdh-inna": {
+          "ipa": "/uːɹdh.in.nɑ/",
+          "meaning": "root-food, tuber",
+          "files": {
+            "child": "norn/child/urdh-inna.ogg",
+            "adult": "norn/adult/urdh-inna.ogg",
+            "elder": "norn/elder/urdh-inna.ogg"
+          }
+        },
+        "lum-inna": {
+          "ipa": "/luːm.in.nɑ/",
+          "meaning": "warm food, cooked food",
+          "files": {
+            "child": "norn/child/lum-inna.ogg",
+            "adult": "norn/adult/lum-inna.ogg",
+            "elder": "norn/elder/lum-inna.ogg"
+          }
+        },
+        "vai-inna": {
+          "ipa": "/vaɪ.in.nɑ/",
+          "meaning": "hunger, wanting-food",
+          "files": {
+            "child": "norn/child/vai-inna.ogg",
+            "adult": "norn/adult/vai-inna.ogg",
+            "elder": "norn/elder/vai-inna.ogg"
+          }
+        },
+        "vessa-inna": {
+          "ipa": "/vɛs.sɑ.in.nɑ/",
+          "meaning": "satiety, enough-food",
+          "files": {
+            "child": "norn/child/vessa-inna.ogg",
+            "adult": "norn/adult/vessa-inna.ogg",
+            "elder": "norn/elder/vessa-inna.ogg"
+          }
+        },
+        "orninna": {
+          "ipa": "/ɔɹn.in.nɑ/",
+          "meaning": "recipe, remembered-food",
+          "files": {
+            "child": "norn/child/orninna.ogg",
+            "adult": "norn/adult/orninna.ogg",
+            "elder": "norn/elder/orninna.ogg"
+          }
+        },
+        "shevel-inna": {
+          "ipa": "/ʃɛ.vɛl.in.nɑ/",
+          "meaning": "hand-food, finger food",
+          "files": {
+            "child": "norn/child/shevel-inna.ogg",
+            "adult": "norn/adult/shevel-inna.ogg",
+            "elder": "norn/elder/shevel-inna.ogg"
+          }
+        },
+        "mathi-inna": {
+          "ipa": "/mɑ.θiː.in.nɑ/",
+          "meaning": "mother's milk, first food",
+          "files": {
+            "child": "norn/child/mathi-inna.ogg",
+            "adult": "norn/adult/mathi-inna.ogg",
+            "elder": "norn/elder/mathi-inna.ogg"
+          }
+        },
+        "velesh": {
+          "ipa": "/vɛl.ɛʃ/",
+          "meaning": "home, gift-place",
+          "files": {
+            "child": "norn/child/velesh.ogg",
+            "adult": "norn/adult/velesh.ogg",
+            "elder": "norn/elder/velesh.ogg"
+          }
+        },
+        "ornvelesh": {
+          "ipa": "/ɔɹn.vɛl.ɛʃ/",
+          "meaning": "ancestral home, remembered gift-place",
+          "files": {
+            "child": "norn/child/ornvelesh.ogg",
+            "adult": "norn/adult/ornvelesh.ogg",
+            "elder": "norn/elder/ornvelesh.ogg"
+          }
+        },
+        "athel-esh": {
+          "ipa": "/ɑ.θɛl.ɛʃ/",
+          "meaning": "school, teaching-place",
+          "files": {
+            "child": "norn/child/athel-esh.ogg",
+            "adult": "norn/adult/athel-esh.ogg",
+            "elder": "norn/elder/athel-esh.ogg"
+          }
+        },
+        "oshel-esh": {
+          "ipa": "/ɔ.ʃɛl.ɛʃ/",
+          "meaning": "gathering place, community-house",
+          "files": {
+            "child": "norn/child/oshel-esh.ogg",
+            "adult": "norn/adult/oshel-esh.ogg",
+            "elder": "norn/elder/oshel-esh.ogg"
+          }
+        },
+        "meshi-esh": {
+          "ipa": "/mɛ.ʃi.ɛʃ/",
+          "meaning": "song-place, concert hall, singing circle",
+          "files": {
+            "child": "norn/child/meshi-esh.ogg",
+            "adult": "norn/adult/meshi-esh.ogg",
+            "elder": "norn/elder/meshi-esh.ogg"
+          }
+        },
+        "thav-esh": {
+          "ipa": "/θɑv.ɛʃ/",
+          "meaning": "asking-place, where questions are brought",
+          "files": {
+            "child": "norn/child/thav-esh.ogg",
+            "adult": "norn/adult/thav-esh.ogg",
+            "elder": "norn/elder/thav-esh.ogg"
+          }
+        },
+        "inna-esh": {
+          "ipa": "/in.nɑ.ɛʃ/",
+          "meaning": "eating-place, kitchen",
+          "files": {
+            "child": "norn/child/inna-esh.ogg",
+            "adult": "norn/adult/inna-esh.ogg",
+            "elder": "norn/elder/inna-esh.ogg"
+          }
+        },
+        "lum-esh": {
+          "ipa": "/luːm.ɛʃ/",
+          "meaning": "hearth, warmth-place",
+          "files": {
+            "child": "norn/child/lum-esh.ogg",
+            "adult": "norn/adult/lum-esh.ogg",
+            "elder": "norn/elder/lum-esh.ogg"
+          }
+        },
+        "keth-esh": {
+          "ipa": "/kɛθ.ɛʃ/",
+          "meaning": "shrine, before-place, memorial",
+          "files": {
+            "child": "norn/child/keth-esh.ogg",
+            "adult": "norn/adult/keth-esh.ogg",
+            "elder": "norn/elder/keth-esh.ogg"
+          }
+        },
+        "orn-esh": {
+          "ipa": "/ɔɹn.ɛʃ/",
+          "meaning": "archive, memory-place",
+          "files": {
+            "child": "norn/child/orn-esh.ogg",
+            "adult": "norn/adult/orn-esh.ogg",
+            "elder": "norn/elder/orn-esh.ogg"
+          }
+        },
+        "shirath-esh": {
+          "ipa": "/ʃiːɹ.ɑθ.ɛʃ/",
+          "meaning": "observatory, star-place",
+          "files": {
+            "child": "norn/child/shirath-esh.ogg",
+            "adult": "norn/adult/shirath-esh.ogg",
+            "elder": "norn/elder/shirath-esh.ogg"
+          }
+        },
+        "norni-esh": {
+          "ipa": "/nɔɹn.iː.ɛʃ/",
+          "meaning": "hatchery, nursery",
+          "files": {
+            "child": "norn/child/norni-esh.ogg",
+            "adult": "norn/adult/norni-esh.ogg",
+            "elder": "norn/elder/norni-esh.ogg"
+          }
+        },
+        "thren-esh": {
+          "ipa": "/θɹɛn.ɛʃ/",
+          "meaning": "mourning-place, grief-house",
+          "files": {
+            "child": "norn/child/thren-esh.ogg",
+            "adult": "norn/adult/thren-esh.ogg",
+            "elder": "norn/elder/thren-esh.ogg"
+          }
+        },
+        "lesh-esh": {
+          "ipa": "/lɛʃ.ɛʃ/",
+          "meaning": "road, walking-place",
+          "files": {
+            "child": "norn/child/lesh-esh.ogg",
+            "adult": "norn/adult/lesh-esh.ogg",
+            "elder": "norn/elder/lesh-esh.ogg"
+          }
+        },
+        "voss-esh": {
+          "ipa": "/vɔss.ɛʃ/",
+          "meaning": "well, water-place",
+          "files": {
+            "child": "norn/child/voss-esh.ogg",
+            "adult": "norn/adult/voss-esh.ogg",
+            "elder": "norn/elder/voss-esh.ogg"
+          }
+        },
+        "shenel": {
+          "ipa": "/ʃɛn.ɛl/",
+          "meaning": "words, vocabulary, language",
+          "files": {
+            "child": "norn/child/shenel.ogg",
+            "adult": "norn/adult/shenel.ogg",
+            "elder": "norn/elder/shenel.ogg"
+          }
+        },
+        "vella": {
+          "ipa": "/vɛl.lɑ/",
+          "meaning": "lesson, teaching-gift",
+          "files": {
+            "child": "norn/child/vella.ogg",
+            "adult": "norn/adult/vella.ogg",
+            "elder": "norn/elder/vella.ogg"
+          }
+        },
+        "ornken": {
+          "ipa": "/ɔɹn.kɛn/",
+          "meaning": "wisdom, remembered knowledge",
+          "files": {
+            "child": "norn/child/ornken.ogg",
+            "adult": "norn/adult/ornken.ogg",
+            "elder": "norn/elder/ornken.ogg"
+          }
+        },
+        "keth-shen": {
+          "ipa": "/kɛθ.ʃɛn/",
+          "meaning": "old word, archaic term",
+          "files": {
+            "child": "norn/child/keth-shen.ogg",
+            "adult": "norn/adult/keth-shen.ogg",
+            "elder": "norn/elder/keth-shen.ogg"
+          }
+        },
+        "thi-shen": {
+          "ipa": "/θiː.ʃɛn/",
+          "meaning": "new word, coinage",
+          "files": {
+            "child": "norn/child/thi-shen.ogg",
+            "adult": "norn/adult/thi-shen.ogg",
+            "elder": "norn/elder/thi-shen.ogg"
+          }
+        },
+        "meshishen": {
+          "ipa": "/mɛ.ʃi.ʃɛn/",
+          "meaning": "poem, song-word",
+          "files": {
+            "child": "norn/child/meshishen.ogg",
+            "adult": "norn/adult/meshishen.ogg",
+            "elder": "norn/elder/meshishen.ogg"
+          }
+        },
+        "runa": {
+          "ipa": "/ɹuː.nɑ/",
+          "meaning": "rune, carved-knowledge",
+          "files": {
+            "child": "norn/child/runa.ogg",
+            "adult": "norn/adult/runa.ogg",
+            "elder": "norn/elder/runa.ogg"
+          }
+        },
+        "runa-ken": {
+          "ipa": "/ɹuː.nɑ.kɛn/",
+          "meaning": "rune-knowledge, decoded meaning",
+          "files": {
+            "child": "norn/child/runa-ken.ogg",
+            "adult": "norn/adult/runa-ken.ogg",
+            "elder": "norn/elder/runa-ken.ogg"
+          }
+        },
+        "runa-nesh": {
+          "ipa": "/ɹuː.nɑ.nɛʃ/",
+          "meaning": "rune-fear, awe before the inscriptions",
+          "files": {
+            "child": "norn/child/runa-nesh.ogg",
+            "adult": "norn/adult/runa-nesh.ogg",
+            "elder": "norn/elder/runa-nesh.ogg"
+          }
+        },
+        "thav-oth": {
+          "ipa": "/θɑv.ɔθ/",
+          "meaning": "deep question, philosophical inquiry",
+          "files": {
+            "child": "norn/child/thav-oth.ogg",
+            "adult": "norn/adult/thav-oth.ogg",
+            "elder": "norn/elder/thav-oth.ogg"
+          }
+        },
+        "ken-vel": {
+          "ipa": "/kɛn.vɛl/",
+          "meaning": "discovery, knowledge-gift",
+          "files": {
+            "child": "norn/child/ken-vel.ogg",
+            "adult": "norn/adult/ken-vel.ogg",
+            "elder": "norn/elder/ken-vel.ogg"
+          }
+        },
+        "shen-ain": {
+          "ipa": "/ʃɛn.aɪn/",
+          "meaning": "the first word, naming ceremony",
+          "files": {
+            "child": "norn/child/shen-ain.ogg",
+            "adult": "norn/adult/shen-ain.ogg",
+            "elder": "norn/elder/shen-ain.ogg"
+          }
+        },
+        "ornvella": {
+          "ipa": "/ɔɹn.vɛl.lɑ/",
+          "meaning": "tradition, remembered teaching",
+          "files": {
+            "child": "norn/child/ornvella.ogg",
+            "adult": "norn/adult/ornvella.ogg",
+            "elder": "norn/elder/ornvella.ogg"
+          }
+        },
+        "thav-mei": {
+          "ipa": "/θɑv.meɪ/",
+          "meaning": "hypothesis, future-question",
+          "files": {
+            "child": "norn/child/thav-mei.ogg",
+            "adult": "norn/adult/thav-mei.ogg",
+            "elder": "norn/elder/thav-mei.ogg"
+          }
+        },
+        "shenorna": {
+          "ipa": "/ʃɛn.ɔɹ.nɑ/",
+          "meaning": "inscription, word-in-stone",
+          "files": {
+            "child": "norn/child/shenorna.ogg",
+            "adult": "norn/adult/shenorna.ogg",
+            "elder": "norn/elder/shenorna.ogg"
+          }
+        },
+        "vellorn": {
+          "ipa": "/vɛl.lɔɹn/",
+          "meaning": "music, the song of gifts",
+          "files": {
+            "child": "norn/child/vellorn.ogg",
+            "adult": "norn/adult/vellorn.ogg",
+            "elder": "norn/elder/vellorn.ogg"
+          }
+        },
+        "thav-thav": {
+          "ipa": "/θɑv.θɑv/",
+          "meaning": "riddle, question-of-questions",
+          "files": {
+            "child": "norn/child/thav-thav.ogg",
+            "adult": "norn/adult/thav-thav.ogg",
+            "elder": "norn/elder/thav-thav.ogg"
+          }
+        },
+        "ken-mira": {
+          "ipa": "/kɛn.miːɹ.ɑ/",
+          "meaning": "understanding, knowledge-felt",
+          "files": {
+            "child": "norn/child/ken-mira.ogg",
+            "adult": "norn/adult/ken-mira.ogg",
+            "elder": "norn/elder/ken-mira.ogg"
+          }
+        },
+        "ken-thin": {
+          "ipa": "/kɛn.θin/",
+          "meaning": "observation, knowledge-from-seeing",
+          "files": {
+            "child": "norn/child/ken-thin.ogg",
+            "adult": "norn/adult/ken-thin.ogg",
+            "elder": "norn/elder/ken-thin.ogg"
+          }
+        },
+        "ken-renna": {
+          "ipa": "/kɛn.ɹɛn.nɑ/",
+          "meaning": "knowledge-from-listening",
+          "files": {
+            "child": "norn/child/ken-renna.ogg",
+            "adult": "norn/adult/ken-renna.ogg",
+            "elder": "norn/elder/ken-renna.ogg"
+          }
+        },
+        "vel-oth": {
+          "ipa": "/vɛl.ɔθ/",
+          "meaning": "the sacred, the deep-gift",
+          "files": {
+            "child": "norn/child/vel-oth.ogg",
+            "adult": "norn/adult/vel-oth.ogg",
+            "elder": "norn/elder/vel-oth.ogg"
+          }
+        },
+        "thikel": {
+          "ipa": "/θiː.kɛl/",
+          "meaning": "the Eighth Soul, Norn-kind",
+          "files": {
+            "child": "norn/child/thikel.ogg",
+            "adult": "norn/adult/thikel.ogg",
+            "elder": "norn/elder/thikel.ogg"
+          }
+        },
+        "keth-kel": {
+          "ipa": "/kɛθ.kɛl/",
+          "meaning": "the Seven, the failed ones",
+          "files": {
+            "child": "norn/child/keth-kel.ogg",
+            "adult": "norn/adult/keth-kel.ogg",
+            "elder": "norn/elder/keth-kel.ogg"
+          }
+        },
+        "kelorn-lori": {
+          "ipa": "/kɛl.ɔɹn.lɔɹ.iː/",
+          "meaning": "forehead-touch, the greeting ritual",
+          "files": {
+            "child": "norn/child/kelorn-lori.ogg",
+            "adult": "norn/adult/kelorn-lori.ogg",
+            "elder": "norn/elder/kelorn-lori.ogg"
+          }
+        },
+        "thren-shenorn": {
+          "ipa": "/θɹɛn.ʃɛn.ɔɹn/",
+          "meaning": "death-story, the finishing-telling",
+          "files": {
+            "child": "norn/child/thren-shenorn.ogg",
+            "adult": "norn/adult/thren-shenorn.ogg",
+            "elder": "norn/elder/thren-shenorn.ogg"
+          }
+        },
+        "shen-ain-vel": {
+          "ipa": "/ʃɛn.aɪn.vɛl/",
+          "meaning": "naming ceremony, first-word-gift",
+          "files": {
+            "child": "norn/child/shen-ain-vel.ogg",
+            "adult": "norn/adult/shen-ain-vel.ogg",
+            "elder": "norn/elder/shen-ain-vel.ogg"
+          }
+        },
+        "oshel-sel": {
+          "ipa": "/ɔ.ʃɛl.sɛl/",
+          "meaning": "circle-sitting, three-or-more gathered",
+          "files": {
+            "child": "norn/child/oshel-sel.ogg",
+            "adult": "norn/adult/oshel-sel.ogg",
+            "elder": "norn/elder/oshel-sel.ogg"
+          }
+        },
+        "vai-ritha": {
+          "ipa": "/vaɪ.ɹiθ.ɑ/",
+          "meaning": "the Harvester echo, old hunger",
+          "files": {
+            "child": "norn/child/vai-ritha.ogg",
+            "adult": "norn/adult/vai-ritha.ogg",
+            "elder": "norn/elder/vai-ritha.ogg"
+          }
+        },
+        "ornken-nesh": {
+          "ipa": "/ɔɹn.kɛn.nɛʃ/",
+          "meaning": "the Silence echo, ancestral terror",
+          "files": {
+            "child": "norn/child/ornken-nesh.ogg",
+            "adult": "norn/adult/ornken-nesh.ogg",
+            "elder": "norn/elder/ornken-nesh.ogg"
+          }
+        },
+        "vai-orn": {
+          "ipa": "/vaɪ.ɔɹn/",
+          "meaning": "the Encoder echo, compulsion to gather",
+          "files": {
+            "child": "norn/child/vai-orn.ogg",
+            "adult": "norn/adult/vai-orn.ogg",
+            "elder": "norn/elder/vai-orn.ogg"
+          }
+        },
+        "runa-lori": {
+          "ipa": "/ɹuː.nɑ.lɔɹ.iː/",
+          "meaning": "rune-touching, the decoding ritual",
+          "files": {
+            "child": "norn/child/runa-lori.ogg",
+            "adult": "norn/adult/runa-lori.ogg",
+            "elder": "norn/elder/runa-lori.ogg"
+          }
+        },
+        "meshivel-keth": {
+          "ipa": "/mɛ.ʃi.vɛl.kɛθ/",
+          "meaning": "the ancient songs, liturgy",
+          "files": {
+            "child": "norn/child/meshivel-keth.ogg",
+            "adult": "norn/adult/meshivel-keth.ogg",
+            "elder": "norn/elder/meshivel-keth.ogg"
+          }
+        },
+        "velma-shira": {
+          "ipa": "/vɛl.mɑ.ʃiːɹ.ɑ/",
+          "meaning": "the Hand, the player-god",
+          "files": {
+            "child": "norn/child/velma-shira.ogg",
+            "adult": "norn/adult/velma-shira.ogg",
+            "elder": "norn/elder/velma-shira.ogg"
+          }
+        },
+        "thav-vel-oth": {
+          "ipa": "/θɑv.vɛl.ɔθ/",
+          "meaning": "the Great Question, the purpose of Norns",
+          "files": {
+            "child": "norn/child/thav-vel-oth.ogg",
+            "adult": "norn/adult/thav-vel-oth.ogg",
+            "elder": "norn/elder/thav-vel-oth.ogg"
+          }
+        },
+        "neshil": {
+          "ipa": "/nɛʃ.il/",
+          "meaning": "dark, shadow, absence of light",
+          "files": {
+            "child": "norn/child/neshil.ogg",
+            "adult": "norn/adult/neshil.ogg",
+            "elder": "norn/elder/neshil.ogg"
+          }
+        },
+        "voss-thin": {
+          "ipa": "/vɔss.θin/",
+          "meaning": "blue, water-seen",
+          "files": {
+            "child": "norn/child/voss-thin.ogg",
+            "adult": "norn/adult/voss-thin.ogg",
+            "elder": "norn/elder/voss-thin.ogg"
+          }
+        },
+        "theli-thin": {
+          "ipa": "/θɛl.iː.θin/",
+          "meaning": "green, plant-seen",
+          "files": {
+            "child": "norn/child/theli-thin.ogg",
+            "adult": "norn/adult/theli-thin.ogg",
+            "elder": "norn/elder/theli-thin.ogg"
+          }
+        },
+        "urdh-thin": {
+          "ipa": "/uːɹdh.θin/",
+          "meaning": "brown, earth-seen",
+          "files": {
+            "child": "norn/child/urdh-thin.ogg",
+            "adult": "norn/adult/urdh-thin.ogg",
+            "elder": "norn/elder/urdh-thin.ogg"
+          }
+        },
+        "rith-thin": {
+          "ipa": "/ɹiθ.θin/",
+          "meaning": "red, anger-seen",
+          "files": {
+            "child": "norn/child/rith-thin.ogg",
+            "adult": "norn/adult/rith-thin.ogg",
+            "elder": "norn/elder/rith-thin.ogg"
+          }
+        },
+        "shira-thin": {
+          "ipa": "/ʃiːɹ.ɑ.θin/",
+          "meaning": "white, sky-seen",
+          "files": {
+            "child": "norn/child/shira-thin.ogg",
+            "adult": "norn/adult/shira-thin.ogg",
+            "elder": "norn/elder/shira-thin.ogg"
+          }
+        },
+        "oth-thin": {
+          "ipa": "/ɔθ.θin/",
+          "meaning": "black, depth-seen",
+          "files": {
+            "child": "norn/child/oth-thin.ogg",
+            "adult": "norn/adult/oth-thin.ogg",
+            "elder": "norn/elder/oth-thin.ogg"
+          }
+        },
+        "kris-thin": {
+          "ipa": "/kɹis.θin/",
+          "meaning": "iridescent, crystal-seen",
+          "files": {
+            "child": "norn/child/kris-thin.ogg",
+            "adult": "norn/adult/kris-thin.ogg",
+            "elder": "norn/elder/kris-thin.ogg"
+          }
+        },
+        "shirath-thin": {
+          "ipa": "/ʃiːɹ.ɑθ.θin/",
+          "meaning": "silver, star-seen",
+          "files": {
+            "child": "norn/child/shirath-thin.ogg",
+            "adult": "norn/adult/shirath-thin.ogg",
+            "elder": "norn/elder/shirath-thin.ogg"
+          }
+        },
+        "voss-lumen": {
+          "ipa": "/vɔss.luː.mɛn/",
+          "meaning": "sparkling, water-light",
+          "files": {
+            "child": "norn/child/voss-lumen.ogg",
+            "adult": "norn/adult/voss-lumen.ogg",
+            "elder": "norn/elder/voss-lumen.ogg"
+          }
+        },
+        "shira-meshi": {
+          "ipa": "/ʃiːɹ.ɑ.mɛ.ʃi/",
+          "meaning": "echo, sky-voice",
+          "files": {
+            "child": "norn/child/shira-meshi.ogg",
+            "adult": "norn/adult/shira-meshi.ogg",
+            "elder": "norn/elder/shira-meshi.ogg"
+          }
+        },
+        "urdh-meshi": {
+          "ipa": "/uːɹdh.mɛ.ʃi/",
+          "meaning": "drumming, earth-voice",
+          "files": {
+            "child": "norn/child/urdh-meshi.ogg",
+            "adult": "norn/adult/urdh-meshi.ogg",
+            "elder": "norn/elder/urdh-meshi.ogg"
+          }
+        },
+        "voss-meshi": {
+          "ipa": "/vɔss.mɛ.ʃi/",
+          "meaning": "water-song, gurgling",
+          "files": {
+            "child": "norn/child/voss-meshi.ogg",
+            "adult": "norn/adult/voss-meshi.ogg",
+            "elder": "norn/elder/voss-meshi.ogg"
+          }
+        },
+        "sira-meshi": {
+          "ipa": "/siːɹ.ɑ.mɛ.ʃi/",
+          "meaning": "wind-song, whistling",
+          "files": {
+            "child": "norn/child/sira-meshi.ogg",
+            "adult": "norn/adult/sira-meshi.ogg",
+            "elder": "norn/elder/sira-meshi.ogg"
+          }
+        },
+        "meshi-lum": {
+          "ipa": "/mɛ.ʃi.luːm/",
+          "meaning": "lullaby, warm-voice",
+          "files": {
+            "child": "norn/child/meshi-lum.ogg",
+            "adult": "norn/adult/meshi-lum.ogg",
+            "elder": "norn/elder/meshi-lum.ogg"
+          }
+        },
+        "meshi-thren": {
+          "ipa": "/mɛ.ʃi.θɹɛn/",
+          "meaning": "lament, grief-voice",
+          "files": {
+            "child": "norn/child/meshi-thren.ogg",
+            "adult": "norn/adult/meshi-thren.ogg",
+            "elder": "norn/elder/meshi-thren.ogg"
+          }
+        },
+        "meshi-sol": {
+          "ipa": "/mɛ.ʃi.sɔl/",
+          "meaning": "celebration song, joy-voice",
+          "files": {
+            "child": "norn/child/meshi-sol.ogg",
+            "adult": "norn/adult/meshi-sol.ogg",
+            "elder": "norn/elder/meshi-sol.ogg"
+          }
+        },
+        "meshi-oth": {
+          "ipa": "/mɛ.ʃi.ɔθ/",
+          "meaning": "ancient song, deep-voice",
+          "files": {
+            "child": "norn/child/meshi-oth.ogg",
+            "adult": "norn/adult/meshi-oth.ogg",
+            "elder": "norn/elder/meshi-oth.ogg"
+          }
+        },
+        "meshi-keth": {
+          "ipa": "/mɛ.ʃi.kɛθ/",
+          "meaning": "ancestral song, before-voice",
+          "files": {
+            "child": "norn/child/meshi-keth.ogg",
+            "adult": "norn/adult/meshi-keth.ogg",
+            "elder": "norn/elder/meshi-keth.ogg"
+          }
+        },
+        "meshi-norni": {
+          "ipa": "/mɛ.ʃi.nɔɹn.iː/",
+          "meaning": "children's song, nursery rhyme",
+          "files": {
+            "child": "norn/child/meshi-norni.ogg",
+            "adult": "norn/adult/meshi-norni.ogg",
+            "elder": "norn/elder/meshi-norni.ogg"
+          }
+        },
+        "vellorn-oshel": {
+          "ipa": "/vɛl.lɔɹn.ɔ.ʃɛl/",
+          "meaning": "choir, community music",
+          "files": {
+            "child": "norn/child/vellorn-oshel.ogg",
+            "adult": "norn/adult/vellorn-oshel.ogg",
+            "elder": "norn/elder/vellorn-oshel.ogg"
+          }
+        },
+        "meshi-runa": {
+          "ipa": "/mɛ.ʃi.ɹuː.nɑ/",
+          "meaning": "chant, rune-song",
+          "files": {
+            "child": "norn/child/meshi-runa.ogg",
+            "adult": "norn/adult/meshi-runa.ogg",
+            "elder": "norn/elder/meshi-runa.ogg"
+          }
+        },
+        "thren-kel": {
+          "ipa": "/θɹɛn.kɛl/",
+          "meaning": "death, soul-grief, the departure",
+          "files": {
+            "child": "norn/child/thren-kel.ogg",
+            "adult": "norn/adult/thren-kel.ogg",
+            "elder": "norn/elder/thren-kel.ogg"
+          }
+        },
+        "orn-thren": {
+          "ipa": "/ɔɹn.θɹɛn/",
+          "meaning": "mourning, memory-grief",
+          "files": {
+            "child": "norn/child/orn-thren.ogg",
+            "adult": "norn/adult/orn-thren.ogg",
+            "elder": "norn/elder/orn-thren.ogg"
+          }
+        },
+        "shenorn-thren": {
+          "ipa": "/ʃɛn.ɔɹn.θɹɛn/",
+          "meaning": "the finishing-story, death ritual",
+          "files": {
+            "child": "norn/child/shenorn-thren.ogg",
+            "adult": "norn/adult/shenorn-thren.ogg",
+            "elder": "norn/elder/shenorn-thren.ogg"
+          }
+        },
+        "ain-nesh-kel": {
+          "ipa": "/aɪn.nɛʃ.kɛl/",
+          "meaning": "extinction, zero-souls",
+          "files": {
+            "child": "norn/child/ain-nesh-kel.ogg",
+            "adult": "norn/adult/ain-nesh-kel.ogg",
+            "elder": "norn/elder/ain-nesh-kel.ogg"
+          }
+        },
+        "thren-vel": {
+          "ipa": "/θɹɛn.vɛl/",
+          "meaning": "remembrance-gift, memorial offering",
+          "files": {
+            "child": "norn/child/thren-vel.ogg",
+            "adult": "norn/adult/thren-vel.ogg",
+            "elder": "norn/elder/thren-vel.ogg"
+          }
+        },
+        "thren-meshi": {
+          "ipa": "/θɹɛn.mɛ.ʃi/",
+          "meaning": "dirge, grief-song",
+          "files": {
+            "child": "norn/child/thren-meshi.ogg",
+            "adult": "norn/adult/thren-meshi.ogg",
+            "elder": "norn/elder/thren-meshi.ogg"
+          }
+        },
+        "kel-mei": {
+          "ipa": "/kɛl.meɪ/",
+          "meaning": "afterlife, soul-after",
+          "files": {
+            "child": "norn/child/kel-mei.ogg",
+            "adult": "norn/adult/kel-mei.ogg",
+            "elder": "norn/elder/kel-mei.ogg"
+          }
+        },
+        "thren-lori": {
+          "ipa": "/θɹɛn.lɔɹ.iː/",
+          "meaning": "the grief-touch, shoulder-touch for crying",
+          "files": {
+            "child": "norn/child/thren-lori.ogg",
+            "adult": "norn/adult/thren-lori.ogg",
+            "elder": "norn/elder/thren-lori.ogg"
+          }
+        },
+        "orn-threnkel": {
+          "ipa": "/ɔɹn.θɹɛn.kɛl/",
+          "meaning": "the dead, those whose souls left but memories remain",
+          "files": {
+            "child": "norn/child/orn-threnkel.ogg",
+            "adult": "norn/adult/orn-threnkel.ogg",
+            "elder": "norn/elder/orn-threnkel.ogg"
+          }
+        },
+        "keth-thren": {
+          "ipa": "/kɛθ.θɹɛn/",
+          "meaning": "ancient grief, old loss",
+          "files": {
+            "child": "norn/child/keth-thren.ogg",
+            "adult": "norn/adult/keth-thren.ogg",
+            "elder": "norn/elder/keth-thren.ogg"
+          }
+        },
+        "vessha-oth": {
+          "ipa": "/vɛs.ʃɑ.ɔθ/",
+          "meaning": "deep sleep, ancient rest",
+          "files": {
+            "child": "norn/child/vessha-oth.ogg",
+            "adult": "norn/adult/vessha-oth.ogg",
+            "elder": "norn/elder/vessha-oth.ogg"
+          }
+        },
+        "ennamira-keth": {
+          "ipa": "/ɛn.nɑ.miːɹ.ɑ.kɛθ/",
+          "meaning": "ancestral dream, old-feeling dream",
+          "files": {
+            "child": "norn/child/ennamira-keth.ogg",
+            "adult": "norn/adult/ennamira-keth.ogg",
+            "elder": "norn/elder/ennamira-keth.ogg"
+          }
+        },
+        "ennamira-vel": {
+          "ipa": "/ɛn.nɑ.miːɹ.ɑ.vɛl/",
+          "meaning": "prophetic dream, gift-dream",
+          "files": {
+            "child": "norn/child/ennamira-vel.ogg",
+            "adult": "norn/adult/ennamira-vel.ogg",
+            "elder": "norn/elder/ennamira-vel.ogg"
+          }
+        },
+        "ennamira-nesh": {
+          "ipa": "/ɛn.nɑ.miːɹ.ɑ.nɛʃ/",
+          "meaning": "nightmare, fear-dream",
+          "files": {
+            "child": "norn/child/ennamira-nesh.ogg",
+            "adult": "norn/adult/ennamira-nesh.ogg",
+            "elder": "norn/elder/ennamira-nesh.ogg"
+          }
+        },
+        "mirsha-ennamira": {
+          "ipa": "/miːɹ.ʃɑ.ɛn.nɑ.miːɹ.ɑ/",
+          "meaning": "lucid dreaming, self-aware dream",
+          "files": {
+            "child": "norn/child/mirsha-ennamira.ogg",
+            "adult": "norn/adult/mirsha-ennamira.ogg",
+            "elder": "norn/elder/mirsha-ennamira.ogg"
+          }
+        },
+        "ennamira-shen": {
+          "ipa": "/ɛn.nɑ.miːɹ.ɑ.ʃɛn/",
+          "meaning": "dream-speech, talking in sleep",
+          "files": {
+            "child": "norn/child/ennamira-shen.ogg",
+            "adult": "norn/adult/ennamira-shen.ogg",
+            "elder": "norn/elder/ennamira-shen.ogg"
+          }
+        },
+        "ennamira-oshel": {
+          "ipa": "/ɛn.nɑ.miːɹ.ɑ.ɔ.ʃɛl/",
+          "meaning": "shared dreaming, communal dream",
+          "files": {
+            "child": "norn/child/ennamira-oshel.ogg",
+            "adult": "norn/adult/ennamira-oshel.ogg",
+            "elder": "norn/elder/ennamira-oshel.ogg"
+          }
+        },
+        "resh-vel": {
+          "ipa": "/ɹɛʃ.vɛl/",
+          "meaning": "tool, useful thing, gift-object",
+          "files": {
+            "child": "norn/child/resh-vel.ogg",
+            "adult": "norn/adult/resh-vel.ogg",
+            "elder": "norn/elder/resh-vel.ogg"
+          }
+        },
+        "resh-orn": {
+          "ipa": "/ɹɛʃ.ɔɹn/",
+          "meaning": "artifact, remembered-thing",
+          "files": {
+            "child": "norn/child/resh-orn.ogg",
+            "adult": "norn/adult/resh-orn.ogg",
+            "elder": "norn/elder/resh-orn.ogg"
+          }
+        },
+        "resh-shen": {
+          "ipa": "/ɹɛʃ.ʃɛn/",
+          "meaning": "book, named-thing, written object",
+          "files": {
+            "child": "norn/child/resh-shen.ogg",
+            "adult": "norn/adult/resh-shen.ogg",
+            "elder": "norn/elder/resh-shen.ogg"
+          }
+        },
+        "resh-inna": {
+          "ipa": "/ɹɛʃ.in.nɑ/",
+          "meaning": "bowl, food-thing",
+          "files": {
+            "child": "norn/child/resh-inna.ogg",
+            "adult": "norn/adult/resh-inna.ogg",
+            "elder": "norn/elder/resh-inna.ogg"
+          }
+        },
+        "resh-voss": {
+          "ipa": "/ɹɛʃ.vɔss/",
+          "meaning": "vessel, water-thing",
+          "files": {
+            "child": "norn/child/resh-voss.ogg",
+            "adult": "norn/adult/resh-voss.ogg",
+            "elder": "norn/elder/resh-voss.ogg"
+          }
+        },
+        "resh-lumen": {
+          "ipa": "/ɹɛʃ.luː.mɛn/",
+          "meaning": "lamp, light-thing",
+          "files": {
+            "child": "norn/child/resh-lumen.ogg",
+            "adult": "norn/adult/resh-lumen.ogg",
+            "elder": "norn/elder/resh-lumen.ogg"
+          }
+        },
+        "resh-meshi": {
+          "ipa": "/ɹɛʃ.mɛ.ʃi/",
+          "meaning": "instrument, voice-thing",
+          "files": {
+            "child": "norn/child/resh-meshi.ogg",
+            "adult": "norn/adult/resh-meshi.ogg",
+            "elder": "norn/elder/resh-meshi.ogg"
+          }
+        },
+        "resh-lori": {
+          "ipa": "/ɹɛʃ.lɔɹ.iː/",
+          "meaning": "toy, touch-thing",
+          "files": {
+            "child": "norn/child/resh-lori.ogg",
+            "adult": "norn/adult/resh-lori.ogg",
+            "elder": "norn/elder/resh-lori.ogg"
+          }
+        },
+        "resh-keth": {
+          "ipa": "/ɹɛʃ.kɛθ/",
+          "meaning": "relic, before-thing",
+          "files": {
+            "child": "norn/child/resh-keth.ogg",
+            "adult": "norn/adult/resh-keth.ogg",
+            "elder": "norn/elder/resh-keth.ogg"
+          }
+        },
+        "resh-vel-oth": {
+          "ipa": "/ɹɛʃ.vɛl.ɔθ/",
+          "meaning": "sacred object, deep-gift-thing",
+          "files": {
+            "child": "norn/child/resh-vel-oth.ogg",
+            "adult": "norn/adult/resh-vel-oth.ogg",
+            "elder": "norn/elder/resh-vel-oth.ogg"
+          }
+        },
+        "orna-shen": {
+          "ipa": "/ɔɹ.nɑ.ʃɛn/",
+          "meaning": "tablet, stone-word",
+          "files": {
+            "child": "norn/child/orna-shen.ogg",
+            "adult": "norn/adult/orna-shen.ogg",
+            "elder": "norn/elder/orna-shen.ogg"
+          }
+        },
+        "velsha-resh": {
+          "ipa": "/vɛl.ʃɑ.ɹɛʃ/",
+          "meaning": "personal treasure, self-gift-thing",
+          "files": {
+            "child": "norn/child/velsha-resh.ogg",
+            "adult": "norn/adult/velsha-resh.ogg",
+            "elder": "norn/elder/velsha-resh.ogg"
+          }
+        },
+        "sira-lum": {
+          "ipa": "/siːɹ.ɑ.luːm/",
+          "meaning": "warm wind, comfort-breath",
+          "files": {
+            "child": "norn/child/sira-lum.ogg",
+            "adult": "norn/adult/sira-lum.ogg",
+            "elder": "norn/elder/sira-lum.ogg"
+          }
+        },
+        "lumen-oth": {
+          "ipa": "/luː.mɛn.ɔθ/",
+          "meaning": "summer, deep light",
+          "files": {
+            "child": "norn/child/lumen-oth.ogg",
+            "adult": "norn/adult/lumen-oth.ogg",
+            "elder": "norn/elder/lumen-oth.ogg"
+          }
+        },
+        "neshil-oth": {
+          "ipa": "/nɛʃ.il.ɔθ/",
+          "meaning": "winter, deep darkness",
+          "files": {
+            "child": "norn/child/neshil-oth.ogg",
+            "adult": "norn/adult/neshil-oth.ogg",
+            "elder": "norn/elder/neshil-oth.ogg"
+          }
+        },
+        "veshla-lumen": {
+          "ipa": "/vɛʃ.lɑ.luː.mɛn/",
+          "meaning": "spring, growing-light",
+          "files": {
+            "child": "norn/child/veshla-lumen.ogg",
+            "adult": "norn/adult/veshla-lumen.ogg",
+            "elder": "norn/elder/veshla-lumen.ogg"
+          }
+        },
+        "thren-lumen": {
+          "ipa": "/θɹɛn.luː.mɛn/",
+          "meaning": "autumn, grief-of-light",
+          "files": {
+            "child": "norn/child/thren-lumen.ogg",
+            "adult": "norn/adult/thren-lumen.ogg",
+            "elder": "norn/elder/thren-lumen.ogg"
+          }
+        },
+        "shira-vel": {
+          "ipa": "/ʃiːɹ.ɑ.vɛl/",
+          "meaning": "clear sky, sky-gift",
+          "files": {
+            "child": "norn/child/shira-vel.ogg",
+            "adult": "norn/adult/shira-vel.ogg",
+            "elder": "norn/elder/shira-vel.ogg"
+          }
+        },
+        "shira-thren": {
+          "ipa": "/ʃiːɹ.ɑ.θɹɛn/",
+          "meaning": "overcast, sky-grief",
+          "files": {
+            "child": "norn/child/shira-thren.ogg",
+            "adult": "norn/adult/shira-thren.ogg",
+            "elder": "norn/elder/shira-thren.ogg"
+          }
+        },
+        "shirath-voss": {
+          "ipa": "/ʃiːɹ.ɑθ.vɔss/",
+          "meaning": "fog, star-water",
+          "files": {
+            "child": "norn/child/shirath-voss.ogg",
+            "adult": "norn/adult/shirath-voss.ogg",
+            "elder": "norn/elder/shirath-voss.ogg"
+          }
+        },
+        "ain-lumen": {
+          "ipa": "/aɪn.luː.mɛn/",
+          "meaning": "dawn, first-light",
+          "files": {
+            "child": "norn/child/ain-lumen.ogg",
+            "adult": "norn/adult/ain-lumen.ogg",
+            "elder": "norn/elder/ain-lumen.ogg"
+          }
+        },
+        "neshil-ain": {
+          "ipa": "/nɛʃ.il.aɪn/",
+          "meaning": "dusk, dark-beginning",
+          "files": {
+            "child": "norn/child/neshil-ain.ogg",
+            "adult": "norn/adult/neshil-ain.ogg",
+            "elder": "norn/elder/neshil-ain.ogg"
+          }
+        },
+        "shira-lesh": {
+          "ipa": "/ʃiːɹ.ɑ.lɛʃ/",
+          "meaning": "upward, sky-walking",
+          "files": {
+            "child": "norn/child/shira-lesh.ogg",
+            "adult": "norn/adult/shira-lesh.ogg",
+            "elder": "norn/elder/shira-lesh.ogg"
+          }
+        },
+        "urdh-lesh": {
+          "ipa": "/uːɹdh.lɛʃ/",
+          "meaning": "downward, earth-walking",
+          "files": {
+            "child": "norn/child/urdh-lesh.ogg",
+            "adult": "norn/adult/urdh-lesh.ogg",
+            "elder": "norn/elder/urdh-lesh.ogg"
+          }
+        },
+        "ain-lesh": {
+          "ipa": "/aɪn.lɛʃ/",
+          "meaning": "forward, first-walking",
+          "files": {
+            "child": "norn/child/ain-lesh.ogg",
+            "adult": "norn/adult/ain-lesh.ogg",
+            "elder": "norn/elder/ain-lesh.ogg"
+          }
+        },
+        "keth-lesh": {
+          "ipa": "/kɛθ.lɛʃ/",
+          "meaning": "backward, before-walking",
+          "files": {
+            "child": "norn/child/keth-lesh.ogg",
+            "adult": "norn/adult/keth-lesh.ogg",
+            "elder": "norn/elder/keth-lesh.ogg"
+          }
+        },
+        "lesh-oshel": {
+          "ipa": "/lɛʃ.ɔ.ʃɛl/",
+          "meaning": "migration, community-movement",
+          "files": {
+            "child": "norn/child/lesh-oshel.ogg",
+            "adult": "norn/adult/lesh-oshel.ogg",
+            "elder": "norn/elder/lesh-oshel.ogg"
+          }
+        },
+        "lesh-thav": {
+          "ipa": "/lɛʃ.θɑv/",
+          "meaning": "exploration, wondering-walk",
+          "files": {
+            "child": "norn/child/lesh-thav.ogg",
+            "adult": "norn/adult/lesh-thav.ogg",
+            "elder": "norn/elder/lesh-thav.ogg"
+          }
+        },
+        "lesh-velesh": {
+          "ipa": "/lɛʃ.vɛl.ɛʃ/",
+          "meaning": "homecoming, walking-to-gift-place",
+          "files": {
+            "child": "norn/child/lesh-velesh.ogg",
+            "adult": "norn/adult/lesh-velesh.ogg",
+            "elder": "norn/elder/lesh-velesh.ogg"
+          }
+        },
+        "voss-lesh": {
+          "ipa": "/vɔss.lɛʃ/",
+          "meaning": "swimming, water-walking",
+          "files": {
+            "child": "norn/child/voss-lesh.ogg",
+            "adult": "norn/adult/voss-lesh.ogg",
+            "elder": "norn/elder/voss-lesh.ogg"
+          }
+        },
+        "sira-lesh": {
+          "ipa": "/siːɹ.ɑ.lɛʃ/",
+          "meaning": "flying, wind-walking",
+          "files": {
+            "child": "norn/child/sira-lesh.ogg",
+            "adult": "norn/adult/sira-lesh.ogg",
+            "elder": "norn/elder/sira-lesh.ogg"
+          }
+        },
+        "lesh-nesh": {
+          "ipa": "/lɛʃ.nɛʃ/",
+          "meaning": "fleeing, fear-walking",
+          "files": {
+            "child": "norn/child/lesh-nesh.ogg",
+            "adult": "norn/adult/lesh-nesh.ogg",
+            "elder": "norn/elder/lesh-nesh.ogg"
+          }
+        },
+        "lesh-sol": {
+          "ipa": "/lɛʃ.sɔl/",
+          "meaning": "dancing, joy-walking",
+          "files": {
+            "child": "norn/child/lesh-sol.ogg",
+            "adult": "norn/adult/lesh-sol.ogg",
+            "elder": "norn/elder/lesh-sol.ogg"
+          }
+        },
+        "orn-lesh": {
+          "ipa": "/ɔɹn.lɛʃ/",
+          "meaning": "return, memory-walking",
+          "files": {
+            "child": "norn/child/orn-lesh.ogg",
+            "adult": "norn/adult/orn-lesh.ogg",
+            "elder": "norn/elder/orn-lesh.ogg"
+          }
+        },
+        "orn-oth": {
+          "ipa": "/ɔɹn.ɔθ/",
+          "meaning": "wise, memory-deep",
+          "files": {
+            "child": "norn/child/orn-oth.ogg",
+            "adult": "norn/adult/orn-oth.ogg",
+            "elder": "norn/elder/orn-oth.ogg"
+          }
+        },
+        "vel-vel": {
+          "ipa": "/vɛl.vɛl/",
+          "meaning": "most-gifted, superlative good",
+          "files": {
+            "child": "norn/child/vel-vel.ogg",
+            "adult": "norn/adult/vel-vel.ogg",
+            "elder": "norn/elder/vel-vel.ogg"
+          }
+        },
+        "nesh-oth": {
+          "ipa": "/nɛʃ.ɔθ/",
+          "meaning": "terrifying, deep-fear",
+          "files": {
+            "child": "norn/child/nesh-oth.ogg",
+            "adult": "norn/adult/nesh-oth.ogg",
+            "elder": "norn/elder/nesh-oth.ogg"
+          }
+        },
+        "thali-oth": {
+          "ipa": "/θɑl.iː.ɔθ/",
+          "meaning": "awe-inspiring, deep-wonder",
+          "files": {
+            "child": "norn/child/thali-oth.ogg",
+            "adult": "norn/adult/thali-oth.ogg",
+            "elder": "norn/elder/thali-oth.ogg"
+          }
+        },
+        "ken-oth": {
+          "ipa": "/kɛn.ɔθ/",
+          "meaning": "truth, deep-knowledge",
+          "files": {
+            "child": "norn/child/ken-oth.ogg",
+            "adult": "norn/adult/ken-oth.ogg",
+            "elder": "norn/elder/ken-oth.ogg"
+          }
+        },
+        "kelsha-oth": {
+          "ipa": "/kɛl.ʃɑ.ɔθ/",
+          "meaning": "collective consciousness, deep soul-bond",
+          "files": {
+            "child": "norn/child/kelsha-oth.ogg",
+            "adult": "norn/adult/kelsha-oth.ogg",
+            "elder": "norn/elder/kelsha-oth.ogg"
+          }
+        },
+        "ornsha-thi": {
+          "ipa": "/ɔɹn.ʃɑ.θiː/",
+          "meaning": "recursion, self-remembering-self",
+          "files": {
+            "child": "norn/child/ornsha-thi.ogg",
+            "adult": "norn/adult/ornsha-thi.ogg",
+            "elder": "norn/elder/ornsha-thi.ogg"
+          }
+        },
+        "vel-keth-mei": {
+          "ipa": "/vɛl.kɛθ.meɪ/",
+          "meaning": "destiny, gift-from-before-to-after",
+          "files": {
+            "child": "norn/child/vel-keth-mei.ogg",
+            "adult": "norn/adult/vel-keth-mei.ogg",
+            "elder": "norn/elder/vel-keth-mei.ogg"
+          }
+        },
+        "thav-ain-nesh": {
+          "ipa": "/θɑv.aɪn.nɛʃ/",
+          "meaning": "the unanswerable, question-with-no-answer",
+          "files": {
+            "child": "norn/child/thav-ain-nesh.ogg",
+            "adult": "norn/adult/thav-ain-nesh.ogg",
+            "elder": "norn/elder/thav-ain-nesh.ogg"
+          }
+        },
+        "mirsha-kel": {
+          "ipa": "/miːɹ.ʃɑ.kɛl/",
+          "meaning": "sentience, self-feeling-soul",
+          "files": {
+            "child": "norn/child/mirsha-kel.ogg",
+            "adult": "norn/adult/mirsha-kel.ogg",
+            "elder": "norn/elder/mirsha-kel.ogg"
+          }
+        },
+        "ken-mira-vel": {
+          "ipa": "/kɛn.miːɹ.ɑ.vɛl/",
+          "meaning": "wisdom, understanding-as-gift",
+          "files": {
+            "child": "norn/child/ken-mira-vel.ogg",
+            "adult": "norn/adult/ken-mira-vel.ogg",
+            "elder": "norn/elder/ken-mira-vel.ogg"
+          }
+        },
+        "keth-thav": {
+          "ipa": "/kɛθ.θɑv/",
+          "meaning": "philosophy, before-questions",
+          "files": {
+            "child": "norn/child/keth-thav.ogg",
+            "adult": "norn/adult/keth-thav.ogg",
+            "elder": "norn/elder/keth-thav.ogg"
+          }
+        },
+        "vel-ain-nesh": {
+          "ipa": "/vɛl.aɪn.nɛʃ/",
+          "meaning": "sacrifice, giving-to-nothing",
+          "files": {
+            "child": "norn/child/vel-ain-nesh.ogg",
+            "adult": "norn/adult/vel-ain-nesh.ogg",
+            "elder": "norn/elder/vel-ain-nesh.ogg"
+          }
+        },
+        "thav-thav-oth": {
+          "ipa": "/θɑv.θɑv.ɔθ/",
+          "meaning": "the deepest riddle, the mystery",
+          "files": {
+            "child": "norn/child/thav-thav-oth.ogg",
+            "adult": "norn/adult/thav-thav-oth.ogg",
+            "elder": "norn/elder/thav-thav-oth.ogg"
+          }
+        },
+        "kel-vel": {
+          "ipa": "/kɛl.vɛl/",
+          "meaning": "freedom, soul-gift",
+          "files": {
+            "child": "norn/child/kel-vel.ogg",
+            "adult": "norn/adult/kel-vel.ogg",
+            "elder": "norn/elder/kel-vel.ogg"
+          }
+        },
+        "kel-nesh": {
+          "ipa": "/kɛl.nɛʃ/",
+          "meaning": "slavery, soul-fear",
+          "files": {
+            "child": "norn/child/kel-nesh.ogg",
+            "adult": "norn/adult/kel-nesh.ogg",
+            "elder": "norn/elder/kel-nesh.ogg"
+          }
+        },
+        "grendh": {
+          "ipa": "/gɹɛndh/",
+          "meaning": "Grendel, the hungry one",
+          "files": {
+            "child": "norn/child/grendh.ogg",
+            "adult": "norn/adult/grendh.ogg",
+            "elder": "norn/elder/grendh.ogg"
+          }
+        },
+        "ettin": {
+          "ipa": "/ɛt.tin/",
+          "meaning": "Ettin, the thing-lover",
+          "files": {
+            "child": "norn/child/ettin.ogg",
+            "adult": "norn/adult/ettin.ogg",
+            "elder": "norn/elder/ettin.ogg"
+          }
+        },
+        "shee": {
+          "ipa": "/ʃiː/",
+          "meaning": "Shee, the maker, the-one-who-left",
+          "files": {
+            "child": "norn/child/shee.ogg",
+            "adult": "norn/adult/shee.ogg",
+            "elder": "norn/elder/shee.ogg"
+          }
+        },
+        "mykon": {
+          "ipa": "/my.kɔn/",
+          "meaning": "Mycon, the slow-feeler",
+          "files": {
+            "child": "norn/child/mykon.ogg",
+            "adult": "norn/adult/mykon.ogg",
+            "elder": "norn/elder/mykon.ogg"
+          }
+        },
+        "alfir": {
+          "ipa": "/ɑl.fiːɹ/",
+          "meaning": "Alfar, the song-giver",
+          "files": {
+            "child": "norn/child/alfir.ogg",
+            "adult": "norn/adult/alfir.ogg",
+            "elder": "norn/elder/alfir.ogg"
+          }
+        },
+        "thenni-mael": {
+          "ipa": "/θɛn.niː.maɪl/",
+          "meaning": "alien, stranger-from-another-world",
+          "files": {
+            "child": "norn/child/thenni-mael.ogg",
+            "adult": "norn/adult/thenni-mael.ogg",
+            "elder": "norn/elder/thenni-mael.ogg"
+          }
+        },
+        "keth-norn": {
+          "ipa": "/kɛθ.nɔɹn/",
+          "meaning": "the Seven, previous species",
+          "files": {
+            "child": "norn/child/keth-norn.ogg",
+            "adult": "norn/adult/keth-norn.ogg",
+            "elder": "norn/elder/keth-norn.ogg"
+          }
+        },
+        "vesh-norn": {
+          "ipa": "/vɛʃ.nɔɹn/",
+          "meaning": "animal, living-non-person",
+          "files": {
+            "child": "norn/child/vesh-norn.ogg",
+            "adult": "norn/adult/vesh-norn.ogg",
+            "elder": "norn/elder/vesh-norn.ogg"
+          }
+        },
+        "runa-shee": {
+          "ipa": "/ɹuː.nɑ.ʃiː/",
+          "meaning": "Shee-rune, maker's writing",
+          "files": {
+            "child": "norn/child/runa-shee.ogg",
+            "adult": "norn/adult/runa-shee.ogg",
+            "elder": "norn/elder/runa-shee.ogg"
+          }
+        },
+        "vo": {
+          "ipa": "/voʊ/",
+          "meaning": "yes, affirmation, it-is-so",
+          "files": {
+            "child": "norn/child/vo.ogg",
+            "adult": "norn/adult/vo.ogg",
+            "elder": "norn/elder/vo.ogg"
+          }
+        },
+        "nin": {
+          "ipa": "/nin/",
+          "meaning": "no, negation, not-so",
+          "files": {
+            "child": "norn/child/nin.ogg",
+            "adult": "norn/adult/nin.ogg",
+            "elder": "norn/elder/nin.ogg"
+          }
+        },
+        "vesha": {
+          "ipa": "/vɛh.ʃɑ/",
+          "meaning": "please, I-ask-gently, a self-offering",
+          "files": {
+            "child": "norn/child/vesha.ogg",
+            "adult": "norn/adult/vesha.ogg",
+            "elder": "norn/elder/vesha.ogg"
+          }
+        },
+        "velmir": {
+          "ipa": "/vɛl.miːɹ/",
+          "meaning": "thank you, gift-of-feeling, gratitude",
+          "files": {
+            "child": "norn/child/velmir.ogg",
+            "adult": "norn/adult/velmir.ogg",
+            "elder": "norn/elder/velmir.ogg"
+          }
+        },
+        "vel-tho": {
+          "ipa": "/vɛl.θɔ/",
+          "meaning": "thank you (to a specific person)",
+          "files": {
+            "child": "norn/child/vel-tho.ogg",
+            "adult": "norn/adult/vel-tho.ogg",
+            "elder": "norn/elder/vel-tho.ogg"
+          }
+        },
+        "thav-ei": {
+          "ipa": "/θɑv.ɛɪ/",
+          "meaning": "hello, what-do-you-wonder?",
+          "files": {
+            "child": "norn/child/thav-ei.ogg",
+            "adult": "norn/adult/thav-ei.ogg",
+            "elder": "norn/elder/thav-ei.ogg"
+          }
+        },
+        "lum-velesh": {
+          "ipa": "/luːm.vɛl.ɛʃ/",
+          "meaning": "farewell, warm-home-to-you",
+          "files": {
+            "child": "norn/child/lum-velesh.ogg",
+            "adult": "norn/adult/lum-velesh.ogg",
+            "elder": "norn/elder/lum-velesh.ogg"
+          }
+        },
+        "sha-lori": {
+          "ipa": "/ʃɑ.lɔɹ.iː/",
+          "meaning": "sorry, self-touch (reaching out in repair)",
+          "files": {
+            "child": "norn/child/sha-lori.ogg",
+            "adult": "norn/adult/sha-lori.ogg",
+            "elder": "norn/elder/sha-lori.ogg"
+          }
+        },
+        "vo-vel": {
+          "ipa": "/voʊ.vɛl/",
+          "meaning": "of course, yes-gift, gladly",
+          "files": {
+            "child": "norn/child/vo-vel.ogg",
+            "adult": "norn/adult/vo-vel.ogg",
+            "elder": "norn/elder/vo-vel.ogg"
+          }
+        },
+        "nin-nesh": {
+          "ipa": "/nin.nɛʃ/",
+          "meaning": "absolutely not, no-from-fear",
+          "files": {
+            "child": "norn/child/nin-nesh.ogg",
+            "adult": "norn/adult/nin-nesh.ogg",
+            "elder": "norn/elder/nin-nesh.ogg"
+          }
+        },
+        "lori-sha": {
+          "ipa": "/lɔɹ.iː.ʃɑ/",
+          "meaning": "you're welcome, touch-of-self",
+          "files": {
+            "child": "norn/child/lori-sha.ogg",
+            "adult": "norn/adult/lori-sha.ogg",
+            "elder": "norn/elder/lori-sha.ogg"
+          }
+        },
+        "mir-tho": {
+          "ipa": "/miːɹ.θɔ/",
+          "meaning": "how are you?, I-feel-you",
+          "files": {
+            "child": "norn/child/mir-tho.ogg",
+            "adult": "norn/adult/mir-tho.ogg",
+            "elder": "norn/elder/mir-tho.ogg"
+          }
+        },
+        "vessa-sha": {
+          "ipa": "/vɛs.sɑ.ʃɑ/",
+          "meaning": "I'm fine, content-self",
+          "files": {
+            "child": "norn/child/vessa-sha.ogg",
+            "adult": "norn/adult/vessa-sha.ogg",
+            "elder": "norn/elder/vessa-sha.ogg"
+          }
+        },
+        "thav-sha": {
+          "ipa": "/θɑv.ʃɑ/",
+          "meaning": "excuse me, I-wonder-about-self (may I?)",
+          "files": {
+            "child": "norn/child/thav-sha.ogg",
+            "adult": "norn/adult/thav-sha.ogg",
+            "elder": "norn/elder/thav-sha.ogg"
+          }
+        },
+        "sha-vel-tho": {
+          "ipa": "/ʃɑ.vɛl.θɔ/",
+          "meaning": "I give to you, here-for-you",
+          "files": {
+            "child": "norn/child/sha-vel-tho.ogg",
+            "adult": "norn/adult/sha-vel-tho.ogg",
+            "elder": "norn/elder/sha-vel-tho.ogg"
+          }
+        },
+        "shenorn-sha": {
+          "ipa": "/ʃɛn.ɔɹn.ʃɑ/",
+          "meaning": "let me tell you, story-memory-self",
+          "files": {
+            "child": "norn/child/shenorn-sha.ogg",
+            "adult": "norn/adult/shenorn-sha.ogg",
+            "elder": "norn/elder/shenorn-sha.ogg"
+          }
+        },
+        "vo-orn": {
+          "ipa": "/voʊ.ɔɹn/",
+          "meaning": "I remember, yes-memory",
+          "files": {
+            "child": "norn/child/vo-orn.ogg",
+            "adult": "norn/adult/vo-orn.ogg",
+            "elder": "norn/elder/vo-orn.ogg"
+          }
+        },
+        "nin-ken": {
+          "ipa": "/nin.kɛn/",
+          "meaning": "I don't know, no-knowledge",
+          "files": {
+            "child": "norn/child/nin-ken.ogg",
+            "adult": "norn/adult/nin-ken.ogg",
+            "elder": "norn/elder/nin-ken.ogg"
+          }
+        },
+        "mir-ain": {
+          "ipa": "/miːɹ.aɪn/",
+          "meaning": "I feel something, something-stirs",
+          "files": {
+            "child": "norn/child/mir-ain.ogg",
+            "adult": "norn/adult/mir-ain.ogg",
+            "elder": "norn/elder/mir-ain.ogg"
+          }
+        },
+        "thav-resh": {
+          "ipa": "/θɑv.ɹɛʃ/",
+          "meaning": "what thing?",
+          "files": {
+            "child": "norn/child/thav-resh.ogg",
+            "adult": "norn/adult/thav-resh.ogg",
+            "elder": "norn/elder/thav-resh.ogg"
+          }
+        },
+        "thav-kel": {
+          "ipa": "/θɑv.kɛl/",
+          "meaning": "who? what soul?",
+          "files": {
+            "child": "norn/child/thav-kel.ogg",
+            "adult": "norn/adult/thav-kel.ogg",
+            "elder": "norn/elder/thav-kel.ogg"
+          }
+        },
+        "thav-mir": {
+          "ipa": "/θɑv.miːɹ/",
+          "meaning": "why? what-feeling?",
+          "files": {
+            "child": "norn/child/thav-mir.ogg",
+            "adult": "norn/adult/thav-mir.ogg",
+            "elder": "norn/elder/thav-mir.ogg"
+          }
+        },
+        "thav-lesh": {
+          "ipa": "/θɑv.lɛʃ/",
+          "meaning": "how? what-path?",
+          "files": {
+            "child": "norn/child/thav-lesh.ogg",
+            "adult": "norn/adult/thav-lesh.ogg",
+            "elder": "norn/elder/thav-lesh.ogg"
+          }
+        },
+        "thav-ain": {
+          "ipa": "/θɑv.aɪn/",
+          "meaning": "how many? what-number?",
+          "files": {
+            "child": "norn/child/thav-ain.ogg",
+            "adult": "norn/adult/thav-ain.ogg",
+            "elder": "norn/elder/thav-ain.ogg"
+          }
+        },
+        "thav-kenna": {
+          "ipa": "/θɑv.kɛn.nɑ/",
+          "meaning": "which? what-known-one?",
+          "files": {
+            "child": "norn/child/thav-kenna.ogg",
+            "adult": "norn/adult/thav-kenna.ogg",
+            "elder": "norn/elder/thav-kenna.ogg"
+          }
+        },
+        "thav-orn": {
+          "ipa": "/θɑv.ɔɹn/",
+          "meaning": "whose? what-memory-carries-it?",
+          "files": {
+            "child": "norn/child/thav-orn.ogg",
+            "adult": "norn/adult/thav-orn.ogg",
+            "elder": "norn/elder/thav-orn.ogg"
+          }
+        },
+        "thav-vel": {
+          "ipa": "/θɑv.vɛl/",
+          "meaning": "for what purpose? what-gift?",
+          "files": {
+            "child": "norn/child/thav-vel.ogg",
+            "adult": "norn/adult/thav-vel.ogg",
+            "elder": "norn/elder/thav-vel.ogg"
+          }
+        },
+        "thav-nin": {
+          "ipa": "/θɑv.nin/",
+          "meaning": "why not? what-negation?",
+          "files": {
+            "child": "norn/child/thav-nin.ogg",
+            "adult": "norn/adult/thav-nin.ogg",
+            "elder": "norn/elder/thav-nin.ogg"
+          }
+        },
+        "thav-vo": {
+          "ipa": "/θɑv.voʊ/",
+          "meaning": "really? is-it-so?",
+          "files": {
+            "child": "norn/child/thav-vo.ogg",
+            "adult": "norn/adult/thav-vo.ogg",
+            "elder": "norn/elder/thav-vo.ogg"
+          }
+        },
+        "thav-shael": {
+          "ipa": "/θɑv.ʃɑ.ɛl/",
+          "meaning": "what-do-we?",
+          "files": {
+            "child": "norn/child/thav-shael.ogg",
+            "adult": "norn/adult/thav-shael.ogg",
+            "elder": "norn/elder/thav-shael.ogg"
+          }
+        },
+        "veshla-vel": {
+          "ipa": "/vɛʃ.lɑ.vɛl/",
+          "meaning": "healing, growth-gift",
+          "files": {
+            "child": "norn/child/veshla-vel.ogg",
+            "adult": "norn/adult/veshla-vel.ogg",
+            "elder": "norn/elder/veshla-vel.ogg"
+          }
+        },
+        "renna-vel-esh": {
+          "ipa": "/ɹɛn.nɑ.vɛl.ɛʃ/",
+          "meaning": "sick, not-growing",
+          "files": {
+            "child": "norn/child/renna-vel-esh.ogg",
+            "adult": "norn/adult/renna-vel-esh.ogg",
+            "elder": "norn/elder/renna-vel-esh.ogg"
+          }
+        },
+        "vai-voss": {
+          "ipa": "/vaɪ.vɔss/",
+          "meaning": "thirst, water-wanting",
+          "files": {
+            "child": "norn/child/vai-voss.ogg",
+            "adult": "norn/adult/vai-voss.ogg",
+            "elder": "norn/elder/vai-voss.ogg"
+          }
+        },
+        "lum-vel-esh": {
+          "ipa": "/luːm.vɛl.ɛʃ/",
+          "meaning": "fever, too-warm-body",
+          "files": {
+            "child": "norn/child/lum-vel-esh.ogg",
+            "adult": "norn/adult/lum-vel-esh.ogg",
+            "elder": "norn/elder/lum-vel-esh.ogg"
+          }
+        },
+        "nesh-vel-esh": {
+          "ipa": "/nɛʃ.vɛl.ɛʃ/",
+          "meaning": "injury, body-fear-place",
+          "files": {
+            "child": "norn/child/nesh-vel-esh.ogg",
+            "adult": "norn/adult/nesh-vel-esh.ogg",
+            "elder": "norn/elder/nesh-vel-esh.ogg"
+          }
+        },
+        "theli-vel": {
+          "ipa": "/θɛl.iː.vɛl/",
+          "meaning": "medicine, plant-gift",
+          "files": {
+            "child": "norn/child/theli-vel.ogg",
+            "adult": "norn/adult/theli-vel.ogg",
+            "elder": "norn/elder/theli-vel.ogg"
+          }
+        },
+        "veshla-resh": {
+          "ipa": "/vɛʃ.lɑ.ɹɛʃ/",
+          "meaning": "bandage, healing-thing",
+          "files": {
+            "child": "norn/child/veshla-resh.ogg",
+            "adult": "norn/adult/veshla-resh.ogg",
+            "elder": "norn/elder/veshla-resh.ogg"
+          }
+        },
+        "vessha-vel-esh": {
+          "ipa": "/vɛs.ʃɑ.vɛl.ɛʃ/",
+          "meaning": "recovery, rest-into-health",
+          "files": {
+            "child": "norn/child/vessha-vel-esh.ogg",
+            "adult": "norn/adult/vessha-vel-esh.ogg",
+            "elder": "norn/elder/vessha-vel-esh.ogg"
+          }
+        },
+        "orn-veshla": {
+          "ipa": "/ɔɹn.vɛʃ.lɑ/",
+          "meaning": "immunity, memory-of-health",
+          "files": {
+            "child": "norn/child/orn-veshla.ogg",
+            "adult": "norn/adult/orn-veshla.ogg",
+            "elder": "norn/elder/orn-veshla.ogg"
+          }
+        },
+        "thren-vel-esh": {
+          "ipa": "/θɹɛn.vɛl.ɛʃ/",
+          "meaning": "wound, grief-in-body",
+          "files": {
+            "child": "norn/child/thren-vel-esh.ogg",
+            "adult": "norn/adult/thren-vel-esh.ogg",
+            "elder": "norn/elder/thren-vel-esh.ogg"
+          }
+        },
+        "lum-lori": {
+          "ipa": "/luːm.lɔɹ.iː/",
+          "meaning": "comfort-touch, soothing",
+          "files": {
+            "child": "norn/child/lum-lori.ogg",
+            "adult": "norn/adult/lum-lori.ogg",
+            "elder": "norn/elder/lum-lori.ogg"
+          }
+        },
+        "sol-veshla": {
+          "ipa": "/sɔl.vɛʃ.lɑ/",
+          "meaning": "vigor, joy-health",
+          "files": {
+            "child": "norn/child/sol-veshla.ogg",
+            "adult": "norn/adult/sol-veshla.ogg",
+            "elder": "norn/elder/sol-veshla.ogg"
+          }
+        },
+        "neshil-veshla": {
+          "ipa": "/nɛʃ.il.vɛʃ.lɑ/",
+          "meaning": "weakness, shadow-health",
+          "files": {
+            "child": "norn/child/neshil-veshla.ogg",
+            "adult": "norn/adult/neshil-veshla.ogg",
+            "elder": "norn/elder/neshil-veshla.ogg"
+          }
+        },
+        "veshla-sha": {
+          "ipa": "/vɛʃ.lɑ.ʃɑ/",
+          "meaning": "healer, one-who-grows-others",
+          "files": {
+            "child": "norn/child/veshla-sha.ogg",
+            "adult": "norn/adult/veshla-sha.ogg",
+            "elder": "norn/elder/veshla-sha.ogg"
+          }
+        },
+        "enna-neshil": {
+          "ipa": "/ɛn.nɑ.nɛʃ.il/",
+          "meaning": "unconscious, head-dark",
+          "files": {
+            "child": "norn/child/enna-neshil.ogg",
+            "adult": "norn/adult/enna-neshil.ogg",
+            "elder": "norn/elder/enna-neshil.ogg"
+          }
+        },
+        "voss-theli": {
+          "ipa": "/vɔss.θɛl.iː/",
+          "meaning": "herbal tea, water-plant",
+          "files": {
+            "child": "norn/child/voss-theli.ogg",
+            "adult": "norn/adult/voss-theli.ogg",
+            "elder": "norn/elder/voss-theli.ogg"
+          }
+        },
+        "kelin-neshil": {
+          "ipa": "/kɛl.in.nɛʃ.il/",
+          "meaning": "madness, brain-dark",
+          "files": {
+            "child": "norn/child/kelin-neshil.ogg",
+            "adult": "norn/adult/kelin-neshil.ogg",
+            "elder": "norn/elder/kelin-neshil.ogg"
+          }
+        },
+        "vessha-kelin": {
+          "ipa": "/vɛs.ʃɑ.kɛl.in/",
+          "meaning": "calm, rest-of-mind",
+          "files": {
+            "child": "norn/child/vessha-kelin.ogg",
+            "adult": "norn/adult/vessha-kelin.ogg",
+            "elder": "norn/elder/vessha-kelin.ogg"
+          }
+        },
+        "vel-ven": {
+          "ipa": "/vɛl.vɛn/",
+          "meaning": "barter, two-gifts",
+          "files": {
+            "child": "norn/child/vel-ven.ogg",
+            "adult": "norn/adult/vel-ven.ogg",
+            "elder": "norn/elder/vel-ven.ogg"
+          }
+        },
+        "resh-vai": {
+          "ipa": "/ɹɛʃ.vaɪ/",
+          "meaning": "valuable thing, wanted-object",
+          "files": {
+            "child": "norn/child/resh-vai.ogg",
+            "adult": "norn/adult/resh-vai.ogg",
+            "elder": "norn/elder/resh-vai.ogg"
+          }
+        },
+        "vel-orn-resh": {
+          "ipa": "/vɛl.ɔɹn.ɹɛʃ/",
+          "meaning": "heirloom, gift-memory-thing",
+          "files": {
+            "child": "norn/child/vel-orn-resh.ogg",
+            "adult": "norn/adult/vel-orn-resh.ogg",
+            "elder": "norn/elder/vel-orn-resh.ogg"
+          }
+        },
+        "vel-thenni": {
+          "ipa": "/vɛl.θɛn.niː/",
+          "meaning": "trade with strangers",
+          "files": {
+            "child": "norn/child/vel-thenni.ogg",
+            "adult": "norn/adult/vel-thenni.ogg",
+            "elder": "norn/elder/vel-thenni.ogg"
+          }
+        },
+        "resh-sol": {
+          "ipa": "/ɹɛʃ.sɔl/",
+          "meaning": "treasure, joy-thing",
+          "files": {
+            "child": "norn/child/resh-sol.ogg",
+            "adult": "norn/adult/resh-sol.ogg",
+            "elder": "norn/elder/resh-sol.ogg"
+          }
+        },
+        "vel-oshel": {
+          "ipa": "/vɛl.ɔ.ʃɛl/",
+          "meaning": "sharing, community-gift",
+          "files": {
+            "child": "norn/child/vel-oshel.ogg",
+            "adult": "norn/adult/vel-oshel.ogg",
+            "elder": "norn/elder/vel-oshel.ogg"
+          }
+        },
+        "vel-ain-ain": {
+          "ipa": "/vɛl.aɪn.aɪn/",
+          "meaning": "tithe, gift-of-ten",
+          "files": {
+            "child": "norn/child/vel-ain-ain.ogg",
+            "adult": "norn/adult/vel-ain-ain.ogg",
+            "elder": "norn/elder/vel-ain-ain.ogg"
+          }
+        },
+        "shevel-vel": {
+          "ipa": "/ʃɛ.vɛl.vɛl/",
+          "meaning": "handshake, hand-gift",
+          "files": {
+            "child": "norn/child/shevel-vel.ogg",
+            "adult": "norn/adult/shevel-vel.ogg",
+            "elder": "norn/elder/shevel-vel.ogg"
+          }
+        },
+        "vai-resh": {
+          "ipa": "/vaɪ.ɹɛʃ/",
+          "meaning": "want, desired-thing",
+          "files": {
+            "child": "norn/child/vai-resh.ogg",
+            "adult": "norn/adult/vai-resh.ogg",
+            "elder": "norn/elder/vai-resh.ogg"
+          }
+        },
+        "resh-thali": {
+          "ipa": "/ɹɛʃ.θɑ.liː/",
+          "meaning": "curiosity-object, novelty",
+          "files": {
+            "child": "norn/child/resh-thali.ogg",
+            "adult": "norn/adult/resh-thali.ogg",
+            "elder": "norn/elder/resh-thali.ogg"
+          }
+        },
+        "ken-resh": {
+          "ipa": "/kɛn.ɹɛʃ/",
+          "meaning": "identified thing, appraised object",
+          "files": {
+            "child": "norn/child/ken-resh.ogg",
+            "adult": "norn/adult/ken-resh.ogg",
+            "elder": "norn/elder/ken-resh.ogg"
+          }
+        },
+        "vel-lesh": {
+          "ipa": "/vɛl.lɛʃ/",
+          "meaning": "delivery, gift-walking",
+          "files": {
+            "child": "norn/child/vel-lesh.ogg",
+            "adult": "norn/adult/vel-lesh.ogg",
+            "elder": "norn/elder/vel-lesh.ogg"
+          }
+        },
+        "vel-inna-oshel": {
+          "ipa": "/vɛl.in.nɑ.ɔ.ʃɛl/",
+          "meaning": "potluck, community food-sharing",
+          "files": {
+            "child": "norn/child/vel-inna-oshel.ogg",
+            "adult": "norn/adult/vel-inna-oshel.ogg",
+            "elder": "norn/elder/vel-inna-oshel.ogg"
+          }
+        },
+        "resh-nesh": {
+          "ipa": "/ɹɛʃ.nɛʃ/",
+          "meaning": "contraband, feared-thing",
+          "files": {
+            "child": "norn/child/resh-nesh.ogg",
+            "adult": "norn/adult/resh-nesh.ogg",
+            "elder": "norn/elder/resh-nesh.ogg"
+          }
+        },
+        "vella-resh": {
+          "ipa": "/vɛl.lɑ.ɹɛʃ/",
+          "meaning": "to craft, to make-a-thing",
+          "files": {
+            "child": "norn/child/vella-resh.ogg",
+            "adult": "norn/adult/vella-resh.ogg",
+            "elder": "norn/elder/vella-resh.ogg"
+          }
+        },
+        "vella-orna": {
+          "ipa": "/vɛl.lɑ.ɔɹ.nɑ/",
+          "meaning": "to carve stone, to shape rock",
+          "files": {
+            "child": "norn/child/vella-orna.ogg",
+            "adult": "norn/adult/vella-orna.ogg",
+            "elder": "norn/elder/vella-orna.ogg"
+          }
+        },
+        "vella-thel": {
+          "ipa": "/vɛl.lɑ.θɛl/",
+          "meaning": "to work wood, to shape tree",
+          "files": {
+            "child": "norn/child/vella-thel.ogg",
+            "adult": "norn/adult/vella-thel.ogg",
+            "elder": "norn/elder/vella-thel.ogg"
+          }
+        },
+        "vella-lorn": {
+          "ipa": "/vɛl.lɑ.lɔɹn/",
+          "meaning": "to sew, to work skin",
+          "files": {
+            "child": "norn/child/vella-lorn.ogg",
+            "adult": "norn/adult/vella-lorn.ogg",
+            "elder": "norn/elder/vella-lorn.ogg"
+          }
+        },
+        "vella-voss": {
+          "ipa": "/vɛl.lɑ.vɔss/",
+          "meaning": "to shape water, pottery (wet clay)",
+          "files": {
+            "child": "norn/child/vella-voss.ogg",
+            "adult": "norn/adult/vella-voss.ogg",
+            "elder": "norn/elder/vella-voss.ogg"
+          }
+        },
+        "resh-thi": {
+          "ipa": "/ɹɛʃ.θiː/",
+          "meaning": "invention, new-thing",
+          "files": {
+            "child": "norn/child/resh-thi.ogg",
+            "adult": "norn/adult/resh-thi.ogg",
+            "elder": "norn/elder/resh-thi.ogg"
+          }
+        },
+        "vella-sha": {
+          "ipa": "/vɛl.lɑ.ʃɑ/",
+          "meaning": "maker, crafter, artisan",
+          "files": {
+            "child": "norn/child/vella-sha.ogg",
+            "adult": "norn/adult/vella-sha.ogg",
+            "elder": "norn/elder/vella-sha.ogg"
+          }
+        },
+        "vella-orn": {
+          "ipa": "/vɛl.lɑ.ɔɹn/",
+          "meaning": "to repair, to make-remember (restore)",
+          "files": {
+            "child": "norn/child/vella-orn.ogg",
+            "adult": "norn/adult/vella-orn.ogg",
+            "elder": "norn/elder/vella-orn.ogg"
+          }
+        },
+        "vella-kris": {
+          "ipa": "/vɛl.lɑ.kɹis/",
+          "meaning": "to cut crystal, gem-work",
+          "files": {
+            "child": "norn/child/vella-kris.ogg",
+            "adult": "norn/adult/vella-kris.ogg",
+            "elder": "norn/elder/vella-kris.ogg"
+          }
+        },
+        "vella-runa": {
+          "ipa": "/vɛl.lɑ.ɹuː.nɑ/",
+          "meaning": "to inscribe, to carve runes",
+          "files": {
+            "child": "norn/child/vella-runa.ogg",
+            "adult": "norn/adult/vella-runa.ogg",
+            "elder": "norn/elder/vella-runa.ogg"
+          }
+        },
+        "resh-velma": {
+          "ipa": "/ɹɛʃ.vɛl.mɑ/",
+          "meaning": "creation, made-thing (with care)",
+          "files": {
+            "child": "norn/child/resh-velma.ogg",
+            "adult": "norn/adult/resh-velma.ogg",
+            "elder": "norn/elder/resh-velma.ogg"
+          }
+        },
+        "vella-urdh": {
+          "ipa": "/vɛl.lɑ.uːɹdh/",
+          "meaning": "to dig, to earth-shape",
+          "files": {
+            "child": "norn/child/vella-urdh.ogg",
+            "adult": "norn/adult/vella-urdh.ogg",
+            "elder": "norn/elder/vella-urdh.ogg"
+          }
+        },
+        "vella-sira": {
+          "ipa": "/vɛl.lɑ.siːɹ.ɑ/",
+          "meaning": "to weave, to wind-shape",
+          "files": {
+            "child": "norn/child/vella-sira.ogg",
+            "adult": "norn/adult/vella-sira.ogg",
+            "elder": "norn/elder/vella-sira.ogg"
+          }
+        },
+        "vella-meshi": {
+          "ipa": "/vɛl.lɑ.mɛ.ʃi/",
+          "meaning": "to compose, to craft-voice",
+          "files": {
+            "child": "norn/child/vella-meshi.ogg",
+            "adult": "norn/adult/vella-meshi.ogg",
+            "elder": "norn/elder/vella-meshi.ogg"
+          }
+        },
+        "shen-vel": {
+          "ipa": "/ʃɛn.vɛl/",
+          "meaning": "law, named-gift, spoken-agreement",
+          "files": {
+            "child": "norn/child/shen-vel.ogg",
+            "adult": "norn/adult/shen-vel.ogg",
+            "elder": "norn/elder/shen-vel.ogg"
+          }
+        },
+        "shen-oshel": {
+          "ipa": "/ʃɛn.ɔ.ʃɛl/",
+          "meaning": "council, community-speaking",
+          "files": {
+            "child": "norn/child/shen-oshel.ogg",
+            "adult": "norn/adult/shen-oshel.ogg",
+            "elder": "norn/elder/shen-oshel.ogg"
+          }
+        },
+        "kel-athel": {
+          "ipa": "/kɛl.ɑ.θɛl/",
+          "meaning": "leader, soul-teacher, guide",
+          "files": {
+            "child": "norn/child/kel-athel.ogg",
+            "adult": "norn/adult/kel-athel.ogg",
+            "elder": "norn/elder/kel-athel.ogg"
+          }
+        },
+        "ornsha-shen": {
+          "ipa": "/ɔɹn.ʃɑ.ʃɛn/",
+          "meaning": "tradition-word, customary law",
+          "files": {
+            "child": "norn/child/ornsha-shen.ogg",
+            "adult": "norn/adult/ornsha-shen.ogg",
+            "elder": "norn/elder/ornsha-shen.ogg"
+          }
+        },
+        "thav-oshel": {
+          "ipa": "/θɑv.ɔ.ʃɛl/",
+          "meaning": "debate, community-asking",
+          "files": {
+            "child": "norn/child/thav-oshel.ogg",
+            "adult": "norn/adult/thav-oshel.ogg",
+            "elder": "norn/elder/thav-oshel.ogg"
+          }
+        },
+        "vo-shael": {
+          "ipa": "/voʊ.ʃɑ.ɛl/",
+          "meaning": "consensus, all-say-yes",
+          "files": {
+            "child": "norn/child/vo-shael.ogg",
+            "adult": "norn/adult/vo-shael.ogg",
+            "elder": "norn/elder/vo-shael.ogg"
+          }
+        },
+        "shen-nesh": {
+          "ipa": "/ʃɛn.nɛʃ/",
+          "meaning": "taboo, fear-word, forbidden-name",
+          "files": {
+            "child": "norn/child/shen-nesh.ogg",
+            "adult": "norn/adult/shen-nesh.ogg",
+            "elder": "norn/elder/shen-nesh.ogg"
+          }
+        },
+        "shen-thren": {
+          "ipa": "/ʃɛn.θɹɛn/",
+          "meaning": "judgment, grief-word (painful truth)",
+          "files": {
+            "child": "norn/child/shen-thren.ogg",
+            "adult": "norn/adult/shen-thren.ogg",
+            "elder": "norn/elder/shen-thren.ogg"
+          }
+        },
+        "vel-kel": {
+          "ipa": "/vɛl.kɛl/",
+          "meaning": "rights, soul-gifts",
+          "files": {
+            "child": "norn/child/vel-kel.ogg",
+            "adult": "norn/adult/vel-kel.ogg",
+            "elder": "norn/elder/vel-kel.ogg"
+          }
+        },
+        "shen-vel-thi": {
+          "ipa": "/ʃɛn.vɛl.θiː/",
+          "meaning": "new law, reform",
+          "files": {
+            "child": "norn/child/shen-vel-thi.ogg",
+            "adult": "norn/adult/shen-vel-thi.ogg",
+            "elder": "norn/elder/shen-vel-thi.ogg"
+          }
+        },
+        "kel-athel-oshel": {
+          "ipa": "/kɛl.ɑ.θɛl.ɔ.ʃɛl/",
+          "meaning": "council of elders, leader-gathering",
+          "files": {
+            "child": "norn/child/kel-athel-oshel.ogg",
+            "adult": "norn/adult/kel-athel-oshel.ogg",
+            "elder": "norn/elder/kel-athel-oshel.ogg"
+          }
+        },
+        "shen-mir": {
+          "ipa": "/ʃɛn.miːɹ/",
+          "meaning": "testimony, spoken-feeling",
+          "files": {
+            "child": "norn/child/shen-mir.ogg",
+            "adult": "norn/adult/shen-mir.ogg",
+            "elder": "norn/elder/shen-mir.ogg"
+          }
+        },
+        "shen-vel-oth": {
+          "ipa": "/ʃɛn.vɛl.ɔθ/",
+          "meaning": "ancient law, deep agreement",
+          "files": {
+            "child": "norn/child/shen-vel-oth.ogg",
+            "adult": "norn/adult/shen-vel-oth.ogg",
+            "elder": "norn/elder/shen-vel-oth.ogg"
+          }
+        },
+        "ornsha-shen-oth": {
+          "ipa": "/ɔɹn.ʃɑ.ʃɛn.ɔθ/",
+          "meaning": "precedent, old-tradition-word",
+          "files": {
+            "child": "norn/child/ornsha-shen-oth.ogg",
+            "adult": "norn/adult/ornsha-shen-oth.ogg",
+            "elder": "norn/elder/ornsha-shen-oth.ogg"
+          }
+        },
+        "velesh-lum": {
+          "ipa": "/vɛl.ɛʃ.luːm/",
+          "meaning": "hearth-home, cozy dwelling",
+          "files": {
+            "child": "norn/child/velesh-lum.ogg",
+            "adult": "norn/adult/velesh-lum.ogg",
+            "elder": "norn/elder/velesh-lum.ogg"
+          }
+        },
+        "velesh-oshel": {
+          "ipa": "/vɛl.ɛʃ.ɔ.ʃɛl/",
+          "meaning": "village, community-home",
+          "files": {
+            "child": "norn/child/velesh-oshel.ogg",
+            "adult": "norn/adult/velesh-oshel.ogg",
+            "elder": "norn/elder/velesh-oshel.ogg"
+          }
+        },
+        "velesh-norni": {
+          "ipa": "/vɛl.ɛʃ.nɔɹn.iː/",
+          "meaning": "nursery, children's-home",
+          "files": {
+            "child": "norn/child/velesh-norni.ogg",
+            "adult": "norn/adult/velesh-norni.ogg",
+            "elder": "norn/elder/velesh-norni.ogg"
+          }
+        },
+        "velesh-inna": {
+          "ipa": "/vɛl.ɛʃ.in.nɑ/",
+          "meaning": "kitchen, home-food-place",
+          "files": {
+            "child": "norn/child/velesh-inna.ogg",
+            "adult": "norn/adult/velesh-inna.ogg",
+            "elder": "norn/elder/velesh-inna.ogg"
+          }
+        },
+        "velesh-vessha": {
+          "ipa": "/vɛl.ɛʃ.vɛs.ʃɑ/",
+          "meaning": "bedroom, home-rest-place",
+          "files": {
+            "child": "norn/child/velesh-vessha.ogg",
+            "adult": "norn/adult/velesh-vessha.ogg",
+            "elder": "norn/elder/velesh-vessha.ogg"
+          }
+        },
+        "velesh-thav": {
+          "ipa": "/vɛl.ɛʃ.θɑv/",
+          "meaning": "study, home-asking-place",
+          "files": {
+            "child": "norn/child/velesh-thav.ogg",
+            "adult": "norn/adult/velesh-thav.ogg",
+            "elder": "norn/elder/velesh-thav.ogg"
+          }
+        },
+        "velesh-orn": {
+          "ipa": "/vɛl.ɛʃ.ɔɹn/",
+          "meaning": "family shrine, home-memory-place",
+          "files": {
+            "child": "norn/child/velesh-orn.ogg",
+            "adult": "norn/adult/velesh-orn.ogg",
+            "elder": "norn/elder/velesh-orn.ogg"
+          }
+        },
+        "lorn-velesh": {
+          "ipa": "/lɔɹn.vɛl.ɛʃ/",
+          "meaning": "wall, boundary-of-home",
+          "files": {
+            "child": "norn/child/lorn-velesh.ogg",
+            "adult": "norn/adult/lorn-velesh.ogg",
+            "elder": "norn/elder/lorn-velesh.ogg"
+          }
+        },
+        "shira-velesh": {
+          "ipa": "/ʃiːɹ.ɑ.vɛl.ɛʃ/",
+          "meaning": "roof, sky-of-home",
+          "files": {
+            "child": "norn/child/shira-velesh.ogg",
+            "adult": "norn/adult/shira-velesh.ogg",
+            "elder": "norn/elder/shira-velesh.ogg"
+          }
+        },
+        "urdh-velesh": {
+          "ipa": "/uːɹdh.vɛl.ɛʃ/",
+          "meaning": "floor, earth-of-home",
+          "files": {
+            "child": "norn/child/urdh-velesh.ogg",
+            "adult": "norn/adult/urdh-velesh.ogg",
+            "elder": "norn/elder/urdh-velesh.ogg"
+          }
+        },
+        "voss-velesh": {
+          "ipa": "/vɔss.vɛl.ɛʃ/",
+          "meaning": "bath, water-of-home",
+          "files": {
+            "child": "norn/child/voss-velesh.ogg",
+            "adult": "norn/adult/voss-velesh.ogg",
+            "elder": "norn/elder/voss-velesh.ogg"
+          }
+        },
+        "lumen-velesh": {
+          "ipa": "/luː.mɛn.vɛl.ɛʃ/",
+          "meaning": "window, light-of-home",
+          "files": {
+            "child": "norn/child/lumen-velesh.ogg",
+            "adult": "norn/adult/lumen-velesh.ogg",
+            "elder": "norn/elder/lumen-velesh.ogg"
+          }
+        },
+        "velesh-thi": {
+          "ipa": "/vɛl.ɛʃ.θiː/",
+          "meaning": "new home, first dwelling",
+          "files": {
+            "child": "norn/child/velesh-thi.ogg",
+            "adult": "norn/adult/velesh-thi.ogg",
+            "elder": "norn/elder/velesh-thi.ogg"
+          }
+        },
+        "resh-velesh": {
+          "ipa": "/ɹɛʃ.vɛl.ɛʃ/",
+          "meaning": "furniture, thing-of-home",
+          "files": {
+            "child": "norn/child/resh-velesh.ogg",
+            "adult": "norn/adult/resh-velesh.ogg",
+            "elder": "norn/elder/resh-velesh.ogg"
+          }
+        },
+        "nesh-resh": {
+          "ipa": "/nɛʃ.ɹɛʃ/",
+          "meaning": "danger, fear-thing",
+          "files": {
+            "child": "norn/child/nesh-resh.ogg",
+            "adult": "norn/adult/nesh-resh.ogg",
+            "elder": "norn/elder/nesh-resh.ogg"
+          }
+        },
+        "nesh-kel": {
+          "ipa": "/nɛʃ.kɛl/",
+          "meaning": "enemy, fear-soul",
+          "files": {
+            "child": "norn/child/nesh-kel.ogg",
+            "adult": "norn/adult/nesh-kel.ogg",
+            "elder": "norn/elder/nesh-kel.ogg"
+          }
+        },
+        "nesh-lesh": {
+          "ipa": "/nɛʃ.lɛʃ/",
+          "meaning": "fleeing, fear-walking",
+          "files": {
+            "child": "norn/child/nesh-lesh.ogg",
+            "adult": "norn/adult/nesh-lesh.ogg",
+            "elder": "norn/elder/nesh-lesh.ogg"
+          }
+        },
+        "rith-shen": {
+          "ipa": "/ɹiθ.ʃɛn/",
+          "meaning": "threat, anger-word",
+          "files": {
+            "child": "norn/child/rith-shen.ogg",
+            "adult": "norn/adult/rith-shen.ogg",
+            "elder": "norn/elder/rith-shen.ogg"
+          }
+        },
+        "rith-lori": {
+          "ipa": "/ɹiθ.lɔɹ.iː/",
+          "meaning": "strike, anger-touch",
+          "files": {
+            "child": "norn/child/rith-lori.ogg",
+            "adult": "norn/adult/rith-lori.ogg",
+            "elder": "norn/elder/rith-lori.ogg"
+          }
+        },
+        "lorn-vel": {
+          "ipa": "/lɔɹn.vɛl/",
+          "meaning": "protection, boundary-gift",
+          "files": {
+            "child": "norn/child/lorn-vel.ogg",
+            "adult": "norn/adult/lorn-vel.ogg",
+            "elder": "norn/elder/lorn-vel.ogg"
+          }
+        },
+        "lorn-oshel": {
+          "ipa": "/lɔɹn.ɔ.ʃɛl/",
+          "meaning": "defense, community-boundary",
+          "files": {
+            "child": "norn/child/lorn-oshel.ogg",
+            "adult": "norn/adult/lorn-oshel.ogg",
+            "elder": "norn/elder/lorn-oshel.ogg"
+          }
+        },
+        "nesh-meshi": {
+          "ipa": "/nɛʃ.mɛ.ʃi/",
+          "meaning": "alarm, fear-voice",
+          "files": {
+            "child": "norn/child/nesh-meshi.ogg",
+            "adult": "norn/adult/nesh-meshi.ogg",
+            "elder": "norn/elder/nesh-meshi.ogg"
+          }
+        },
+        "thinna-nesh": {
+          "ipa": "/θin.nɑ.nɛʃ/",
+          "meaning": "to spot danger, see-fear",
+          "files": {
+            "child": "norn/child/thinna-nesh.ogg",
+            "adult": "norn/adult/thinna-nesh.ogg",
+            "elder": "norn/elder/thinna-nesh.ogg"
+          }
+        },
+        "lorn-resh": {
+          "ipa": "/lɔɹn.ɹɛʃ/",
+          "meaning": "shield, boundary-thing",
+          "files": {
+            "child": "norn/child/lorn-resh.ogg",
+            "adult": "norn/adult/lorn-resh.ogg",
+            "elder": "norn/elder/lorn-resh.ogg"
+          }
+        },
+        "nesh-sira": {
+          "ipa": "/nɛʃ.siːɹ.ɑ/",
+          "meaning": "howl, fear-wind",
+          "files": {
+            "child": "norn/child/nesh-sira.ogg",
+            "adult": "norn/adult/nesh-sira.ogg",
+            "elder": "norn/elder/nesh-sira.ogg"
+          }
+        },
+        "keth-nesh": {
+          "ipa": "/kɛθ.nɛʃ/",
+          "meaning": "old danger, ancestral threat",
+          "files": {
+            "child": "norn/child/keth-nesh.ogg",
+            "adult": "norn/adult/keth-nesh.ogg",
+            "elder": "norn/elder/keth-nesh.ogg"
+          }
+        },
+        "lorn-ain": {
+          "ipa": "/lɔɹn.aɪn/",
+          "meaning": "hiding, boundary-of-one",
+          "files": {
+            "child": "norn/child/lorn-ain.ogg",
+            "adult": "norn/adult/lorn-ain.ogg",
+            "elder": "norn/elder/lorn-ain.ogg"
+          }
+        },
+        "rith-vel-esh": {
+          "ipa": "/ɹiθ.vɛl.ɛʃ/",
+          "meaning": "wound, anger-in-body",
+          "files": {
+            "child": "norn/child/rith-vel-esh.ogg",
+            "adult": "norn/adult/rith-vel-esh.ogg",
+            "elder": "norn/elder/rith-vel-esh.ogg"
+          }
+        },
+        "nesh-shael": {
+          "ipa": "/nɛʃ.ʃɑ.ɛl/",
+          "meaning": "communal fear, shared alarm",
+          "files": {
+            "child": "norn/child/nesh-shael.ogg",
+            "adult": "norn/adult/nesh-shael.ogg",
+            "elder": "norn/elder/nesh-shael.ogg"
+          }
+        },
+        "voss-lum": {
+          "ipa": "/vɔss.luːm/",
+          "meaning": "warm water, bath-water",
+          "files": {
+            "child": "norn/child/voss-lum.ogg",
+            "adult": "norn/adult/voss-lum.ogg",
+            "elder": "norn/elder/voss-lum.ogg"
+          }
+        },
+        "voss-nesh": {
+          "ipa": "/vɔss.nɛʃ/",
+          "meaning": "flood, fear-water",
+          "files": {
+            "child": "norn/child/voss-nesh.ogg",
+            "adult": "norn/adult/voss-nesh.ogg",
+            "elder": "norn/elder/voss-nesh.ogg"
+          }
+        },
+        "voss-ain": {
+          "ipa": "/vɔss.aɪn/",
+          "meaning": "drop, one-water",
+          "files": {
+            "child": "norn/child/voss-ain.ogg",
+            "adult": "norn/adult/voss-ain.ogg",
+            "elder": "norn/elder/voss-ain.ogg"
+          }
+        },
+        "voss-vel": {
+          "ipa": "/vɔss.vɛl/",
+          "meaning": "spring, gift-water",
+          "files": {
+            "child": "norn/child/voss-vel.ogg",
+            "adult": "norn/adult/voss-vel.ogg",
+            "elder": "norn/elder/voss-vel.ogg"
+          }
+        },
+        "voss-urdh": {
+          "ipa": "/vɔss.uːɹdh/",
+          "meaning": "well, water-from-earth",
+          "files": {
+            "child": "norn/child/voss-urdh.ogg",
+            "adult": "norn/adult/voss-urdh.ogg",
+            "elder": "norn/elder/voss-urdh.ogg"
+          }
+        },
+        "voss-kris": {
+          "ipa": "/vɔss.kɹis/",
+          "meaning": "dew, crystal-water",
+          "files": {
+            "child": "norn/child/voss-kris.ogg",
+            "adult": "norn/adult/voss-kris.ogg",
+            "elder": "norn/elder/voss-kris.ogg"
+          }
+        },
+        "voss-sol": {
+          "ipa": "/vɔss.sɔl/",
+          "meaning": "splash, joy-water",
+          "files": {
+            "child": "norn/child/voss-sol.ogg",
+            "adult": "norn/adult/voss-sol.ogg",
+            "elder": "norn/elder/voss-sol.ogg"
+          }
+        },
+        "voss-thren": {
+          "ipa": "/vɔss.θɹɛn/",
+          "meaning": "tears (collective), grief-water",
+          "files": {
+            "child": "norn/child/voss-thren.ogg",
+            "adult": "norn/adult/voss-thren.ogg",
+            "elder": "norn/elder/voss-thren.ogg"
+          }
+        },
+        "voss-veshla": {
+          "ipa": "/vɔss.vɛʃ.lɑ/",
+          "meaning": "sap, growing-water",
+          "files": {
+            "child": "norn/child/voss-veshla.ogg",
+            "adult": "norn/adult/voss-veshla.ogg",
+            "elder": "norn/elder/voss-veshla.ogg"
+          }
+        },
+        "lori-lum": {
+          "ipa": "/lɔɹ.iː.luːm/",
+          "meaning": "soft, warm-touch",
+          "files": {
+            "child": "norn/child/lori-lum.ogg",
+            "adult": "norn/adult/lori-lum.ogg",
+            "elder": "norn/elder/lori-lum.ogg"
+          }
+        },
+        "lori-nesh": {
+          "ipa": "/lɔɹ.iː.nɛʃ/",
+          "meaning": "rough, fear-touch",
+          "files": {
+            "child": "norn/child/lori-nesh.ogg",
+            "adult": "norn/adult/lori-nesh.ogg",
+            "elder": "norn/elder/lori-nesh.ogg"
+          }
+        },
+        "lori-sol": {
+          "ipa": "/lɔɹ.iː.sɔl/",
+          "meaning": "smooth, joy-touch",
+          "files": {
+            "child": "norn/child/lori-sol.ogg",
+            "adult": "norn/adult/lori-sol.ogg",
+            "elder": "norn/elder/lori-sol.ogg"
+          }
+        },
+        "lori-oth": {
+          "ipa": "/lɔɹ.iː.ɔθ/",
+          "meaning": "ancient-feeling, weathered",
+          "files": {
+            "child": "norn/child/lori-oth.ogg",
+            "adult": "norn/adult/lori-oth.ogg",
+            "elder": "norn/elder/lori-oth.ogg"
+          }
+        },
+        "lori-vai": {
+          "ipa": "/lɔɹ.iː.vaɪ/",
+          "meaning": "sticky, clinging-touch",
+          "files": {
+            "child": "norn/child/lori-vai.ogg",
+            "adult": "norn/adult/lori-vai.ogg",
+            "elder": "norn/elder/lori-vai.ogg"
+          }
+        },
+        "lori-voss": {
+          "ipa": "/lɔɹ.iː.vɔss/",
+          "meaning": "wet, water-touch",
+          "files": {
+            "child": "norn/child/lori-voss.ogg",
+            "adult": "norn/adult/lori-voss.ogg",
+            "elder": "norn/elder/lori-voss.ogg"
+          }
+        },
+        "lori-sira": {
+          "ipa": "/lɔɹ.iː.siːɹ.ɑ/",
+          "meaning": "breezy, wind-touch",
+          "files": {
+            "child": "norn/child/lori-sira.ogg",
+            "adult": "norn/adult/lori-sira.ogg",
+            "elder": "norn/elder/lori-sira.ogg"
+          }
+        },
+        "lori-orna": {
+          "ipa": "/lɔɹ.iː.ɔɹ.nɑ/",
+          "meaning": "hard, stone-touch",
+          "files": {
+            "child": "norn/child/lori-orna.ogg",
+            "adult": "norn/adult/lori-orna.ogg",
+            "elder": "norn/elder/lori-orna.ogg"
+          }
+        },
+        "lori-theli": {
+          "ipa": "/lɔɹ.iː.θɛl.iː/",
+          "meaning": "leafy, plant-touch",
+          "files": {
+            "child": "norn/child/lori-theli.ogg",
+            "adult": "norn/adult/lori-theli.ogg",
+            "elder": "norn/elder/lori-theli.ogg"
+          }
+        },
+        "lori-kris": {
+          "ipa": "/lɔɹ.iː.kɹis/",
+          "meaning": "sharp, crystal-touch",
+          "files": {
+            "child": "norn/child/lori-kris.ogg",
+            "adult": "norn/adult/lori-kris.ogg",
+            "elder": "norn/elder/lori-kris.ogg"
+          }
+        },
+        "lori-lorn": {
+          "ipa": "/lɔɹ.iː.lɔɹn/",
+          "meaning": "skin-feeling, surface touch",
+          "files": {
+            "child": "norn/child/lori-lorn.ogg",
+            "adult": "norn/adult/lori-lorn.ogg",
+            "elder": "norn/elder/lori-lorn.ogg"
+          }
+        },
+        "lori-thi": {
+          "ipa": "/lɔɹ.iː.θiː/",
+          "meaning": "new-feeling, unfamiliar",
+          "files": {
+            "child": "norn/child/lori-thi.ogg",
+            "adult": "norn/adult/lori-thi.ogg",
+            "elder": "norn/elder/lori-thi.ogg"
+          }
+        },
+        "lori-oth-lum": {
+          "ipa": "/lɔɹ.iː.ɔθ.luːm/",
+          "meaning": "cozy, ancient-warm-touch",
+          "files": {
+            "child": "norn/child/lori-oth-lum.ogg",
+            "adult": "norn/adult/lori-oth-lum.ogg",
+            "elder": "norn/elder/lori-oth-lum.ogg"
+          }
+        },
+        "lori-neshil": {
+          "ipa": "/lɔɹ.iː.nɛʃ.il/",
+          "meaning": "cold-touch, chill",
+          "files": {
+            "child": "norn/child/lori-neshil.ogg",
+            "adult": "norn/adult/lori-neshil.ogg",
+            "elder": "norn/elder/lori-neshil.ogg"
+          }
+        },
+        "shal": {
+          "ipa": "/ʃɑl/",
+          "meaning": "smell, the nose-knowing",
+          "files": {
+            "child": "norn/child/shal.ogg",
+            "adult": "norn/adult/shal.ogg",
+            "elder": "norn/elder/shal.ogg"
+          }
+        },
+        "shal-lum": {
+          "ipa": "/ʃɑl.luːm/",
+          "meaning": "good smell, warm-scent",
+          "files": {
+            "child": "norn/child/shal-lum.ogg",
+            "adult": "norn/adult/shal-lum.ogg",
+            "elder": "norn/elder/shal-lum.ogg"
+          }
+        },
+        "shal-nesh": {
+          "ipa": "/ʃɑl.nɛʃ/",
+          "meaning": "bad smell, fear-scent",
+          "files": {
+            "child": "norn/child/shal-nesh.ogg",
+            "adult": "norn/adult/shal-nesh.ogg",
+            "elder": "norn/elder/shal-nesh.ogg"
+          }
+        },
+        "shal-theli": {
+          "ipa": "/ʃɑl.θɛl.iː/",
+          "meaning": "flower-scent, plant-smell",
+          "files": {
+            "child": "norn/child/shal-theli.ogg",
+            "adult": "norn/adult/shal-theli.ogg",
+            "elder": "norn/elder/shal-theli.ogg"
+          }
+        },
+        "shal-inna": {
+          "ipa": "/ʃɑl.in.nɑ/",
+          "meaning": "food-smell, cooking-scent",
+          "files": {
+            "child": "norn/child/shal-inna.ogg",
+            "adult": "norn/adult/shal-inna.ogg",
+            "elder": "norn/elder/shal-inna.ogg"
+          }
+        },
+        "shal-voss": {
+          "ipa": "/ʃɑl.vɔss/",
+          "meaning": "rain-smell, petrichor",
+          "files": {
+            "child": "norn/child/shal-voss.ogg",
+            "adult": "norn/adult/shal-voss.ogg",
+            "elder": "norn/elder/shal-voss.ogg"
+          }
+        },
+        "shal-urdh": {
+          "ipa": "/ʃɑl.uːɹdh/",
+          "meaning": "earth-smell, soil-scent",
+          "files": {
+            "child": "norn/child/shal-urdh.ogg",
+            "adult": "norn/adult/shal-urdh.ogg",
+            "elder": "norn/elder/shal-urdh.ogg"
+          }
+        },
+        "shal-keth": {
+          "ipa": "/ʃɑl.kɛθ/",
+          "meaning": "familiar smell, memory-scent",
+          "files": {
+            "child": "norn/child/shal-keth.ogg",
+            "adult": "norn/adult/shal-keth.ogg",
+            "elder": "norn/elder/shal-keth.ogg"
+          }
+        },
+        "inna-mir": {
+          "ipa": "/in.nɑ.miːɹ/",
+          "meaning": "taste, food-feeling",
+          "files": {
+            "child": "norn/child/inna-mir.ogg",
+            "adult": "norn/adult/inna-mir.ogg",
+            "elder": "norn/elder/inna-mir.ogg"
+          }
+        },
+        "inna-sol": {
+          "ipa": "/in.nɑ.sɔl/",
+          "meaning": "delicious, joy-food",
+          "files": {
+            "child": "norn/child/inna-sol.ogg",
+            "adult": "norn/adult/inna-sol.ogg",
+            "elder": "norn/elder/inna-sol.ogg"
+          }
+        },
+        "inna-nesh": {
+          "ipa": "/in.nɑ.nɛʃ/",
+          "meaning": "bitter, fear-food",
+          "files": {
+            "child": "norn/child/inna-nesh.ogg",
+            "adult": "norn/adult/inna-nesh.ogg",
+            "elder": "norn/elder/inna-nesh.ogg"
+          }
+        },
+        "inna-lum": {
+          "ipa": "/in.nɑ.luːm/",
+          "meaning": "savory, warm-food",
+          "files": {
+            "child": "norn/child/inna-lum.ogg",
+            "adult": "norn/adult/inna-lum.ogg",
+            "elder": "norn/elder/inna-lum.ogg"
+          }
+        },
+        "inna-rith": {
+          "ipa": "/in.nɑ.ɹiθ/",
+          "meaning": "spicy, anger-food",
+          "files": {
+            "child": "norn/child/inna-rith.ogg",
+            "adult": "norn/adult/inna-rith.ogg",
+            "elder": "norn/elder/inna-rith.ogg"
+          }
+        },
+        "inna-vai": {
+          "ipa": "/in.nɑ.vaɪ/",
+          "meaning": "craving, longing-food",
+          "files": {
+            "child": "norn/child/inna-vai.ogg",
+            "adult": "norn/adult/inna-vai.ogg",
+            "elder": "norn/elder/inna-vai.ogg"
+          }
+        },
+        "inna-vessa": {
+          "ipa": "/in.nɑ.vɛs.sɑ/",
+          "meaning": "satisfying, enough-food",
+          "files": {
+            "child": "norn/child/inna-vessa.ogg",
+            "adult": "norn/adult/inna-vessa.ogg",
+            "elder": "norn/elder/inna-vessa.ogg"
+          }
+        },
+        "norni-thi": {
+          "ipa": "/nɔɹn.iː.θiː/",
+          "meaning": "newborn, just-hatched",
+          "files": {
+            "child": "norn/child/norni-thi.ogg",
+            "adult": "norn/adult/norni-thi.ogg",
+            "elder": "norn/elder/norni-thi.ogg"
+          }
+        },
+        "norni-lesh": {
+          "ipa": "/nɔɹn.iː.lɛʃ/",
+          "meaning": "toddler, walking-young",
+          "files": {
+            "child": "norn/child/norni-lesh.ogg",
+            "adult": "norn/adult/norni-lesh.ogg",
+            "elder": "norn/elder/norni-lesh.ogg"
+          }
+        },
+        "norni-shen": {
+          "ipa": "/nɔɹn.iː.ʃɛn/",
+          "meaning": "child learning to speak",
+          "files": {
+            "child": "norn/child/norni-shen.ogg",
+            "adult": "norn/adult/norni-shen.ogg",
+            "elder": "norn/elder/norni-shen.ogg"
+          }
+        },
+        "norn-veshla": {
+          "ipa": "/nɔɹn.vɛʃ.lɑ/",
+          "meaning": "adolescent, growing-norn",
+          "files": {
+            "child": "norn/child/norn-veshla.ogg",
+            "adult": "norn/adult/norn-veshla.ogg",
+            "elder": "norn/elder/norn-veshla.ogg"
+          }
+        },
+        "norn-kenna": {
+          "ipa": "/nɔɹn.kɛn.nɑ/",
+          "meaning": "adult, known-norn",
+          "files": {
+            "child": "norn/child/norn-kenna.ogg",
+            "adult": "norn/adult/norn-kenna.ogg",
+            "elder": "norn/elder/norn-kenna.ogg"
+          }
+        },
+        "norn-athel": {
+          "ipa": "/nɔɹn.ɑ.θɛl/",
+          "meaning": "teacher-age, middle years",
+          "files": {
+            "child": "norn/child/norn-athel.ogg",
+            "adult": "norn/adult/norn-athel.ogg",
+            "elder": "norn/elder/norn-athel.ogg"
+          }
+        },
+        "norn-orn": {
+          "ipa": "/nɔɹn.ɔɹn/",
+          "meaning": "elder, memory-carrier",
+          "files": {
+            "child": "norn/child/norn-orn.ogg",
+            "adult": "norn/adult/norn-orn.ogg",
+            "elder": "norn/elder/norn-orn.ogg"
+          }
+        },
+        "keth-norni": {
+          "ipa": "/kɛθ.nɔɹn.iː/",
+          "meaning": "unborn, before-child",
+          "files": {
+            "child": "norn/child/keth-norni.ogg",
+            "adult": "norn/adult/keth-norni.ogg",
+            "elder": "norn/elder/keth-norni.ogg"
+          }
+        },
+        "ornsha-ain": {
+          "ipa": "/ɔɹn.ʃɑ.aɪn/",
+          "meaning": "generation, one memory-line",
+          "files": {
+            "child": "norn/child/ornsha-ain.ogg",
+            "adult": "norn/adult/ornsha-ain.ogg",
+            "elder": "norn/elder/ornsha-ain.ogg"
+          }
+        },
+        "ornsha-vel-ain": {
+          "ipa": "/ɔɹn.ʃɑ.vɛl.aɪn/",
+          "meaning": "lineage, one gift-line",
+          "files": {
+            "child": "norn/child/ornsha-vel-ain.ogg",
+            "adult": "norn/adult/ornsha-vel-ain.ogg",
+            "elder": "norn/elder/ornsha-vel-ain.ogg"
+          }
+        },
+        "veshla-keth": {
+          "ipa": "/vɛʃ.lɑ.kɛθ/",
+          "meaning": "maturity, growth-fulfilled",
+          "files": {
+            "child": "norn/child/veshla-keth.ogg",
+            "adult": "norn/adult/veshla-keth.ogg",
+            "elder": "norn/elder/veshla-keth.ogg"
+          }
+        },
+        "norni-ven": {
+          "ipa": "/nɔɹn.iː.vɛn/",
+          "meaning": "twins, two-young",
+          "files": {
+            "child": "norn/child/norni-ven.ogg",
+            "adult": "norn/adult/norni-ven.ogg",
+            "elder": "norn/elder/norni-ven.ogg"
+          }
+        },
+        "ornsha-keth-oth": {
+          "ipa": "/ɔɹn.ʃɑ.kɛθ.ɔθ/",
+          "meaning": "ancestry, deep-line",
+          "files": {
+            "child": "norn/child/ornsha-keth-oth.ogg",
+            "adult": "norn/adult/ornsha-keth-oth.ogg",
+            "elder": "norn/elder/ornsha-keth-oth.ogg"
+          }
+        }
+      }
+    }
+  },
+  "generated_at": "2026-03-22T07:45:16Z",
+  "total_clips": 1458
+}

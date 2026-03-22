@@ -7,14 +7,6 @@
 (function () {
   'use strict';
 
-  // ── Dev / CI bypass ───────────────────────────────────────────
-  // Allow ?skip_auth=1 on localhost / 127.0.0.1 for automated playtests.
-  var loc = window.location;
-  var isLocal = loc.hostname === 'localhost' || loc.hostname === '127.0.0.1';
-  if (isLocal && new URLSearchParams(loc.search).get('skip_auth') === '1') {
-    return; // no gate on local dev with explicit bypass
-  }
-
   // ── Styles ──────────────────────────────────────────────────
 
   var style = document.createElement('style');
