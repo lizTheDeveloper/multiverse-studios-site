@@ -64,12 +64,12 @@
     return json;
   }
 
-  async function register(username, password, token) {
+  async function register(username, password, token, email) {
     const res = await fetch('/api/auth/register', {
       method: 'POST',
       credentials: 'same-origin',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ username, password, token }),
+      body: JSON.stringify({ username, password, token, email }),
     });
     const json = await res.json();
     if (!res.ok) {
@@ -429,11 +429,18 @@
           <label for="mx-auth-confirm">Confirm Password</label>
           <input type="password" id="mx-auth-confirm" autocomplete="new-password">
         </div>
+        <div class="mx-auth-field" id="mx-auth-email-field" style="display:none;">
+          <label for="mx-auth-email">Email (required)</label>
+          <input type="email" id="mx-auth-email" placeholder="you@example.com" autocomplete="email">
+        </div>
         <div class="mx-auth-field" id="mx-auth-token-field" style="display:none;">
           <label for="mx-auth-token">Invite Token</label>
           <input type="text" id="mx-auth-token" placeholder="Beta access token" autocomplete="off">
         </div>
         <button id="mx-auth-submit">Sign In</button>
+        <div id="mx-auth-forgot" style="display:none;">
+          <a href="javascript:void(0)" id="mx-auth-forgot-link" style="font-size:11px;color:var(--dust,#8a8694);display:block;text-align:center;margin-top:10px;">Forgot password?</a>
+        </div>
       </div>
     </div>
   `;
@@ -452,9 +459,13 @@
   const elPassword = document.getElementById('mx-auth-password');
   const elConfirm = document.getElementById('mx-auth-confirm');
   const elConfirmField = document.getElementById('mx-auth-confirm-field');
+  const elEmail = document.getElementById('mx-auth-email');
+  const elEmailField = document.getElementById('mx-auth-email-field');
   const elToken = document.getElementById('mx-auth-token');
   const elTokenField = document.getElementById('mx-auth-token-field');
   const elSubmit = document.getElementById('mx-auth-submit');
+  const elForgot = document.getElementById('mx-auth-forgot');
+  const elForgotLink = document.getElementById('mx-auth-forgot-link');
   const tabs = overlay.querySelectorAll('.mx-auth-tab');
 
   let activeTab = 'login';
@@ -465,6 +476,7 @@
     elUsername.value = '';
     elPassword.value = '';
     elConfirm.value = '';
+    elEmail.value = '';
     elToken.value = '';
     elUsername.focus();
   }
@@ -490,8 +502,10 @@
       t.classList.toggle('active', t.dataset.tab === tab);
     });
     elConfirmField.style.display = tab === 'register' ? '' : 'none';
+    elEmailField.style.display = tab === 'register' ? '' : 'none';
     // Token field is hidden by default — shown only if server requires it
     elTokenField.style.display = 'none';
+    elForgot.style.display = tab === 'login' ? '' : 'none';
     elSubmit.textContent = tab === 'login' ? 'Sign In' : 'Create Account';
     elPassword.autocomplete = tab === 'login' ? 'current-password' : 'new-password';
     elError.classList.remove('visible');
@@ -531,6 +545,11 @@
         showError('Password must be at least 8 characters.');
         return;
       }
+      var email = elEmail.value.trim();
+      if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        showError('A valid email address is required to create an account.');
+        return;
+      }
       var token = elToken.value.trim() || undefined;
     }
 
@@ -541,7 +560,7 @@
       if (activeTab === 'login') {
         await login(username, password);
       } else {
-        await register(username, password, token);
+        await register(username, password, token, email);
       }
       hideModal();
       showToast('Signed in as ' + escapeHtml(session.displayName || session.userId));
@@ -566,6 +585,40 @@
   });
   elConfirm.addEventListener('keydown', function(e) {
     if (e.key === 'Enter') handleSubmit();
+  });
+
+  // ── Forgot Password Flow ────────────────────────────────────
+
+  async function requestPasswordReset(username) {
+    const res = await fetch('/api/auth/request-reset', {
+      method: 'POST',
+      credentials: 'same-origin',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ username }),
+    });
+    const json = await res.json();
+    if (!res.ok) {
+      throw new Error(json.message || json.error || ('HTTP ' + res.status));
+    }
+    return json;
+  }
+
+  elForgotLink.addEventListener('click', async function() {
+    var username = elUsername.value.trim();
+    if (!username) {
+      showError('Enter your username first, then click "Forgot password?"');
+      return;
+    }
+    if (username.startsWith('@')) {
+      username = username.split(':')[0].substring(1);
+    }
+    elError.classList.remove('visible');
+    try {
+      await requestPasswordReset(username);
+      showToast('Password reset request submitted. Check your email or contact an admin.');
+    } catch (err) {
+      showError(err.message || 'Failed to request password reset.');
+    }
   });
 
   // ── Nav Bar Integration ────────────────────────────────────
