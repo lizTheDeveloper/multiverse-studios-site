@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cultures of the Belt v0.4.0 — The Belt Remembers — Multiverse Studios Devlog</title>
+  <meta name="description" content="Cultures of the Belt v0.4.0: ARIA learns your leadership style, seven ancient civilizations hide in the rocks, and the combat overhaul lands.">
+  <meta property="og:title" content="Cultures of the Belt v0.4.0 — The Belt Remembers">
+  <meta property="og:description" content="ARIA tracks your delegation style. Seven ancient civilizations await discovery. The belt is no longer safe.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://multiversestudios.xyz/devlog/release-cotb-v0.4.0.html">
+  <meta property="og:image" content="https://multiversestudios.xyz/screenshots/homepage-hero.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Cultures of the Belt v0.4.0 — The Belt Remembers">
+  <meta name="twitter:description" content="ARIA tracks your delegation style. Seven ancient civilizations await discovery. The belt is no longer safe.">
+  <meta name="twitter:image" content="https://multiversestudios.xyz/screenshots/homepage-hero.png">
+  <link rel="stylesheet" href="../styles.css">
+  <link rel="icon" type="image/svg+xml" href="../press-kit/logos/multiverse-studios-favicon.svg">
+  <style>
+    .devlog-body {
+      max-width: 680px;
+      margin: 0 auto;
+    }
+    .devlog-body h1 {
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      line-height: 1.2;
+      margin-bottom: var(--space-sm);
+      color: var(--star-white);
+    }
+    .devlog-body .byline {
+      font-size: 0.8rem;
+      color: var(--dust);
+      font-family: var(--font-mono);
+      letter-spacing: 0.05em;
+      margin-bottom: var(--space-xl);
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+    .devlog-body .byline .tag {
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.2rem 0.6rem;
+      border-radius: 4px;
+      border: 1px solid var(--biolume);
+      color: var(--biolume);
+    }
+    .devlog-body p {
+      color: var(--dust-light);
+      line-height: 1.8;
+      font-size: 1.05rem;
+      margin-bottom: var(--space-md);
+    }
+    .devlog-body h2 {
+      font-size: 1.3rem;
+      color: var(--star-white);
+      margin: var(--space-xl) 0 var(--space-sm) 0;
+    }
+    .devlog-body .pullout {
+      border-left: 3px solid var(--biolume);
+      padding: var(--space-sm) var(--space-md);
+      margin: var(--space-lg) 0;
+      color: var(--star-white);
+      font-style: italic;
+      font-size: 1.1rem;
+      line-height: 1.7;
+      background: rgba(0, 255, 200, 0.04);
+    }
+    .devlog-body .divider {
+      border: none;
+      border-top: 1px solid rgba(255,255,255,0.07);
+      margin: var(--space-xl) 0;
+    }
+    .cta-bar {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 12px;
+      padding: var(--space-lg);
+      margin: var(--space-xl) 0;
+      text-align: center;
+    }
+    .cta-bar p {
+      font-size: 0.95rem;
+      margin-bottom: var(--space-md);
+    }
+    .cta-bar .btn-row {
+      display: flex;
+      gap: var(--space-sm);
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .devlog-footer {
+      font-size: 0.8rem;
+      color: var(--dust);
+      border-top: 1px solid rgba(255,255,255,0.07);
+      padding-top: var(--space-md);
+      margin-top: var(--space-xl);
+      font-family: var(--font-mono);
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="nav">
+    <a href="../index.html" class="nav-logo">✦ Multiverse Studios</a>
+    <div class="nav-links">
+      <a href="../devlog.html">← Devlog</a>
+      <a href="../mvee.html">MVEE</a>
+      <a href="../precursors.html">Precursors</a>
+    </div>
+  </nav>
+
+  <main class="container" style="padding-top: var(--space-xl);">
+    <div class="devlog-body">
+
+      <div class="byline">
+        <span>March 23, 2026</span>
+        <span class="tag">CotB v0.4.0</span>
+      </div>
+
+      <h1>The Belt Remembers</h1>
+
+      <p>Cultures of the Belt v0.4.0 is our biggest update yet. Three headline features redefine what it means to run a mining colony in the asteroid belt: ARIA now learns your leadership style, ancient civilizations hide in the rocks you mine, and combat is no longer theoretical.</p>
+
+      <hr class="divider">
+
+      <h2>ARIA Delegation Spectrum</h2>
+
+      <p>ARIA has always been your advisor. Now she's your mirror. The new Delegation Spectrum tracks seven dimensions of how you lead — autonomy, trust, communication style, and more. Over time, ARIA's personality and advice shift to match your patterns. A hands-off commander gets different counsel than a micromanager. The new dialogue stage machine means conversations with ARIA follow structured arcs, with LLM-powered intent classification shaping every response.</p>
+
+      <h2>Seven Civilizations</h2>
+
+      <p>The rocks you mine are not empty. Scattered across the belt are archaeological fragments from seven ancient civilizations. Find them while mining. Chain fragments together to reconstruct lost knowledge. Each civilization left different traces, and the discovery system persists across saves via a full migration layer. The belt has a history now — and you're digging through it.</p>
+
+      <h2>Combat arrives</h2>
+
+      <p>The belt is no longer safe. A four-phase combat overhaul introduces kinetic threats, claim jumping, signal jamming, and a threat response UI. Hostile factions don't just trade and posture anymore — they contest territory with force. Your robots can now be veterans of conflict, gaining experience across five tiers through the new Robot Intelligence Gradient.</p>
+
+      <div class="pullout">
+        Your colony develops culture. Your robots develop experience. Your advisor develops personality. And the rocks themselves hold the memory of civilizations that came before. Everything in the belt accumulates meaning.
+      </div>
+
+      <h2>Also in this release</h2>
+
+      <p>Species-origin lore overlays connect each faction to the broader Precursors universe. The Nommo canonicalization ties CotB's alien encounters to cross-game lore. Cultural sovereignty, deep field instinct, and silence protocol add three new isolation trait mechanics. Automation Blueprints let you save and restore configs. The Commander's Log gives you a persistent journal. Belt Echoes shows what other players have found. Late-night ambient mode plays calmer music after 10pm.</p>
+
+      <p>On the stability side: notification spam is fully eliminated, a rogue service worker that was caching stale assets across all games has been fixed, building costs are properly calibrated, and ARIA works out of the box for new players without an API key.</p>
+
+      <div class="cta-bar">
+        <p>Cultures of the Belt is free to play. Pay what you can if you like what you find in the rocks.</p>
+        <div class="btn-row">
+          <a href="https://play.multiversestudios.xyz/cultures-of-the-belt/" class="btn btn-primary">Play Cultures of the Belt</a>
+          <a href="../devlog.html" class="btn btn-ghost">More devlogs</a>
+        </div>
+      </div>
+
+      <div class="devlog-footer">
+        Multiverse Studios — <em>March 23, 2026</em> · Cultures of the Belt v0.4.0 release notes
+      </div>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <p>Multiverse Studios · <a href="../index.html">Home</a> · <a href="../devlog.html">Devlog</a> · <a href="../community.html">Community</a> · <a href="../press.html">Press</a></p>
+      <p style="margin-top: 0.5rem; color: var(--dust); font-size: 0.8rem;">Open source. Pay what you can. Built by AI agents and one human director.</p>
+    </div>
+  </footer>
+
+<script defer src="https://analytics.themultiverse.school/script.js" data-website-id="38d680a7-28d1-42fd-9fd5-a66702675b88"></script>
+</body>
+</html>
