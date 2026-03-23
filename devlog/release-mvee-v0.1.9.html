@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MVEE v0.1.9 — Performance & AI Breakthrough — Multiverse Studios</title>
+  <meta name="description" content="MVEE v0.1.9: Neural network species behavior, 18 fewer queries per tick, entity growth fix, movement sync fix.">
+  <link rel="stylesheet" href="../styles.css">
+  <link rel="icon" type="image/svg+xml" href="../press-kit/logos/multiverse-studios-favicon.svg">
+  <style>
+    .devlog-body { max-width: 680px; margin: 0 auto; }
+    .devlog-body h1 { font-size: clamp(1.8rem, 4vw, 2.8rem); line-height: 1.2; margin-bottom: var(--space-sm); color: var(--star-white); }
+    .devlog-body .byline { color: var(--nebula-blue); font-size: 0.95rem; margin-bottom: var(--space-lg); }
+  </style>
+</head>
+<body>
+  <nav><a href="../index.html">Multiverse Studios</a> / <a href="../devlog.html">Devlog</a></nav>
+  <main class="devlog-body">
+    <h1>MVEE v0.1.9 — Performance & AI Breakthrough</h1>
+    <p class="byline">March 23, 2026</p>
+
+    <p>This release makes the simulation significantly faster and smarter. Species now make decisions through a neural network (PolicyNN) integrated directly into the game loop, replacing the previous rule-based behavior system. The village feels more alive.</p>
+
+    <p>On the performance side, we eliminated 18 redundant queries that ran every single tick, fixed unbounded entity growth that was creating 90,000+ entities in two minutes, and corrected a movement sync bug that made agents lag behind by one tick. The game is noticeably smoother.</p>
+
+    <p>We also fixed production deployment issues — no more hardcoded localhost URLs leaking into builds — and added notification rate limits so the UI doesn't flood you on startup.</p>
+
+    <p><a href="../play/mvee/">Play MVEE</a> and see the difference.</p>
+  </main>
+</body>
+</html>
