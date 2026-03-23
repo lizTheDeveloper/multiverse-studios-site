@@ -85,28 +85,28 @@ define(['./workbox-4367cb6e'], (function (workbox) { 'use strict';
     "revision": "bac9ba31ffb6c213220bdde3f42d386a"
   }, {
     "url": "norn-test.html",
-    "revision": "b2459750230312f3b8ee49b6add27269"
+    "revision": "8506cf323656b9998310739f1ff73452"
   }, {
     "url": "norn-test-ui.html",
-    "revision": "33155e7b225269b24a845e23e7037d04"
+    "revision": "5664a0c3f9b172789da718c87e796b2e"
   }, {
     "url": "norn-test-lore.html",
-    "revision": "92eb3a36acd207ae55a9c83ce20c640c"
+    "revision": "6de31b9bf5137961c9e2a07df44e13a8"
   }, {
     "url": "norn-test-gameloop.html",
-    "revision": "af6fcbd7e938e5777b895328163407b7"
+    "revision": "309a4ce1190c25f6dfea8a397f6e07a1"
   }, {
     "url": "norn-test-breeding.html",
-    "revision": "02b7448a326deb42f808aef96ab5c40d"
+    "revision": "13bfddc590d14b13ed9249be016d4b15"
   }, {
     "url": "norn-test-biochem.html",
-    "revision": "b8597523ea2d461c73df13855d8f4625"
+    "revision": "c03d650ddfff568b9385739ac673e3dd"
   }, {
     "url": "matrix-auth.js",
     "revision": "9ad23313ed4b2605e2b5bf338c1e45ab"
   }, {
     "url": "index.html",
-    "revision": "94f05f305450b2a5c761f6b326eb10da"
+    "revision": "e19f5748da59847fd5b91f465aed33f4"
   }, {
     "url": "icon.svg",
     "revision": "457261aa1e8a86cef3c76ffc0990c7cf"
@@ -6921,37 +6921,37 @@ define(['./workbox-4367cb6e'], (function (workbox) { 'use strict';
     "url": "assets/vendor-phaser-CaWnzXme.js",
     "revision": null
   }, {
-    "url": "assets/norn-test-ui-BV5su40j.js",
+    "url": "assets/norn-test-ui-Uu_1y6Iu.js",
     "revision": null
   }, {
-    "url": "assets/norn-test-lore-BpXOLaC2.js",
+    "url": "assets/norn-test-lore-CsJHHwbr.js",
     "revision": null
   }, {
-    "url": "assets/norn-test-gameloop-BgZjkLH7.js",
+    "url": "assets/norn-test-gameloop-D3WbKSIP.js",
     "revision": null
   }, {
-    "url": "assets/norn-test-breeding-C9TeOWcD.js",
+    "url": "assets/norn-test-breeding-C7Lb0-u2.js",
     "revision": null
   }, {
-    "url": "assets/norn-test-biochem-DXsnRRQ9.js",
+    "url": "assets/norn-test-biochem-mj9VqdaB.js",
     "revision": null
   }, {
-    "url": "assets/norn-test-CVjtc4vb.js",
+    "url": "assets/norn-test-1_TItKMj.js",
     "revision": null
   }, {
-    "url": "assets/main-C9G-Lcti.js",
+    "url": "assets/main-DAl4nvRo.js",
     "revision": null
   }, {
     "url": "assets/diagnostic-DnOxNkau.js",
     "revision": null
   }, {
-    "url": "assets/WorldGenerator-DnRreasF.js",
+    "url": "assets/WorldGenerator-CqSkb893.js",
     "revision": null
   }, {
-    "url": "assets/World-BrViYHQF.js",
+    "url": "assets/World-CWz6TZXf.js",
     "revision": null
   }, {
-    "url": "assets/WaveUnlockSystem-C6UBXLpQ.js",
+    "url": "assets/WaveUnlockSystem-HGBFBu2J.js",
     "revision": null
   }, {
     "url": "assets/SpriteState-tqplp9c6.js",
@@ -6960,34 +6960,34 @@ define(['./workbox-4367cb6e'], (function (workbox) { 'use strict';
     "url": "assets/SimulationScheduler-DZrfbKS7.js",
     "revision": null
   }, {
-    "url": "assets/PerfTelemetry-B1bwD18H.js",
+    "url": "assets/PerfTelemetry-D8v7OcfR.js",
     "revision": null
   }, {
-    "url": "assets/Logger-Cpm2b7ps.js",
+    "url": "assets/Logger-C3mDa8zF.js",
     "revision": null
   }, {
     "url": "assets/LifeStage-069__A6x.js",
     "revision": null
   }, {
-    "url": "assets/LanguageSystem-D0hEagyH.js",
+    "url": "assets/LanguageSystem-BP9-7FxU.js",
     "revision": null
   }, {
-    "url": "assets/KeyboardControls-CpHCClYU.js",
+    "url": "assets/KeyboardControls-DVNOGywo.js",
     "revision": null
   }, {
-    "url": "assets/InventionRegistry-CmKwifur.js",
+    "url": "assets/InventionRegistry-DJwn899f.js",
     "revision": null
   }, {
-    "url": "assets/GameScene-CnyApPPl.js",
+    "url": "assets/GameScene-C4GQA7gB.js",
     "revision": null
   }, {
-    "url": "assets/DevMode-BboY5-9J.js",
+    "url": "assets/DevMode-DnE_-Nqt.js",
     "revision": null
   }, {
-    "url": "assets/ChemicalSet-LwNgtaF4.js",
+    "url": "assets/ChemicalSet-C-zgvEZS.js",
     "revision": null
   }, {
-    "url": "assets/BiochemistrySystem-BiCBjl-R.js",
+    "url": "assets/BiochemistrySystem-Co0wLTMR.js",
     "revision": null
   }, {
     "url": "icon-192x192.png",
@@ -7011,23 +7011,14 @@ define(['./workbox-4367cb6e'], (function (workbox) { 'use strict';
     "url": "sprites/adzefire_boredom.png",
     "revision": "bc3091ace803b542f48980f701511b1e"
   }, {
-    "url": "sprites/adzefire_eat.png",
-    "revision": "54e645f4c92d551ac50c659a67cc063b"
-  }, {
     "url": "sprites/adzefire_fear.png",
     "revision": "9568fe936eb9fb72d69cfe4198db0a04"
-  }, {
-    "url": "sprites/adzefire_happy.png",
-    "revision": "1b0f3646f66b97048642d94fe5971fea"
-  }, {
-    "url": "sprites/adzefire_idle.png",
-    "revision": "3c68e4d31f9e77f3b407b70d7b7b8e4e"
   }, {
     "url": "sprites/adzefire_pain.png",
     "revision": "2813c294fee5ff32d4f48630e835c77e"
   }, {
-    "url": "sprites/adzefire_sad.png",
-    "revision": "0b775248240ca4c4fd1051eaa8b05dd4"
+    "url": "sprites/adzefire_eat.png",
+    "revision": "54e645f4c92d551ac50c659a67cc063b"
   }, {
     "url": "sprites/adzefire_sleep.png",
     "revision": "aa0e28f96fe4c1c9a6e04c0a06e79a56"
@@ -7035,32 +7026,38 @@ define(['./workbox-4367cb6e'], (function (workbox) { 'use strict';
     "url": "sprites/adzefire_walk1.png",
     "revision": "0c92430ca1b115de9c9f9530fd1fba78"
   }, {
+    "url": "sprites/adzefire_idle.png",
+    "revision": "3c68e4d31f9e77f3b407b70d7b7b8e4e"
+  }, {
+    "url": "sprites/adzefire_sad.png",
+    "revision": "0b775248240ca4c4fd1051eaa8b05dd4"
+  }, {
     "url": "sprites/adzefire_walk2.png",
     "revision": "49117f18705f9380742ff99b7e19b90d"
   }, {
-    "url": "sprites/aerial_root_rope.png",
-    "revision": "703bec05326975efd21e27d052a0e19e"
-  }, {
-    "url": "sprites/ahuizari_angry.png",
-    "revision": "a81ec79680d2f3058937b4b59beb6b4b"
-  }, {
-    "url": "sprites/ahuizari_baby.png",
-    "revision": "23957d5ee44aad881ee6bf5e33f39869"
-  }, {
-    "url": "sprites/ahuizari_boredom.png",
-    "revision": "5edebbe564419bfb95cb633da040494a"
+    "url": "sprites/adzefire_happy.png",
+    "revision": "1b0f3646f66b97048642d94fe5971fea"
   }, {
     "url": "sprites/ahuizari_eat.png",
     "revision": "c43786f5ebf16c9b46cbfb04c1bb8bc4"
   }, {
-    "url": "sprites/ahuizari_fear.png",
-    "revision": "ba0f97694bfe522abb574e0d08ae89a2"
+    "url": "sprites/aerial_root_rope.png",
+    "revision": "703bec05326975efd21e27d052a0e19e"
+  }, {
+    "url": "sprites/ahuizari_boredom.png",
+    "revision": "5edebbe564419bfb95cb633da040494a"
+  }, {
+    "url": "sprites/ahuizari_angry.png",
+    "revision": "a81ec79680d2f3058937b4b59beb6b4b"
+  }, {
+    "url": "sprites/ahuizari_idle.png",
+    "revision": "66170e71c2567b5553afba3a8f3c1e0c"
   }, {
     "url": "sprites/ahuizari_happy.png",
     "revision": "c7d16fb0f5e6b060620b7112867dd57d"
   }, {
-    "url": "sprites/ahuizari_idle.png",
-    "revision": "66170e71c2567b5553afba3a8f3c1e0c"
+    "url": "sprites/ahuizari_fear.png",
+    "revision": "ba0f97694bfe522abb574e0d08ae89a2"
   }, {
     "url": "sprites/ahuizari_pain.png",
     "revision": "ec159626afa578301745f326bd06c413"
@@ -7068,17 +7065,11 @@ define(['./workbox-4367cb6e'], (function (workbox) { 'use strict';
     "url": "sprites/ahuizari_sad.png",
     "revision": "6cbdc53ae13ed4d92e34572f2d039153"
   }, {
-    "url": "sprites/ahuizari_sleep.png",
-    "revision": "28c243e50324388f6a7dbb0103ee0d70"
+    "url": "sprites/ahuizari_baby.png",
+    "revision": "23957d5ee44aad881ee6bf5e33f39869"
   }, {
     "url": "sprites/ahuizari_walk1.png",
     "revision": "923ade9735323a0a9135e0bfa9b596c3"
-  }, {
-    "url": "sprites/ahuizari_walk2.png",
-    "revision": "f54fcbf8ef1921a8bf7e71f7914a92d1"
-  }, {
-    "url": "sprites/alfar_angry.png",
-    "revision": "e1ddd0f3f6a4e132d5dbce88ad54c2b5"
   }, {
     "url": "sprites/alfar_baby.png",
     "revision": "c60cd1842c476855e2bdde4ff54640c8"
@@ -7086,20 +7077,23 @@ define(['./workbox-4367cb6e'], (function (workbox) { 'use strict';
     "url": "sprites/alfar_boredom.png",
     "revision": "3d4e5b97eaf4594492a2e44ffdbdf8cb"
   }, {
-    "url": "sprites/alfar_eat.png",
-    "revision": "34c42026c85ebbf0c19febfcdf9aa4c3"
-  }, {
-    "url": "sprites/alfar_fear.png",
-    "revision": "0d25f982919c7a82b75924ac78d2bab0"
+    "url": "sprites/alfar_angry.png",
+    "revision": "e1ddd0f3f6a4e132d5dbce88ad54c2b5"
   }, {
     "url": "sprites/alfar_flower_crown.png",
     "revision": "502dec31d7d6fffdd431df5a7fe13dd6"
   }, {
-    "url": "sprites/alfar_happy.png",
-    "revision": "c2880de82bba0c1ec6676cfc0d8df705"
+    "url": "sprites/alfar_fear.png",
+    "revision": "0d25f982919c7a82b75924ac78d2bab0"
   }, {
-    "url": "sprites/alfar_idle.png",
-    "revision": "64d2bfb1b1efd20baf2680fbe726c6a5"
+    "url": "sprites/alfar_eat.png",
+    "revision": "34c42026c85ebbf0c19febfcdf9aa4c3"
+  }, {
+    "url": "sprites/ahuizari_walk2.png",
+    "revision": "f54fcbf8ef1921a8bf7e71f7914a92d1"
+  }, {
+    "url": "sprites/alfar_sleep.png",
+    "revision": "25e23f6e933e6f24089593959be10b8a"
   }, {
     "url": "sprites/alfar_loom.png",
     "revision": "612f073c37ccda914320d8732d717003"
@@ -7107,29 +7101,35 @@ define(['./workbox-4367cb6e'], (function (workbox) { 'use strict';
     "url": "sprites/alfar_pain.png",
     "revision": "1d3a6b60e750de69edd3f3f169ac7ba6"
   }, {
-    "url": "sprites/alfar_sad.png",
-    "revision": "11bb23b49959894fe68d6cf04bf9e655"
-  }, {
-    "url": "sprites/alfar_sleep.png",
-    "revision": "25e23f6e933e6f24089593959be10b8a"
-  }, {
     "url": "sprites/alfar_walk1.png",
     "revision": "85f32db19ba3301b82f73f58f0cb5708"
+  }, {
+    "url": "sprites/alfar_sad.png",
+    "revision": "11bb23b49959894fe68d6cf04bf9e655"
   }, {
     "url": "sprites/alfar_walk2.png",
     "revision": "41d8c1be4bc74d6180d7d268eb748681"
   }, {
-    "url": "sprites/amaru_angry.png",
-    "revision": "a0c98848d9b760302846a998709c926c"
+    "url": "sprites/alfar_idle.png",
+    "revision": "64d2bfb1b1efd20baf2680fbe726c6a5"
   }, {
     "url": "sprites/amaru_baby.png",
     "revision": "df1cb1104c0c3f9c10a8ad4d027f3199"
+  }, {
+    "url": "sprites/amaru_angry.png",
+    "revision": "a0c98848d9b760302846a998709c926c"
   }, {
     "url": "sprites/amaru_boredom.png",
     "revision": "9c28b57cf9a1737e559af49fb78e488b"
   }, {
     "url": "sprites/amaru_eat.png",
     "revision": "1da5ec8a1cd3d236586c5067e3d1b366"
+  }, {
+    "url": "sprites/alfar_happy.png",
+    "revision": "c2880de82bba0c1ec6676cfc0d8df705"
+  }, {
+    "url": "sprites/ahuizari_sleep.png",
+    "revision": "28c243e50324388f6a7dbb0103ee0d70"
   }, {
     "url": "sprites/amaru_fear.png",
     "revision": "07309d74d75a77c904db29a1d2633943"
@@ -7146,14 +7146,14 @@ define(['./workbox-4367cb6e'], (function (workbox) { 'use strict';
     "url": "sprites/amaru_pain.png",
     "revision": "6c3c03b965c30f5c6d5808ab9786747f"
   }, {
+    "url": "sprites/amaru_walk1.png",
+    "revision": "aa27dfba26f32f92b3c20201e9b0c527"
+  }, {
     "url": "sprites/amaru_sad.png",
     "revision": "f9e4bd4967db68fdea25a1bc955166ec"
   }, {
     "url": "sprites/amaru_sleep.png",
     "revision": "977ef475cd0e6776311ea5871c53630a"
-  }, {
-    "url": "sprites/amaru_walk1.png",
-    "revision": "aa27dfba26f32f92b3c20201e9b0c527"
   }, {
     "url": "sprites/amaru_walk1_test.png",
     "revision": "728d37c83d8d2529d6ae633499b47980"
@@ -7164,20 +7164,17 @@ define(['./workbox-4367cb6e'], (function (workbox) { 'use strict';
     "url": "sprites/amber_resin.png",
     "revision": "7f816898e0b1d8acff4090d7635538da"
   }, {
-    "url": "sprites/anansiweb_angry.png",
-    "revision": "abc1bc2253752238b652dd118524c7ca"
+    "url": "sprites/anansiweb_boredom.png",
+    "revision": "3a56df7026774532c205cda1dc25def2"
   }, {
     "url": "sprites/anansiweb_baby.png",
     "revision": "11367a07f1b0f2dfff0889cc60d90a2d"
   }, {
-    "url": "sprites/anansiweb_boredom.png",
-    "revision": "3a56df7026774532c205cda1dc25def2"
-  }, {
     "url": "sprites/anansiweb_eat.png",
     "revision": "84a98f36c59347f4df75ee96dd0ddb06"
   }, {
-    "url": "sprites/anansiweb_fear.png",
-    "revision": "bff129f9e10d6bf252c3f498dc14a8c7"
+    "url": "sprites/anansiweb_angry.png",
+    "revision": "abc1bc2253752238b652dd118524c7ca"
   }, {
     "url": "sprites/anansiweb_happy.png",
     "revision": "5225c9b021d332723f45395f476a7697"
@@ -7188,38 +7185,41 @@ define(['./workbox-4367cb6e'], (function (workbox) { 'use strict';
     "url": "sprites/anansiweb_pain.png",
     "revision": "53843b7a90a7bd8904ae208822c568e0"
   }, {
-    "url": "sprites/anansiweb_sad.png",
-    "revision": "2a336b40894f98ee08a9227f5cf3fece"
-  }, {
-    "url": "sprites/anansiweb_sleep.png",
-    "revision": "43a7322091ea80b9abdadee6d09aeb76"
-  }, {
-    "url": "sprites/anansiweb_walk1.png",
-    "revision": "81d0fbe8e32eaa20751f6f569f84f786"
-  }, {
-    "url": "sprites/anansiweb_walk2.png",
-    "revision": "7518b580934ee51eff74b85e85c31bf5"
+    "url": "sprites/anansiweb_fear.png",
+    "revision": "bff129f9e10d6bf252c3f498dc14a8c7"
   }, {
     "url": "sprites/antidote_root.png",
     "revision": "f0dd3c48e269c7e2a4a000a583ce918b"
   }, {
+    "url": "sprites/anansiweb_walk1.png",
+    "revision": "81d0fbe8e32eaa20751f6f569f84f786"
+  }, {
+    "url": "sprites/anansiweb_sleep.png",
+    "revision": "43a7322091ea80b9abdadee6d09aeb76"
+  }, {
+    "url": "sprites/anansiweb_walk2.png",
+    "revision": "7518b580934ee51eff74b85e85c31bf5"
+  }, {
     "url": "sprites/anzar_vel_happy.png",
     "revision": "ca88a5504c4e15cd5a6addfbd430966e"
-  }, {
-    "url": "sprites/anzar_vel_idle.png",
-    "revision": "da566cfa8be8b592a6daaaab42095799"
   }, {
     "url": "sprites/artifact_scanner.png",
     "revision": "b045ff492ba38c8a5e55f634402d03ff"
   }, {
-    "url": "sprites/ash_mask.png",
-    "revision": "4ef8f26d30cbd506a706f83230da4be0"
+    "url": "sprites/anansiweb_sad.png",
+    "revision": "2a336b40894f98ee08a9227f5cf3fece"
+  }, {
+    "url": "sprites/anzar_vel_idle.png",
+    "revision": "da566cfa8be8b592a6daaaab42095799"
   }, {
     "url": "sprites/ash_root.png",
     "revision": "0d2d57c5b066804ce3b139fb833d9da5"
   }, {
     "url": "sprites/ash_truffle.png",
     "revision": "c5808af7d336f48a38910c728823e003"
+  }, {
+    "url": "sprites/ash_mask.png",
+    "revision": "4ef8f26d30cbd506a706f83230da4be0"
   }, {
     "url": "sprites/aswali_angry.png",
     "revision": "1d693712049ca5d7ce91f839485e34e5"
@@ -7230,20 +7230,17 @@ define(['./workbox-4367cb6e'], (function (workbox) { 'use strict';
     "url": "sprites/aswali_boredom.png",
     "revision": "e85428e0754d58115e7a01825f2fab00"
   }, {
-    "url": "sprites/aswali_eat.png",
-    "revision": "ff0f82630084658f6ea1edda000ef2d3"
-  }, {
-    "url": "sprites/aswali_fear.png",
-    "revision": "6385d270fd3a8d0c471af175f1603e8f"
-  }, {
     "url": "sprites/aswali_happy.png",
     "revision": "d3c5e5179c94d6be6ac9f023d049bd6a"
+  }, {
+    "url": "sprites/aswali_eat.png",
+    "revision": "ff0f82630084658f6ea1edda000ef2d3"
   }, {
     "url": "sprites/aswali_idle.png",
     "revision": "59806aaeba8d5fd38999c4c144afe19b"
   }, {
-    "url": "sprites/aswali_pain.png",
-    "revision": "76ed7bc2456e489b0e10a1bbe8362c5d"
+    "url": "sprites/aswali_fear.png",
+    "revision": "6385d270fd3a8d0c471af175f1603e8f"
   }, {
     "url": "sprites/aswali_sad.png",
     "revision": "4392006ce285b90263622d7a3bb98d76"
@@ -7251,14 +7248,11 @@ define(['./workbox-4367cb6e'], (function (workbox) { 'use strict';
     "url": "sprites/aswali_sleep.png",
     "revision": "8509d74457326095f305c7221e6fcf9a"
   }, {
+    "url": "sprites/aswali_pain.png",
+    "revision": "76ed7bc2456e489b0e10a1bbe8362c5d"
+  }, {
     "url": "sprites/aswali_walk1.png",
     "revision": "491e3eb250fe33f918fe3ed683fcd5ff"
-  }, {
-    "url": "sprites/aswali_walk2.png",
-    "revision": "5e1086f193e27f631722b8a4193d733b"
-  }, {
-    "url": "sprites/atmosphere_engine.png",
-    "revision": "70ff60ea1ee267b8b16054bdf3f24990"
   }, {
     "url": "sprites/aukivel_angry.png",
     "revision": "b0e6b72181a99036b991fd11888a67f2"
@@ -7275,56 +7269,56 @@ define(['./workbox-4367cb6e'], (function (workbox) { 'use strict';
     "url": "sprites/aukivel_fear.png",
     "revision": "eefd2c3c1b3d8ee15ecb63c1d5ed7220"
   }, {
-    "url": "sprites/aukivel_happy.png",
-    "revision": "b28dd7222867f588323dd28ec3209d3f"
-  }, {
     "url": "sprites/aukivel_idle.png",
     "revision": "ebee99cc3a75111d7cd9dba39e296446"
+  }, {
+    "url": "sprites/aswali_walk2.png",
+    "revision": "5e1086f193e27f631722b8a4193d733b"
   }, {
     "url": "sprites/aukivel_pain.png",
     "revision": "37284de298383012d6e4c9bd96cc0c2d"
   }, {
+    "url": "sprites/aukivel_happy.png",
+    "revision": "b28dd7222867f588323dd28ec3209d3f"
+  }, {
+    "url": "sprites/atmosphere_engine.png",
+    "revision": "70ff60ea1ee267b8b16054bdf3f24990"
+  }, {
     "url": "sprites/aukivel_sad.png",
     "revision": "8b4ca6b9234621afe3995d0722f77968"
-  }, {
-    "url": "sprites/aukivel_sleep.png",
-    "revision": "85514d27b43956c1a2011a37c82f7184"
-  }, {
-    "url": "sprites/aukivel_token.png",
-    "revision": "1462d99686aa2592d03cbb4cae63fecf"
-  }, {
-    "url": "sprites/aukivel_walk1.png",
-    "revision": "63e50584b0af957fd0c7c0bf3f11bcb2"
   }, {
     "url": "sprites/aukivel_walk2.png",
     "revision": "db2068157d2f65493fe01c44b9c9ede3"
   }, {
-    "url": "sprites/badhbhvel_angry.png",
-    "revision": "40706f66346f946909532142abd91b20"
+    "url": "sprites/aukivel_sleep.png",
+    "revision": "85514d27b43956c1a2011a37c82f7184"
   }, {
     "url": "sprites/badhbhvel_baby.png",
     "revision": "d283c2910a41c5fff901f8ba492de293"
   }, {
-    "url": "sprites/badhbhvel_boredom.png",
-    "revision": "4ed6f9a5459928b74de1f3e91d879914"
+    "url": "sprites/aukivel_token.png",
+    "revision": "1462d99686aa2592d03cbb4cae63fecf"
+  }, {
+    "url": "sprites/badhbhvel_angry.png",
+    "revision": "40706f66346f946909532142abd91b20"
   }, {
     "url": "sprites/badhbhvel_eat.png",
     "revision": "7f6434e64b7269cd8cb52283bcb0ee19"
   }, {
-    "url": "sprites/badhbhvel_fear.png",
-    "revision": "ed67cbb5db1b36e4d15655237cee7581"
-  }, {
-    "url": "sprites/badhbhvel_happy.png",
-    "revision": "1796bccf7f8271638480a8ebe28e1686"
+    "url": "sprites/badhbhvel_boredom.png",
+    "revision": "4ed6f9a5459928b74de1f3e91d879914"
   }, {
     "url": "sprites/badhbhvel_idle.png",
     "revision": "07b1886fe40656cf909eb1e0465808e1"
   }, {
+    "url": "sprites/badhbhvel_fear.png",
+    "revision": "ed67cbb5db1b36e4d15655237cee7581"
+  }, {
     "url": "sprites/badhbhvel_pain.png",
     "revision": "1b7edaa7995a83225286490b91e407a0"
   }, {
-    "url": "sprites/badhbhvel_sad.png",
-    "revision": "04bbd15da8a40956aed1271f42d798c7"
+    "url": "sprites/aukivel_walk1.png",
+    "revision": "63e50584b0af957fd0c7c0bf3f11bcb2"
   }, {
     "url": "sprites/badhbhvel_sleep.png",
     "revision": "0650c764a6256ddfb0751d8b4358bacf"
@@ -7332,14 +7326,14 @@ define(['./workbox-4367cb6e'], (function (workbox) { 'use strict';
     "url": "sprites/badhbhvel_walk1.png",
     "revision": "e00ae0a6b0b686168501cb606752782b"
   }, {
-    "url": "sprites/badhbhvel_walk2.png",
-    "revision": "773930f1519e87fdf323c795a3d6b2ca"
-  }, {
-    "url": "sprites/bakuma_angry.png",
-    "revision": "0362cbd87db483ac3609fb8ca0a2a1da"
+    "url": "sprites/badhbhvel_sad.png",
+    "revision": "04bbd15da8a40956aed1271f42d798c7"
   }, {
     "url": "sprites/bakuma_baby.png",
     "revision": "7ad023003d194b47454adf67b9af9f04"
+  }, {
+    "url": "sprites/badhbhvel_walk2.png",
+    "revision": "773930f1519e87fdf323c795a3d6b2ca"
   }, {
     "url": "sprites/bakuma_boredom.png",
     "revision": "1aa32b07040240d32b6616e030a9f874"
@@ -7350,11 +7344,14 @@ define(['./workbox-4367cb6e'], (function (workbox) { 'use strict';
     "url": "sprites/bakuma_fear.png",
     "revision": "6dfa8cfa4ec85d4f9ea781c26ceabeda"
   }, {
-    "url": "sprites/bakuma_happy.png",
-    "revision": "9f2eac07659ff170b637a5f6b10a6c14"
+    "url": "sprites/badhbhvel_happy.png",
+    "revision": "1796bccf7f8271638480a8ebe28e1686"
   }, {
     "url": "sprites/bakuma_idle.png",
     "revision": "650daeaea86f2a5ed6e547b7529e915d"
+  }, {
+    "url": "sprites/bakuma_sleep.png",
+    "revision": "8347c343794d477ecb8c020f85ff85a1"
   }, {
     "url": "sprites/bakuma_pain.png",
     "revision": "c5564a5a3503d62d658c4a18f3284bcf"
@@ -7362,17 +7359,8 @@ define(['./workbox-4367cb6e'], (function (workbox) { 'use strict';
     "url": "sprites/bakuma_sad.png",
     "revision": "75208ab64baf751269821b8322ec8456"
   }, {
-    "url": "sprites/bakuma_sleep.png",
-    "revision": "8347c343794d477ecb8c020f85ff85a1"
-  }, {
-    "url": "sprites/bakuma_walk1.png",
-    "revision": "157c1d235260bce25ecdea6db6d14f57"
-  }, {
     "url": "sprites/bakuma_walk2.png",
     "revision": "c96396547dde5b0ed349a61fe43cdc37"
-  }, {
-    "url": "sprites/bark_tea.png",
-    "revision": "5348ab90c7cf964c6514e12a556ef364"
   }, {
     "url": "sprites/barnacle_rattle.png",
     "revision": "64cd84bcc9e086e9eb9af3fb62c6260b"
@@ -7386,6 +7374,9 @@ define(['./workbox-4367cb6e'], (function (workbox) { 'use strict';
     "url": "sprites/bone_marionette.png",
     "revision": "cb31e0d6f933d4c892bf3e4217afaf60"
   }, {
+    "url": "sprites/bakuma_walk1.png",
+    "revision": "157c1d235260bce25ecdea6db6d14f57"
+  }, {
     "url": "sprites/bone_marrow.png",
     "revision": "f86e2be92f2cf319cfc0254920c1c46e"
   }, {
@@ -7395,26 +7386,23 @@ define(['./workbox-4367cb6e'], (function (workbox) { 'use strict';
     "url": "sprites/bone_salve.png",
     "revision": "f9afea53b6b3f728272557f2d1436e47"
   }, {
-    "url": "sprites/bone_shard.png",
-    "revision": "3241ccb1d334cefbe1dade38e49187e5"
-  }, {
-    "url": "sprites/bone_splint.png",
-    "revision": "bd215b683f33be3b5c83a9b81a9d082c"
+    "url": "sprites/bakuma_happy.png",
+    "revision": "9f2eac07659ff170b637a5f6b10a6c14"
   }, {
     "url": "sprites/bone_whistle.png",
     "revision": "769093cbec21104f15e7311dfd31b9ed"
   }, {
-    "url": "sprites/bouda_kin_happy.png",
-    "revision": "674920c89b35fbaa48d827cd43ccff82"
+    "url": "sprites/bakuma_angry.png",
+    "revision": "0362cbd87db483ac3609fb8ca0a2a1da"
   }, {
-    "url": "sprites/bouda_kin_idle.png",
-    "revision": "d68f7f294d1068157307a6ccab3be0b6"
+    "url": "sprites/bone_shard.png",
+    "revision": "3241ccb1d334cefbe1dade38e49187e5"
   }, {
     "url": "sprites/bouncy_orb.png",
     "revision": "72f47cb1ab641fd72eefe84ebf48b5ab"
   }, {
-    "url": "sprites/brine_jerky.png",
-    "revision": "b7ebefc270929a09098487f5750637d4"
+    "url": "sprites/bouda_kin_idle.png",
+    "revision": "d68f7f294d1068157307a6ccab3be0b6"
   }, {
     "url": "sprites/brine_kelp.png",
     "revision": "a95d21aa16c02f2a04a30bd947fab91b"
@@ -7425,29 +7413,29 @@ define(['./workbox-4367cb6e'], (function (workbox) { 'use strict';
     "url": "sprites/brine_shrimp.png",
     "revision": "69c221c0d85f1071d19487113ac46f67"
   }, {
-    "url": "sprites/bubble_stone.png",
-    "revision": "a00cb8a7c4e9b4be3310cb9f2fe92dcd"
+    "url": "sprites/brine_jerky.png",
+    "revision": "b7ebefc270929a09098487f5750637d4"
   }, {
     "url": "sprites/calibration_lens.png",
     "revision": "61922988e22b8b7145548ffd32462cef"
   }, {
-    "url": "sprites/calming_spore.png",
-    "revision": "b438c5b025385bc9beb3dd413674de99"
+    "url": "sprites/bubble_stone.png",
+    "revision": "a00cb8a7c4e9b4be3310cb9f2fe92dcd"
   }, {
     "url": "sprites/canopy_bloom.png",
     "revision": "2fe18a181287021810a84bdc18d1544c"
   }, {
+    "url": "sprites/bouda_kin_happy.png",
+    "revision": "674920c89b35fbaa48d827cd43ccff82"
+  }, {
     "url": "sprites/canopy_dew.png",
     "revision": "ce86f23381d095d78a14325754f1610e"
   }, {
-    "url": "sprites/canopy_seed_rattle.png",
-    "revision": "34927329a3414572805df5f74c13fb00"
+    "url": "sprites/calming_spore.png",
+    "revision": "b438c5b025385bc9beb3dd413674de99"
   }, {
     "url": "sprites/canopy_vine_swing.png",
     "revision": "ae3bbde49d3a2f5b87ed868ac30d4a4b"
-  }, {
-    "url": "sprites/cave_mushroom.png",
-    "revision": "8d607e4696ac644ce4aa1b0c402dc027"
   }, {
     "url": "sprites/char_dye.png",
     "revision": "532a2035ef82723abd001951dd968985"
@@ -7455,26 +7443,23 @@ define(['./workbox-4367cb6e'], (function (workbox) { 'use strict';
     "url": "sprites/charred_fungus.png",
     "revision": "c5d68e7f0e1a4df0b0bdb28b52b59a36"
   }, {
+    "url": "sprites/cherkhan_eat.png",
+    "revision": "7184b0c5102070ae29c54612df973d63"
+  }, {
     "url": "sprites/cherkhan_angry.png",
     "revision": "d186f946da0e08f850c9226e2d8acfa9"
-  }, {
-    "url": "sprites/cherkhan_baby.png",
-    "revision": "7d0c9d892b3899ae279c0b42722f119d"
   }, {
     "url": "sprites/cherkhan_boredom.png",
     "revision": "005caa0a1be568ff3761fd002474ecae"
   }, {
-    "url": "sprites/cherkhan_eat.png",
-    "revision": "7184b0c5102070ae29c54612df973d63"
-  }, {
     "url": "sprites/cherkhan_fear.png",
     "revision": "f9812156dbfe2b77ba27fe7c3ea3edb1"
   }, {
-    "url": "sprites/cherkhan_happy.png",
-    "revision": "d2b6f3aacc2f7b702a1251461086bbc1"
-  }, {
     "url": "sprites/cherkhan_idle.png",
     "revision": "2159e80c0a5234f8f1cc7466cf47240c"
+  }, {
+    "url": "sprites/bone_splint.png",
+    "revision": "bd215b683f33be3b5c83a9b81a9d082c"
   }, {
     "url": "sprites/cherkhan_pain.png",
     "revision": "bff80b09aaca7d8ec1099ca3205fa8fa"
@@ -7482,23 +7467,20 @@ define(['./workbox-4367cb6e'], (function (workbox) { 'use strict';
     "url": "sprites/cherkhan_sad.png",
     "revision": "2db15ec21fffc2d8b3c66f60205522c6"
   }, {
-    "url": "sprites/cherkhan_sleep.png",
-    "revision": "9c2c85dd4852d1ca99feba5ff43e1fac"
-  }, {
-    "url": "sprites/cherkhan_token.png",
-    "revision": "7da660084b1ea161175334f00c1d4910"
-  }, {
-    "url": "sprites/cherkhan_walk1.png",
-    "revision": "78af4367418d6f5aa9241a9604c394fc"
-  }, {
     "url": "sprites/cherkhan_walk2.png",
     "revision": "d0fb79f7da4dfbe82a8f057f9ac652e0"
   }, {
     "url": "sprites/clarity_sap.png",
     "revision": "7aa3d387b6b1134b1ab3d22f8da4db2f"
   }, {
-    "url": "sprites/coral_necklace.png",
-    "revision": "bfd0ef29ffb93508b6c26dd3eaff106b"
+    "url": "sprites/cherkhan_baby.png",
+    "revision": "7d0c9d892b3899ae279c0b42722f119d"
+  }, {
+    "url": "sprites/cherkhan_sleep.png",
+    "revision": "9c2c85dd4852d1ca99feba5ff43e1fac"
+  }, {
+    "url": "sprites/cherkhan_token.png",
+    "revision": "7da660084b1ea161175334f00c1d4910"
   }, {
     "url": "sprites/creator_pod.png",
     "revision": "747f5c695843a23a77129a2495db79d3"
@@ -7506,26 +7488,23 @@ define(['./workbox-4367cb6e'], (function (workbox) { 'use strict';
     "url": "sprites/crystal_berry.png",
     "revision": "2ee16a145c01fe2a2a6df8bfd84b850c"
   }, {
-    "url": "sprites/crystal_bone_amulet.png",
-    "revision": "5e4ff49121a2810624ed5665986b9ba0"
-  }, {
-    "url": "sprites/crystal_dew.png",
-    "revision": "8f72bc8b01dd3fe2c874fe047031c127"
+    "url": "sprites/coral_necklace.png",
+    "revision": "bfd0ef29ffb93508b6c26dd3eaff106b"
   }, {
     "url": "sprites/crystal_fruit.png",
     "revision": "62ff6cf0bad17102d1f9dbdae6b53441"
   }, {
-    "url": "sprites/crystal_harp_toy.png",
-    "revision": "a9b48b22defded9b3179802b5683033f"
+    "url": "sprites/crystal_dew.png",
+    "revision": "8f72bc8b01dd3fe2c874fe047031c127"
+  }, {
+    "url": "sprites/cherkhan_happy.png",
+    "revision": "d2b6f3aacc2f7b702a1251461086bbc1"
   }, {
     "url": "sprites/crystal_pollen.png",
     "revision": "fcd907b29c58e82c1cb581e3798f63d2"
   }, {
     "url": "sprites/crystal_stag_happy.png",
     "revision": "cb543422e1726fda0dbf09cb9fac22e6"
-  }, {
-    "url": "sprites/crystal_stag_idle.png",
-    "revision": "9148d75a892498d923647e98fa5e67fb"
   }, {
     "url": "sprites/crystal_tincture.png",
     "revision": "8a05582c90152f479018130c68e6b05e"
@@ -7545,38 +7524,44 @@ define(['./workbox-4367cb6e'], (function (workbox) { 'use strict';
     "url": "sprites/curupali_eat.png",
     "revision": "0c1897398ff4bc90dfc16af620783a28"
   }, {
+    "url": "sprites/crystal_harp_toy.png",
+    "revision": "a9b48b22defded9b3179802b5683033f"
+  }, {
     "url": "sprites/curupali_fear.png",
     "revision": "96da4ae0bc54302446cd5a7e0f20c981"
   }, {
     "url": "sprites/curupali_happy.png",
     "revision": "063c30d11c9c8d118f5527168e84e5f9"
   }, {
-    "url": "sprites/curupali_idle.png",
-    "revision": "421ab35aaa6f22854fc3ea9614d9367c"
-  }, {
-    "url": "sprites/curupali_pain.png",
-    "revision": "a8b33e0e5d199d5d85a504390a1e541c"
-  }, {
     "url": "sprites/curupali_sad.png",
     "revision": "ada4b1bc52edcb1ae0f9a3e71d5e3f4f"
+  }, {
+    "url": "sprites/curupali_idle.png",
+    "revision": "421ab35aaa6f22854fc3ea9614d9367c"
   }, {
     "url": "sprites/curupali_sleep.png",
     "revision": "b0c2df534ef0a6299c314b192184f689"
   }, {
+    "url": "sprites/curupali_pain.png",
+    "revision": "a8b33e0e5d199d5d85a504390a1e541c"
+  }, {
+    "url": "sprites/crystal_bone_amulet.png",
+    "revision": "5e4ff49121a2810624ed5665986b9ba0"
+  }, {
     "url": "sprites/curupali_walk1.png",
     "revision": "24c6f7c2fe64cb4a3144801dc5ec85e6"
+  }, {
+    "url": "sprites/cherkhan_walk1.png",
+    "revision": "78af4367418d6f5aa9241a9604c394fc"
   }, {
     "url": "sprites/curupali_walk2.png",
     "revision": "2c7072435acdb5102f6e7fd69c069fb2"
   }, {
-    "url": "sprites/cusidhevel_angry.png",
-    "revision": "079f27a5d856c54691fd1bd540c36197"
-  }, {
-    "url": "sprites/cusidhevel_baby.png",
-    "revision": "6ba5a3ca93617495fca5a03691d1a88f"
-  }, {
     "url": "sprites/cusidhevel_boredom.png",
     "revision": "734439ca19634de0b5171f80503dbde1"
+  }, {
+    "url": "sprites/cusidhevel_angry.png",
+    "revision": "079f27a5d856c54691fd1bd540c36197"
   }, {
     "url": "sprites/cusidhevel_eat.png",
     "revision": "3c2ca55f0efb1de387ffca382ae482f6"
@@ -7584,26 +7569,23 @@ define(['./workbox-4367cb6e'], (function (workbox) { 'use strict';
     "url": "sprites/cusidhevel_fear.png",
     "revision": "60247808618e94c39c5d73268efc02e6"
   }, {
-    "url": "sprites/cusidhevel_happy.png",
-    "revision": "b7133495eef1d02a7194dd3bd482a5cb"
-  }, {
     "url": "sprites/cusidhevel_idle.png",
     "revision": "2a9b7ede1b64c31560c6de90f82965ff"
+  }, {
+    "url": "sprites/cusidhevel_happy.png",
+    "revision": "b7133495eef1d02a7194dd3bd482a5cb"
   }, {
     "url": "sprites/cusidhevel_pain.png",
     "revision": "25d4075794ff2407b9f214621c312509"
   }, {
-    "url": "sprites/cusidhevel_sad.png",
-    "revision": "21985b6ea1b0a718c448410580b1fb8e"
+    "url": "sprites/cusidhevel_baby.png",
+    "revision": "6ba5a3ca93617495fca5a03691d1a88f"
   }, {
     "url": "sprites/cusidhevel_sleep.png",
     "revision": "d157ac95087bcee29f537c8f1c457ae5"
   }, {
-    "url": "sprites/cusidhevel_walk1.png",
-    "revision": "3d23c8133ca84da38fb8fade70188706"
-  }, {
-    "url": "sprites/cusidhevel_walk2.png",
-    "revision": "11ba2bb04b4b8826f4815894d396279f"
+    "url": "sprites/cusidhevel_sad.png",
+    "revision": "21985b6ea1b0a718c448410580b1fb8e"
   }, {
     "url": "sprites/decomposer_tonic.png",
     "revision": "670392e81735b0ea5c44c88a4070b598"
@@ -7611,11 +7593,11 @@ define(['./workbox-4367cb6e'], (function (workbox) { 'use strict';
     "url": "sprites/deep_ash_truffle.png",
     "revision": "5a4b3d44703b83870dac9acc14d1d084"
   }, {
-    "url": "sprites/deep_bone_flute.png",
-    "revision": "8ad95906c4e1827aa190a4f2729a04d2"
-  }, {
     "url": "sprites/deep_crystal_water.png",
     "revision": "c9bc2a84342ff2495d231aa9536f3bd0"
+  }, {
+    "url": "sprites/cusidhevel_walk2.png",
+    "revision": "11ba2bb04b4b8826f4815894d396279f"
   }, {
     "url": "sprites/deep_echo_bell.png",
     "revision": "0765fa5f4c02345bc5837dcc48c2c91f"
@@ -7623,23 +7605,29 @@ define(['./workbox-4367cb6e'], (function (workbox) { 'use strict';
     "url": "sprites/deep_lichen.png",
     "revision": "d674b5ca614710d389fa0bc1f8392beb"
   }, {
-    "url": "sprites/dew_drop_nectar.png",
-    "revision": "986f71886e35a51a79096c2a2947399a"
-  }, {
     "url": "sprites/dewdrop_berry.png",
     "revision": "334c1c66685fc934c9d4804e77acc2e6"
   }, {
     "url": "sprites/dimensional_codex.png",
     "revision": "dd865126fb1c8a2a0f46a853f2e7e1ee"
   }, {
-    "url": "sprites/dimensional_compass.png",
-    "revision": "b2a9e528b6f0d03480fcbc2da1bf80cd"
-  }, {
     "url": "sprites/djinnahl_angry.png",
     "revision": "6e4f65a805a7c0520b005c22b1fb00d6"
   }, {
+    "url": "sprites/dimensional_compass.png",
+    "revision": "b2a9e528b6f0d03480fcbc2da1bf80cd"
+  }, {
+    "url": "sprites/dew_drop_nectar.png",
+    "revision": "986f71886e35a51a79096c2a2947399a"
+  }, {
+    "url": "sprites/deep_bone_flute.png",
+    "revision": "8ad95906c4e1827aa190a4f2729a04d2"
+  }, {
     "url": "sprites/djinnahl_baby.png",
     "revision": "6f0d3dd9bd52d5b16caaf572a9abe013"
+  }, {
+    "url": "sprites/cusidhevel_walk1.png",
+    "revision": "3d23c8133ca84da38fb8fade70188706"
   }, {
     "url": "sprites/djinnahl_boredom.png",
     "revision": "05892cd7d4fdd97e640524119f7a50a7"
@@ -7650,11 +7638,8 @@ define(['./workbox-4367cb6e'], (function (workbox) { 'use strict';
     "url": "sprites/djinnahl_fear.png",
     "revision": "792e8a2c46168a04bfc9d01bb91c213b"
   }, {
-    "url": "sprites/djinnahl_happy.png",
-    "revision": "92f023fc6951a9a19660efc6acd4db1d"
-  }, {
-    "url": "sprites/djinnahl_idle.png",
-    "revision": "515fd7a256a5d24ca1fcfb4b802f7bbc"
+    "url": "sprites/bark_tea.png",
+    "revision": "5348ab90c7cf964c6514e12a556ef364"
   }, {
     "url": "sprites/djinnahl_pain.png",
     "revision": "e8c9b664d1ce59adf66c68c983944546"
@@ -7674,9 +7659,6 @@ define(['./workbox-4367cb6e'], (function (workbox) { 'use strict';
     "url": "sprites/dokkaebirin_angry.png",
     "revision": "6c780b5f636afbc71125ab6ccdf7cfdd"
   }, {
-    "url": "sprites/dokkaebirin_baby.png",
-    "revision": "42d3e11b24b5a3b7b7cfe5166034c717"
-  }, {
     "url": "sprites/dokkaebirin_boredom.png",
     "revision": "1ad5fe51249fc610786410d1a9ee2fb0"
   }, {
@@ -7695,23 +7677,23 @@ define(['./workbox-4367cb6e'], (function (workbox) { 'use strict';
     "url": "sprites/dokkaebirin_pain.png",
     "revision": "3546a0f7a2a277bf3c42aaca59e73652"
   }, {
-    "url": "sprites/dokkaebirin_sad.png",
-    "revision": "e23c5fb5e670bea65d5131c0aeae8e4f"
-  }, {
     "url": "sprites/dokkaebirin_sleep.png",
     "revision": "7b825fe8f6cdd0143d0e3725bd10b85a"
   }, {
-    "url": "sprites/dokkaebirin_token.png",
-    "revision": "20f96820f91713d9d18cb6186e809cb1"
+    "url": "sprites/djinnahl_happy.png",
+    "revision": "92f023fc6951a9a19660efc6acd4db1d"
   }, {
     "url": "sprites/dokkaebirin_walk1.png",
     "revision": "9c9a75ee63e35f5da89f10ad7a488fcc"
   }, {
-    "url": "sprites/dokkaebirin_walk2.png",
-    "revision": "ecd0e4433384f6ad8fdee3506ed0db54"
+    "url": "sprites/dokkaebirin_baby.png",
+    "revision": "42d3e11b24b5a3b7b7cfe5166034c717"
   }, {
     "url": "sprites/draugr_angry.png",
     "revision": "57fbf4e571e1e60a38a0cd8ec90d987c"
+  }, {
+    "url": "sprites/dokkaebirin_walk2.png",
+    "revision": "ecd0e4433384f6ad8fdee3506ed0db54"
   }, {
     "url": "sprites/draugr_baby.png",
     "revision": "9c27f58b2395db978c7da086ea388291"
@@ -7725,17 +7707,17 @@ define(['./workbox-4367cb6e'], (function (workbox) { 'use strict';
     "url": "sprites/draugr_fear.png",
     "revision": "b83d18def83936199a38ebe1fb334fbd"
   }, {
-    "url": "sprites/draugr_happy.png",
-    "revision": "425feebd77e4107c247a775ad12cba34"
-  }, {
     "url": "sprites/draugr_idle.png",
     "revision": "969d862abb1e6e0310ebd3bde49a92e6"
   }, {
-    "url": "sprites/draugr_pain.png",
-    "revision": "ea3b1ebf0b76868762586ddc2212d745"
-  }, {
     "url": "sprites/draugr_sad.png",
     "revision": "6e04120072900705566cb79287dd594a"
+  }, {
+    "url": "sprites/draugr_happy.png",
+    "revision": "425feebd77e4107c247a775ad12cba34"
+  }, {
+    "url": "sprites/draugr_pain.png",
+    "revision": "ea3b1ebf0b76868762586ddc2212d745"
   }, {
     "url": "sprites/draugr_sleep.png",
     "revision": "20178a3c1eb97e6e55ba73ea1fa787c0"
@@ -7746,14 +7728,14 @@ define(['./workbox-4367cb6e'], (function (workbox) { 'use strict';
     "url": "sprites/draugr_walk2.png",
     "revision": "b9cdfdf309fc0ce08250df7388afc402"
   }, {
-    "url": "sprites/draugrn_angry.png",
-    "revision": "a93f0c39cd90e2beb7cb67d5edc052f1"
+    "url": "sprites/dokkaebirin_token.png",
+    "revision": "20f96820f91713d9d18cb6186e809cb1"
   }, {
     "url": "sprites/draugrn_baby.png",
     "revision": "35258f232f7a922bf1ecc06eb2215792"
   }, {
-    "url": "sprites/draugrn_boredom.png",
-    "revision": "36884792b743c821a358b7d53e8af307"
+    "url": "sprites/canopy_seed_rattle.png",
+    "revision": "34927329a3414572805df5f74c13fb00"
   }, {
     "url": "sprites/draugrn_eat.png",
     "revision": "fa15752ef9872f7d8fb52f80b0675b64"
@@ -7776,14 +7758,14 @@ define(['./workbox-4367cb6e'], (function (workbox) { 'use strict';
     "url": "sprites/draugrn_sleep.png",
     "revision": "a619a6f53f0aff739e2e58ebe7951fc7"
   }, {
-    "url": "sprites/draugrn_walk1.png",
-    "revision": "855d36287a994d17dd073aa91eaf21b7"
-  }, {
     "url": "sprites/draugrn_walk2.png",
     "revision": "8b49db636120b2eccb159d84511303d1"
   }, {
     "url": "sprites/dream_catcher.png",
     "revision": "6cf613913ff6b668d47491652f2a6ccf"
+  }, {
+    "url": "sprites/draugrn_walk1.png",
+    "revision": "855d36287a994d17dd073aa91eaf21b7"
   }, {
     "url": "sprites/dream_journal.png",
     "revision": "9e24287f82f7ffe18bd54dd16f4819fb"
@@ -7794,14 +7776,11 @@ define(['./workbox-4367cb6e'], (function (workbox) { 'use strict';
     "url": "sprites/drift_glass.png",
     "revision": "9ccfa6792b0f16c65cab777c168d5b55"
   }, {
-    "url": "sprites/duppy_angry.png",
-    "revision": "0fe42b80ed1850b459cc113f8c4d9b11"
+    "url": "sprites/duppy_boredom.png",
+    "revision": "b4c7973d06cb1b356426ca73e92d53a6"
   }, {
     "url": "sprites/duppy_baby.png",
     "revision": "79b1bba292d4864acb31364d4c7ae037"
-  }, {
-    "url": "sprites/duppy_boredom.png",
-    "revision": "b4c7973d06cb1b356426ca73e92d53a6"
   }, {
     "url": "sprites/duppy_eat.png",
     "revision": "7c6d9bf4ab83b03d91e14ac5c65f4f4d"
@@ -7812,8 +7791,14 @@ define(['./workbox-4367cb6e'], (function (workbox) { 'use strict';
     "url": "sprites/duppy_happy.png",
     "revision": "c74744de4d7b4a1af9e75c97896eb6a3"
   }, {
+    "url": "sprites/djinnahl_idle.png",
+    "revision": "515fd7a256a5d24ca1fcfb4b802f7bbc"
+  }, {
     "url": "sprites/duppy_idle.png",
     "revision": "8a8e52fdb32abaaad676a6f941b48dc4"
+  }, {
+    "url": "sprites/cave_mushroom.png",
+    "revision": "8d607e4696ac644ce4aa1b0c402dc027"
   }, {
     "url": "sprites/duppy_pain.png",
     "revision": "350c09da8d7f4c458e08b3dac024caf5"
@@ -7826,6 +7811,9 @@ define(['./workbox-4367cb6e'], (function (workbox) { 'use strict';
   }, {
     "url": "sprites/duppy_walk1.png",
     "revision": "f63b758448d8542f009fc508cfb4aaea"
+  }, {
+    "url": "sprites/draugrn_angry.png",
+    "revision": "a93f0c39cd90e2beb7cb67d5edc052f1"
   }, {
     "url": "sprites/duppy_walk2.png",
     "revision": "7ba99e10b4ec09f3d9929c20c8e6be93"
@@ -7845,20 +7833,17 @@ define(['./workbox-4367cb6e'], (function (workbox) { 'use strict';
     "url": "sprites/dvergar_fear.png",
     "revision": "2f254de068dfd3223dc3c94b32fc68bb"
   }, {
+    "url": "sprites/dvergar_idle.png",
+    "revision": "5acea529783eedfb7aa469fcdd049715"
+  }, {
     "url": "sprites/dvergar_forge.png",
     "revision": "0bb92ca0def7abbf323f839d0dbb9a46"
   }, {
     "url": "sprites/dvergar_happy.png",
     "revision": "5ef712d73d86d2728aa778fa9a04b5ee"
   }, {
-    "url": "sprites/dvergar_idle.png",
-    "revision": "5acea529783eedfb7aa469fcdd049715"
-  }, {
     "url": "sprites/dvergar_pain.png",
     "revision": "f412d97f6e7ab758dfb9ca95912bd99f"
-  }, {
-    "url": "sprites/dvergar_sad.png",
-    "revision": "64ccd3e9d3b5e662c909fad97a172833"
   }, {
     "url": "sprites/dvergar_sleep.png",
     "revision": "ce4ab1ca4531a996ae1d5aeaf27d5354"
@@ -7869,14 +7854,11 @@ define(['./workbox-4367cb6e'], (function (workbox) { 'use strict';
     "url": "sprites/dvergar_walk2.png",
     "revision": "ef81ea998be7ca0f53ad8b20c5ba8d82"
   }, {
-    "url": "sprites/echo_angry.png",
-    "revision": "b9791ae062efc51dd301f90914826bf5"
+    "url": "sprites/dvergar_sad.png",
+    "revision": "64ccd3e9d3b5e662c909fad97a172833"
   }, {
     "url": "sprites/echo_baby.png",
     "revision": "57c7625e5a521e16f1255ed742718834"
-  }, {
-    "url": "sprites/echo_bell.png",
-    "revision": "900581a434c70197f1504465f7e16708"
   }, {
     "url": "sprites/echo_boredom.png",
     "revision": "621f23420cfa0dd5f4053cf8f7294bad"
@@ -7887,20 +7869,14 @@ define(['./workbox-4367cb6e'], (function (workbox) { 'use strict';
     "url": "sprites/echo_fear.png",
     "revision": "ac9356afed494922029c34274d1359ec"
   }, {
-    "url": "sprites/echo_happy.png",
-    "revision": "23789cd45497d66d4f71929eccf6b3f2"
-  }, {
-    "url": "sprites/echo_idle.png",
-    "revision": "d47eb805b08152c1a55c48da82929e50"
-  }, {
     "url": "sprites/echo_mapper.png",
     "revision": "7f77cdb7fddba1cce05da8ed354ca7c3"
   }, {
-    "url": "sprites/echo_pain.png",
-    "revision": "db2ad70564ffb376e3dd3a14a63be167"
-  }, {
     "url": "sprites/echo_sad.png",
     "revision": "fdc224dfbadd38e27e398b95a4189c2d"
+  }, {
+    "url": "sprites/echo_idle.png",
+    "revision": "d47eb805b08152c1a55c48da82929e50"
   }, {
     "url": "sprites/echo_shell.png",
     "revision": "207a5f30ab69e28f6a36f4c932e8b368"
@@ -7911,26 +7887,32 @@ define(['./workbox-4367cb6e'], (function (workbox) { 'use strict';
     "url": "sprites/echo_stone.png",
     "revision": "3eecc104eb915da2e17c4a7574ef2b5c"
   }, {
-    "url": "sprites/echo_walk1.png",
-    "revision": "ad7814d8eef9f0f8f20d64c09beef628"
-  }, {
     "url": "sprites/echo_walk2.png",
     "revision": "2096cbc8ade617d3f8ef8a7bc0847eb7"
   }, {
     "url": "sprites/ecology_primer.png",
     "revision": "e6a4eaf3df9d15a7ec184e6638c1b6a9"
   }, {
+    "url": "sprites/echo_happy.png",
+    "revision": "23789cd45497d66d4f71929eccf6b3f2"
+  }, {
     "url": "sprites/egugunkin_angry.png",
     "revision": "03bacc2f53d20dac28adc1e0a41ca204"
   }, {
-    "url": "sprites/egugunkin_baby.png",
-    "revision": "921327e4eae11b0e9235853e4d776ed6"
+    "url": "sprites/echo_walk1.png",
+    "revision": "ad7814d8eef9f0f8f20d64c09beef628"
   }, {
-    "url": "sprites/egugunkin_boredom.png",
-    "revision": "94341e60ad991ccc42260c6b344be8d6"
+    "url": "sprites/echo_pain.png",
+    "revision": "db2ad70564ffb376e3dd3a14a63be167"
+  }, {
+    "url": "sprites/echo_angry.png",
+    "revision": "b9791ae062efc51dd301f90914826bf5"
   }, {
     "url": "sprites/egugunkin_eat.png",
     "revision": "27529d723f0aebc0084fbe7534c51822"
+  }, {
+    "url": "sprites/egugunkin_boredom.png",
+    "revision": "94341e60ad991ccc42260c6b344be8d6"
   }, {
     "url": "sprites/egugunkin_fear.png",
     "revision": "42e92b4f1c36bfa323c7189b3f2d8e04"
@@ -7938,35 +7920,35 @@ define(['./workbox-4367cb6e'], (function (workbox) { 'use strict';
     "url": "sprites/egugunkin_happy.png",
     "revision": "4d1ff3c9ac1f1bb8145180475ac79002"
   }, {
-    "url": "sprites/egugunkin_idle.png",
-    "revision": "79de5414c963a12dc892e07d1afa030d"
-  }, {
     "url": "sprites/egugunkin_pain.png",
     "revision": "efb52351264c6ecffccb14daa63191b5"
+  }, {
+    "url": "sprites/egugunkin_idle.png",
+    "revision": "79de5414c963a12dc892e07d1afa030d"
   }, {
     "url": "sprites/egugunkin_sad.png",
     "revision": "bddfc0163f6007dd8feb200ad7da860b"
   }, {
-    "url": "sprites/egugunkin_sleep.png",
-    "revision": "a93b0ffd1071d24a3ab8ed2ccfb5e2c3"
-  }, {
     "url": "sprites/egugunkin_token.png",
     "revision": "0567a6554ea165bfffb43978f3a13f2e"
+  }, {
+    "url": "sprites/egugunkin_sleep.png",
+    "revision": "a93b0ffd1071d24a3ab8ed2ccfb5e2c3"
   }, {
     "url": "sprites/egugunkin_walk1.png",
     "revision": "d89726be629dbb557f8b8c017a9f1bde"
   }, {
-    "url": "sprites/egugunkin_walk2.png",
-    "revision": "059adbdbc44089b372f4f8b45e03afb5"
-  }, {
-    "url": "sprites/elder_mycelium_codex.png",
-    "revision": "c38d1f6733daa464b9346e4188f0f828"
+    "url": "sprites/egugunkin_baby.png",
+    "revision": "921327e4eae11b0e9235853e4d776ed6"
   }, {
     "url": "sprites/ember_fruit.png",
     "revision": "c71b11f9f00181f58421ca2b64ed55d4"
   }, {
     "url": "sprites/ember_stone.png",
     "revision": "8fa51d9aded3eccd8e5fd678d79ede5e"
+  }, {
+    "url": "sprites/egugunkin_walk2.png",
+    "revision": "059adbdbc44089b372f4f8b45e03afb5"
   }, {
     "url": "sprites/emotion_prism.png",
     "revision": "27f006983c13edaccadc45f3398f1d87"
@@ -7977,17 +7959,14 @@ define(['./workbox-4367cb6e'], (function (workbox) { 'use strict';
     "url": "sprites/empathy_lens.png",
     "revision": "3df04ba5ac02c44e6335aaced371b539"
   }, {
-    "url": "sprites/entropy_dust.png",
-    "revision": "6a6b07beb8570231913b75394b585e0b"
-  }, {
     "url": "sprites/enzyme_drops.png",
     "revision": "3ea96cea94d2e73d545d84f50ba7aeb6"
   }, {
+    "url": "sprites/elder_mycelium_codex.png",
+    "revision": "c38d1f6733daa464b9346e4188f0f828"
+  }, {
     "url": "sprites/equation_tablet.png",
     "revision": "94e69527997c385d1923292b98b0c801"
-  }, {
-    "url": "sprites/ettin_angry.png",
-    "revision": "a31aa1e520fb41b328ce9b3b21821502"
   }, {
     "url": "sprites/ettin_baby.png",
     "revision": "280c62f0e7b9771418b0c3b9a861434b"
@@ -7998,14 +7977,14 @@ define(['./workbox-4367cb6e'], (function (workbox) { 'use strict';
     "url": "sprites/ettin_eat.png",
     "revision": "7d566d57b8f4b7c135d07a8473b78c64"
   }, {
-    "url": "sprites/ettin_fear.png",
-    "revision": "2f3c1b19bc09e36dd4a2d9e85f50de1e"
-  }, {
-    "url": "sprites/ettin_happy.png",
-    "revision": "e0fa1064d0a92e9b61c247d24dd87519"
+    "url": "sprites/ettin_angry.png",
+    "revision": "a31aa1e520fb41b328ce9b3b21821502"
   }, {
     "url": "sprites/ettin_idle.png",
     "revision": "331db8edf36dd49a4e689dc0d4ac1012"
+  }, {
+    "url": "sprites/ettin_happy.png",
+    "revision": "e0fa1064d0a92e9b61c247d24dd87519"
   }, {
     "url": "sprites/ettin_idle_breathing_f0.png",
     "revision": "57178a23db1539e909fcfa73548304d1"
@@ -8025,17 +8004,23 @@ define(['./workbox-4367cb6e'], (function (workbox) { 'use strict';
     "url": "sprites/ettin_idle_right.png",
     "revision": "fc0e58c45b4c380157f53eecb5821a8e"
   }, {
-    "url": "sprites/ettin_idle_south.png",
-    "revision": "a7a88f2c981a33303c23834583192a13"
+    "url": "sprites/entropy_dust.png",
+    "revision": "6a6b07beb8570231913b75394b585e0b"
   }, {
     "url": "sprites/ettin_pain.png",
     "revision": "9c1b332aed8088d8a25c5ba5b82f3bf4"
+  }, {
+    "url": "sprites/ettin_idle_south.png",
+    "revision": "a7a88f2c981a33303c23834583192a13"
   }, {
     "url": "sprites/ettin_sad.png",
     "revision": "8d4945bd8a3f1f2aa66b9deeea86445b"
   }, {
     "url": "sprites/ettin_sleep.png",
     "revision": "7faae636b54f57d88dedc1b0f8caeee1"
+  }, {
+    "url": "sprites/ettin_fear.png",
+    "revision": "2f3c1b19bc09e36dd4a2d9e85f50de1e"
   }, {
     "url": "sprites/ettin_sorting_engine.png",
     "revision": "47d40bfc27e6953554bb11ebd0fe02a1"
@@ -8049,20 +8034,17 @@ define(['./workbox-4367cb6e'], (function (workbox) { 'use strict';
     "url": "sprites/ettin_walk2.png",
     "revision": "e9ab36292a67315dbee97d3d05987bfe"
   }, {
-    "url": "sprites/ettin_walk_left_1.png",
-    "revision": "d033023f4e394d9d99a5e6da10006cb0"
-  }, {
     "url": "sprites/ettin_walk_left_2.png",
     "revision": "9ca3803cb5cb54a4110d70ffc9b87023"
+  }, {
+    "url": "sprites/ettin_walk_left_1.png",
+    "revision": "d033023f4e394d9d99a5e6da10006cb0"
   }, {
     "url": "sprites/ettin_walk_left_f0.png",
     "revision": "e7335f6e45eb271a54498acdce21b990"
   }, {
     "url": "sprites/ettin_walk_left_f1.png",
     "revision": "e184d5204d6f3f56254596cda07fdbec"
-  }, {
-    "url": "sprites/ettin_walk_left_f2.png",
-    "revision": "97a90fc3aa889d9882e7ed4d5f858082"
   }, {
     "url": "sprites/ettin_walk_left_f3.png",
     "revision": "a55e39e67bdec87e65898c9e626bf445"
@@ -8079,47 +8061,38 @@ define(['./workbox-4367cb6e'], (function (workbox) { 'use strict';
     "url": "sprites/ettin_walk_right_f1.png",
     "revision": "e5af34645855db95f3b2c65f76952d19"
   }, {
-    "url": "sprites/ettin_walk_right_f2.png",
-    "revision": "f8791a88ff2c69d56c37602cdff81a56"
-  }, {
     "url": "sprites/ettin_walk_right_f3.png",
     "revision": "2f3242fedb5a632ceb0408b236eacf54"
   }, {
     "url": "sprites/ettin_walk_south_1.png",
     "revision": "85be312281c3251c3f7d2f7885f21c3f"
   }, {
-    "url": "sprites/ettin_walk_south_2.png",
-    "revision": "9f57a149cdfa46c2b2def2746b3b35fc"
+    "url": "sprites/dokkaebirin_sad.png",
+    "revision": "e23c5fb5e670bea65d5131c0aeae8e4f"
   }, {
-    "url": "sprites/ettin_walk_south_f0.png",
-    "revision": "29ce803abf2ca9345fd2aca2e54ec696"
-  }, {
-    "url": "sprites/ettin_walk_south_f1.png",
-    "revision": "d619cf983d1827c748b0b15e7182aaaf"
-  }, {
-    "url": "sprites/ettin_walk_south_f2.png",
-    "revision": "3143ce03925b0e5390aa3b86e0451a39"
+    "url": "sprites/ettin_walk_right_f2.png",
+    "revision": "f8791a88ff2c69d56c37602cdff81a56"
   }, {
     "url": "sprites/ettin_walk_south_f3.png",
     "revision": "f48f2a09b8f52ce5696c05983bd30ff6"
   }, {
+    "url": "sprites/ettin_walk_south_f0.png",
+    "revision": "29ce803abf2ca9345fd2aca2e54ec696"
+  }, {
     "url": "sprites/evolution_chamber.png",
     "revision": "e85e2265b9e40ceaae6cbe6270e2e9af"
   }, {
-    "url": "sprites/facet_lens.png",
-    "revision": "d74d8c3ba77fa88921a097624c8db501"
-  }, {
     "url": "sprites/fat_berry.png",
     "revision": "a5d1c7812eacb154235a75309f8291d9"
-  }, {
-    "url": "sprites/fertility_blossom.png",
-    "revision": "108a59614f774d4993959e422480f841"
   }, {
     "url": "sprites/folded_paper.png",
     "revision": "df983d8367997d7683d2567e85b2804d"
   }, {
     "url": "sprites/fossil_archive.png",
     "revision": "d55af28db3a9af7d4bddcf709bbb15c0"
+  }, {
+    "url": "sprites/fertility_blossom.png",
+    "revision": "108a59614f774d4993959e422480f841"
   }, {
     "url": "sprites/fossil_atlas.png",
     "revision": "754dd5ac91e4f4a28bb7137ca792d636"
@@ -8130,11 +8103,11 @@ define(['./workbox-4367cb6e'], (function (workbox) { 'use strict';
     "url": "sprites/fossil_tooth.png",
     "revision": "bd3137bb0ad187cb51d7870c3151ed8d"
   }, {
-    "url": "sprites/fungal_flute.png",
-    "revision": "f8cc47ee26497c4b111ed836143a2f2f"
-  }, {
     "url": "sprites/fylgja_angry.png",
     "revision": "44729542c042b28a2d5e7ae92a8e16c9"
+  }, {
+    "url": "sprites/fungal_flute.png",
+    "revision": "f8cc47ee26497c4b111ed836143a2f2f"
   }, {
     "url": "sprites/fylgja_baby.png",
     "revision": "e47c587c78ad201bd2b69b8614d3eb72"
@@ -8151,29 +8124,29 @@ define(['./workbox-4367cb6e'], (function (workbox) { 'use strict';
     "url": "sprites/fylgja_happy.png",
     "revision": "b380239796061bce884a562f90ae4d26"
   }, {
-    "url": "sprites/fylgja_idle.png",
-    "revision": "4488464689251e13e967d49432a90ee3"
-  }, {
     "url": "sprites/fylgja_pain.png",
     "revision": "a6f1455580884de389f2835fcf50ad40"
+  }, {
+    "url": "sprites/fylgja_idle.png",
+    "revision": "4488464689251e13e967d49432a90ee3"
   }, {
     "url": "sprites/fylgja_sad.png",
     "revision": "76e4d1c07c14962a7b085db2415deeec"
   }, {
-    "url": "sprites/fylgja_sleep.png",
-    "revision": "4639fd50d691e85a46da9a36f4553fd2"
-  }, {
     "url": "sprites/fylgja_walk1.png",
     "revision": "a33fa9ad0ce77c9d94bfda88704c0946"
+  }, {
+    "url": "sprites/facet_lens.png",
+    "revision": "d74d8c3ba77fa88921a097624c8db501"
   }, {
     "url": "sprites/fylgja_walk2.png",
     "revision": "869d27834076583b42f3e4ea4444b8ba"
   }, {
-    "url": "sprites/garudavel_angry.png",
-    "revision": "4e1d2cd64de3856fe1cabbed8057292e"
-  }, {
     "url": "sprites/garudavel_baby.png",
     "revision": "aacf6a4604ba60f7550aca9f7d8dc454"
+  }, {
+    "url": "sprites/garudavel_fear.png",
+    "revision": "1825f011123cca4ecbfca4184a9fda12"
   }, {
     "url": "sprites/garudavel_boredom.png",
     "revision": "4509f1a5f3d33db8edc7b19c177f5538"
@@ -8181,14 +8154,8 @@ define(['./workbox-4367cb6e'], (function (workbox) { 'use strict';
     "url": "sprites/garudavel_eat.png",
     "revision": "1ab272bd09bf72e851d45de9bd818eda"
   }, {
-    "url": "sprites/garudavel_fear.png",
-    "revision": "1825f011123cca4ecbfca4184a9fda12"
-  }, {
     "url": "sprites/garudavel_happy.png",
     "revision": "d6ca7e2df10330211218a87cd25a4d36"
-  }, {
-    "url": "sprites/garudavel_idle.png",
-    "revision": "005e531dffc1a80b53e61fa3c3c15b13"
   }, {
     "url": "sprites/garudavel_pain.png",
     "revision": "757fd508dfb843160d24e1882e43441d"
@@ -8214,11 +8181,17 @@ define(['./workbox-4367cb6e'], (function (workbox) { 'use strict';
     "url": "sprites/geode_cipher.png",
     "revision": "7bb2983dabc94879b3152d580b25ea13"
   }, {
+    "url": "sprites/fylgja_sleep.png",
+    "revision": "4639fd50d691e85a46da9a36f4553fd2"
+  }, {
     "url": "sprites/geode_milk.png",
     "revision": "38b7f4be75da7eae89b67b630621fc2c"
   }, {
     "url": "sprites/geode_rattle.png",
     "revision": "3d6d77e6ce5423918a1ff56cb539ac98"
+  }, {
+    "url": "sprites/echo_bell.png",
+    "revision": "900581a434c70197f1504465f7e16708"
   }, {
     "url": "sprites/geothermal_balm.png",
     "revision": "d0063dae9ad687fb210242f1fc2457cd"
@@ -8229,11 +8202,11 @@ define(['./workbox-4367cb6e'], (function (workbox) { 'use strict';
     "url": "sprites/geyser_water.png",
     "revision": "a3f609295fdaf14b06e9d00526dd7c7f"
   }, {
-    "url": "sprites/glow_ball.png",
-    "revision": "5f73879a467ca9c6d7f57ea47af781df"
-  }, {
     "url": "sprites/glow_nectar.png",
     "revision": "9b53a30a82884c25d29699c162a676e5"
+  }, {
+    "url": "sprites/glow_ball.png",
+    "revision": "5f73879a467ca9c6d7f57ea47af781df"
   }, {
     "url": "sprites/golden_canopy_nectar.png",
     "revision": "73f2e94178bb92464a59dc57935e6efb"
@@ -8259,17 +8232,14 @@ define(['./workbox-4367cb6e'], (function (workbox) { 'use strict';
     "url": "sprites/grendel_fang.png",
     "revision": "ace3ba5a02b2ebe6cb09ca3396c4db4d"
   }, {
-    "url": "sprites/grendel_fear.png",
-    "revision": "2baa5fb9dc1f615b3a2d312c61f3ad41"
-  }, {
     "url": "sprites/grendel_happy.png",
     "revision": "84103a76719d4f008396899763e34a9f"
   }, {
+    "url": "sprites/grendel_pain.png",
+    "revision": "d0eeedad81a1cac84808ec7265364282"
+  }, {
     "url": "sprites/grendel_idle.png",
     "revision": "2c06c62ef87bd615afff9c8f8d3adf88"
-  }, {
-    "url": "sprites/grendel_idle_left.png",
-    "revision": "42c0e64bafe5f64f059ca26f37c3c84e"
   }, {
     "url": "sprites/grendel_idle_north.png",
     "revision": "0bd4ccc31ac5b620b80dac88f7f5e2f3"
@@ -8277,26 +8247,26 @@ define(['./workbox-4367cb6e'], (function (workbox) { 'use strict';
     "url": "sprites/grendel_idle_right.png",
     "revision": "bf72a40129de51c0c32969ca5eb860cc"
   }, {
-    "url": "sprites/grendel_pain.png",
-    "revision": "d0eeedad81a1cac84808ec7265364282"
+    "url": "sprites/ettin_walk_south_f1.png",
+    "revision": "d619cf983d1827c748b0b15e7182aaaf"
+  }, {
+    "url": "sprites/grendel_idle_left.png",
+    "revision": "42c0e64bafe5f64f059ca26f37c3c84e"
   }, {
     "url": "sprites/grendel_sad.png",
     "revision": "639b63bb9af5ebb7c3c6bab982b783dc"
   }, {
-    "url": "sprites/grendel_sleep.png",
-    "revision": "9dff5e77bc8f8eb17b1c99e7edb7975b"
-  }, {
     "url": "sprites/grendel_walk1.png",
     "revision": "7f8fe912405e93e85015f535618e27de"
-  }, {
-    "url": "sprites/grendel_walk2.png",
-    "revision": "d43e41f598383030f5e7a425cb11f9a8"
   }, {
     "url": "sprites/grendel_walk_left_1.png",
     "revision": "3b1fa20b5caf0fbdb4228a95aed209b5"
   }, {
-    "url": "sprites/grendel_walk_left_2.png",
-    "revision": "23a72ba2c49be45cd8e2fc6bf5ecee2f"
+    "url": "sprites/grendel_walk2.png",
+    "revision": "d43e41f598383030f5e7a425cb11f9a8"
+  }, {
+    "url": "sprites/grendel_fear.png",
+    "revision": "2baa5fb9dc1f615b3a2d312c61f3ad41"
   }, {
     "url": "sprites/grendel_walk_north_1.png",
     "revision": "876add357bb93132af8e3f882606b50f"
@@ -8304,29 +8274,32 @@ define(['./workbox-4367cb6e'], (function (workbox) { 'use strict';
     "url": "sprites/grendel_walk_north_2.png",
     "revision": "fc704a8aa2e18fb4e151bae3f5e60f98"
   }, {
+    "url": "sprites/crystal_stag_idle.png",
+    "revision": "9148d75a892498d923647e98fa5e67fb"
+  }, {
     "url": "sprites/grendel_walk_right_1.png",
     "revision": "cd67e598a28d7e71c8994bd69c40c318"
   }, {
-    "url": "sprites/grendel_walk_right_2.png",
-    "revision": "4a31bd6fff4841a3e776158f9729077e"
+    "url": "sprites/grendel_sleep.png",
+    "revision": "9dff5e77bc8f8eb17b1c99e7edb7975b"
   }, {
     "url": "sprites/growth_fungus.png",
     "revision": "f356ce86e865e7213c4d907e6d87173a"
   }, {
+    "url": "sprites/grendel_walk_right_2.png",
+    "revision": "4a31bd6fff4841a3e776158f9729077e"
+  }, {
     "url": "sprites/harbor_log.png",
     "revision": "5880da5cdda36ad95c197131712a5f73"
   }, {
-    "url": "sprites/harbor_map.png",
-    "revision": "102fc146f15ccc65ed43702407461f92"
+    "url": "sprites/grendel_walk_left_2.png",
+    "revision": "23a72ba2c49be45cd8e2fc6bf5ecee2f"
   }, {
     "url": "sprites/harmonic_crystal.png",
     "revision": "214a5ac006b063d9d26c1c234a571fe8"
   }, {
     "url": "sprites/harmonic_tonic.png",
     "revision": "77e9c47f8c508912b6955e3dda6a6970"
-  }, {
-    "url": "sprites/harvest_blade.png",
-    "revision": "fe13965dd5633c8a6db6cb6f71424963"
   }, {
     "url": "sprites/healing_herb.png",
     "revision": "3e9a0d263a58e40637007ba354ce7d3f"
@@ -8337,11 +8310,11 @@ define(['./workbox-4367cb6e'], (function (workbox) { 'use strict';
     "url": "sprites/holographic_library.png",
     "revision": "d1824957400ddac1830732881c9b3074"
   }, {
-    "url": "sprites/honey_crystal.png",
-    "revision": "c896c8e8e0bbf8800892ca5a5815c621"
-  }, {
     "url": "sprites/huldryn_angry.png",
     "revision": "fc2984f7029a824c3ff68361b57aabd1"
+  }, {
+    "url": "sprites/honey_crystal.png",
+    "revision": "c896c8e8e0bbf8800892ca5a5815c621"
   }, {
     "url": "sprites/huldryn_baby.png",
     "revision": "0ea3070eb2d45b61ef815209d67ce9c8"
@@ -8352,17 +8325,17 @@ define(['./workbox-4367cb6e'], (function (workbox) { 'use strict';
     "url": "sprites/huldryn_eat.png",
     "revision": "1e88d433fbe8b72a3167c5b3794596b2"
   }, {
-    "url": "sprites/huldryn_fear.png",
-    "revision": "8f645813e58a03ff7e7af0087019f2e0"
-  }, {
     "url": "sprites/huldryn_happy.png",
     "revision": "edddcd196b205b0540c13ebe6c94d83e"
   }, {
-    "url": "sprites/huldryn_idle.png",
-    "revision": "64906194088863634d9f29de13c7d051"
-  }, {
     "url": "sprites/huldryn_pain.png",
     "revision": "86d10c403a7490f99e41355980c21236"
+  }, {
+    "url": "sprites/huldryn_fear.png",
+    "revision": "8f645813e58a03ff7e7af0087019f2e0"
+  }, {
+    "url": "sprites/huldryn_idle.png",
+    "revision": "64906194088863634d9f29de13c7d051"
   }, {
     "url": "sprites/huldryn_sad.png",
     "revision": "c8686a31cc034760a9bacec485160e61"
@@ -8370,14 +8343,14 @@ define(['./workbox-4367cb6e'], (function (workbox) { 'use strict';
     "url": "sprites/huldryn_sleep.png",
     "revision": "f5d2231954faa717bdc7d4d40ba0619f"
   }, {
-    "url": "sprites/huldryn_walk1.png",
-    "revision": "970c1960e09c2f0372cec39c9adacf30"
-  }, {
     "url": "sprites/huldryn_walk2.png",
     "revision": "cd8415050d97988787fa5d07dc724cd4"
   }, {
-    "url": "sprites/inkanyambakin_angry.png",
-    "revision": "0f50d8e9162c21056fb4cc39fc84bdbf"
+    "url": "sprites/huldryn_walk1.png",
+    "revision": "970c1960e09c2f0372cec39c9adacf30"
+  }, {
+    "url": "sprites/harbor_map.png",
+    "revision": "102fc146f15ccc65ed43702407461f92"
   }, {
     "url": "sprites/inkanyambakin_baby.png",
     "revision": "cbe0707242f3b78edf17defbe43e315c"
@@ -8391,35 +8364,32 @@ define(['./workbox-4367cb6e'], (function (workbox) { 'use strict';
     "url": "sprites/inkanyambakin_fear.png",
     "revision": "3ea2dcd874f0ddb61925d1696adb0523"
   }, {
-    "url": "sprites/inkanyambakin_happy.png",
-    "revision": "60fc20b06fa08f924c562c6407f44200"
+    "url": "sprites/harvest_blade.png",
+    "revision": "fe13965dd5633c8a6db6cb6f71424963"
   }, {
     "url": "sprites/inkanyambakin_idle.png",
     "revision": "6c5319de9964c2f189f511ed4073d320"
   }, {
-    "url": "sprites/inkanyambakin_pain.png",
-    "revision": "b21ce1309ee38e948b4aaf1d2c45d2a5"
-  }, {
     "url": "sprites/inkanyambakin_sad.png",
     "revision": "68705f584ba18e8ab0d7a08a589101fb"
+  }, {
+    "url": "sprites/inkanyambakin_pain.png",
+    "revision": "b21ce1309ee38e948b4aaf1d2c45d2a5"
   }, {
     "url": "sprites/inkanyambakin_sleep.png",
     "revision": "2402cf108584782d19034f32ebf61dcb"
   }, {
-    "url": "sprites/inkanyambakin_walk1.png",
-    "revision": "ba355ebe8b78d622efa8fc0163f5f8e8"
-  }, {
-    "url": "sprites/inkanyambakin_walk2.png",
-    "revision": "488e1e0b6499b57141fa09c3b53b008e"
-  }, {
     "url": "sprites/iron_slug.png",
     "revision": "996a628663c3fa6dab30ece9bd651f7f"
   }, {
+    "url": "sprites/garudavel_angry.png",
+    "revision": "4e1d2cd64de3856fe1cabbed8057292e"
+  }, {
+    "url": "sprites/inkanyambakin_happy.png",
+    "revision": "60fc20b06fa08f924c562c6407f44200"
+  }, {
     "url": "sprites/jiangshivel_angry.png",
     "revision": "15284b28033d7028eaaf1614eed09436"
-  }, {
-    "url": "sprites/jiangshivel_baby.png",
-    "revision": "96218820c181c9c2621a5d09b5fbcbd0"
   }, {
     "url": "sprites/jiangshivel_boredom.png",
     "revision": "6a7245386ba3dc1d8221ed799d63d407"
@@ -8430,20 +8400,26 @@ define(['./workbox-4367cb6e'], (function (workbox) { 'use strict';
     "url": "sprites/jiangshivel_fear.png",
     "revision": "c283626f15269362cf4ad4be46506150"
   }, {
-    "url": "sprites/jiangshivel_happy.png",
-    "revision": "de76bc0f25517768cbc44b4483b1092d"
-  }, {
     "url": "sprites/jiangshivel_idle.png",
     "revision": "5201a2397ab5caf4083773541e581ad0"
   }, {
-    "url": "sprites/jiangshivel_pain.png",
-    "revision": "7c9a7e886382f3f90e856f2946bd18d8"
+    "url": "sprites/jiangshivel_happy.png",
+    "revision": "de76bc0f25517768cbc44b4483b1092d"
   }, {
-    "url": "sprites/jiangshivel_sad.png",
-    "revision": "3b9e003a01021774b17778697a1d60fe"
+    "url": "sprites/inkanyambakin_angry.png",
+    "revision": "0f50d8e9162c21056fb4cc39fc84bdbf"
+  }, {
+    "url": "sprites/inkanyambakin_walk1.png",
+    "revision": "ba355ebe8b78d622efa8fc0163f5f8e8"
+  }, {
+    "url": "sprites/ettin_walk_south_f2.png",
+    "revision": "3143ce03925b0e5390aa3b86e0451a39"
   }, {
     "url": "sprites/jiangshivel_sleep.png",
     "revision": "eee7e2fe3f4eb5b4b81b9bc665bf550e"
+  }, {
+    "url": "sprites/jiangshivel_sad.png",
+    "revision": "3b9e003a01021774b17778697a1d60fe"
   }, {
     "url": "sprites/jiangshivel_walk1.png",
     "revision": "db6e9d01f3392115f35bc3159a691c95"
@@ -8454,62 +8430,59 @@ define(['./workbox-4367cb6e'], (function (workbox) { 'use strict';
     "url": "sprites/jorokan_angry.png",
     "revision": "24bd55e1b83b537af4b5b89f2530b888"
   }, {
-    "url": "sprites/jorokan_baby.png",
-    "revision": "384fd085dc06925a2bc511158b7cda79"
+    "url": "sprites/jorokan_eat.png",
+    "revision": "1b008f79654f4292f5b7cf618b16d3ef"
   }, {
     "url": "sprites/jorokan_boredom.png",
     "revision": "5924551b5492210f20b41f413663a0e6"
   }, {
-    "url": "sprites/jorokan_eat.png",
-    "revision": "1b008f79654f4292f5b7cf618b16d3ef"
-  }, {
-    "url": "sprites/jorokan_fear.png",
-    "revision": "8bdad0019e3f3cfe684ce2c0fc2e7f17"
+    "url": "sprites/jorokan_idle.png",
+    "revision": "6af98d820fc4249a2eeb31c7cc48588e"
   }, {
     "url": "sprites/jorokan_happy.png",
     "revision": "2dfbecfca5fb5b938c5b553edebfe21c"
   }, {
-    "url": "sprites/jorokan_idle.png",
-    "revision": "6af98d820fc4249a2eeb31c7cc48588e"
+    "url": "sprites/jorokan_sleep.png",
+    "revision": "b7bc9528b427cae608968145a525eba2"
   }, {
-    "url": "sprites/jorokan_pain.png",
-    "revision": "87978c488906cdd4d86d908f672b2256"
+    "url": "sprites/jorokan_baby.png",
+    "revision": "384fd085dc06925a2bc511158b7cda79"
   }, {
     "url": "sprites/jorokan_sad.png",
     "revision": "e640bf78b0694750ee2ce254a7a8916a"
   }, {
-    "url": "sprites/jorokan_sleep.png",
-    "revision": "b7bc9528b427cae608968145a525eba2"
+    "url": "sprites/garudavel_idle.png",
+    "revision": "005e531dffc1a80b53e61fa3c3c15b13"
+  }, {
+    "url": "sprites/jorokan_pain.png",
+    "revision": "87978c488906cdd4d86d908f672b2256"
   }, {
     "url": "sprites/jorokan_walk1.png",
     "revision": "6afd7fe9ab2194861f0a3d36627a42fa"
   }, {
+    "url": "sprites/jiangshivel_baby.png",
+    "revision": "96218820c181c9c2621a5d09b5fbcbd0"
+  }, {
     "url": "sprites/jorokan_walk2.png",
     "revision": "7a84a17b7534813c2178cc57b6e5290b"
-  }, {
-    "url": "sprites/jotnar_angry.png",
-    "revision": "270c50bb954662eab2d144b53582eb2a"
-  }, {
-    "url": "sprites/jotnar_baby.png",
-    "revision": "72ff77a952f9c5124bead1410504bf7e"
   }, {
     "url": "sprites/jotnar_boredom.png",
     "revision": "d41217760fa4b4e3793706c93d36fdcf"
   }, {
+    "url": "sprites/jotnar_baby.png",
+    "revision": "72ff77a952f9c5124bead1410504bf7e"
+  }, {
+    "url": "sprites/jotnar_angry.png",
+    "revision": "270c50bb954662eab2d144b53582eb2a"
+  }, {
     "url": "sprites/jotnar_eat.png",
     "revision": "f2ab64fd28d252da5935e143b1e41945"
   }, {
-    "url": "sprites/jotnar_fear.png",
-    "revision": "2c240e465bdf0d840a86528305daa2e6"
+    "url": "sprites/jorokan_fear.png",
+    "revision": "8bdad0019e3f3cfe684ce2c0fc2e7f17"
   }, {
     "url": "sprites/jotnar_happy.png",
     "revision": "f464720bf9e009e608de36a9817d333b"
-  }, {
-    "url": "sprites/jotnar_idle.png",
-    "revision": "9604f68fe8df0cf7b337e123b9606a25"
-  }, {
-    "url": "sprites/jotnar_pain.png",
-    "revision": "4a8491294f3c9b337abffdd3bc1e6b41"
   }, {
     "url": "sprites/jotnar_sad.png",
     "revision": "f9c675e6b8c2e668bf7decec9f43772b"
@@ -8517,14 +8490,14 @@ define(['./workbox-4367cb6e'], (function (workbox) { 'use strict';
     "url": "sprites/jotnar_siege_anvil.png",
     "revision": "acfae3ecc8b19940affa39ec2603f4c3"
   }, {
-    "url": "sprites/jotnar_sleep.png",
-    "revision": "c937413105dbed4c4137c0c9f391414e"
-  }, {
     "url": "sprites/jotnar_walk1.png",
     "revision": "3fe2ad7d4ea12871d7c9e7a1c35f2839"
   }, {
     "url": "sprites/jotnar_walk2.png",
     "revision": "6eb11ae971fcf481fe41a0060cc9a1da"
+  }, {
+    "url": "sprites/jotnar_sleep.png",
+    "revision": "c937413105dbed4c4137c0c9f391414e"
   }, {
     "url": "sprites/kelp_rope.png",
     "revision": "e8e26d828eb0a4d3cb492bbd91cf8209"
@@ -8532,50 +8505,59 @@ define(['./workbox-4367cb6e'], (function (workbox) { 'use strict';
     "url": "sprites/kelp_wrap.png",
     "revision": "5bf1a08715ecf879ff3b1cdf4dbc97a9"
   }, {
+    "url": "sprites/duppy_angry.png",
+    "revision": "0fe42b80ed1850b459cc113f8c4d9b11"
+  }, {
+    "url": "sprites/jotnar_idle.png",
+    "revision": "9604f68fe8df0cf7b337e123b9606a25"
+  }, {
+    "url": "sprites/jotnar_pain.png",
+    "revision": "4a8491294f3c9b337abffdd3bc1e6b41"
+  }, {
     "url": "sprites/kelpathi_angry.png",
     "revision": "314913beaa8d677ba742209e903ae4af"
   }, {
-    "url": "sprites/kelpathi_baby.png",
-    "revision": "47537dd0761a484f7d3f4434edaeef59"
-  }, {
-    "url": "sprites/kelpathi_boredom.png",
-    "revision": "2edc0a8313213350c898134dab490aac"
-  }, {
-    "url": "sprites/kelpathi_eat.png",
-    "revision": "0c234d6ec73fb016d10c863a12c1773b"
+    "url": "sprites/inkanyambakin_walk2.png",
+    "revision": "488e1e0b6499b57141fa09c3b53b008e"
   }, {
     "url": "sprites/kelpathi_fear.png",
     "revision": "61c96d0dfa76dc1ce981637bb8fc4c32"
   }, {
-    "url": "sprites/kelpathi_happy.png",
-    "revision": "fcee74eeefaa5cb9cc4c9b0a214fe22c"
+    "url": "sprites/kelpathi_pain.png",
+    "revision": "c54b9bbc78675c9433822c671e2ef3cc"
   }, {
     "url": "sprites/kelpathi_idle.png",
     "revision": "79a5786d3c4d9910d551f8b947c313a1"
   }, {
-    "url": "sprites/kelpathi_pain.png",
-    "revision": "c54b9bbc78675c9433822c671e2ef3cc"
-  }, {
     "url": "sprites/kelpathi_sad.png",
     "revision": "60f70cb78b73293c7eee619aed36ba5c"
-  }, {
-    "url": "sprites/kelpathi_sleep.png",
-    "revision": "f1f62884e306a4e5a714ee8f8f7e7fe1"
-  }, {
-    "url": "sprites/kelpathi_walk1.png",
-    "revision": "8f96944933fd99ecee31af7020c3824c"
-  }, {
-    "url": "sprites/kelpathi_walk2.png",
-    "revision": "dff33242d8326995e7ca7b5ce97099f4"
   }, {
     "url": "sprites/kitsuri_angry.png",
     "revision": "504d0ef1dac2f30fd029aa7e7fac0503"
   }, {
+    "url": "sprites/kelpathi_sleep.png",
+    "revision": "f1f62884e306a4e5a714ee8f8f7e7fe1"
+  }, {
+    "url": "sprites/jotnar_fear.png",
+    "revision": "2c240e465bdf0d840a86528305daa2e6"
+  }, {
+    "url": "sprites/kelpathi_walk1.png",
+    "revision": "8f96944933fd99ecee31af7020c3824c"
+  }, {
     "url": "sprites/kitsuri_baby.png",
     "revision": "7b1330b39c4d580bd381b6ea171e23ae"
   }, {
+    "url": "sprites/kelpathi_walk2.png",
+    "revision": "dff33242d8326995e7ca7b5ce97099f4"
+  }, {
     "url": "sprites/kitsuri_boredom.png",
     "revision": "53abf76283e9e53774a8f139abae2dc4"
+  }, {
+    "url": "sprites/kelpathi_eat.png",
+    "revision": "0c234d6ec73fb016d10c863a12c1773b"
+  }, {
+    "url": "sprites/kelpathi_baby.png",
+    "revision": "47537dd0761a484f7d3f4434edaeef59"
   }, {
     "url": "sprites/kitsuri_eat.png",
     "revision": "914fc28013b9ad593ef4354d87bc12cc"
@@ -8586,53 +8568,41 @@ define(['./workbox-4367cb6e'], (function (workbox) { 'use strict';
     "url": "sprites/kitsuri_happy.png",
     "revision": "46edf4b2a7984a0fb0cbef27ef66c366"
   }, {
-    "url": "sprites/kitsuri_idle.png",
-    "revision": "ec2c4841291bfd58120a27dcd05602f9"
+    "url": "sprites/ettin_walk_left_f2.png",
+    "revision": "97a90fc3aa889d9882e7ed4d5f858082"
   }, {
     "url": "sprites/kitsuri_pain.png",
     "revision": "76ea90338499a1a595409a26117b757b"
   }, {
-    "url": "sprites/kitsuri_sad.png",
-    "revision": "2fdfeec12e996b09b8b975d301d8b34b"
-  }, {
     "url": "sprites/kitsuri_sleep.png",
     "revision": "7108bad740fececf80e01e25987000e2"
-  }, {
-    "url": "sprites/kitsuri_walk1.png",
-    "revision": "9eeb87f76fe3462fee8ef2187af1ef4b"
-  }, {
-    "url": "sprites/kitsuri_walk2.png",
-    "revision": "95067d554fcc26f0876ae2e68ef8c37d"
-  }, {
-    "url": "sprites/lamassuvel_angry.png",
-    "revision": "5621fe870f99159ae7d8d90ec539dfc6"
   }, {
     "url": "sprites/lamassuvel_baby.png",
     "revision": "b4af427e87259129267c9ac032fbdc98"
   }, {
+    "url": "sprites/lamassuvel_angry.png",
+    "revision": "5621fe870f99159ae7d8d90ec539dfc6"
+  }, {
+    "url": "sprites/kitsuri_sad.png",
+    "revision": "2fdfeec12e996b09b8b975d301d8b34b"
+  }, {
     "url": "sprites/lamassuvel_boredom.png",
     "revision": "0bb7f5abc8f3d5d08b09cbb39072f631"
-  }, {
-    "url": "sprites/lamassuvel_idle.png",
-    "revision": "530edd3a12155a576c8d593b7e38ec8a"
   }, {
     "url": "sprites/lamassuvel_sleep.png",
     "revision": "32ea61c4c832217190d7f83c1c1aaa0e"
   }, {
-    "url": "sprites/lamassuvel_walk1.png",
-    "revision": "4c3191710064d02ea64aa96b52b35cf2"
-  }, {
     "url": "sprites/lamassuvel_walk2.png",
     "revision": "3cc758826c2686621f5bf29d32d2e79d"
   }, {
-    "url": "sprites/landvaettir_angry.png",
-    "revision": "2cbee27d7e37008653bdd6342c79fbdf"
+    "url": "sprites/lamassuvel_walk1.png",
+    "revision": "4c3191710064d02ea64aa96b52b35cf2"
   }, {
     "url": "sprites/landvaettir_baby.png",
     "revision": "fabb8f9fc67ec4c60b4be2a3aa49219c"
   }, {
-    "url": "sprites/landvaettir_boredom.png",
-    "revision": "9d4f4521c6fd6d6875fa138b432c8209"
+    "url": "sprites/kitsuri_walk1.png",
+    "revision": "9eeb87f76fe3462fee8ef2187af1ef4b"
   }, {
     "url": "sprites/landvaettir_eat.png",
     "revision": "4cbdc96362a4efefc62b6bc9c471df92"
@@ -8640,26 +8610,20 @@ define(['./workbox-4367cb6e'], (function (workbox) { 'use strict';
     "url": "sprites/landvaettir_fear.png",
     "revision": "810476958f9c14908dea01bf83303918"
   }, {
-    "url": "sprites/landvaettir_happy.png",
-    "revision": "0e485c3ebf5c9161a020a587908b4b8c"
-  }, {
     "url": "sprites/landvaettir_idle.png",
     "revision": "be070939102adaf572652b97c0488bc1"
   }, {
     "url": "sprites/landvaettir_pain.png",
     "revision": "bb0e0c4f74044db28ed2c1b7e1a97b54"
   }, {
-    "url": "sprites/landvaettir_sad.png",
-    "revision": "40f41da26752230de7b62d00a61afdc8"
-  }, {
     "url": "sprites/landvaettir_sleep.png",
     "revision": "5c93da8a5df8a1c31d5e035d5230a8b1"
   }, {
+    "url": "sprites/jiangshivel_pain.png",
+    "revision": "7c9a7e886382f3f90e856f2946bd18d8"
+  }, {
     "url": "sprites/landvaettir_walk1.png",
     "revision": "222260e9e79edeb0efc9db6d8214d1aa"
-  }, {
-    "url": "sprites/landvaettir_walk2.png",
-    "revision": "82ed1a1866a2b22baa45ac4997334639"
   }, {
     "url": "sprites/language_forge.png",
     "revision": "658c0ac5ae8475c7f6ef1e7298b0f130"
@@ -8667,11 +8631,8 @@ define(['./workbox-4367cb6e'], (function (workbox) { 'use strict';
     "url": "sprites/language_seed.png",
     "revision": "dc628cd356c038bc2b7c2505a427b39a"
   }, {
-    "url": "sprites/laumagale_angry.png",
-    "revision": "90ba19e2912e2503d23033b51d5badaf"
-  }, {
-    "url": "sprites/laumagale_baby.png",
-    "revision": "0c8fe5964b2a2d579e42bda609ba0702"
+    "url": "sprites/landvaettir_sad.png",
+    "revision": "40f41da26752230de7b62d00a61afdc8"
   }, {
     "url": "sprites/laumagale_boredom.png",
     "revision": "d1e87b109ac21da4cdad304512c0b4f9"
@@ -8682,41 +8643,53 @@ define(['./workbox-4367cb6e'], (function (workbox) { 'use strict';
     "url": "sprites/laumagale_fear.png",
     "revision": "abb7035415fca72f152b0a3344130e8a"
   }, {
-    "url": "sprites/laumagale_happy.png",
-    "revision": "3e7571d6c5eac20befd8496d8903b711"
+    "url": "sprites/kitsuri_idle.png",
+    "revision": "ec2c4841291bfd58120a27dcd05602f9"
+  }, {
+    "url": "sprites/landvaettir_happy.png",
+    "revision": "0e485c3ebf5c9161a020a587908b4b8c"
   }, {
     "url": "sprites/laumagale_idle.png",
     "revision": "679f98546e24291b960d9c18ade5df86"
   }, {
-    "url": "sprites/laumagale_pain.png",
-    "revision": "763ce6e0c44304f9312b1e58b3761afa"
+    "url": "sprites/laumagale_happy.png",
+    "revision": "3e7571d6c5eac20befd8496d8903b711"
   }, {
-    "url": "sprites/laumagale_sad.png",
-    "revision": "a50b28292e659581868cee08ae2708d1"
+    "url": "sprites/kelpathi_happy.png",
+    "revision": "fcee74eeefaa5cb9cc4c9b0a214fe22c"
   }, {
     "url": "sprites/laumagale_sleep.png",
     "revision": "b6f456cb332ee5feb8046fc6f5192594"
   }, {
-    "url": "sprites/laumagale_token.png",
-    "revision": "4011c4ca898aad118094af3efd51d31c"
+    "url": "sprites/lava_glass.png",
+    "revision": "fa6d994a3a42cfa2f94f6e2b74f8ba3f"
   }, {
     "url": "sprites/laumagale_walk1.png",
     "revision": "e27a1631b7abb9ce4e4446a9ca81f77e"
   }, {
-    "url": "sprites/laumagale_walk2.png",
-    "revision": "62c5b478270a2a6e8a2b55d9cd3282c2"
+    "url": "sprites/landvaettir_boredom.png",
+    "revision": "9d4f4521c6fd6d6875fa138b432c8209"
   }, {
-    "url": "sprites/lava_glass.png",
-    "revision": "fa6d994a3a42cfa2f94f6e2b74f8ba3f"
+    "url": "sprites/laumagale_pain.png",
+    "revision": "763ce6e0c44304f9312b1e58b3761afa"
   }, {
     "url": "sprites/lava_marble.png",
     "revision": "94e3013f7411ddb5ac1316ed054b4d17"
   }, {
-    "url": "sprites/lava_snail.png",
-    "revision": "3fd2942f48ce959d147dc3554dbeb169"
+    "url": "sprites/laumagale_token.png",
+    "revision": "4011c4ca898aad118094af3efd51d31c"
+  }, {
+    "url": "sprites/laumagale_sad.png",
+    "revision": "a50b28292e659581868cee08ae2708d1"
+  }, {
+    "url": "sprites/laumagale_walk2.png",
+    "revision": "62c5b478270a2a6e8a2b55d9cd3282c2"
   }, {
     "url": "sprites/leaf_book.png",
     "revision": "b71944a14ce88e9380855a58fe893104"
+  }, {
+    "url": "sprites/lava_snail.png",
+    "revision": "3fd2942f48ce959d147dc3554dbeb169"
   }, {
     "url": "sprites/leaf_flute.png",
     "revision": "6f682d3052ab7f41215d106ebb8affcf"
@@ -8724,35 +8697,44 @@ define(['./workbox-4367cb6e'], (function (workbox) { 'use strict';
     "url": "sprites/learning_terminal.png",
     "revision": "0c1dd5839a43bf75eaefbfcb85e5cbfd"
   }, {
+    "url": "sprites/ettin_walk_south_2.png",
+    "revision": "9f57a149cdfa46c2b2def2746b3b35fc"
+  }, {
+    "url": "sprites/lamassuvel_idle.png",
+    "revision": "530edd3a12155a576c8d593b7e38ec8a"
+  }, {
+    "url": "sprites/laumagale_baby.png",
+    "revision": "0c8fe5964b2a2d579e42bda609ba0702"
+  }, {
     "url": "sprites/leshyn_angry.png",
     "revision": "017b52e4c3fe8ce3930e4f9f145bd9a4"
   }, {
-    "url": "sprites/leshyn_baby.png",
-    "revision": "38f4fac029a12ab795431aee32e0f54b"
+    "url": "sprites/draugrn_boredom.png",
+    "revision": "36884792b743c821a358b7d53e8af307"
   }, {
     "url": "sprites/leshyn_boredom.png",
     "revision": "b756c5503d7c588feedd4471fe0de50d"
   }, {
+    "url": "sprites/laumagale_angry.png",
+    "revision": "90ba19e2912e2503d23033b51d5badaf"
+  }, {
     "url": "sprites/leshyn_eat.png",
     "revision": "dad91161a5cec1400c1fa6a2e1080705"
+  }, {
+    "url": "sprites/leshyn_baby.png",
+    "revision": "38f4fac029a12ab795431aee32e0f54b"
   }, {
     "url": "sprites/leshyn_fear.png",
     "revision": "bc520d83e4c769199e0058404a29dc8f"
   }, {
-    "url": "sprites/leshyn_happy.png",
-    "revision": "4b7230b2b98e409c3f1755f59bd9ac3b"
+    "url": "sprites/leshyn_sleep.png",
+    "revision": "7320435eec2c7a49cc7d75fea02150eb"
   }, {
     "url": "sprites/leshyn_idle.png",
     "revision": "bdf5c298a91f453fdb6a03bdadeb87d4"
   }, {
-    "url": "sprites/leshyn_pain.png",
-    "revision": "10054a9ab8ee97c47d14eb6bd8f15ebf"
-  }, {
     "url": "sprites/leshyn_sad.png",
     "revision": "5bbd8e5042979cec2415538c5cff8037"
-  }, {
-    "url": "sprites/leshyn_sleep.png",
-    "revision": "7320435eec2c7a49cc7d75fea02150eb"
   }, {
     "url": "sprites/leshyn_walk1.png",
     "revision": "34c3356a4c4dc643d5f3f72af0adf652"
@@ -8763,56 +8745,44 @@ define(['./workbox-4367cb6e'], (function (workbox) { 'use strict';
     "url": "sprites/life_forge.png",
     "revision": "d0f8cc8b8309fcbf7b1a560378fe029a"
   }, {
+    "url": "sprites/leshyn_pain.png",
+    "revision": "10054a9ab8ee97c47d14eb6bd8f15ebf"
+  }, {
     "url": "sprites/living_bandage.png",
     "revision": "6c9f50b046e92df0212639a9a00e81da"
-  }, {
-    "url": "sprites/living_clay.png",
-    "revision": "3949e5b36074efae2f2b96a1cd6c5b6c"
-  }, {
-    "url": "sprites/living_flower_crown.png",
-    "revision": "f582820c1a52f9cf4a769355ea1516e9"
   }, {
     "url": "sprites/logic_matrix.png",
     "revision": "604a724d10a8f8f15181cd22e2389d66"
   }, {
-    "url": "sprites/longvel_angry.png",
-    "revision": "144a931254d65c8b87431ee166eaceb0"
+    "url": "sprites/living_flower_crown.png",
+    "revision": "f582820c1a52f9cf4a769355ea1516e9"
+  }, {
+    "url": "sprites/leshyn_happy.png",
+    "revision": "4b7230b2b98e409c3f1755f59bd9ac3b"
   }, {
     "url": "sprites/longvel_baby.png",
     "revision": "a91db4a6e50e662c0fbeab24ea81e982"
   }, {
-    "url": "sprites/longvel_boredom.png",
-    "revision": "f6e16463adfda471c7b65676072de068"
+    "url": "sprites/living_clay.png",
+    "revision": "3949e5b36074efae2f2b96a1cd6c5b6c"
   }, {
-    "url": "sprites/longvel_eat.png",
-    "revision": "acb4e8218311cc19e9df1cea7e8b2d41"
+    "url": "sprites/longvel_angry.png",
+    "revision": "144a931254d65c8b87431ee166eaceb0"
   }, {
     "url": "sprites/longvel_fear.png",
     "revision": "d7aa83bb22356f72866123dab8da86b9"
   }, {
-    "url": "sprites/longvel_happy.png",
-    "revision": "294f95f05f32cd6a8f68d61ccefc9f06"
-  }, {
-    "url": "sprites/longvel_idle.png",
-    "revision": "a5f551aa0e22485912711947eedd0e1a"
+    "url": "sprites/longvel_eat.png",
+    "revision": "acb4e8218311cc19e9df1cea7e8b2d41"
   }, {
     "url": "sprites/longvel_pain.png",
     "revision": "ffcd291e72dfc6fb9af3cb778fd8317a"
   }, {
-    "url": "sprites/longvel_sad.png",
-    "revision": "e4e815e216c483860622d4fa4234dbdb"
-  }, {
-    "url": "sprites/longvel_sleep.png",
-    "revision": "c4ed2e6d345a8717714e4b66d6c65507"
-  }, {
     "url": "sprites/longvel_walk1.png",
     "revision": "b733fc3bbf8629e01751ee1d3c269a0d"
   }, {
-    "url": "sprites/longvel_walk2.png",
-    "revision": "b4edfd4fb1eb26fc1abfc086b6b3eb62"
-  }, {
-    "url": "sprites/luminous_cap.png",
-    "revision": "dad993dbcc20c49e1852d038a410eb6c"
+    "url": "sprites/longvel_happy.png",
+    "revision": "294f95f05f32cd6a8f68d61ccefc9f06"
   }, {
     "url": "sprites/luminous_cap_prime.png",
     "revision": "6443e5daa2b2387492ea26c3141f8d59"
@@ -8820,17 +8790,23 @@ define(['./workbox-4367cb6e'], (function (workbox) { 'use strict';
     "url": "sprites/luminous_shell.png",
     "revision": "422cf11a407d8f6c997e33abadc9d150"
   }, {
-    "url": "sprites/luminous_truffle.png",
-    "revision": "7ca154e3ec15f92ac1da24c93e7a57e8"
+    "url": "sprites/luminous_cap.png",
+    "revision": "dad993dbcc20c49e1852d038a410eb6c"
+  }, {
+    "url": "sprites/magma_heart_stone.png",
+    "revision": "da3e9e9317568e5252446d7e17b32260"
   }, {
     "url": "sprites/lus_vel_happy.png",
     "revision": "55d1448e5c99fa19cfdb790053c9cdc0"
   }, {
+    "url": "sprites/luminous_truffle.png",
+    "revision": "7ca154e3ec15f92ac1da24c93e7a57e8"
+  }, {
+    "url": "sprites/longvel_walk2.png",
+    "revision": "b4edfd4fb1eb26fc1abfc086b6b3eb62"
+  }, {
     "url": "sprites/lus_vel_idle.png",
     "revision": "7064bf3d63e1924d8bf213daec5bc887"
-  }, {
-    "url": "sprites/magma_heart_stone.png",
-    "revision": "da3e9e9317568e5252446d7e17b32260"
   }, {
     "url": "sprites/magma_pearl.png",
     "revision": "bab4000e581b9b605a61054ca82b5fbf"
@@ -8841,35 +8817,26 @@ define(['./workbox-4367cb6e'], (function (workbox) { 'use strict';
     "url": "sprites/masalaivel_angry.png",
     "revision": "921f838b0bca8b2f9396f175314d3b68"
   }, {
-    "url": "sprites/masalaivel_baby.png",
-    "revision": "5fcacd13f2de20197183e8f55c696150"
-  }, {
     "url": "sprites/masalaivel_boredom.png",
     "revision": "fc21501dc0ac340cf137e28adb7a0cdc"
-  }, {
-    "url": "sprites/masalaivel_eat.png",
-    "revision": "cae4ae0f9d3f636ff57c356cf0e33cc7"
   }, {
     "url": "sprites/masalaivel_fear.png",
     "revision": "04e5ac0058451b7613951227de35a8c6"
   }, {
-    "url": "sprites/masalaivel_happy.png",
-    "revision": "c516b3c180f3b5850571d5112f6ccc02"
-  }, {
-    "url": "sprites/masalaivel_idle.png",
-    "revision": "30cba6096c5e6ec6b59266ff60ba2117"
-  }, {
-    "url": "sprites/masalaivel_pain.png",
-    "revision": "a9618c2d874633e5fc04849ad8abc0f2"
+    "url": "sprites/masalaivel_baby.png",
+    "revision": "5fcacd13f2de20197183e8f55c696150"
   }, {
     "url": "sprites/masalaivel_sad.png",
     "revision": "794a03fae7604566d0023e03284d03f9"
   }, {
-    "url": "sprites/masalaivel_sleep.png",
-    "revision": "cab395a67bd91d17640e6a7918d72167"
+    "url": "sprites/masalaivel_idle.png",
+    "revision": "30cba6096c5e6ec6b59266ff60ba2117"
   }, {
     "url": "sprites/masalaivel_walk1.png",
     "revision": "14d558b28afb9021e4650e89e9787a87"
+  }, {
+    "url": "sprites/masalaivel_eat.png",
+    "revision": "cae4ae0f9d3f636ff57c356cf0e33cc7"
   }, {
     "url": "sprites/masalaivel_walk2.png",
     "revision": "c6dde724963a5d21e60aba7864267a44"
@@ -8883,44 +8850,53 @@ define(['./workbox-4367cb6e'], (function (workbox) { 'use strict';
     "url": "sprites/meadow_perfume.png",
     "revision": "38aa0095be641d5ff9cdb2b3ef701b7e"
   }, {
+    "url": "sprites/kelpathi_boredom.png",
+    "revision": "2edc0a8313213350c898134dab490aac"
+  }, {
+    "url": "sprites/mending_kit.png",
+    "revision": "2ea2a2747ac565e594dfff8a66323105"
+  }, {
     "url": "sprites/memory_crystal.png",
     "revision": "a2a34ed07515b4616fa382d6963546ee"
   }, {
     "url": "sprites/memory_pearl.png",
     "revision": "dd698f98369cf2773f8bf11cedc4e291"
   }, {
-    "url": "sprites/mending_kit.png",
-    "revision": "2ea2a2747ac565e594dfff8a66323105"
+    "url": "sprites/longvel_sad.png",
+    "revision": "e4e815e216c483860622d4fa4234dbdb"
+  }, {
+    "url": "sprites/masalaivel_sleep.png",
+    "revision": "cab395a67bd91d17640e6a7918d72167"
+  }, {
+    "url": "sprites/longvel_idle.png",
+    "revision": "a5f551aa0e22485912711947eedd0e1a"
   }, {
     "url": "sprites/mimikin_angry.png",
     "revision": "961f0b46c8dc5aff2d4eba2984ffe490"
   }, {
-    "url": "sprites/mimikin_baby.png",
-    "revision": "aaba549db2df6bd80985e526049e4578"
-  }, {
     "url": "sprites/mimikin_boredom.png",
     "revision": "5acca802f590c48a16f36f568e7abdf0"
   }, {
-    "url": "sprites/mimikin_eat.png",
-    "revision": "bd985fa6d371012211ea7b5a669f8b55"
+    "url": "sprites/mimikin_baby.png",
+    "revision": "aaba549db2df6bd80985e526049e4578"
   }, {
     "url": "sprites/mimikin_fear.png",
     "revision": "c85b2c82aec1b25a120860e0df91b43d"
   }, {
-    "url": "sprites/mimikin_happy.png",
-    "revision": "4e865e2b75d2e99a56501f0f9cde41cc"
+    "url": "sprites/mimikin_eat.png",
+    "revision": "bd985fa6d371012211ea7b5a669f8b55"
   }, {
     "url": "sprites/mimikin_idle.png",
     "revision": "3738f30ba17a5bf9cc0ed45fc067604f"
   }, {
-    "url": "sprites/mimikin_pain.png",
-    "revision": "964b4a29c7b5d8f90cc294e0576bf3b7"
-  }, {
-    "url": "sprites/mimikin_sad.png",
-    "revision": "e58ca4d3193c8a5b41d22cb3f1ae9bc4"
+    "url": "sprites/mimikin_happy.png",
+    "revision": "4e865e2b75d2e99a56501f0f9cde41cc"
   }, {
     "url": "sprites/mimikin_sleep.png",
     "revision": "1fdb430cdfe0024e3e07a12c9436df81"
+  }, {
+    "url": "sprites/mimikin_pain.png",
+    "revision": "964b4a29c7b5d8f90cc294e0576bf3b7"
   }, {
     "url": "sprites/mimikin_walk1.png",
     "revision": "5b84c79cbbaf64b140ae7903df644b90"
@@ -8928,8 +8904,8 @@ define(['./workbox-4367cb6e'], (function (workbox) { 'use strict';
     "url": "sprites/mimikin_walk2.png",
     "revision": "4846c9aa5ec81ae02aa88a578bbbd3cd"
   }, {
-    "url": "sprites/mind_thorn.png",
-    "revision": "032445a45314ceaa62ba9298d155c1d8"
+    "url": "sprites/mimikin_sad.png",
+    "revision": "e58ca4d3193c8a5b41d22cb3f1ae9bc4"
   }, {
     "url": "sprites/mineral_cluster.png",
     "revision": "644bccd4df8d08dcdc4c5d61103e2f6c"
@@ -8946,14 +8922,11 @@ define(['./workbox-4367cb6e'], (function (workbox) { 'use strict';
     "url": "sprites/moss_doll.png",
     "revision": "f61b8af5d666fc934cb246a13d20139a"
   }, {
+    "url": "sprites/mind_thorn.png",
+    "revision": "032445a45314ceaa62ba9298d155c1d8"
+  }, {
     "url": "sprites/music_stone.png",
     "revision": "75c3f76a9aec241a0a96af6dde66c594"
-  }, {
-    "url": "sprites/mycelium_bread.png",
-    "revision": "535133dfbc55f4ba4ce33248c9d886ea"
-  }, {
-    "url": "sprites/mycelium_crystal_hybrid.png",
-    "revision": "86681ad4dc45faf239be69c9d60bfcff"
   }, {
     "url": "sprites/mycelium_nectar.png",
     "revision": "29e0bc6c990b4bf3988304215a4e327a"
@@ -8964,65 +8937,65 @@ define(['./workbox-4367cb6e'], (function (workbox) { 'use strict';
     "url": "sprites/mycelium_thread.png",
     "revision": "c273d903f8f486d2e85802e516be2e43"
   }, {
-    "url": "sprites/mycon_angry.png",
-    "revision": "4b1752d24cd79c44d1ebf7600d1baea6"
-  }, {
-    "url": "sprites/mycon_baby.png",
-    "revision": "d03f267a9d23d75dab2761d02ce2c1f8"
-  }, {
-    "url": "sprites/mycon_boredom.png",
-    "revision": "faac62e0f7b4d8bc254536e1dd0aa7f6"
-  }, {
-    "url": "sprites/mycon_eat.png",
-    "revision": "32d0e2a229d1e7e0bf3905fcc377bc2b"
+    "url": "sprites/longvel_sleep.png",
+    "revision": "c4ed2e6d345a8717714e4b66d6c65507"
   }, {
     "url": "sprites/mycon_fear.png",
     "revision": "e6606b2090e860e45294491fc3edb3e8"
   }, {
-    "url": "sprites/mycon_grow.png",
-    "revision": "6cd3c74f596511e2dd4d094d2a349e65"
+    "url": "sprites/mycelium_bread.png",
+    "revision": "535133dfbc55f4ba4ce33248c9d886ea"
   }, {
-    "url": "sprites/mycon_happy.png",
-    "revision": "b1179eebea8e097f9ee2df2065a18581"
+    "url": "sprites/mycon_angry.png",
+    "revision": "4b1752d24cd79c44d1ebf7600d1baea6"
   }, {
-    "url": "sprites/mycon_idle.png",
-    "revision": "200c08978a60fa7f998541aa333ace2a"
+    "url": "sprites/mycon_eat.png",
+    "revision": "32d0e2a229d1e7e0bf3905fcc377bc2b"
+  }, {
+    "url": "sprites/masalaivel_pain.png",
+    "revision": "a9618c2d874633e5fc04849ad8abc0f2"
+  }, {
+    "url": "sprites/mycon_baby.png",
+    "revision": "d03f267a9d23d75dab2761d02ce2c1f8"
   }, {
     "url": "sprites/mycon_idle_left.png",
     "revision": "73df6006d755f97ed3c6ba3244b127e2"
   }, {
+    "url": "sprites/mycon_idle.png",
+    "revision": "200c08978a60fa7f998541aa333ace2a"
+  }, {
+    "url": "sprites/mycon_happy.png",
+    "revision": "b1179eebea8e097f9ee2df2065a18581"
+  }, {
     "url": "sprites/mycon_idle_right.png",
     "revision": "aad9be396fb5c22c1b4b75de64f2ce1e"
-  }, {
-    "url": "sprites/mycon_idle_south.png",
-    "revision": "4e7c49d804f7f08bc845fcacc8f9b999"
   }, {
     "url": "sprites/mycon_pain.png",
     "revision": "b2f82d396711af3354a54253d7a54c7f"
   }, {
-    "url": "sprites/mycon_retract.png",
-    "revision": "8df4ec5056dc2a643e73dc0002b74b9f"
-  }, {
-    "url": "sprites/mycon_sad.png",
-    "revision": "4f6fd88724b936c8e2fd9693c725c222"
-  }, {
-    "url": "sprites/mycon_sleep.png",
-    "revision": "4f243d4e77764c31bf967fd9de2ba2fc"
+    "url": "sprites/mycon_idle_south.png",
+    "revision": "4e7c49d804f7f08bc845fcacc8f9b999"
   }, {
     "url": "sprites/mycon_spore_pod.png",
     "revision": "981047156be5ecc1da50baf3ea570d6a"
   }, {
-    "url": "sprites/mycon_spore_processor.png",
-    "revision": "fe17ba232bdf46cf86e568ab3138770f"
+    "url": "sprites/mycon_grow.png",
+    "revision": "6cd3c74f596511e2dd4d094d2a349e65"
+  }, {
+    "url": "sprites/mycon_retract.png",
+    "revision": "8df4ec5056dc2a643e73dc0002b74b9f"
   }, {
     "url": "sprites/mycon_walk1.png",
     "revision": "4c45645f2f66c12d272547384080fb01"
   }, {
+    "url": "sprites/landvaettir_walk2.png",
+    "revision": "82ed1a1866a2b22baa45ac4997334639"
+  }, {
+    "url": "sprites/mycon_spore_processor.png",
+    "revision": "fe17ba232bdf46cf86e568ab3138770f"
+  }, {
     "url": "sprites/mycon_walk2.png",
     "revision": "939be531447b9839a2f8f3cfb18922de"
-  }, {
-    "url": "sprites/nagavel_angry.png",
-    "revision": "f711347a4537b4ce23521e5ee8cda7f6"
   }, {
     "url": "sprites/nagavel_baby.png",
     "revision": "e56c94f2cf85ab1f5d8323904de52f16"
@@ -9051,8 +9024,8 @@ define(['./workbox-4367cb6e'], (function (workbox) { 'use strict';
     "url": "sprites/nagavel_sleep.png",
     "revision": "df3cc3036f7bbd60f7763ddbeff2158d"
   }, {
-    "url": "sprites/nagavel_walk1.png",
-    "revision": "18cb8b4c12c9c02b9440738184441ee1"
+    "url": "sprites/masalaivel_happy.png",
+    "revision": "c516b3c180f3b5850571d5112f6ccc02"
   }, {
     "url": "sprites/nagavel_walk2.png",
     "revision": "e91d2439ca361d3266311f326e564569"
@@ -9060,20 +9033,20 @@ define(['./workbox-4367cb6e'], (function (workbox) { 'use strict';
     "url": "sprites/nature_codex.png",
     "revision": "e00a4b461bb4bffc170d838ad56610fa"
   }, {
-    "url": "sprites/nautical_chart.png",
-    "revision": "50a48c61ba7ec19306492180bfa857b2"
-  }, {
-    "url": "sprites/nest_moss.png",
-    "revision": "24e39c1b121aea3ae772a7552c423273"
+    "url": "sprites/landvaettir_angry.png",
+    "revision": "2cbee27d7e37008653bdd6342c79fbdf"
   }, {
     "url": "sprites/neural_lattice.png",
     "revision": "3f8e3c1bf53eb12c82f87cc19ca76c0a"
   }, {
-    "url": "sprites/nommo_angry.png",
-    "revision": "c070eec7a5b9462adc4cde1bed1a8ee8"
+    "url": "sprites/nest_moss.png",
+    "revision": "24e39c1b121aea3ae772a7552c423273"
   }, {
     "url": "sprites/nommo_baby.png",
     "revision": "870b76ca28eb93c1d2f800dadd44fd21"
+  }, {
+    "url": "sprites/nommo_angry.png",
+    "revision": "c070eec7a5b9462adc4cde1bed1a8ee8"
   }, {
     "url": "sprites/nommo_boredom.png",
     "revision": "425281c4ed899db7b9b3205c2c255d85"
@@ -9084,14 +9057,17 @@ define(['./workbox-4367cb6e'], (function (workbox) { 'use strict';
     "url": "sprites/nommo_fear.png",
     "revision": "3ef1a85a8ef00b11fabbf599835b611d"
   }, {
+    "url": "sprites/nautical_chart.png",
+    "revision": "50a48c61ba7ec19306492180bfa857b2"
+  }, {
     "url": "sprites/nommo_happy.png",
     "revision": "7f069425c160042c583171a14b814304"
   }, {
-    "url": "sprites/nommo_idle.png",
-    "revision": "216f937ec3e5897823cc4a5deaa9033a"
-  }, {
     "url": "sprites/nommo_pain.png",
     "revision": "340ca3e47414f0dd0f3426c5767a2db8"
+  }, {
+    "url": "sprites/nommo_idle.png",
+    "revision": "216f937ec3e5897823cc4a5deaa9033a"
   }, {
     "url": "sprites/nommo_sad.png",
     "revision": "e2643625dfa8bea4d49c285b3fcc7cbf"
@@ -9099,32 +9075,20 @@ define(['./workbox-4367cb6e'], (function (workbox) { 'use strict';
     "url": "sprites/nommo_sleep.png",
     "revision": "1f0bb5395457ab677ebed4e53b46a2bf"
   }, {
-    "url": "sprites/nommo_walk1.png",
-    "revision": "cb58cecccfc63851ea9c827a44f25762"
-  }, {
-    "url": "sprites/nommo_walk2.png",
-    "revision": "d1f0623d80a439d372a3084c22d2ee82"
-  }, {
-    "url": "sprites/norn_angry.png",
-    "revision": "b05a53fa4f0b823815f4277e8dadc09c"
-  }, {
-    "url": "sprites/norn_angry_new.png",
-    "revision": "d5d191a7cc534095bd51b7a687e7b225"
-  }, {
     "url": "sprites/norn_baby.png",
     "revision": "9b564f2057e4e0d6f01ad309d8b112c4"
-  }, {
-    "url": "sprites/norn_boredom.png",
-    "revision": "621d9ac1d836993eefe127ad703ec095"
-  }, {
-    "url": "sprites/norn_boredom_new.png",
-    "revision": "baa54aab2200334579922dab6d58ea48"
   }, {
     "url": "sprites/norn_eat.png",
     "revision": "16777c4069cdd92e6e825110d5d7ee10"
   }, {
-    "url": "sprites/norn_eat_new.png",
-    "revision": "a73d027afb6ed74923a5fa80fa16af82"
+    "url": "sprites/nommo_walk1.png",
+    "revision": "cb58cecccfc63851ea9c827a44f25762"
+  }, {
+    "url": "sprites/norn_boredom_new.png",
+    "revision": "baa54aab2200334579922dab6d58ea48"
+  }, {
+    "url": "sprites/norn_boredom.png",
+    "revision": "621d9ac1d836993eefe127ad703ec095"
   }, {
     "url": "sprites/norn_fear.png",
     "revision": "257dbbcf6465f08c5e264cbb6cfefd56"
@@ -9132,35 +9096,47 @@ define(['./workbox-4367cb6e'], (function (workbox) { 'use strict';
     "url": "sprites/norn_fear_new.png",
     "revision": "8366f942f62415b67d88f11bce9c6062"
   }, {
+    "url": "sprites/nommo_walk2.png",
+    "revision": "d1f0623d80a439d372a3084c22d2ee82"
+  }, {
+    "url": "sprites/mycelium_crystal_hybrid.png",
+    "revision": "86681ad4dc45faf239be69c9d60bfcff"
+  }, {
     "url": "sprites/norn_happy.png",
     "revision": "61dc5e50e64417ee4719b9cdda84ef68"
+  }, {
+    "url": "sprites/mycon_sad.png",
+    "revision": "4f6fd88724b936c8e2fd9693c725c222"
   }, {
     "url": "sprites/norn_happy_new.png",
     "revision": "69d537e77f6b59426b8e99537742d9d2"
   }, {
+    "url": "sprites/norn_eat_new.png",
+    "revision": "a73d027afb6ed74923a5fa80fa16af82"
+  }, {
     "url": "sprites/norn_happy_v2.png",
     "revision": "4689df3e7e62610e8ef154d4b6715de3"
+  }, {
+    "url": "sprites/mycon_sleep.png",
+    "revision": "4f243d4e77764c31bf967fd9de2ba2fc"
   }, {
     "url": "sprites/norn_idle.png",
     "revision": "5de481a1dde7c6dfe565f9f47a315334"
   }, {
-    "url": "sprites/norn_idle_left.png",
-    "revision": "b2425a596db010bf20e1506a4475a4a3"
+    "url": "sprites/norn_idle_northeast.png",
+    "revision": "e6c9909000353dfd7c399dbb632e2cc1"
   }, {
     "url": "sprites/norn_idle_north.png",
     "revision": "fef8cbaa93fc6127a3b769454ad890a7"
   }, {
-    "url": "sprites/norn_idle_northeast.png",
-    "revision": "e6c9909000353dfd7c399dbb632e2cc1"
-  }, {
     "url": "sprites/norn_idle_northwest.png",
     "revision": "74cd0996d6ff3a6a73d36ecf691dc4fb"
   }, {
+    "url": "sprites/norn_angry.png",
+    "revision": "b05a53fa4f0b823815f4277e8dadc09c"
+  }, {
     "url": "sprites/norn_idle_right.png",
     "revision": "555a25513a9cb9c600a2102952f64dec"
-  }, {
-    "url": "sprites/norn_idle_south.png",
-    "revision": "5de481a1dde7c6dfe565f9f47a315334"
   }, {
     "url": "sprites/norn_idle_south_new.png",
     "revision": "1f7fae6ec6f211a8937e77fa67fcd4c0"
@@ -9171,6 +9147,9 @@ define(['./workbox-4367cb6e'], (function (workbox) { 'use strict';
     "url": "sprites/norn_idle_southwest.png",
     "revision": "2f9a48cbe8d2a1d1624cd7c63e1fee3c"
   }, {
+    "url": "sprites/norn_idle_south.png",
+    "revision": "5de481a1dde7c6dfe565f9f47a315334"
+  }, {
     "url": "sprites/norn_pain.png",
     "revision": "d0f35f58ff38dcf0e194b7d96b65ef14"
   }, {
@@ -9180,14 +9159,8 @@ define(['./workbox-4367cb6e'], (function (workbox) { 'use strict';
     "url": "sprites/norn_sad.png",
     "revision": "198050c072592282d61bcc7890c5b58c"
   }, {
-    "url": "sprites/norn_sad_new.png",
-    "revision": "ef761c5a2f82bb9f7400bd33900a88fb"
-  }, {
     "url": "sprites/norn_sleep.png",
     "revision": "6b667319f92b6dc369a92e937c1634e0"
-  }, {
-    "url": "sprites/norn_test_variant_b.png",
-    "revision": "6bde3bde3d3eb1c07db7da6bc584c60b"
   }, {
     "url": "sprites/norn_walk1.png",
     "revision": "a9a3f91a34068175f1b41d2130502202"
@@ -9195,38 +9168,29 @@ define(['./workbox-4367cb6e'], (function (workbox) { 'use strict';
     "url": "sprites/norn_walk2.png",
     "revision": "99bc978eaa0c55fe41428a90ed5e0ec2"
   }, {
-    "url": "sprites/norn_walk_left_f0.png",
-    "revision": "30e946b7ac8d3eebd322de1cc8183259"
-  }, {
     "url": "sprites/norn_walk_left_f1.png",
     "revision": "b072b9d97a4621741a879ae392d31b5a"
+  }, {
+    "url": "sprites/norn_walk_left_f0.png",
+    "revision": "30e946b7ac8d3eebd322de1cc8183259"
   }, {
     "url": "sprites/norn_walk_left_f2.png",
     "revision": "364758f22a01aee2a16f0faad8fb9fab"
   }, {
-    "url": "sprites/norn_walk_left_f3.png",
-    "revision": "ba2421dfbd3bac0038e6bb56066ec237"
-  }, {
     "url": "sprites/norn_walk_left_f4.png",
     "revision": "a51853e764d77dac849a356ac50d105a"
-  }, {
-    "url": "sprites/norn_walk_left_f5.png",
-    "revision": "9dc76569308afea677c93efe8c1e1179"
   }, {
     "url": "sprites/norn_walk_left_f6.png",
     "revision": "5801503801c9d0ee165fdc87094b5ed4"
   }, {
+    "url": "sprites/norn_sad_new.png",
+    "revision": "ef761c5a2f82bb9f7400bd33900a88fb"
+  }, {
     "url": "sprites/norn_walk_left_f7.png",
     "revision": "5897981d0245624bf7d48f6fb900e2a7"
   }, {
-    "url": "sprites/norn_walk_north_f0.png",
-    "revision": "7019ce06d16b7abbd9832e84f6b1642a"
-  }, {
-    "url": "sprites/norn_walk_north_f1.png",
-    "revision": "2053caddff48826de8b05723b574644c"
-  }, {
-    "url": "sprites/norn_walk_north_f2.png",
-    "revision": "8ff851b1d6b64533c66c466d065bf4aa"
+    "url": "sprites/norn_walk_left_f3.png",
+    "revision": "ba2421dfbd3bac0038e6bb56066ec237"
   }, {
     "url": "sprites/norn_walk_north_f3.png",
     "revision": "26af5126a188c41a47c70e401b63d2a5"
@@ -9237,86 +9201,92 @@ define(['./workbox-4367cb6e'], (function (workbox) { 'use strict';
     "url": "sprites/norn_walk_north_f5.png",
     "revision": "243617dd662dae7c18a4aaaf5f612272"
   }, {
-    "url": "sprites/norn_walk_north_f6.png",
-    "revision": "b13594a8604200fc0225a901a42126f9"
-  }, {
-    "url": "sprites/norn_walk_north_f7.png",
-    "revision": "e5e827eaa7d557e21d7bf31eb2f5a458"
+    "url": "sprites/norn_test_variant_b.png",
+    "revision": "6bde3bde3d3eb1c07db7da6bc584c60b"
   }, {
     "url": "sprites/norn_walk_northeast_f0.png",
     "revision": "2f409bbcbf4d094b08141dc5f4387250"
   }, {
+    "url": "sprites/norn_walk_north_f7.png",
+    "revision": "e5e827eaa7d557e21d7bf31eb2f5a458"
+  }, {
     "url": "sprites/norn_walk_northeast_f1.png",
     "revision": "22686b2986ac8870f30f46045a052e90"
+  }, {
+    "url": "sprites/norn_walk_north_f1.png",
+    "revision": "2053caddff48826de8b05723b574644c"
+  }, {
+    "url": "sprites/norn_walk_north_f0.png",
+    "revision": "7019ce06d16b7abbd9832e84f6b1642a"
+  }, {
+    "url": "sprites/norn_walk_north_f6.png",
+    "revision": "b13594a8604200fc0225a901a42126f9"
   }, {
     "url": "sprites/norn_walk_northeast_f2.png",
     "revision": "6a962aea81ca7b34fecdef4d5ef79dce"
   }, {
-    "url": "sprites/norn_walk_northeast_f3.png",
-    "revision": "5b74c08f1e4e5563c7fa8dff04334cd3"
-  }, {
-    "url": "sprites/norn_walk_northeast_f4.png",
-    "revision": "901f465c048dfdbecffc9849fcd431c2"
-  }, {
     "url": "sprites/norn_walk_northeast_f5.png",
     "revision": "0b2f43cf8f5d2ac0f000fa35dbdf2744"
   }, {
-    "url": "sprites/norn_walk_northeast_f6.png",
-    "revision": "96cec345e041d786184d36bf0a823dfb"
+    "url": "sprites/norn_walk_northeast_f3.png",
+    "revision": "5b74c08f1e4e5563c7fa8dff04334cd3"
   }, {
     "url": "sprites/norn_walk_northeast_f7.png",
     "revision": "b360883f5b7de4cc7acaeea42d056485"
   }, {
-    "url": "sprites/norn_walk_northwest_f0.png",
-    "revision": "5cdff836c87d2b5b274ddc5da6535563"
+    "url": "sprites/norn_walk_northwest_f2.png",
+    "revision": "9721637bb683d8b5fb3a1d9f8928dda5"
+  }, {
+    "url": "sprites/norn_walk_northeast_f6.png",
+    "revision": "96cec345e041d786184d36bf0a823dfb"
   }, {
     "url": "sprites/norn_walk_northwest_f1.png",
     "revision": "5fbe07cb07fa7839f33154e31cf4bbe0"
   }, {
-    "url": "sprites/norn_walk_northwest_f2.png",
-    "revision": "9721637bb683d8b5fb3a1d9f8928dda5"
+    "url": "sprites/norn_walk_northwest_f0.png",
+    "revision": "5cdff836c87d2b5b274ddc5da6535563"
   }, {
-    "url": "sprites/norn_walk_northwest_f3.png",
-    "revision": "fff4d0fde775397d911fd597dce49377"
+    "url": "sprites/norn_walk_northeast_f4.png",
+    "revision": "901f465c048dfdbecffc9849fcd431c2"
   }, {
     "url": "sprites/norn_walk_northwest_f4.png",
     "revision": "5daf1ceec3a4b79ec6b86f262d5f4e33"
   }, {
-    "url": "sprites/norn_walk_northwest_f5.png",
-    "revision": "9505bedd9d0c9d3656e0c31d756942f7"
+    "url": "sprites/norn_walk_northwest_f3.png",
+    "revision": "fff4d0fde775397d911fd597dce49377"
   }, {
     "url": "sprites/norn_walk_northwest_f6.png",
     "revision": "10a0898c0fec5aa8abf89eb44ced0e09"
   }, {
-    "url": "sprites/norn_walk_northwest_f7.png",
-    "revision": "1e709a7fcb880c2fd01f73b8ceb0909c"
+    "url": "sprites/norn_walk_northwest_f5.png",
+    "revision": "9505bedd9d0c9d3656e0c31d756942f7"
   }, {
     "url": "sprites/norn_walk_right_f0.png",
     "revision": "fbfd66270a57eaea2db2f5936d5d6b0f"
   }, {
-    "url": "sprites/norn_walk_right_f1.png",
-    "revision": "0366c6eb01e0d78aeeb4d30f0dd32ae6"
+    "url": "sprites/norn_walk_northwest_f7.png",
+    "revision": "1e709a7fcb880c2fd01f73b8ceb0909c"
+  }, {
+    "url": "sprites/norn_walk_left_f5.png",
+    "revision": "9dc76569308afea677c93efe8c1e1179"
   }, {
     "url": "sprites/norn_walk_right_f2.png",
     "revision": "143af03596f5250a82b7532289073738"
   }, {
-    "url": "sprites/norn_walk_right_f3.png",
-    "revision": "7c52e04f98194e73f508555f7dde2ace"
-  }, {
     "url": "sprites/norn_walk_right_f4.png",
     "revision": "4fe79206e0537f95263ff12a22f996c0"
+  }, {
+    "url": "sprites/norn_walk_right_f1.png",
+    "revision": "0366c6eb01e0d78aeeb4d30f0dd32ae6"
   }, {
     "url": "sprites/norn_walk_right_f5.png",
     "revision": "1dafbd9239a479688638a893ff5cd70e"
   }, {
-    "url": "sprites/norn_walk_right_f6.png",
-    "revision": "09658b7f5564d6fca6ef690fbd0b93b8"
+    "url": "sprites/norn_walk_right_f3.png",
+    "revision": "7c52e04f98194e73f508555f7dde2ace"
   }, {
     "url": "sprites/norn_walk_right_f7.png",
     "revision": "684e4c357a62d9294417a34203dff42d"
-  }, {
-    "url": "sprites/norn_walk_south_f0.png",
-    "revision": "a9a3f91a34068175f1b41d2130502202"
   }, {
     "url": "sprites/norn_walk_south_f1.png",
     "revision": "6c481b9a66ed2be6a8dff6fcfca6a455"
@@ -9324,20 +9294,26 @@ define(['./workbox-4367cb6e'], (function (workbox) { 'use strict';
     "url": "sprites/norn_walk_south_f2.png",
     "revision": "0f63f96799759e6062e2294eca2ad4a8"
   }, {
-    "url": "sprites/norn_walk_south_f3.png",
-    "revision": "876926a982102e99f4465a6090c39e77"
-  }, {
     "url": "sprites/norn_walk_south_f4.png",
     "revision": "99bc978eaa0c55fe41428a90ed5e0ec2"
   }, {
-    "url": "sprites/norn_walk_south_f5.png",
-    "revision": "63655b02d131f487ef2abd401ed5cff2"
+    "url": "sprites/norn_walk_south_f3.png",
+    "revision": "876926a982102e99f4465a6090c39e77"
   }, {
     "url": "sprites/norn_walk_south_f6.png",
     "revision": "a0d6a445c8adaf2e59e27158e7ded175"
   }, {
+    "url": "sprites/norn_walk_south_f5.png",
+    "revision": "63655b02d131f487ef2abd401ed5cff2"
+  }, {
+    "url": "sprites/norn_walk_south_f0.png",
+    "revision": "a9a3f91a34068175f1b41d2130502202"
+  }, {
     "url": "sprites/norn_walk_south_f7.png",
     "revision": "683cf66b98b9f36a88b0c7d447c0b291"
+  }, {
+    "url": "sprites/nagavel_angry.png",
+    "revision": "f711347a4537b4ce23521e5ee8cda7f6"
   }, {
     "url": "sprites/norn_walk_southeast_f0.png",
     "revision": "039e74403fd8bacd0f32e6300128b44b"
@@ -9348,38 +9324,38 @@ define(['./workbox-4367cb6e'], (function (workbox) { 'use strict';
     "url": "sprites/norn_walk_southeast_f2.png",
     "revision": "feb8bff95cfcff4d00b3bb91b7574f15"
   }, {
-    "url": "sprites/norn_walk_southeast_f3.png",
-    "revision": "8824723e6acfe8d3d060755f89125d6a"
+    "url": "sprites/norn_walk_southeast_f5.png",
+    "revision": "9617d8ed6c8bee9d59f0babcd8ee2b6c"
   }, {
     "url": "sprites/norn_walk_southeast_f4.png",
     "revision": "5ba007228f5a8f52526d1dd5c13ad125"
   }, {
-    "url": "sprites/norn_walk_southeast_f5.png",
-    "revision": "9617d8ed6c8bee9d59f0babcd8ee2b6c"
+    "url": "sprites/norn_idle_left.png",
+    "revision": "b2425a596db010bf20e1506a4475a4a3"
   }, {
     "url": "sprites/norn_walk_southeast_f6.png",
     "revision": "52d1f1bfe3f915a94d4f74e26078c39d"
   }, {
+    "url": "sprites/mycon_boredom.png",
+    "revision": "faac62e0f7b4d8bc254536e1dd0aa7f6"
+  }, {
     "url": "sprites/norn_walk_southeast_f7.png",
     "revision": "218c641943fad57bc6acc826a90d03b0"
-  }, {
-    "url": "sprites/norn_walk_southwest_f0.png",
-    "revision": "242253ecd4561aeeac155689152dd359"
-  }, {
-    "url": "sprites/norn_walk_southwest_f1.png",
-    "revision": "401f554b16a6199f7e06e344ebb83157"
   }, {
     "url": "sprites/norn_walk_southwest_f2.png",
     "revision": "2af05fdb56e20955e142307c293babf4"
   }, {
-    "url": "sprites/norn_walk_southwest_f3.png",
-    "revision": "89e4b187b3b0dac0554c689c32e164c1"
+    "url": "sprites/norn_walk_southwest_f0.png",
+    "revision": "242253ecd4561aeeac155689152dd359"
+  }, {
+    "url": "sprites/norn_walk_southwest_f5.png",
+    "revision": "10b35878d88f571c68cf678a918ac8f4"
   }, {
     "url": "sprites/norn_walk_southwest_f4.png",
     "revision": "16d8bdec27415ee7079173325e1f4df6"
   }, {
-    "url": "sprites/norn_walk_southwest_f5.png",
-    "revision": "10b35878d88f571c68cf678a918ac8f4"
+    "url": "sprites/norn_walk_southwest_f3.png",
+    "revision": "89e4b187b3b0dac0554c689c32e164c1"
   }, {
     "url": "sprites/norn_walk_southwest_f6.png",
     "revision": "540472eaeb26fbb09eabcfbd726543c2"
@@ -9396,8 +9372,8 @@ define(['./workbox-4367cb6e'], (function (workbox) { 'use strict';
     "url": "sprites/nyk_baby.png",
     "revision": "fe58174a0b7b245f1789621d82501acd"
   }, {
-    "url": "sprites/nyk_boredom.png",
-    "revision": "f2b1e19235c3fb075c9ab69d9619ebd5"
+    "url": "sprites/norn_walk_north_f2.png",
+    "revision": "8ff851b1d6b64533c66c466d065bf4aa"
   }, {
     "url": "sprites/nyk_eat.png",
     "revision": "2dc9b1b99ed1e9268b91bfd155a8028a"
@@ -9405,38 +9381,38 @@ define(['./workbox-4367cb6e'], (function (workbox) { 'use strict';
     "url": "sprites/nyk_fear.png",
     "revision": "96df56b6e014b2e0b2ebff0d148a27fe"
   }, {
-    "url": "sprites/nyk_happy.png",
-    "revision": "e3120c68f44fbaf0800d70d4038cf919"
+    "url": "sprites/nyk_pain.png",
+    "revision": "1a924edf0e20422b43e85cefc8dcf081"
   }, {
     "url": "sprites/nyk_idle.png",
     "revision": "3f7ac6c5c97414b8adb8099aad079455"
   }, {
-    "url": "sprites/nyk_pain.png",
-    "revision": "1a924edf0e20422b43e85cefc8dcf081"
-  }, {
     "url": "sprites/nyk_sad.png",
     "revision": "d9db7d9ba5d74a2f9f487aa0513a81a1"
   }, {
-    "url": "sprites/nyk_sleep.png",
-    "revision": "22850eed4b7abef8ecc66045c21f0107"
+    "url": "sprites/nyk_boredom.png",
+    "revision": "f2b1e19235c3fb075c9ab69d9619ebd5"
   }, {
-    "url": "sprites/nyk_walk1.png",
-    "revision": "eb0b2912f337767ae2347998345c4321"
+    "url": "sprites/norn_walk_southwest_f1.png",
+    "revision": "401f554b16a6199f7e06e344ebb83157"
   }, {
-    "url": "sprites/nyk_walk2.png",
-    "revision": "dd0ffa192dee0457b42c79262296bfc1"
+    "url": "sprites/norn_walk_southeast_f3.png",
+    "revision": "8824723e6acfe8d3d060755f89125d6a"
+  }, {
+    "url": "sprites/nyk_happy.png",
+    "revision": "e3120c68f44fbaf0800d70d4038cf919"
   }, {
     "url": "sprites/obsidian_blade.png",
     "revision": "42146d3efc81816f2cb33af4de150a7f"
   }, {
-    "url": "sprites/obsidian_glass_blade.png",
-    "revision": "c7904e4dcb24fcdccade90dd19400ae5"
+    "url": "sprites/nyk_walk2.png",
+    "revision": "dd0ffa192dee0457b42c79262296bfc1"
   }, {
     "url": "sprites/obsidian_jerky.png",
     "revision": "23af78adbd643def34431a42a413908e"
   }, {
-    "url": "sprites/obsidian_lens.png",
-    "revision": "eee12936bc76d5ce50cbbd7fd9e80de7"
+    "url": "sprites/obsidian_glass_blade.png",
+    "revision": "c7904e4dcb24fcdccade90dd19400ae5"
   }, {
     "url": "sprites/obsidian_shadow_puppet.png",
     "revision": "b0b05e8e1e0563ec5fb03b2ba6223352"
@@ -9446,9 +9422,6 @@ define(['./workbox-4367cb6e'], (function (workbox) { 'use strict';
   }, {
     "url": "sprites/paradox_box.png",
     "revision": "0394eb06a429b51a01bda9ad249b92f8"
-  }, {
-    "url": "sprites/paradox_toy.png",
-    "revision": "1b662236e083328e1b413d44b2052ec1"
   }, {
     "url": "sprites/parasitic_bloom.png",
     "revision": "37d549e07435d1f29d2a8da54e6f414f"
@@ -9462,47 +9435,53 @@ define(['./workbox-4367cb6e'], (function (workbox) { 'use strict';
     "url": "sprites/patupaiarehe_boredom.png",
     "revision": "ba77bab32b9ba72a65386b4fc1072b11"
   }, {
+    "url": "sprites/obsidian_lens.png",
+    "revision": "eee12936bc76d5ce50cbbd7fd9e80de7"
+  }, {
     "url": "sprites/patupaiarehe_eat.png",
     "revision": "a705928700abdbe8ca55477c02813b90"
   }, {
     "url": "sprites/patupaiarehe_fear.png",
     "revision": "44e7dd834b49cc83602ed4a6d6fa3902"
   }, {
-    "url": "sprites/patupaiarehe_happy.png",
-    "revision": "2a613e0b6d8d204252f7cbe901828a8a"
-  }, {
     "url": "sprites/patupaiarehe_idle.png",
     "revision": "203c8429fa3b8b715c07ba04905a7238"
-  }, {
-    "url": "sprites/patupaiarehe_pain.png",
-    "revision": "2ad012d22e7ac435c884ac7c126faab6"
   }, {
     "url": "sprites/patupaiarehe_sad.png",
     "revision": "debf05ccfc1dad5464384a2636177ef8"
   }, {
+    "url": "sprites/paradox_toy.png",
+    "revision": "1b662236e083328e1b413d44b2052ec1"
+  }, {
     "url": "sprites/patupaiarehe_sleep.png",
     "revision": "ec591a93e0b0f078b23bdb1b78670a95"
   }, {
-    "url": "sprites/patupaiarehe_walk1.png",
-    "revision": "3743528f50e384a9d87d7a499205862e"
-  }, {
-    "url": "sprites/patupaiarehe_walk2.png",
-    "revision": "786e96e93fbd271c8774fbd84eda8a52"
+    "url": "sprites/patupaiarehe_happy.png",
+    "revision": "2a613e0b6d8d204252f7cbe901828a8a"
   }, {
     "url": "sprites/periveil_angry.png",
     "revision": "2f779e6247ba2aa93000cb693ff07ead"
   }, {
+    "url": "sprites/patupaiarehe_walk1.png",
+    "revision": "3743528f50e384a9d87d7a499205862e"
+  }, {
+    "url": "sprites/patupaiarehe_pain.png",
+    "revision": "2ad012d22e7ac435c884ac7c126faab6"
+  }, {
     "url": "sprites/periveil_baby.png",
     "revision": "d54aebd1634c65267ede874839cde57a"
   }, {
-    "url": "sprites/periveil_boredom.png",
-    "revision": "84b026f4325d81ac15b0705f0f239065"
-  }, {
-    "url": "sprites/periveil_eat.png",
-    "revision": "45f46e7fc0f2f77f73cf404fdd71469d"
-  }, {
     "url": "sprites/periveil_fear.png",
     "revision": "c8c338461d0ef0fb4f527c6319c0729b"
+  }, {
+    "url": "sprites/patupaiarehe_walk2.png",
+    "revision": "786e96e93fbd271c8774fbd84eda8a52"
+  }, {
+    "url": "sprites/periveil_pain.png",
+    "revision": "b83e598938fdbfcc5f5bd1925c7c43bb"
+  }, {
+    "url": "sprites/periveil_boredom.png",
+    "revision": "84b026f4325d81ac15b0705f0f239065"
   }, {
     "url": "sprites/periveil_happy.png",
     "revision": "7f81391924c9835ac385ef7534262c32"
@@ -9510,14 +9489,11 @@ define(['./workbox-4367cb6e'], (function (workbox) { 'use strict';
     "url": "sprites/periveil_idle.png",
     "revision": "b996e54f1a63c45822d9cf4fd22bd84a"
   }, {
-    "url": "sprites/periveil_pain.png",
-    "revision": "b83e598938fdbfcc5f5bd1925c7c43bb"
-  }, {
-    "url": "sprites/periveil_sad.png",
-    "revision": "820e6de7f41f10fa33e5e4a7964b4abc"
-  }, {
     "url": "sprites/periveil_sleep.png",
     "revision": "b324a66dd131069ced19f83e41f95096"
+  }, {
+    "url": "sprites/periveil_eat.png",
+    "revision": "45f46e7fc0f2f77f73cf404fdd71469d"
   }, {
     "url": "sprites/periveil_walk1.png",
     "revision": "fd6b45acbb3f8eef2b2639250c160836"
@@ -9525,8 +9501,14 @@ define(['./workbox-4367cb6e'], (function (workbox) { 'use strict';
     "url": "sprites/periveil_walk2.png",
     "revision": "10a056351b28e2a8f94d4e98a4dc4498"
   }, {
-    "url": "sprites/petrified_puppet.png",
-    "revision": "5090ad8174e5eef99afdc22876c56273"
+    "url": "sprites/nyk_sleep.png",
+    "revision": "22850eed4b7abef8ecc66045c21f0107"
+  }, {
+    "url": "sprites/peuchen_vel_happy.png",
+    "revision": "bf2c024125586905d1d50ca2c1ba706c"
+  }, {
+    "url": "sprites/periveil_sad.png",
+    "revision": "820e6de7f41f10fa33e5e4a7964b4abc"
   }, {
     "url": "sprites/petrified_root_compass.png",
     "revision": "e09a10b75cd796a7c0f2a57316e46c1d"
@@ -9534,11 +9516,11 @@ define(['./workbox-4367cb6e'], (function (workbox) { 'use strict';
     "url": "sprites/petrified_scroll.png",
     "revision": "c15ba0e7542da09035caded91d6dca86"
   }, {
-    "url": "sprites/peuchen_vel_happy.png",
-    "revision": "bf2c024125586905d1d50ca2c1ba706c"
-  }, {
     "url": "sprites/peuchen_vel_idle.png",
     "revision": "526387e74adfdcaa454282f51266af5d"
+  }, {
+    "url": "sprites/phase_mote.png",
+    "revision": "714c0d951be07121e69404039a99a35f"
   }, {
     "url": "sprites/phase_fruit.png",
     "revision": "d5c61d4a72788ec075a7d518b53090a2"
@@ -9546,44 +9528,29 @@ define(['./workbox-4367cb6e'], (function (workbox) { 'use strict';
     "url": "sprites/phase_gate.png",
     "revision": "a7cf8d0138b445853aa57e483f30ca0b"
   }, {
-    "url": "sprites/phase_mote.png",
-    "revision": "714c0d951be07121e69404039a99a35f"
-  }, {
     "url": "sprites/phase_shard.png",
     "revision": "57a6c5f4942978922677e4ca2017edb1"
-  }, {
-    "url": "sprites/philosophy_stone.png",
-    "revision": "e05c46804edc8ec98c26335265ffd66c"
   }, {
     "url": "sprites/piasari_angry.png",
     "revision": "41e6836677f461ecc8cec56c8bcc2da0"
   }, {
+    "url": "sprites/philosophy_stone.png",
+    "revision": "e05c46804edc8ec98c26335265ffd66c"
+  }, {
     "url": "sprites/piasari_baby.png",
     "revision": "4dd20fc05b8f2f804a6c1e92da4dae58"
-  }, {
-    "url": "sprites/piasari_boredom.png",
-    "revision": "91b83f2e62e2539b31a0351ce959affa"
   }, {
     "url": "sprites/piasari_eat.png",
     "revision": "ea5312203b3d34b635d6d55f79b71ba3"
   }, {
-    "url": "sprites/piasari_fear.png",
-    "revision": "dd3e8db8d13ea7640139420997cb022d"
-  }, {
     "url": "sprites/piasari_happy.png",
     "revision": "b901bf59180ed5956869ddfb1f3fcd82"
   }, {
-    "url": "sprites/piasari_idle.png",
-    "revision": "c682b6af3089bff6bfb17b620eac7805"
+    "url": "sprites/piasari_sleep.png",
+    "revision": "7b4336fa570cee0eabd187e7689a07bb"
   }, {
     "url": "sprites/piasari_pain.png",
     "revision": "bb118df1332878ee8bd3ac43e6f5d2a6"
-  }, {
-    "url": "sprites/piasari_sad.png",
-    "revision": "5b912685714f76ba34045a7b1802242a"
-  }, {
-    "url": "sprites/piasari_sleep.png",
-    "revision": "7b4336fa570cee0eabd187e7689a07bb"
   }, {
     "url": "sprites/piasari_walk1.png",
     "revision": "beaebb6c6071fbbb94018010359a3927"
@@ -9591,11 +9558,11 @@ define(['./workbox-4367cb6e'], (function (workbox) { 'use strict';
     "url": "sprites/piasari_walk2.png",
     "revision": "d52d88831197485b3614a4d487406e14"
   }, {
+    "url": "sprites/piasari_sad.png",
+    "revision": "5b912685714f76ba34045a7b1802242a"
+  }, {
     "url": "sprites/piezo_crystal.png",
     "revision": "de242576f1b24be1542f87b79f6ca34d"
-  }, {
-    "url": "sprites/plant_basic.png",
-    "revision": "e3dbdc17314d2c94fdfb0f03705aff80"
   }, {
     "url": "sprites/plant_dead.png",
     "revision": "f013458e9e69642fee1ba62096d3e472"
@@ -9609,31 +9576,34 @@ define(['./workbox-4367cb6e'], (function (workbox) { 'use strict';
     "url": "sprites/pollinators_almanac.png",
     "revision": "93580d615da1a91b183a25872b8dcf52"
   }, {
+    "url": "sprites/plant_basic.png",
+    "revision": "e3dbdc17314d2c94fdfb0f03705aff80"
+  }, {
+    "url": "sprites/prism_spinner.png",
+    "revision": "eaf7faa5b19b501244190849d260386e"
+  }, {
     "url": "sprites/primordial_amber.png",
     "revision": "f9b9dcea0cf21b589aa2379e7b2a1026"
   }, {
     "url": "sprites/prism_drake_happy.png",
     "revision": "ab93a77f11a9641d9cd66765077bc485"
   }, {
-    "url": "sprites/prism_drake_idle.png",
-    "revision": "328d166a08c00777a77f69081f0865cf"
-  }, {
-    "url": "sprites/prism_spinner.png",
-    "revision": "eaf7faa5b19b501244190849d260386e"
-  }, {
     "url": "sprites/prismatic_lens.png",
     "revision": "4e8dfd5ed97bfa740ced864493bb4a20"
-  }, {
-    "url": "sprites/prismatic_nectar.png",
-    "revision": "56e29543104bca45a34382e281635d84"
   }, {
     "url": "sprites/probability_die.png",
     "revision": "6f608b54c236b5ce21d2105d6665a282"
   }, {
-    "url": "sprites/protein_seed water_droplet fat_berry vitamin_moss glow_nectar healing_herb toxin_spore deep_crystal_water void_pearl amber_resin resonance_shard fossil_tooth lava_glass singing_mushroom threshold_glass nest_moss.png",
-    "revision": "29735715cf6613902d61e575a021b85f"
+    "url": "sprites/prismatic_nectar.png",
+    "revision": "56e29543104bca45a34382e281635d84"
   }, {
-    "url": "sprites/protein_seed.png",
+    "url": "sprites/kitsuri_walk2.png",
+    "revision": "95067d554fcc26f0876ae2e68ef8c37d"
+  }, {
+    "url": "sprites/prism_drake_idle.png",
+    "revision": "328d166a08c00777a77f69081f0865cf"
+  }, {
+    "url": "sprites/protein_seed water_droplet fat_berry vitamin_moss glow_nectar healing_herb toxin_spore deep_crystal_water void_pearl amber_resin resonance_shard fossil_tooth lava_glass singing_mushroom threshold_glass nest_moss.png",
     "revision": "29735715cf6613902d61e575a021b85f"
   }, {
     "url": "sprites/pumice_scrub.png",
@@ -9642,11 +9612,11 @@ define(['./workbox-4367cb6e'], (function (workbox) { 'use strict';
     "url": "sprites/puzzle_cube.png",
     "revision": "0ea3e33cf160263c3009b59566171561"
   }, {
+    "url": "sprites/protein_seed.png",
+    "revision": "29735715cf6613902d61e575a021b85f"
+  }, {
     "url": "sprites/quantum_phase_berry.png",
     "revision": "e3393769ce8019e392e022657855e0d3"
-  }, {
-    "url": "sprites/quartz_crawler_happy.png",
-    "revision": "ab0b08417577be31a15412ddbaf37d08"
   }, {
     "url": "sprites/quartz_crawler_idle.png",
     "revision": "306457ccddd8c18fea1ae040680fbf13"
@@ -9654,14 +9624,14 @@ define(['./workbox-4367cb6e'], (function (workbox) { 'use strict';
     "url": "sprites/quetzali_angry.png",
     "revision": "357a02512901de870c72d743476580c9"
   }, {
+    "url": "sprites/quetzali_eat.png",
+    "revision": "f14e708e1f80edc10ed8b34498a957fa"
+  }, {
     "url": "sprites/quetzali_baby.png",
     "revision": "f910f66c7a630ffbcecae2fe201859ca"
   }, {
     "url": "sprites/quetzali_boredom.png",
     "revision": "e377b8d56670f131df5f8d791e52fba0"
-  }, {
-    "url": "sprites/quetzali_eat.png",
-    "revision": "f14e708e1f80edc10ed8b34498a957fa"
   }, {
     "url": "sprites/quetzali_fear.png",
     "revision": "c8e6f05b98708975029abcdddbf6d5ed"
@@ -9669,23 +9639,26 @@ define(['./workbox-4367cb6e'], (function (workbox) { 'use strict';
     "url": "sprites/quetzali_happy.png",
     "revision": "1473d195b1de753f716ab4d6a5fe6e8b"
   }, {
+    "url": "sprites/piasari_fear.png",
+    "revision": "dd3e8db8d13ea7640139420997cb022d"
+  }, {
     "url": "sprites/quetzali_idle.png",
     "revision": "4b82fc6085f03d0e6e45a5383d35d274"
-  }, {
-    "url": "sprites/quetzali_pain.png",
-    "revision": "f4fa19b89b17e68b519e7f1d67a7f803"
   }, {
     "url": "sprites/quetzali_sad.png",
     "revision": "af5da1f7e5e3dd7f867c2b0e5a987fd5"
   }, {
-    "url": "sprites/quetzali_sleep.png",
-    "revision": "7a694597cc619c6ff2e0927731311461"
+    "url": "sprites/quetzali_pain.png",
+    "revision": "f4fa19b89b17e68b519e7f1d67a7f803"
   }, {
     "url": "sprites/quetzali_walk1.png",
     "revision": "aaeab4fd95cbd17a882fb74515888295"
   }, {
-    "url": "sprites/quetzali_walk2.png",
-    "revision": "9b0a08ada25c8707b128971199628b6e"
+    "url": "sprites/quetzali_sleep.png",
+    "revision": "7a694597cc619c6ff2e0927731311461"
+  }, {
+    "url": "sprites/raksha_boredom.png",
+    "revision": "557bb249d02836da5df9f722fdcb6bfb"
   }, {
     "url": "sprites/raksha_angry.png",
     "revision": "7a9495e9f572e0c42e3fe0331fa6f581"
@@ -9693,20 +9666,11 @@ define(['./workbox-4367cb6e'], (function (workbox) { 'use strict';
     "url": "sprites/raksha_baby.png",
     "revision": "9d6b928834363f7f6d01a4e64335459e"
   }, {
-    "url": "sprites/raksha_boredom.png",
-    "revision": "557bb249d02836da5df9f722fdcb6bfb"
-  }, {
     "url": "sprites/raksha_eat.png",
     "revision": "376a603f812a65a0914daf55cf339b0b"
   }, {
-    "url": "sprites/raksha_fear.png",
-    "revision": "5dd83d2468cbffe7d3672bb05c9f24b8"
-  }, {
     "url": "sprites/raksha_happy.png",
     "revision": "1a6feea4e4aa3573d5ec081834c2e195"
-  }, {
-    "url": "sprites/raksha_idle.png",
-    "revision": "f5c686fc8b6197598d346e3902ad7911"
   }, {
     "url": "sprites/raksha_pain.png",
     "revision": "5b1f554d06873cbf9ff9ace19289b8bb"
@@ -9717,8 +9681,8 @@ define(['./workbox-4367cb6e'], (function (workbox) { 'use strict';
     "url": "sprites/raksha_sleep.png",
     "revision": "109b18e5e008f26b8fc7424ff9e47687"
   }, {
-    "url": "sprites/raksha_walk1.png",
-    "revision": "c643959a8bc2959b562849621ee13262"
+    "url": "sprites/quetzali_walk2.png",
+    "revision": "9b0a08ada25c8707b128971199628b6e"
   }, {
     "url": "sprites/raksha_walk2.png",
     "revision": "73d1d1090c919a6cba444d2f7fbe4885"
@@ -9726,23 +9690,29 @@ define(['./workbox-4367cb6e'], (function (workbox) { 'use strict';
     "url": "sprites/raven_angry.png",
     "revision": "cf4b62db1353b6306e61f0b9deee32f1"
   }, {
+    "url": "sprites/piasari_idle.png",
+    "revision": "c682b6af3089bff6bfb17b620eac7805"
+  }, {
     "url": "sprites/raven_baby.png",
     "revision": "56b9eec9a8c1253a60239a206b9cf32c"
   }, {
-    "url": "sprites/raven_boredom.png",
-    "revision": "4e96c51134e4ee4d90b948393cb0f9ce"
+    "url": "sprites/piasari_boredom.png",
+    "revision": "91b83f2e62e2539b31a0351ce959affa"
+  }, {
+    "url": "sprites/raksha_fear.png",
+    "revision": "5dd83d2468cbffe7d3672bb05c9f24b8"
   }, {
     "url": "sprites/raven_cipher_wheel.png",
     "revision": "da993284f831ac8f7df2a5c6ea8b49e2"
   }, {
+    "url": "sprites/raven_happy.png",
+    "revision": "1fd6e661c8529db6db176d5868bc7220"
+  }, {
     "url": "sprites/raven_eat.png",
     "revision": "f6e3b0d4b8018263ec4ff69ffd96710d"
   }, {
-    "url": "sprites/raven_fear.png",
-    "revision": "9b977777ceb699e21630b7f21b54f222"
-  }, {
-    "url": "sprites/raven_happy.png",
-    "revision": "1fd6e661c8529db6db176d5868bc7220"
+    "url": "sprites/raven_boredom.png",
+    "revision": "4e96c51134e4ee4d90b948393cb0f9ce"
   }, {
     "url": "sprites/raven_idle.png",
     "revision": "36ae52c82fdcba975767e2c7a1373bab"
@@ -9750,23 +9720,26 @@ define(['./workbox-4367cb6e'], (function (workbox) { 'use strict';
     "url": "sprites/raven_pain.png",
     "revision": "7df4b141e0d8d33b377b2aaf81b9c2b1"
   }, {
-    "url": "sprites/raven_sad.png",
-    "revision": "ff0df31b650a68ecaa9e5d8e5488d459"
+    "url": "sprites/raven_fear.png",
+    "revision": "9b977777ceb699e21630b7f21b54f222"
   }, {
     "url": "sprites/raven_sleep.png",
     "revision": "bf6d4e64c065a4533e56cc89d1778927"
   }, {
-    "url": "sprites/raven_walk1.png",
-    "revision": "4640a9b067fe5f8ff862aefed2358bc4"
+    "url": "sprites/raven_sad.png",
+    "revision": "ff0df31b650a68ecaa9e5d8e5488d459"
+  }, {
+    "url": "sprites/raksha_idle.png",
+    "revision": "f5c686fc8b6197598d346e3902ad7911"
   }, {
     "url": "sprites/raven_walk2.png",
     "revision": "e1a1ca35e2b3521b5fcb52343208b819"
   }, {
-    "url": "sprites/reality_splinter.png",
-    "revision": "c04297d0b92ee15784d1115ef5b262c1"
-  }, {
     "url": "sprites/resonance_amplifier.png",
     "revision": "3e1184e120c96fc7bdfa21ba3322e7b3"
+  }, {
+    "url": "sprites/reality_splinter.png",
+    "revision": "c04297d0b92ee15784d1115ef5b262c1"
   }, {
     "url": "sprites/resonance_berry.png",
     "revision": "ed85c5402b7156cad70981b02c3d54f0"
@@ -9774,23 +9747,20 @@ define(['./workbox-4367cb6e'], (function (workbox) { 'use strict';
     "url": "sprites/resonance_shard.png",
     "revision": "1383e3c01b45f4371922b9e5ddff7b87"
   }, {
-    "url": "sprites/resonance_tuner.png",
-    "revision": "23999ba7bc5da535a6702bcfafd44afa"
-  }, {
     "url": "sprites/resonance_tuning_fork.png",
     "revision": "20994462c6ff9288e37eb671f7866bd2"
+  }, {
+    "url": "sprites/resonance_tuner.png",
+    "revision": "23999ba7bc5da535a6702bcfafd44afa"
   }, {
     "url": "sprites/root_medicine.png",
     "revision": "65b026290b44e1220ae5cb54b2d4c92d"
   }, {
-    "url": "sprites/root_salve.png",
-    "revision": "a8e2c6aec3b6ad88926bb731295c524b"
-  }, {
-    "url": "sprites/root_tuber.png",
-    "revision": "2f44818ed267c26674909806f04bd33c"
-  }, {
     "url": "sprites/rot_spore.png",
     "revision": "f4ddcc43e7e9be1df96ef56ea418f819"
+  }, {
+    "url": "sprites/raven_walk1.png",
+    "revision": "4640a9b067fe5f8ff862aefed2358bc4"
   }, {
     "url": "sprites/ruin_amphitheater_ruin.png",
     "revision": "34a074f18140669c39b81a9f1c7a0974"
@@ -9801,9 +9771,6 @@ define(['./workbox-4367cb6e'], (function (workbox) { 'use strict';
     "url": "sprites/ruin_ancient_mural.png",
     "revision": "18fd23cb1231a0c8abbc4dbd7a275f53"
   }, {
-    "url": "sprites/ruin_aqueduct_fragment.png",
-    "revision": "14d997ea520e76af40b34deaa187509d"
-  }, {
     "url": "sprites/ruin_arch.png",
     "revision": "07a7d385ba051f945fdbd9239715e2f9"
   }, {
@@ -9812,12 +9779,6 @@ define(['./workbox-4367cb6e'], (function (workbox) { 'use strict';
   }, {
     "url": "sprites/ruin_bridge_pylon.png",
     "revision": "c3922c234b24e80ca4444430b7bcb016"
-  }, {
-    "url": "sprites/ruin_broken_wall_segment.png",
-    "revision": "b2bdd84cdf17ded11ae68d06722e08d4"
-  }, {
-    "url": "sprites/ruin_buried_machine.png",
-    "revision": "7cf5ae8380d00e13571b53460268a444"
   }, {
     "url": "sprites/ruin_collapsed_tower.png",
     "revision": "fd7d57db8b3366c82119325011e7b50b"
@@ -9828,11 +9789,26 @@ define(['./workbox-4367cb6e'], (function (workbox) { 'use strict';
     "url": "sprites/ruin_foundation.png",
     "revision": "28c692683109b558dd0a7b41d1737214"
   }, {
+    "url": "sprites/root_salve.png",
+    "revision": "a8e2c6aec3b6ad88926bb731295c524b"
+  }, {
+    "url": "sprites/norn_walk_right_f6.png",
+    "revision": "09658b7f5564d6fca6ef690fbd0b93b8"
+  }, {
     "url": "sprites/ruin_garden_of_memory.png",
     "revision": "12655934fd37c8170e20cb376568acbc"
   }, {
+    "url": "sprites/longvel_boredom.png",
+    "revision": "f6e16463adfda471c7b65676072de068"
+  }, {
     "url": "sprites/ruin_garden_terrace.png",
     "revision": "d21d1d4a7ffab878a6704f6f1f635eff"
+  }, {
+    "url": "sprites/nagavel_walk1.png",
+    "revision": "18cb8b4c12c9c02b9440738184441ee1"
+  }, {
+    "url": "sprites/quartz_crawler_happy.png",
+    "revision": "ab0b08417577be31a15412ddbaf37d08"
   }, {
     "url": "sprites/ruin_last_stand_fortification.png",
     "revision": "004e6421ac772c5520b3c3e69b5d756a"
@@ -9840,35 +9816,26 @@ define(['./workbox-4367cb6e'], (function (workbox) { 'use strict';
     "url": "sprites/ruin_library_stacks.png",
     "revision": "00b6bff4060e44a52067fe14a569525b"
   }, {
-    "url": "sprites/ruin_monolith.png",
-    "revision": "745efe3a8958dad21d4b684d54fba52d"
-  }, {
-    "url": "sprites/ruin_obelisk.png",
-    "revision": "7a4fdfff38fb74d6e93dbfea76bd973f"
+    "url": "sprites/ruin_overgrown_machinery.png",
+    "revision": "d54c2c193f46c4a67d5493ba9a1e639b"
   }, {
     "url": "sprites/ruin_observatory_ruin.png",
     "revision": "24c0005198f3c70170d3bbb336b6177e"
   }, {
-    "url": "sprites/ruin_overgrown_machinery.png",
-    "revision": "d54c2c193f46c4a67d5493ba9a1e639b"
-  }, {
     "url": "sprites/ruin_resonance_well.png",
     "revision": "a1607f2c97c35428bfa124a4336c90ca"
-  }, {
-    "url": "sprites/ruin_scattered_equipment.png",
-    "revision": "6bf04513c2f4d4d80e55d5627461fc5e"
   }, {
     "url": "sprites/ruin_seed_vault.png",
     "revision": "db6a37ffce0808fe61b2f95440cd8bfc"
   }, {
-    "url": "sprites/ruin_shattered_containment.png",
-    "revision": "01ad3ab038de2d5e87ef38a6b1fff5f6"
+    "url": "sprites/ruin_scattered_equipment.png",
+    "revision": "6bf04513c2f4d4d80e55d5627461fc5e"
   }, {
     "url": "sprites/ruin_shattered_dome.png",
     "revision": "e3f379d8c15624005a27e60786d3c488"
   }, {
-    "url": "sprites/ruin_shrine.png",
-    "revision": "d9d40bb6f92d8add40ca773024858aab"
+    "url": "sprites/ruin_obelisk.png",
+    "revision": "7a4fdfff38fb74d6e93dbfea76bd973f"
   }, {
     "url": "sprites/ruin_signal_dish.png",
     "revision": "1dab6837d9a6ba1108241c8005dab34b"
@@ -9876,50 +9843,53 @@ define(['./workbox-4367cb6e'], (function (workbox) { 'use strict';
     "url": "sprites/ruin_stasis_pod_row.png",
     "revision": "e7e5fcaeb58aad5266df0818b244d4dd"
   }, {
+    "url": "sprites/ruin_shrine.png",
+    "revision": "d9d40bb6f92d8add40ca773024858aab"
+  }, {
+    "url": "sprites/ruin_shattered_containment.png",
+    "revision": "01ad3ab038de2d5e87ef38a6b1fff5f6"
+  }, {
     "url": "sprites/ruin_sunken_plaza.png",
     "revision": "b5daad0c19416ad4278aa1353255069a"
-  }, {
-    "url": "sprites/ruin_terraforming_station.png",
-    "revision": "3c4cbd3aab3751b100fe197254886cc1"
-  }, {
-    "url": "sprites/ruin_toppled_column.png",
-    "revision": "3f2be291fa5fbe892df19111c3392f06"
   }, {
     "url": "sprites/ruin_toxin_processor.png",
     "revision": "fe805a1a333c2b4e2a73add10a3b72fb"
   }, {
+    "url": "sprites/ruin_toppled_column.png",
+    "revision": "3f2be291fa5fbe892df19111c3392f06"
+  }, {
+    "url": "sprites/ruin_terraforming_station.png",
+    "revision": "3c4cbd3aab3751b100fe197254886cc1"
+  }, {
     "url": "sprites/ruin_waystone.png",
     "revision": "eaaacdc0c7be4c89e2c63257936e6c56"
-  }, {
-    "url": "sprites/rune_candy.png",
-    "revision": "69d2bbd5551ac2e16c91056a7a071810"
   }, {
     "url": "sprites/rune_cracker.png",
     "revision": "fd7b2fd8099d38c939f64d71ad020622"
   }, {
+    "url": "sprites/rune_candy.png",
+    "revision": "69d2bbd5551ac2e16c91056a7a071810"
+  }, {
     "url": "sprites/rune_dice.png",
     "revision": "006605c13f073f17fb66c3af6219171e"
-  }, {
-    "url": "sprites/rune_fragment.png",
-    "revision": "617a0c2312efb92b9b965aa82425b6d7"
   }, {
     "url": "sprites/rusalyn_angry.png",
     "revision": "5dbaaf2156825089397915b7abc8b25b"
   }, {
+    "url": "sprites/rune_fragment.png",
+    "revision": "617a0c2312efb92b9b965aa82425b6d7"
+  }, {
     "url": "sprites/rusalyn_baby.png",
     "revision": "e01af9bfe3a1c855591262dbc34897d3"
-  }, {
-    "url": "sprites/rusalyn_boredom.png",
-    "revision": "a8e8bb77c97770c8c365614825441fda"
   }, {
     "url": "sprites/rusalyn_eat.png",
     "revision": "dd2feeb32e15e6be46dbb5c3ee707bcb"
   }, {
-    "url": "sprites/rusalyn_fear.png",
-    "revision": "8713cf1d53ef5ac00d031c736cb382f6"
-  }, {
     "url": "sprites/rusalyn_happy.png",
     "revision": "db246e7cd124b192f43b69f75658d1a4"
+  }, {
+    "url": "sprites/rusalyn_boredom.png",
+    "revision": "a8e8bb77c97770c8c365614825441fda"
   }, {
     "url": "sprites/rusalyn_idle.png",
     "revision": "189a69e1aa44fbb5ea672a7056ff8b21"
@@ -9927,17 +9897,17 @@ define(['./workbox-4367cb6e'], (function (workbox) { 'use strict';
     "url": "sprites/rusalyn_pain.png",
     "revision": "83723fb67d726d38a95062e4dd024b11"
   }, {
-    "url": "sprites/rusalyn_sad.png",
-    "revision": "4d4509ed50c48a15c6aba451e8791316"
-  }, {
-    "url": "sprites/rusalyn_sleep.png",
-    "revision": "42a74358e43e6bbcccf0b475644161c6"
+    "url": "sprites/root_tuber.png",
+    "revision": "2f44818ed267c26674909806f04bd33c"
   }, {
     "url": "sprites/rusalyn_walk1.png",
     "revision": "7742c9957a69e7fffcb41b8f23bec352"
   }, {
-    "url": "sprites/rusalyn_walk2.png",
-    "revision": "8dafdd19b725291d0efc1165233629b1"
+    "url": "sprites/rusalyn_sleep.png",
+    "revision": "42a74358e43e6bbcccf0b475644161c6"
+  }, {
+    "url": "sprites/rusalyn_sad.png",
+    "revision": "4d4509ed50c48a15c6aba451e8791316"
   }, {
     "url": "sprites/salt_crust.png",
     "revision": "d6dc62ce159a012a8872556f88e562df"
@@ -9945,14 +9915,17 @@ define(['./workbox-4367cb6e'], (function (workbox) { 'use strict';
     "url": "sprites/salt_crystal.png",
     "revision": "d2bdd2b5e21536d4630d998293a1d73c"
   }, {
-    "url": "sprites/salt_fish.png",
-    "revision": "7b257c8cb5e36a20d69f2d829df4f4ae"
-  }, {
     "url": "sprites/scalding_water.png",
     "revision": "150d0964f999a3037d03befcaf84c679"
   }, {
     "url": "sprites/scavenger_blade.png",
     "revision": "ed423314f216afbed00221d897f97fa2"
+  }, {
+    "url": "sprites/rusalyn_walk2.png",
+    "revision": "8dafdd19b725291d0efc1165233629b1"
+  }, {
+    "url": "sprites/salt_fish.png",
+    "revision": "7b257c8cb5e36a20d69f2d829df4f4ae"
   }, {
     "url": "sprites/scrimshaw_leviathan_tooth.png",
     "revision": "01177fc3ca4cfae35263823dfa427610"
@@ -9960,32 +9933,32 @@ define(['./workbox-4367cb6e'], (function (workbox) { 'use strict';
     "url": "sprites/seed_journal.png",
     "revision": "200db3921076e597ea985fd521fd1d49"
   }, {
-    "url": "sprites/seed_rattle.png",
-    "revision": "f8bded83fa6c94b2e8ca9ce820b10c19"
-  }, {
     "url": "sprites/seed_vault_machine.png",
     "revision": "1b4e18a5460104e7ce9da9c0b6702231"
   }, {
     "url": "sprites/selkieborn_angry.png",
     "revision": "c5dd2d66900b67b45b60b67683c929f7"
   }, {
-    "url": "sprites/selkieborn_baby.png",
-    "revision": "6e1db65230f66a7f1f212cfef9ec0053"
-  }, {
     "url": "sprites/selkieborn_boredom.png",
     "revision": "0853dc5ba7ffd0f06f1e4134d973e8dd"
   }, {
-    "url": "sprites/selkieborn_eat.png",
-    "revision": "0a53e85982b7d7bc4decaeba494a1869"
+    "url": "sprites/seed_rattle.png",
+    "revision": "f8bded83fa6c94b2e8ca9ce820b10c19"
+  }, {
+    "url": "sprites/selkieborn_baby.png",
+    "revision": "6e1db65230f66a7f1f212cfef9ec0053"
   }, {
     "url": "sprites/selkieborn_fear.png",
     "revision": "c7dae55a33d8adc12b7ce016a93f0fe2"
   }, {
-    "url": "sprites/selkieborn_happy.png",
-    "revision": "c6dfee5a209a931c88c0caf8e8500e86"
+    "url": "sprites/selkieborn_eat.png",
+    "revision": "0a53e85982b7d7bc4decaeba494a1869"
   }, {
     "url": "sprites/selkieborn_idle.png",
     "revision": "4c581c691c78e07ddee752cd5dc96d3c"
+  }, {
+    "url": "sprites/selkieborn_happy.png",
+    "revision": "c6dfee5a209a931c88c0caf8e8500e86"
   }, {
     "url": "sprites/selkieborn_pain.png",
     "revision": "1f42dc29f7b2796fc73be892a31d3aba"
@@ -9993,32 +9966,26 @@ define(['./workbox-4367cb6e'], (function (workbox) { 'use strict';
     "url": "sprites/selkieborn_sad.png",
     "revision": "a71071323967e15a4b0d8a06bb83a9b2"
   }, {
-    "url": "sprites/selkieborn_sleep.png",
-    "revision": "2e29cca3dfcbb1a28a5d339ec8780763"
+    "url": "sprites/selkieborn_walk2.png",
+    "revision": "6e99ace076a3b31978c179c4d99fd3f5"
   }, {
     "url": "sprites/selkieborn_walk1.png",
     "revision": "c30cd6b540e670fc1e96cc87fdcba894"
   }, {
-    "url": "sprites/selkieborn_walk2.png",
-    "revision": "6e99ace076a3b31978c179c4d99fd3f5"
-  }, {
-    "url": "sprites/shadow_puppet.png",
-    "revision": "29f0e601b1bbf4583f68dfa0806df2ac"
-  }, {
-    "url": "sprites/shard_chisel.png",
-    "revision": "f1b3ae2a05420c60ac0a53083af85cd5"
+    "url": "sprites/selkieborn_sleep.png",
+    "revision": "2e29cca3dfcbb1a28a5d339ec8780763"
   }, {
     "url": "sprites/shavel_angry.png",
     "revision": "8213c91e8e1a2c76fbca1fc6b0590a3a"
   }, {
-    "url": "sprites/shavel_baby.png",
-    "revision": "365919a6b9a561e427ffd5683bb5e216"
+    "url": "sprites/shard_chisel.png",
+    "revision": "f1b3ae2a05420c60ac0a53083af85cd5"
   }, {
     "url": "sprites/shavel_boredom.png",
     "revision": "2aa8d84af7d502307a22e4221886fef3"
   }, {
-    "url": "sprites/shavel_eat.png",
-    "revision": "5ff12833e27e1a771fa8892c535dc09a"
+    "url": "sprites/shavel_idle.png",
+    "revision": "6a6f5d665f2b88f09f978f2a640882ec"
   }, {
     "url": "sprites/shavel_fear.png",
     "revision": "72ffd4e4a1b9ecb6cf403033c7ba8c8e"
@@ -10026,62 +9993,62 @@ define(['./workbox-4367cb6e'], (function (workbox) { 'use strict';
     "url": "sprites/shavel_happy.png",
     "revision": "0ce2cde36806675d0904aca647033918"
   }, {
-    "url": "sprites/shavel_idle.png",
-    "revision": "6a6f5d665f2b88f09f978f2a640882ec"
-  }, {
-    "url": "sprites/shavel_pain.png",
-    "revision": "e2ba3e267eacfa03d50dece5c358555d"
+    "url": "sprites/shavel_eat.png",
+    "revision": "5ff12833e27e1a771fa8892c535dc09a"
   }, {
     "url": "sprites/shavel_sad.png",
     "revision": "83b30eac38c440c0874297a4651873b2"
   }, {
+    "url": "sprites/shavel_baby.png",
+    "revision": "365919a6b9a561e427ffd5683bb5e216"
+  }, {
+    "url": "sprites/shadow_puppet.png",
+    "revision": "29f0e601b1bbf4583f68dfa0806df2ac"
+  }, {
     "url": "sprites/shavel_sleep.png",
     "revision": "6df96f687033c0fa601915f8cd13abda"
-  }, {
-    "url": "sprites/shavel_walk1.png",
-    "revision": "0cd3d34998129e3e53311b744b767e42"
   }, {
     "url": "sprites/shavel_walk2.png",
     "revision": "06becfe19b8266f09f6680103d8af90d"
   }, {
+    "url": "sprites/shavel_walk1.png",
+    "revision": "0cd3d34998129e3e53311b744b767e42"
+  }, {
     "url": "sprites/shee_angry.png",
     "revision": "d9a6c9ec0391bdbfef9b6f093f976daa"
-  }, {
-    "url": "sprites/shee_ark.png",
-    "revision": "e6ec95fd52f36e503c99cb506c7fd47f"
-  }, {
-    "url": "sprites/shee_baby.png",
-    "revision": "f50123d298c5ac083f2f35c532cc0f51"
   }, {
     "url": "sprites/shee_boredom.png",
     "revision": "682151ef7591c1930433aacdc989c7e7"
   }, {
+    "url": "sprites/petrified_puppet.png",
+    "revision": "5090ad8174e5eef99afdc22876c56273"
+  }, {
     "url": "sprites/shee_codex.png",
     "revision": "967932a10468fa02ffd35071525cd4f1"
-  }, {
-    "url": "sprites/shee_compass.png",
-    "revision": "f8b9ef7254fc6b325826faced061909a"
   }, {
     "url": "sprites/shee_eat.png",
     "revision": "7ed2b469d6c4f9072d04f61e26597e0c"
   }, {
-    "url": "sprites/shee_fear.png",
-    "revision": "d301a6b6063769c36d56213e52903724"
+    "url": "sprites/shee_compass.png",
+    "revision": "f8b9ef7254fc6b325826faced061909a"
   }, {
     "url": "sprites/shee_happy.png",
     "revision": "41fdfff4e76d826dc60e80c87f22b645"
   }, {
+    "url": "sprites/raksha_walk1.png",
+    "revision": "c643959a8bc2959b562849621ee13262"
+  }, {
     "url": "sprites/shee_idle.png",
     "revision": "b10209238518668a979f2b8fd3b9389d"
-  }, {
-    "url": "sprites/shee_idle_left.png",
-    "revision": "fadc430c30109b34528a93e930ae1476"
   }, {
     "url": "sprites/shee_idle_north.png",
     "revision": "8c0ab5f0c3ebfa17a930167819b908e9"
   }, {
-    "url": "sprites/shee_idle_right.png",
-    "revision": "2ded60fbd0743e8dd4d3cf6b492afcb5"
+    "url": "sprites/shee_idle_left.png",
+    "revision": "fadc430c30109b34528a93e930ae1476"
+  }, {
+    "url": "sprites/shee_fear.png",
+    "revision": "d301a6b6063769c36d56213e52903724"
   }, {
     "url": "sprites/shee_pain.png",
     "revision": "614f6929424a93f7247d2669f3bdd93e"
@@ -10089,47 +10056,47 @@ define(['./workbox-4367cb6e'], (function (workbox) { 'use strict';
     "url": "sprites/shee_rune_compass.png",
     "revision": "a42443c675b359fd0747216a6ce0b505"
   }, {
+    "url": "sprites/shee_idle_right.png",
+    "revision": "2ded60fbd0743e8dd4d3cf6b492afcb5"
+  }, {
     "url": "sprites/shee_sad.png",
     "revision": "0349626bf988481fb423dcd88b59294a"
-  }, {
-    "url": "sprites/shee_sleep.png",
-    "revision": "ac3849fd36e75d3f1d3bee54c9be5c75"
-  }, {
-    "url": "sprites/shee_syringe.png",
-    "revision": "5426ecfc5a99a695efeb9c42094dd8af"
   }, {
     "url": "sprites/shee_walk1.png",
     "revision": "251b150509005c8f9b5d8d89bdb4d88e"
   }, {
+    "url": "sprites/shee_sleep.png",
+    "revision": "ac3849fd36e75d3f1d3bee54c9be5c75"
+  }, {
     "url": "sprites/shee_walk2.png",
     "revision": "19b8772abd90bd28e9282cc7d1baab00"
+  }, {
+    "url": "sprites/shee_syringe.png",
+    "revision": "5426ecfc5a99a695efeb9c42094dd8af"
   }, {
     "url": "sprites/shee_walk_left_1.png",
     "revision": "776a3265286c436d9fc1957d200cc6ae"
   }, {
+    "url": "sprites/ruin_aqueduct_fragment.png",
+    "revision": "14d997ea520e76af40b34deaa187509d"
+  }, {
+    "url": "sprites/shee_baby.png",
+    "revision": "f50123d298c5ac083f2f35c532cc0f51"
+  }, {
     "url": "sprites/shee_walk_left_2.png",
     "revision": "c67218bb6d0d6b640416497f87097161"
-  }, {
-    "url": "sprites/shee_walk_north_1.png",
-    "revision": "0bcaa4c7e8e20e37869c5f6f18e55c9d"
-  }, {
-    "url": "sprites/shee_walk_north_2.png",
-    "revision": "abe2748e42e6bb5b27268b3ff6b39296"
-  }, {
-    "url": "sprites/shee_walk_right_1.png",
-    "revision": "45e6f834842c2673252ae1eafd3ea031"
-  }, {
-    "url": "sprites/shee_walk_right_2.png",
-    "revision": "8a6f7660c4f9e1157b84aec4ecdb9eb2"
-  }, {
-    "url": "sprites/singing_crystal.png",
-    "revision": "206db48f9a11e5a7c144166d5dcd43e3"
   }, {
     "url": "sprites/singing_mushroom.png",
     "revision": "2201d741d1051295e5aab4dcc45a4676"
   }, {
-    "url": "sprites/siroccs_angry.png",
-    "revision": "cd3fb6388cb1bf1750ec3f20c2eb3009"
+    "url": "sprites/ruin_monolith.png",
+    "revision": "745efe3a8958dad21d4b684d54fba52d"
+  }, {
+    "url": "sprites/norn_angry_new.png",
+    "revision": "d5d191a7cc534095bd51b7a687e7b225"
+  }, {
+    "url": "sprites/singing_crystal.png",
+    "revision": "206db48f9a11e5a7c144166d5dcd43e3"
   }, {
     "url": "sprites/siroccs_baby.png",
     "revision": "46dbf6605ecf5c269fc93e1573da278b"
@@ -10137,20 +10104,26 @@ define(['./workbox-4367cb6e'], (function (workbox) { 'use strict';
     "url": "sprites/siroccs_boredom.png",
     "revision": "c6eb4b094a4f489ba19e8fb5c7f16d9f"
   }, {
+    "url": "sprites/siroccs_happy.png",
+    "revision": "59a32a3b4fc30db5e21b9d2cf38ea103"
+  }, {
     "url": "sprites/siroccs_eat.png",
     "revision": "1bf3f38a6d9d7eeda700e69fcb2a5ce6"
   }, {
-    "url": "sprites/siroccs_fear.png",
-    "revision": "1e91f1f2b332e074546ee29027ca2bf3"
+    "url": "sprites/siroccs_angry.png",
+    "revision": "cd3fb6388cb1bf1750ec3f20c2eb3009"
   }, {
-    "url": "sprites/siroccs_happy.png",
-    "revision": "59a32a3b4fc30db5e21b9d2cf38ea103"
+    "url": "sprites/shee_walk_right_1.png",
+    "revision": "45e6f834842c2673252ae1eafd3ea031"
+  }, {
+    "url": "sprites/shee_walk_north_1.png",
+    "revision": "0bcaa4c7e8e20e37869c5f6f18e55c9d"
   }, {
     "url": "sprites/siroccs_idle.png",
     "revision": "63431f7790b382a95db193a18ad104ca"
   }, {
-    "url": "sprites/siroccs_pain.png",
-    "revision": "5031ba089b90dccb8bcac3befb8fadec"
+    "url": "sprites/siroccs_fear.png",
+    "revision": "1e91f1f2b332e074546ee29027ca2bf3"
   }, {
     "url": "sprites/siroccs_sad.png",
     "revision": "75ad4840cac04b7b34527ccda88d3452"
@@ -10158,47 +10131,38 @@ define(['./workbox-4367cb6e'], (function (workbox) { 'use strict';
     "url": "sprites/siroccs_sleep.png",
     "revision": "88ae55a3c3bda691a5b23d51792307e2"
   }, {
-    "url": "sprites/siroccs_walk1.png",
-    "revision": "fc7864da82e8087aa42b61b9a2366236"
-  }, {
     "url": "sprites/siroccs_walk2.png",
     "revision": "91fe5e3fa7c68d39bd5ce11ddf8ab3bb"
+  }, {
+    "url": "sprites/ruin_broken_wall_segment.png",
+    "revision": "b2bdd84cdf17ded11ae68d06722e08d4"
   }, {
     "url": "sprites/sisiutlvel_angry.png",
     "revision": "f76bce16e63dfa67fdd80909e57f0622"
   }, {
-    "url": "sprites/sisiutlvel_baby.png",
-    "revision": "2fbb3f27354041b3d17087d33f071e48"
-  }, {
-    "url": "sprites/sisiutlvel_boredom.png",
-    "revision": "7e7b52d7468a925c4f9d86b5c4c7a69f"
-  }, {
     "url": "sprites/sisiutlvel_eat.png",
     "revision": "7c79c556f7366a3d4586c76c92c7ed94"
-  }, {
-    "url": "sprites/sisiutlvel_fear.png",
-    "revision": "42a8fcb623d9f4a6c72f1a251f387255"
-  }, {
-    "url": "sprites/sisiutlvel_happy.png",
-    "revision": "6679da6a38081296c8c18d1e267b4b8a"
   }, {
     "url": "sprites/sisiutlvel_idle.png",
     "revision": "b05f21dfd41d8857fe9bb2f729c1a056"
   }, {
-    "url": "sprites/sisiutlvel_pain.png",
-    "revision": "f80df358b36cedb0408be9d48dbdea27"
+    "url": "sprites/sisiutlvel_happy.png",
+    "revision": "6679da6a38081296c8c18d1e267b4b8a"
   }, {
-    "url": "sprites/sisiutlvel_sad.png",
-    "revision": "39128bd223600e74c6cba5b2d35cf12d"
+    "url": "sprites/shavel_pain.png",
+    "revision": "e2ba3e267eacfa03d50dece5c358555d"
   }, {
-    "url": "sprites/sisiutlvel_sleep.png",
-    "revision": "b2739fd02f2b2eb4c01bab25058f3d5a"
+    "url": "sprites/sisiutlvel_baby.png",
+    "revision": "2fbb3f27354041b3d17087d33f071e48"
+  }, {
+    "url": "sprites/sisiutlvel_fear.png",
+    "revision": "42a8fcb623d9f4a6c72f1a251f387255"
   }, {
     "url": "sprites/sisiutlvel_walk1.png",
     "revision": "f9f6c76a65140240c59bd9829798ef42"
   }, {
-    "url": "sprites/sisiutlvel_walk2.png",
-    "revision": "36c046262a1b75271a8c3362a77cc5bb"
+    "url": "sprites/sisiutlvel_sad.png",
+    "revision": "39128bd223600e74c6cba5b2d35cf12d"
   }, {
     "url": "sprites/sky_pollen.png",
     "revision": "8184364f2038c46330b8da936b7d5574"
@@ -10206,8 +10170,8 @@ define(['./workbox-4367cb6e'], (function (workbox) { 'use strict';
     "url": "sprites/sleep_dust.png",
     "revision": "51ef7d309dc14b913da242d51f48936b"
   }, {
-    "url": "sprites/song_crystal.png",
-    "revision": "c9ab52565c20b135c43528558a446862"
+    "url": "sprites/ruin_buried_machine.png",
+    "revision": "7cf5ae8380d00e13571b53460268a444"
   }, {
     "url": "sprites/species_archive.png",
     "revision": "fa51184aa95889de907a69806c3bb063"
@@ -10215,14 +10179,11 @@ define(['./workbox-4367cb6e'], (function (workbox) { 'use strict';
     "url": "sprites/species_token_reference_sheet.png",
     "revision": "215be28920bb00418449e19a8ae146ca"
   }, {
+    "url": "sprites/sisiutlvel_walk2.png",
+    "revision": "36c046262a1b75271a8c3362a77cc5bb"
+  }, {
     "url": "sprites/spore_cake.png",
     "revision": "1538a91e77541c72d8b56bb8bb6cf0af"
-  }, {
-    "url": "sprites/spore_cluster_seed.png",
-    "revision": "a3feab7faa7303decd1549ff63ec88ae"
-  }, {
-    "url": "sprites/spore_filter.png",
-    "revision": "79d16da1c06731939d450a2dd1bdce59"
   }, {
     "url": "sprites/spore_kaleidoscope.png",
     "revision": "4e5b9a76778fc75bf1152630f4c0fcbd"
@@ -10230,26 +10191,26 @@ define(['./workbox-4367cb6e'], (function (workbox) { 'use strict';
     "url": "sprites/spore_lantern.png",
     "revision": "fee44b5b151755c4049c30456db0cc9b"
   }, {
-    "url": "sprites/spore_painting.png",
-    "revision": "eb352836259387113cfb3bb693c23850"
-  }, {
-    "url": "sprites/spore_wine.png",
-    "revision": "28aa06c9c96b4ff2b843609acc19c58c"
-  }, {
     "url": "sprites/spriggan_angry.png",
     "revision": "e51a660503e21d98406b19e77a653665"
+  }, {
+    "url": "sprites/spore_filter.png",
+    "revision": "79d16da1c06731939d450a2dd1bdce59"
   }, {
     "url": "sprites/spriggan_baby.png",
     "revision": "5b5eefaf1df47446c25784e56a313bc7"
   }, {
+    "url": "sprites/spriggan_fear.png",
+    "revision": "9adffb3e3d7647654a6efbfb73ce6277"
+  }, {
     "url": "sprites/spriggan_boredom.png",
     "revision": "7ba0777b2250824abca445d42d05ab10"
   }, {
-    "url": "sprites/spriggan_eat.png",
-    "revision": "e2343d2d4ef0319e954818004aad8fa1"
+    "url": "sprites/rusalyn_fear.png",
+    "revision": "8713cf1d53ef5ac00d031c736cb382f6"
   }, {
-    "url": "sprites/spriggan_fear.png",
-    "revision": "9adffb3e3d7647654a6efbfb73ce6277"
+    "url": "sprites/sisiutlvel_sleep.png",
+    "revision": "b2739fd02f2b2eb4c01bab25058f3d5a"
   }, {
     "url": "sprites/spriggan_happy.png",
     "revision": "ac5aa27869fa1b6e6933b5aaf21effaa"
@@ -10257,38 +10218,53 @@ define(['./workbox-4367cb6e'], (function (workbox) { 'use strict';
     "url": "sprites/spriggan_idle.png",
     "revision": "f5a2144a19704f3a655d150dfa2265cb"
   }, {
-    "url": "sprites/spriggan_pain.png",
-    "revision": "21c700a8d513a5d95ad4ce03713ef634"
-  }, {
     "url": "sprites/spriggan_sad.png",
     "revision": "f6ca2d872dd00683cd8e9eb08d5eac76"
   }, {
-    "url": "sprites/spriggan_sleep.png",
-    "revision": "995dc629f0e4db0f37855ac8525696e8"
+    "url": "sprites/spriggan_pain.png",
+    "revision": "21c700a8d513a5d95ad4ce03713ef634"
   }, {
     "url": "sprites/spriggan_walk1.png",
     "revision": "941a79efe05bbc7d08563ce8931a7b35"
   }, {
+    "url": "sprites/spore_cluster_seed.png",
+    "revision": "a3feab7faa7303decd1549ff63ec88ae"
+  }, {
+    "url": "sprites/spriggan_sleep.png",
+    "revision": "995dc629f0e4db0f37855ac8525696e8"
+  }, {
     "url": "sprites/spriggan_walk2.png",
     "revision": "e254528f0b32cebbbfd68ed390fe5997"
-  }, {
-    "url": "sprites/star_cartographer.png",
-    "revision": "e0c474dd7c0a476371b9b90384ba7177"
   }, {
     "url": "sprites/star_chart.png",
     "revision": "f3b78dd84834acdfd7e919cfbe28a178"
   }, {
+    "url": "sprites/star_cartographer.png",
+    "revision": "e0c474dd7c0a476371b9b90384ba7177"
+  }, {
     "url": "sprites/stasis_array.png",
     "revision": "d4debff10c724c81e81ffb861e83f7f0"
+  }, {
+    "url": "sprites/sisiutlvel_pain.png",
+    "revision": "f80df358b36cedb0408be9d48dbdea27"
   }, {
     "url": "sprites/stasis_orb.png",
     "revision": "1d493b8ca0d840ee8c64babad1dfac27"
   }, {
+    "url": "sprites/stimulant_crystal.png",
+    "revision": "dab1b0b1c312c785555315fe0f9ee8a4"
+  }, {
+    "url": "sprites/sisiutlvel_boredom.png",
+    "revision": "7e7b52d7468a925c4f9d86b5c4c7a69f"
+  }, {
     "url": "sprites/steam_whistle.png",
     "revision": "e282a806f99585a1a666f4bce2afb571"
   }, {
-    "url": "sprites/stimulant_crystal.png",
-    "revision": "dab1b0b1c312c785555315fe0f9ee8a4"
+    "url": "sprites/spore_painting.png",
+    "revision": "eb352836259387113cfb3bb693c23850"
+  }, {
+    "url": "sprites/siroccs_walk1.png",
+    "revision": "fc7864da82e8087aa42b61b9a2366236"
   }, {
     "url": "sprites/substrate_core.png",
     "revision": "768a3c049086bd52f5cd9ea0c4e07d83"
@@ -10302,11 +10278,11 @@ define(['./workbox-4367cb6e'], (function (workbox) { 'use strict';
     "url": "sprites/sulfur_salve.png",
     "revision": "4215b024204f67f2c48d11943918ab08"
   }, {
-    "url": "sprites/sulfur_tonic.png",
-    "revision": "aec659c72d1ee65656b24977775a2a17"
-  }, {
     "url": "sprites/sun_fruit.png",
     "revision": "408b2ddf7bef660bbdc7f596b6127be5"
+  }, {
+    "url": "sprites/sulfur_tonic.png",
+    "revision": "aec659c72d1ee65656b24977775a2a17"
   }, {
     "url": "sprites/tangaroavel_angry.png",
     "revision": "41862bfb65b8f751a0c35846821d6994"
@@ -10320,77 +10296,71 @@ define(['./workbox-4367cb6e'], (function (workbox) { 'use strict';
     "url": "sprites/tangaroavel_eat.png",
     "revision": "0c0eafa2b1a0c3fa6cdd6f1e41f69b58"
   }, {
-    "url": "sprites/tangaroavel_fear.png",
-    "revision": "7c4840346cfea911609801a399ef4b03"
-  }, {
     "url": "sprites/tangaroavel_happy.png",
     "revision": "0a4da466852b6624dedbb5ebf82685d2"
   }, {
-    "url": "sprites/tangaroavel_idle.png",
-    "revision": "9f79fc9395477f01a3932bae4503f9be"
+    "url": "sprites/tangaroavel_fear.png",
+    "revision": "7c4840346cfea911609801a399ef4b03"
   }, {
     "url": "sprites/tangaroavel_pain.png",
     "revision": "9bf787970b459a85105b1a55c04e2c10"
   }, {
-    "url": "sprites/tangaroavel_sad.png",
-    "revision": "6715396717cd5f51bad8ee9521dba5da"
+    "url": "sprites/tangaroavel_idle.png",
+    "revision": "9f79fc9395477f01a3932bae4503f9be"
   }, {
     "url": "sprites/tangaroavel_sleep.png",
     "revision": "86eddf2977ae6e44a36339fadee4c26b"
   }, {
-    "url": "sprites/tangaroavel_walk1.png",
-    "revision": "a3aac19d1f6f5d4c1cc2fa449571fb3e"
-  }, {
-    "url": "sprites/tangaroavel_walk2.png",
-    "revision": "408abb9ed8282f1daf4f860e2af65b66"
+    "url": "sprites/tangaroavel_sad.png",
+    "revision": "6715396717cd5f51bad8ee9521dba5da"
   }, {
     "url": "sprites/taniwha_angry.png",
     "revision": "96f892796c8bb9c50747f6c57dd1132c"
   }, {
+    "url": "sprites/shee_walk_right_2.png",
+    "revision": "8a6f7660c4f9e1157b84aec4ecdb9eb2"
+  }, {
     "url": "sprites/taniwha_baby.png",
     "revision": "8804bc76b1b664389cb7c32a90554dc3"
-  }, {
-    "url": "sprites/taniwha_boredom.png",
-    "revision": "5f0e4e8768e1eb67c0255619b1357726"
-  }, {
-    "url": "sprites/taniwha_eat.png",
-    "revision": "2ec8924731b1d8f14a4fd2a53e0707e0"
-  }, {
-    "url": "sprites/taniwha_fear.png",
-    "revision": "b438063bcc75ee2aea78ed668cb5b3e9"
   }, {
     "url": "sprites/taniwha_happy.png",
     "revision": "c86a501cde016090593bacf1e388bfca"
   }, {
+    "url": "sprites/taniwha_boredom.png",
+    "revision": "5f0e4e8768e1eb67c0255619b1357726"
+  }, {
+    "url": "sprites/tangaroavel_walk2.png",
+    "revision": "408abb9ed8282f1daf4f860e2af65b66"
+  }, {
+    "url": "sprites/taniwha_eat.png",
+    "revision": "2ec8924731b1d8f14a4fd2a53e0707e0"
+  }, {
     "url": "sprites/taniwha_idle.png",
     "revision": "19a6962974dab773d061472c84172ac5"
+  }, {
+    "url": "sprites/spriggan_eat.png",
+    "revision": "e2343d2d4ef0319e954818004aad8fa1"
   }, {
     "url": "sprites/taniwha_pain.png",
     "revision": "9627dd087d5608e0c894c76cf141e58f"
   }, {
-    "url": "sprites/taniwha_sad.png",
-    "revision": "e9c446c0a65ae4a015a13a5e4a7967a4"
+    "url": "sprites/taniwha_walk1.png",
+    "revision": "ee025f6078baa2180e2cfe818945810a"
   }, {
     "url": "sprites/taniwha_sleep.png",
     "revision": "6d2df47634756b78a0af1737eab604d5"
   }, {
-    "url": "sprites/taniwha_walk1.png",
-    "revision": "ee025f6078baa2180e2cfe818945810a"
-  }, {
-    "url": "sprites/taniwha_walk2.png",
-    "revision": "14951b9fc422037d6589a3a0ee2afa75"
-  }, {
-    "url": "sprites/tectonic_map.png",
-    "revision": "db85e97aea0625e2d207ab9a6dff33fd"
-  }, {
     "url": "sprites/temporal_lens.png",
     "revision": "5d4f833be8eb31657254936d83183e2d"
   }, {
-    "url": "sprites/tengura_angry.png",
-    "revision": "1520ba373fc978469ecd662c9e196746"
+    "url": "sprites/taniwha_sad.png",
+    "revision": "e9c446c0a65ae4a015a13a5e4a7967a4"
   }, {
     "url": "sprites/tengura_baby.png",
     "revision": "d99014738c635f8d3988ca02ca3fced4"
+  }, {
+    "url": "sprites/tengura_angry.png",
+    "revision": "1520ba373fc978469ecd662c9e196746"
   }, {
     "url": "sprites/tengura_boredom.png",
     "revision": "4e67bf6c7ba83af0cb705caf1f5f6de7"
@@ -10401,11 +10371,11 @@ define(['./workbox-4367cb6e'], (function (workbox) { 'use strict';
     "url": "sprites/tengura_fear.png",
     "revision": "0b3b226f1b9c5494fadb4ee2682ef80d"
   }, {
-    "url": "sprites/tengura_happy.png",
-    "revision": "a37d4758264e4660cc8c546fa561c7d4"
-  }, {
     "url": "sprites/tengura_idle.png",
     "revision": "36360afbd3e1e7f7a6a1102ced862aa2"
+  }, {
+    "url": "sprites/tengura_sleep.png",
+    "revision": "0cfc725ef237f11c4b6224e86de69ad4"
   }, {
     "url": "sprites/tengura_pain.png",
     "revision": "8e034ed5100b19b4a9fae0b7738f7000"
@@ -10413,17 +10383,23 @@ define(['./workbox-4367cb6e'], (function (workbox) { 'use strict';
     "url": "sprites/tengura_sad.png",
     "revision": "61e7eca07bf6c3703710d8f7c82a823a"
   }, {
-    "url": "sprites/tengura_sleep.png",
-    "revision": "0cfc725ef237f11c4b6224e86de69ad4"
-  }, {
     "url": "sprites/tengura_walk1.png",
     "revision": "43e484dafabad921eafa8482d899c0de"
   }, {
     "url": "sprites/tengura_walk2.png",
     "revision": "8f4821bb8b6f221e783a213160d5e476"
   }, {
+    "url": "sprites/tengura_happy.png",
+    "revision": "a37d4758264e4660cc8c546fa561c7d4"
+  }, {
     "url": "sprites/thermal_balm.png",
     "revision": "006cce106a92d2dcad43394dbfe5c9ae"
+  }, {
+    "url": "sprites/thermal_kelp.png",
+    "revision": "8e8d2c471a21488156647d5bc8abf607"
+  }, {
+    "url": "sprites/taniwha_walk2.png",
+    "revision": "14951b9fc422037d6589a3a0ee2afa75"
   }, {
     "url": "sprites/thermal_clay_poultice.png",
     "revision": "8e5bfcf355b58830f16307607f382156"
@@ -10431,32 +10407,35 @@ define(['./workbox-4367cb6e'], (function (workbox) { 'use strict';
     "url": "sprites/thermal_egg.png",
     "revision": "6b922765bbd3cc74761d87ed7f5c7450"
   }, {
-    "url": "sprites/thermal_geyser_egg.png",
-    "revision": "a13768b71999644b3a96230ef575ed99"
-  }, {
-    "url": "sprites/thermal_kelp.png",
-    "revision": "8e8d2c471a21488156647d5bc8abf607"
-  }, {
-    "url": "sprites/thermal_wrap.png",
-    "revision": "bd1e2998105c0d251dbfd7f4b60bfec9"
-  }, {
-    "url": "sprites/thorn_trap.png",
-    "revision": "b7dcf98ee57686d16ad517c0c695ddde"
-  }, {
     "url": "sprites/thornvine_snare.png",
     "revision": "8c087a1b0b6007930a709fd9bd68de65"
   }, {
-    "url": "sprites/thought_stylus.png",
-    "revision": "fde37263ce4b465ffa3aef94642f1882"
+    "url": "sprites/tectonic_map.png",
+    "revision": "db85e97aea0625e2d207ab9a6dff33fd"
   }, {
     "url": "sprites/threadmother_silk.png",
     "revision": "3ff55118a2bbadf2f65e4930d78887d0"
   }, {
+    "url": "sprites/taniwha_fear.png",
+    "revision": "b438063bcc75ee2aea78ed668cb5b3e9"
+  }, {
+    "url": "sprites/thorn_trap.png",
+    "revision": "b7dcf98ee57686d16ad517c0c695ddde"
+  }, {
+    "url": "sprites/thought_stylus.png",
+    "revision": "fde37263ce4b465ffa3aef94642f1882"
+  }, {
+    "url": "sprites/thermal_wrap.png",
+    "revision": "bd1e2998105c0d251dbfd7f4b60bfec9"
+  }, {
+    "url": "sprites/shee_ark.png",
+    "revision": "e6ec95fd52f36e503c99cb506c7fd47f"
+  }, {
+    "url": "sprites/nyk_walk1.png",
+    "revision": "eb0b2912f337767ae2347998345c4321"
+  }, {
     "url": "sprites/threshold_fruit.png",
     "revision": "e214260ec08165a9b83e071d2c50e7e5"
-  }, {
-    "url": "sprites/threshold_glass.png",
-    "revision": "1d6750072e785784ec2b814f272b54af"
   }, {
     "url": "sprites/tidal_almanac.png",
     "revision": "d672eb3d53cf58bf3813f505c7c00a08"
@@ -10464,32 +10443,38 @@ define(['./workbox-4367cb6e'], (function (workbox) { 'use strict';
     "url": "sprites/tidal_compress.png",
     "revision": "68a7f3273bccd03500618b90dcd72826"
   }, {
+    "url": "sprites/threshold_glass.png",
+    "revision": "1d6750072e785784ec2b814f272b54af"
+  }, {
     "url": "sprites/tidal_rune_stone.png",
     "revision": "493836e3605a504cab22c9b74d2fe595"
-  }, {
-    "url": "sprites/tidal_spray.png",
-    "revision": "9b49a4497eb89f7afd8d4525921ae008"
   }, {
     "url": "sprites/tidal_whistle.png",
     "revision": "caeededf6e9b43bf602bd2d7310bee6e"
   }, {
-    "url": "sprites/tide_chart.png",
-    "revision": "a54971e69ce84e2944fa11a74ba03bac"
+    "url": "sprites/tide_spinner.png",
+    "revision": "81763144916926a35e135e4e81e627c3"
   }, {
     "url": "sprites/tide_chime.png",
     "revision": "c7f503e76c5da429334849962a4c0e46"
   }, {
-    "url": "sprites/tide_compass.png",
-    "revision": "81c458339b6dc91fca40d198f3cb6761"
+    "url": "sprites/spore_wine.png",
+    "revision": "28aa06c9c96b4ff2b843609acc19c58c"
   }, {
-    "url": "sprites/tide_spinner.png",
-    "revision": "81763144916926a35e135e4e81e627c3"
-  }, {
-    "url": "sprites/tidepool_anemone.png",
-    "revision": "15fc434c684e04f404edee5f9e59098e"
+    "url": "sprites/thermal_geyser_egg.png",
+    "revision": "a13768b71999644b3a96230ef575ed99"
   }, {
     "url": "sprites/tidepool_glass_blade.png",
     "revision": "87929c3283bbdc80378336bf408daffc"
+  }, {
+    "url": "sprites/tide_chart.png",
+    "revision": "a54971e69ce84e2944fa11a74ba03bac"
+  }, {
+    "url": "sprites/tikbali_eat.png",
+    "revision": "76676f3346dd1d76005f993524d79fb5"
+  }, {
+    "url": "sprites/tidepool_anemone.png",
+    "revision": "15fc434c684e04f404edee5f9e59098e"
   }, {
     "url": "sprites/tidepool_salt_candy.png",
     "revision": "603f279a0c2b0fa4efb6758bca84bf4e"
@@ -10497,14 +10482,8 @@ define(['./workbox-4367cb6e'], (function (workbox) { 'use strict';
     "url": "sprites/tikbali_angry.png",
     "revision": "c96ad3ed7f2d93d3e2f13fc5390942a2"
   }, {
-    "url": "sprites/tikbali_baby.png",
-    "revision": "2e272bebeeb114bd109f911586984600"
-  }, {
-    "url": "sprites/tikbali_boredom.png",
-    "revision": "fbca4dbdea8180b87049c371e7ad3e44"
-  }, {
-    "url": "sprites/tikbali_eat.png",
-    "revision": "76676f3346dd1d76005f993524d79fb5"
+    "url": "sprites/tidal_spray.png",
+    "revision": "9b49a4497eb89f7afd8d4525921ae008"
   }, {
     "url": "sprites/tikbali_fear.png",
     "revision": "ee169ff850f1fc050e31651ecda9779f"
@@ -10512,8 +10491,8 @@ define(['./workbox-4367cb6e'], (function (workbox) { 'use strict';
     "url": "sprites/tikbali_happy.png",
     "revision": "346c1f3134a05574d6199d0736e1da7c"
   }, {
-    "url": "sprites/tikbali_idle.png",
-    "revision": "ec80b1b36eade7ed250a621a25c4271e"
+    "url": "sprites/siroccs_pain.png",
+    "revision": "5031ba089b90dccb8bcac3befb8fadec"
   }, {
     "url": "sprites/tikbali_pain.png",
     "revision": "dfd879e5c00e1d17580d5f9c7f36317d"
@@ -10521,47 +10500,62 @@ define(['./workbox-4367cb6e'], (function (workbox) { 'use strict';
     "url": "sprites/tikbali_sad.png",
     "revision": "25a7f829f317794ad1caeafdb040b729"
   }, {
+    "url": "sprites/tikbali_boredom.png",
+    "revision": "fbca4dbdea8180b87049c371e7ad3e44"
+  }, {
     "url": "sprites/tikbali_sleep.png",
     "revision": "9a08981b6b9fb56fec3046069fd14100"
-  }, {
-    "url": "sprites/tikbali_walk1.png",
-    "revision": "2f1c064055b61759f5c16c0dfbe73751"
   }, {
     "url": "sprites/tikbali_walk2.png",
     "revision": "8b12505a74d7a3a3c945731f98d79794"
   }, {
-    "url": "sprites/tile_crystal_plains.png",
-    "revision": "e08af552dd53509ee83634860205be2c"
+    "url": "sprites/tikbali_idle.png",
+    "revision": "ec80b1b36eade7ed250a621a25c4271e"
+  }, {
+    "url": "sprites/tikbali_baby.png",
+    "revision": "2e272bebeeb114bd109f911586984600"
+  }, {
+    "url": "sprites/tikbali_walk1.png",
+    "revision": "2f1c064055b61759f5c16c0dfbe73751"
   }, {
     "url": "sprites/tinker_angry.png",
     "revision": "6e5cd15b7068e3773f0289547cae9bfb"
   }, {
-    "url": "sprites/tinker_baby.png",
-    "revision": "240f2a417eccdee4dc719c25883a4443"
-  }, {
     "url": "sprites/tinker_boredom.png",
     "revision": "a6b46f5ff11a343258172f6e36e2e8e3"
-  }, {
-    "url": "sprites/tinker_eat.png",
-    "revision": "f3debc76539e94994a902dec9edbde35"
   }, {
     "url": "sprites/tinker_fear.png",
     "revision": "adaf21d91720c5fcda2ea3ba3ddcf83e"
   }, {
-    "url": "sprites/tinker_happy.png",
-    "revision": "7c34df16ff7b25a318696c7d6e6dc547"
+    "url": "sprites/tile_crystal_plains.png",
+    "revision": "e08af552dd53509ee83634860205be2c"
   }, {
     "url": "sprites/tinker_idle.png",
     "revision": "49e24aa2edaccbca87d47db972dd495c"
   }, {
-    "url": "sprites/tinker_pain.png",
-    "revision": "4d080f9f6393de8d92363deb08a39073"
+    "url": "sprites/tinker_eat.png",
+    "revision": "f3debc76539e94994a902dec9edbde35"
   }, {
-    "url": "sprites/tinker_sad.png",
-    "revision": "decfe8acc44f1f3f453fb5bd5f9cbc1b"
+    "url": "sprites/tinker_baby.png",
+    "revision": "240f2a417eccdee4dc719c25883a4443"
+  }, {
+    "url": "sprites/tinker_happy.png",
+    "revision": "7c34df16ff7b25a318696c7d6e6dc547"
   }, {
     "url": "sprites/tinker_sleep.png",
     "revision": "97098da35582edd055ade9fafec4da04"
+  }, {
+    "url": "sprites/torch_crystal_anim.png",
+    "revision": "00b7e89fa4977df4c8f968c59ea91deb"
+  }, {
+    "url": "sprites/torch_crystal.png",
+    "revision": "9821b39115c387559f86985e6440f6f9"
+  }, {
+    "url": "sprites/tinker_pain.png",
+    "revision": "4d080f9f6393de8d92363deb08a39073"
+  }, {
+    "url": "sprites/toxin_spore.png",
+    "revision": "065fcfe5614611b54a123086f8d5ba4b"
   }, {
     "url": "sprites/tinker_walk1.png",
     "revision": "7c34284b947797d3efcb99d5d814eb2a"
@@ -10569,23 +10563,14 @@ define(['./workbox-4367cb6e'], (function (workbox) { 'use strict';
     "url": "sprites/tinker_walk2.png",
     "revision": "21d40ab9935482e34ab51af47e458172"
   }, {
-    "url": "sprites/torch_crystal.png",
-    "revision": "9821b39115c387559f86985e6440f6f9"
-  }, {
-    "url": "sprites/torch_crystal_anim.png",
-    "revision": "00b7e89fa4977df4c8f968c59ea91deb"
-  }, {
-    "url": "sprites/toxin_spore.png",
-    "revision": "065fcfe5614611b54a123086f8d5ba4b"
-  }, {
-    "url": "sprites/ukten_angry.png",
-    "revision": "a14dccba43e6c891d44beb4c747c35e1"
+    "url": "sprites/ukten_boredom.png",
+    "revision": "0ad245357112eb50edfab4083270bb98"
   }, {
     "url": "sprites/ukten_baby.png",
     "revision": "198a53287297c7b52ac932660c2a658d"
   }, {
-    "url": "sprites/ukten_boredom.png",
-    "revision": "0ad245357112eb50edfab4083270bb98"
+    "url": "sprites/ukten_angry.png",
+    "revision": "a14dccba43e6c891d44beb4c747c35e1"
   }, {
     "url": "sprites/ukten_eat.png",
     "revision": "bbeb763a5f663eac6f2aaeaaa8552cfd"
@@ -10593,35 +10578,26 @@ define(['./workbox-4367cb6e'], (function (workbox) { 'use strict';
     "url": "sprites/ukten_fear.png",
     "revision": "0dcee3456dd5e250c11905a374d66f06"
   }, {
-    "url": "sprites/ukten_happy.png",
-    "revision": "943aa81a4ee9504f9de13408e48a1e5e"
-  }, {
     "url": "sprites/ukten_idle.png",
     "revision": "362a1201292cc0dbb0ddb9746f36cf7e"
-  }, {
-    "url": "sprites/ukten_pain.png",
-    "revision": "2b4b7d8b558718be24c36fd4e48f77b9"
   }, {
     "url": "sprites/ukten_sad.png",
     "revision": "a30179a1c9cd3f3ab7a08922b8defc32"
   }, {
-    "url": "sprites/ukten_sleep.png",
-    "revision": "674ddd342ea97a1c9a22728fff55dc7f"
-  }, {
-    "url": "sprites/ukten_walk1.png",
-    "revision": "d0af46eb7b7f79c7009721baf4847c97"
+    "url": "sprites/tinker_sad.png",
+    "revision": "decfe8acc44f1f3f453fb5bd5f9cbc1b"
   }, {
     "url": "sprites/ukten_walk2.png",
     "revision": "17a1f59bf005c3aeb20d1e9fe435a3c6"
   }, {
-    "url": "sprites/unstable_crystal.png",
-    "revision": "d1fb62b306db14b09940fd59f50e410d"
+    "url": "sprites/vaask_angry.png",
+    "revision": "00dd864da5321bea6d13aadbf9c7baf0"
+  }, {
+    "url": "sprites/ukten_sleep.png",
+    "revision": "674ddd342ea97a1c9a22728fff55dc7f"
   }, {
     "url": "sprites/unstable_prism.png",
     "revision": "484bcac62b13e674d9f085beee88a7da"
-  }, {
-    "url": "sprites/vaask_angry.png",
-    "revision": "00dd864da5321bea6d13aadbf9c7baf0"
   }, {
     "url": "sprites/vaask_baby.png",
     "revision": "2c2003cfa6edcc317cd4144335532795"
@@ -10629,32 +10605,29 @@ define(['./workbox-4367cb6e'], (function (workbox) { 'use strict';
     "url": "sprites/vaask_boredom.png",
     "revision": "91719014d875c3862ef2b0e43e8ee543"
   }, {
-    "url": "sprites/vaask_eat.png",
-    "revision": "423d4d5cb08f1fb01474331db8655d1a"
-  }, {
     "url": "sprites/vaask_fear.png",
     "revision": "b99e561dfb6503fe4979431249af8749"
   }, {
-    "url": "sprites/vaask_happy.png",
-    "revision": "01bbea7aa8e58fae462e194248db1f23"
+    "url": "sprites/vaask_eat.png",
+    "revision": "423d4d5cb08f1fb01474331db8655d1a"
   }, {
     "url": "sprites/vaask_idle.png",
     "revision": "e682925e167675b1c607cc491c8d884e"
   }, {
-    "url": "sprites/vaask_pain.png",
-    "revision": "56ce29091859359ed7b12e4a19b6944f"
+    "url": "sprites/vaask_happy.png",
+    "revision": "01bbea7aa8e58fae462e194248db1f23"
   }, {
     "url": "sprites/vaask_sad.png",
     "revision": "d210be5b1d36993719be007f83bb745f"
   }, {
-    "url": "sprites/vaask_sleep.png",
-    "revision": "72e4f79c257d10a1e06c859fafc33be4"
+    "url": "sprites/vaask_walk2.png",
+    "revision": "b564a1b34bdecb59135b9f6dc8059a64"
+  }, {
+    "url": "sprites/vaask_pain.png",
+    "revision": "56ce29091859359ed7b12e4a19b6944f"
   }, {
     "url": "sprites/vaask_walk1.png",
     "revision": "349ac119062337e690a01d3bcff9e3b4"
-  }, {
-    "url": "sprites/vaask_walk2.png",
-    "revision": "b564a1b34bdecb59135b9f6dc8059a64"
   }, {
     "url": "sprites/valkyr_angry.png",
     "revision": "4a2b36717cd361653b82d4e9a7bffc08"
@@ -10665,29 +10638,32 @@ define(['./workbox-4367cb6e'], (function (workbox) { 'use strict';
     "url": "sprites/valkyr_boredom.png",
     "revision": "7fda3f1258f77c71e9df3880c9163207"
   }, {
-    "url": "sprites/valkyr_eat.png",
-    "revision": "df0fdb91a4d09397f553a28321bbb8fc"
+    "url": "sprites/vaask_sleep.png",
+    "revision": "72e4f79c257d10a1e06c859fafc33be4"
   }, {
     "url": "sprites/valkyr_fear.png",
     "revision": "52332e6698878b80c896d8905ac039cf"
   }, {
-    "url": "sprites/valkyr_happy.png",
-    "revision": "b78383785d5b3f79f8302a70adfb3ccb"
-  }, {
-    "url": "sprites/valkyr_idle.png",
-    "revision": "c04b22f5761978a58a5a4ac6f75f3ae4"
-  }, {
-    "url": "sprites/valkyr_oath_stone.png",
-    "revision": "bd4ff35234a9155e912968c1c51e771c"
-  }, {
-    "url": "sprites/valkyr_pain.png",
-    "revision": "e8d5b76b43c91d560573d94a0c5a7583"
+    "url": "sprites/ukten_walk1.png",
+    "revision": "d0af46eb7b7f79c7009721baf4847c97"
   }, {
     "url": "sprites/valkyr_sad.png",
     "revision": "c442885e74dad522c364966e8db47db4"
   }, {
+    "url": "sprites/valkyr_happy.png",
+    "revision": "b78383785d5b3f79f8302a70adfb3ccb"
+  }, {
     "url": "sprites/valkyr_sleep.png",
     "revision": "7724340368cb76a28e35517e4429ea2b"
+  }, {
+    "url": "sprites/valkyr_idle.png",
+    "revision": "c04b22f5761978a58a5a4ac6f75f3ae4"
+  }, {
+    "url": "sprites/unstable_crystal.png",
+    "revision": "d1fb62b306db14b09940fd59f50e410d"
+  }, {
+    "url": "sprites/valkyr_pain.png",
+    "revision": "e8d5b76b43c91d560573d94a0c5a7583"
   }, {
     "url": "sprites/valkyr_walk1.png",
     "revision": "8945f850218a679beba391e3829ee386"
@@ -10695,17 +10671,14 @@ define(['./workbox-4367cb6e'], (function (workbox) { 'use strict';
     "url": "sprites/valkyr_walk2.png",
     "revision": "f2062d770b58f0667a4663b62024d23a"
   }, {
+    "url": "sprites/valkyr_oath_stone.png",
+    "revision": "bd4ff35234a9155e912968c1c51e771c"
+  }, {
     "url": "sprites/venom_gland.png",
     "revision": "9a38327da889e5cd1ce86542dfe90640"
   }, {
     "url": "sprites/venthari_angry.png",
     "revision": "b8784a66fd07edef7448c606a68796cf"
-  }, {
-    "url": "sprites/venthari_baby.png",
-    "revision": "eb4c1108508f13d6f2825b8667863b92"
-  }, {
-    "url": "sprites/venthari_boredom.png",
-    "revision": "fdfd86f0293aebf6ea3069b7a53713b1"
   }, {
     "url": "sprites/venthari_eat.png",
     "revision": "fc9e2167892651825ee2611405fc2ac2"
@@ -10713,20 +10686,17 @@ define(['./workbox-4367cb6e'], (function (workbox) { 'use strict';
     "url": "sprites/venthari_fear.png",
     "revision": "06e7d02ed0409c0a3edaeff5d7a83b87"
   }, {
-    "url": "sprites/venthari_happy.png",
-    "revision": "fc5cd0365c9f387a6c080f090eae7c83"
-  }, {
-    "url": "sprites/venthari_idle.png",
-    "revision": "3bbae2f0fbd83f83e54ea3cb1fa55d63"
-  }, {
     "url": "sprites/venthari_idle_left.png",
     "revision": "2400241217785238a92c632d4a4b3daa"
+  }, {
+    "url": "sprites/venthari_boredom.png",
+    "revision": "fdfd86f0293aebf6ea3069b7a53713b1"
   }, {
     "url": "sprites/venthari_idle_right.png",
     "revision": "829d645a484661802401a510155b686a"
   }, {
-    "url": "sprites/venthari_idle_south.png",
-    "revision": "11716caa3f6ea82952fd5bfb313be009"
+    "url": "sprites/venthari_happy.png",
+    "revision": "fc5cd0365c9f387a6c080f090eae7c83"
   }, {
     "url": "sprites/venthari_pain.png",
     "revision": "36391bdf3319a7e56852e620cebaaeac"
@@ -10737,8 +10707,8 @@ define(['./workbox-4367cb6e'], (function (workbox) { 'use strict';
     "url": "sprites/venthari_scale_left.png",
     "revision": "ea1a6ba9524972667846a5496db7e1d5"
   }, {
-    "url": "sprites/venthari_scale_right.png",
-    "revision": "ee4f7f1bb453e759d77c9dcbb679f47a"
+    "url": "sprites/venthari_idle.png",
+    "revision": "3bbae2f0fbd83f83e54ea3cb1fa55d63"
   }, {
     "url": "sprites/venthari_sleep.png",
     "revision": "7a8d12b6b1cc146c45af8b8a3e3b1545"
@@ -10746,14 +10716,8 @@ define(['./workbox-4367cb6e'], (function (workbox) { 'use strict';
     "url": "sprites/venthari_walk1.png",
     "revision": "e60b791c103b6bfa2338ce4c83194924"
   }, {
-    "url": "sprites/venthari_walk2.png",
-    "revision": "db856de3550aa76b4d65dc14c66db1b8"
-  }, {
     "url": "sprites/venthari_walk_left_1.png",
     "revision": "9bf640e2154032898f75a2fb64961b0e"
-  }, {
-    "url": "sprites/venthari_walk_left_2.png",
-    "revision": "88104ae164e46902852f1c7364a932dd"
   }, {
     "url": "sprites/venthari_walk_right_1.png",
     "revision": "2cfd6dff558bd63f4c01b82fbcaefbf3"
@@ -10761,29 +10725,41 @@ define(['./workbox-4367cb6e'], (function (workbox) { 'use strict';
     "url": "sprites/venthari_walk_right_2.png",
     "revision": "79528f3db436fda7d175a7ef39bec934"
   }, {
-    "url": "sprites/venthari_walk_south_1.png",
-    "revision": "841caa875695a8078f691a6de3f06aef"
+    "url": "sprites/venthari_walk_left_2.png",
+    "revision": "88104ae164e46902852f1c7364a932dd"
   }, {
-    "url": "sprites/venthari_walk_south_2.png",
-    "revision": "e4f6e8ff225999c24e01431e651d2b48"
+    "url": "sprites/ukten_pain.png",
+    "revision": "2b4b7d8b558718be24c36fd4e48f77b9"
+  }, {
+    "url": "sprites/venthari_walk2.png",
+    "revision": "db856de3550aa76b4d65dc14c66db1b8"
+  }, {
+    "url": "sprites/valkyr_eat.png",
+    "revision": "df0fdb91a4d09397f553a28321bbb8fc"
   }, {
     "url": "sprites/verdant_dew.png",
     "revision": "89076c884bbd4c776a9d680f6b4122f8"
   }, {
-    "url": "sprites/vigor_root.png",
-    "revision": "fa0589d8df020ec1e20c23f240485f97"
+    "url": "sprites/venthari_idle_south.png",
+    "revision": "11716caa3f6ea82952fd5bfb313be009"
+  }, {
+    "url": "sprites/venthari_walk_south_2.png",
+    "revision": "e4f6e8ff225999c24e01431e651d2b48"
+  }, {
+    "url": "sprites/ukten_happy.png",
+    "revision": "943aa81a4ee9504f9de13408e48a1e5e"
   }, {
     "url": "sprites/vitamin_moss.png",
     "revision": "cb757fe5041e1357f2620373bba68a32"
   }, {
-    "url": "sprites/void_balm.png",
-    "revision": "664e0d1790b2af1be80095de8b0b4599"
+    "url": "sprites/vigor_root.png",
+    "revision": "fa0589d8df020ec1e20c23f240485f97"
   }, {
     "url": "sprites/void_dust.png",
     "revision": "c8d9b03d6584e0d95dd12eeb151fe41c"
   }, {
-    "url": "sprites/void_elixir.png",
-    "revision": "fbfaf2f0e87f241c32996d0a2f497b2c"
+    "url": "sprites/song_crystal.png",
+    "revision": "c9ab52565c20b135c43528558a446862"
   }, {
     "url": "sprites/void_fragment.png",
     "revision": "e0a7c409155610cc4a499a645b2cf53d"
@@ -10794,56 +10770,62 @@ define(['./workbox-4367cb6e'], (function (workbox) { 'use strict';
     "url": "sprites/void_lichen.png",
     "revision": "3f8efe84e96358d23485f20b64f73a2b"
   }, {
-    "url": "sprites/void_marble.png",
-    "revision": "0e12f3dcb45a4fc448e134844af1bc7e"
-  }, {
-    "url": "sprites/void_pearl.png",
-    "revision": "f827f8359259159f8342f669208e206c"
-  }, {
     "url": "sprites/void_siphon.png",
     "revision": "22f45d1dc3ffe74cd6ab2bdaa559b1c8"
+  }, {
+    "url": "sprites/venthari_scale_right.png",
+    "revision": "ee4f7f1bb453e759d77c9dcbb679f47a"
+  }, {
+    "url": "sprites/void_balm.png",
+    "revision": "664e0d1790b2af1be80095de8b0b4599"
+  }, {
+    "url": "sprites/void_elixir.png",
+    "revision": "fbfaf2f0e87f241c32996d0a2f497b2c"
   }, {
     "url": "sprites/volcanic_glass.png",
     "revision": "e10e49947df9d4a1214898b31dff1fc1"
   }, {
-    "url": "sprites/volcanic_glass_blade.png",
-    "revision": "d8604d71636d1d725a13b82c5239d2ea"
-  }, {
-    "url": "sprites/volcanic_glass_lens.png",
-    "revision": "e180aca598c90016d63dbed686404076"
-  }, {
-    "url": "sprites/warmth_stone.png",
-    "revision": "1d4b990e2b5216e692829b9be23182e0"
+    "url": "sprites/void_pearl.png",
+    "revision": "f827f8359259159f8342f669208e206c"
   }, {
     "url": "sprites/warpvine_bloom.png",
     "revision": "8c52fe9041657d7391d2233920ec6c6f"
   }, {
-    "url": "sprites/water_droplet.png",
-    "revision": "bfbd9be6f6ec2d55e62a4395807de2d1"
+    "url": "sprites/warmth_stone.png",
+    "revision": "1d4b990e2b5216e692829b9be23182e0"
   }, {
-    "url": "sprites/waystation_logbook_abyss.png",
-    "revision": "a4c4a07aef2e75fabfd7bb8c1bfbf2e0"
+    "url": "sprites/volcanic_glass_lens.png",
+    "revision": "e180aca598c90016d63dbed686404076"
   }, {
     "url": "sprites/waystation_logbook_cryst.png",
     "revision": "1fac3eef9c763cb4a0cf4a1232b4fad9"
   }, {
-    "url": "sprites/waystation_logbook_flora.png",
-    "revision": "89bb33a38a5fd28145ec5d7871c76507"
+    "url": "sprites/volcanic_glass_blade.png",
+    "revision": "d8604d71636d1d725a13b82c5239d2ea"
   }, {
-    "url": "sprites/waystation_logbook_mycel.png",
-    "revision": "913cd18b6304b5514807c741bc7aebf2"
+    "url": "sprites/waystation_logbook_abyss.png",
+    "revision": "a4c4a07aef2e75fabfd7bb8c1bfbf2e0"
   }, {
-    "url": "sprites/waystation_logbook_phase.png",
-    "revision": "ab5c055b0fa93673c902c3e245e3c916"
+    "url": "sprites/venthari_baby.png",
+    "revision": "eb4c1108508f13d6f2825b8667863b92"
+  }, {
+    "url": "sprites/water_droplet.png",
+    "revision": "bfbd9be6f6ec2d55e62a4395807de2d1"
+  }, {
+    "url": "sprites/void_marble.png",
+    "revision": "0e12f3dcb45a4fc448e134844af1bc7e"
   }, {
     "url": "sprites/waystation_logbook_tide.png",
     "revision": "65d0a0f9e1ea22709d2c635f2f5c2ae2"
   }, {
+    "url": "sprites/waystation_logbook_mycel.png",
+    "revision": "913cd18b6304b5514807c741bc7aebf2"
+  }, {
     "url": "sprites/wild_honeycomb.png",
     "revision": "88791bec3e3edaef5dc2f6627788f643"
   }, {
-    "url": "sprites/wind_chime.png",
-    "revision": "732923de778eb267ff428ca2933d8c21"
+    "url": "sprites/waystation_logbook_flora.png",
+    "revision": "89bb33a38a5fd28145ec5d7871c76507"
   }, {
     "url": "sprites/word_tablet.png",
     "revision": "923384f99468186af6b977b3a50eaea3"
@@ -10854,29 +10836,26 @@ define(['./workbox-4367cb6e'], (function (workbox) { 'use strict';
     "url": "sprites/yelbegen_rin_idle.png",
     "revision": "1f87e81669fdf9319c388fbf0066a4ba"
   }, {
-    "url": "sprites/yowie_angry.png",
-    "revision": "274bd92c3a5ab1cd0dd102d2a3a4a0ff"
-  }, {
-    "url": "sprites/yowie_baby.png",
-    "revision": "a0d7e0d972ac8fe61ce72a9d055c855c"
-  }, {
     "url": "sprites/yowie_boredom.png",
     "revision": "bf03d74a294941c6d259e6fdc8882b94"
+  }, {
+    "url": "sprites/waystation_logbook_phase.png",
+    "revision": "ab5c055b0fa93673c902c3e245e3c916"
   }, {
     "url": "sprites/yowie_eat.png",
     "revision": "eebcbb89e19eb6c367c31e8bf38f8e48"
   }, {
-    "url": "sprites/yowie_fear.png",
-    "revision": "cde1a307a36254335cc74ff98cbd9be7"
-  }, {
     "url": "sprites/yowie_happy.png",
     "revision": "05c6377024ffcd0b7c6501ba0395f2ea"
   }, {
-    "url": "sprites/yowie_idle.png",
-    "revision": "cdb1916164afc43637e857e13e615f02"
+    "url": "sprites/yowie_fear.png",
+    "revision": "cde1a307a36254335cc74ff98cbd9be7"
   }, {
     "url": "sprites/yowie_pain.png",
     "revision": "092ab2bb6ce828d0da84cd1d437dee62"
+  }, {
+    "url": "sprites/yowie_idle.png",
+    "revision": "cdb1916164afc43637e857e13e615f02"
   }, {
     "url": "sprites/yowie_sad.png",
     "revision": "295c5768fef9feef75859682c19683c2"
@@ -10884,11 +10863,32 @@ define(['./workbox-4367cb6e'], (function (workbox) { 'use strict';
     "url": "sprites/yowie_sleep.png",
     "revision": "a1e08c96663383135f8a5f5c8aadff3b"
   }, {
-    "url": "sprites/yowie_walk1.png",
-    "revision": "663c7d94f4d77c0daebb627dfe3415b3"
+    "url": "sprites/yowie_baby.png",
+    "revision": "a0d7e0d972ac8fe61ce72a9d055c855c"
   }, {
     "url": "sprites/yowie_walk2.png",
     "revision": "f6366bb3495d91ac4cfa9b6dab9cb53f"
+  }, {
+    "url": "sprites/yowie_walk1.png",
+    "revision": "663c7d94f4d77c0daebb627dfe3415b3"
+  }, {
+    "url": "sprites/shee_walk_north_2.png",
+    "revision": "abe2748e42e6bb5b27268b3ff6b39296"
+  }, {
+    "url": "sprites/venthari_walk_south_1.png",
+    "revision": "841caa875695a8078f691a6de3f06aef"
+  }, {
+    "url": "sprites/tide_compass.png",
+    "revision": "81c458339b6dc91fca40d198f3cb6761"
+  }, {
+    "url": "sprites/wind_chime.png",
+    "revision": "732923de778eb267ff428ca2933d8c21"
+  }, {
+    "url": "sprites/tangaroavel_walk1.png",
+    "revision": "a3aac19d1f6f5d4c1cc2fa449571fb3e"
+  }, {
+    "url": "sprites/yowie_angry.png",
+    "revision": "274bd92c3a5ab1cd0dd102d2a3a4a0ff"
   }, {
     "url": "manifest.webmanifest",
     "revision": "26e948605b88e47672a395e73a4774a8"
