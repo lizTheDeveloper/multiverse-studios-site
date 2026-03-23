@@ -114,7 +114,9 @@
     });
     const json = await res.json();
     if (!res.ok) {
-      throw new Error(json.message || json.error || ('HTTP ' + res.status));
+      var err = new Error(json.message || json.error || ('HTTP ' + res.status));
+      err.statusCode = res.status;
+      throw err;
     }
     return json;
   }
@@ -765,12 +767,20 @@
         storageRemove('mx_user_id');
         storageRemove('mx_display_name');
       }
-    } catch (_) {
+    } catch (err) {
       session.loggedIn = false;
       session.userId = null;
       session.displayName = null;
       storageRemove('mx_user_id');
       storageRemove('mx_display_name');
+      // If auth service is unavailable (500/503), signal guest fallback
+      if (err && (err.statusCode >= 500 || err.message === 'Failed to fetch')) {
+        console.warn('[matrix-auth] Auth service unavailable, allowing guest access');
+        updateNavUI();
+        window.dispatchEvent(new CustomEvent('matrixAuthUnavailable'));
+        window.dispatchEvent(new CustomEvent('matrixAuthReady', { detail: { loggedIn: false, guest: true } }));
+        return;
+      }
     }
     updateNavUI();
     window.dispatchEvent(new CustomEvent('matrixAuthReady', { detail: { loggedIn: session.loggedIn } }));

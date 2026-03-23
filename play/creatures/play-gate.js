@@ -2,10 +2,22 @@
    MULTIVERSE STUDIOS — Play Gate
    Requires Matrix login before accessing game play pages.
    Does NOT gate Never Ever Land (/play/neverland/).
+   Offers guest mode for unauthenticated play.
    ============================================ */
 
 (function () {
   'use strict';
+
+  // ── Skip gate for ungated paths ───────────────────────────
+  if (window.location.pathname.indexOf('/play/neverland') === 0) {
+    return; // Neverland is free — no gate needed
+  }
+
+  // ── Skip gate on localhost / dev ──────────────────────────
+  var host = window.location.hostname;
+  if (host === 'localhost' || host === '127.0.0.1' || host === '0.0.0.0') {
+    return; // Local dev — no auth gate
+  }
 
   // ── Styles ──────────────────────────────────────────────────
 
@@ -87,6 +99,24 @@
     '#play-gate-note a:hover {',
     '  text-decoration: underline;',
     '}',
+    '#play-gate-guest {',
+    '  display: inline-block;',
+    '  margin-top: 0.75rem;',
+    '  padding: 0.5rem 1.5rem;',
+    '  background: transparent;',
+    '  border: 1px solid var(--dust, #8a8694);',
+    '  border-radius: 6px;',
+    '  color: var(--dust, #8a8694);',
+    '  font-family: inherit;',
+    '  font-size: 0.7rem;',
+    '  letter-spacing: 0.05em;',
+    '  cursor: pointer;',
+    '  transition: background 0.15s, color 0.15s, border-color 0.15s;',
+    '}',
+    '#play-gate-guest:hover {',
+    '  border-color: var(--star-white, #e8e6f0);',
+    '  color: var(--star-white, #e8e6f0);',
+    '}',
   ].join('\n');
   document.head.appendChild(style);
 
@@ -105,6 +135,9 @@
       '<div>' +
         '<button id="play-gate-btn" type="button">Sign In / Create Account</button>' +
       '</div>' +
+      '<div>' +
+        '<button id="play-gate-guest" type="button">Play as Guest</button>' +
+      '</div>' +
       '<p id="play-gate-note">' +
         'Never Ever Land is free &mdash; ' +
         '<a href="/play/neverland/">no account needed</a>.' +
@@ -116,6 +149,12 @@
   function attachGate() {
     document.body.appendChild(gate);
     var btn = document.getElementById('play-gate-btn');
+    var guestBtn = document.getElementById('play-gate-guest');
+    if (guestBtn) {
+      guestBtn.addEventListener('click', function () {
+        removeGate();
+      });
+    }
     if (btn) {
       btn.addEventListener('click', function () {
         if (window.matrixAuth && typeof window.matrixAuth.showLoginModal === 'function') {
@@ -173,6 +212,12 @@
   });
 
   window.addEventListener('matrixAuthLogin', function () {
+    removeGate();
+  });
+
+  // ── Auth Unavailable Listener ───────────────────────────────
+  // If auth service is down (503), auto-dismiss to guest mode.
+  window.addEventListener('matrixAuthUnavailable', function () {
     removeGate();
   });
 
