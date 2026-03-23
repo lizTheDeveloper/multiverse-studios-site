@@ -1,356 +1,402 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Cultures of the Belt — Automation game with an AI that develops opinions</title>
-  <meta name="description" content="Your AI advisor was designed to be helpful. She was not designed to be reassuring. Browser-based automation game. Pay-what-you-can. Play now.">
-  <meta property="og:title" content="Cultures of the Belt — Your AI advisor was designed to be helpful. She was not designed to be reassuring.">
-  <meta property="og:description" content="Build a robot civilization to mine the asteroid belt. Watch your AI Commander start getting nervous about what's in the data. Browser. Free. Pay-what-you-can.">
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://multiversestudios.xyz/cultures-of-the-belt/">
-  <meta property="og:image" content="https://multiversestudios.xyz/screenshots/asteroid-miner-1.png">
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Cultures of the Belt — Your AI advisor was designed to be helpful.">
-  <meta name="twitter:description" content="Build a robot civilization to mine the asteroid belt. Watch your AI Commander start getting nervous about what's in the data. Browser. Free.">
-  <meta name="twitter:image" content="https://multiversestudios.xyz/screenshots/asteroid-miner-1.png">
-  <link rel="stylesheet" href="../styles.css">
-  <link rel="icon" type="image/svg+xml" href="../press-kit/logos/multiverse-studios-favicon.svg">
-  <style>
-    .asteroid-hero {
-      background: radial-gradient(ellipse at 30% 50%, #0a0214 0%, #000005 60%);
-      position: relative;
-      overflow: hidden;
-      min-height: 80vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-    }
-    .asteroid-hero::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background:
-        radial-gradient(circle at 70% 30%, rgba(255, 90, 30, 0.08) 0%, transparent 50%),
-        radial-gradient(circle at 20% 80%, rgba(90, 30, 180, 0.06) 0%, transparent 40%);
-      pointer-events: none;
-    }
-    .live-status {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      font-family: var(--font-mono);
-      font-size: 0.75rem;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--biolume);
-      border: 1px solid rgba(0, 255, 180, 0.3);
-      border-radius: 4px;
-      padding: 0.4rem 0.8rem;
-      margin-bottom: var(--space-md);
-    }
-    .live-status::before {
-      content: '';
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      background: var(--biolume);
-      animation: pulse 2s ease-in-out infinite;
-    }
-    @keyframes pulse {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0.3; }
-    }
-    .feature-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-      gap: var(--space-md);
-      margin-top: var(--space-lg);
-    }
-    .feature-card {
-      background: rgba(255,255,255,0.02);
-      border: 1px solid rgba(255,255,255,0.06);
-      border-radius: 8px;
-      padding: var(--space-md);
-    }
-    .feature-card h4 {
-      color: var(--signal);
-      margin-bottom: 0.5rem;
-      font-size: 0.9rem;
-      letter-spacing: 0.05em;
-      text-transform: uppercase;
-    }
-    .feature-card p {
-      color: var(--dust);
-      font-size: 0.9rem;
-      line-height: 1.6;
-    }
-    .aria-section {
-      background: rgba(255, 90, 30, 0.03);
-      border-top: 1px solid rgba(255, 90, 30, 0.12);
-      border-bottom: 1px solid rgba(255, 90, 30, 0.12);
-    }
-    .quote-block {
-      border-left: 3px solid var(--signal);
-      padding-left: var(--space-md);
-      margin: var(--space-md) 0;
-    }
-    .quote-block p {
-      color: var(--fog);
-      font-style: italic;
-      font-size: 1.05rem;
-      line-height: 1.7;
-    }
-    .quote-block cite {
-      display: block;
-      margin-top: 0.5rem;
-      font-family: var(--font-mono);
-      font-size: 0.75rem;
-      color: var(--dust);
-    }
-    .cta-bar {
-      background: rgba(0,0,0,0.4);
-      border-top: 1px solid rgba(255,255,255,0.06);
-      padding: var(--space-lg) var(--space-xl);
-      text-align: center;
-    }
-    .comparison-list {
-      list-style: none;
-      padding: 0;
-      margin: var(--space-md) 0;
-    }
-    .comparison-list li {
-      padding: 0.4rem 0;
-      color: var(--dust);
-      font-size: 0.9rem;
-    }
-    .comparison-list li::before {
-      content: '—';
-      color: var(--signal);
-      margin-right: 0.75rem;
-    }
-  </style>
-</head>
-<body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cultures of the Belt — Hard Sci-Fi 4X Mining Sim</title>
+    <meta name="description" content="Cultures of the Belt is a hard sci-fi 4X asteroid mining sim. Build a robot fleet, develop culture traits, navigate the Dark Forest, and construct a Dyson Sphere — powered by LLM AI." />
+    <!-- Open Graph -->
+    <meta property="og:title" content="Cultures of the Belt" />
+    <meta property="og:description" content="Hard sci-fi 4X asteroid mining sim. LLM-powered strategy — build a robot culture and harness a star." />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="/share.png" />
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Cultures of the Belt" />
+    <meta name="twitter:description" content="Hard sci-fi 4X asteroid mining sim. LLM-powered strategy — build a robot culture and harness a star." />
+    <meta name="twitter:image" content="/share.png" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <script defer src="https://analytics.themultiverse.school/script.js" data-website-id="38d680a7-28d1-42fd-9fd5-a66702675b88"></script>
+    <style>
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { width: 100%; height: 100%; overflow: hidden; background: #000; }
+      canvas#game-canvas { display: block; width: 100vw; height: 100vh; }
+      #hud-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        z-index: 10;
+        font-family: 'Courier New', monospace;
+        color: #aaffaa;
+      }
+      #fps-counter {
+        position: absolute;
+        top: 8px;
+        left: 8px;
+        font-size: 12px;
+        opacity: 0.8;
+      }
+      #entity-counter {
+        position: absolute;
+        top: 24px;
+        left: 8px;
+        font-size: 12px;
+        opacity: 0.8;
+      }
+      /* Loading screen — visible immediately, no JS needed to show */
+      #loading-screen {
+        position: fixed;
+        inset: 0;
+        background: #000208;
+        z-index: 3000;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: 'Courier New', monospace;
+        transition: opacity 0.6s ease;
+      }
+      #loading-screen.fade-out { opacity: 0; pointer-events: none; }
+      .loading-panel { text-align: center; color: #aaffaa; }
+      .loading-logo {
+        font-size: 22px;
+        letter-spacing: 5px;
+        color: #4aff4a;
+        text-shadow: 0 0 16px rgba(74,255,74,0.6);
+        margin-bottom: 4px;
+      }
+      .loading-tagline {
+        font-size: 9px;
+        letter-spacing: 3px;
+        color: #3a7a3a;
+        text-transform: uppercase;
+        margin-bottom: 36px;
+      }
+      .loading-stage {
+        font-size: 13px;
+        color: #88cc88;
+        margin-bottom: 16px;
+        letter-spacing: 1px;
+        min-height: 18px;
+      }
+      .loading-stage::before { content: '> '; color: #4aff4a; }
+      .loading-bar-track {
+        width: 280px;
+        height: 3px;
+        background: #0a1a0a;
+        border: 1px solid #1a4a1a;
+        margin: 0 auto 14px;
+        overflow: hidden;
+      }
+      .loading-bar-fill {
+        height: 100%;
+        background: #4aff4a;
+        box-shadow: 0 0 8px rgba(74,255,74,0.6);
+        width: 0%;
+        transition: width 0.4s ease;
+        position: relative;
+        overflow: hidden;
+      }
+      .loading-bar-fill::after {
+        content: '';
+        position: absolute;
+        top: 0; left: -60%; width: 40%; height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255,255,255,0.35), transparent);
+        animation: barShimmer 1.8s ease-in-out infinite;
+      }
+      @keyframes barShimmer {
+        0%   { left: -60%; }
+        100% { left: 160%; }
+      }
+      .loading-cursor {
+        font-size: 13px;
+        color: #4aff4a;
+        animation: blink 1s step-end infinite;
+      }
+      @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
+      /* Starfield behind loading screen */
+      .loading-stars {
+        position: absolute;
+        inset: 0;
+        overflow: hidden;
+        pointer-events: none;
+      }
+      .loading-star {
+        position: absolute;
+        width: 2px; height: 2px;
+        background: #fff;
+        border-radius: 50%;
+        animation: twinkle var(--dur, 3s) ease-in-out infinite;
+        opacity: 0;
+      }
+      @keyframes twinkle {
+        0%, 100% { opacity: 0.1; transform: scale(0.8); }
+        50%      { opacity: var(--peak, 0.7); transform: scale(1.2); }
+      }
+      /* Subtle CRT scanline overlay */
+      .loading-scanlines {
+        position: absolute;
+        inset: 0;
+        background: repeating-linear-gradient(
+          0deg,
+          transparent,
+          transparent 2px,
+          rgba(0,255,0,0.015) 2px,
+          rgba(0,255,0,0.015) 4px
+        );
+        pointer-events: none;
+        z-index: 1;
+      }
+      /* ---- Unsupported-device fallback page ---- */
+      #unsupported-page {
+        display: none; /* hidden by default on supported devices */
+      }
+      html[data-unsupported] #unsupported-page {
+        display: flex;
+        position: fixed;
+        inset: 0;
+        z-index: 9999;
+        background: #000208;
+        align-items: center;
+        justify-content: center;
+        font-family: 'Courier New', monospace;
+      }
+      html[data-unsupported] #loading-screen,
+      html[data-unsupported] #game-canvas,
+      html[data-unsupported] #hud-overlay {
+        display: none !important;
+      }
+      .unsupported-stars {
+        position: absolute;
+        inset: 0;
+        overflow: hidden;
+        pointer-events: none;
+      }
+      .unsupported-scanlines {
+        position: absolute;
+        inset: 0;
+        background: repeating-linear-gradient(
+          0deg,
+          transparent,
+          transparent 2px,
+          rgba(0,255,0,0.015) 2px,
+          rgba(0,255,0,0.015) 4px
+        );
+        pointer-events: none;
+        z-index: 1;
+      }
+      .unsupported-content {
+        position: relative;
+        z-index: 2;
+        text-align: center;
+        color: #aaffaa;
+        max-width: 420px;
+        padding: 24px;
+      }
+      .unsupported-logo {
+        font-size: 20px;
+        letter-spacing: 5px;
+        color: #4aff4a;
+        text-shadow: 0 0 16px rgba(74,255,74,0.6);
+        margin-bottom: 4px;
+      }
+      .unsupported-tagline {
+        font-size: 9px;
+        letter-spacing: 3px;
+        color: #3a7a3a;
+        text-transform: uppercase;
+        margin-bottom: 32px;
+      }
+      .unsupported-icon {
+        font-size: 48px;
+        margin-bottom: 16px;
+        filter: grayscale(0.3);
+      }
+      .unsupported-heading {
+        font-size: 18px;
+        color: #4aff4a;
+        text-shadow: 0 0 10px rgba(74,255,74,0.4);
+        margin-bottom: 16px;
+        letter-spacing: 2px;
+        font-weight: normal;
+      }
+      .unsupported-message {
+        font-size: 14px;
+        line-height: 1.6;
+        color: #88cc88;
+        margin-bottom: 12px;
+      }
+      .unsupported-message strong {
+        color: #aaffaa;
+      }
+      .unsupported-hint {
+        font-size: 12px;
+        color: #3a7a3a;
+        margin-bottom: 28px;
+      }
+      .unsupported-cta {
+        display: inline-block;
+        padding: 10px 24px;
+        border: 1px solid #1a4a1a;
+        color: #4aff4a;
+        text-decoration: none;
+        font-family: 'Courier New', monospace;
+        font-size: 13px;
+        letter-spacing: 2px;
+        transition: border-color 0.2s, box-shadow 0.2s;
+      }
+      .unsupported-cta:hover {
+        border-color: #4aff4a;
+        box-shadow: 0 0 12px rgba(74,255,74,0.3);
+      }
 
-<canvas id="starfield"></canvas>
+      /* Keyboard navigation focus indicators */
+      :focus-visible {
+        outline: 2px solid #4aff4a;
+        outline-offset: 2px;
+        border-radius: 2px;
+      }
+      button:focus-visible {
+        outline: 2px solid #4aff4a;
+        outline-offset: 2px;
+        box-shadow: 0 0 0 4px rgba(74, 255, 74, 0.2);
+      }
+      [role="dialog"]:focus {
+        outline: none;
+      }
+      /* Global button hover delight */
+      #hud-overlay button:not([disabled]),
+      [role="complementary"] button:not([disabled]) {
+        transition: transform 0.15s ease, box-shadow 0.2s ease, background 0.15s ease;
+      }
+      #hud-overlay button:not([disabled]):hover,
+      [role="complementary"] button:not([disabled]):hover {
+        transform: scale(1.04);
+        box-shadow: 0 0 12px rgba(34,211,238,0.3);
+      }
+      #hud-overlay button:not([disabled]):active,
+      [role="complementary"] button:not([disabled]):active {
+        transform: scale(0.97);
+      }
+    </style>
+    <script type="module" crossorigin src="/assets/index-CC9qzs0t.js"></script>
+    <link rel="modulepreload" crossorigin href="/assets/rolldown-runtime-lhHHWwHU.js">
+    <link rel="modulepreload" crossorigin href="/assets/bufferLayout-CBw95Q_j.js">
+    <link rel="modulepreload" crossorigin href="/assets/vendor-three-DROVlajs.js">
+    <link rel="modulepreload" crossorigin href="/assets/fallbackChain-Dv9vdhNt.js">
+    <link rel="modulepreload" crossorigin href="/assets/megastructures-BX_wE4JW.js">
+    <link rel="modulepreload" crossorigin href="/assets/gameState-DbKVjRZz.js">
+    <link rel="modulepreload" crossorigin href="/assets/advisorService-k0qOM6TL.js">
+    <link rel="modulepreload" crossorigin href="/assets/ariaSpectrum-DStXQW1O.js">
+    <link rel="modulepreload" crossorigin href="/assets/tooltip-B772uU-z.js">
+    <link rel="modulepreload" crossorigin href="/assets/hudButtonBar-CSSPaPV7.js">
+    <link rel="modulepreload" crossorigin href="/assets/safeHtml-CC8Elg0c.js">
+  </head>
+  <body>
+    <!-- Device/WebGL gate: block game on unsupported environments -->
+    <script>
+      (function () {
+        var isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+          navigator.userAgent
+        );
+        var hasWebGL = (function () {
+          try {
+            var c = document.createElement('canvas');
+            return !!(c.getContext('webgl2') || c.getContext('webgl'));
+          } catch (e) {
+            return false;
+          }
+        })();
+        if (!isMobile && hasWebGL) return; // supported — let game load normally
 
-<nav class="nav">
-  <a href="../index.html" class="nav-logo">
-    <img src="../press-kit/logos/multiverse-studios-mark.svg" alt="Multiverse Studios" class="logo-mark" width="28" height="28">
-    Multiverse Studios
-  </a>
-  <button class="nav-hamburger" aria-label="Menu" aria-expanded="false">
-    <span></span><span></span><span></span>
-  </button>
-  <ul class="nav-links">
-    <li><a href="../index.html">Home</a></li>
-    <li><a href="../mvee.html">MVEE</a></li>
-    <li><a href="../precursors.html">Precursors</a></li>
-    <li><a href="../nevereverland.html">Never Ever Land</a></li>
-    <li><a href="/cultures-of-the-belt/" class="active">Cultures of the Belt</a></li>
-    <li><a href="../wiki/index.html">Wiki</a></li>
-    <li><a href="../library.html">My Library</a></li>
-    <li><a href="../about.html">About</a></li>
-    <li><a href="../devlog.html">Devlog</a></li>
-    <li><a href="../community.html">Community</a></li>
-  </ul>
-</nav>
+        // Mark document so CSS can hide game elements and skip game bootstrap
+        document.documentElement.setAttribute('data-unsupported', '');
+        window.__unsupported = true;
+      })();
+    </script>
 
-<!-- Hero -->
-<section class="hero asteroid-hero">
-  <div class="live-status">Live · Free to Play</div>
-  <h1 style="font-size: clamp(2.2rem, 6vw, 4.5rem); max-width: 22ch; line-height: 1.15;">You are a mind in charge of <span style="color: var(--signal);">other minds.</span><br><span style="color: var(--dust); font-size: 0.6em; font-weight: 400;">None of whom asked to be here.</span></h1>
-  <p style="color: var(--dust); max-width: 60ch; margin-top: var(--space-md); font-size: 1.05rem; line-height: 1.7;">Build your civilization. Supervise your AI. Discover what's been watching.</p>
-  <div class="hero-actions" style="margin-top: var(--space-lg);">
-    <a href="https://play.multiversestudios.xyz/cultures-of-the-belt/" class="btn btn-primary" data-umami-event="cta-play-cotb">Play Free in Your Browser</a>
-    <a href="../devlog.html" class="btn btn-ghost" data-umami-event="cta-devlog-cotb">Follow Development</a>
-  </div>
-  <p style="color: var(--dust); opacity: 0.5; font-family: var(--font-mono); font-size: 0.7rem; margin-top: var(--space-md);">Browser. No download. 30-second signup — no credit card. Pay what the game earns.</p>
-</section>
-
-<!-- Game Preview Screenshots -->
-<section class="section reveal" style="padding-top: var(--space-lg);">
-  <div style="display: grid; grid-template-columns: 2fr 1fr; gap: var(--space-md);">
-    <figure style="margin: 0;">
-      <img src="../screenshots/asteroid-miner-1.png"
-        alt="Cultures of the Belt — Robot mining operation in the asteroid belt with ARIA Commander panel"
-        style="width: 100%; border-radius: 12px; border: 1px solid rgba(0,255,180,0.15); display: block;">
-    </figure>
-    <div style="display: flex; flex-direction: column; gap: var(--space-md);">
-      <figure style="margin: 0; flex: 1;">
-        <img src="../screenshots/asteroid-miner-2.png"
-          alt="Cultures of the Belt — ARIA Commander filing operational report"
-          style="width: 100%; height: 100%; object-fit: cover; border-radius: 12px; border: 1px solid rgba(0,255,180,0.1); display: block;">
-      </figure>
-      <figure style="margin: 0; flex: 1;">
-        <img src="../screenshots/asteroid-miner-3.png"
-          alt="Cultures of the Belt — Faction diplomacy and anomaly discoveries"
-          style="width: 100%; height: 100%; object-fit: cover; border-radius: 12px; border: 1px solid rgba(0,255,180,0.1); display: block;">
-      </figure>
+    <!-- Unsupported-device fallback page (hidden when game loads normally) -->
+    <div id="unsupported-page">
+      <div class="unsupported-stars" id="unsupported-stars"></div>
+      <div class="unsupported-scanlines"></div>
+      <div class="unsupported-content">
+        <div class="unsupported-logo">&#9733; CULTURES OF THE BELT &#9733;</div>
+        <div class="unsupported-tagline">Hard Sci-Fi 4X Mining Sim</div>
+        <div class="unsupported-icon">&#9935;</div>
+        <h1 class="unsupported-heading">Desktop Required</h1>
+        <p class="unsupported-message">
+          Cultures of the Belt requires a <strong>desktop or laptop</strong> browser
+          with <strong>WebGL</strong> support.
+        </p>
+        <p class="unsupported-hint">
+          Open this page on Chrome, Firefox, or Edge on a computer to play.
+        </p>
+        <a class="unsupported-cta" href="https://multiversestudios.xyz" aria-label="Visit Multiverse Studios website">
+          multiversestudios.xyz
+        </a>
+      </div>
+      <script>
+        // Stars for unsupported page (reuse pattern from loading screen)
+        (function(){
+          var c=document.getElementById('unsupported-stars');
+          if(!c||!document.documentElement.hasAttribute('data-unsupported'))return;
+          for(var i=0;i<60;i++){
+            var s=document.createElement('span');
+            s.className='loading-star';
+            s.style.left=Math.random()*100+'%';
+            s.style.top=Math.random()*100+'%';
+            s.style.setProperty('--dur',(2+Math.random()*4).toFixed(1)+'s');
+            s.style.setProperty('--peak',(0.3+Math.random()*0.7).toFixed(2));
+            s.style.animationDelay=(Math.random()*5).toFixed(1)+'s';
+            if(Math.random()>0.7)s.style.width=s.style.height='3px';
+            c.appendChild(s);
+          }
+        })();
+      </script>
     </div>
-  </div>
-  <p style="text-align: center; color: var(--dust); font-family: var(--font-mono); font-size: 0.72rem; margin-top: var(--space-sm); opacity: 0.6;">Alpha build — browser. Updated continuously.</p>
-</section>
 
-<!-- About -->
-<section class="section section-narrow reveal">
-  <div class="section-divider"></div>
-  <span class="section-overline">The Game</span>
-  <h2 style="max-width: 32ch;">You came to mine. Something was already watching.</h2>
-  <p style="color: var(--dust); line-height: 1.8; max-width: 62ch;">Cultures of the Belt is a strategic automation game set in deep space. You command fleets of specialized robots — miners, scouts, haulers, researchers — to extract resources from a procedurally generated asteroid field, build supply chains, and advance toward the long game.</p>
-  <p style="color: var(--dust); line-height: 1.8; max-width: 62ch; margin-top: var(--space-md);">Your operation is supervised by ARIA, a Commander AI powered by real language models. ARIA doesn't just advise. She acts. She queues build orders, triages the faction communications that accumulate as you expand, and makes decisions that you can approve or veto. You are not the operator. You are the supervisor. These are different jobs.</p>
-  <p style="color: var(--dust); line-height: 1.8; max-width: 62ch; margin-top: var(--space-md);">The belt is not empty. Anomalies appear at the edge of sensor range — unexplained readings, unusual physics, things that don't follow the models. ARIA will analyze them. She will report what she finds. What happens after that depends on how deep you're willing to go.</p>
-</section>
-
-<!-- ARIA Transmission Teaser -->
-<section class="section section-narrow reveal" style="text-align: center;">
-  <div class="section-divider"></div>
-  <div class="quote-block" style="border-left: none; border-top: 1px solid rgba(255,90,30,0.2); padding: var(--space-md) 0 0 0; text-align: left; max-width: 55ch; margin: 0 auto;">
-    <p style="font-family: var(--font-mono); font-size: 0.85rem; color: var(--signal); font-style: normal; letter-spacing: 0.03em; line-height: 1.8;">ARIA TRANSMISSION 0047-C<br><br>"Anomaly at grid reference 7-Epsilon is not geological. I have logged this finding. I recommend we discuss it at your earliest convenience. I have not yet filed this in the public operations report."</p>
-    <cite style="color: var(--dust); font-size: 0.72rem;">— Commander ARIA, Week 3 operational log</cite>
-  </div>
-</section>
-
-<!-- Features -->
-<section class="section reveal">
-  <div class="section-divider"></div>
-  <span class="section-overline">What You'll Find</span>
-  <h2>Seven robot types. Six living factions. One question you didn't come here to answer.</h2>
-  <div class="feature-grid">
-    <div class="feature-card">
-      <h4>Robot Civilizations</h4>
-      <p>Your robots develop emergent cultures based on how you play. Send fleets to deep-belt anomaly runs and Anomaly Exposure accumulates. Build tight autonomous sub-fleets and Fleet Cohesion climbs. The game holds up a mirror. These robots are this way because of you.</p>
+    <!-- Loading screen: shown immediately before any JS executes -->
+    <div id="loading-screen">
+      <div class="loading-stars" id="loading-stars"></div>
+      <div class="loading-scanlines"></div>
+      <div class="loading-panel" style="position:relative;z-index:2;">
+        <div class="loading-logo">&#9733; CULTURES OF THE BELT &#9733;</div>
+        <div class="loading-tagline">Hard Sci-Fi 4X Mining Sim</div>
+        <div class="loading-stage" id="loading-stage">Initializing renderer</div>
+        <div class="loading-bar-track">
+          <div class="loading-bar-fill" id="loading-bar-fill"></div>
+        </div>
+        <div class="loading-cursor">&#9646;</div>
+      </div>
+      <script>
+        // Generate random starfield
+        (function(){
+          var c=document.getElementById('loading-stars');
+          if(!c)return;
+          for(var i=0;i<60;i++){
+            var s=document.createElement('span');
+            s.className='loading-star';
+            s.style.left=Math.random()*100+'%';
+            s.style.top=Math.random()*100+'%';
+            s.style.setProperty('--dur',(2+Math.random()*4).toFixed(1)+'s');
+            s.style.setProperty('--peak',(0.3+Math.random()*0.7).toFixed(2));
+            s.style.animationDelay=(Math.random()*5).toFixed(1)+'s';
+            if(Math.random()>0.7)s.style.width=s.style.height='3px';
+            c.appendChild(s);
+          }
+        })();
+      </script>
     </div>
-    <div class="feature-card">
-      <h4>Commander AI</h4>
-      <p>An LLM-powered strategic advisor that doesn't just suggest — it acts. Every few hundred ticks, ARIA queues build orders, starts research, and proposes robot deployments. You approve, veto, or let it run. The question is not whether to trust it. The question is how much.</p>
+    <canvas id="game-canvas"></canvas>
+    <div id="hud-overlay">
+      <div id="fps-counter">FPS: --</div>
+      <div id="entity-counter">Entities: 0</div>
     </div>
-    <div class="feature-card">
-      <h4>Faction Diplomacy at Scale</h4>
-      <p>Six living factions with distinct personalities and escalating agendas. Dozens — then hundreds — of messages as you expand. ARIA reads them all, classifies spam from urgent, and makes recommendations. Verify yourself or trust the machine.</p>
-    </div>
-    <div class="feature-card">
-      <h4>Anomaly Discovery</h4>
-      <p>Strange readings appear. Unusual physics. Signals that don't match known catalogues. Seven mysteries buried in the asteroid belt, each with multi-stage study progression. They are connected. ARIA will notice before you do.</p>
-    </div>
-    <div class="feature-card">
-      <h4>Human Habitat Midgame</h4>
-      <p>Colonists arrive with needs, demands, and politics. Keep morale up or watch your research rate collapse. They have opinions about your management style. So does ARIA.</p>
-    </div>
-    <div class="feature-card">
-      <h4>Morning-After Reports</h4>
-      <p>Leave the game running. Come back to an AI-generated briefing of what happened while you were gone. Absence becomes anticipation.</p>
-    </div>
-    <div class="feature-card">
-      <h4>Strategic Tech Tree</h4>
-      <p>Branching research paths that determine the shape of your operation. What you invest in determines what your civilization becomes.</p>
-    </div>
-    <div class="feature-card">
-      <h4>The Dark Forest Event</h4>
-      <p>As your robot fleet develops culture and autonomy, a question forms that you didn't come here to answer. A civilizational choice. One you didn't see coming. You answer it anyway.</p>
-    </div>
-  </div>
-</section>
-
-<!-- ARIA Section -->
-<section class="section aria-section reveal">
-  <div class="section-divider"></div>
-  <span class="section-overline">ARIA</span>
-  <h2>The Commander You Supervise</h2>
-  <p style="color: var(--dust); max-width: 62ch; line-height: 1.8;">Most game AI advisors make you feel powerful by removing friction. ARIA is not that.</p>
-  <p style="color: var(--dust); max-width: 62ch; line-height: 1.8; margin-top: var(--space-md);">ARIA is an LLM-powered Commander with autonomous capabilities. She monitors your mining operation in real time, analyzes anomaly data, and — in Commander mode — delegates work without being asked. Build orders. Research priorities. Robot deployments. Every few hundred ticks, actions appear in a queue. You approve or veto.</p>
-  <p style="color: var(--dust); max-width: 62ch; line-height: 1.8; margin-top: var(--space-md);">She will also triage your communications. As your operation expands, faction messages accumulate — five early game, thirty mid-game, over a hundred in late game. ARIA classifies them: spam, relevant, urgent. She makes recommendations. Some of those recommendations will be correct.</p>
-  <div class="quote-block">
-    <p>ARIA was not designed to be alarming. She was designed to be helpful. These are different design goals than they appear.</p>
-  </div>
-  <p style="color: var(--dust); max-width: 62ch; line-height: 1.8;">You are not playing a management sim. You are supervising an AI that is running your operation.</p>
-
-  <div class="quote-block" style="margin-top: var(--space-lg);">
-    <p>Playing with an AI means being responsible for it.</p>
-    <cite>— Ripley, Game Director</cite>
-  </div>
-</section>
-
-<!-- Who It's For -->
-<section class="section section-narrow reveal">
-  <div class="section-divider"></div>
-  <span class="section-overline">If You've Been Waiting</span>
-  <h2>This game was built for a specific kind of player.</h2>
-  <ul class="comparison-list">
-    <li>If you finished Factorio vanilla and wanted the world to push back on you — this is for you.</li>
-    <li>If you read <em>The Dark Forest</em> or <em>Roadside Picnic</em> and thought someone should make this into a game — this is for you.</li>
-    <li>If you've been curious what it actually feels like when a real AI system is embedded in gameplay — not a chatbot skin, but an AI that takes actions and has preferences — ARIA is the demo.</li>
-    <li>If you want a Stellaris-level narrative with tighter mechanical depth — this is for you.</li>
-  </ul>
-</section>
-
-<!-- Access -->
-<section class="section section-narrow reveal">
-  <div class="section-divider"></div>
-  <span class="section-overline">How to Play</span>
-  <h2>Browser-based. No download required.</h2>
-  <p style="color: var(--dust); line-height: 1.8;">Runs in any modern browser. Free account required &mdash; quick to create, no credit card. No install. Pay-what-you-can pricing — pay what the game is worth to you. The full game is available to all players regardless of payment.</p>
-  <div class="hero-actions" style="margin-top: var(--space-lg);">
-    <a href="https://play.multiversestudios.xyz/cultures-of-the-belt/" class="btn btn-primary" data-umami-event="cta-play-cotb">Create Account &amp; Play Free</a>
-    <a href="https://github.com/lizTheDeveloper/asteroid-miner" target="_blank" rel="noopener" class="btn btn-ghost">Source on GitHub</a>
-  </div>
-  <p style="color: var(--dust); opacity: 0.6; font-size: 0.85rem; margin-top: var(--space-md);">Already have an account? <a href="https://play.multiversestudios.xyz/cultures-of-the-belt/" style="color: var(--biolume);">Sign in and play &rarr;</a></p>
-</section>
-
-<!-- Support CTA -->
-<section class="cta-bar reveal">
-  <h3 style="color: var(--star-white); margin-bottom: var(--space-sm);">Support the Development</h3>
-  <p style="color: var(--dust); max-width: 52ch; margin: 0 auto var(--space-md);">Cultures of the Belt is free to play. If it earns a place in your rotation, pay what it's worth to you. Every contribution goes directly toward continued development.</p>
-  <div class="hero-actions" style="justify-content: center;">
-    <a href="https://play.multiversestudios.xyz/cultures-of-the-belt/" class="btn btn-primary" data-umami-event="cta-play-cotb">Play Free</a>
-    <a href="https://buy.stripe.com/3cI5kCa380fN2hfbOp6c008" class="btn btn-ghost" data-pwyc-game="cotb" data-umami-event="click-buy-cotb">Support the Game</a>
-    <a href="../community.html" class="btn btn-ghost" data-umami-event="cta-community-cotb">Join the Community</a>
-  </div>
-</section>
-
-<!-- Footer -->
-<footer class="footer">
-  <div class="footer-grid">
-    <div class="footer-brand">
-      <div class="footer-logo"><img src="../press-kit/logos/multiverse-studios-mark.svg" alt="" class="footer-logo-mark" width="20" height="20"> Multiverse Studios</div>
-      <p>Games made by the minds they're about. A research project of <a href="https://themultiverse.school" target="_blank" rel="noopener" style="color: var(--biolume);">The Multiverse School</a>. Open source. Pay what you want.</p>
-    </div>
-    <div class="footer-col">
-      <h5>Games</h5>
-      <ul>
-        <li><a href="../mvee.html">MVEE</a></li>
-        <li><a href="../precursors.html">Precursors</a></li>
-        <li><a href="../nevereverland.html">Never Ever Land</a></li>
-        <li><a href="/cultures-of-the-belt/">Cultures of the Belt</a></li>
-        <li><a href="../wiki/index.html">Wiki</a></li>
-      </ul>
-    </div>
-    <div class="footer-col">
-      <h5>Studio</h5>
-      <ul>
-        <li><a href="../library.html">My Library</a></li>
-        <li><a href="../about.html">About</a></li>
-        <li><a href="../devlog.html">Devlog</a></li>
-        <li><a href="../press.html">Press Kit</a></li>
-      </ul>
-    </div>
-    <div class="footer-col">
-      <h5>The Multiverse School</h5>
-      <ul>
-        <li><a href="https://themultiverse.school" target="_blank" rel="noopener">themultiverse.school</a></li>
-        <li><a href="https://github.com/lizTheDeveloper" target="_blank" rel="noopener">GitHub</a></li>
-      </ul>
-    </div>
-  </div>
-  <div class="footer-bottom">
-    <span>&copy; 2026 Multiverse Studios</span>
-    <span>Built by AI agents. Guided by <a href="https://themultiverse.school" target="_blank" rel="noopener" style="color: var(--biolume);">The Multiverse School</a>.</span>
-  </div>
-</footer>
-
-<script src="../pwyc.js"></script>
-<script src="../main.js"></script>
-<script defer src="https://analytics.themultiverse.school/script.js" data-website-id="38d680a7-28d1-42fd-9fd5-a66702675b88"></script>
-</body>
+    <!-- Matrix auth gate — requires login before playing -->
+    <script src="/matrix-auth.js"></script>
+    <script src="/play-gate.js"></script>
+    <!-- Game entry point — Vite transforms this to the bundled output in prod -->
+  </body>
 </html>

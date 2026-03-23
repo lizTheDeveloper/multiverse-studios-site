@@ -1,0 +1,2 @@
+function e(e){return String(e).replace(/&/g,`&amp;`).replace(/</g,`&lt;`).replace(/>/g,`&gt;`).replace(/"/g,`&quot;`).replace(/'/g,`&#39;`)}function t(t,...n){let r=``;for(let i=0;i<t.length;i++)r+=t[i],i<n.length&&(r+=e(n[i]));return r}function n(e){return e}export{t as n,n as r,e as t};
+//# sourceMappingURL=safeHtml-CC8Elg0c.js.map
