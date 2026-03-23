@@ -4,36 +4,32 @@
     "norn": {
       "display": "SheeScript (Nornish)",
       "voices": [
-        "child",
-        "adult",
-        "elder"
+        "george",
+        "sarah"
       ],
       "words": {
         "sha": {
           "ipa": "/ʃɑ/",
           "meaning": "always implies awareness of others",
           "files": {
-            "child": "norn/child/sha.ogg",
-            "adult": "norn/adult/sha.ogg",
-            "elder": "norn/elder/sha.ogg"
+            "george": "norn/george/sha.ogg",
+            "sarah": "norn/sarah/sha.ogg"
           }
         },
         "shael": {
           "ipa": "/ʃɑɛl/",
           "meaning": "all present, including listener",
           "files": {
-            "child": "norn/child/shael.ogg",
-            "adult": "norn/adult/shael.ogg",
-            "elder": "norn/elder/shael.ogg"
+            "george": "norn/george/shael.ogg",
+            "sarah": "norn/sarah/shael.ogg"
           }
         },
         "shakel": {
           "ipa": "/ʃɑkɛl/",
           "meaning": "my group, not yours",
           "files": {
-            "child": "norn/child/shakel.ogg",
-            "adult": "norn/adult/shakel.ogg",
-            "elder": "norn/elder/shakel.ogg"
+            "george": "norn/george/shakel.ogg",
+            "sarah": "norn/sarah/shakel.ogg"
           }
         },
         "tho": {
@@ -4386,6 +4382,6 @@
       }
     }
   },
-  "generated_at": "2026-03-22T07:45:16Z",
+  "generated_at": "2026-03-23T01:13:58Z",
   "total_clips": 1458
 }

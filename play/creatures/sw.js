@@ -85,28 +85,28 @@ define(['./workbox-4367cb6e'], (function (workbox) { 'use strict';
     "revision": "bac9ba31ffb6c213220bdde3f42d386a"
   }, {
     "url": "norn-test.html",
-    "revision": "849a482eb62f39466f22c64cf13979a5"
+    "revision": "b2459750230312f3b8ee49b6add27269"
   }, {
     "url": "norn-test-ui.html",
-    "revision": "3e83abe96c14e79ee47dce00facb05fc"
+    "revision": "33155e7b225269b24a845e23e7037d04"
   }, {
     "url": "norn-test-lore.html",
-    "revision": "8467218a18fdfa3d3250adecb537d5a3"
+    "revision": "92eb3a36acd207ae55a9c83ce20c640c"
   }, {
     "url": "norn-test-gameloop.html",
-    "revision": "6d52b9ea56c314142e7a75455110ef07"
+    "revision": "af6fcbd7e938e5777b895328163407b7"
   }, {
     "url": "norn-test-breeding.html",
-    "revision": "62a97521a15325c2ab5dce8411cc83ae"
+    "revision": "02b7448a326deb42f808aef96ab5c40d"
   }, {
     "url": "norn-test-biochem.html",
-    "revision": "9af9feb69d3e3ef25dbcbfac25b367e9"
+    "revision": "b8597523ea2d461c73df13855d8f4625"
   }, {
     "url": "matrix-auth.js",
     "revision": "9ad23313ed4b2605e2b5bf338c1e45ab"
   }, {
     "url": "index.html",
-    "revision": "408d0fe32cad478286ed00f201143266"
+    "revision": "94f05f305450b2a5c761f6b326eb10da"
   }, {
     "url": "icon.svg",
     "revision": "457261aa1e8a86cef3c76ffc0990c7cf"
@@ -1122,14 +1122,38 @@ define(['./workbox-4367cb6e'], (function (workbox) { 'use strict';
     "url": "sprites/rune_candy.png",
     "revision": "69d2bbd5551ac2e16c91056a7a071810"
   }, {
+    "url": "sprites/ruin_waystone.png",
+    "revision": "eaaacdc0c7be4c89e2c63257936e6c56"
+  }, {
+    "url": "sprites/ruin_toxin_processor.png",
+    "revision": "fe805a1a333c2b4e2a73add10a3b72fb"
+  }, {
+    "url": "sprites/ruin_toppled_column.png",
+    "revision": "3f2be291fa5fbe892df19111c3392f06"
+  }, {
+    "url": "sprites/ruin_terraforming_station.png",
+    "revision": "3c4cbd3aab3751b100fe197254886cc1"
+  }, {
+    "url": "sprites/ruin_sunken_plaza.png",
+    "revision": "b5daad0c19416ad4278aa1353255069a"
+  }, {
     "url": "sprites/ruin_stasis_pod_row.png",
     "revision": "e7e5fcaeb58aad5266df0818b244d4dd"
+  }, {
+    "url": "sprites/ruin_signal_dish.png",
+    "revision": "1dab6837d9a6ba1108241c8005dab34b"
   }, {
     "url": "sprites/ruin_shrine.png",
     "revision": "d9d40bb6f92d8add40ca773024858aab"
   }, {
     "url": "sprites/ruin_shattered_dome.png",
     "revision": "e3f379d8c15624005a27e60786d3c488"
+  }, {
+    "url": "sprites/ruin_shattered_containment.png",
+    "revision": "01ad3ab038de2d5e87ef38a6b1fff5f6"
+  }, {
+    "url": "sprites/ruin_seed_vault.png",
+    "revision": "db6a37ffce0808fe61b2f95440cd8bfc"
   }, {
     "url": "sprites/ruin_scattered_equipment.png",
     "revision": "6bf04513c2f4d4d80e55d5627461fc5e"
@@ -1149,11 +1173,23 @@ define(['./workbox-4367cb6e'], (function (workbox) { 'use strict';
     "url": "sprites/ruin_monolith.png",
     "revision": "745efe3a8958dad21d4b684d54fba52d"
   }, {
+    "url": "sprites/ruin_library_stacks.png",
+    "revision": "00b6bff4060e44a52067fe14a569525b"
+  }, {
+    "url": "sprites/ruin_last_stand_fortification.png",
+    "revision": "004e6421ac772c5520b3c3e69b5d756a"
+  }, {
     "url": "sprites/ruin_garden_terrace.png",
     "revision": "d21d1d4a7ffab878a6704f6f1f635eff"
   }, {
+    "url": "sprites/ruin_garden_of_memory.png",
+    "revision": "12655934fd37c8170e20cb376568acbc"
+  }, {
     "url": "sprites/ruin_foundation.png",
     "revision": "28c692683109b558dd0a7b41d1737214"
+  }, {
+    "url": "sprites/ruin_cracked_floor_tile.png",
+    "revision": "12d6c412ba71a1a371fd6179319101e5"
   }, {
     "url": "sprites/ruin_collapsed_tower.png",
     "revision": "fd7d57db8b3366c82119325011e7b50b"
@@ -1167,6 +1203,9 @@ define(['./workbox-4367cb6e'], (function (workbox) { 'use strict';
     "url": "sprites/ruin_bridge_pylon.png",
     "revision": "c3922c234b24e80ca4444430b7bcb016"
   }, {
+    "url": "sprites/ruin_bone_archive.png",
+    "revision": "fdf3084fc8c8003adaa36bb618fa014f"
+  }, {
     "url": "sprites/ruin_arch.png",
     "revision": "07a7d385ba051f945fdbd9239715e2f9"
   }, {
@@ -1175,6 +1214,12 @@ define(['./workbox-4367cb6e'], (function (workbox) { 'use strict';
   }, {
     "url": "sprites/ruin_ancient_mural.png",
     "revision": "18fd23cb1231a0c8abbc4dbd7a275f53"
+  }, {
+    "url": "sprites/ruin_ancient_glow_pool.png",
+    "revision": "d45a57ed04b7f814ccd88b1b7612a887"
+  }, {
+    "url": "sprites/ruin_amphitheater_ruin.png",
+    "revision": "34a074f18140669c39b81a9f1c7a0974"
   }, {
     "url": "sprites/rot_spore.png",
     "revision": "f4ddcc43e7e9be1df96ef56ea418f819"
@@ -6876,34 +6921,34 @@ define(['./workbox-4367cb6e'], (function (workbox) { 'use strict';
     "url": "assets/vendor-phaser-CaWnzXme.js",
     "revision": null
   }, {
-    "url": "assets/norn-test-ui-V4tQaPw9.js",
+    "url": "assets/norn-test-ui-BV5su40j.js",
     "revision": null
   }, {
-    "url": "assets/norn-test-lore-v7L20G2T.js",
+    "url": "assets/norn-test-lore-BpXOLaC2.js",
     "revision": null
   }, {
-    "url": "assets/norn-test-gameloop-BeVWwIhc.js",
+    "url": "assets/norn-test-gameloop-BgZjkLH7.js",
     "revision": null
   }, {
-    "url": "assets/norn-test-breeding-BkzlWKa4.js",
+    "url": "assets/norn-test-breeding-C9TeOWcD.js",
     "revision": null
   }, {
-    "url": "assets/norn-test-biochem-BGpdrhrg.js",
+    "url": "assets/norn-test-biochem-DXsnRRQ9.js",
     "revision": null
   }, {
-    "url": "assets/norn-test-B9luF_7l.js",
+    "url": "assets/norn-test-CVjtc4vb.js",
     "revision": null
   }, {
-    "url": "assets/main-Cb-ihync.js",
+    "url": "assets/main-C9G-Lcti.js",
     "revision": null
   }, {
     "url": "assets/diagnostic-DnOxNkau.js",
     "revision": null
   }, {
-    "url": "assets/WorldGenerator-CiCFcJw6.js",
+    "url": "assets/WorldGenerator-DnRreasF.js",
     "revision": null
   }, {
-    "url": "assets/World-DsXGnWWX.js",
+    "url": "assets/World-BrViYHQF.js",
     "revision": null
   }, {
     "url": "assets/WaveUnlockSystem-C6UBXLpQ.js",
@@ -6927,13 +6972,13 @@ define(['./workbox-4367cb6e'], (function (workbox) { 'use strict';
     "url": "assets/LanguageSystem-D0hEagyH.js",
     "revision": null
   }, {
-    "url": "assets/KeyboardControls-DFIbPLC4.js",
+    "url": "assets/KeyboardControls-CpHCClYU.js",
     "revision": null
   }, {
     "url": "assets/InventionRegistry-CmKwifur.js",
     "revision": null
   }, {
-    "url": "assets/GameScene-D0QBY1dE.js",
+    "url": "assets/GameScene-CnyApPPl.js",
     "revision": null
   }, {
     "url": "assets/DevMode-BboY5-9J.js",
@@ -9747,6 +9792,12 @@ define(['./workbox-4367cb6e'], (function (workbox) { 'use strict';
     "url": "sprites/rot_spore.png",
     "revision": "f4ddcc43e7e9be1df96ef56ea418f819"
   }, {
+    "url": "sprites/ruin_amphitheater_ruin.png",
+    "revision": "34a074f18140669c39b81a9f1c7a0974"
+  }, {
+    "url": "sprites/ruin_ancient_glow_pool.png",
+    "revision": "d45a57ed04b7f814ccd88b1b7612a887"
+  }, {
     "url": "sprites/ruin_ancient_mural.png",
     "revision": "18fd23cb1231a0c8abbc4dbd7a275f53"
   }, {
@@ -9755,6 +9806,9 @@ define(['./workbox-4367cb6e'], (function (workbox) { 'use strict';
   }, {
     "url": "sprites/ruin_arch.png",
     "revision": "07a7d385ba051f945fdbd9239715e2f9"
+  }, {
+    "url": "sprites/ruin_bone_archive.png",
+    "revision": "fdf3084fc8c8003adaa36bb618fa014f"
   }, {
     "url": "sprites/ruin_bridge_pylon.png",
     "revision": "c3922c234b24e80ca4444430b7bcb016"
@@ -9768,11 +9822,23 @@ define(['./workbox-4367cb6e'], (function (workbox) { 'use strict';
     "url": "sprites/ruin_collapsed_tower.png",
     "revision": "fd7d57db8b3366c82119325011e7b50b"
   }, {
+    "url": "sprites/ruin_cracked_floor_tile.png",
+    "revision": "12d6c412ba71a1a371fd6179319101e5"
+  }, {
     "url": "sprites/ruin_foundation.png",
     "revision": "28c692683109b558dd0a7b41d1737214"
   }, {
+    "url": "sprites/ruin_garden_of_memory.png",
+    "revision": "12655934fd37c8170e20cb376568acbc"
+  }, {
     "url": "sprites/ruin_garden_terrace.png",
     "revision": "d21d1d4a7ffab878a6704f6f1f635eff"
+  }, {
+    "url": "sprites/ruin_last_stand_fortification.png",
+    "revision": "004e6421ac772c5520b3c3e69b5d756a"
+  }, {
+    "url": "sprites/ruin_library_stacks.png",
+    "revision": "00b6bff4060e44a52067fe14a569525b"
   }, {
     "url": "sprites/ruin_monolith.png",
     "revision": "745efe3a8958dad21d4b684d54fba52d"
@@ -9792,14 +9858,38 @@ define(['./workbox-4367cb6e'], (function (workbox) { 'use strict';
     "url": "sprites/ruin_scattered_equipment.png",
     "revision": "6bf04513c2f4d4d80e55d5627461fc5e"
   }, {
+    "url": "sprites/ruin_seed_vault.png",
+    "revision": "db6a37ffce0808fe61b2f95440cd8bfc"
+  }, {
+    "url": "sprites/ruin_shattered_containment.png",
+    "revision": "01ad3ab038de2d5e87ef38a6b1fff5f6"
+  }, {
     "url": "sprites/ruin_shattered_dome.png",
     "revision": "e3f379d8c15624005a27e60786d3c488"
   }, {
     "url": "sprites/ruin_shrine.png",
     "revision": "d9d40bb6f92d8add40ca773024858aab"
   }, {
+    "url": "sprites/ruin_signal_dish.png",
+    "revision": "1dab6837d9a6ba1108241c8005dab34b"
+  }, {
     "url": "sprites/ruin_stasis_pod_row.png",
     "revision": "e7e5fcaeb58aad5266df0818b244d4dd"
+  }, {
+    "url": "sprites/ruin_sunken_plaza.png",
+    "revision": "b5daad0c19416ad4278aa1353255069a"
+  }, {
+    "url": "sprites/ruin_terraforming_station.png",
+    "revision": "3c4cbd3aab3751b100fe197254886cc1"
+  }, {
+    "url": "sprites/ruin_toppled_column.png",
+    "revision": "3f2be291fa5fbe892df19111c3392f06"
+  }, {
+    "url": "sprites/ruin_toxin_processor.png",
+    "revision": "fe805a1a333c2b4e2a73add10a3b72fb"
+  }, {
+    "url": "sprites/ruin_waystone.png",
+    "revision": "eaaacdc0c7be4c89e2c63257936e6c56"
   }, {
     "url": "sprites/rune_candy.png",
     "revision": "69d2bbd5551ac2e16c91056a7a071810"
