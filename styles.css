@@ -38,13 +38,13 @@
   --max-width-narrow: 800px;
 
   /* Type scale — 7 steps, replaces 16+ ad-hoc sizes */
-  --text-xs:   0.75rem;   /* 12px — labels, fine print, overlines */
-  --text-sm:   0.875rem;  /* 14px — captions, secondary text */
-  --text-base: 1rem;      /* 16px — card body, descriptions */
-  --text-lg:   1.15rem;   /* 18.4px — main body, section intros */
-  --text-xl:   1.5rem;    /* 24px — card headings, blockquotes */
-  --text-2xl:  clamp(2rem, 5vw, 3.5rem);   /* section H2 */
-  --text-3xl:  clamp(2.8rem, 8vw, 6.5rem); /* hero H1 */
+  --text-xs:   0.85rem;   /* 13.6px — labels, fine print, overlines */
+  --text-sm:   1rem;      /* 16px — captions, secondary text */
+  --text-base: 1.125rem;  /* 18px — card body, descriptions */
+  --text-lg:   1.3rem;    /* 20.8px — main body, section intros */
+  --text-xl:   1.6rem;    /* 25.6px — card headings, blockquotes */
+  --text-2xl:  clamp(1.8rem, 4vw, 2.8rem);   /* section H2 */
+  --text-3xl:  clamp(2.2rem, 6vw, 4.5rem); /* hero H1 */
 }
 
 /* --- Reset --- */
@@ -392,7 +392,7 @@ img { max-width: 100%; display: block; }
 .section h3 {
   font-family: var(--font-display);
   font-weight: 600;
-  font-size: clamp(1.3rem, 3vw, 1.8rem);
+  font-size: var(--text-xl);
   line-height: 1.2;
   margin-bottom: var(--space-sm);
 }
@@ -486,7 +486,7 @@ img { max-width: 100%; display: block; }
   left: var(--space-md);
   right: var(--space-md);
   font-family: var(--font-body);
-  font-size: 1.4rem;
+  font-size: var(--text-lg);
   font-style: italic;
   font-weight: 300;
   color: var(--star-white);
@@ -574,12 +574,12 @@ img { max-width: 100%; display: block; }
 }
 
 .playtest-card .card-title {
-  font-size: var(--text-lg);
+  font-size: var(--text-xl);
   margin: 0;
 }
 
 .playtest-card .card-body {
-  font-size: var(--text-sm);
+  font-size: var(--text-base);
   color: var(--dust);
   margin: 0;
   flex: 1;
