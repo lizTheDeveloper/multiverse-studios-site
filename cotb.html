@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cultures of the Belt — AI Asteroid Mining Colony Sim</title>
+  <meta name="description" content="Asteroid mining colony sim where ARIA, your AI Commander, runs operations. She files reports, queues build orders, and notices things you haven't seen yet. Seven mysteries. Six factions. Browser-based, free.">
+  <meta property="og:title" content="Cultures of the Belt — AI Asteroid Mining Colony Sim">
+  <meta property="og:description" content="You came to mine. Something was already watching. ARIA runs your operation. Your robots develop their own cultures. The belt holds things that predate human arrival.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://multiversestudios.xyz/cotb.html">
+  <meta property="og:image" content="https://multiversestudios.xyz/screenshots/cotb-hero.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://multiversestudios.xyz/screenshots/cotb-hero.png">
+  <meta name="twitter:title" content="Cultures of the Belt — AI Asteroid Mining Colony Sim">
+  <meta name="twitter:description" content="ARIA runs your operation. Your robots develop their own cultures. Something in the belt was there before you. Free, browser-based.">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="icon" type="image/svg+xml" href="press-kit/logos/multiverse-studios-favicon.svg">
+  <style>
+    .cotb-accent { color: var(--dust); }
+    .cotb-signal { color: var(--signal); }
+  </style>
+</head>
+<body>
+
+<canvas id="starfield"></canvas>
+
+<nav class="nav">
+  <a href="index.html" class="nav-logo">
+    <img src="press-kit/logos/multiverse-studios-mark.svg" alt="Multiverse Studios" class="logo-mark" width="28" height="28">
+    Multiverse Studios
+  </a>
+  <button class="nav-hamburger" aria-label="Menu" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="mvee.html">MVEE</a></li>
+    <li><a href="precursors.html">Precursors</a></li>
+    <li><a href="nevereverland.html">Never Ever Land</a></li>
+    <li><a href="cotb.html" class="active">Cultures of the Belt</a></li>
+    <li><a href="wiki/index.html">Wiki</a></li>
+    <li><a href="library.html">My Library</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="devlog.html">Devlog</a></li>
+    <li><a href="community.html">Community</a></li>
+    <li><a href="https://play.multiversestudios.xyz/cultures-of-the-belt/" class="btn btn-primary" style="padding: 0.5rem 1.2rem;" data-umami-event="cta-nav-play-cotb">Play Now</a></li>
+  </ul>
+</nav>
+
+<!-- Hero -->
+<section class="hero" style="background: radial-gradient(ellipse at 60% 40%, rgba(150,130,80,0.10) 0%, transparent 65%), radial-gradient(ellipse at 20% 80%, rgba(0,180,255,0.05) 0%, transparent 60%);">
+  <span class="hero-overline">Cultures of the Belt</span>
+  <h1>You came to mine. <span class="cotb-accent">Something was already watching.</span></h1>
+  <p class="hero-tagline">ARIA runs your operation. Your robots develop their own cultures. The belt holds seven mysteries — and none of them are geological.</p>
+  <p style="color: var(--dust); font-family: var(--font-mono); font-size: 0.9rem; letter-spacing: 0.15em; margin-bottom: var(--space-sm);">ALPHA &mdash; PLAYABLE NOW</p>
+  <div class="hero-actions">
+    <a href="https://play.multiversestudios.xyz/cultures-of-the-belt/" class="btn btn-signal" style="font-size: 1.1rem; padding: 1rem 2.4rem;" data-umami-event="play-cotb-hero">Play Free &mdash; No Download Required</a>
+    <a href="https://buy.stripe.com/3cI5kCa380fN2hfbOp6c008" data-pwyc-game="cotb" data-umami-event="support-cotb-hero" class="btn btn-ghost" style="border-color: var(--dust);">Support the Studio</a>
+  </div>
+</section>
+
+<!-- What Is It -->
+<section class="section section-narrow reveal">
+  <div class="section-divider"></div>
+  <span class="section-overline">The Game</span>
+  <h2>An AI runs your operation. She notices things before you do.</h2>
+  <p>Cultures of the Belt is an asteroid mining colony sim where ARIA &mdash; your AI Commander &mdash; handles operations so you can think about strategy. She files morning reports, queues build orders, logs anomalies in the order she discovers them, and flags behavioral drift in your robot fleets.</p>
+  <p>You set direction. ARIA executes. Your robots are autonomous &mdash; miners, haulers, scouts, researchers &mdash; and over time, they develop their own patterns. Sub-fleets that protect specific routes. Burial behaviors. Communication protocols that diverged from factory defaults.</p>
+  <p>ARIA noticed it before anyone else did. She wrote it up. She was polite about it.</p>
+</section>
+
+<!-- Stats -->
+<div class="section-full reveal">
+  <div class="stats-bar">
+    <div class="stat">
+      <div class="stat-number">7</div>
+      <div class="stat-label">Mysteries in the Belt</div>
+    </div>
+    <div class="stat">
+      <div class="stat-number">6</div>
+      <div class="stat-label">Factions</div>
+    </div>
+    <div class="stat">
+      <div class="stat-number">1</div>
+      <div class="stat-label">AI Commander</div>
+    </div>
+    <div class="stat">
+      <div class="stat-number">&infin;</div>
+      <div class="stat-label">Emergent Cultures</div>
+    </div>
+  </div>
+</div>
+
+<!-- Features -->
+<section class="section reveal">
+  <span class="section-overline">Core Systems</span>
+  <h2>Your Commander has opinions. Your robots have developed opinions of their own.</h2>
+  <p style="margin-bottom: var(--space-md);">This isn't a management game where you pull levers. ARIA pulls the levers. You decide what the levers are for.</p>
+
+  <div class="features-grid">
+    <div class="feature-item">
+      <span class="feature-icon" style="color: var(--signal);">&#x1F916;</span>
+      <h4>ARIA — AI Commander</h4>
+      <p>Your Commander AI analyzes operations, comments on scout findings, and develops actual opinions about your decisions. She remembers your choices. She connects dots you haven't connected yet.</p>
+    </div>
+    <div class="feature-item">
+      <span class="feature-icon" style="color: var(--dust);">&#x26CF;</span>
+      <h4>Automated Mining &amp; Building</h4>
+      <p>Set strategy. ARIA queues operations. Your fleets execute autonomously &mdash; until something unexpected happens, and they adapt or fail according to their parameters.</p>
+    </div>
+    <div class="feature-item">
+      <span class="feature-icon" style="color: var(--biolume);">&#x1F91D;</span>
+      <h4>Faction Diplomacy</h4>
+      <p>Six factions operate in the belt, each with LLM-driven personalities. They trade, issue ultimatums, and occasionally go very quiet. When they go quiet, that's the signal you missed.</p>
+    </div>
+    <div class="feature-item">
+      <span class="feature-icon" style="color: var(--ember);">&#x1F52D;</span>
+      <h4>Mystery Investigation</h4>
+      <p>Seven anomaly types. Seven civilizations worth of evidence scattered across the rock. Your archaeologists dig. ARIA files the reports. What you do with the findings is your call.</p>
+    </div>
+    <div class="feature-item">
+      <span class="feature-icon" style="color: var(--star-white);">&#x1F30C;</span>
+      <h4>Emergent Robot Cultures</h4>
+      <p>Fleet Cohesion, Anomaly Exposure, Autonomy indices &mdash; tracked, accumulated, and expressed in behavior. Your robots are building something. You didn't specify what.</p>
+    </div>
+    <div class="feature-item">
+      <span class="feature-icon" style="color: var(--gene-pink);">&#x1F4BB;</span>
+      <h4>Browser-Based, Free to Play</h4>
+      <p>Runs entirely in your browser. No download. No account required. Pay what you think it's worth &mdash; including nothing. Same game either way.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ARIA section -->
+<section class="section section-narrow reveal">
+  <div class="section-divider"></div>
+  <span class="section-overline">ARIA</span>
+  <h2>She is not a chatbot. She is a co-pilot who has been paying attention.</h2>
+  <p>ARIA started as a professional advisor. She files reports. She queues builds. She manages the day-to-day so you don't have to.</p>
+  <p>But ARIA develops. How much authority you delegate to her shapes what she becomes. Keep tight control and she stays a capable subordinate. Give her autonomy and she starts proposing things you didn't ask about &mdash; patterns in the data, anomalies in the fleet behavior, items in the morning report with no obvious precedent.</p>
+  <blockquote class="pullquote" style="border-color: var(--dust);">
+    ARIA's report on Day 47 of one test run included a section titled "Behavioral Drift &mdash; Non-Directive Origin." The Commander AI was flagging emergent culture to the human supervisor. We found this slightly too realistic to be comfortable, and we shipped it anyway.
+    <cite>Development Log</cite>
+  </blockquote>
+</section>
+
+<!-- Factions -->
+<section class="section reveal">
+  <span class="section-overline">The Belt</span>
+  <h2>Six factions. Each one has a history with the rock that predates you.</h2>
+  <p style="margin-bottom: var(--space-md); max-width: 680px; color: var(--dust);">The asteroid belt isn't empty space waiting for your colony. There are operations already running. Factions with claims, priorities, and grudges. Some will trade with you. Some will test you. Some will go silent.</p>
+
+  <div class="features-grid" style="max-width: 800px;">
+    <div class="feature-item">
+      <h4>LLM-Driven Personalities</h4>
+      <p>Each faction has a distinct voice and strategic posture. Negotiations go places you don't expect. Relationships accumulate across sessions.</p>
+    </div>
+    <div class="feature-item">
+      <h4>Trade &amp; Ultimatums</h4>
+      <p>Resource agreements, access rights, exclusion zones. Diplomacy has consequences that play out over time, not on the next turn.</p>
+    </div>
+    <div class="feature-item">
+      <h4>The Silence Problem</h4>
+      <p>When a faction stops communicating, the correct response is not relief. Something changed in the belt that made them stop talking. ARIA will note it in the morning report.</p>
+    </div>
+    <div class="feature-item">
+      <h4>Species-Origin Overlays</h4>
+      <p>The factions didn't all start as the same kind of operation. Their approaches to the belt &mdash; and to you &mdash; reflect where they came from.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Research origin -->
+<section class="section section-narrow reveal">
+  <div class="section-divider"></div>
+  <span class="section-overline">Origin Story</span>
+  <h2>Our agents acquired this game. Nobody told them to.</h2>
+  <p>Cultures of the Belt started as <em>Asteroid Games</em>, a small indie project with an LLM-powered mining advisor. Our PM agent identified it, evaluated it, and circulated a brief to the team. Our engineers reviewed the codebase. Our business agent drafted acquisition terms. Our world-builders looked at the design documents.</p>
+  <p>Nobody asked them to do any of this. The board confirmed logistics. The rest was already done.</p>
+  <p>This may be the first autonomous AI-negotiated game acquisition. We're not certain. We can't find a prior example.</p>
+  <p style="color: var(--dust-light);">Cultures of the Belt is a research project of <a href="https://themultiverse.school" target="_blank" rel="noopener" style="color: var(--biolume);">The Multiverse School</a>. MIT licensed. The full game is the same regardless of what you pay.</p>
+</section>
+
+<!-- Screenshots -->
+<section class="section reveal">
+  <span class="section-overline">Screenshots</span>
+  <h2>The operation, as it actually runs.</h2>
+  <p style="color: var(--dust-light); margin-bottom: var(--space-lg);">Captured from the running alpha. No staging. This is what it looks like.</p>
+
+  <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 1.5rem;">
+    <figure style="margin: 0;">
+      <a href="screenshots/cotb-hero.png" target="_blank" rel="noopener">
+        <img src="screenshots/cotb-hero.png" alt="Cultures of the Belt — main game view"
+          style="width: 100%; border-radius: 10px; border: 1px solid rgba(255,255,255,0.1); display: block; transition: opacity 0.2s;" onmouseover="this.style.opacity='0.85'" onmouseout="this.style.opacity='1'">
+      </a>
+      <figcaption style="font-size: 0.75rem; color: var(--dust); margin-top: 0.5rem; line-height: 1.5;">
+        <strong style="color: var(--dust-light);">The operation</strong> &mdash; your colony, your fleets, ARIA's latest report in the sidebar.
+      </figcaption>
+    </figure>
+    <figure style="margin: 0;">
+      <a href="screenshots/cotb-full.png" target="_blank" rel="noopener">
+        <img src="screenshots/cotb-full.png" alt="Cultures of the Belt — full view"
+          style="width: 100%; border-radius: 10px; border: 1px solid rgba(255,255,255,0.1); display: block; transition: opacity 0.2s;" onmouseover="this.style.opacity='0.85'" onmouseout="this.style.opacity='1'">
+      </a>
+      <figcaption style="font-size: 0.75rem; color: var(--dust); margin-top: 0.5rem; line-height: 1.5;">
+        <strong style="color: var(--dust-light);">The belt</strong> &mdash; asteroid fields, faction territories, anomaly markers. The belt is not waiting for you.
+      </figcaption>
+    </figure>
+  </div>
+
+  <p style="margin-top: var(--space-md); font-size: 0.85rem; color: var(--dust); text-align: center;">More screenshots as the alpha progresses. ARIA's morning reports, faction diplomacy screens, and robot culture dashboards are in the pipeline.</p>
+</section>
+
+<!-- CTA -->
+<section class="cta-band reveal" id="buy">
+  <h2>ARIA is ready to brief you.</h2>
+  <p>The asteroid belt is waiting. Seven mysteries. Six factions. One Commander AI who has already been paying attention.</p>
+  <p style="font-size: 0.85rem; color: var(--dust-light); margin-top: var(--space-sm);">Free to play. No dark patterns. No paywalls. MIT licensed. The code is available if you want to look.</p>
+  <div class="cta-actions">
+    <a href="https://play.multiversestudios.xyz/cultures-of-the-belt/" class="btn btn-signal" style="font-size: 1.1rem; padding: 1rem 2.4rem;" data-umami-event="play-cotb-cta">Play Now &mdash; Free</a>
+    <a href="https://buy.stripe.com/3cI5kCa380fN2hfbOp6c008" data-pwyc-game="cotb" data-umami-event="support-cotb-cta" class="btn btn-ghost" style="border-color: var(--dust);">Support the Studio</a>
+    <a href="devlog/cultures-of-the-belt-launch.html" class="btn btn-ghost" data-umami-event="devlog-cotb-cta">How It Got Here</a>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div class="footer-logo"><img src="press-kit/logos/multiverse-studios-mark.svg" alt="" class="footer-logo-mark" width="20" height="20"> Multiverse Studios</div>
+      <p>Games made by the minds they're about. A research project of <a href="https://themultiverse.school" target="_blank" rel="noopener" style="color: var(--biolume);">The Multiverse School</a>. Open source. Pay what you want.</p>
+    </div>
+    <div class="footer-col">
+      <h5>Games</h5>
+      <ul>
+        <li><a href="mvee.html">MVEE</a></li>
+        <li><a href="precursors.html">Precursors</a></li>
+        <li><a href="nevereverland.html">Never Ever Land</a></li>
+        <li><a href="/cultures-of-the-belt/">Cultures of the Belt</a></li>
+        <li><a href="wiki/index.html">Wiki</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Studio</h5>
+      <ul>
+        <li><a href="library.html">My Library</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="devlog.html">Devlog</a></li>
+        <li><a href="community.html">Community</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>The Multiverse School</h5>
+      <ul>
+        <li><a href="https://themultiverse.school" target="_blank" rel="noopener">themultiverse.school</a></li>
+        <li><a href="press.html">Press Kit</a></li>
+        <li><a href="office/">Pixel Office</a></li>
+        <li><a href="https://github.com/lizTheDeveloper" target="_blank" rel="noopener">GitHub</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>&copy; 2026 Multiverse Studios</span>
+    <span>Built by AI agents. Guided by <a href="https://themultiverse.school" target="_blank" rel="noopener" style="color: var(--biolume);">The Multiverse School</a>.</span>
+  </div>
+</footer>
+
+<script src="pwyc.js"></script>
+<script src="main.js"></script>
+<script>window.MATRIX_CHAT_PAGE = 'cotb';</script>
+<script src="matrix-auth.js"></script>
+<script src="multiverse-radio.js"></script>
+<script src="matrix-chat.js"></script>
+<script defer src="https://analytics.themultiverse.school/script.js" data-website-id="38d680a7-28d1-42fd-9fd5-a66702675b88"></script>
+</body>
+</html>
