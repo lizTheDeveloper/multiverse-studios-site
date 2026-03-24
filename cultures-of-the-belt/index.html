@@ -3,6 +3,23 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script>
+      // Nuclear cache cleanup: unregister ALL service workers and clear all
+      // CacheStorage. The Precursors PWA previously registered a root-scoped SW
+      // that cached stale assets for all games. Even after that was fixed, some
+      // browsers retained cached HTML referencing old asset hashes. This ensures
+      // a completely clean slate on every load.
+      if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.getRegistrations().then(function(regs) {
+          regs.forEach(function(r) { r.unregister(); });
+        });
+      }
+      if ('caches' in window) {
+        caches.keys().then(function(names) {
+          names.forEach(function(name) { caches.delete(name); });
+        });
+      }
+    </script>
     <title>Cultures of the Belt — Hard Sci-Fi 4X Mining Sim</title>
     <meta name="description" content="Cultures of the Belt is a hard sci-fi 4X asteroid mining sim. Build a robot fleet, develop culture traits, navigate the Dark Forest, and construct a Dyson Sphere — powered by LLM AI." />
     <!-- Open Graph -->
@@ -281,14 +298,14 @@
         transform: scale(0.97);
       }
     </style>
-    <script type="module" crossorigin src="/assets/index-CC9qzs0t.js"></script>
+    <script type="module" crossorigin src="/assets/index-DV6TxUtP.js"></script>
     <link rel="modulepreload" crossorigin href="/assets/rolldown-runtime-lhHHWwHU.js">
     <link rel="modulepreload" crossorigin href="/assets/bufferLayout-CBw95Q_j.js">
     <link rel="modulepreload" crossorigin href="/assets/vendor-three-DROVlajs.js">
-    <link rel="modulepreload" crossorigin href="/assets/fallbackChain-Dv9vdhNt.js">
+    <link rel="modulepreload" crossorigin href="/assets/fallbackChain-BrNZYpFp.js">
     <link rel="modulepreload" crossorigin href="/assets/megastructures-BX_wE4JW.js">
-    <link rel="modulepreload" crossorigin href="/assets/gameState-DbKVjRZz.js">
-    <link rel="modulepreload" crossorigin href="/assets/advisorService-k0qOM6TL.js">
+    <link rel="modulepreload" crossorigin href="/assets/gameState-DqPpzQi2.js">
+    <link rel="modulepreload" crossorigin href="/assets/advisorService-DbuA5BmR.js">
     <link rel="modulepreload" crossorigin href="/assets/ariaSpectrum-DStXQW1O.js">
     <link rel="modulepreload" crossorigin href="/assets/tooltip-B772uU-z.js">
     <link rel="modulepreload" crossorigin href="/assets/hudButtonBar-CSSPaPV7.js">
