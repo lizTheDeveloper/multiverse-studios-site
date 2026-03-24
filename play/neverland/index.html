@@ -24,9 +24,9 @@
   }
 
   body[data-theme="moonlit"] {
-    --paper: #31251d;
-    --paper-light: #43342b;
-    --paper-deep: #18120e;
+    --paper: #342820;
+    --paper-light: #453629;
+    --paper-deep: #1a140f;
     --paper-burn: #f0d09e;
     --ink: #fff5e4;
     --ink-soft: #efd9b3;
@@ -45,13 +45,26 @@
     box-sizing: border-box;
   }
 
+  ::selection {
+    background: rgba(139, 91, 58, 0.22);
+    color: var(--ink);
+  }
+
+  body[data-theme="moonlit"] ::selection {
+    background: rgba(255, 214, 157, 0.24);
+    color: var(--ink);
+  }
+
   body {
     min-height: 100vh;
     overflow-x: hidden;
     color: var(--ink);
     font-family: 'Cormorant Garamond', Georgia, serif;
     font-size: 22px;
-    line-height: 1.68;
+    line-height: 1.72;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    transition: background 0.6s ease, color 0.4s ease;
     background:
       radial-gradient(circle at top, rgba(255, 244, 214, 0.72), transparent 38%),
       linear-gradient(180deg, rgba(118, 88, 58, 0.24), transparent 28%),
@@ -64,10 +77,10 @@
 
   body[data-theme="moonlit"] {
     background:
-      radial-gradient(circle at top, rgba(240, 210, 156, 0.09), transparent 32%),
-      linear-gradient(180deg, rgba(255, 244, 218, 0.04), transparent 22%),
+      radial-gradient(circle at top, rgba(240, 210, 156, 0.12), transparent 36%),
+      linear-gradient(180deg, rgba(255, 244, 218, 0.06), transparent 24%),
       url("assets/textures/black_paper.png"),
-      linear-gradient(135deg, #020406, #091018 22%, #101821 56%, #04070a 100%);
+      linear-gradient(135deg, #0a0806, #14100c 22%, #1a1510 56%, #0a0806 100%);
     background-size: auto, auto, 512px 512px, auto;
     background-blend-mode: screen, normal, soft-light, normal;
   }
@@ -168,7 +181,8 @@
     align-items: center;
     justify-content: space-between;
     margin-bottom: 26px;
-    padding-bottom: 8px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--border);
     color: var(--ink-soft);
   }
 
@@ -188,7 +202,7 @@
 
   .chart-toggle {
     appearance: none;
-    border: none;
+    border: 1px solid var(--border);
     background: rgba(255, 247, 228, 0.44);
     color: var(--rose);
     font-family: 'Special Elite', monospace;
@@ -196,10 +210,16 @@
     letter-spacing: 0.12em;
     text-transform: uppercase;
     padding: 11px 14px 10px;
+    min-height: 44px;
     border-radius: 999px;
     cursor: pointer;
     box-shadow: 0 10px 24px rgba(82, 51, 24, 0.08);
-    transition: transform 0.25s ease, background 0.25s ease, color 0.25s ease;
+    transition: transform 0.25s ease, background 0.25s ease, color 0.25s ease, border-color 0.25s ease;
+  }
+
+  .chart-toggle:active {
+    transform: translateY(1px);
+    box-shadow: 0 4px 12px rgba(82, 51, 24, 0.12);
   }
 
   .chart-toggle:hover {
@@ -226,6 +246,12 @@
 
   .story-body {
     margin-bottom: 2.4em;
+    animation: story-enter 0.8s ease both;
+  }
+
+  @keyframes story-enter {
+    from { opacity: 0; transform: translateY(12px); }
+    to { opacity: 1; transform: translateY(0); }
   }
 
   .story-body > * {
@@ -260,6 +286,10 @@
     margin-bottom: 1.1em;
   }
 
+  .story-body p + p {
+    text-indent: 1.5em;
+  }
+
   .story-body h1,
   .story-body h2,
   .story-body h3 {
@@ -271,17 +301,18 @@
 
   .story-body h1 {
     font-size: clamp(2.6rem, 5vw, 4.1rem);
-    margin: 0 0 0.5em;
+    margin: 0 0 0.6em;
+    letter-spacing: 0.01em;
   }
 
   .story-body h2 {
     font-size: clamp(1.8rem, 3vw, 2.4rem);
-    margin: 1.7em 0 0.7em;
+    margin: 2em 0 0.8em;
   }
 
   .story-body h3 {
     font-size: 1.36rem;
-    margin: 1.5em 0 0.6em;
+    margin: 1.8em 0 0.7em;
   }
 
   .story-body em {
@@ -291,7 +322,7 @@
 
   .story-body strong {
     font-weight: 700;
-    color: #2d1d14;
+    color: var(--ink);
   }
 
   .story-body hr {
@@ -314,6 +345,7 @@
     padding: 1em 1.1em 1em 1.2em;
     border-left: 3px solid rgba(125, 91, 54, 0.58);
     background: rgba(255, 247, 230, 0.26);
+    border-radius: 0 4px 4px 0;
     color: var(--ink-soft);
     font-style: italic;
   }
@@ -323,7 +355,7 @@
   }
 
   body[data-theme="moonlit"] .story-body strong {
-    color: #fffdf7;
+    color: var(--ink);
   }
 
   body[data-theme="moonlit"] .story-body blockquote {
@@ -355,7 +387,7 @@
   }
 
   #next-link a:hover {
-    color: #55341f;
+    color: var(--paper-burn);
     background: rgba(255, 249, 236, 0.7);
     box-shadow: 0 16px 34px rgba(82, 51, 24, 0.14);
     transform: translateY(-1px);
@@ -403,7 +435,7 @@
     padding: 44px;
     opacity: 0;
     pointer-events: none;
-    transition: opacity 0.25s ease;
+    transition: opacity 0.45s ease;
     z-index: 4;
     background:
       radial-gradient(circle at center, rgba(219, 194, 153, 0.88), rgba(197, 161, 111, 0.74) 46%, rgba(108, 77, 46, 0.48) 100%);
@@ -813,11 +845,11 @@
     }
 
     #container {
-      padding: 20px 12px 56px;
+      padding: 24px 16px 56px;
     }
 
     #map-frame {
-      padding: 18px 8px 30px;
+      padding: 18px 10px 30px;
     }
 
     #map-frame::after {
@@ -825,6 +857,25 @@
       height: 150px;
       top: -10px;
       right: 0;
+    }
+
+    .chart-toggle {
+      min-height: 44px;
+      padding: 12px 16px 11px;
+    }
+
+    #next-link a {
+      min-height: 44px;
+      display: inline-flex;
+      align-items: center;
+    }
+
+    .story-body h1 {
+      font-size: clamp(2rem, 6vw, 2.6rem);
+    }
+
+    .story-body h2 {
+      font-size: clamp(1.5rem, 4vw, 1.8rem);
     }
 
     .glyph-stream {
