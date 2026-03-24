@@ -19,9 +19,9 @@
   --signal-dim: #5a4fcf;
   --gene-pink: #ff3d7f;
   --star-white: #e8e6f0;
-  --dust: #8a8694;
-  --ash: #7c7690;
-  --dust-light: #9e98ab;
+  --dust: #9e98ab;
+  --ash: #8a8694;
+  --dust-light: #b0abbe;
 
   --font-display: 'Syne', sans-serif;
   --font-body: 'Cormorant Garamond', serif;
@@ -211,7 +211,7 @@ img { max-width: 100%; display: block; }
 
 .hero-tagline {
   font-family: var(--font-body);
-  font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+  font-size: var(--text-lg);
   font-weight: 300;
   font-style: italic;
   color: var(--dust);
@@ -629,7 +629,7 @@ img { max-width: 100%; display: block; }
 }
 
 .tier-desc {
-  font-size: var(--text-sm);
+  font-size: var(--text-base);
   color: var(--dust);
   margin: 0;
 }
@@ -718,8 +718,8 @@ img { max-width: 100%; display: block; }
 }
 
 .feature-item p {
-  font-size: var(--text-sm);
-  color: var(--ash);
+  font-size: var(--text-base);
+  color: var(--dust);
 }
 
 /* --- Stats Bar --- */
@@ -825,8 +825,8 @@ img { max-width: 100%; display: block; }
 }
 
 .species-card p {
-  font-size: var(--text-sm);
-  color: var(--ash);
+  font-size: var(--text-base);
+  color: var(--dust);
 }
 
 /* --- Magic Systems Grid (MVEE) --- */
