@@ -12,7 +12,7 @@
 
   var GAMES = {
     precursors: {
-      stripeUrl: 'https://buy.stripe.com/3cI8wOgrwfaHaNLaKl6c005',
+      gameKey: 'precursors',
       playUrl: 'https://play.multiversestudios.xyz',
       name: 'Precursors: Origins of Folklore',
       tagline: 'Real genetics. Real biochemistry. Real AI minds.',
@@ -20,7 +20,7 @@
       accentVar: 'var(--gene-pink, #ff3d7f)',
     },
     mvee: {
-      stripeUrl: 'https://buy.stripe.com/dRm00i4IO1jRdZX19L6c006',
+      gameKey: 'mvee',
       playUrl: 'https://play.multiversestudios.xyz',
       name: 'MVEE',
       tagline: 'A living ecological simulation.',
@@ -28,7 +28,7 @@
       accentVar: 'var(--ember, #ff6b35)',
     },
     cotb: {
-      stripeUrl: 'https://buy.stripe.com/3cI5kCa380fN2hfbOp6c008',
+      gameKey: 'cotb',
       playUrl: 'https://play.multiversestudios.xyz/cultures-of-the-belt/',
       name: 'Cultures of the Belt',
       tagline: 'Build civilizations. Survive the belt.',
@@ -36,7 +36,7 @@
       accentVar: 'var(--signal, #7b68ee)',
     },
     nel: {
-      stripeUrl: 'https://buy.stripe.com/4gM14m4IO4w3f4119L6c007',
+      gameKey: 'nel',
       playUrl: 'https://play.multiversestudios.xyz',
       name: 'Never Ever Land',
       tagline: 'Free forever. Support if it means something to you.',
@@ -45,6 +45,9 @@
       freeForever: true,
     },
   };
+
+  // Checkout session endpoint — creates Stripe Checkout Sessions server-side
+  var CHECKOUT_API_URL = 'https://pay.multiversestudios.xyz/create-checkout-session';
 
   // Tier definitions — copy TBD by CMO (Peggy)
   var TIERS = [
@@ -366,8 +369,7 @@
       return;
     }
 
-    var stripeUrl = currentGame.stripeUrl;
-
+    var cents;
     if (selectedTier.isCustom) {
       var customInput = overlay.querySelector('#pwyc-custom-input');
       var dollars = parseFloat(customInput.value);
@@ -377,11 +379,54 @@
         setTimeout(function () { customInput.style.borderColor = ''; }, 1500);
         return;
       }
-      var cents = Math.round(dollars * 100);
-      window.location.href = stripeUrl + '?prefilled_amount=' + cents;
+      cents = Math.round(dollars * 100);
     } else {
-      window.location.href = stripeUrl + '?prefilled_amount=' + selectedTier.amount;
+      cents = selectedTier.amount;
     }
+
+    var cta = overlay.querySelector('#pwyc-cta');
+    var originalText = cta.textContent;
+    cta.disabled = true;
+    cta.textContent = 'Connecting…';
+    cta.style.opacity = '0.6';
+
+    var xhr = new XMLHttpRequest();
+    xhr.open('POST', CHECKOUT_API_URL);
+    xhr.setRequestHeader('Content-Type', 'application/json');
+    xhr.onload = function () {
+      if (xhr.status >= 200 && xhr.status < 300) {
+        try {
+          var data = JSON.parse(xhr.responseText);
+          if (data.url) {
+            window.location.href = data.url;
+            return;
+          }
+        } catch (e) {
+          console.error('PWYC: failed to parse checkout response', e);
+        }
+      }
+      console.error('PWYC: checkout session failed', { status: xhr.status, response: xhr.responseText, game: currentGame.gameKey, amount: cents });
+      cta.textContent = 'Something went wrong — try again';
+      cta.style.background = '#ff4444';
+      setTimeout(function () {
+        cta.disabled = false;
+        cta.style.opacity = '';
+        cta.textContent = originalText;
+        updateCTA();
+      }, 2000);
+    };
+    xhr.onerror = function () {
+      console.error('PWYC: network error creating checkout session', { game: currentGame.gameKey, amount: cents });
+      cta.textContent = 'Connection failed — try again';
+      cta.style.background = '#ff4444';
+      setTimeout(function () {
+        cta.disabled = false;
+        cta.style.opacity = '';
+        cta.textContent = originalText;
+        updateCTA();
+      }, 2000);
+    };
+    xhr.send(JSON.stringify({ game: currentGame.gameKey, amount: cents }));
   }
 
   // ── Open / close ─────────────────────────────────────────────
