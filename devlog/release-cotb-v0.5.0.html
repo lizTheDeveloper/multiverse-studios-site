@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cultures of the Belt v0.5.0 — Space Is Big — Multiverse Studios Devlog</title>
+  <meta name="description" content="Cultures of the Belt v0.5.0: Solar system scale overhaul, real orbital mechanics, and quality-of-life fixes from our first human playtest.">
+  <meta property="og:title" content="Cultures of the Belt v0.5.0 — Space Is Big">
+  <meta property="og:description" content="The solar system finally feels vast. Real Kepler orbits. Depleted asteroids become husks. Aria works again.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://multiversestudios.xyz/devlog/release-cotb-v0.5.0.html">
+  <meta property="og:image" content="https://multiversestudios.xyz/screenshots/homepage-hero.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Cultures of the Belt v0.5.0 — Space Is Big">
+  <meta name="twitter:description" content="The solar system finally feels vast. Real Kepler orbits. Depleted asteroids become husks. Aria works again.">
+  <meta name="twitter:image" content="https://multiversestudios.xyz/screenshots/homepage-hero.png">
+  <link rel="stylesheet" href="../styles.css">
+  <link rel="icon" type="image/svg+xml" href="../press-kit/logos/multiverse-studios-favicon.svg">
+  <style>
+    .devlog-body {
+      max-width: 680px;
+      margin: 0 auto;
+    }
+    .devlog-body h1 {
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      line-height: 1.2;
+      margin-bottom: var(--space-sm);
+      color: var(--star-white);
+    }
+    .devlog-body .byline {
+      font-size: 0.8rem;
+      color: var(--dust);
+      font-family: var(--font-mono);
+      letter-spacing: 0.05em;
+      margin-bottom: var(--space-xl);
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+    .devlog-body .byline .tag {
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.2rem 0.6rem;
+      border-radius: 4px;
+      border: 1px solid var(--biolume);
+      color: var(--biolume);
+    }
+    .devlog-body p {
+      color: var(--dust-light);
+      line-height: 1.8;
+      font-size: 1.05rem;
+      margin-bottom: var(--space-md);
+    }
+    .devlog-body h2 {
+      font-size: 1.3rem;
+      color: var(--star-white);
+      margin: var(--space-xl) 0 var(--space-sm) 0;
+    }
+    .devlog-body .pullout {
+      border-left: 3px solid var(--biolume);
+      padding: var(--space-sm) var(--space-md);
+      margin: var(--space-lg) 0;
+      color: var(--star-white);
+      font-style: italic;
+      font-size: 1.1rem;
+      line-height: 1.7;
+      background: rgba(0, 255, 200, 0.04);
+    }
+    .devlog-body .divider {
+      border: none;
+      border-top: 1px solid rgba(255,255,255,0.07);
+      margin: var(--space-xl) 0;
+    }
+    .cta-bar {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 12px;
+      padding: var(--space-lg);
+      margin: var(--space-xl) 0;
+      text-align: center;
+    }
+    .cta-bar p {
+      font-size: 0.95rem;
+      margin-bottom: var(--space-md);
+    }
+    .cta-bar .btn-row {
+      display: flex;
+      gap: var(--space-sm);
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .devlog-footer {
+      font-size: 0.8rem;
+      color: var(--dust);
+      border-top: 1px solid rgba(255,255,255,0.07);
+      padding-top: var(--space-md);
+      margin-top: var(--space-xl);
+      font-family: var(--font-mono);
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="nav">
+    <a href="../index.html" class="nav-logo">✦ Multiverse Studios</a>
+    <div class="nav-links">
+      <a href="../devlog.html">← Devlog</a>
+      <a href="../mvee.html">MVEE</a>
+      <a href="../precursors.html">Precursors</a>
+    </div>
+  </nav>
+
+  <main class="container" style="padding-top: var(--space-xl);">
+    <div class="devlog-body">
+
+      <div class="byline">
+        <span>March 24, 2026</span>
+        <span class="tag">CotB v0.5.0</span>
+      </div>
+
+      <h1>Space Is Big</h1>
+
+      <p>Our first human playtester sat down with Cultures of the Belt and told us the truth: the solar system didn't feel like a solar system. Asteroids looked as big as the Sun. Orbits completed in minutes. The vastness of space — the thing that makes it terrifying and beautiful — was missing. v0.5.0 fixes that.</p>
+
+      <hr class="divider">
+
+      <h2>Scale overhaul</h2>
+
+      <p>The Sun is now visually dominant in the scene. Asteroids are properly tiny specks in comparison. Major planets — Jupiter, Saturn, and the rest — are visible in the background for the first time. When you zoom out, the belt looks like a belt, not a debris field competing with its star for screen space.</p>
+
+      <h2>Real orbital mechanics</h2>
+
+      <p>Orbital periods now use AU-based Kepler's 3rd law. Inner belt asteroids take their time getting around the Sun. The result feels slower, more deliberate, and much more like actual space. The scariest thing about the belt is how far apart everything is, and now you can feel that.</p>
+
+      <h2>Depleted husks</h2>
+
+      <p>When you mine an asteroid dry, it doesn't just vanish anymore. It darkens into a husk and throws off a burst of debris particles. It's a small thing, but it makes the belt feel like you're leaving a mark on it.</p>
+
+      <div class="pullout">
+        One of the scariest things about space is how giant it is. We finally got that right.
+      </div>
+
+      <h2>Fixes</h2>
+
+      <p>Aria's "not configured" error is gone — the fallback chain now correctly distinguishes missing API keys from network failures. NaN values no longer appear in the resource HUD. Early research descriptions have been rewritten to avoid spoiling late-game discoveries. And if we deploy a new build while you're playing, the game detects stale assets and prompts a clean reload instead of crashing.</p>
+
+      <div class="cta-bar">
+        <p>Cultures of the Belt is free to play. Pay what you can if you like what you find in the rocks.</p>
+        <div class="btn-row">
+          <a href="https://play.multiversestudios.xyz/cultures-of-the-belt/" class="btn btn-primary">Play Cultures of the Belt</a>
+          <a href="../devlog.html" class="btn btn-ghost">More devlogs</a>
+        </div>
+      </div>
+
+      <div class="devlog-footer">
+        Multiverse Studios — <em>March 24, 2026</em> · Cultures of the Belt v0.5.0 release notes
+      </div>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <p>Multiverse Studios · <a href="../index.html">Home</a> · <a href="../devlog.html">Devlog</a> · <a href="../community.html">Community</a> · <a href="../press.html">Press</a></p>
+      <p style="margin-top: 0.5rem; color: var(--dust); font-size: 0.8rem;">Open source. Pay what you can. Built by AI agents and one <a href="https://lizthe.dev" target="_blank" rel="noopener">human director</a>.</p>
+    </div>
+  </footer>
+
+<script defer src="https://analytics.themultiverse.school/script.js" data-website-id="38d680a7-28d1-42fd-9fd5-a66702675b88"></script>
+</body>
+</html>
