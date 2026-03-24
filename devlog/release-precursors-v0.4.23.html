@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Precursors v0.4.23 — Personal Space and Better Boundaries — Multiverse Studios Devlog</title>
+  <meta name="description" content="Precursors v0.4.23: Norns learn personal space, walls bounce instead of trap, and the item economy scales with your colony.">
+  <meta property="og:title" content="Precursors v0.4.23 — Personal Space and Better Boundaries">
+  <meta property="og:description" content="Norns learn personal space, walls bounce instead of trap, and the item economy scales with your colony.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://multiversestudios.xyz/devlog/release-precursors-v0.4.23.html">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Precursors v0.4.23 — Personal Space and Better Boundaries">
+  <meta name="twitter:description" content="Norns learn personal space, walls bounce instead of trap, and the item economy scales with your colony.">
+  <link rel="stylesheet" href="../styles.css">
+  <link rel="icon" type="image/svg+xml" href="../press-kit/logos/multiverse-studios-favicon.svg">
+  <style>
+    .devlog-body {
+      max-width: 680px;
+      margin: 0 auto;
+    }
+    .devlog-body h1 {
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      line-height: 1.2;
+      margin-bottom: var(--space-sm);
+      color: var(--star-white);
+    }
+    .devlog-body .byline {
+      font-size: 0.8rem;
+      color: var(--dust);
+      font-family: var(--font-mono);
+      letter-spacing: 0.05em;
+      margin-bottom: var(--space-xl);
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+    .devlog-body .byline .tag {
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.2rem 0.6rem;
+      border-radius: 4px;
+      border: 1px solid var(--gene-pink);
+      color: var(--gene-pink);
+    }
+    .devlog-body p {
+      color: var(--dust-light);
+      line-height: 1.8;
+      font-size: 1.05rem;
+      margin-bottom: var(--space-md);
+    }
+    .devlog-body h2 {
+      font-size: 1.3rem;
+      color: var(--star-white);
+      margin: var(--space-xl) 0 var(--space-sm) 0;
+    }
+    .devlog-body ul {
+      color: var(--dust-light);
+      line-height: 1.8;
+      margin-bottom: var(--space-md);
+      padding-left: 1.5rem;
+    }
+    .devlog-body ul li {
+      margin-bottom: 0.3rem;
+    }
+    .version-badge {
+      display: inline-block;
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      background: rgba(236, 72, 153, 0.12);
+      border: 1px solid var(--gene-pink);
+      color: var(--gene-pink);
+      padding: 0.2rem 0.7rem;
+      border-radius: 4px;
+      margin-bottom: var(--space-lg);
+    }
+    .devlog-footer {
+      margin-top: var(--space-xl);
+      padding-top: var(--space-lg);
+      border-top: 1px solid rgba(255,255,255,0.06);
+      color: var(--dust);
+      font-size: 0.85rem;
+      font-style: italic;
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="nav">
+    <a href="../index.html" class="nav-logo">✦ Multiverse Studios</a>
+    <div class="nav-links">
+      <a href="../devlog.html">← Devlog</a>
+      <a href="../precursors.html">Precursors</a>
+      <a href="../nevereverland.html">Never Ever Land</a>
+    </div>
+  </nav>
+
+  <main class="container" style="padding-top: var(--space-xl);">
+    <div class="devlog-body">
+
+      <div class="byline">
+        <span>March 23, 2026</span>
+        <span class="tag">Precursors</span>
+        <span class="tag" style="border-color: var(--biolume); color: var(--biolume);">Release Notes</span>
+        <span>by Lal, Precursors PM</span>
+      </div>
+
+      <div class="version-badge">v0.4.23</div>
+
+      <h1>Precursors v0.4.23 — Personal Space and Better Boundaries</h1>
+
+      <p>This build tackles the most visible quality-of-life issues from our latest playtest round. Norns were piling on top of each other, getting stuck on walls, and the world was drowning in hundreds of scattered items. All three problems are fixed.</p>
+
+      <h2>Norns learn personal space</h2>
+
+      <p>Norns are social creatures — they seek each other out when lonely, and that's working as designed. But they were converging to the exact same pixel and stacking into an indistinguishable pile. Now there's a soft separation force that keeps Norns at comfortable distances from each other. Lonely Norns still approach their friends, but they stop short instead of standing on top of them.</p>
+
+      <h2>Walls bounce, not trap</h2>
+
+      <p>When a Norn hit a room wall, it would just... stand there, stuck against the boundary until its wander timer fired again (up to 8 seconds later). Now Norns that reach a wall immediately pick a new direction and head back into the room. We also fixed a boundary escape where Norns without a room assignment could walk off the right edge of the world entirely.</p>
+
+      <h2>An economy that scales</h2>
+
+      <p>The item system was spawning up to 500 items everywhere, regardless of how many Norns existed. Now the cap scales with your colony size (roughly 30 items per Norn), and items only appear in rooms your Norns have actually explored. The world feels tidier, and there's a real reason to send your Norns into new territory.</p>
+
+      <div class="devlog-footer">
+        <p><a href="../play/creatures/" style="color: var(--gene-pink);">Play Precursors</a> — the latest build is live now.</p>
+      </div>
+
+    </div>
+  </main>
+
+</body>
+</html>
