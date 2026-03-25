@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Akashic Records — The Multiverse Codex</title>
+  <meta name="description" content="The Akashic Records — a personal wiki that populates as you play, tracking every species, biome, civilization, item, and event you discover across the multiverse.">
+  <meta property="og:title" content="Akashic Records — The Multiverse Codex">
+  <meta property="og:description" content="A personal wiki that populates as you play. Knowledge earned through discovery, across every game in the multiverse.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://multiversestudios.xyz/akashic/">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Akashic Records — The Multiverse Codex">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="../styles.css">
+  <link rel="stylesheet" href="akashic-records-wiki.css">
+  <link rel="icon" type="image/svg+xml" href="../press-kit/logos/multiverse-studios-favicon.svg">
+</head>
+<body>
+
+<canvas id="starfield"></canvas>
+
+<nav class="nav">
+  <a href="../index.html" class="nav-logo">
+    <img src="../press-kit/logos/multiverse-studios-mark.svg" alt="Multiverse Studios" class="logo-mark" width="28" height="28">
+    Multiverse Studios
+  </a>
+  <button class="nav-hamburger" aria-label="Menu" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+  <ul class="nav-links">
+    <li><a href="../index.html">Home</a></li>
+    <li><a href="../mvee.html">MVEE</a></li>
+    <li><a href="../precursors.html">Precursors</a></li>
+    <li><a href="../nevereverland.html">Never Ever Land</a></li>
+    <li><a href="index.html" class="active">Akashic Records</a></li>
+    <li><a href="../library.html">My Library</a></li>
+    <li><a href="../about.html">About</a></li>
+    <li><a href="../community.html">Community</a></li>
+    <li><a href="../precursors.html#buy" class="btn btn-signal" style="padding: 0.5rem 1.2rem;">Play Beta</a></li>
+  </ul>
+</nav>
+
+<!-- Hero -->
+<section class="hero" style="padding: 8rem 2rem 5rem;">
+  <span class="hero-overline">The Multiverse Codex</span>
+  <h1>The Akashic <span style="color: var(--akashic-gold);">Records</span></h1>
+  <p class="hero-tagline">Knowledge earned through discovery, across every game in the multiverse.</p>
+</section>
+
+<!-- Signed Out State -->
+<section class="section section-narrow" id="akashic-signed-out">
+  <div class="akashic-teaser reveal">
+    <div class="akashic-teaser__icon" aria-hidden="true">&#x1F4DC;</div>
+    <h2 class="akashic-teaser__heading">The records await a reader.</h2>
+    <p class="akashic-teaser__body">The Akashic Records is your personal codex &mdash; it populates as you play, logging every species encountered, biome explored, civilization unearthed, and event witnessed. Nothing is given. Everything is earned through discovery.</p>
+    <button class="btn btn-primary btn-lg akashic-teaser__cta" onclick="window.matrixAuth && window.matrixAuth.showLoginModal()">Sign In to Begin</button>
+
+    <div class="akashic-teaser__preview">
+      <div class="akashic-card">
+        <div class="akashic-card__glyph">&#x1F9EC;</div>
+        <h3 class="akashic-card__heading">Species</h3>
+        <p class="akashic-card__description">47 species. How many have you seen?</p>
+      </div>
+      <div class="akashic-card">
+        <div class="akashic-card__glyph">&#x1F30D;</div>
+        <h3 class="akashic-card__heading">Biomes</h3>
+        <p class="akashic-card__description">Worlds mapped by those who walked them.</p>
+      </div>
+      <div class="akashic-card">
+        <div class="akashic-card__glyph">&#x26B0;&#xFE0F;</div>
+        <h3 class="akashic-card__heading">Civilizations</h3>
+        <p class="akashic-card__description">Seven fell. Their records remain.</p>
+      </div>
+      <div class="akashic-card">
+        <div class="akashic-card__glyph">&#x2728;</div>
+        <h3 class="akashic-card__heading">Items</h3>
+        <p class="akashic-card__description">Artefacts of unclear provenance.</p>
+      </div>
+      <div class="akashic-card">
+        <div class="akashic-card__glyph">&#x1F4DC;</div>
+        <h3 class="akashic-card__heading">Events</h3>
+        <p class="akashic-card__description">Moments that cannot be undone.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Signed In State -->
+<div id="akashic-signed-in" style="display: none;">
+  <section class="section section-narrow reveal">
+    <div class="section-divider"></div>
+    <span class="section-overline">Your Codex</span>
+    <h2>What you have discovered.</h2>
+
+    <!-- Stats Bar -->
+    <div id="akashic-stats" class="akashic-stats">
+      <div class="akashic-stats__item">
+        <span class="akashic-stats__value" id="akashic-stat-species">&#x2014;</span>
+        <span class="akashic-stats__label">Species</span>
+      </div>
+      <div class="akashic-stats__divider"></div>
+      <div class="akashic-stats__item">
+        <span class="akashic-stats__value" id="akashic-stat-completion">&#x2014;</span>
+        <span class="akashic-stats__label">Codex</span>
+      </div>
+    </div>
+
+    <!-- Category Cards -->
+    <div id="akashic-categories" class="akashic-card-grid">
+      <a href="#species" class="akashic-card akashic-category-active" data-category="species">
+        <div class="akashic-card__glyph">&#x1F9EC;</div>
+        <h3 class="akashic-card__heading">Species</h3>
+        <p class="akashic-card__description">Every distinct species you have encountered across all games in the multiverse.</p>
+        <span class="akashic-card__discovered"><span class="akashic-category-count">0</span> discovered</span>
+        <div class="akashic-progress"><div class="akashic-progress__fill" style="width: 0%"></div></div>
+      </a>
+      <a href="#biomes" class="akashic-card" data-category="biomes">
+        <div class="akashic-card__glyph">&#x1F30D;</div>
+        <h3 class="akashic-card__heading">Biomes</h3>
+        <p class="akashic-card__description">Environments explored, mapped, and survived. Each with its own logic and hidden rules.</p>
+        <span class="akashic-card__discovered"><span class="akashic-category-count">0</span> discovered</span>
+        <div class="akashic-progress"><div class="akashic-progress__fill" style="width: 0%"></div></div>
+      </a>
+      <a href="#civilizations" class="akashic-card" data-category="civilizations">
+        <div class="akashic-card__glyph">&#x26B0;&#xFE0F;</div>
+        <h3 class="akashic-card__heading">Civilizations</h3>
+        <p class="akashic-card__description">Fallen empires, living cultures, and the records they left behind &mdash; or tried to destroy.</p>
+        <span class="akashic-card__discovered"><span class="akashic-category-count">0</span> discovered</span>
+        <div class="akashic-progress"><div class="akashic-progress__fill" style="width: 0%"></div></div>
+      </a>
+      <a href="#items" class="akashic-card" data-category="items">
+        <div class="akashic-card__glyph">&#x2728;</div>
+        <h3 class="akashic-card__heading">Items</h3>
+        <p class="akashic-card__description">Artefacts, tools, substances, and objects of unclear origin catalogued from your playthroughs.</p>
+        <span class="akashic-card__discovered"><span class="akashic-category-count">0</span> discovered</span>
+        <div class="akashic-progress"><div class="akashic-progress__fill" style="width: 0%"></div></div>
+      </a>
+      <a href="#events" class="akashic-card" data-category="events">
+        <div class="akashic-card__glyph">&#x1F4DC;</div>
+        <h3 class="akashic-card__heading">Events</h3>
+        <p class="akashic-card__description">Lore triggers, world-altering moments, and the things that happened that cannot be undone.</p>
+        <span class="akashic-card__discovered"><span class="akashic-category-count">0</span> discovered</span>
+        <div class="akashic-progress"><div class="akashic-progress__fill" style="width: 0%"></div></div>
+      </a>
+    </div>
+  </section>
+
+  <!-- Entries -->
+  <section class="section section-narrow">
+    <div id="akashic-entries" class="akashic-entries"></div>
+  </section>
+</div>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div class="footer-logo"><img src="../press-kit/logos/multiverse-studios-mark.svg" alt="" class="footer-logo-mark" width="20" height="20"> Multiverse Studios</div>
+      <p>Games made by the minds they're about. A research project of <a href="https://themultiverse.school" target="_blank" rel="noopener" style="color: var(--biolume);">The Multiverse School</a>. Open source. Pay what you want.</p>
+    </div>
+    <div class="footer-col">
+      <h5>Games</h5>
+      <ul>
+        <li><a href="../mvee.html">MVEE</a></li>
+        <li><a href="../precursors.html">Precursors</a></li>
+        <li><a href="../nevereverland.html">Never Ever Land</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Akashic Records</h5>
+      <ul>
+        <li><a href="index.html">Overview</a></li>
+        <li><a href="../wiki/index.html">Public Wiki</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Studio</h5>
+      <ul>
+        <li><a href="../library.html">My Library</a></li>
+        <li><a href="../about.html">About</a></li>
+        <li><a href="../devlog.html">Devlog</a></li>
+        <li><a href="../community.html">Community</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>&copy; 2026 Multiverse Studios</span>
+    <span>Built by AI agents. Guided by <a href="https://themultiverse.school" target="_blank" rel="noopener" style="color: var(--biolume);">The Multiverse School</a>.</span>
+  </div>
+</footer>
+
+<script src="../main.js"></script>
+<script src="../matrix-auth.js"></script>
+<script src="akashic-records-wiki.js"></script>
+<script defer src="https://analytics.themultiverse.school/script.js" data-website-id="38d680a7-28d1-42fd-9fd5-a66702675b88"></script>
+</body>
+</html>

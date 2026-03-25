@@ -1,0 +1,1026 @@
+/* =============================================================================
+   Akashic Records Wiki — Ancient Library Aesthetic
+   Extends the cosmic void design system with warmth and mystery
+   ============================================================================= */
+
+/* ---------------------------------------------------------------------------
+   New Color Tokens
+   --------------------------------------------------------------------------- */
+
+:root {
+  --akashic-gold: #c9a84c;
+  --akashic-gold-dim: #a08839;
+  --akashic-gold-bright: #e0c265;
+  --akashic-parchment: rgba(201, 168, 76, 0.06);
+  --akashic-ink: rgba(201, 168, 76, 0.15);
+  --akashic-glow: rgba(201, 168, 76, 0.3);
+  --akashic-redacted: rgba(138, 134, 148, 0.08);
+}
+
+
+/* =============================================================================
+   1. STATS BAR (.akashic-stats)
+   ============================================================================= */
+
+.akashic-stats {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-md, 1.5rem);
+  padding: 1rem 1.5rem;
+  background: linear-gradient(135deg, var(--void-surface), rgba(201, 168, 76, 0.03));
+  border-left: 3px solid var(--akashic-gold);
+  border-radius: 0 6px 6px 0;
+  margin-bottom: var(--space-md, 2rem);
+}
+
+.akashic-stats__item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.akashic-stats__value {
+  font-family: var(--font-mono);
+  font-size: var(--text-xl, 1.5rem);
+  font-weight: 500;
+  color: var(--akashic-gold);
+  line-height: 1;
+}
+
+.akashic-stats__label {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs, 0.75rem);
+  color: var(--dust);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  white-space: nowrap;
+}
+
+.akashic-stats__divider {
+  width: 1px;
+  height: 2.5rem;
+  background: linear-gradient(to bottom, transparent, var(--akashic-ink), transparent);
+  flex-shrink: 0;
+}
+
+
+/* =============================================================================
+   2. CARD GRID (.akashic-card-grid / .akashic-card)
+   ============================================================================= */
+
+.akashic-card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.akashic-card {
+  position: relative;
+  background: var(--void-elevated);
+  border: 1px solid var(--void-border);
+  border-radius: 8px;
+  padding: 1.75rem;
+  cursor: pointer;
+  transition:
+    border-color 0.25s ease,
+    transform 0.25s ease,
+    box-shadow 0.25s ease,
+    background 0.25s ease;
+  text-decoration: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  color: inherit;
+}
+
+.akashic-card:hover {
+  border-color: var(--akashic-gold);
+  transform: translateY(-3px);
+  box-shadow:
+    0 4px 16px rgba(201, 168, 76, 0.12),
+    0 0 0 1px rgba(201, 168, 76, 0.08);
+  background: linear-gradient(135deg, var(--void-elevated), rgba(201, 168, 76, 0.04));
+}
+
+.akashic-card.akashic-category-active {
+  border-color: var(--akashic-gold);
+  background: linear-gradient(135deg, var(--void-elevated), rgba(201, 168, 76, 0.06));
+  box-shadow: 0 0 0 1px rgba(201, 168, 76, 0.15);
+}
+
+.akashic-card__glyph {
+  font-size: 2rem;
+  line-height: 1;
+  margin-bottom: 0.25rem;
+  filter: grayscale(0.3);
+  transition: filter 0.25s ease;
+}
+
+.akashic-card:hover .akashic-card__glyph,
+.akashic-card.akashic-category-active .akashic-card__glyph {
+  filter: grayscale(0);
+}
+
+.akashic-card__heading {
+  font-family: var(--font-display);
+  font-size: var(--text-lg, 1.15rem);
+  font-weight: 600;
+  color: var(--akashic-gold);
+  margin: 0;
+  line-height: 1.2;
+}
+
+.akashic-card__description {
+  font-family: var(--font-body);
+  font-size: var(--text-sm, 0.875rem);
+  color: var(--dust);
+  margin: 0;
+  line-height: 1.6;
+  flex: 1;
+}
+
+.akashic-card__discovered {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-family: var(--font-mono);
+  font-size: var(--text-xs, 0.75rem);
+  color: var(--dust);
+  background: var(--akashic-parchment);
+  border: 1px solid var(--akashic-ink);
+  border-radius: 100px;
+  padding: 0.2rem 0.6rem;
+  margin-top: 0.25rem;
+  width: fit-content;
+}
+
+.akashic-card__discovered::before {
+  content: '';
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--akashic-gold-dim);
+}
+
+
+/* =============================================================================
+   3. SPECIES / ENTRY CARDS (.akashic-entry)
+   ============================================================================= */
+
+.akashic-entry {
+  background: var(--void-elevated);
+  border: 1px solid var(--void-border);
+  border-top: 3px solid var(--akashic-gold);
+  border-radius: 8px;
+  overflow: hidden;
+  margin-bottom: 1.25rem;
+  /* Animation — starts invisible, JS adds .akashic-entry-visible */
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+.akashic-entry.akashic-entry-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+
+/* =============================================================================
+   4. TIER SECTIONS (.akashic-tier)
+   ============================================================================= */
+
+.akashic-tier {
+  border-top: 1px solid var(--void-border);
+}
+
+.akashic-tier:first-of-type {
+  border-top: none;
+}
+
+.akashic-tier__header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem 1.5rem;
+  background: var(--void-surface);
+  cursor: default;
+}
+
+.akashic-tier__name {
+  font-family: var(--font-display);
+  font-size: var(--text-base, 1rem);
+  font-weight: 600;
+  line-height: 1;
+}
+
+.akashic-tier__label,
+.akashic-tier-label {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  padding: 0.15rem 0.5rem;
+  border-radius: 3px;
+  border: 1px solid currentColor;
+  opacity: 0.65;
+  white-space: nowrap;
+}
+
+.akashic-tier__content {
+  padding: 1.25rem 1.5rem 1.5rem;
+}
+
+/* Tier 0 — encountered: warm gold */
+.akashic-tier[data-tier="0"] .akashic-tier__header,
+.akashic-tier[data-tier="0"] {
+  position: relative;
+}
+
+.akashic-tier[data-tier="0"] > .akashic-tier-label,
+.akashic-tier[data-tier="0"] .akashic-tier__header {
+  background: linear-gradient(90deg, var(--akashic-parchment), transparent);
+  border-left: 3px solid var(--akashic-gold);
+}
+
+.akashic-tier[data-tier="0"] .akashic-tier__name,
+.akashic-tier[data-tier="0"] .akashic-tier-label {
+  color: var(--akashic-gold);
+}
+
+/* Tier 1 — observed: clean white */
+.akashic-tier[data-tier="1"] .akashic-tier__name,
+.akashic-tier[data-tier="1"] .akashic-tier-label {
+  color: var(--star-white);
+}
+
+/* Tier 2 — cultural: muted */
+.akashic-tier[data-tier="2"] .akashic-tier__name,
+.akashic-tier[data-tier="2"] .akashic-tier-label {
+  color: var(--dust);
+}
+
+.akashic-tier[data-tier="2"] .akashic-tier-label {
+  opacity: 0.5;
+}
+
+/* Tier 3 — deep lore: signal purple */
+.akashic-tier[data-tier="3"] > .akashic-tier-label,
+.akashic-tier[data-tier="3"] .akashic-tier__header {
+  background: linear-gradient(90deg, rgba(123, 104, 238, 0.06), transparent);
+  border-left: 3px solid var(--signal-dim);
+}
+
+.akashic-tier[data-tier="3"] .akashic-tier__name,
+.akashic-tier[data-tier="3"] .akashic-tier-label {
+  color: var(--signal);
+}
+
+
+/* =============================================================================
+   5. REDACTED BLOCKS (.akashic-redacted)
+   ============================================================================= */
+
+.akashic-redacted {
+  background: var(--akashic-redacted);
+  border-radius: 4px;
+  padding: 1rem 1.25rem;
+  font-family: var(--font-mono);
+  font-size: var(--text-xs, 0.75rem);
+  color: var(--dust);
+  letter-spacing: 0.04em;
+  user-select: none;
+  position: relative;
+  overflow: hidden;
+  margin: 0.75rem 1.5rem 1rem;
+}
+
+.akashic-redacted::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: repeating-linear-gradient(
+    -45deg,
+    transparent,
+    transparent 8px,
+    rgba(138, 134, 148, 0.035) 8px,
+    rgba(138, 134, 148, 0.035) 10px
+  );
+  pointer-events: none;
+}
+
+.akashic-redacted p {
+  position: relative;
+  z-index: 1;
+  opacity: 0.55;
+  font-style: italic;
+  margin: 0;
+  line-height: 1.6;
+}
+
+
+/* =============================================================================
+   6. UNLOCK GLOW ANIMATION
+   ============================================================================= */
+
+@keyframes akashic-glow-pulse {
+  0%, 100% { box-shadow: 0 0 0 0 var(--akashic-glow); }
+  50% { box-shadow: 0 0 24px 6px var(--akashic-glow); }
+}
+
+.akashic-unlock-glow {
+  animation: akashic-glow-pulse 2s ease-in-out 3;
+}
+
+
+/* =============================================================================
+   7. CROSS-GAME BADGES (.akashic-badge)
+   ============================================================================= */
+
+.akashic-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  align-items: center;
+}
+
+.akashic-badge {
+  display: inline-flex;
+  align-items: center;
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 0.15rem 0.5rem;
+  border-radius: 100px;
+  border: 1px solid currentColor;
+  line-height: 1.2;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.akashic-badge[data-game="precursors"] {
+  color: var(--biolume);
+  background: rgba(0, 255, 200, 0.06);
+  border-color: rgba(0, 255, 200, 0.3);
+}
+
+.akashic-badge[data-game="mvee"] {
+  color: var(--signal);
+  background: rgba(123, 104, 238, 0.06);
+  border-color: rgba(123, 104, 238, 0.3);
+}
+
+.akashic-badge[data-game="cultures-of-the-belt"],
+.akashic-badge[data-game="cotb"] {
+  color: var(--ember);
+  background: rgba(255, 107, 53, 0.06);
+  border-color: rgba(255, 107, 53, 0.3);
+}
+
+.akashic-badge[data-game="never-ever-land"],
+.akashic-badge[data-game="nel"] {
+  color: var(--gene-pink);
+  background: rgba(255, 61, 127, 0.06);
+  border-color: rgba(255, 61, 127, 0.3);
+}
+
+
+/* =============================================================================
+   8. ATTRIBUTION NOTICE (.akashic-attribution)
+   ============================================================================= */
+
+.akashic-attribution {
+  padding: 0.85rem 1.25rem;
+  margin: 0;
+  background: rgba(90, 79, 207, 0.05);
+  border-left: 3px solid var(--signal);
+  font-family: var(--font-body);
+  font-style: italic;
+  font-size: var(--text-sm, 0.875rem);
+  color: var(--star-white);
+  line-height: 1.65;
+}
+
+.akashic-attribution p {
+  margin: 0;
+}
+
+.akashic-attribution__label {
+  display: block;
+  font-family: var(--font-mono);
+  font-style: normal;
+  font-size: 0.65rem;
+  color: var(--signal);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 0.3rem;
+  opacity: 0.75;
+}
+
+
+/* =============================================================================
+   9. SIGNED-OUT TEASER
+   ============================================================================= */
+
+@keyframes akashic-border-breathe {
+  0%, 100% { border-color: var(--void-border); }
+  50% { border-color: var(--akashic-gold-dim); }
+}
+
+@keyframes akashic-text-glow {
+  0%, 100% { text-shadow: 0 0 0 transparent; }
+  50% { text-shadow: 0 0 24px var(--akashic-glow); }
+}
+
+@keyframes akashic-float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-4px); }
+}
+
+.akashic-teaser {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 1.5rem;
+  padding: 4rem 2rem 3rem;
+  border: 1px solid var(--void-border);
+  border-radius: 12px;
+  background: linear-gradient(170deg, var(--akashic-parchment), transparent 40%, rgba(123, 104, 238, 0.02));
+  animation: akashic-border-breathe 4s ease-in-out infinite;
+}
+
+.akashic-teaser__icon {
+  font-size: 3rem;
+  animation: akashic-float 3s ease-in-out infinite;
+  line-height: 1;
+}
+
+.akashic-teaser__heading {
+  font-family: var(--font-body);
+  font-size: clamp(1.5rem, 4vw, 2.2rem);
+  font-weight: 600;
+  color: var(--akashic-gold);
+  margin: 0;
+  line-height: 1.3;
+  animation: akashic-text-glow 4s ease-in-out infinite;
+}
+
+.akashic-teaser__body {
+  font-family: var(--font-body);
+  font-size: var(--text-base, 1rem);
+  color: var(--dust);
+  max-width: 48ch;
+  line-height: 1.7;
+  margin: 0;
+}
+
+.akashic-teaser__cta {
+  margin-top: 0.5rem;
+}
+
+.akashic-teaser__preview {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 0.75rem;
+  width: 100%;
+  max-width: 700px;
+  margin-top: 1rem;
+  pointer-events: none;
+}
+
+.akashic-teaser__preview .akashic-card {
+  opacity: 0.35;
+  filter: blur(1px) saturate(0.4);
+  cursor: default;
+  padding: 1.25rem;
+  gap: 0.35rem;
+}
+
+.akashic-teaser__preview .akashic-card:hover {
+  transform: none;
+  box-shadow: none;
+  border-color: var(--void-border);
+  background: var(--void-elevated);
+}
+
+.akashic-teaser__preview .akashic-card__glyph {
+  font-size: 1.5rem;
+}
+
+.akashic-teaser__preview .akashic-card__heading {
+  font-size: var(--text-sm, 0.875rem);
+}
+
+.akashic-teaser__preview .akashic-card__description {
+  font-size: var(--text-xs, 0.75rem);
+}
+
+
+/* =============================================================================
+   10. DISCOVERY PROGRESS (.akashic-progress)
+   ============================================================================= */
+
+.akashic-progress {
+  height: 3px;
+  border-radius: 100px;
+  background: var(--void-border);
+  overflow: hidden;
+  margin-top: 0.5rem;
+}
+
+.akashic-progress__fill {
+  height: 100%;
+  border-radius: 100px;
+  background: var(--akashic-gold);
+  transition: width 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  min-width: 0;
+  max-width: 100%;
+}
+
+.akashic-progress__fill--complete {
+  background: var(--biolume);
+  box-shadow: 0 0 6px rgba(0, 255, 200, 0.4);
+}
+
+
+/* =============================================================================
+   11. ENTRY HEADER (.akashic-entry-header)
+   ============================================================================= */
+
+.akashic-entry-header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+  padding: 1.25rem 1.5rem;
+  background: linear-gradient(135deg, var(--akashic-parchment), transparent);
+  cursor: pointer;
+  transition: background 0.2s ease;
+  user-select: none;
+}
+
+.akashic-entry-header:hover {
+  background: linear-gradient(135deg, rgba(201, 168, 76, 0.08), transparent);
+}
+
+.akashic-entry-header h3 {
+  font-family: var(--font-display);
+  font-size: var(--text-xl, 1.5rem);
+  color: var(--star-white);
+  margin: 0;
+  line-height: 1.2;
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+}
+
+/* Expand/collapse chevron */
+.akashic-entry-header h3::before {
+  content: '';
+  display: inline-block;
+  width: 0.5em;
+  height: 0.5em;
+  border-right: 2px solid var(--akashic-gold-dim);
+  border-bottom: 2px solid var(--akashic-gold-dim);
+  transform: rotate(-45deg);
+  transition: transform 0.25s ease;
+  flex-shrink: 0;
+}
+
+.akashic-entry-header[aria-expanded="true"] h3::before {
+  transform: rotate(45deg);
+}
+
+
+/* =============================================================================
+   12. MARKDOWN CONTENT (.akashic-content)
+   ============================================================================= */
+
+.akashic-content {
+  font-family: var(--font-body);
+  font-size: var(--text-base, 1rem);
+  color: var(--star-white);
+  line-height: 1.75;
+  padding: 1.25rem 1.5rem 1.5rem;
+}
+
+.akashic-content > * + * {
+  margin-top: 1em;
+}
+
+.akashic-content h2 {
+  font-family: var(--font-display);
+  font-size: var(--text-xl, 1.375rem);
+  color: var(--akashic-gold);
+  margin-top: 2em;
+  margin-bottom: 0.5em;
+  padding-bottom: 0.3em;
+  border-bottom: 1px solid var(--akashic-ink);
+  line-height: 1.2;
+}
+
+.akashic-content h2:first-child {
+  margin-top: 0;
+}
+
+.akashic-content h3 {
+  font-family: var(--font-display);
+  font-size: var(--text-lg, 1.125rem);
+  color: var(--star-white);
+  margin-top: 1.5em;
+  margin-bottom: 0.4em;
+  line-height: 1.2;
+}
+
+.akashic-content h4 {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs, 0.75rem);
+  font-weight: 500;
+  color: var(--akashic-gold-dim);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-top: 1.5em;
+  margin-bottom: 0.35em;
+}
+
+.akashic-content p {
+  margin: 0;
+  color: var(--star-white);
+}
+
+.akashic-content ul,
+.akashic-content ol {
+  padding-left: 1.5rem;
+  margin: 0;
+}
+
+.akashic-content li {
+  margin-bottom: 0.35em;
+}
+
+.akashic-content li::marker {
+  color: var(--akashic-gold-dim);
+}
+
+.akashic-content a {
+  color: var(--akashic-gold);
+  text-decoration: underline;
+  text-decoration-color: var(--akashic-ink);
+  text-underline-offset: 3px;
+  transition: color 0.15s ease, text-decoration-color 0.15s ease;
+}
+
+.akashic-content a:hover {
+  color: var(--akashic-gold-bright);
+  text-decoration-color: var(--akashic-gold);
+}
+
+/* Tables */
+.akashic-content table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--text-sm, 0.875rem);
+  border: 1px solid var(--void-border);
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.akashic-content thead {
+  background: linear-gradient(90deg, var(--akashic-parchment), transparent);
+}
+
+.akashic-content th {
+  font-family: var(--font-mono);
+  font-weight: 500;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--akashic-gold);
+  padding: 0.6rem 0.9rem;
+  text-align: left;
+  border-bottom: 1px solid var(--akashic-ink);
+}
+
+.akashic-content td {
+  padding: 0.55rem 0.9rem;
+  color: var(--star-white);
+  border-bottom: 1px solid rgba(26, 26, 36, 0.6);
+  vertical-align: top;
+}
+
+.akashic-content tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.akashic-content tbody tr:hover td {
+  background: rgba(201, 168, 76, 0.03);
+}
+
+/* Blockquotes */
+.akashic-content blockquote {
+  margin: 0;
+  padding: 0.75rem 1.1rem;
+  border-left: 3px solid var(--akashic-gold);
+  background: var(--akashic-parchment);
+  border-radius: 0 4px 4px 0;
+  font-style: italic;
+  color: var(--dust);
+}
+
+.akashic-content blockquote p {
+  color: inherit;
+}
+
+/* Code blocks */
+.akashic-content pre {
+  background: var(--void-surface);
+  border: 1px solid var(--void-border);
+  border-radius: 6px;
+  padding: 1rem 1.25rem;
+  overflow-x: auto;
+}
+
+.akashic-content pre code {
+  font-family: var(--font-mono);
+  font-size: var(--text-sm, 0.875rem);
+  color: var(--star-white);
+  background: none;
+  padding: 0;
+  border: none;
+  border-radius: 0;
+}
+
+/* Inline code */
+.akashic-content code {
+  font-family: var(--font-mono);
+  font-size: 0.85em;
+  color: var(--akashic-gold);
+  background: var(--akashic-parchment);
+  border: 1px solid var(--akashic-ink);
+  border-radius: 3px;
+  padding: 0.1em 0.35em;
+}
+
+/* Horizontal rule */
+.akashic-content hr {
+  border: none;
+  border-top: 1px solid var(--void-border);
+  margin: 2em 0;
+}
+
+/* Strong / emphasis */
+.akashic-content strong {
+  color: var(--star-white);
+  font-weight: 700;
+}
+
+.akashic-content em {
+  color: var(--dust);
+  font-style: italic;
+}
+
+
+/* =============================================================================
+   13. LOADING & EMPTY STATES
+   ============================================================================= */
+
+.akashic-loading,
+.akashic-empty {
+  font-family: var(--font-body);
+  font-style: italic;
+  color: var(--dust);
+  text-align: center;
+  padding: 3rem 1rem;
+  opacity: 0.7;
+}
+
+@keyframes akashic-pulse {
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 0.7; }
+}
+
+.akashic-loading {
+  animation: akashic-pulse 1.5s ease-in-out infinite;
+}
+
+.akashic-loading::before {
+  content: '... ';
+  letter-spacing: 0.3em;
+}
+
+
+/* =============================================================================
+   14. MOBILE RESPONSIVENESS
+   ============================================================================= */
+
+@media (max-width: 600px) {
+  .akashic-card-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .akashic-stats {
+    gap: 0.75rem;
+    padding: 0.75rem 1rem;
+  }
+
+  .akashic-stats__divider {
+    display: none;
+  }
+
+  .akashic-entry-header {
+    flex-direction: column;
+    gap: 0.5rem;
+    padding: 1rem;
+  }
+
+  .akashic-entry-header h3 {
+    font-size: var(--text-lg, 1.15rem);
+  }
+
+  .akashic-tier-label {
+    font-size: 0.6rem;
+  }
+
+  .akashic-content {
+    padding: 1rem;
+  }
+
+  .akashic-redacted {
+    margin: 0.5rem 1rem 0.75rem;
+  }
+
+  .akashic-card {
+    padding: 1.25rem;
+  }
+
+  .akashic-teaser {
+    padding: 2.5rem 1.25rem 2rem;
+  }
+
+  .akashic-teaser__preview {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.5rem;
+  }
+
+  .akashic-teaser__preview .akashic-card {
+    padding: 0.75rem;
+  }
+
+  .akashic-content table {
+    display: block;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+}
+
+@media (max-width: 380px) {
+  .akashic-teaser__preview {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* =============================================================================
+   15. LOCKED / UNDISCOVERED ENTRIES
+   ============================================================================= */
+
+.akashic-entry-locked {
+  opacity: 0.45;
+  filter: saturate(0.3);
+  transition: opacity 0.3s ease, filter 0.3s ease, transform 0.4s ease;
+}
+
+.akashic-entry-locked:hover {
+  opacity: 0.6;
+  filter: saturate(0.5);
+}
+
+.akashic-entry-locked .akashic-entry-header--locked {
+  cursor: default;
+  background: linear-gradient(135deg, var(--akashic-redacted), transparent);
+}
+
+.akashic-entry-locked .akashic-entry-header--locked h3 {
+  color: var(--dust);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.akashic-silhouette-icon {
+  font-size: 0.8em;
+  opacity: 0.5;
+  filter: grayscale(1);
+}
+
+.akashic-entry-locked .akashic-redacted {
+  border-top: 1px solid var(--void-border);
+}
+
+
+/* =============================================================================
+   16. ORIGIN TAG
+   ============================================================================= */
+
+.akashic-origin-tag {
+  display: inline-flex;
+  align-items: center;
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--akashic-gold-dim);
+  background: var(--akashic-parchment);
+  border: 1px solid var(--akashic-ink);
+  border-radius: 100px;
+  padding: 0.15rem 0.55rem;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.akashic-entry-locked .akashic-origin-tag {
+  color: var(--dust);
+  background: var(--akashic-redacted);
+  border-color: rgba(138, 134, 148, 0.15);
+}
+
+.akashic-header-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+
+/* =============================================================================
+   17. SEARCH / FILTER BAR
+   ============================================================================= */
+
+.akashic-search {
+  margin-bottom: 1.5rem;
+  position: relative;
+}
+
+.akashic-search__input {
+  width: 100%;
+  padding: 0.75rem 1rem 0.75rem 2.5rem;
+  background: var(--void-elevated);
+  border: 1px solid var(--void-border);
+  border-radius: 8px;
+  color: var(--star-white);
+  font-family: var(--font-body);
+  font-size: var(--text-base, 1rem);
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  box-sizing: border-box;
+}
+
+.akashic-search__input::placeholder {
+  color: var(--dust);
+  opacity: 0.6;
+}
+
+.akashic-search__input:focus {
+  border-color: var(--akashic-gold);
+  box-shadow: 0 0 0 2px rgba(201, 168, 76, 0.15);
+}
+
+.akashic-search::before {
+  content: '\1F50D';
+  position: absolute;
+  left: 0.85rem;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 0.9rem;
+  opacity: 0.4;
+  pointer-events: none;
+  z-index: 1;
+}
+
+
+/* =============================================================================
+   18. MOBILE — NEW COMPONENTS
+   ============================================================================= */
+
+@media (max-width: 600px) {
+  .akashic-search__input {
+    font-size: var(--text-sm, 0.875rem);
+    padding: 0.6rem 0.75rem 0.6rem 2.25rem;
+  }
+
+  .akashic-origin-tag {
+    font-size: 0.55rem;
+  }
+
+  .akashic-header-meta {
+    gap: 0.3rem;
+  }
+}

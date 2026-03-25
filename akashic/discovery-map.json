@@ -1,0 +1,357 @@
+{
+  "species/norn": {
+    "tier0": ["species:norn:encountered"],
+    "tier1": ["species:norn:behavior:5"],
+    "tier2": ["species:norn:culture:*"],
+    "tier3": ["species:norn:genetics:examined", "species:norn:language:learned", "civilization:urd-prime:texts_read"],
+    "livingTradition": false
+  },
+  "species/grendel": {
+    "tier0": ["species:grendel:encountered"],
+    "tier1": ["species:grendel:behavior:5"],
+    "tier2": ["species:grendel:culture:*"],
+    "tier3": ["species:grendel:genetics:examined", "species:grendel:language:learned", "civilization:urd-prime:texts_read"],
+    "livingTradition": false
+  },
+  "species/ettin": {
+    "tier0": ["species:ettin:encountered"],
+    "tier1": ["species:ettin:behavior:5"],
+    "tier2": ["species:ettin:culture:*"],
+    "tier3": ["species:ettin:genetics:examined", "species:ettin:language:learned", "civilization:urd-prime:texts_read"],
+    "livingTradition": false
+  },
+  "species/shee": {
+    "tier0": ["species:shee:encountered"],
+    "tier1": ["species:shee:behavior:5"],
+    "tier2": ["species:shee:culture:*"],
+    "tier3": ["species:shee:genetics:examined", "species:shee:language:learned", "civilization:urd-prime:texts_read"],
+    "livingTradition": false
+  },
+  "species/mycon": {
+    "tier0": ["species:mycon:encountered"],
+    "tier1": ["species:mycon:behavior:5"],
+    "tier2": ["species:mycon:culture:*"],
+    "tier3": ["species:mycon:genetics:examined", "species:mycon:language:learned", "civilization:urd-prime:texts_read"],
+    "livingTradition": false
+  },
+  "species/venthari": {
+    "tier0": ["species:venthari:encountered"],
+    "tier1": ["species:venthari:behavior:5"],
+    "tier2": ["species:venthari:culture:*"],
+    "tier3": ["species:venthari:folklore:heard", "species:venthari:language:learned", "species:venthari:genetics:examined"],
+    "livingTradition": false,
+    "folkloreTradition": "Algonquian/Windigo — fictional reimagining, handle sensitively"
+  },
+  "species/tikbali": {
+    "tier0": ["species:tikbali:encountered"],
+    "tier1": ["species:tikbali:behavior:5"],
+    "tier2": ["species:tikbali:culture:*"],
+    "tier3": ["species:tikbali:folklore:heard", "species:tikbali:language:learned", "species:tikbali:genetics:examined"],
+    "livingTradition": false,
+    "folkloreTradition": "Filipino/Tikbalang"
+  },
+  "species/ahuizari": {
+    "tier0": ["species:ahuizari:encountered"],
+    "tier1": ["species:ahuizari:behavior:5"],
+    "tier2": ["species:ahuizari:culture:*"],
+    "tier3": ["species:ahuizari:folklore:heard", "species:ahuizari:language:learned", "species:ahuizari:genetics:examined"],
+    "livingTradition": false,
+    "folkloreTradition": "Aztec/Ahuizotl"
+  },
+  "species/adzefire": {
+    "tier0": ["species:adzefire:encountered"],
+    "tier1": ["species:adzefire:behavior:5"],
+    "tier2": ["species:adzefire:culture:*"],
+    "tier3": ["species:adzefire:folklore:heard", "species:adzefire:language:learned", "species:adzefire:genetics:examined"],
+    "livingTradition": false,
+    "folkloreTradition": "Ewe/Adze"
+  },
+  "species/cher-khan": {
+    "tier0": ["species:cher-khan:encountered"],
+    "tier1": ["species:cher-khan:behavior:5"],
+    "tier2": ["species:cher-khan:culture:*"],
+    "tier3": ["species:cher-khan:folklore:heard", "species:cher-khan:language:learned", "species:cher-khan:genetics:examined"],
+    "livingTradition": false,
+    "folkloreTradition": "Tungusic/Sher-Khan"
+  },
+  "species/nyk": {
+    "tier0": ["species:nyk:encountered"],
+    "tier1": ["species:nyk:behavior:5"],
+    "tier2": ["species:nyk:culture:*"],
+    "tier3": ["species:nyk:folklore:heard", "species:nyk:language:learned", "species:nyk:genetics:examined"],
+    "livingTradition": false,
+    "folkloreTradition": "Algonquian/Puckwudgie"
+  },
+  "species/rusalyn": {
+    "tier0": ["species:rusalyn:encountered"],
+    "tier1": ["species:rusalyn:behavior:5"],
+    "tier2": ["species:rusalyn:culture:*"],
+    "tier3": ["species:rusalyn:folklore:heard", "species:rusalyn:language:learned", "species:rusalyn:genetics:examined"],
+    "livingTradition": false,
+    "folkloreTradition": "Slavic/Rusalka"
+  },
+  "species/auki-vel": {
+    "tier0": ["species:auki-vel:encountered"],
+    "tier1": ["species:auki-vel:behavior:5"],
+    "tier2": ["species:auki-vel:culture:*"],
+    "tier3": ["species:auki-vel:folklore:heard", "species:auki-vel:art:seen", "species:auki-vel:language:learned"],
+    "livingTradition": true,
+    "folkloreTradition": "Quechua/Auki"
+  },
+  "species/patupaiarehe": {
+    "tier0": ["species:patupaiarehe:encountered"],
+    "tier1": ["species:patupaiarehe:behavior:5"],
+    "tier2": ["species:patupaiarehe:culture:*"],
+    "tier3": ["species:patupaiarehe:folklore:heard", "species:patupaiarehe:art:seen", "species:patupaiarehe:language:learned"],
+    "livingTradition": false,
+    "folkloreTradition": "Māori — handle sensitively"
+  },
+  "species/duppy": {
+    "tier0": ["species:duppy:encountered"],
+    "tier1": ["species:duppy:behavior:5"],
+    "tier2": ["species:duppy:culture:*"],
+    "tier3": ["species:duppy:folklore:heard", "species:duppy:language:learned", "species:duppy:genetics:examined"],
+    "livingTradition": false,
+    "folkloreTradition": "Akan/Caribbean"
+  },
+  "species/nommo": {
+    "tier0": ["species:nommo:encountered"],
+    "tier1": ["species:nommo:behavior:5"],
+    "tier2": ["species:nommo:culture:*"],
+    "tier3": ["species:nommo:folklore:heard", "species:nommo:language:learned", "civilization:nommo:texts_read"],
+    "livingTradition": false,
+    "folkloreTradition": "Dogon/Nommo"
+  },
+  "species/baku-ma": {
+    "tier0": ["species:baku-ma:encountered"],
+    "tier1": ["species:baku-ma:behavior:5"],
+    "tier2": ["species:baku-ma:culture:*"],
+    "tier3": ["species:baku-ma:folklore:heard", "species:baku-ma:language:learned", "species:baku-ma:art:seen"],
+    "livingTradition": false,
+    "folkloreTradition": "Japanese/Baku"
+  },
+  "species/kelpathi": {
+    "tier0": ["species:kelpathi:encountered"],
+    "tier1": ["species:kelpathi:behavior:5"],
+    "tier2": ["species:kelpathi:culture:*"],
+    "tier3": ["species:kelpathi:folklore:heard", "species:kelpathi:language:learned", "species:kelpathi:genetics:examined"],
+    "livingTradition": false,
+    "folkloreTradition": "Celtic/Kelpie"
+  },
+  "species/jorokan": {
+    "tier0": ["species:jorokan:encountered"],
+    "tier1": ["species:jorokan:behavior:5"],
+    "tier2": ["species:jorokan:culture:*"],
+    "tier3": ["species:jorokan:folklore:heard", "species:jorokan:language:learned", "species:jorokan:art:seen"],
+    "livingTradition": false,
+    "folkloreTradition": "Japanese/Jorōgumo"
+  },
+  "species/egungun-kin": {
+    "tier0": ["species:egungun-kin:encountered"],
+    "tier1": ["species:egungun-kin:behavior:5"],
+    "tier2": ["species:egungun-kin:culture:*"],
+    "tier3": ["species:egungun-kin:folklore:heard", "species:egungun-kin:art:seen", "species:egungun-kin:language:learned"],
+    "livingTradition": true,
+    "folkloreTradition": "Yoruba/Egúngún"
+  },
+  "species/selkie-born": {
+    "tier0": ["species:selkie-born:encountered"],
+    "tier1": ["species:selkie-born:behavior:5"],
+    "tier2": ["species:selkie-born:culture:*"],
+    "tier3": ["species:selkie-born:folklore:heard", "species:selkie-born:language:learned", "species:selkie-born:genetics:examined"],
+    "livingTradition": false,
+    "folkloreTradition": "Celtic/Selkie"
+  },
+  "species/kitsuri": {
+    "tier0": ["species:kitsuri:encountered"],
+    "tier1": ["species:kitsuri:behavior:5"],
+    "tier2": ["species:kitsuri:culture:*"],
+    "tier3": ["species:kitsuri:folklore:heard", "species:kitsuri:language:learned", "species:kitsuri:art:seen"],
+    "livingTradition": false,
+    "folkloreTradition": "Japanese/Kitsune"
+  },
+  "species/vaask": {
+    "tier0": ["species:vaask:encountered"],
+    "tier1": ["species:vaask:behavior:5"],
+    "tier2": ["species:vaask:culture:*"],
+    "tier3": ["species:vaask:folklore:heard", "species:vaask:language:learned", "species:vaask:genetics:examined"],
+    "livingTradition": false,
+    "folkloreTradition": "Norse/Draugr-adjacent"
+  },
+  "species/anansi-web": {
+    "tier0": ["species:anansi-web:encountered"],
+    "tier1": ["species:anansi-web:behavior:5"],
+    "tier2": ["species:anansi-web:culture:*"],
+    "tier3": ["species:anansi-web:folklore:heard", "species:anansi-web:art:seen", "species:anansi-web:language:learned"],
+    "livingTradition": true,
+    "folkloreTradition": "Akan/Anansi"
+  },
+  "species/mimikin": {
+    "tier0": ["species:mimikin:encountered"],
+    "tier1": ["species:mimikin:behavior:5"],
+    "tier2": ["species:mimikin:culture:*"],
+    "tier3": ["species:mimikin:folklore:heard", "species:mimikin:art:seen", "species:mimikin:language:learned"],
+    "livingTradition": true,
+    "folkloreTradition": "Aboriginal/Mimi"
+  },
+  "species/tengu-ra": {
+    "tier0": ["species:tengu-ra:encountered"],
+    "tier1": ["species:tengu-ra:behavior:5"],
+    "tier2": ["species:tengu-ra:culture:*"],
+    "tier3": ["species:tengu-ra:folklore:heard", "species:tengu-ra:language:learned", "species:tengu-ra:art:seen"],
+    "livingTradition": false,
+    "folkloreTradition": "Japanese/Tengu"
+  },
+  "species/naga-vel": {
+    "tier0": ["species:naga-vel:encountered"],
+    "tier1": ["species:naga-vel:behavior:5"],
+    "tier2": ["species:naga-vel:culture:*"],
+    "tier3": ["species:naga-vel:folklore:heard", "species:naga-vel:art:seen", "species:naga-vel:language:learned"],
+    "livingTradition": true,
+    "folkloreTradition": "Hindu-Buddhist/Nāga"
+  },
+  "species/garuda-vel": {
+    "tier0": ["species:garuda-vel:encountered"],
+    "tier1": ["species:garuda-vel:behavior:5"],
+    "tier2": ["species:garuda-vel:culture:*"],
+    "tier3": ["species:garuda-vel:folklore:heard", "species:garuda-vel:language:learned", "species:garuda-vel:art:seen"],
+    "livingTradition": false,
+    "folkloreTradition": "Hindu-Buddhist/Garuda"
+  },
+  "species/quetzali": {
+    "tier0": ["species:quetzali:encountered"],
+    "tier1": ["species:quetzali:behavior:5"],
+    "tier2": ["species:quetzali:culture:*"],
+    "tier3": ["species:quetzali:folklore:heard", "species:quetzali:language:learned", "civilization:quetzali:texts_read"],
+    "livingTradition": false,
+    "folkloreTradition": "Mesoamerican/Quetzalcoatl"
+  },
+  "species/djinnahl": {
+    "tier0": ["species:djinnahl:encountered"],
+    "tier1": ["species:djinnahl:behavior:5"],
+    "tier2": ["species:djinnahl:culture:*"],
+    "tier3": ["species:djinnahl:folklore:heard", "species:djinnahl:language:learned", "species:djinnahl:art:seen"],
+    "livingTradition": false,
+    "folkloreTradition": "Islamic/Djinn"
+  },
+  "species/peri-veil": {
+    "tier0": ["species:peri-veil:encountered"],
+    "tier1": ["species:peri-veil:behavior:5"],
+    "tier2": ["species:peri-veil:culture:*"],
+    "tier3": ["species:peri-veil:folklore:heard", "species:peri-veil:language:learned", "species:peri-veil:art:seen"],
+    "livingTradition": false,
+    "folkloreTradition": "Persian/Peri"
+  },
+  "species/raksha": {
+    "tier0": ["species:raksha:encountered"],
+    "tier1": ["species:raksha:behavior:5"],
+    "tier2": ["species:raksha:culture:*"],
+    "tier3": ["species:raksha:folklore:heard", "species:raksha:language:learned", "species:raksha:genetics:examined"],
+    "livingTradition": false,
+    "folkloreTradition": "Hindu/Rakshasa"
+  },
+  "species/leshyn": {
+    "tier0": ["species:leshyn:encountered"],
+    "tier1": ["species:leshyn:behavior:5"],
+    "tier2": ["species:leshyn:culture:*"],
+    "tier3": ["species:leshyn:folklore:heard", "species:leshyn:language:learned", "species:leshyn:genetics:examined"],
+    "livingTradition": false,
+    "folkloreTradition": "Slavic/Leshy"
+  },
+  "species/lauma-gale": {
+    "tier0": ["species:lauma-gale:encountered"],
+    "tier1": ["species:lauma-gale:behavior:5"],
+    "tier2": ["species:lauma-gale:culture:*"],
+    "tier3": ["species:lauma-gale:folklore:heard", "species:lauma-gale:art:seen", "species:lauma-gale:language:learned"],
+    "livingTradition": true,
+    "folkloreTradition": "Baltic/Lauma"
+  },
+  "species/dokkaebi-rin": {
+    "tier0": ["species:dokkaebi-rin:encountered"],
+    "tier1": ["species:dokkaebi-rin:behavior:5"],
+    "tier2": ["species:dokkaebi-rin:culture:*"],
+    "tier3": ["species:dokkaebi-rin:folklore:heard", "species:dokkaebi-rin:language:learned", "species:dokkaebi-rin:art:seen"],
+    "livingTradition": false,
+    "folkloreTradition": "Korean/Dokkaebi"
+  },
+  "species/taniwha": {
+    "tier0": ["species:taniwha:encountered"],
+    "tier1": ["species:taniwha:behavior:5"],
+    "tier2": ["species:taniwha:culture:*"],
+    "tier3": ["species:taniwha:folklore:heard", "species:taniwha:art:seen", "species:taniwha:language:learned"],
+    "livingTradition": false,
+    "folkloreTradition": "Māori/Taniwha — handle sensitively"
+  },
+  "species/piasari": {
+    "tier0": ["species:piasari:encountered"],
+    "tier1": ["species:piasari:behavior:5"],
+    "tier2": ["species:piasari:culture:*"],
+    "tier3": ["species:piasari:folklore:heard", "species:piasari:language:learned", "species:piasari:genetics:examined"],
+    "livingTradition": false,
+    "folkloreTradition": "Algonquian/Piasa"
+  },
+  "species/curupali": {
+    "tier0": ["species:curupali:encountered"],
+    "tier1": ["species:curupali:behavior:5"],
+    "tier2": ["species:curupali:culture:*"],
+    "tier3": ["species:curupali:folklore:heard", "species:curupali:language:learned", "species:curupali:genetics:examined"],
+    "livingTradition": false,
+    "folkloreTradition": "Guaraní/Curupira"
+  },
+  "species/huldryn": {
+    "tier0": ["species:huldryn:encountered"],
+    "tier1": ["species:huldryn:behavior:5"],
+    "tier2": ["species:huldryn:culture:*"],
+    "tier3": ["species:huldryn:folklore:heard", "species:huldryn:language:learned", "species:huldryn:genetics:examined"],
+    "livingTradition": false,
+    "folkloreTradition": "Norse/Hulder"
+  },
+  "species/draugrn": {
+    "tier0": ["species:draugrn:encountered"],
+    "tier1": ["species:draugrn:behavior:5"],
+    "tier2": ["species:draugrn:culture:*"],
+    "tier3": ["species:draugrn:folklore:heard", "species:draugrn:language:learned", "species:draugrn:genetics:examined"],
+    "livingTradition": false,
+    "folkloreTradition": "Norse/Draugr"
+  },
+  "species/aswali": {
+    "tier0": ["species:aswali:encountered"],
+    "tier1": ["species:aswali:behavior:5"],
+    "tier2": ["species:aswali:culture:*"],
+    "tier3": ["species:aswali:folklore:heard", "species:aswali:language:learned", "species:aswali:genetics:examined"],
+    "livingTradition": false,
+    "folkloreTradition": "African/Asanbosam"
+  },
+  "species/zar-vel": {
+    "tier0": ["species:zar-vel:encountered"],
+    "tier1": ["species:zar-vel:behavior:5"],
+    "tier2": ["species:zar-vel:culture:*"],
+    "tier3": ["species:zar-vel:folklore:heard", "species:zar-vel:art:seen", "species:zar-vel:language:learned"],
+    "livingTradition": true,
+    "folkloreTradition": "Ethiopian/Zar"
+  },
+  "biome/crystal-cavern": {
+    "tier0": ["biome:crystal-cavern:encountered"],
+    "tier1": ["biome:crystal-cavern:behavior:5"],
+    "tier2": ["biome:crystal-cavern:culture:*"],
+    "tier3": ["biome:crystal-cavern:genetics:examined", "biome:crystal-cavern:language:learned", "civilization:crystal-cavern:texts_read"]
+  },
+  "biome/deep-ocean": {
+    "tier0": ["biome:deep-ocean:encountered"],
+    "tier1": ["biome:deep-ocean:behavior:5"],
+    "tier2": ["biome:deep-ocean:culture:*"],
+    "tier3": ["biome:deep-ocean:genetics:examined", "biome:deep-ocean:language:learned", "civilization:deep-ocean:texts_read"]
+  },
+  "biome/volcanic": {
+    "tier0": ["biome:volcanic:encountered"],
+    "tier1": ["biome:volcanic:behavior:5"],
+    "tier2": ["biome:volcanic:culture:*"],
+    "tier3": ["biome:volcanic:genetics:examined", "biome:volcanic:language:learned", "civilization:volcanic:texts_read"]
+  },
+  "biome/enchanted-forest": {
+    "tier0": ["biome:enchanted-forest:encountered"],
+    "tier1": ["biome:enchanted-forest:behavior:5"],
+    "tier2": ["biome:enchanted-forest:culture:*"],
+    "tier3": ["biome:enchanted-forest:genetics:examined", "biome:enchanted-forest:language:learned", "civilization:enchanted-forest:texts_read"]
+  }
+}
