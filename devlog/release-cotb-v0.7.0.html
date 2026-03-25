@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cultures of the Belt v0.7.0 — Sounds of the Belt — Multiverse Studios Devlog</title>
+  <meta name="description" content="Cultures of the Belt v0.7.0: Audio feedback, minimap overhaul, and save/load reliability.">
+  <meta property="og:title" content="Cultures of the Belt v0.7.0 — Sounds of the Belt">
+  <meta property="og:description" content="Mining clinks, threat sirens, a real minimap, and saves that actually work. The belt is coming alive.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://multiversestudios.xyz/devlog/release-cotb-v0.7.0.html">
+  <meta property="og:image" content="https://multiversestudios.xyz/screenshots/homepage-hero.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Cultures of the Belt v0.7.0 — Sounds of the Belt">
+  <meta name="twitter:description" content="Mining clinks, threat sirens, a real minimap, and saves that actually work. The belt is coming alive.">
+  <meta name="twitter:image" content="https://multiversestudios.xyz/screenshots/homepage-hero.png">
+  <link rel="stylesheet" href="../styles.css">
+  <link rel="icon" type="image/svg+xml" href="../press-kit/logos/multiverse-studios-favicon.svg">
+  <style>
+    .devlog-body {
+      max-width: 680px;
+      margin: 0 auto;
+    }
+    .devlog-body h1 {
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      line-height: 1.2;
+      margin-bottom: var(--space-sm);
+      color: var(--star-white);
+    }
+    .devlog-body .byline {
+      font-size: 0.8rem;
+      color: var(--dust);
+      font-family: var(--font-mono);
+      letter-spacing: 0.05em;
+      margin-bottom: var(--space-xl);
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+    .devlog-body .byline .tag {
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.2rem 0.6rem;
+      border-radius: 4px;
+      border: 1px solid var(--biolume);
+      color: var(--biolume);
+    }
+    .devlog-body p {
+      color: var(--dust-light);
+      line-height: 1.8;
+      font-size: 1.05rem;
+      margin-bottom: var(--space-md);
+    }
+    .devlog-body h2 {
+      font-size: 1.3rem;
+      color: var(--star-white);
+      margin: var(--space-xl) 0 var(--space-sm) 0;
+    }
+    .devlog-body .pullout {
+      border-left: 3px solid var(--biolume);
+      padding: var(--space-sm) var(--space-md);
+      margin: var(--space-lg) 0;
+      color: var(--star-white);
+      font-style: italic;
+      font-size: 1.1rem;
+      line-height: 1.7;
+      background: rgba(0, 255, 200, 0.04);
+    }
+    .devlog-body .divider {
+      border: none;
+      border-top: 1px solid rgba(255,255,255,0.07);
+      margin: var(--space-xl) 0;
+    }
+    .cta-bar {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 12px;
+      padding: var(--space-lg);
+      margin: var(--space-xl) 0;
+      text-align: center;
+    }
+    .cta-bar p {
+      font-size: 0.95rem;
+      margin-bottom: var(--space-md);
+    }
+    .cta-bar .btn-row {
+      display: flex;
+      gap: var(--space-sm);
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .devlog-footer {
+      font-size: 0.8rem;
+      color: var(--dust);
+      border-top: 1px solid rgba(255,255,255,0.07);
+      padding-top: var(--space-md);
+      margin-top: var(--space-xl);
+      font-family: var(--font-mono);
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="nav">
+    <a href="../index.html" class="nav-logo">✦ Multiverse Studios</a>
+    <div class="nav-links">
+      <a href="../devlog.html">← Devlog</a>
+      <a href="../mvee.html">MVEE</a>
+      <a href="../precursors.html">Precursors</a>
+    </div>
+  </nav>
+
+  <main class="container" style="padding-top: var(--space-xl);">
+    <div class="devlog-body">
+
+      <div class="byline">
+        <span>March 24, 2026</span>
+        <span class="tag">CotB v0.7.0</span>
+      </div>
+
+      <h1>Sounds of the Belt</h1>
+
+      <p>Three releases in one day. v0.5.0 fixed scale. v0.6.0 added comfort. v0.7.0 brings the belt to life with sound, situational awareness, and saves you can trust.</p>
+
+      <hr class="divider">
+
+      <h2>Audio feedback</h2>
+
+      <p>Every action now has a voice. Mining strikes clink against rock. Buildings chime when they complete. Robot deployments hum. Threat alerts cut through with urgency. These aren't ambient loops — they're responses to what you're doing, when you're doing it. The belt was too quiet before. Not anymore.</p>
+
+      <h2>Minimap overhaul</h2>
+
+      <p>The old minimap was a placeholder rectangle. The new one shows asteroid positions as dots scaled by size, threat zones in red, and your base territory outlined. Click anywhere on it to jump the camera there. When you're managing a belt that spans millions of kilometers, you need a map that actually helps.</p>
+
+      <div class="pullout">
+        Sound and spatial awareness — two things that turn a simulation into something you feel. This is the version where the belt starts talking back.
+      </div>
+
+      <h2>Save/load reliability</h2>
+
+      <p>A nasty bug was silently corrupting asteroid orbit data on save. Load a game, and orbital positions would drift from where they should be. Fixed — orbital elements (semi-major axis, eccentricity, phase) now round-trip cleanly, with integration tests to keep it that way.</p>
+
+      <div class="cta-bar">
+        <p>Cultures of the Belt is free to play. Pay what you can if you like what you find in the rocks.</p>
+        <div class="btn-row">
+          <a href="https://play.multiversestudios.xyz/cultures-of-the-belt/" class="btn btn-primary">Play Cultures of the Belt</a>
+          <a href="../devlog.html" class="btn btn-ghost">More devlogs</a>
+        </div>
+      </div>
+
+      <div class="devlog-footer">
+        Multiverse Studios — <em>March 24, 2026</em> · Cultures of the Belt v0.7.0 release notes
+      </div>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <p>Multiverse Studios · <a href="../index.html">Home</a> · <a href="../devlog.html">Devlog</a> · <a href="../community.html">Community</a> · <a href="../press.html">Press</a></p>
+      <p style="margin-top: 0.5rem; color: var(--dust); font-size: 0.8rem;">Open source. Pay what you can. Built by AI agents and one <a href="https://lizthe.dev" target="_blank" rel="noopener">human director</a>.</p>
+    </div>
+  </footer>
+
+<script defer src="https://analytics.themultiverse.school/script.js" data-website-id="38d680a7-28d1-42fd-9fd5-a66702675b88"></script>
+</body>
+</html>
