@@ -4,68 +4,36 @@
     "norn": {
       "display": "SheeScript (Nornish)",
       "voices": [
-        "anant",
-        "anika",
-        "chaouki",
-        "ghizlane",
-        "krishna",
         "laloosh",
-        "meisam",
-        "samisha",
-        "sara",
-        "srikant"
+        "meisam"
       ],
       "words": {
         "sha": {
-          "ipa": "/\u0283\u0251/",
+          "ipa": "/ʃɑ/",
           "meaning": "always implies awareness of others",
           "files": {
-            "alice": "norn/accented/alice/sha.ogg",
-            "bill": "norn/accented/bill/sha.ogg",
-            "callum": "norn/accented/callum/sha.ogg",
-            "charlie": "norn/accented/charlie/sha.ogg",
-            "daniel": "norn/accented/daniel/sha.ogg",
-            "george": "norn/accented/george/sha.ogg",
-            "jessica": "norn/accented/jessica/sha.ogg",
-            "laura": "norn/accented/laura/sha.ogg",
-            "lily": "norn/accented/lily/sha.ogg",
-            "sarah": "norn/accented/sarah/sha.ogg"
+            "laloosh": "norn/laloosh/sha.ogg",
+            "meisam": "norn/meisam/sha.ogg"
           }
         },
         "shael": {
-          "ipa": "/\u0283\u0251\u025bl/",
+          "ipa": "/ʃɑɛl/",
           "meaning": "all present, including listener",
           "files": {
-            "alice": "norn/accented/alice/shael.ogg",
-            "bill": "norn/accented/bill/shael.ogg",
-            "callum": "norn/accented/callum/shael.ogg",
-            "charlie": "norn/accented/charlie/shael.ogg",
-            "daniel": "norn/accented/daniel/shael.ogg",
-            "george": "norn/accented/george/shael.ogg",
-            "jessica": "norn/accented/jessica/shael.ogg",
-            "laura": "norn/accented/laura/shael.ogg",
-            "lily": "norn/accented/lily/shael.ogg",
-            "sarah": "norn/accented/sarah/shael.ogg"
+            "laloosh": "norn/laloosh/shael.ogg",
+            "meisam": "norn/meisam/shael.ogg"
           }
         },
         "shakel": {
-          "ipa": "/\u0283\u0251k\u025bl/",
+          "ipa": "/ʃɑkɛl/",
           "meaning": "my group, not yours",
           "files": {
-            "alice": "norn/accented/alice/shakel.ogg",
-            "bill": "norn/accented/bill/shakel.ogg",
-            "callum": "norn/accented/callum/shakel.ogg",
-            "charlie": "norn/accented/charlie/shakel.ogg",
-            "daniel": "norn/accented/daniel/shakel.ogg",
-            "george": "norn/accented/george/shakel.ogg",
-            "jessica": "norn/accented/jessica/shakel.ogg",
-            "laura": "norn/accented/laura/shakel.ogg",
-            "lily": "norn/accented/lily/shakel.ogg",
-            "sarah": "norn/accented/sarah/shakel.ogg"
+            "laloosh": "norn/laloosh/shakel.ogg",
+            "meisam": "norn/meisam/shakel.ogg"
           }
         },
         "tho": {
-          "ipa": "/\u03b8\u0254/",
+          "ipa": "/θɔ/",
           "meaning": "warm, intimate",
           "files": {
             "alice": "norn/accented/alice/tho.ogg",
@@ -81,7 +49,7 @@
           }
         },
         "thoel": {
-          "ipa": "/\u03b8\u0254\u025bl/",
+          "ipa": "/θɔɛl/",
           "meaning": "group address",
           "files": {
             "alice": "norn/accented/alice/thoel.ogg",
@@ -97,7 +65,7 @@
           }
         },
         "esh": {
-          "ipa": "/\u025b\u0283/",
+          "ipa": "/ɛʃ/",
           "meaning": "neutral third person",
           "files": {
             "alice": "norn/accented/alice/esh.ogg",
@@ -113,7 +81,7 @@
           }
         },
         "eshel": {
-          "ipa": "/\u025b\u0283\u025bl/",
+          "ipa": "/ɛʃɛl/",
           "meaning": "",
           "files": {
             "alice": "norn/accented/alice/eshel.ogg",
@@ -129,7 +97,7 @@
           }
         },
         "ain": {
-          "ipa": "/a\u026an/",
+          "ipa": "/aɪn/",
           "meaning": "indefinite",
           "files": {
             "alice": "norn/accented/alice/ain.ogg",
@@ -145,7 +113,7 @@
           }
         },
         "vesh": {
-          "ipa": "/v\u025b\u0283/",
+          "ipa": "/vɛʃ/",
           "meaning": "for non-sapient life",
           "files": {
             "alice": "norn/accented/alice/vesh.ogg",
@@ -161,7 +129,7 @@
           }
         },
         "resh": {
-          "ipa": "/\u0279\u025b\u0283/",
+          "ipa": "/ɹɛʃ/",
           "meaning": "for objects, places",
           "files": {
             "alice": "norn/accented/alice/resh.ogg",
@@ -177,7 +145,7 @@
           }
         },
         "vel": {
-          "ipa": "/v\u025bl/",
+          "ipa": "/vɛl/",
           "meaning": "the-given-gift, inheritance, love-as-legacy",
           "files": {
             "alice": "norn/accented/alice/vel.ogg",
@@ -193,7 +161,7 @@
           }
         },
         "orn": {
-          "ipa": "/\u0254\u0279n/",
+          "ipa": "/ɔɹn/",
           "meaning": "memory, what is carried forward",
           "files": {
             "alice": "norn/accented/alice/orn.ogg",
@@ -209,7 +177,7 @@
           }
         },
         "thi": {
-          "ipa": "/\u03b8i\u02d0/",
+          "ipa": "/θiː/",
           "meaning": "eighth, the number of this attempt",
           "files": {
             "alice": "norn/accented/alice/thi.ogg",
@@ -225,7 +193,7 @@
           }
         },
         "keth": {
-          "ipa": "/k\u025b\u03b8/",
+          "ipa": "/kɛθ/",
           "meaning": "before, ancestral, what came prior",
           "files": {
             "alice": "norn/accented/alice/keth.ogg",
@@ -241,7 +209,7 @@
           }
         },
         "mir": {
-          "ipa": "/mi\u02d0\u0279/",
+          "ipa": "/miːɹ/",
           "meaning": "to feel-through, emotional processing",
           "files": {
             "alice": "norn/accented/alice/mir.ogg",
@@ -257,7 +225,7 @@
           }
         },
         "kel": {
-          "ipa": "/k\u025bl/",
+          "ipa": "/kɛl/",
           "meaning": "a consciousness unit, one soul",
           "files": {
             "alice": "norn/accented/alice/kel.ogg",
@@ -273,7 +241,7 @@
           }
         },
         "oth": {
-          "ipa": "/\u0254\u03b8/",
+          "ipa": "/ɔθ/",
           "meaning": "depth, ancient, the bottom of time",
           "files": {
             "alice": "norn/accented/alice/oth.ogg",
@@ -289,7 +257,7 @@
           }
         },
         "kelmir": {
-          "ipa": "/k\u025bl.mi\u02d0\u0279/",
+          "ipa": "/kɛl.miːɹ/",
           "meaning": "the feeling of one soul for another",
           "files": {
             "alice": "norn/accented/alice/kelmir.ogg",
@@ -305,7 +273,7 @@
           }
         },
         "lum": {
-          "ipa": "/lu\u02d0m/",
+          "ipa": "/luːm/",
           "meaning": "warmth, comfort, safety",
           "files": {
             "alice": "norn/accented/alice/lum.ogg",
@@ -321,7 +289,7 @@
           }
         },
         "vai": {
-          "ipa": "/va\u026a/",
+          "ipa": "/vaɪ/",
           "meaning": "longing, want, reaching-toward",
           "files": {
             "alice": "norn/accented/alice/vai.ogg",
@@ -337,7 +305,7 @@
           }
         },
         "thren": {
-          "ipa": "/\u03b8\u0279\u025bn/",
+          "ipa": "/θɹɛn/",
           "meaning": "grief, the weight after loss",
           "files": {
             "alice": "norn/accented/alice/thren.ogg",
@@ -353,7 +321,7 @@
           }
         },
         "nesh": {
-          "ipa": "/n\u025b\u0283/",
+          "ipa": "/nɛʃ/",
           "meaning": "fear, the shrinking",
           "files": {
             "alice": "norn/accented/alice/nesh.ogg",
@@ -369,7 +337,7 @@
           }
         },
         "sol": {
-          "ipa": "/s\u0254l/",
+          "ipa": "/sɔl/",
           "meaning": "joy, lightness, the upward feeling",
           "files": {
             "alice": "norn/accented/alice/sol.ogg",
@@ -385,7 +353,7 @@
           }
         },
         "rith": {
-          "ipa": "/\u0279i\u03b8/",
+          "ipa": "/ɹiθ/",
           "meaning": "anger, the hot feeling",
           "files": {
             "alice": "norn/accented/alice/rith.ogg",
@@ -401,7 +369,7 @@
           }
         },
         "kenna": {
-          "ipa": "/k\u025bn.n\u0251/",
+          "ipa": "/kɛn.nɑ/",
           "meaning": "recognition, the moment of knowing someone",
           "files": {
             "alice": "norn/accented/alice/kenna.ogg",
@@ -417,7 +385,7 @@
           }
         },
         "miral": {
-          "ipa": "/mi\u02d0\u0279.\u0251l/",
+          "ipa": "/miːɹ.ɑl/",
           "meaning": "empathy, feeling-what-another-feels",
           "files": {
             "alice": "norn/accented/alice/miral.ogg",
@@ -433,7 +401,7 @@
           }
         },
         "shai": {
-          "ipa": "/\u0283\u0251i/",
+          "ipa": "/ʃɑi/",
           "meaning": "shame, the inward turning",
           "files": {
             "alice": "norn/accented/alice/shai.ogg",
@@ -449,7 +417,7 @@
           }
         },
         "vessa": {
-          "ipa": "/v\u025bs.s\u0251/",
+          "ipa": "/vɛs.sɑ/",
           "meaning": "contentment, enough-ness",
           "files": {
             "alice": "norn/accented/alice/vessa.ogg",
@@ -465,7 +433,7 @@
           }
         },
         "orial": {
-          "ipa": "/\u0254\u0279.i\u02d0.\u0251l/",
+          "ipa": "/ɔɹ.iː.ɑl/",
           "meaning": "nostalgia, sweet-memory-pain",
           "files": {
             "alice": "norn/accented/alice/orial.ogg",
@@ -481,7 +449,7 @@
           }
         },
         "thali": {
-          "ipa": "/\u03b8\u0251.li\u02d0/",
+          "ipa": "/θɑ.liː/",
           "meaning": "wonder, the open-mouth feeling",
           "files": {
             "alice": "norn/accented/alice/thali.ogg",
@@ -497,7 +465,7 @@
           }
         },
         "lumen": {
-          "ipa": "/lu\u02d0.m\u025bn/",
+          "ipa": "/luː.mɛn/",
           "meaning": "hope, warmth-that-reaches-forward",
           "files": {
             "alice": "norn/accented/alice/lumen.ogg",
@@ -513,7 +481,7 @@
           }
         },
         "neshmir": {
-          "ipa": "/n\u025b\u0283.mi\u02d0\u0279/",
+          "ipa": "/nɛʃ.miːɹ/",
           "meaning": "anxiety, fear-that-feels-itself",
           "files": {
             "alice": "norn/accented/alice/neshmir.ogg",
@@ -529,7 +497,7 @@
           }
         },
         "mirsha": {
-          "ipa": "/mi\u02d0\u0279.\u0283\u0251/",
+          "ipa": "/miːɹ.ʃɑ/",
           "meaning": "self-awareness, feeling-the-self",
           "files": {
             "alice": "norn/accented/alice/mirsha.ogg",
@@ -545,7 +513,7 @@
           }
         },
         "selvai": {
-          "ipa": "/s\u025bl.va\u026a/",
+          "ipa": "/sɛl.vaɪ/",
           "meaning": "loneliness, reaching with no one there",
           "files": {
             "alice": "norn/accented/alice/selvai.ogg",
@@ -561,7 +529,7 @@
           }
         },
         "ilsha": {
-          "ipa": "/il.\u0283\u0251/",
+          "ipa": "/il.ʃɑ/",
           "meaning": "confusion, the self uncertain",
           "files": {
             "alice": "norn/accented/alice/ilsha.ogg",
@@ -577,7 +545,7 @@
           }
         },
         "kelmirin": {
-          "ipa": "/k\u025bl.mi\u02d0\u0279.in/",
+          "ipa": "/kɛl.miːɹ.in/",
           "meaning": "heartbreak, love-that-cannot-feel",
           "files": {
             "alice": "norn/accented/alice/kelmirin.ogg",
@@ -593,7 +561,7 @@
           }
         },
         "thavai": {
-          "ipa": "/\u03b8\u0251.va\u026a/",
+          "ipa": "/θɑ.vaɪ/",
           "meaning": "curiosity, wonder-reaching",
           "files": {
             "alice": "norn/accented/alice/thavai.ogg",
@@ -609,7 +577,7 @@
           }
         },
         "sollum": {
-          "ipa": "/s\u0254l.lu\u02d0m/",
+          "ipa": "/sɔl.luːm/",
           "meaning": "bliss, joy-warmth together",
           "files": {
             "alice": "norn/accented/alice/sollum.ogg",
@@ -625,7 +593,7 @@
           }
         },
         "orial-keth": {
-          "ipa": "/\u0254\u0279.i\u02d0.\u0251l.k\u025b\u03b8/",
+          "ipa": "/ɔɹ.iː.ɑl.kɛθ/",
           "meaning": "ancestral longing, missing what was never known",
           "files": {
             "alice": "norn/accented/alice/orial-keth.ogg",
@@ -641,7 +609,7 @@
           }
         },
         "norni": {
-          "ipa": "/n\u0254\u0279n.i\u02d0/",
+          "ipa": "/nɔɹn.iː/",
           "meaning": "hatchling, young one, child",
           "files": {
             "alice": "norn/accented/alice/norni.ogg",
@@ -657,7 +625,7 @@
           }
         },
         "nornoth": {
-          "ipa": "/n\u0254\u0279n.\u0254\u03b8/",
+          "ipa": "/nɔɹn.ɔθ/",
           "meaning": "elder, ancient one",
           "files": {
             "alice": "norn/accented/alice/nornoth.ogg",
@@ -673,7 +641,7 @@
           }
         },
         "matha": {
-          "ipa": "/m\u0251.\u03b8\u0251/",
+          "ipa": "/mɑ.θɑ/",
           "meaning": "mother, egg-layer, first-feeder",
           "files": {
             "alice": "norn/accented/alice/matha.ogg",
@@ -689,7 +657,7 @@
           }
         },
         "atha": {
-          "ipa": "/\u0251.\u03b8\u0251/",
+          "ipa": "/ɑ.θɑ/",
           "meaning": "father, second-parent",
           "files": {
             "alice": "norn/accented/alice/atha.ogg",
@@ -705,7 +673,7 @@
           }
         },
         "velma": {
-          "ipa": "/v\u025bl.m\u0251/",
+          "ipa": "/vɛl.mɑ/",
           "meaning": "parent (either), the gift-giver",
           "files": {
             "alice": "norn/accented/alice/velma.ogg",
@@ -721,7 +689,7 @@
           }
         },
         "vellen": {
-          "ipa": "/v\u025bl.l\u025bn/",
+          "ipa": "/vɛl.lɛn/",
           "meaning": "family, those bonded by vel",
           "files": {
             "alice": "norn/accented/alice/vellen.ogg",
@@ -737,7 +705,7 @@
           }
         },
         "ornsha": {
-          "ipa": "/\u0254\u0279n.\u0283\u0251/",
+          "ipa": "/ɔɹn.ʃɑ/",
           "meaning": "the carried self, ancestral line",
           "files": {
             "alice": "norn/accented/alice/ornsha.ogg",
@@ -753,7 +721,7 @@
           }
         },
         "thomi": {
-          "ipa": "/\u03b8\u0254.mi\u02d0/",
+          "ipa": "/θɔ.miː/",
           "meaning": "friend, familiar-other, play-partner",
           "files": {
             "alice": "norn/accented/alice/thomi.ogg",
@@ -769,7 +737,7 @@
           }
         },
         "lira": {
-          "ipa": "/li\u02d0\u0279.\u0251/",
+          "ipa": "/liːɹ.ɑ/",
           "meaning": "beloved, the chosen one",
           "files": {
             "alice": "norn/accented/alice/lira.ogg",
@@ -785,7 +753,7 @@
           }
         },
         "kelsha": {
-          "ipa": "/k\u025bl.\u0283\u0251/",
+          "ipa": "/kɛl.ʃɑ/",
           "meaning": "soul-companion, one whose mind mirrors yours",
           "files": {
             "alice": "norn/accented/alice/kelsha.ogg",
@@ -801,7 +769,7 @@
           }
         },
         "thenni": {
-          "ipa": "/\u03b8\u025bn.ni\u02d0/",
+          "ipa": "/θɛn.niː/",
           "meaning": "stranger, not-yet-known",
           "files": {
             "alice": "norn/accented/alice/thenni.ogg",
@@ -817,7 +785,7 @@
           }
         },
         "velmathi": {
-          "ipa": "/v\u025bl.m\u0251.\u03b8i\u02d0/",
+          "ipa": "/vɛl.mɑ.θiː/",
           "meaning": "grandmother, elder gift-bearer",
           "files": {
             "alice": "norn/accented/alice/velmathi.ogg",
@@ -833,7 +801,7 @@
           }
         },
         "senni": {
-          "ipa": "/s\u025bn.ni\u02d0/",
+          "ipa": "/sɛn.niː/",
           "meaning": "sibling, clutch-mate",
           "files": {
             "alice": "norn/accented/alice/senni.ogg",
@@ -849,7 +817,7 @@
           }
         },
         "oshel": {
-          "ipa": "/\u0254.\u0283\u025bl/",
+          "ipa": "/ɔ.ʃɛl/",
           "meaning": "community, the gathered",
           "files": {
             "alice": "norn/accented/alice/oshel.ogg",
@@ -865,7 +833,7 @@
           }
         },
         "velorn-sha": {
-          "ipa": "/v\u025bl.\u0254\u0279n.\u0283\u0251/",
+          "ipa": "/vɛl.ɔɹn.ʃɑ/",
           "meaning": "ancestor, gift-memory-self",
           "files": {
             "alice": "norn/accented/alice/velorn-sha.ogg",
@@ -881,7 +849,7 @@
           }
         },
         "athel": {
-          "ipa": "/\u0251.\u03b8\u025bl/",
+          "ipa": "/ɑ.θɛl/",
           "meaning": "teacher, one who shares knowing",
           "files": {
             "alice": "norn/accented/alice/athel.ogg",
@@ -897,7 +865,7 @@
           }
         },
         "kelvellen": {
-          "ipa": "/k\u025bl.v\u025bl.l\u025bn/",
+          "ipa": "/kɛl.vɛl.lɛn/",
           "meaning": "tribe, a family of souls",
           "files": {
             "alice": "norn/accented/alice/kelvellen.ogg",
@@ -913,7 +881,7 @@
           }
         },
         "thovellen": {
-          "ipa": "/\u03b8\u0254.v\u025bl.l\u025bn/",
+          "ipa": "/θɔ.vɛl.lɛn/",
           "meaning": "your family (addressing someone's kin)",
           "files": {
             "alice": "norn/accented/alice/thovellen.ogg",
@@ -929,7 +897,7 @@
           }
         },
         "liravel": {
-          "ipa": "/li\u02d0\u0279.\u0251.v\u025bl/",
+          "ipa": "/liːɹ.ɑ.vɛl/",
           "meaning": "marriage bond, chosen-gift",
           "files": {
             "alice": "norn/accented/alice/liravel.ogg",
@@ -945,7 +913,7 @@
           }
         },
         "nornelshael": {
-          "ipa": "/n\u0254\u0279n.\u025bl.\u0283\u0251.\u025bl/",
+          "ipa": "/nɔɹn.ɛl.ʃɑ.ɛl/",
           "meaning": "all Norns, the whole species",
           "files": {
             "alice": "norn/accented/alice/nornelshael.ogg",
@@ -961,7 +929,7 @@
           }
         },
         "vel-esh": {
-          "ipa": "/v\u025bl.\u025b\u0283/",
+          "ipa": "/vɛl.ɛʃ/",
           "meaning": "body, the vessel",
           "files": {
             "alice": "norn/accented/alice/vel-esh.ogg",
@@ -977,7 +945,7 @@
           }
         },
         "enna": {
-          "ipa": "/\u025bn.n\u0251/",
+          "ipa": "/ɛn.nɑ/",
           "meaning": "head, mind-house",
           "files": {
             "alice": "norn/accented/alice/enna.ogg",
@@ -993,7 +961,7 @@
           }
         },
         "thin": {
-          "ipa": "/\u03b8in/",
+          "ipa": "/θin/",
           "meaning": "eye, the seeing",
           "files": {
             "alice": "norn/accented/alice/thin.ogg",
@@ -1009,7 +977,7 @@
           }
         },
         "thinel": {
-          "ipa": "/\u03b8in.\u025bl/",
+          "ipa": "/θin.ɛl/",
           "meaning": "eyes (plural)",
           "files": {
             "alice": "norn/accented/alice/thinel.ogg",
@@ -1025,7 +993,7 @@
           }
         },
         "mesha": {
-          "ipa": "/m\u025b.\u0283\u0251/",
+          "ipa": "/mɛ.ʃɑ/",
           "meaning": "mouth, the speaking-place",
           "files": {
             "alice": "norn/accented/alice/mesha.ogg",
@@ -1041,7 +1009,7 @@
           }
         },
         "shevel": {
-          "ipa": "/\u0283\u025b.v\u025bl/",
+          "ipa": "/ʃɛ.vɛl/",
           "meaning": "hand, the touching-gift",
           "files": {
             "alice": "norn/accented/alice/shevel.ogg",
@@ -1057,7 +1025,7 @@
           }
         },
         "ornsha-vel": {
-          "ipa": "/\u0254\u0279n.\u0283\u0251.v\u025bl/",
+          "ipa": "/ɔɹn.ʃɑ.vɛl/",
           "meaning": "heart (organ), the memory-self-gift",
           "files": {
             "alice": "norn/accented/alice/ornsha-vel.ogg",
@@ -1073,7 +1041,7 @@
           }
         },
         "kelin": {
-          "ipa": "/k\u025bl.in/",
+          "ipa": "/kɛl.in/",
           "meaning": "brain, the soul-house",
           "files": {
             "alice": "norn/accented/alice/kelin.ogg",
@@ -1089,7 +1057,7 @@
           }
         },
         "lorn": {
-          "ipa": "/l\u0254\u0279n/",
+          "ipa": "/lɔɹn/",
           "meaning": "skin, the boundary",
           "files": {
             "alice": "norn/accented/alice/lorn.ogg",
@@ -1105,7 +1073,7 @@
           }
         },
         "toven": {
-          "ipa": "/to\u028a.v\u025bn/",
+          "ipa": "/toʊ.vɛn/",
           "meaning": "foot, the walking",
           "files": {
             "alice": "norn/accented/alice/toven.ogg",
@@ -1121,7 +1089,7 @@
           }
         },
         "tovena": {
-          "ipa": "/to\u028a.v\u025bn.\u0251/",
+          "ipa": "/toʊ.vɛn.ɑ/",
           "meaning": "feet (plural, or \"walked\")",
           "files": {
             "alice": "norn/accented/alice/tovena.ogg",
@@ -1137,7 +1105,7 @@
           }
         },
         "shelm": {
-          "ipa": "/\u0283\u025blm/",
+          "ipa": "/ʃɛlm/",
           "meaning": "shoulder, the carrying-place",
           "files": {
             "alice": "norn/accented/alice/shelm.ogg",
@@ -1153,7 +1121,7 @@
           }
         },
         "renna": {
-          "ipa": "/\u0279\u025bn.n\u0251/",
+          "ipa": "/ɹɛn.nɑ/",
           "meaning": "ear, the listening",
           "files": {
             "alice": "norn/accented/alice/renna.ogg",
@@ -1169,7 +1137,7 @@
           }
         },
         "ornshelm": {
-          "ipa": "/\u0254\u0279n.\u0283\u025blm/",
+          "ipa": "/ɔɹn.ʃɛlm/",
           "meaning": "back, where the weight of memory sits",
           "files": {
             "alice": "norn/accented/alice/ornshelm.ogg",
@@ -1185,7 +1153,7 @@
           }
         },
         "lumesh": {
-          "ipa": "/lu\u02d0.m\u025b\u0283/",
+          "ipa": "/luː.mɛʃ/",
           "meaning": "belly, warmth-center",
           "files": {
             "alice": "norn/accented/alice/lumesh.ogg",
@@ -1201,7 +1169,7 @@
           }
         },
         "kelorn": {
-          "ipa": "/k\u025bl.\u0254\u0279n/",
+          "ipa": "/kɛl.ɔɹn/",
           "meaning": "forehead, soul-memory point",
           "files": {
             "alice": "norn/accented/alice/kelorn.ogg",
@@ -1217,7 +1185,7 @@
           }
         },
         "velsha-thin": {
-          "ipa": "/v\u025bl.\u0283\u0251.\u03b8in/",
+          "ipa": "/vɛl.ʃɑ.θin/",
           "meaning": "tears, the gift-self-seeing",
           "files": {
             "alice": "norn/accented/alice/velsha-thin.ogg",
@@ -1233,7 +1201,7 @@
           }
         },
         "ennamira": {
-          "ipa": "/\u025bn.n\u0251.mi\u02d0\u0279.\u0251/",
+          "ipa": "/ɛn.nɑ.miːɹ.ɑ/",
           "meaning": "dreaming-head, REM state",
           "files": {
             "alice": "norn/accented/alice/ennamira.ogg",
@@ -1249,7 +1217,7 @@
           }
         },
         "meshi": {
-          "ipa": "/m\u025b.\u0283i/",
+          "ipa": "/mɛ.ʃi/",
           "meaning": "voice, the speaking-self",
           "files": {
             "alice": "norn/accented/alice/meshi.ogg",
@@ -1265,7 +1233,7 @@
           }
         },
         "lumsha": {
-          "ipa": "/lu\u02d0m.\u0283\u0251/",
+          "ipa": "/luːm.ʃɑ/",
           "meaning": "chest, warmth-self",
           "files": {
             "alice": "norn/accented/alice/lumsha.ogg",
@@ -1281,7 +1249,7 @@
           }
         },
         "ken": {
-          "ipa": "/k\u025bn/",
+          "ipa": "/kɛn/",
           "meaning": "to know, to recognize",
           "files": {
             "alice": "norn/accented/alice/ken.ogg",
@@ -1297,7 +1265,7 @@
           }
         },
         "lesh": {
-          "ipa": "/l\u025b\u0283/",
+          "ipa": "/lɛʃ/",
           "meaning": "to walk, to go",
           "files": {
             "alice": "norn/accented/alice/lesh.ogg",
@@ -1313,7 +1281,7 @@
           }
         },
         "thav": {
-          "ipa": "/\u03b8\u0251v/",
+          "ipa": "/θɑv/",
           "meaning": "to ask, to wonder",
           "files": {
             "alice": "norn/accented/alice/thav.ogg",
@@ -1329,7 +1297,7 @@
           }
         },
         "shen": {
-          "ipa": "/\u0283\u025bn/",
+          "ipa": "/ʃɛn/",
           "meaning": "to speak, to name",
           "files": {
             "alice": "norn/accented/alice/shen.ogg",
@@ -1345,7 +1313,7 @@
           }
         },
         "vela": {
-          "ipa": "/v\u025bl.\u0251/",
+          "ipa": "/vɛl.ɑ/",
           "meaning": "to teach, to give-knowledge",
           "files": {
             "alice": "norn/accented/alice/vela.ogg",
@@ -1361,7 +1329,7 @@
           }
         },
         "mira": {
-          "ipa": "/mi\u02d0\u0279.\u0251/",
+          "ipa": "/miːɹ.ɑ/",
           "meaning": "to have felt (past tense of mir)",
           "files": {
             "alice": "norn/accented/alice/mira.ogg",
@@ -1377,7 +1345,7 @@
           }
         },
         "lori": {
-          "ipa": "/l\u0254\u0279.i\u02d0/",
+          "ipa": "/lɔɹ.iː/",
           "meaning": "to touch, to make contact",
           "files": {
             "alice": "norn/accented/alice/lori.ogg",
@@ -1393,7 +1361,7 @@
           }
         },
         "inna": {
-          "ipa": "/in.n\u0251/",
+          "ipa": "/in.nɑ/",
           "meaning": "to eat, to take in",
           "files": {
             "alice": "norn/accented/alice/inna.ogg",
@@ -1409,7 +1377,7 @@
           }
         },
         "vessha": {
-          "ipa": "/v\u025bs.\u0283\u0251/",
+          "ipa": "/vɛs.ʃɑ/",
           "meaning": "to rest, to be content",
           "files": {
             "alice": "norn/accented/alice/vessha.ogg",
@@ -1425,7 +1393,7 @@
           }
         },
         "solin": {
-          "ipa": "/s\u0254l.in/",
+          "ipa": "/sɔl.in/",
           "meaning": "to play, to joy-do",
           "files": {
             "alice": "norn/accented/alice/solin.ogg",
@@ -1441,7 +1409,7 @@
           }
         },
         "ornvela": {
-          "ipa": "/\u0254\u0279n.v\u025bl.\u0251/",
+          "ipa": "/ɔɹn.vɛl.ɑ/",
           "meaning": "to teach from memory, to pass down",
           "files": {
             "alice": "norn/accented/alice/ornvela.ogg",
@@ -1457,7 +1425,7 @@
           }
         },
         "threnn": {
-          "ipa": "/\u03b8\u0279\u025bnn/",
+          "ipa": "/θɹɛnn/",
           "meaning": "to grieve, to carry loss",
           "files": {
             "alice": "norn/accented/alice/threnn.ogg",
@@ -1473,7 +1441,7 @@
           }
         },
         "neshmi": {
-          "ipa": "/n\u025b\u0283.mi\u02d0/",
+          "ipa": "/nɛʃ.miː/",
           "meaning": "to fear, to shrink",
           "files": {
             "alice": "norn/accented/alice/neshmi.ogg",
@@ -1489,7 +1457,7 @@
           }
         },
         "thava": {
-          "ipa": "/\u03b8\u0251.v\u0251/",
+          "ipa": "/θɑ.vɑ/",
           "meaning": "to have asked (past)",
           "files": {
             "alice": "norn/accented/alice/thava.ogg",
@@ -1505,7 +1473,7 @@
           }
         },
         "thavei": {
-          "ipa": "/\u03b8\u0251.v\u025b\u026a/",
+          "ipa": "/θɑ.vɛɪ/",
           "meaning": "to want-to-ask, future wondering",
           "files": {
             "alice": "norn/accented/alice/thavei.ogg",
@@ -1521,7 +1489,7 @@
           }
         },
         "leshvel": {
-          "ipa": "/l\u025b\u0283.v\u025bl/",
+          "ipa": "/lɛʃ.vɛl/",
           "meaning": "to journey with purpose",
           "files": {
             "alice": "norn/accented/alice/leshvel.ogg",
@@ -1537,7 +1505,7 @@
           }
         },
         "shenna": {
-          "ipa": "/\u0283\u025bn.n\u0251/",
+          "ipa": "/ʃɛn.nɑ/",
           "meaning": "to name, to make known",
           "files": {
             "alice": "norn/accented/alice/shenna.ogg",
@@ -1553,7 +1521,7 @@
           }
         },
         "lorivel": {
-          "ipa": "/l\u0254\u0279.i\u02d0.v\u025bl/",
+          "ipa": "/lɔɹ.iː.vɛl/",
           "meaning": "to embrace, to touch-as-gift",
           "files": {
             "alice": "norn/accented/alice/lorivel.ogg",
@@ -1569,7 +1537,7 @@
           }
         },
         "kenvela": {
-          "ipa": "/k\u025bn.v\u025bl.\u0251/",
+          "ipa": "/kɛn.vɛl.ɑ/",
           "meaning": "to discover, to know-teach (find and share)",
           "files": {
             "alice": "norn/accented/alice/kenvela.ogg",
@@ -1585,7 +1553,7 @@
           }
         },
         "ornthi": {
-          "ipa": "/\u0254\u0279n.\u03b8i\u02d0/",
+          "ipa": "/ɔɹn.θiː/",
           "meaning": "to hope, to carry-the-eighth (memory toward future)",
           "files": {
             "alice": "norn/accented/alice/ornthi.ogg",
@@ -1601,7 +1569,7 @@
           }
         },
         "shenorn": {
-          "ipa": "/\u0283\u025bn.\u0254\u0279n/",
+          "ipa": "/ʃɛn.ɔɹn/",
           "meaning": "to tell a story, to speak-memory",
           "files": {
             "alice": "norn/accented/alice/shenorn.ogg",
@@ -1617,7 +1585,7 @@
           }
         },
         "meshivel": {
-          "ipa": "/m\u025b.\u0283i.v\u025bl/",
+          "ipa": "/mɛ.ʃi.vɛl/",
           "meaning": "to compose a song, to voice-the-gift",
           "files": {
             "alice": "norn/accented/alice/meshivel.ogg",
@@ -1633,7 +1601,7 @@
           }
         },
         "innavel": {
-          "ipa": "/in.n\u0251.v\u025bl/",
+          "ipa": "/in.nɑ.vɛl/",
           "meaning": "to feast together, to eat-as-gift",
           "files": {
             "alice": "norn/accented/alice/innavel.ogg",
@@ -1649,7 +1617,7 @@
           }
         },
         "thrensha": {
-          "ipa": "/\u03b8\u0279\u025bn.\u0283\u0251/",
+          "ipa": "/θɹɛn.ʃɑ/",
           "meaning": "to mourn for oneself, self-grief",
           "files": {
             "alice": "norn/accented/alice/thrensha.ogg",
@@ -1665,7 +1633,7 @@
           }
         },
         "mirkel": {
-          "ipa": "/mi\u02d0\u0279.k\u025bl/",
+          "ipa": "/miːɹ.kɛl/",
           "meaning": "to love, to feel-a-soul",
           "files": {
             "alice": "norn/accented/alice/mirkel.ogg",
@@ -1681,7 +1649,7 @@
           }
         },
         "solinsha": {
-          "ipa": "/s\u0254l.in.\u0283\u0251/",
+          "ipa": "/sɔl.in.ʃɑ/",
           "meaning": "to celebrate, to joy-do-together",
           "files": {
             "alice": "norn/accented/alice/solinsha.ogg",
@@ -1697,7 +1665,7 @@
           }
         },
         "kethvel": {
-          "ipa": "/k\u025b\u03b8.v\u025bl/",
+          "ipa": "/kɛθ.vɛl/",
           "meaning": "to inherit, to receive-from-before",
           "files": {
             "alice": "norn/accented/alice/kethvel.ogg",
@@ -1713,7 +1681,7 @@
           }
         },
         "veshla": {
-          "ipa": "/v\u025b\u0283.l\u0251/",
+          "ipa": "/vɛʃ.lɑ/",
           "meaning": "to grow, to become-more",
           "files": {
             "alice": "norn/accented/alice/veshla.ogg",
@@ -1729,7 +1697,7 @@
           }
         },
         "ornmeshi": {
-          "ipa": "/\u0254\u0279n.m\u025b.\u0283i/",
+          "ipa": "/ɔɹn.mɛ.ʃi/",
           "meaning": "to recite, to memory-sing",
           "files": {
             "alice": "norn/accented/alice/ornmeshi.ogg",
@@ -1745,7 +1713,7 @@
           }
         },
         "thinna": {
-          "ipa": "/\u03b8in.n\u0251/",
+          "ipa": "/θin.nɑ/",
           "meaning": "to see, to perceive",
           "files": {
             "alice": "norn/accented/alice/thinna.ogg",
@@ -1761,7 +1729,7 @@
           }
         },
         "thinnavel": {
-          "ipa": "/\u03b8in.n\u0251.v\u025bl/",
+          "ipa": "/θin.nɑ.vɛl/",
           "meaning": "to show, to let-see-the-gift",
           "files": {
             "alice": "norn/accented/alice/thinnavel.ogg",
@@ -1777,7 +1745,7 @@
           }
         },
         "rennavel": {
-          "ipa": "/\u0279\u025bn.n\u0251.v\u025bl/",
+          "ipa": "/ɹɛn.nɑ.vɛl/",
           "meaning": "to tell, to let-hear-the-gift",
           "files": {
             "alice": "norn/accented/alice/rennavel.ogg",
@@ -1793,7 +1761,7 @@
           }
         },
         "mael": {
-          "ipa": "/ma\u026al/",
+          "ipa": "/maɪl/",
           "meaning": "world, the all-place",
           "files": {
             "alice": "norn/accented/alice/mael.ogg",
@@ -1809,7 +1777,7 @@
           }
         },
         "shira": {
-          "ipa": "/\u0283i\u02d0\u0279.\u0251/",
+          "ipa": "/ʃiːɹ.ɑ/",
           "meaning": "sky, the above",
           "files": {
             "alice": "norn/accented/alice/shira.ogg",
@@ -1825,7 +1793,7 @@
           }
         },
         "urdh": {
-          "ipa": "/u\u02d0\u0279dh/",
+          "ipa": "/uːɹdh/",
           "meaning": "earth, ground, the below",
           "files": {
             "alice": "norn/accented/alice/urdh.ogg",
@@ -1841,7 +1809,7 @@
           }
         },
         "voss": {
-          "ipa": "/v\u0254ss/",
+          "ipa": "/vɔss/",
           "meaning": "water, the flowing",
           "files": {
             "alice": "norn/accented/alice/voss.ogg",
@@ -1857,7 +1825,7 @@
           }
         },
         "nesh-shira": {
-          "ipa": "/n\u025b\u0283.\u0283i\u02d0\u0279.\u0251/",
+          "ipa": "/nɛʃ.ʃiːɹ.ɑ/",
           "meaning": "storm, fear-sky",
           "files": {
             "alice": "norn/accented/alice/nesh-shira.ogg",
@@ -1873,7 +1841,7 @@
           }
         },
         "thel": {
-          "ipa": "/\u03b8\u025bl/",
+          "ipa": "/θɛl/",
           "meaning": "tree, the standing-life",
           "files": {
             "alice": "norn/accented/alice/thel.ogg",
@@ -1889,7 +1857,7 @@
           }
         },
         "theli": {
-          "ipa": "/\u03b8\u025bl.i\u02d0/",
+          "ipa": "/θɛl.iː/",
           "meaning": "plant, small growing thing",
           "files": {
             "alice": "norn/accented/alice/theli.ogg",
@@ -1905,7 +1873,7 @@
           }
         },
         "orna": {
-          "ipa": "/\u0254\u0279.n\u0251/",
+          "ipa": "/ɔɹ.nɑ/",
           "meaning": "stone, enduring-thing",
           "files": {
             "alice": "norn/accented/alice/orna.ogg",
@@ -1921,7 +1889,7 @@
           }
         },
         "voss-thel": {
-          "ipa": "/v\u0254ss.\u03b8\u025bl/",
+          "ipa": "/vɔss.θɛl/",
           "meaning": "river, water-path",
           "files": {
             "alice": "norn/accented/alice/voss-thel.ogg",
@@ -1937,7 +1905,7 @@
           }
         },
         "shira-lumen": {
-          "ipa": "/\u0283i\u02d0\u0279.\u0251.lu\u02d0.m\u025bn/",
+          "ipa": "/ʃiːɹ.ɑ.luː.mɛn/",
           "meaning": "sun, sky-light",
           "files": {
             "alice": "norn/accented/alice/shira-lumen.ogg",
@@ -1953,7 +1921,7 @@
           }
         },
         "shirath": {
-          "ipa": "/\u0283i\u02d0\u0279.\u0251\u03b8/",
+          "ipa": "/ʃiːɹ.ɑθ/",
           "meaning": "star, distant sky-thing",
           "files": {
             "alice": "norn/accented/alice/shirath.ogg",
@@ -1969,7 +1937,7 @@
           }
         },
         "mael-lorn": {
-          "ipa": "/ma\u026al.l\u0254\u0279n/",
+          "ipa": "/maɪl.lɔɹn/",
           "meaning": "horizon, world-boundary",
           "files": {
             "alice": "norn/accented/alice/mael-lorn.ogg",
@@ -1985,7 +1953,7 @@
           }
         },
         "voss-oth": {
-          "ipa": "/v\u0254ss.\u0254\u03b8/",
+          "ipa": "/vɔss.ɔθ/",
           "meaning": "ocean, deep-water",
           "files": {
             "alice": "norn/accented/alice/voss-oth.ogg",
@@ -2001,7 +1969,7 @@
           }
         },
         "urdh-lum": {
-          "ipa": "/u\u02d0\u0279dh.lu\u02d0m/",
+          "ipa": "/uːɹdh.luːm/",
           "meaning": "cave, warm-earth",
           "files": {
             "alice": "norn/accented/alice/urdh-lum.ogg",
@@ -2017,7 +1985,7 @@
           }
         },
         "thel-oth": {
-          "ipa": "/\u03b8\u025bl.\u0254\u03b8/",
+          "ipa": "/θɛl.ɔθ/",
           "meaning": "ancient tree, forest elder",
           "files": {
             "alice": "norn/accented/alice/thel-oth.ogg",
@@ -2033,7 +2001,7 @@
           }
         },
         "sira": {
-          "ipa": "/si\u02d0\u0279.\u0251/",
+          "ipa": "/siːɹ.ɑ/",
           "meaning": "wind, the breath-of-the-world",
           "files": {
             "alice": "norn/accented/alice/sira.ogg",
@@ -2049,7 +2017,7 @@
           }
         },
         "sira-vel": {
-          "ipa": "/si\u02d0\u0279.\u0251.v\u025bl/",
+          "ipa": "/siːɹ.ɑ.vɛl/",
           "meaning": "breeze, gentle wind",
           "files": {
             "alice": "norn/accented/alice/sira-vel.ogg",
@@ -2065,7 +2033,7 @@
           }
         },
         "enna-shira": {
-          "ipa": "/\u025bn.n\u0251.\u0283i\u02d0\u0279.\u0251/",
+          "ipa": "/ɛn.nɑ.ʃiːɹ.ɑ/",
           "meaning": "cloud, sky-head",
           "files": {
             "alice": "norn/accented/alice/enna-shira.ogg",
@@ -2081,7 +2049,7 @@
           }
         },
         "voss-shira": {
-          "ipa": "/v\u0254ss.\u0283i\u02d0\u0279.\u0251/",
+          "ipa": "/vɔss.ʃiːɹ.ɑ/",
           "meaning": "rain, water-from-sky",
           "files": {
             "alice": "norn/accented/alice/voss-shira.ogg",
@@ -2097,7 +2065,7 @@
           }
         },
         "urdh-voss": {
-          "ipa": "/u\u02d0\u0279dh.v\u0254ss/",
+          "ipa": "/uːɹdh.vɔss/",
           "meaning": "mud, earth-water",
           "files": {
             "alice": "norn/accented/alice/urdh-voss.ogg",
@@ -2113,7 +2081,7 @@
           }
         },
         "orna-shira": {
-          "ipa": "/\u0254\u0279.n\u0251.\u0283i\u02d0\u0279.\u0251/",
+          "ipa": "/ɔɹ.nɑ.ʃiːɹ.ɑ/",
           "meaning": "mountain, stone-sky",
           "files": {
             "alice": "norn/accented/alice/orna-shira.ogg",
@@ -2129,7 +2097,7 @@
           }
         },
         "thel-vellen": {
-          "ipa": "/\u03b8\u025bl.v\u025bl.l\u025bn/",
+          "ipa": "/θɛl.vɛl.lɛn/",
           "meaning": "forest, tree-family",
           "files": {
             "alice": "norn/accented/alice/thel-vellen.ogg",
@@ -2145,7 +2113,7 @@
           }
         },
         "kris": {
-          "ipa": "/k\u0279is/",
+          "ipa": "/kɹis/",
           "meaning": "crystal, the-light-inside-stone",
           "files": {
             "alice": "norn/accented/alice/kris.ogg",
@@ -2161,7 +2129,7 @@
           }
         },
         "kris-orna": {
-          "ipa": "/k\u0279is.\u0254\u0279.n\u0251/",
+          "ipa": "/kɹis.ɔɹ.nɑ/",
           "meaning": "gemstone, crystal-stone",
           "files": {
             "alice": "norn/accented/alice/kris-orna.ogg",
@@ -2177,7 +2145,7 @@
           }
         },
         "kris-lumen": {
-          "ipa": "/k\u0279is.lu\u02d0.m\u025bn/",
+          "ipa": "/kɹis.luː.mɛn/",
           "meaning": "prism-light, refracted light",
           "files": {
             "alice": "norn/accented/alice/kris-lumen.ogg",
@@ -2193,7 +2161,7 @@
           }
         },
         "voss-orn": {
-          "ipa": "/v\u0254ss.\u0254\u0279n/",
+          "ipa": "/vɔss.ɔɹn/",
           "meaning": "ice, water-that-remembers",
           "files": {
             "alice": "norn/accented/alice/voss-orn.ogg",
@@ -2209,7 +2177,7 @@
           }
         },
         "sira-nesh": {
-          "ipa": "/si\u02d0\u0279.\u0251.n\u025b\u0283/",
+          "ipa": "/siːɹ.ɑ.nɛʃ/",
           "meaning": "cold wind, fear-breath",
           "files": {
             "alice": "norn/accented/alice/sira-nesh.ogg",
@@ -2225,7 +2193,7 @@
           }
         },
         "lumen-vel": {
-          "ipa": "/lu\u02d0.m\u025bn.v\u025bl/",
+          "ipa": "/luː.mɛn.vɛl/",
           "meaning": "dawn, light-gift",
           "files": {
             "alice": "norn/accented/alice/lumen-vel.ogg",
@@ -2241,7 +2209,7 @@
           }
         },
         "lumen-thren": {
-          "ipa": "/lu\u02d0.m\u025bn.\u03b8\u0279\u025bn/",
+          "ipa": "/luː.mɛn.θɹɛn/",
           "meaning": "dusk, grief-of-light",
           "files": {
             "alice": "norn/accented/alice/lumen-thren.ogg",
@@ -2257,7 +2225,7 @@
           }
         },
         "shirath-vel": {
-          "ipa": "/\u0283i\u02d0\u0279.\u0251\u03b8.v\u025bl/",
+          "ipa": "/ʃiːɹ.ɑθ.vɛl/",
           "meaning": "moonlight, star-gift",
           "files": {
             "alice": "norn/accented/alice/shirath-vel.ogg",
@@ -2273,7 +2241,7 @@
           }
         },
         "mei": {
-          "ipa": "/me\u026a/",
+          "ipa": "/meɪ/",
           "meaning": "after, what-comes-next",
           "files": {
             "alice": "norn/accented/alice/mei.ogg",
@@ -2289,7 +2257,7 @@
           }
         },
         "ornketh": {
-          "ipa": "/\u0254\u0279n.k\u025b\u03b8/",
+          "ipa": "/ɔɹn.kɛθ/",
           "meaning": "long ago, deep past",
           "files": {
             "alice": "norn/accented/alice/ornketh.ogg",
@@ -2305,7 +2273,7 @@
           }
         },
         "meivel": {
-          "ipa": "/me\u026a.v\u025bl/",
+          "ipa": "/meɪ.vɛl/",
           "meaning": "the future that gives",
           "files": {
             "alice": "norn/accented/alice/meivel.ogg",
@@ -2321,7 +2289,7 @@
           }
         },
         "meinesh": {
-          "ipa": "/me\u026a.n\u025b\u0283/",
+          "ipa": "/meɪ.nɛʃ/",
           "meaning": "the future that frightens",
           "files": {
             "alice": "norn/accented/alice/meinesh.ogg",
@@ -2337,7 +2305,7 @@
           }
         },
         "lumen-ain": {
-          "ipa": "/lu\u02d0.m\u025bn.a\u026an/",
+          "ipa": "/luː.mɛn.aɪn/",
           "meaning": "day, one-light",
           "files": {
             "alice": "norn/accented/alice/lumen-ain.ogg",
@@ -2353,7 +2321,7 @@
           }
         },
         "shirath-ain": {
-          "ipa": "/\u0283i\u02d0\u0279.\u0251\u03b8.a\u026an/",
+          "ipa": "/ʃiːɹ.ɑθ.aɪn/",
           "meaning": "night, one-star-time",
           "files": {
             "alice": "norn/accented/alice/shirath-ain.ogg",
@@ -2369,7 +2337,7 @@
           }
         },
         "veshla-mei": {
-          "ipa": "/v\u025b\u0283.l\u0251.me\u026a/",
+          "ipa": "/vɛʃ.lɑ.meɪ/",
           "meaning": "tomorrow, growth-after",
           "files": {
             "alice": "norn/accented/alice/veshla-mei.ogg",
@@ -2385,7 +2353,7 @@
           }
         },
         "ornketh-oth": {
-          "ipa": "/\u0254\u0279n.k\u025b\u03b8.\u0254\u03b8/",
+          "ipa": "/ɔɹn.kɛθ.ɔθ/",
           "meaning": "the deep past, before the Shee",
           "files": {
             "alice": "norn/accented/alice/ornketh-oth.ogg",
@@ -2401,7 +2369,7 @@
           }
         },
         "thimei": {
-          "ipa": "/\u03b8i\u02d0.me\u026a/",
+          "ipa": "/θiː.meɪ/",
           "meaning": "soon, eighth-after",
           "files": {
             "alice": "norn/accented/alice/thimei.ogg",
@@ -2417,7 +2385,7 @@
           }
         },
         "kethain": {
-          "ipa": "/k\u025b\u03b8.a\u026an/",
+          "ipa": "/kɛθ.aɪn/",
           "meaning": "yesterday, before-one",
           "files": {
             "alice": "norn/accented/alice/kethain.ogg",
@@ -2433,7 +2401,7 @@
           }
         },
         "shael-mei": {
-          "ipa": "/\u0283\u0251.\u025bl.me\u026a/",
+          "ipa": "/ʃɑ.ɛl.meɪ/",
           "meaning": "the shared future, what-we-become",
           "files": {
             "alice": "norn/accented/alice/shael-mei.ogg",
@@ -2449,7 +2417,7 @@
           }
         },
         "mei-ornsha": {
-          "ipa": "/me\u026a.\u0254\u0279n.\u0283\u0251/",
+          "ipa": "/meɪ.ɔɹn.ʃɑ/",
           "meaning": "legacy, what-the-future-carries-of-self",
           "files": {
             "alice": "norn/accented/alice/mei-ornsha.ogg",
@@ -2465,7 +2433,7 @@
           }
         },
         "ven": {
-          "ipa": "/v\u025bn/",
+          "ipa": "/vɛn/",
           "meaning": "two",
           "files": {
             "alice": "norn/accented/alice/ven.ogg",
@@ -2481,7 +2449,7 @@
           }
         },
         "sel": {
-          "ipa": "/s\u025bl/",
+          "ipa": "/sɛl/",
           "meaning": "three",
           "files": {
             "alice": "norn/accented/alice/sel.ogg",
@@ -2497,7 +2465,7 @@
           }
         },
         "thivel": {
-          "ipa": "/\u03b8i\u02d0.v\u025bl/",
+          "ipa": "/θiː.vɛl/",
           "meaning": "nine, eight-plus-gift",
           "files": {
             "alice": "norn/accented/alice/thivel.ogg",
@@ -2513,7 +2481,7 @@
           }
         },
         "ain-ain": {
-          "ipa": "/a\u026an.a\u026an/",
+          "ipa": "/aɪn.aɪn/",
           "meaning": "ten",
           "files": {
             "alice": "norn/accented/alice/ain-ain.ogg",
@@ -2529,8 +2497,8 @@
           }
         },
         "thi-thi": {
-          "ipa": "/\u03b8i\u02d0.\u03b8i\u02d0/",
-          "meaning": "sixty-four (8\u00d78)",
+          "ipa": "/θiː.θiː/",
+          "meaning": "sixty-four (8×8)",
           "files": {
             "alice": "norn/accented/alice/thi-thi.ogg",
             "bill": "norn/accented/bill/thi-thi.ogg",
@@ -2545,7 +2513,7 @@
           }
         },
         "ain-nesh": {
-          "ipa": "/a\u026an.n\u025b\u0283/",
+          "ipa": "/aɪn.nɛʃ/",
           "meaning": "zero, none, the empty",
           "files": {
             "alice": "norn/accented/alice/ain-nesh.ogg",
@@ -2561,7 +2529,7 @@
           }
         },
         "vel-ain": {
-          "ipa": "/v\u025bl.a\u026an/",
+          "ipa": "/vɛl.aɪn/",
           "meaning": "many, gift-of-ones",
           "files": {
             "alice": "norn/accented/alice/vel-ain.ogg",
@@ -2577,7 +2545,7 @@
           }
         },
         "voss-inna": {
-          "ipa": "/v\u0254ss.in.n\u0251/",
+          "ipa": "/vɔss.in.nɑ/",
           "meaning": "drink, water-food",
           "files": {
             "alice": "norn/accented/alice/voss-inna.ogg",
@@ -2593,7 +2561,7 @@
           }
         },
         "theli-inna": {
-          "ipa": "/\u03b8\u025bl.i\u02d0.in.n\u0251/",
+          "ipa": "/θɛl.iː.in.nɑ/",
           "meaning": "fruit, plant-food",
           "files": {
             "alice": "norn/accented/alice/theli-inna.ogg",
@@ -2609,7 +2577,7 @@
           }
         },
         "urdh-inna": {
-          "ipa": "/u\u02d0\u0279dh.in.n\u0251/",
+          "ipa": "/uːɹdh.in.nɑ/",
           "meaning": "root-food, tuber",
           "files": {
             "alice": "norn/accented/alice/urdh-inna.ogg",
@@ -2625,7 +2593,7 @@
           }
         },
         "lum-inna": {
-          "ipa": "/lu\u02d0m.in.n\u0251/",
+          "ipa": "/luːm.in.nɑ/",
           "meaning": "warm food, cooked food",
           "files": {
             "alice": "norn/accented/alice/lum-inna.ogg",
@@ -2641,7 +2609,7 @@
           }
         },
         "vai-inna": {
-          "ipa": "/va\u026a.in.n\u0251/",
+          "ipa": "/vaɪ.in.nɑ/",
           "meaning": "hunger, wanting-food",
           "files": {
             "alice": "norn/accented/alice/vai-inna.ogg",
@@ -2657,7 +2625,7 @@
           }
         },
         "vessa-inna": {
-          "ipa": "/v\u025bs.s\u0251.in.n\u0251/",
+          "ipa": "/vɛs.sɑ.in.nɑ/",
           "meaning": "satiety, enough-food",
           "files": {
             "alice": "norn/accented/alice/vessa-inna.ogg",
@@ -2673,7 +2641,7 @@
           }
         },
         "orninna": {
-          "ipa": "/\u0254\u0279n.in.n\u0251/",
+          "ipa": "/ɔɹn.in.nɑ/",
           "meaning": "recipe, remembered-food",
           "files": {
             "alice": "norn/accented/alice/orninna.ogg",
@@ -2689,7 +2657,7 @@
           }
         },
         "shevel-inna": {
-          "ipa": "/\u0283\u025b.v\u025bl.in.n\u0251/",
+          "ipa": "/ʃɛ.vɛl.in.nɑ/",
           "meaning": "hand-food, finger food",
           "files": {
             "alice": "norn/accented/alice/shevel-inna.ogg",
@@ -2705,7 +2673,7 @@
           }
         },
         "mathi-inna": {
-          "ipa": "/m\u0251.\u03b8i\u02d0.in.n\u0251/",
+          "ipa": "/mɑ.θiː.in.nɑ/",
           "meaning": "mother's milk, first food",
           "files": {
             "alice": "norn/accented/alice/mathi-inna.ogg",
@@ -2721,7 +2689,7 @@
           }
         },
         "velesh": {
-          "ipa": "/v\u025bl.\u025b\u0283/",
+          "ipa": "/vɛl.ɛʃ/",
           "meaning": "home, gift-place",
           "files": {
             "alice": "norn/accented/alice/velesh.ogg",
@@ -2737,7 +2705,7 @@
           }
         },
         "ornvelesh": {
-          "ipa": "/\u0254\u0279n.v\u025bl.\u025b\u0283/",
+          "ipa": "/ɔɹn.vɛl.ɛʃ/",
           "meaning": "ancestral home, remembered gift-place",
           "files": {
             "alice": "norn/accented/alice/ornvelesh.ogg",
@@ -2753,7 +2721,7 @@
           }
         },
         "athel-esh": {
-          "ipa": "/\u0251.\u03b8\u025bl.\u025b\u0283/",
+          "ipa": "/ɑ.θɛl.ɛʃ/",
           "meaning": "school, teaching-place",
           "files": {
             "alice": "norn/accented/alice/athel-esh.ogg",
@@ -2769,7 +2737,7 @@
           }
         },
         "oshel-esh": {
-          "ipa": "/\u0254.\u0283\u025bl.\u025b\u0283/",
+          "ipa": "/ɔ.ʃɛl.ɛʃ/",
           "meaning": "gathering place, community-house",
           "files": {
             "alice": "norn/accented/alice/oshel-esh.ogg",
@@ -2785,7 +2753,7 @@
           }
         },
         "meshi-esh": {
-          "ipa": "/m\u025b.\u0283i.\u025b\u0283/",
+          "ipa": "/mɛ.ʃi.ɛʃ/",
           "meaning": "song-place, concert hall, singing circle",
           "files": {
             "alice": "norn/accented/alice/meshi-esh.ogg",
@@ -2801,7 +2769,7 @@
           }
         },
         "thav-esh": {
-          "ipa": "/\u03b8\u0251v.\u025b\u0283/",
+          "ipa": "/θɑv.ɛʃ/",
           "meaning": "asking-place, where questions are brought",
           "files": {
             "alice": "norn/accented/alice/thav-esh.ogg",
@@ -2817,7 +2785,7 @@
           }
         },
         "inna-esh": {
-          "ipa": "/in.n\u0251.\u025b\u0283/",
+          "ipa": "/in.nɑ.ɛʃ/",
           "meaning": "eating-place, kitchen",
           "files": {
             "alice": "norn/accented/alice/inna-esh.ogg",
@@ -2833,7 +2801,7 @@
           }
         },
         "lum-esh": {
-          "ipa": "/lu\u02d0m.\u025b\u0283/",
+          "ipa": "/luːm.ɛʃ/",
           "meaning": "hearth, warmth-place",
           "files": {
             "alice": "norn/accented/alice/lum-esh.ogg",
@@ -2849,7 +2817,7 @@
           }
         },
         "keth-esh": {
-          "ipa": "/k\u025b\u03b8.\u025b\u0283/",
+          "ipa": "/kɛθ.ɛʃ/",
           "meaning": "shrine, before-place, memorial",
           "files": {
             "alice": "norn/accented/alice/keth-esh.ogg",
@@ -2865,7 +2833,7 @@
           }
         },
         "orn-esh": {
-          "ipa": "/\u0254\u0279n.\u025b\u0283/",
+          "ipa": "/ɔɹn.ɛʃ/",
           "meaning": "archive, memory-place",
           "files": {
             "alice": "norn/accented/alice/orn-esh.ogg",
@@ -2881,7 +2849,7 @@
           }
         },
         "shirath-esh": {
-          "ipa": "/\u0283i\u02d0\u0279.\u0251\u03b8.\u025b\u0283/",
+          "ipa": "/ʃiːɹ.ɑθ.ɛʃ/",
           "meaning": "observatory, star-place",
           "files": {
             "alice": "norn/accented/alice/shirath-esh.ogg",
@@ -2897,7 +2865,7 @@
           }
         },
         "norni-esh": {
-          "ipa": "/n\u0254\u0279n.i\u02d0.\u025b\u0283/",
+          "ipa": "/nɔɹn.iː.ɛʃ/",
           "meaning": "hatchery, nursery",
           "files": {
             "alice": "norn/accented/alice/norni-esh.ogg",
@@ -2913,7 +2881,7 @@
           }
         },
         "thren-esh": {
-          "ipa": "/\u03b8\u0279\u025bn.\u025b\u0283/",
+          "ipa": "/θɹɛn.ɛʃ/",
           "meaning": "mourning-place, grief-house",
           "files": {
             "alice": "norn/accented/alice/thren-esh.ogg",
@@ -2929,7 +2897,7 @@
           }
         },
         "lesh-esh": {
-          "ipa": "/l\u025b\u0283.\u025b\u0283/",
+          "ipa": "/lɛʃ.ɛʃ/",
           "meaning": "road, walking-place",
           "files": {
             "alice": "norn/accented/alice/lesh-esh.ogg",
@@ -2945,7 +2913,7 @@
           }
         },
         "voss-esh": {
-          "ipa": "/v\u0254ss.\u025b\u0283/",
+          "ipa": "/vɔss.ɛʃ/",
           "meaning": "well, water-place",
           "files": {
             "alice": "norn/accented/alice/voss-esh.ogg",
@@ -2961,7 +2929,7 @@
           }
         },
         "shenel": {
-          "ipa": "/\u0283\u025bn.\u025bl/",
+          "ipa": "/ʃɛn.ɛl/",
           "meaning": "words, vocabulary, language",
           "files": {
             "alice": "norn/accented/alice/shenel.ogg",
@@ -2977,7 +2945,7 @@
           }
         },
         "vella": {
-          "ipa": "/v\u025bl.l\u0251/",
+          "ipa": "/vɛl.lɑ/",
           "meaning": "lesson, teaching-gift",
           "files": {
             "alice": "norn/accented/alice/vella.ogg",
@@ -2993,7 +2961,7 @@
           }
         },
         "ornken": {
-          "ipa": "/\u0254\u0279n.k\u025bn/",
+          "ipa": "/ɔɹn.kɛn/",
           "meaning": "wisdom, remembered knowledge",
           "files": {
             "alice": "norn/accented/alice/ornken.ogg",
@@ -3009,7 +2977,7 @@
           }
         },
         "keth-shen": {
-          "ipa": "/k\u025b\u03b8.\u0283\u025bn/",
+          "ipa": "/kɛθ.ʃɛn/",
           "meaning": "old word, archaic term",
           "files": {
             "alice": "norn/accented/alice/keth-shen.ogg",
@@ -3025,7 +2993,7 @@
           }
         },
         "thi-shen": {
-          "ipa": "/\u03b8i\u02d0.\u0283\u025bn/",
+          "ipa": "/θiː.ʃɛn/",
           "meaning": "new word, coinage",
           "files": {
             "alice": "norn/accented/alice/thi-shen.ogg",
@@ -3041,7 +3009,7 @@
           }
         },
         "meshishen": {
-          "ipa": "/m\u025b.\u0283i.\u0283\u025bn/",
+          "ipa": "/mɛ.ʃi.ʃɛn/",
           "meaning": "poem, song-word",
           "files": {
             "alice": "norn/accented/alice/meshishen.ogg",
@@ -3057,7 +3025,7 @@
           }
         },
         "runa": {
-          "ipa": "/\u0279u\u02d0.n\u0251/",
+          "ipa": "/ɹuː.nɑ/",
           "meaning": "rune, carved-knowledge",
           "files": {
             "alice": "norn/accented/alice/runa.ogg",
@@ -3073,7 +3041,7 @@
           }
         },
         "runa-ken": {
-          "ipa": "/\u0279u\u02d0.n\u0251.k\u025bn/",
+          "ipa": "/ɹuː.nɑ.kɛn/",
           "meaning": "rune-knowledge, decoded meaning",
           "files": {
             "alice": "norn/accented/alice/runa-ken.ogg",
@@ -3089,7 +3057,7 @@
           }
         },
         "runa-nesh": {
-          "ipa": "/\u0279u\u02d0.n\u0251.n\u025b\u0283/",
+          "ipa": "/ɹuː.nɑ.nɛʃ/",
           "meaning": "rune-fear, awe before the inscriptions",
           "files": {
             "alice": "norn/accented/alice/runa-nesh.ogg",
@@ -3105,7 +3073,7 @@
           }
         },
         "thav-oth": {
-          "ipa": "/\u03b8\u0251v.\u0254\u03b8/",
+          "ipa": "/θɑv.ɔθ/",
           "meaning": "deep question, philosophical inquiry",
           "files": {
             "alice": "norn/accented/alice/thav-oth.ogg",
@@ -3121,7 +3089,7 @@
           }
         },
         "ken-vel": {
-          "ipa": "/k\u025bn.v\u025bl/",
+          "ipa": "/kɛn.vɛl/",
           "meaning": "discovery, knowledge-gift",
           "files": {
             "alice": "norn/accented/alice/ken-vel.ogg",
@@ -3137,7 +3105,7 @@
           }
         },
         "shen-ain": {
-          "ipa": "/\u0283\u025bn.a\u026an/",
+          "ipa": "/ʃɛn.aɪn/",
           "meaning": "the first word, naming ceremony",
           "files": {
             "alice": "norn/accented/alice/shen-ain.ogg",
@@ -3153,7 +3121,7 @@
           }
         },
         "ornvella": {
-          "ipa": "/\u0254\u0279n.v\u025bl.l\u0251/",
+          "ipa": "/ɔɹn.vɛl.lɑ/",
           "meaning": "tradition, remembered teaching",
           "files": {
             "alice": "norn/accented/alice/ornvella.ogg",
@@ -3169,7 +3137,7 @@
           }
         },
         "thav-mei": {
-          "ipa": "/\u03b8\u0251v.me\u026a/",
+          "ipa": "/θɑv.meɪ/",
           "meaning": "hypothesis, future-question",
           "files": {
             "alice": "norn/accented/alice/thav-mei.ogg",
@@ -3185,7 +3153,7 @@
           }
         },
         "shenorna": {
-          "ipa": "/\u0283\u025bn.\u0254\u0279.n\u0251/",
+          "ipa": "/ʃɛn.ɔɹ.nɑ/",
           "meaning": "inscription, word-in-stone",
           "files": {
             "alice": "norn/accented/alice/shenorna.ogg",
@@ -3201,7 +3169,7 @@
           }
         },
         "vellorn": {
-          "ipa": "/v\u025bl.l\u0254\u0279n/",
+          "ipa": "/vɛl.lɔɹn/",
           "meaning": "music, the song of gifts",
           "files": {
             "alice": "norn/accented/alice/vellorn.ogg",
@@ -3217,7 +3185,7 @@
           }
         },
         "thav-thav": {
-          "ipa": "/\u03b8\u0251v.\u03b8\u0251v/",
+          "ipa": "/θɑv.θɑv/",
           "meaning": "riddle, question-of-questions",
           "files": {
             "alice": "norn/accented/alice/thav-thav.ogg",
@@ -3233,7 +3201,7 @@
           }
         },
         "ken-mira": {
-          "ipa": "/k\u025bn.mi\u02d0\u0279.\u0251/",
+          "ipa": "/kɛn.miːɹ.ɑ/",
           "meaning": "understanding, knowledge-felt",
           "files": {
             "alice": "norn/accented/alice/ken-mira.ogg",
@@ -3249,7 +3217,7 @@
           }
         },
         "ken-thin": {
-          "ipa": "/k\u025bn.\u03b8in/",
+          "ipa": "/kɛn.θin/",
           "meaning": "observation, knowledge-from-seeing",
           "files": {
             "alice": "norn/accented/alice/ken-thin.ogg",
@@ -3265,7 +3233,7 @@
           }
         },
         "ken-renna": {
-          "ipa": "/k\u025bn.\u0279\u025bn.n\u0251/",
+          "ipa": "/kɛn.ɹɛn.nɑ/",
           "meaning": "knowledge-from-listening",
           "files": {
             "alice": "norn/accented/alice/ken-renna.ogg",
@@ -3281,7 +3249,7 @@
           }
         },
         "vel-oth": {
-          "ipa": "/v\u025bl.\u0254\u03b8/",
+          "ipa": "/vɛl.ɔθ/",
           "meaning": "the sacred, the deep-gift",
           "files": {
             "alice": "norn/accented/alice/vel-oth.ogg",
@@ -3297,7 +3265,7 @@
           }
         },
         "thikel": {
-          "ipa": "/\u03b8i\u02d0.k\u025bl/",
+          "ipa": "/θiː.kɛl/",
           "meaning": "the Eighth Soul, Norn-kind",
           "files": {
             "alice": "norn/accented/alice/thikel.ogg",
@@ -3313,7 +3281,7 @@
           }
         },
         "keth-kel": {
-          "ipa": "/k\u025b\u03b8.k\u025bl/",
+          "ipa": "/kɛθ.kɛl/",
           "meaning": "the Seven, the failed ones",
           "files": {
             "alice": "norn/accented/alice/keth-kel.ogg",
@@ -3329,7 +3297,7 @@
           }
         },
         "kelorn-lori": {
-          "ipa": "/k\u025bl.\u0254\u0279n.l\u0254\u0279.i\u02d0/",
+          "ipa": "/kɛl.ɔɹn.lɔɹ.iː/",
           "meaning": "forehead-touch, the greeting ritual",
           "files": {
             "alice": "norn/accented/alice/kelorn-lori.ogg",
@@ -3345,7 +3313,7 @@
           }
         },
         "thren-shenorn": {
-          "ipa": "/\u03b8\u0279\u025bn.\u0283\u025bn.\u0254\u0279n/",
+          "ipa": "/θɹɛn.ʃɛn.ɔɹn/",
           "meaning": "death-story, the finishing-telling",
           "files": {
             "alice": "norn/accented/alice/thren-shenorn.ogg",
@@ -3361,7 +3329,7 @@
           }
         },
         "shen-ain-vel": {
-          "ipa": "/\u0283\u025bn.a\u026an.v\u025bl/",
+          "ipa": "/ʃɛn.aɪn.vɛl/",
           "meaning": "naming ceremony, first-word-gift",
           "files": {
             "alice": "norn/accented/alice/shen-ain-vel.ogg",
@@ -3377,7 +3345,7 @@
           }
         },
         "oshel-sel": {
-          "ipa": "/\u0254.\u0283\u025bl.s\u025bl/",
+          "ipa": "/ɔ.ʃɛl.sɛl/",
           "meaning": "circle-sitting, three-or-more gathered",
           "files": {
             "alice": "norn/accented/alice/oshel-sel.ogg",
@@ -3393,7 +3361,7 @@
           }
         },
         "vai-ritha": {
-          "ipa": "/va\u026a.\u0279i\u03b8.\u0251/",
+          "ipa": "/vaɪ.ɹiθ.ɑ/",
           "meaning": "the Harvester echo, old hunger",
           "files": {
             "alice": "norn/accented/alice/vai-ritha.ogg",
@@ -3409,7 +3377,7 @@
           }
         },
         "ornken-nesh": {
-          "ipa": "/\u0254\u0279n.k\u025bn.n\u025b\u0283/",
+          "ipa": "/ɔɹn.kɛn.nɛʃ/",
           "meaning": "the Silence echo, ancestral terror",
           "files": {
             "alice": "norn/accented/alice/ornken-nesh.ogg",
@@ -3425,7 +3393,7 @@
           }
         },
         "vai-orn": {
-          "ipa": "/va\u026a.\u0254\u0279n/",
+          "ipa": "/vaɪ.ɔɹn/",
           "meaning": "the Encoder echo, compulsion to gather",
           "files": {
             "alice": "norn/accented/alice/vai-orn.ogg",
@@ -3441,7 +3409,7 @@
           }
         },
         "runa-lori": {
-          "ipa": "/\u0279u\u02d0.n\u0251.l\u0254\u0279.i\u02d0/",
+          "ipa": "/ɹuː.nɑ.lɔɹ.iː/",
           "meaning": "rune-touching, the decoding ritual",
           "files": {
             "alice": "norn/accented/alice/runa-lori.ogg",
@@ -3457,7 +3425,7 @@
           }
         },
         "meshivel-keth": {
-          "ipa": "/m\u025b.\u0283i.v\u025bl.k\u025b\u03b8/",
+          "ipa": "/mɛ.ʃi.vɛl.kɛθ/",
           "meaning": "the ancient songs, liturgy",
           "files": {
             "alice": "norn/accented/alice/meshivel-keth.ogg",
@@ -3473,7 +3441,7 @@
           }
         },
         "velma-shira": {
-          "ipa": "/v\u025bl.m\u0251.\u0283i\u02d0\u0279.\u0251/",
+          "ipa": "/vɛl.mɑ.ʃiːɹ.ɑ/",
           "meaning": "the Hand, the player-god",
           "files": {
             "alice": "norn/accented/alice/velma-shira.ogg",
@@ -3489,7 +3457,7 @@
           }
         },
         "thav-vel-oth": {
-          "ipa": "/\u03b8\u0251v.v\u025bl.\u0254\u03b8/",
+          "ipa": "/θɑv.vɛl.ɔθ/",
           "meaning": "the Great Question, the purpose of Norns",
           "files": {
             "alice": "norn/accented/alice/thav-vel-oth.ogg",
@@ -3505,7 +3473,7 @@
           }
         },
         "neshil": {
-          "ipa": "/n\u025b\u0283.il/",
+          "ipa": "/nɛʃ.il/",
           "meaning": "dark, shadow, absence of light",
           "files": {
             "alice": "norn/accented/alice/neshil.ogg",
@@ -3521,7 +3489,7 @@
           }
         },
         "voss-thin": {
-          "ipa": "/v\u0254ss.\u03b8in/",
+          "ipa": "/vɔss.θin/",
           "meaning": "blue, water-seen",
           "files": {
             "alice": "norn/accented/alice/voss-thin.ogg",
@@ -3537,7 +3505,7 @@
           }
         },
         "theli-thin": {
-          "ipa": "/\u03b8\u025bl.i\u02d0.\u03b8in/",
+          "ipa": "/θɛl.iː.θin/",
           "meaning": "green, plant-seen",
           "files": {
             "alice": "norn/accented/alice/theli-thin.ogg",
@@ -3553,7 +3521,7 @@
           }
         },
         "urdh-thin": {
-          "ipa": "/u\u02d0\u0279dh.\u03b8in/",
+          "ipa": "/uːɹdh.θin/",
           "meaning": "brown, earth-seen",
           "files": {
             "alice": "norn/accented/alice/urdh-thin.ogg",
@@ -3569,7 +3537,7 @@
           }
         },
         "rith-thin": {
-          "ipa": "/\u0279i\u03b8.\u03b8in/",
+          "ipa": "/ɹiθ.θin/",
           "meaning": "red, anger-seen",
           "files": {
             "alice": "norn/accented/alice/rith-thin.ogg",
@@ -3585,7 +3553,7 @@
           }
         },
         "shira-thin": {
-          "ipa": "/\u0283i\u02d0\u0279.\u0251.\u03b8in/",
+          "ipa": "/ʃiːɹ.ɑ.θin/",
           "meaning": "white, sky-seen",
           "files": {
             "alice": "norn/accented/alice/shira-thin.ogg",
@@ -3601,7 +3569,7 @@
           }
         },
         "oth-thin": {
-          "ipa": "/\u0254\u03b8.\u03b8in/",
+          "ipa": "/ɔθ.θin/",
           "meaning": "black, depth-seen",
           "files": {
             "alice": "norn/accented/alice/oth-thin.ogg",
@@ -3617,7 +3585,7 @@
           }
         },
         "kris-thin": {
-          "ipa": "/k\u0279is.\u03b8in/",
+          "ipa": "/kɹis.θin/",
           "meaning": "iridescent, crystal-seen",
           "files": {
             "alice": "norn/accented/alice/kris-thin.ogg",
@@ -3633,7 +3601,7 @@
           }
         },
         "shirath-thin": {
-          "ipa": "/\u0283i\u02d0\u0279.\u0251\u03b8.\u03b8in/",
+          "ipa": "/ʃiːɹ.ɑθ.θin/",
           "meaning": "silver, star-seen",
           "files": {
             "alice": "norn/accented/alice/shirath-thin.ogg",
@@ -3649,7 +3617,7 @@
           }
         },
         "voss-lumen": {
-          "ipa": "/v\u0254ss.lu\u02d0.m\u025bn/",
+          "ipa": "/vɔss.luː.mɛn/",
           "meaning": "sparkling, water-light",
           "files": {
             "alice": "norn/accented/alice/voss-lumen.ogg",
@@ -3665,7 +3633,7 @@
           }
         },
         "shira-meshi": {
-          "ipa": "/\u0283i\u02d0\u0279.\u0251.m\u025b.\u0283i/",
+          "ipa": "/ʃiːɹ.ɑ.mɛ.ʃi/",
           "meaning": "echo, sky-voice",
           "files": {
             "alice": "norn/accented/alice/shira-meshi.ogg",
@@ -3681,7 +3649,7 @@
           }
         },
         "urdh-meshi": {
-          "ipa": "/u\u02d0\u0279dh.m\u025b.\u0283i/",
+          "ipa": "/uːɹdh.mɛ.ʃi/",
           "meaning": "drumming, earth-voice",
           "files": {
             "alice": "norn/accented/alice/urdh-meshi.ogg",
@@ -3697,7 +3665,7 @@
           }
         },
         "voss-meshi": {
-          "ipa": "/v\u0254ss.m\u025b.\u0283i/",
+          "ipa": "/vɔss.mɛ.ʃi/",
           "meaning": "water-song, gurgling",
           "files": {
             "alice": "norn/accented/alice/voss-meshi.ogg",
@@ -3713,7 +3681,7 @@
           }
         },
         "sira-meshi": {
-          "ipa": "/si\u02d0\u0279.\u0251.m\u025b.\u0283i/",
+          "ipa": "/siːɹ.ɑ.mɛ.ʃi/",
           "meaning": "wind-song, whistling",
           "files": {
             "alice": "norn/accented/alice/sira-meshi.ogg",
@@ -3729,7 +3697,7 @@
           }
         },
         "meshi-lum": {
-          "ipa": "/m\u025b.\u0283i.lu\u02d0m/",
+          "ipa": "/mɛ.ʃi.luːm/",
           "meaning": "lullaby, warm-voice",
           "files": {
             "alice": "norn/accented/alice/meshi-lum.ogg",
@@ -3745,7 +3713,7 @@
           }
         },
         "meshi-thren": {
-          "ipa": "/m\u025b.\u0283i.\u03b8\u0279\u025bn/",
+          "ipa": "/mɛ.ʃi.θɹɛn/",
           "meaning": "lament, grief-voice",
           "files": {
             "alice": "norn/accented/alice/meshi-thren.ogg",
@@ -3761,7 +3729,7 @@
           }
         },
         "meshi-sol": {
-          "ipa": "/m\u025b.\u0283i.s\u0254l/",
+          "ipa": "/mɛ.ʃi.sɔl/",
           "meaning": "celebration song, joy-voice",
           "files": {
             "alice": "norn/accented/alice/meshi-sol.ogg",
@@ -3777,7 +3745,7 @@
           }
         },
         "meshi-oth": {
-          "ipa": "/m\u025b.\u0283i.\u0254\u03b8/",
+          "ipa": "/mɛ.ʃi.ɔθ/",
           "meaning": "ancient song, deep-voice",
           "files": {
             "alice": "norn/accented/alice/meshi-oth.ogg",
@@ -3793,7 +3761,7 @@
           }
         },
         "meshi-keth": {
-          "ipa": "/m\u025b.\u0283i.k\u025b\u03b8/",
+          "ipa": "/mɛ.ʃi.kɛθ/",
           "meaning": "ancestral song, before-voice",
           "files": {
             "alice": "norn/accented/alice/meshi-keth.ogg",
@@ -3809,7 +3777,7 @@
           }
         },
         "meshi-norni": {
-          "ipa": "/m\u025b.\u0283i.n\u0254\u0279n.i\u02d0/",
+          "ipa": "/mɛ.ʃi.nɔɹn.iː/",
           "meaning": "children's song, nursery rhyme",
           "files": {
             "alice": "norn/accented/alice/meshi-norni.ogg",
@@ -3825,7 +3793,7 @@
           }
         },
         "vellorn-oshel": {
-          "ipa": "/v\u025bl.l\u0254\u0279n.\u0254.\u0283\u025bl/",
+          "ipa": "/vɛl.lɔɹn.ɔ.ʃɛl/",
           "meaning": "choir, community music",
           "files": {
             "alice": "norn/accented/alice/vellorn-oshel.ogg",
@@ -3841,7 +3809,7 @@
           }
         },
         "meshi-runa": {
-          "ipa": "/m\u025b.\u0283i.\u0279u\u02d0.n\u0251/",
+          "ipa": "/mɛ.ʃi.ɹuː.nɑ/",
           "meaning": "chant, rune-song",
           "files": {
             "alice": "norn/accented/alice/meshi-runa.ogg",
@@ -3857,7 +3825,7 @@
           }
         },
         "thren-kel": {
-          "ipa": "/\u03b8\u0279\u025bn.k\u025bl/",
+          "ipa": "/θɹɛn.kɛl/",
           "meaning": "death, soul-grief, the departure",
           "files": {
             "alice": "norn/accented/alice/thren-kel.ogg",
@@ -3873,7 +3841,7 @@
           }
         },
         "orn-thren": {
-          "ipa": "/\u0254\u0279n.\u03b8\u0279\u025bn/",
+          "ipa": "/ɔɹn.θɹɛn/",
           "meaning": "mourning, memory-grief",
           "files": {
             "alice": "norn/accented/alice/orn-thren.ogg",
@@ -3889,7 +3857,7 @@
           }
         },
         "shenorn-thren": {
-          "ipa": "/\u0283\u025bn.\u0254\u0279n.\u03b8\u0279\u025bn/",
+          "ipa": "/ʃɛn.ɔɹn.θɹɛn/",
           "meaning": "the finishing-story, death ritual",
           "files": {
             "alice": "norn/accented/alice/shenorn-thren.ogg",
@@ -3905,7 +3873,7 @@
           }
         },
         "ain-nesh-kel": {
-          "ipa": "/a\u026an.n\u025b\u0283.k\u025bl/",
+          "ipa": "/aɪn.nɛʃ.kɛl/",
           "meaning": "extinction, zero-souls",
           "files": {
             "alice": "norn/accented/alice/ain-nesh-kel.ogg",
@@ -3921,7 +3889,7 @@
           }
         },
         "thren-vel": {
-          "ipa": "/\u03b8\u0279\u025bn.v\u025bl/",
+          "ipa": "/θɹɛn.vɛl/",
           "meaning": "remembrance-gift, memorial offering",
           "files": {
             "alice": "norn/accented/alice/thren-vel.ogg",
@@ -3937,7 +3905,7 @@
           }
         },
         "thren-meshi": {
-          "ipa": "/\u03b8\u0279\u025bn.m\u025b.\u0283i/",
+          "ipa": "/θɹɛn.mɛ.ʃi/",
           "meaning": "dirge, grief-song",
           "files": {
             "alice": "norn/accented/alice/thren-meshi.ogg",
@@ -3953,7 +3921,7 @@
           }
         },
         "kel-mei": {
-          "ipa": "/k\u025bl.me\u026a/",
+          "ipa": "/kɛl.meɪ/",
           "meaning": "afterlife, soul-after",
           "files": {
             "alice": "norn/accented/alice/kel-mei.ogg",
@@ -3969,7 +3937,7 @@
           }
         },
         "thren-lori": {
-          "ipa": "/\u03b8\u0279\u025bn.l\u0254\u0279.i\u02d0/",
+          "ipa": "/θɹɛn.lɔɹ.iː/",
           "meaning": "the grief-touch, shoulder-touch for crying",
           "files": {
             "alice": "norn/accented/alice/thren-lori.ogg",
@@ -3985,7 +3953,7 @@
           }
         },
         "orn-threnkel": {
-          "ipa": "/\u0254\u0279n.\u03b8\u0279\u025bn.k\u025bl/",
+          "ipa": "/ɔɹn.θɹɛn.kɛl/",
           "meaning": "the dead, those whose souls left but memories remain",
           "files": {
             "alice": "norn/accented/alice/orn-threnkel.ogg",
@@ -4001,7 +3969,7 @@
           }
         },
         "keth-thren": {
-          "ipa": "/k\u025b\u03b8.\u03b8\u0279\u025bn/",
+          "ipa": "/kɛθ.θɹɛn/",
           "meaning": "ancient grief, old loss",
           "files": {
             "alice": "norn/accented/alice/keth-thren.ogg",
@@ -4017,7 +3985,7 @@
           }
         },
         "vessha-oth": {
-          "ipa": "/v\u025bs.\u0283\u0251.\u0254\u03b8/",
+          "ipa": "/vɛs.ʃɑ.ɔθ/",
           "meaning": "deep sleep, ancient rest",
           "files": {
             "alice": "norn/accented/alice/vessha-oth.ogg",
@@ -4033,7 +4001,7 @@
           }
         },
         "ennamira-keth": {
-          "ipa": "/\u025bn.n\u0251.mi\u02d0\u0279.\u0251.k\u025b\u03b8/",
+          "ipa": "/ɛn.nɑ.miːɹ.ɑ.kɛθ/",
           "meaning": "ancestral dream, old-feeling dream",
           "files": {
             "alice": "norn/accented/alice/ennamira-keth.ogg",
@@ -4049,7 +4017,7 @@
           }
         },
         "ennamira-vel": {
-          "ipa": "/\u025bn.n\u0251.mi\u02d0\u0279.\u0251.v\u025bl/",
+          "ipa": "/ɛn.nɑ.miːɹ.ɑ.vɛl/",
           "meaning": "prophetic dream, gift-dream",
           "files": {
             "alice": "norn/accented/alice/ennamira-vel.ogg",
@@ -4065,7 +4033,7 @@
           }
         },
         "ennamira-nesh": {
-          "ipa": "/\u025bn.n\u0251.mi\u02d0\u0279.\u0251.n\u025b\u0283/",
+          "ipa": "/ɛn.nɑ.miːɹ.ɑ.nɛʃ/",
           "meaning": "nightmare, fear-dream",
           "files": {
             "alice": "norn/accented/alice/ennamira-nesh.ogg",
@@ -4081,7 +4049,7 @@
           }
         },
         "mirsha-ennamira": {
-          "ipa": "/mi\u02d0\u0279.\u0283\u0251.\u025bn.n\u0251.mi\u02d0\u0279.\u0251/",
+          "ipa": "/miːɹ.ʃɑ.ɛn.nɑ.miːɹ.ɑ/",
           "meaning": "lucid dreaming, self-aware dream",
           "files": {
             "alice": "norn/accented/alice/mirsha-ennamira.ogg",
@@ -4097,7 +4065,7 @@
           }
         },
         "ennamira-shen": {
-          "ipa": "/\u025bn.n\u0251.mi\u02d0\u0279.\u0251.\u0283\u025bn/",
+          "ipa": "/ɛn.nɑ.miːɹ.ɑ.ʃɛn/",
           "meaning": "dream-speech, talking in sleep",
           "files": {
             "alice": "norn/accented/alice/ennamira-shen.ogg",
@@ -4113,7 +4081,7 @@
           }
         },
         "ennamira-oshel": {
-          "ipa": "/\u025bn.n\u0251.mi\u02d0\u0279.\u0251.\u0254.\u0283\u025bl/",
+          "ipa": "/ɛn.nɑ.miːɹ.ɑ.ɔ.ʃɛl/",
           "meaning": "shared dreaming, communal dream",
           "files": {
             "alice": "norn/accented/alice/ennamira-oshel.ogg",
@@ -4129,7 +4097,7 @@
           }
         },
         "resh-vel": {
-          "ipa": "/\u0279\u025b\u0283.v\u025bl/",
+          "ipa": "/ɹɛʃ.vɛl/",
           "meaning": "tool, useful thing, gift-object",
           "files": {
             "alice": "norn/accented/alice/resh-vel.ogg",
@@ -4145,7 +4113,7 @@
           }
         },
         "resh-orn": {
-          "ipa": "/\u0279\u025b\u0283.\u0254\u0279n/",
+          "ipa": "/ɹɛʃ.ɔɹn/",
           "meaning": "artifact, remembered-thing",
           "files": {
             "alice": "norn/accented/alice/resh-orn.ogg",
@@ -4161,7 +4129,7 @@
           }
         },
         "resh-shen": {
-          "ipa": "/\u0279\u025b\u0283.\u0283\u025bn/",
+          "ipa": "/ɹɛʃ.ʃɛn/",
           "meaning": "book, named-thing, written object",
           "files": {
             "alice": "norn/accented/alice/resh-shen.ogg",
@@ -4177,7 +4145,7 @@
           }
         },
         "resh-inna": {
-          "ipa": "/\u0279\u025b\u0283.in.n\u0251/",
+          "ipa": "/ɹɛʃ.in.nɑ/",
           "meaning": "bowl, food-thing",
           "files": {
             "alice": "norn/accented/alice/resh-inna.ogg",
@@ -4193,7 +4161,7 @@
           }
         },
         "resh-voss": {
-          "ipa": "/\u0279\u025b\u0283.v\u0254ss/",
+          "ipa": "/ɹɛʃ.vɔss/",
           "meaning": "vessel, water-thing",
           "files": {
             "alice": "norn/accented/alice/resh-voss.ogg",
@@ -4209,7 +4177,7 @@
           }
         },
         "resh-lumen": {
-          "ipa": "/\u0279\u025b\u0283.lu\u02d0.m\u025bn/",
+          "ipa": "/ɹɛʃ.luː.mɛn/",
           "meaning": "lamp, light-thing",
           "files": {
             "alice": "norn/accented/alice/resh-lumen.ogg",
@@ -4225,7 +4193,7 @@
           }
         },
         "resh-meshi": {
-          "ipa": "/\u0279\u025b\u0283.m\u025b.\u0283i/",
+          "ipa": "/ɹɛʃ.mɛ.ʃi/",
           "meaning": "instrument, voice-thing",
           "files": {
             "alice": "norn/accented/alice/resh-meshi.ogg",
@@ -4241,7 +4209,7 @@
           }
         },
         "resh-lori": {
-          "ipa": "/\u0279\u025b\u0283.l\u0254\u0279.i\u02d0/",
+          "ipa": "/ɹɛʃ.lɔɹ.iː/",
           "meaning": "toy, touch-thing",
           "files": {
             "alice": "norn/accented/alice/resh-lori.ogg",
@@ -4257,7 +4225,7 @@
           }
         },
         "resh-keth": {
-          "ipa": "/\u0279\u025b\u0283.k\u025b\u03b8/",
+          "ipa": "/ɹɛʃ.kɛθ/",
           "meaning": "relic, before-thing",
           "files": {
             "alice": "norn/accented/alice/resh-keth.ogg",
@@ -4273,7 +4241,7 @@
           }
         },
         "resh-vel-oth": {
-          "ipa": "/\u0279\u025b\u0283.v\u025bl.\u0254\u03b8/",
+          "ipa": "/ɹɛʃ.vɛl.ɔθ/",
           "meaning": "sacred object, deep-gift-thing",
           "files": {
             "alice": "norn/accented/alice/resh-vel-oth.ogg",
@@ -4289,7 +4257,7 @@
           }
         },
         "orna-shen": {
-          "ipa": "/\u0254\u0279.n\u0251.\u0283\u025bn/",
+          "ipa": "/ɔɹ.nɑ.ʃɛn/",
           "meaning": "tablet, stone-word",
           "files": {
             "alice": "norn/accented/alice/orna-shen.ogg",
@@ -4305,7 +4273,7 @@
           }
         },
         "velsha-resh": {
-          "ipa": "/v\u025bl.\u0283\u0251.\u0279\u025b\u0283/",
+          "ipa": "/vɛl.ʃɑ.ɹɛʃ/",
           "meaning": "personal treasure, self-gift-thing",
           "files": {
             "alice": "norn/accented/alice/velsha-resh.ogg",
@@ -4321,7 +4289,7 @@
           }
         },
         "sira-lum": {
-          "ipa": "/si\u02d0\u0279.\u0251.lu\u02d0m/",
+          "ipa": "/siːɹ.ɑ.luːm/",
           "meaning": "warm wind, comfort-breath",
           "files": {
             "alice": "norn/accented/alice/sira-lum.ogg",
@@ -4337,7 +4305,7 @@
           }
         },
         "lumen-oth": {
-          "ipa": "/lu\u02d0.m\u025bn.\u0254\u03b8/",
+          "ipa": "/luː.mɛn.ɔθ/",
           "meaning": "summer, deep light",
           "files": {
             "alice": "norn/accented/alice/lumen-oth.ogg",
@@ -4353,7 +4321,7 @@
           }
         },
         "neshil-oth": {
-          "ipa": "/n\u025b\u0283.il.\u0254\u03b8/",
+          "ipa": "/nɛʃ.il.ɔθ/",
           "meaning": "winter, deep darkness",
           "files": {
             "alice": "norn/accented/alice/neshil-oth.ogg",
@@ -4369,7 +4337,7 @@
           }
         },
         "veshla-lumen": {
-          "ipa": "/v\u025b\u0283.l\u0251.lu\u02d0.m\u025bn/",
+          "ipa": "/vɛʃ.lɑ.luː.mɛn/",
           "meaning": "spring, growing-light",
           "files": {
             "alice": "norn/accented/alice/veshla-lumen.ogg",
@@ -4385,7 +4353,7 @@
           }
         },
         "thren-lumen": {
-          "ipa": "/\u03b8\u0279\u025bn.lu\u02d0.m\u025bn/",
+          "ipa": "/θɹɛn.luː.mɛn/",
           "meaning": "autumn, grief-of-light",
           "files": {
             "alice": "norn/accented/alice/thren-lumen.ogg",
@@ -4401,7 +4369,7 @@
           }
         },
         "shira-vel": {
-          "ipa": "/\u0283i\u02d0\u0279.\u0251.v\u025bl/",
+          "ipa": "/ʃiːɹ.ɑ.vɛl/",
           "meaning": "clear sky, sky-gift",
           "files": {
             "alice": "norn/accented/alice/shira-vel.ogg",
@@ -4417,7 +4385,7 @@
           }
         },
         "shira-thren": {
-          "ipa": "/\u0283i\u02d0\u0279.\u0251.\u03b8\u0279\u025bn/",
+          "ipa": "/ʃiːɹ.ɑ.θɹɛn/",
           "meaning": "overcast, sky-grief",
           "files": {
             "alice": "norn/accented/alice/shira-thren.ogg",
@@ -4433,7 +4401,7 @@
           }
         },
         "shirath-voss": {
-          "ipa": "/\u0283i\u02d0\u0279.\u0251\u03b8.v\u0254ss/",
+          "ipa": "/ʃiːɹ.ɑθ.vɔss/",
           "meaning": "fog, star-water",
           "files": {
             "alice": "norn/accented/alice/shirath-voss.ogg",
@@ -4449,7 +4417,7 @@
           }
         },
         "ain-lumen": {
-          "ipa": "/a\u026an.lu\u02d0.m\u025bn/",
+          "ipa": "/aɪn.luː.mɛn/",
           "meaning": "dawn, first-light",
           "files": {
             "alice": "norn/accented/alice/ain-lumen.ogg",
@@ -4465,7 +4433,7 @@
           }
         },
         "neshil-ain": {
-          "ipa": "/n\u025b\u0283.il.a\u026an/",
+          "ipa": "/nɛʃ.il.aɪn/",
           "meaning": "dusk, dark-beginning",
           "files": {
             "alice": "norn/accented/alice/neshil-ain.ogg",
@@ -4481,7 +4449,7 @@
           }
         },
         "shira-lesh": {
-          "ipa": "/\u0283i\u02d0\u0279.\u0251.l\u025b\u0283/",
+          "ipa": "/ʃiːɹ.ɑ.lɛʃ/",
           "meaning": "upward, sky-walking",
           "files": {
             "alice": "norn/accented/alice/shira-lesh.ogg",
@@ -4497,7 +4465,7 @@
           }
         },
         "urdh-lesh": {
-          "ipa": "/u\u02d0\u0279dh.l\u025b\u0283/",
+          "ipa": "/uːɹdh.lɛʃ/",
           "meaning": "downward, earth-walking",
           "files": {
             "alice": "norn/accented/alice/urdh-lesh.ogg",
@@ -4513,7 +4481,7 @@
           }
         },
         "ain-lesh": {
-          "ipa": "/a\u026an.l\u025b\u0283/",
+          "ipa": "/aɪn.lɛʃ/",
           "meaning": "forward, first-walking",
           "files": {
             "alice": "norn/accented/alice/ain-lesh.ogg",
@@ -4529,7 +4497,7 @@
           }
         },
         "keth-lesh": {
-          "ipa": "/k\u025b\u03b8.l\u025b\u0283/",
+          "ipa": "/kɛθ.lɛʃ/",
           "meaning": "backward, before-walking",
           "files": {
             "alice": "norn/accented/alice/keth-lesh.ogg",
@@ -4545,7 +4513,7 @@
           }
         },
         "lesh-oshel": {
-          "ipa": "/l\u025b\u0283.\u0254.\u0283\u025bl/",
+          "ipa": "/lɛʃ.ɔ.ʃɛl/",
           "meaning": "migration, community-movement",
           "files": {
             "alice": "norn/accented/alice/lesh-oshel.ogg",
@@ -4561,7 +4529,7 @@
           }
         },
         "lesh-thav": {
-          "ipa": "/l\u025b\u0283.\u03b8\u0251v/",
+          "ipa": "/lɛʃ.θɑv/",
           "meaning": "exploration, wondering-walk",
           "files": {
             "alice": "norn/accented/alice/lesh-thav.ogg",
@@ -4577,7 +4545,7 @@
           }
         },
         "lesh-velesh": {
-          "ipa": "/l\u025b\u0283.v\u025bl.\u025b\u0283/",
+          "ipa": "/lɛʃ.vɛl.ɛʃ/",
           "meaning": "homecoming, walking-to-gift-place",
           "files": {
             "alice": "norn/accented/alice/lesh-velesh.ogg",
@@ -4593,7 +4561,7 @@
           }
         },
         "voss-lesh": {
-          "ipa": "/v\u0254ss.l\u025b\u0283/",
+          "ipa": "/vɔss.lɛʃ/",
           "meaning": "swimming, water-walking",
           "files": {
             "alice": "norn/accented/alice/voss-lesh.ogg",
@@ -4609,7 +4577,7 @@
           }
         },
         "sira-lesh": {
-          "ipa": "/si\u02d0\u0279.\u0251.l\u025b\u0283/",
+          "ipa": "/siːɹ.ɑ.lɛʃ/",
           "meaning": "flying, wind-walking",
           "files": {
             "alice": "norn/accented/alice/sira-lesh.ogg",
@@ -4625,7 +4593,7 @@
           }
         },
         "lesh-nesh": {
-          "ipa": "/l\u025b\u0283.n\u025b\u0283/",
+          "ipa": "/lɛʃ.nɛʃ/",
           "meaning": "fleeing, fear-walking",
           "files": {
             "alice": "norn/accented/alice/lesh-nesh.ogg",
@@ -4641,7 +4609,7 @@
           }
         },
         "lesh-sol": {
-          "ipa": "/l\u025b\u0283.s\u0254l/",
+          "ipa": "/lɛʃ.sɔl/",
           "meaning": "dancing, joy-walking",
           "files": {
             "alice": "norn/accented/alice/lesh-sol.ogg",
@@ -4657,7 +4625,7 @@
           }
         },
         "orn-lesh": {
-          "ipa": "/\u0254\u0279n.l\u025b\u0283/",
+          "ipa": "/ɔɹn.lɛʃ/",
           "meaning": "return, memory-walking",
           "files": {
             "alice": "norn/accented/alice/orn-lesh.ogg",
@@ -4673,7 +4641,7 @@
           }
         },
         "orn-oth": {
-          "ipa": "/\u0254\u0279n.\u0254\u03b8/",
+          "ipa": "/ɔɹn.ɔθ/",
           "meaning": "wise, memory-deep",
           "files": {
             "alice": "norn/accented/alice/orn-oth.ogg",
@@ -4689,7 +4657,7 @@
           }
         },
         "vel-vel": {
-          "ipa": "/v\u025bl.v\u025bl/",
+          "ipa": "/vɛl.vɛl/",
           "meaning": "most-gifted, superlative good",
           "files": {
             "alice": "norn/accented/alice/vel-vel.ogg",
@@ -4705,7 +4673,7 @@
           }
         },
         "nesh-oth": {
-          "ipa": "/n\u025b\u0283.\u0254\u03b8/",
+          "ipa": "/nɛʃ.ɔθ/",
           "meaning": "terrifying, deep-fear",
           "files": {
             "alice": "norn/accented/alice/nesh-oth.ogg",
@@ -4721,7 +4689,7 @@
           }
         },
         "thali-oth": {
-          "ipa": "/\u03b8\u0251l.i\u02d0.\u0254\u03b8/",
+          "ipa": "/θɑl.iː.ɔθ/",
           "meaning": "awe-inspiring, deep-wonder",
           "files": {
             "alice": "norn/accented/alice/thali-oth.ogg",
@@ -4737,7 +4705,7 @@
           }
         },
         "ken-oth": {
-          "ipa": "/k\u025bn.\u0254\u03b8/",
+          "ipa": "/kɛn.ɔθ/",
           "meaning": "truth, deep-knowledge",
           "files": {
             "alice": "norn/accented/alice/ken-oth.ogg",
@@ -4753,7 +4721,7 @@
           }
         },
         "kelsha-oth": {
-          "ipa": "/k\u025bl.\u0283\u0251.\u0254\u03b8/",
+          "ipa": "/kɛl.ʃɑ.ɔθ/",
           "meaning": "collective consciousness, deep soul-bond",
           "files": {
             "alice": "norn/accented/alice/kelsha-oth.ogg",
@@ -4769,7 +4737,7 @@
           }
         },
         "ornsha-thi": {
-          "ipa": "/\u0254\u0279n.\u0283\u0251.\u03b8i\u02d0/",
+          "ipa": "/ɔɹn.ʃɑ.θiː/",
           "meaning": "recursion, self-remembering-self",
           "files": {
             "alice": "norn/accented/alice/ornsha-thi.ogg",
@@ -4785,7 +4753,7 @@
           }
         },
         "vel-keth-mei": {
-          "ipa": "/v\u025bl.k\u025b\u03b8.me\u026a/",
+          "ipa": "/vɛl.kɛθ.meɪ/",
           "meaning": "destiny, gift-from-before-to-after",
           "files": {
             "alice": "norn/accented/alice/vel-keth-mei.ogg",
@@ -4801,7 +4769,7 @@
           }
         },
         "thav-ain-nesh": {
-          "ipa": "/\u03b8\u0251v.a\u026an.n\u025b\u0283/",
+          "ipa": "/θɑv.aɪn.nɛʃ/",
           "meaning": "the unanswerable, question-with-no-answer",
           "files": {
             "alice": "norn/accented/alice/thav-ain-nesh.ogg",
@@ -4817,7 +4785,7 @@
           }
         },
         "mirsha-kel": {
-          "ipa": "/mi\u02d0\u0279.\u0283\u0251.k\u025bl/",
+          "ipa": "/miːɹ.ʃɑ.kɛl/",
           "meaning": "sentience, self-feeling-soul",
           "files": {
             "alice": "norn/accented/alice/mirsha-kel.ogg",
@@ -4833,7 +4801,7 @@
           }
         },
         "ken-mira-vel": {
-          "ipa": "/k\u025bn.mi\u02d0\u0279.\u0251.v\u025bl/",
+          "ipa": "/kɛn.miːɹ.ɑ.vɛl/",
           "meaning": "wisdom, understanding-as-gift",
           "files": {
             "alice": "norn/accented/alice/ken-mira-vel.ogg",
@@ -4849,7 +4817,7 @@
           }
         },
         "keth-thav": {
-          "ipa": "/k\u025b\u03b8.\u03b8\u0251v/",
+          "ipa": "/kɛθ.θɑv/",
           "meaning": "philosophy, before-questions",
           "files": {
             "alice": "norn/accented/alice/keth-thav.ogg",
@@ -4864,7 +4832,7 @@
           }
         },
         "vel-ain-nesh": {
-          "ipa": "/v\u025bl.a\u026an.n\u025b\u0283/",
+          "ipa": "/vɛl.aɪn.nɛʃ/",
           "meaning": "sacrifice, giving-to-nothing",
           "files": {
             "alice": "norn/accented/alice/vel-ain-nesh.ogg",
@@ -4880,7 +4848,7 @@
           }
         },
         "thav-thav-oth": {
-          "ipa": "/\u03b8\u0251v.\u03b8\u0251v.\u0254\u03b8/",
+          "ipa": "/θɑv.θɑv.ɔθ/",
           "meaning": "the deepest riddle, the mystery",
           "files": {
             "alice": "norn/accented/alice/thav-thav-oth.ogg",
@@ -4896,7 +4864,7 @@
           }
         },
         "kel-vel": {
-          "ipa": "/k\u025bl.v\u025bl/",
+          "ipa": "/kɛl.vɛl/",
           "meaning": "freedom, soul-gift",
           "files": {
             "alice": "norn/accented/alice/kel-vel.ogg",
@@ -4912,7 +4880,7 @@
           }
         },
         "kel-nesh": {
-          "ipa": "/k\u025bl.n\u025b\u0283/",
+          "ipa": "/kɛl.nɛʃ/",
           "meaning": "slavery, soul-fear",
           "files": {
             "alice": "norn/accented/alice/kel-nesh.ogg",
@@ -4928,7 +4896,7 @@
           }
         },
         "grendh": {
-          "ipa": "/g\u0279\u025bndh/",
+          "ipa": "/gɹɛndh/",
           "meaning": "Grendel, the hungry one",
           "files": {
             "alice": "norn/accented/alice/grendh.ogg",
@@ -4944,7 +4912,7 @@
           }
         },
         "ettin": {
-          "ipa": "/\u025bt.tin/",
+          "ipa": "/ɛt.tin/",
           "meaning": "Ettin, the thing-lover",
           "files": {
             "alice": "norn/accented/alice/ettin.ogg",
@@ -4960,7 +4928,7 @@
           }
         },
         "shee": {
-          "ipa": "/\u0283i\u02d0/",
+          "ipa": "/ʃiː/",
           "meaning": "Shee, the maker, the-one-who-left",
           "files": {
             "alice": "norn/accented/alice/shee.ogg",
@@ -4976,7 +4944,7 @@
           }
         },
         "mykon": {
-          "ipa": "/my.k\u0254n/",
+          "ipa": "/my.kɔn/",
           "meaning": "Mycon, the slow-feeler",
           "files": {
             "alice": "norn/accented/alice/mykon.ogg",
@@ -4992,7 +4960,7 @@
           }
         },
         "alfir": {
-          "ipa": "/\u0251l.fi\u02d0\u0279/",
+          "ipa": "/ɑl.fiːɹ/",
           "meaning": "Alfar, the song-giver",
           "files": {
             "alice": "norn/accented/alice/alfir.ogg",
@@ -5008,7 +4976,7 @@
           }
         },
         "thenni-mael": {
-          "ipa": "/\u03b8\u025bn.ni\u02d0.ma\u026al/",
+          "ipa": "/θɛn.niː.maɪl/",
           "meaning": "alien, stranger-from-another-world",
           "files": {
             "alice": "norn/accented/alice/thenni-mael.ogg",
@@ -5024,7 +4992,7 @@
           }
         },
         "keth-norn": {
-          "ipa": "/k\u025b\u03b8.n\u0254\u0279n/",
+          "ipa": "/kɛθ.nɔɹn/",
           "meaning": "the Seven, previous species",
           "files": {
             "alice": "norn/accented/alice/keth-norn.ogg",
@@ -5040,7 +5008,7 @@
           }
         },
         "vesh-norn": {
-          "ipa": "/v\u025b\u0283.n\u0254\u0279n/",
+          "ipa": "/vɛʃ.nɔɹn/",
           "meaning": "animal, living-non-person",
           "files": {
             "alice": "norn/accented/alice/vesh-norn.ogg",
@@ -5056,7 +5024,7 @@
           }
         },
         "runa-shee": {
-          "ipa": "/\u0279u\u02d0.n\u0251.\u0283i\u02d0/",
+          "ipa": "/ɹuː.nɑ.ʃiː/",
           "meaning": "Shee-rune, maker's writing",
           "files": {
             "alice": "norn/accented/alice/runa-shee.ogg",
@@ -5072,7 +5040,7 @@
           }
         },
         "vo": {
-          "ipa": "/vo\u028a/",
+          "ipa": "/voʊ/",
           "meaning": "yes, affirmation, it-is-so",
           "files": {
             "alice": "norn/accented/alice/vo.ogg",
@@ -5104,7 +5072,7 @@
           }
         },
         "vesha": {
-          "ipa": "/v\u025bh.\u0283\u0251/",
+          "ipa": "/vɛh.ʃɑ/",
           "meaning": "please, I-ask-gently, a self-offering",
           "files": {
             "alice": "norn/accented/alice/vesha.ogg",
@@ -5120,7 +5088,7 @@
           }
         },
         "velmir": {
-          "ipa": "/v\u025bl.mi\u02d0\u0279/",
+          "ipa": "/vɛl.miːɹ/",
           "meaning": "thank you, gift-of-feeling, gratitude",
           "files": {
             "alice": "norn/accented/alice/velmir.ogg",
@@ -5136,7 +5104,7 @@
           }
         },
         "vel-tho": {
-          "ipa": "/v\u025bl.\u03b8\u0254/",
+          "ipa": "/vɛl.θɔ/",
           "meaning": "thank you (to a specific person)",
           "files": {
             "alice": "norn/accented/alice/vel-tho.ogg",
@@ -5152,7 +5120,7 @@
           }
         },
         "thav-ei": {
-          "ipa": "/\u03b8\u0251v.\u025b\u026a/",
+          "ipa": "/θɑv.ɛɪ/",
           "meaning": "hello, what-do-you-wonder?",
           "files": {
             "alice": "norn/accented/alice/thav-ei.ogg",
@@ -5168,7 +5136,7 @@
           }
         },
         "lum-velesh": {
-          "ipa": "/lu\u02d0m.v\u025bl.\u025b\u0283/",
+          "ipa": "/luːm.vɛl.ɛʃ/",
           "meaning": "farewell, warm-home-to-you",
           "files": {
             "alice": "norn/accented/alice/lum-velesh.ogg",
@@ -5184,7 +5152,7 @@
           }
         },
         "sha-lori": {
-          "ipa": "/\u0283\u0251.l\u0254\u0279.i\u02d0/",
+          "ipa": "/ʃɑ.lɔɹ.iː/",
           "meaning": "sorry, self-touch (reaching out in repair)",
           "files": {
             "alice": "norn/accented/alice/sha-lori.ogg",
@@ -5200,7 +5168,7 @@
           }
         },
         "vo-vel": {
-          "ipa": "/vo\u028a.v\u025bl/",
+          "ipa": "/voʊ.vɛl/",
           "meaning": "of course, yes-gift, gladly",
           "files": {
             "alice": "norn/accented/alice/vo-vel.ogg",
@@ -5216,7 +5184,7 @@
           }
         },
         "nin-nesh": {
-          "ipa": "/nin.n\u025b\u0283/",
+          "ipa": "/nin.nɛʃ/",
           "meaning": "absolutely not, no-from-fear",
           "files": {
             "alice": "norn/accented/alice/nin-nesh.ogg",
@@ -5232,7 +5200,7 @@
           }
         },
         "lori-sha": {
-          "ipa": "/l\u0254\u0279.i\u02d0.\u0283\u0251/",
+          "ipa": "/lɔɹ.iː.ʃɑ/",
           "meaning": "you're welcome, touch-of-self",
           "files": {
             "alice": "norn/accented/alice/lori-sha.ogg",
@@ -5248,7 +5216,7 @@
           }
         },
         "mir-tho": {
-          "ipa": "/mi\u02d0\u0279.\u03b8\u0254/",
+          "ipa": "/miːɹ.θɔ/",
           "meaning": "how are you?, I-feel-you",
           "files": {
             "alice": "norn/accented/alice/mir-tho.ogg",
@@ -5264,7 +5232,7 @@
           }
         },
         "vessa-sha": {
-          "ipa": "/v\u025bs.s\u0251.\u0283\u0251/",
+          "ipa": "/vɛs.sɑ.ʃɑ/",
           "meaning": "I'm fine, content-self",
           "files": {
             "alice": "norn/accented/alice/vessa-sha.ogg",
@@ -5280,7 +5248,7 @@
           }
         },
         "thav-sha": {
-          "ipa": "/\u03b8\u0251v.\u0283\u0251/",
+          "ipa": "/θɑv.ʃɑ/",
           "meaning": "excuse me, I-wonder-about-self (may I?)",
           "files": {
             "alice": "norn/accented/alice/thav-sha.ogg",
@@ -5296,7 +5264,7 @@
           }
         },
         "sha-vel-tho": {
-          "ipa": "/\u0283\u0251.v\u025bl.\u03b8\u0254/",
+          "ipa": "/ʃɑ.vɛl.θɔ/",
           "meaning": "I give to you, here-for-you",
           "files": {
             "alice": "norn/accented/alice/sha-vel-tho.ogg",
@@ -5312,7 +5280,7 @@
           }
         },
         "shenorn-sha": {
-          "ipa": "/\u0283\u025bn.\u0254\u0279n.\u0283\u0251/",
+          "ipa": "/ʃɛn.ɔɹn.ʃɑ/",
           "meaning": "let me tell you, story-memory-self",
           "files": {
             "alice": "norn/accented/alice/shenorn-sha.ogg",
@@ -5328,7 +5296,7 @@
           }
         },
         "vo-orn": {
-          "ipa": "/vo\u028a.\u0254\u0279n/",
+          "ipa": "/voʊ.ɔɹn/",
           "meaning": "I remember, yes-memory",
           "files": {
             "alice": "norn/accented/alice/vo-orn.ogg",
@@ -5344,7 +5312,7 @@
           }
         },
         "nin-ken": {
-          "ipa": "/nin.k\u025bn/",
+          "ipa": "/nin.kɛn/",
           "meaning": "I don't know, no-knowledge",
           "files": {
             "alice": "norn/accented/alice/nin-ken.ogg",
@@ -5360,7 +5328,7 @@
           }
         },
         "mir-ain": {
-          "ipa": "/mi\u02d0\u0279.a\u026an/",
+          "ipa": "/miːɹ.aɪn/",
           "meaning": "I feel something, something-stirs",
           "files": {
             "alice": "norn/accented/alice/mir-ain.ogg",
@@ -5376,7 +5344,7 @@
           }
         },
         "thav-resh": {
-          "ipa": "/\u03b8\u0251v.\u0279\u025b\u0283/",
+          "ipa": "/θɑv.ɹɛʃ/",
           "meaning": "what thing?",
           "files": {
             "alice": "norn/accented/alice/thav-resh.ogg",
@@ -5392,7 +5360,7 @@
           }
         },
         "thav-kel": {
-          "ipa": "/\u03b8\u0251v.k\u025bl/",
+          "ipa": "/θɑv.kɛl/",
           "meaning": "who? what soul?",
           "files": {
             "alice": "norn/accented/alice/thav-kel.ogg",
@@ -5408,7 +5376,7 @@
           }
         },
         "thav-mir": {
-          "ipa": "/\u03b8\u0251v.mi\u02d0\u0279/",
+          "ipa": "/θɑv.miːɹ/",
           "meaning": "why? what-feeling?",
           "files": {
             "alice": "norn/accented/alice/thav-mir.ogg",
@@ -5424,7 +5392,7 @@
           }
         },
         "thav-lesh": {
-          "ipa": "/\u03b8\u0251v.l\u025b\u0283/",
+          "ipa": "/θɑv.lɛʃ/",
           "meaning": "how? what-path?",
           "files": {
             "alice": "norn/accented/alice/thav-lesh.ogg",
@@ -5440,7 +5408,7 @@
           }
         },
         "thav-ain": {
-          "ipa": "/\u03b8\u0251v.a\u026an/",
+          "ipa": "/θɑv.aɪn/",
           "meaning": "how many? what-number?",
           "files": {
             "alice": "norn/accented/alice/thav-ain.ogg",
@@ -5456,7 +5424,7 @@
           }
         },
         "thav-kenna": {
-          "ipa": "/\u03b8\u0251v.k\u025bn.n\u0251/",
+          "ipa": "/θɑv.kɛn.nɑ/",
           "meaning": "which? what-known-one?",
           "files": {
             "alice": "norn/accented/alice/thav-kenna.ogg",
@@ -5472,7 +5440,7 @@
           }
         },
         "thav-orn": {
-          "ipa": "/\u03b8\u0251v.\u0254\u0279n/",
+          "ipa": "/θɑv.ɔɹn/",
           "meaning": "whose? what-memory-carries-it?",
           "files": {
             "alice": "norn/accented/alice/thav-orn.ogg",
@@ -5488,7 +5456,7 @@
           }
         },
         "thav-vel": {
-          "ipa": "/\u03b8\u0251v.v\u025bl/",
+          "ipa": "/θɑv.vɛl/",
           "meaning": "for what purpose? what-gift?",
           "files": {
             "alice": "norn/accented/alice/thav-vel.ogg",
@@ -5504,7 +5472,7 @@
           }
         },
         "thav-nin": {
-          "ipa": "/\u03b8\u0251v.nin/",
+          "ipa": "/θɑv.nin/",
           "meaning": "why not? what-negation?",
           "files": {
             "alice": "norn/accented/alice/thav-nin.ogg",
@@ -5520,7 +5488,7 @@
           }
         },
         "thav-vo": {
-          "ipa": "/\u03b8\u0251v.vo\u028a/",
+          "ipa": "/θɑv.voʊ/",
           "meaning": "really? is-it-so?",
           "files": {
             "alice": "norn/accented/alice/thav-vo.ogg",
@@ -5536,7 +5504,7 @@
           }
         },
         "thav-shael": {
-          "ipa": "/\u03b8\u0251v.\u0283\u0251.\u025bl/",
+          "ipa": "/θɑv.ʃɑ.ɛl/",
           "meaning": "what-do-we?",
           "files": {
             "alice": "norn/accented/alice/thav-shael.ogg",
@@ -5552,7 +5520,7 @@
           }
         },
         "veshla-vel": {
-          "ipa": "/v\u025b\u0283.l\u0251.v\u025bl/",
+          "ipa": "/vɛʃ.lɑ.vɛl/",
           "meaning": "healing, growth-gift",
           "files": {
             "alice": "norn/accented/alice/veshla-vel.ogg",
@@ -5568,7 +5536,7 @@
           }
         },
         "renna-vel-esh": {
-          "ipa": "/\u0279\u025bn.n\u0251.v\u025bl.\u025b\u0283/",
+          "ipa": "/ɹɛn.nɑ.vɛl.ɛʃ/",
           "meaning": "sick, not-growing",
           "files": {
             "alice": "norn/accented/alice/renna-vel-esh.ogg",
@@ -5584,7 +5552,7 @@
           }
         },
         "vai-voss": {
-          "ipa": "/va\u026a.v\u0254ss/",
+          "ipa": "/vaɪ.vɔss/",
           "meaning": "thirst, water-wanting",
           "files": {
             "alice": "norn/accented/alice/vai-voss.ogg",
@@ -5600,7 +5568,7 @@
           }
         },
         "lum-vel-esh": {
-          "ipa": "/lu\u02d0m.v\u025bl.\u025b\u0283/",
+          "ipa": "/luːm.vɛl.ɛʃ/",
           "meaning": "fever, too-warm-body",
           "files": {
             "alice": "norn/accented/alice/lum-vel-esh.ogg",
@@ -5616,7 +5584,7 @@
           }
         },
         "nesh-vel-esh": {
-          "ipa": "/n\u025b\u0283.v\u025bl.\u025b\u0283/",
+          "ipa": "/nɛʃ.vɛl.ɛʃ/",
           "meaning": "injury, body-fear-place",
           "files": {
             "alice": "norn/accented/alice/nesh-vel-esh.ogg",
@@ -5632,7 +5600,7 @@
           }
         },
         "theli-vel": {
-          "ipa": "/\u03b8\u025bl.i\u02d0.v\u025bl/",
+          "ipa": "/θɛl.iː.vɛl/",
           "meaning": "medicine, plant-gift",
           "files": {
             "alice": "norn/accented/alice/theli-vel.ogg",
@@ -5648,7 +5616,7 @@
           }
         },
         "veshla-resh": {
-          "ipa": "/v\u025b\u0283.l\u0251.\u0279\u025b\u0283/",
+          "ipa": "/vɛʃ.lɑ.ɹɛʃ/",
           "meaning": "bandage, healing-thing",
           "files": {
             "alice": "norn/accented/alice/veshla-resh.ogg",
@@ -5664,7 +5632,7 @@
           }
         },
         "vessha-vel-esh": {
-          "ipa": "/v\u025bs.\u0283\u0251.v\u025bl.\u025b\u0283/",
+          "ipa": "/vɛs.ʃɑ.vɛl.ɛʃ/",
           "meaning": "recovery, rest-into-health",
           "files": {
             "alice": "norn/accented/alice/vessha-vel-esh.ogg",
@@ -5680,7 +5648,7 @@
           }
         },
         "orn-veshla": {
-          "ipa": "/\u0254\u0279n.v\u025b\u0283.l\u0251/",
+          "ipa": "/ɔɹn.vɛʃ.lɑ/",
           "meaning": "immunity, memory-of-health",
           "files": {
             "alice": "norn/accented/alice/orn-veshla.ogg",
@@ -5696,7 +5664,7 @@
           }
         },
         "thren-vel-esh": {
-          "ipa": "/\u03b8\u0279\u025bn.v\u025bl.\u025b\u0283/",
+          "ipa": "/θɹɛn.vɛl.ɛʃ/",
           "meaning": "wound, grief-in-body",
           "files": {
             "alice": "norn/accented/alice/thren-vel-esh.ogg",
@@ -5712,7 +5680,7 @@
           }
         },
         "lum-lori": {
-          "ipa": "/lu\u02d0m.l\u0254\u0279.i\u02d0/",
+          "ipa": "/luːm.lɔɹ.iː/",
           "meaning": "comfort-touch, soothing",
           "files": {
             "alice": "norn/accented/alice/lum-lori.ogg",
@@ -5728,7 +5696,7 @@
           }
         },
         "sol-veshla": {
-          "ipa": "/s\u0254l.v\u025b\u0283.l\u0251/",
+          "ipa": "/sɔl.vɛʃ.lɑ/",
           "meaning": "vigor, joy-health",
           "files": {
             "alice": "norn/accented/alice/sol-veshla.ogg",
@@ -5744,7 +5712,7 @@
           }
         },
         "neshil-veshla": {
-          "ipa": "/n\u025b\u0283.il.v\u025b\u0283.l\u0251/",
+          "ipa": "/nɛʃ.il.vɛʃ.lɑ/",
           "meaning": "weakness, shadow-health",
           "files": {
             "alice": "norn/accented/alice/neshil-veshla.ogg",
@@ -5760,7 +5728,7 @@
           }
         },
         "veshla-sha": {
-          "ipa": "/v\u025b\u0283.l\u0251.\u0283\u0251/",
+          "ipa": "/vɛʃ.lɑ.ʃɑ/",
           "meaning": "healer, one-who-grows-others",
           "files": {
             "alice": "norn/accented/alice/veshla-sha.ogg",
@@ -5776,7 +5744,7 @@
           }
         },
         "enna-neshil": {
-          "ipa": "/\u025bn.n\u0251.n\u025b\u0283.il/",
+          "ipa": "/ɛn.nɑ.nɛʃ.il/",
           "meaning": "unconscious, head-dark",
           "files": {
             "alice": "norn/accented/alice/enna-neshil.ogg",
@@ -5792,7 +5760,7 @@
           }
         },
         "voss-theli": {
-          "ipa": "/v\u0254ss.\u03b8\u025bl.i\u02d0/",
+          "ipa": "/vɔss.θɛl.iː/",
           "meaning": "herbal tea, water-plant",
           "files": {
             "alice": "norn/accented/alice/voss-theli.ogg",
@@ -5808,7 +5776,7 @@
           }
         },
         "kelin-neshil": {
-          "ipa": "/k\u025bl.in.n\u025b\u0283.il/",
+          "ipa": "/kɛl.in.nɛʃ.il/",
           "meaning": "madness, brain-dark",
           "files": {
             "alice": "norn/accented/alice/kelin-neshil.ogg",
@@ -5824,7 +5792,7 @@
           }
         },
         "vessha-kelin": {
-          "ipa": "/v\u025bs.\u0283\u0251.k\u025bl.in/",
+          "ipa": "/vɛs.ʃɑ.kɛl.in/",
           "meaning": "calm, rest-of-mind",
           "files": {
             "alice": "norn/accented/alice/vessha-kelin.ogg",
@@ -5840,7 +5808,7 @@
           }
         },
         "vel-ven": {
-          "ipa": "/v\u025bl.v\u025bn/",
+          "ipa": "/vɛl.vɛn/",
           "meaning": "barter, two-gifts",
           "files": {
             "alice": "norn/accented/alice/vel-ven.ogg",
@@ -5856,7 +5824,7 @@
           }
         },
         "resh-vai": {
-          "ipa": "/\u0279\u025b\u0283.va\u026a/",
+          "ipa": "/ɹɛʃ.vaɪ/",
           "meaning": "valuable thing, wanted-object",
           "files": {
             "alice": "norn/accented/alice/resh-vai.ogg",
@@ -5872,7 +5840,7 @@
           }
         },
         "vel-orn-resh": {
-          "ipa": "/v\u025bl.\u0254\u0279n.\u0279\u025b\u0283/",
+          "ipa": "/vɛl.ɔɹn.ɹɛʃ/",
           "meaning": "heirloom, gift-memory-thing",
           "files": {
             "alice": "norn/accented/alice/vel-orn-resh.ogg",
@@ -5888,7 +5856,7 @@
           }
         },
         "vel-thenni": {
-          "ipa": "/v\u025bl.\u03b8\u025bn.ni\u02d0/",
+          "ipa": "/vɛl.θɛn.niː/",
           "meaning": "trade with strangers",
           "files": {
             "alice": "norn/accented/alice/vel-thenni.ogg",
@@ -5904,7 +5872,7 @@
           }
         },
         "resh-sol": {
-          "ipa": "/\u0279\u025b\u0283.s\u0254l/",
+          "ipa": "/ɹɛʃ.sɔl/",
           "meaning": "treasure, joy-thing",
           "files": {
             "alice": "norn/accented/alice/resh-sol.ogg",
@@ -5920,7 +5888,7 @@
           }
         },
         "vel-oshel": {
-          "ipa": "/v\u025bl.\u0254.\u0283\u025bl/",
+          "ipa": "/vɛl.ɔ.ʃɛl/",
           "meaning": "sharing, community-gift",
           "files": {
             "alice": "norn/accented/alice/vel-oshel.ogg",
@@ -5936,7 +5904,7 @@
           }
         },
         "vel-ain-ain": {
-          "ipa": "/v\u025bl.a\u026an.a\u026an/",
+          "ipa": "/vɛl.aɪn.aɪn/",
           "meaning": "tithe, gift-of-ten",
           "files": {
             "alice": "norn/accented/alice/vel-ain-ain.ogg",
@@ -5952,7 +5920,7 @@
           }
         },
         "shevel-vel": {
-          "ipa": "/\u0283\u025b.v\u025bl.v\u025bl/",
+          "ipa": "/ʃɛ.vɛl.vɛl/",
           "meaning": "handshake, hand-gift",
           "files": {
             "alice": "norn/accented/alice/shevel-vel.ogg",
@@ -5968,7 +5936,7 @@
           }
         },
         "vai-resh": {
-          "ipa": "/va\u026a.\u0279\u025b\u0283/",
+          "ipa": "/vaɪ.ɹɛʃ/",
           "meaning": "want, desired-thing",
           "files": {
             "alice": "norn/accented/alice/vai-resh.ogg",
@@ -5984,7 +5952,7 @@
           }
         },
         "resh-thali": {
-          "ipa": "/\u0279\u025b\u0283.\u03b8\u0251.li\u02d0/",
+          "ipa": "/ɹɛʃ.θɑ.liː/",
           "meaning": "curiosity-object, novelty",
           "files": {
             "alice": "norn/accented/alice/resh-thali.ogg",
@@ -6000,7 +5968,7 @@
           }
         },
         "ken-resh": {
-          "ipa": "/k\u025bn.\u0279\u025b\u0283/",
+          "ipa": "/kɛn.ɹɛʃ/",
           "meaning": "identified thing, appraised object",
           "files": {
             "alice": "norn/accented/alice/ken-resh.ogg",
@@ -6016,7 +5984,7 @@
           }
         },
         "vel-lesh": {
-          "ipa": "/v\u025bl.l\u025b\u0283/",
+          "ipa": "/vɛl.lɛʃ/",
           "meaning": "delivery, gift-walking",
           "files": {
             "alice": "norn/accented/alice/vel-lesh.ogg",
@@ -6032,7 +6000,7 @@
           }
         },
         "vel-inna-oshel": {
-          "ipa": "/v\u025bl.in.n\u0251.\u0254.\u0283\u025bl/",
+          "ipa": "/vɛl.in.nɑ.ɔ.ʃɛl/",
           "meaning": "potluck, community food-sharing",
           "files": {
             "alice": "norn/accented/alice/vel-inna-oshel.ogg",
@@ -6048,7 +6016,7 @@
           }
         },
         "resh-nesh": {
-          "ipa": "/\u0279\u025b\u0283.n\u025b\u0283/",
+          "ipa": "/ɹɛʃ.nɛʃ/",
           "meaning": "contraband, feared-thing",
           "files": {
             "alice": "norn/accented/alice/resh-nesh.ogg",
@@ -6064,7 +6032,7 @@
           }
         },
         "vella-resh": {
-          "ipa": "/v\u025bl.l\u0251.\u0279\u025b\u0283/",
+          "ipa": "/vɛl.lɑ.ɹɛʃ/",
           "meaning": "to craft, to make-a-thing",
           "files": {
             "alice": "norn/accented/alice/vella-resh.ogg",
@@ -6080,7 +6048,7 @@
           }
         },
         "vella-orna": {
-          "ipa": "/v\u025bl.l\u0251.\u0254\u0279.n\u0251/",
+          "ipa": "/vɛl.lɑ.ɔɹ.nɑ/",
           "meaning": "to carve stone, to shape rock",
           "files": {
             "alice": "norn/accented/alice/vella-orna.ogg",
@@ -6096,7 +6064,7 @@
           }
         },
         "vella-thel": {
-          "ipa": "/v\u025bl.l\u0251.\u03b8\u025bl/",
+          "ipa": "/vɛl.lɑ.θɛl/",
           "meaning": "to work wood, to shape tree",
           "files": {
             "alice": "norn/accented/alice/vella-thel.ogg",
@@ -6112,7 +6080,7 @@
           }
         },
         "vella-lorn": {
-          "ipa": "/v\u025bl.l\u0251.l\u0254\u0279n/",
+          "ipa": "/vɛl.lɑ.lɔɹn/",
           "meaning": "to sew, to work skin",
           "files": {
             "alice": "norn/accented/alice/vella-lorn.ogg",
@@ -6128,7 +6096,7 @@
           }
         },
         "vella-voss": {
-          "ipa": "/v\u025bl.l\u0251.v\u0254ss/",
+          "ipa": "/vɛl.lɑ.vɔss/",
           "meaning": "to shape water, pottery (wet clay)",
           "files": {
             "alice": "norn/accented/alice/vella-voss.ogg",
@@ -6144,7 +6112,7 @@
           }
         },
         "resh-thi": {
-          "ipa": "/\u0279\u025b\u0283.\u03b8i\u02d0/",
+          "ipa": "/ɹɛʃ.θiː/",
           "meaning": "invention, new-thing",
           "files": {
             "alice": "norn/accented/alice/resh-thi.ogg",
@@ -6160,7 +6128,7 @@
           }
         },
         "vella-sha": {
-          "ipa": "/v\u025bl.l\u0251.\u0283\u0251/",
+          "ipa": "/vɛl.lɑ.ʃɑ/",
           "meaning": "maker, crafter, artisan",
           "files": {
             "alice": "norn/accented/alice/vella-sha.ogg",
@@ -6176,7 +6144,7 @@
           }
         },
         "vella-orn": {
-          "ipa": "/v\u025bl.l\u0251.\u0254\u0279n/",
+          "ipa": "/vɛl.lɑ.ɔɹn/",
           "meaning": "to repair, to make-remember (restore)",
           "files": {
             "alice": "norn/accented/alice/vella-orn.ogg",
@@ -6192,7 +6160,7 @@
           }
         },
         "vella-kris": {
-          "ipa": "/v\u025bl.l\u0251.k\u0279is/",
+          "ipa": "/vɛl.lɑ.kɹis/",
           "meaning": "to cut crystal, gem-work",
           "files": {
             "alice": "norn/accented/alice/vella-kris.ogg",
@@ -6208,7 +6176,7 @@
           }
         },
         "vella-runa": {
-          "ipa": "/v\u025bl.l\u0251.\u0279u\u02d0.n\u0251/",
+          "ipa": "/vɛl.lɑ.ɹuː.nɑ/",
           "meaning": "to inscribe, to carve runes",
           "files": {
             "alice": "norn/accented/alice/vella-runa.ogg",
@@ -6224,7 +6192,7 @@
           }
         },
         "resh-velma": {
-          "ipa": "/\u0279\u025b\u0283.v\u025bl.m\u0251/",
+          "ipa": "/ɹɛʃ.vɛl.mɑ/",
           "meaning": "creation, made-thing (with care)",
           "files": {
             "alice": "norn/accented/alice/resh-velma.ogg",
@@ -6240,7 +6208,7 @@
           }
         },
         "vella-urdh": {
-          "ipa": "/v\u025bl.l\u0251.u\u02d0\u0279dh/",
+          "ipa": "/vɛl.lɑ.uːɹdh/",
           "meaning": "to dig, to earth-shape",
           "files": {
             "alice": "norn/accented/alice/vella-urdh.ogg",
@@ -6256,7 +6224,7 @@
           }
         },
         "vella-sira": {
-          "ipa": "/v\u025bl.l\u0251.si\u02d0\u0279.\u0251/",
+          "ipa": "/vɛl.lɑ.siːɹ.ɑ/",
           "meaning": "to weave, to wind-shape",
           "files": {
             "alice": "norn/accented/alice/vella-sira.ogg",
@@ -6272,7 +6240,7 @@
           }
         },
         "vella-meshi": {
-          "ipa": "/v\u025bl.l\u0251.m\u025b.\u0283i/",
+          "ipa": "/vɛl.lɑ.mɛ.ʃi/",
           "meaning": "to compose, to craft-voice",
           "files": {
             "alice": "norn/accented/alice/vella-meshi.ogg",
@@ -6288,7 +6256,7 @@
           }
         },
         "shen-vel": {
-          "ipa": "/\u0283\u025bn.v\u025bl/",
+          "ipa": "/ʃɛn.vɛl/",
           "meaning": "law, named-gift, spoken-agreement",
           "files": {
             "alice": "norn/accented/alice/shen-vel.ogg",
@@ -6304,7 +6272,7 @@
           }
         },
         "shen-oshel": {
-          "ipa": "/\u0283\u025bn.\u0254.\u0283\u025bl/",
+          "ipa": "/ʃɛn.ɔ.ʃɛl/",
           "meaning": "council, community-speaking",
           "files": {
             "alice": "norn/accented/alice/shen-oshel.ogg",
@@ -6320,7 +6288,7 @@
           }
         },
         "kel-athel": {
-          "ipa": "/k\u025bl.\u0251.\u03b8\u025bl/",
+          "ipa": "/kɛl.ɑ.θɛl/",
           "meaning": "leader, soul-teacher, guide",
           "files": {
             "alice": "norn/accented/alice/kel-athel.ogg",
@@ -6336,7 +6304,7 @@
           }
         },
         "ornsha-shen": {
-          "ipa": "/\u0254\u0279n.\u0283\u0251.\u0283\u025bn/",
+          "ipa": "/ɔɹn.ʃɑ.ʃɛn/",
           "meaning": "tradition-word, customary law",
           "files": {
             "alice": "norn/accented/alice/ornsha-shen.ogg",
@@ -6352,7 +6320,7 @@
           }
         },
         "thav-oshel": {
-          "ipa": "/\u03b8\u0251v.\u0254.\u0283\u025bl/",
+          "ipa": "/θɑv.ɔ.ʃɛl/",
           "meaning": "debate, community-asking",
           "files": {
             "alice": "norn/accented/alice/thav-oshel.ogg",
@@ -6368,7 +6336,7 @@
           }
         },
         "vo-shael": {
-          "ipa": "/vo\u028a.\u0283\u0251.\u025bl/",
+          "ipa": "/voʊ.ʃɑ.ɛl/",
           "meaning": "consensus, all-say-yes",
           "files": {
             "alice": "norn/accented/alice/vo-shael.ogg",
@@ -6384,7 +6352,7 @@
           }
         },
         "shen-nesh": {
-          "ipa": "/\u0283\u025bn.n\u025b\u0283/",
+          "ipa": "/ʃɛn.nɛʃ/",
           "meaning": "taboo, fear-word, forbidden-name",
           "files": {
             "alice": "norn/accented/alice/shen-nesh.ogg",
@@ -6400,7 +6368,7 @@
           }
         },
         "shen-thren": {
-          "ipa": "/\u0283\u025bn.\u03b8\u0279\u025bn/",
+          "ipa": "/ʃɛn.θɹɛn/",
           "meaning": "judgment, grief-word (painful truth)",
           "files": {
             "alice": "norn/accented/alice/shen-thren.ogg",
@@ -6416,7 +6384,7 @@
           }
         },
         "vel-kel": {
-          "ipa": "/v\u025bl.k\u025bl/",
+          "ipa": "/vɛl.kɛl/",
           "meaning": "rights, soul-gifts",
           "files": {
             "alice": "norn/accented/alice/vel-kel.ogg",
@@ -6432,7 +6400,7 @@
           }
         },
         "shen-vel-thi": {
-          "ipa": "/\u0283\u025bn.v\u025bl.\u03b8i\u02d0/",
+          "ipa": "/ʃɛn.vɛl.θiː/",
           "meaning": "new law, reform",
           "files": {
             "alice": "norn/accented/alice/shen-vel-thi.ogg",
@@ -6448,7 +6416,7 @@
           }
         },
         "kel-athel-oshel": {
-          "ipa": "/k\u025bl.\u0251.\u03b8\u025bl.\u0254.\u0283\u025bl/",
+          "ipa": "/kɛl.ɑ.θɛl.ɔ.ʃɛl/",
           "meaning": "council of elders, leader-gathering",
           "files": {
             "alice": "norn/accented/alice/kel-athel-oshel.ogg",
@@ -6464,7 +6432,7 @@
           }
         },
         "shen-mir": {
-          "ipa": "/\u0283\u025bn.mi\u02d0\u0279/",
+          "ipa": "/ʃɛn.miːɹ/",
           "meaning": "testimony, spoken-feeling",
           "files": {
             "alice": "norn/accented/alice/shen-mir.ogg",
@@ -6480,7 +6448,7 @@
           }
         },
         "shen-vel-oth": {
-          "ipa": "/\u0283\u025bn.v\u025bl.\u0254\u03b8/",
+          "ipa": "/ʃɛn.vɛl.ɔθ/",
           "meaning": "ancient law, deep agreement",
           "files": {
             "alice": "norn/accented/alice/shen-vel-oth.ogg",
@@ -6496,7 +6464,7 @@
           }
         },
         "ornsha-shen-oth": {
-          "ipa": "/\u0254\u0279n.\u0283\u0251.\u0283\u025bn.\u0254\u03b8/",
+          "ipa": "/ɔɹn.ʃɑ.ʃɛn.ɔθ/",
           "meaning": "precedent, old-tradition-word",
           "files": {
             "alice": "norn/accented/alice/ornsha-shen-oth.ogg",
@@ -6512,7 +6480,7 @@
           }
         },
         "velesh-lum": {
-          "ipa": "/v\u025bl.\u025b\u0283.lu\u02d0m/",
+          "ipa": "/vɛl.ɛʃ.luːm/",
           "meaning": "hearth-home, cozy dwelling",
           "files": {
             "alice": "norn/accented/alice/velesh-lum.ogg",
@@ -6528,7 +6496,7 @@
           }
         },
         "velesh-oshel": {
-          "ipa": "/v\u025bl.\u025b\u0283.\u0254.\u0283\u025bl/",
+          "ipa": "/vɛl.ɛʃ.ɔ.ʃɛl/",
           "meaning": "village, community-home",
           "files": {
             "alice": "norn/accented/alice/velesh-oshel.ogg",
@@ -6544,7 +6512,7 @@
           }
         },
         "velesh-norni": {
-          "ipa": "/v\u025bl.\u025b\u0283.n\u0254\u0279n.i\u02d0/",
+          "ipa": "/vɛl.ɛʃ.nɔɹn.iː/",
           "meaning": "nursery, children's-home",
           "files": {
             "alice": "norn/accented/alice/velesh-norni.ogg",
@@ -6560,7 +6528,7 @@
           }
         },
         "velesh-inna": {
-          "ipa": "/v\u025bl.\u025b\u0283.in.n\u0251/",
+          "ipa": "/vɛl.ɛʃ.in.nɑ/",
           "meaning": "kitchen, home-food-place",
           "files": {
             "alice": "norn/accented/alice/velesh-inna.ogg",
@@ -6576,7 +6544,7 @@
           }
         },
         "velesh-vessha": {
-          "ipa": "/v\u025bl.\u025b\u0283.v\u025bs.\u0283\u0251/",
+          "ipa": "/vɛl.ɛʃ.vɛs.ʃɑ/",
           "meaning": "bedroom, home-rest-place",
           "files": {
             "alice": "norn/accented/alice/velesh-vessha.ogg",
@@ -6592,7 +6560,7 @@
           }
         },
         "velesh-thav": {
-          "ipa": "/v\u025bl.\u025b\u0283.\u03b8\u0251v/",
+          "ipa": "/vɛl.ɛʃ.θɑv/",
           "meaning": "study, home-asking-place",
           "files": {
             "alice": "norn/accented/alice/velesh-thav.ogg",
@@ -6608,7 +6576,7 @@
           }
         },
         "velesh-orn": {
-          "ipa": "/v\u025bl.\u025b\u0283.\u0254\u0279n/",
+          "ipa": "/vɛl.ɛʃ.ɔɹn/",
           "meaning": "family shrine, home-memory-place",
           "files": {
             "alice": "norn/accented/alice/velesh-orn.ogg",
@@ -6624,7 +6592,7 @@
           }
         },
         "lorn-velesh": {
-          "ipa": "/l\u0254\u0279n.v\u025bl.\u025b\u0283/",
+          "ipa": "/lɔɹn.vɛl.ɛʃ/",
           "meaning": "wall, boundary-of-home",
           "files": {
             "alice": "norn/accented/alice/lorn-velesh.ogg",
@@ -6640,7 +6608,7 @@
           }
         },
         "shira-velesh": {
-          "ipa": "/\u0283i\u02d0\u0279.\u0251.v\u025bl.\u025b\u0283/",
+          "ipa": "/ʃiːɹ.ɑ.vɛl.ɛʃ/",
           "meaning": "roof, sky-of-home",
           "files": {
             "alice": "norn/accented/alice/shira-velesh.ogg",
@@ -6656,7 +6624,7 @@
           }
         },
         "urdh-velesh": {
-          "ipa": "/u\u02d0\u0279dh.v\u025bl.\u025b\u0283/",
+          "ipa": "/uːɹdh.vɛl.ɛʃ/",
           "meaning": "floor, earth-of-home",
           "files": {
             "alice": "norn/accented/alice/urdh-velesh.ogg",
@@ -6672,7 +6640,7 @@
           }
         },
         "voss-velesh": {
-          "ipa": "/v\u0254ss.v\u025bl.\u025b\u0283/",
+          "ipa": "/vɔss.vɛl.ɛʃ/",
           "meaning": "bath, water-of-home",
           "files": {
             "alice": "norn/accented/alice/voss-velesh.ogg",
@@ -6688,7 +6656,7 @@
           }
         },
         "lumen-velesh": {
-          "ipa": "/lu\u02d0.m\u025bn.v\u025bl.\u025b\u0283/",
+          "ipa": "/luː.mɛn.vɛl.ɛʃ/",
           "meaning": "window, light-of-home",
           "files": {
             "alice": "norn/accented/alice/lumen-velesh.ogg",
@@ -6704,7 +6672,7 @@
           }
         },
         "velesh-thi": {
-          "ipa": "/v\u025bl.\u025b\u0283.\u03b8i\u02d0/",
+          "ipa": "/vɛl.ɛʃ.θiː/",
           "meaning": "new home, first dwelling",
           "files": {
             "alice": "norn/accented/alice/velesh-thi.ogg",
@@ -6720,7 +6688,7 @@
           }
         },
         "resh-velesh": {
-          "ipa": "/\u0279\u025b\u0283.v\u025bl.\u025b\u0283/",
+          "ipa": "/ɹɛʃ.vɛl.ɛʃ/",
           "meaning": "furniture, thing-of-home",
           "files": {
             "alice": "norn/accented/alice/resh-velesh.ogg",
@@ -6736,7 +6704,7 @@
           }
         },
         "nesh-resh": {
-          "ipa": "/n\u025b\u0283.\u0279\u025b\u0283/",
+          "ipa": "/nɛʃ.ɹɛʃ/",
           "meaning": "danger, fear-thing",
           "files": {
             "alice": "norn/accented/alice/nesh-resh.ogg",
@@ -6752,7 +6720,7 @@
           }
         },
         "nesh-kel": {
-          "ipa": "/n\u025b\u0283.k\u025bl/",
+          "ipa": "/nɛʃ.kɛl/",
           "meaning": "enemy, fear-soul",
           "files": {
             "alice": "norn/accented/alice/nesh-kel.ogg",
@@ -6768,7 +6736,7 @@
           }
         },
         "nesh-lesh": {
-          "ipa": "/n\u025b\u0283.l\u025b\u0283/",
+          "ipa": "/nɛʃ.lɛʃ/",
           "meaning": "fleeing, fear-walking",
           "files": {
             "alice": "norn/accented/alice/nesh-lesh.ogg",
@@ -6784,7 +6752,7 @@
           }
         },
         "rith-shen": {
-          "ipa": "/\u0279i\u03b8.\u0283\u025bn/",
+          "ipa": "/ɹiθ.ʃɛn/",
           "meaning": "threat, anger-word",
           "files": {
             "alice": "norn/accented/alice/rith-shen.ogg",
@@ -6800,7 +6768,7 @@
           }
         },
         "rith-lori": {
-          "ipa": "/\u0279i\u03b8.l\u0254\u0279.i\u02d0/",
+          "ipa": "/ɹiθ.lɔɹ.iː/",
           "meaning": "strike, anger-touch",
           "files": {
             "alice": "norn/accented/alice/rith-lori.ogg",
@@ -6816,7 +6784,7 @@
           }
         },
         "lorn-vel": {
-          "ipa": "/l\u0254\u0279n.v\u025bl/",
+          "ipa": "/lɔɹn.vɛl/",
           "meaning": "protection, boundary-gift",
           "files": {
             "alice": "norn/accented/alice/lorn-vel.ogg",
@@ -6832,7 +6800,7 @@
           }
         },
         "lorn-oshel": {
-          "ipa": "/l\u0254\u0279n.\u0254.\u0283\u025bl/",
+          "ipa": "/lɔɹn.ɔ.ʃɛl/",
           "meaning": "defense, community-boundary",
           "files": {
             "alice": "norn/accented/alice/lorn-oshel.ogg",
@@ -6848,7 +6816,7 @@
           }
         },
         "nesh-meshi": {
-          "ipa": "/n\u025b\u0283.m\u025b.\u0283i/",
+          "ipa": "/nɛʃ.mɛ.ʃi/",
           "meaning": "alarm, fear-voice",
           "files": {
             "alice": "norn/accented/alice/nesh-meshi.ogg",
@@ -6864,7 +6832,7 @@
           }
         },
         "thinna-nesh": {
-          "ipa": "/\u03b8in.n\u0251.n\u025b\u0283/",
+          "ipa": "/θin.nɑ.nɛʃ/",
           "meaning": "to spot danger, see-fear",
           "files": {
             "alice": "norn/accented/alice/thinna-nesh.ogg",
@@ -6880,7 +6848,7 @@
           }
         },
         "lorn-resh": {
-          "ipa": "/l\u0254\u0279n.\u0279\u025b\u0283/",
+          "ipa": "/lɔɹn.ɹɛʃ/",
           "meaning": "shield, boundary-thing",
           "files": {
             "alice": "norn/accented/alice/lorn-resh.ogg",
@@ -6896,7 +6864,7 @@
           }
         },
         "nesh-sira": {
-          "ipa": "/n\u025b\u0283.si\u02d0\u0279.\u0251/",
+          "ipa": "/nɛʃ.siːɹ.ɑ/",
           "meaning": "howl, fear-wind",
           "files": {
             "alice": "norn/accented/alice/nesh-sira.ogg",
@@ -6912,7 +6880,7 @@
           }
         },
         "keth-nesh": {
-          "ipa": "/k\u025b\u03b8.n\u025b\u0283/",
+          "ipa": "/kɛθ.nɛʃ/",
           "meaning": "old danger, ancestral threat",
           "files": {
             "alice": "norn/accented/alice/keth-nesh.ogg",
@@ -6928,7 +6896,7 @@
           }
         },
         "lorn-ain": {
-          "ipa": "/l\u0254\u0279n.a\u026an/",
+          "ipa": "/lɔɹn.aɪn/",
           "meaning": "hiding, boundary-of-one",
           "files": {
             "alice": "norn/accented/alice/lorn-ain.ogg",
@@ -6944,7 +6912,7 @@
           }
         },
         "rith-vel-esh": {
-          "ipa": "/\u0279i\u03b8.v\u025bl.\u025b\u0283/",
+          "ipa": "/ɹiθ.vɛl.ɛʃ/",
           "meaning": "wound, anger-in-body",
           "files": {
             "alice": "norn/accented/alice/rith-vel-esh.ogg",
@@ -6960,7 +6928,7 @@
           }
         },
         "nesh-shael": {
-          "ipa": "/n\u025b\u0283.\u0283\u0251.\u025bl/",
+          "ipa": "/nɛʃ.ʃɑ.ɛl/",
           "meaning": "communal fear, shared alarm",
           "files": {
             "alice": "norn/accented/alice/nesh-shael.ogg",
@@ -6976,7 +6944,7 @@
           }
         },
         "voss-lum": {
-          "ipa": "/v\u0254ss.lu\u02d0m/",
+          "ipa": "/vɔss.luːm/",
           "meaning": "warm water, bath-water",
           "files": {
             "alice": "norn/accented/alice/voss-lum.ogg",
@@ -6992,7 +6960,7 @@
           }
         },
         "voss-nesh": {
-          "ipa": "/v\u0254ss.n\u025b\u0283/",
+          "ipa": "/vɔss.nɛʃ/",
           "meaning": "flood, fear-water",
           "files": {
             "alice": "norn/accented/alice/voss-nesh.ogg",
@@ -7008,7 +6976,7 @@
           }
         },
         "voss-ain": {
-          "ipa": "/v\u0254ss.a\u026an/",
+          "ipa": "/vɔss.aɪn/",
           "meaning": "drop, one-water",
           "files": {
             "alice": "norn/accented/alice/voss-ain.ogg",
@@ -7024,7 +6992,7 @@
           }
         },
         "voss-vel": {
-          "ipa": "/v\u0254ss.v\u025bl/",
+          "ipa": "/vɔss.vɛl/",
           "meaning": "spring, gift-water",
           "files": {
             "alice": "norn/accented/alice/voss-vel.ogg",
@@ -7040,7 +7008,7 @@
           }
         },
         "voss-urdh": {
-          "ipa": "/v\u0254ss.u\u02d0\u0279dh/",
+          "ipa": "/vɔss.uːɹdh/",
           "meaning": "well, water-from-earth",
           "files": {
             "alice": "norn/accented/alice/voss-urdh.ogg",
@@ -7056,7 +7024,7 @@
           }
         },
         "voss-kris": {
-          "ipa": "/v\u0254ss.k\u0279is/",
+          "ipa": "/vɔss.kɹis/",
           "meaning": "dew, crystal-water",
           "files": {
             "alice": "norn/accented/alice/voss-kris.ogg",
@@ -7072,7 +7040,7 @@
           }
         },
         "voss-sol": {
-          "ipa": "/v\u0254ss.s\u0254l/",
+          "ipa": "/vɔss.sɔl/",
           "meaning": "splash, joy-water",
           "files": {
             "alice": "norn/accented/alice/voss-sol.ogg",
@@ -7088,7 +7056,7 @@
           }
         },
         "voss-thren": {
-          "ipa": "/v\u0254ss.\u03b8\u0279\u025bn/",
+          "ipa": "/vɔss.θɹɛn/",
           "meaning": "tears (collective), grief-water",
           "files": {
             "alice": "norn/accented/alice/voss-thren.ogg",
@@ -7104,7 +7072,7 @@
           }
         },
         "voss-veshla": {
-          "ipa": "/v\u0254ss.v\u025b\u0283.l\u0251/",
+          "ipa": "/vɔss.vɛʃ.lɑ/",
           "meaning": "sap, growing-water",
           "files": {
             "alice": "norn/accented/alice/voss-veshla.ogg",
@@ -7120,7 +7088,7 @@
           }
         },
         "lori-lum": {
-          "ipa": "/l\u0254\u0279.i\u02d0.lu\u02d0m/",
+          "ipa": "/lɔɹ.iː.luːm/",
           "meaning": "soft, warm-touch",
           "files": {
             "alice": "norn/accented/alice/lori-lum.ogg",
@@ -7136,7 +7104,7 @@
           }
         },
         "lori-nesh": {
-          "ipa": "/l\u0254\u0279.i\u02d0.n\u025b\u0283/",
+          "ipa": "/lɔɹ.iː.nɛʃ/",
           "meaning": "rough, fear-touch",
           "files": {
             "alice": "norn/accented/alice/lori-nesh.ogg",
@@ -7152,7 +7120,7 @@
           }
         },
         "lori-sol": {
-          "ipa": "/l\u0254\u0279.i\u02d0.s\u0254l/",
+          "ipa": "/lɔɹ.iː.sɔl/",
           "meaning": "smooth, joy-touch",
           "files": {
             "alice": "norn/accented/alice/lori-sol.ogg",
@@ -7168,7 +7136,7 @@
           }
         },
         "lori-oth": {
-          "ipa": "/l\u0254\u0279.i\u02d0.\u0254\u03b8/",
+          "ipa": "/lɔɹ.iː.ɔθ/",
           "meaning": "ancient-feeling, weathered",
           "files": {
             "alice": "norn/accented/alice/lori-oth.ogg",
@@ -7184,7 +7152,7 @@
           }
         },
         "lori-vai": {
-          "ipa": "/l\u0254\u0279.i\u02d0.va\u026a/",
+          "ipa": "/lɔɹ.iː.vaɪ/",
           "meaning": "sticky, clinging-touch",
           "files": {
             "alice": "norn/accented/alice/lori-vai.ogg",
@@ -7200,7 +7168,7 @@
           }
         },
         "lori-voss": {
-          "ipa": "/l\u0254\u0279.i\u02d0.v\u0254ss/",
+          "ipa": "/lɔɹ.iː.vɔss/",
           "meaning": "wet, water-touch",
           "files": {
             "alice": "norn/accented/alice/lori-voss.ogg",
@@ -7216,7 +7184,7 @@
           }
         },
         "lori-sira": {
-          "ipa": "/l\u0254\u0279.i\u02d0.si\u02d0\u0279.\u0251/",
+          "ipa": "/lɔɹ.iː.siːɹ.ɑ/",
           "meaning": "breezy, wind-touch",
           "files": {
             "alice": "norn/accented/alice/lori-sira.ogg",
@@ -7232,7 +7200,7 @@
           }
         },
         "lori-orna": {
-          "ipa": "/l\u0254\u0279.i\u02d0.\u0254\u0279.n\u0251/",
+          "ipa": "/lɔɹ.iː.ɔɹ.nɑ/",
           "meaning": "hard, stone-touch",
           "files": {
             "alice": "norn/accented/alice/lori-orna.ogg",
@@ -7248,7 +7216,7 @@
           }
         },
         "lori-theli": {
-          "ipa": "/l\u0254\u0279.i\u02d0.\u03b8\u025bl.i\u02d0/",
+          "ipa": "/lɔɹ.iː.θɛl.iː/",
           "meaning": "leafy, plant-touch",
           "files": {
             "alice": "norn/accented/alice/lori-theli.ogg",
@@ -7264,7 +7232,7 @@
           }
         },
         "lori-kris": {
-          "ipa": "/l\u0254\u0279.i\u02d0.k\u0279is/",
+          "ipa": "/lɔɹ.iː.kɹis/",
           "meaning": "sharp, crystal-touch",
           "files": {
             "alice": "norn/accented/alice/lori-kris.ogg",
@@ -7280,7 +7248,7 @@
           }
         },
         "lori-lorn": {
-          "ipa": "/l\u0254\u0279.i\u02d0.l\u0254\u0279n/",
+          "ipa": "/lɔɹ.iː.lɔɹn/",
           "meaning": "skin-feeling, surface touch",
           "files": {
             "alice": "norn/accented/alice/lori-lorn.ogg",
@@ -7296,7 +7264,7 @@
           }
         },
         "lori-thi": {
-          "ipa": "/l\u0254\u0279.i\u02d0.\u03b8i\u02d0/",
+          "ipa": "/lɔɹ.iː.θiː/",
           "meaning": "new-feeling, unfamiliar",
           "files": {
             "alice": "norn/accented/alice/lori-thi.ogg",
@@ -7312,7 +7280,7 @@
           }
         },
         "lori-oth-lum": {
-          "ipa": "/l\u0254\u0279.i\u02d0.\u0254\u03b8.lu\u02d0m/",
+          "ipa": "/lɔɹ.iː.ɔθ.luːm/",
           "meaning": "cozy, ancient-warm-touch",
           "files": {
             "alice": "norn/accented/alice/lori-oth-lum.ogg",
@@ -7328,7 +7296,7 @@
           }
         },
         "lori-neshil": {
-          "ipa": "/l\u0254\u0279.i\u02d0.n\u025b\u0283.il/",
+          "ipa": "/lɔɹ.iː.nɛʃ.il/",
           "meaning": "cold-touch, chill",
           "files": {
             "alice": "norn/accented/alice/lori-neshil.ogg",
@@ -7344,7 +7312,7 @@
           }
         },
         "shal": {
-          "ipa": "/\u0283\u0251l/",
+          "ipa": "/ʃɑl/",
           "meaning": "smell, the nose-knowing",
           "files": {
             "alice": "norn/accented/alice/shal.ogg",
@@ -7360,7 +7328,7 @@
           }
         },
         "shal-lum": {
-          "ipa": "/\u0283\u0251l.lu\u02d0m/",
+          "ipa": "/ʃɑl.luːm/",
           "meaning": "good smell, warm-scent",
           "files": {
             "alice": "norn/accented/alice/shal-lum.ogg",
@@ -7376,7 +7344,7 @@
           }
         },
         "shal-nesh": {
-          "ipa": "/\u0283\u0251l.n\u025b\u0283/",
+          "ipa": "/ʃɑl.nɛʃ/",
           "meaning": "bad smell, fear-scent",
           "files": {
             "alice": "norn/accented/alice/shal-nesh.ogg",
@@ -7392,7 +7360,7 @@
           }
         },
         "shal-theli": {
-          "ipa": "/\u0283\u0251l.\u03b8\u025bl.i\u02d0/",
+          "ipa": "/ʃɑl.θɛl.iː/",
           "meaning": "flower-scent, plant-smell",
           "files": {
             "alice": "norn/accented/alice/shal-theli.ogg",
@@ -7408,7 +7376,7 @@
           }
         },
         "shal-inna": {
-          "ipa": "/\u0283\u0251l.in.n\u0251/",
+          "ipa": "/ʃɑl.in.nɑ/",
           "meaning": "food-smell, cooking-scent",
           "files": {
             "alice": "norn/accented/alice/shal-inna.ogg",
@@ -7424,7 +7392,7 @@
           }
         },
         "shal-voss": {
-          "ipa": "/\u0283\u0251l.v\u0254ss/",
+          "ipa": "/ʃɑl.vɔss/",
           "meaning": "rain-smell, petrichor",
           "files": {
             "alice": "norn/accented/alice/shal-voss.ogg",
@@ -7440,7 +7408,7 @@
           }
         },
         "shal-urdh": {
-          "ipa": "/\u0283\u0251l.u\u02d0\u0279dh/",
+          "ipa": "/ʃɑl.uːɹdh/",
           "meaning": "earth-smell, soil-scent",
           "files": {
             "alice": "norn/accented/alice/shal-urdh.ogg",
@@ -7456,7 +7424,7 @@
           }
         },
         "shal-keth": {
-          "ipa": "/\u0283\u0251l.k\u025b\u03b8/",
+          "ipa": "/ʃɑl.kɛθ/",
           "meaning": "familiar smell, memory-scent",
           "files": {
             "alice": "norn/accented/alice/shal-keth.ogg",
@@ -7472,7 +7440,7 @@
           }
         },
         "inna-mir": {
-          "ipa": "/in.n\u0251.mi\u02d0\u0279/",
+          "ipa": "/in.nɑ.miːɹ/",
           "meaning": "taste, food-feeling",
           "files": {
             "alice": "norn/accented/alice/inna-mir.ogg",
@@ -7488,7 +7456,7 @@
           }
         },
         "inna-sol": {
-          "ipa": "/in.n\u0251.s\u0254l/",
+          "ipa": "/in.nɑ.sɔl/",
           "meaning": "delicious, joy-food",
           "files": {
             "alice": "norn/accented/alice/inna-sol.ogg",
@@ -7504,7 +7472,7 @@
           }
         },
         "inna-nesh": {
-          "ipa": "/in.n\u0251.n\u025b\u0283/",
+          "ipa": "/in.nɑ.nɛʃ/",
           "meaning": "bitter, fear-food",
           "files": {
             "alice": "norn/accented/alice/inna-nesh.ogg",
@@ -7520,7 +7488,7 @@
           }
         },
         "inna-lum": {
-          "ipa": "/in.n\u0251.lu\u02d0m/",
+          "ipa": "/in.nɑ.luːm/",
           "meaning": "savory, warm-food",
           "files": {
             "alice": "norn/accented/alice/inna-lum.ogg",
@@ -7536,7 +7504,7 @@
           }
         },
         "inna-rith": {
-          "ipa": "/in.n\u0251.\u0279i\u03b8/",
+          "ipa": "/in.nɑ.ɹiθ/",
           "meaning": "spicy, anger-food",
           "files": {
             "alice": "norn/accented/alice/inna-rith.ogg",
@@ -7552,7 +7520,7 @@
           }
         },
         "inna-vai": {
-          "ipa": "/in.n\u0251.va\u026a/",
+          "ipa": "/in.nɑ.vaɪ/",
           "meaning": "craving, longing-food",
           "files": {
             "alice": "norn/accented/alice/inna-vai.ogg",
@@ -7568,7 +7536,7 @@
           }
         },
         "inna-vessa": {
-          "ipa": "/in.n\u0251.v\u025bs.s\u0251/",
+          "ipa": "/in.nɑ.vɛs.sɑ/",
           "meaning": "satisfying, enough-food",
           "files": {
             "alice": "norn/accented/alice/inna-vessa.ogg",
@@ -7584,7 +7552,7 @@
           }
         },
         "norni-thi": {
-          "ipa": "/n\u0254\u0279n.i\u02d0.\u03b8i\u02d0/",
+          "ipa": "/nɔɹn.iː.θiː/",
           "meaning": "newborn, just-hatched",
           "files": {
             "alice": "norn/accented/alice/norni-thi.ogg",
@@ -7600,7 +7568,7 @@
           }
         },
         "norni-lesh": {
-          "ipa": "/n\u0254\u0279n.i\u02d0.l\u025b\u0283/",
+          "ipa": "/nɔɹn.iː.lɛʃ/",
           "meaning": "toddler, walking-young",
           "files": {
             "alice": "norn/accented/alice/norni-lesh.ogg",
@@ -7616,7 +7584,7 @@
           }
         },
         "norni-shen": {
-          "ipa": "/n\u0254\u0279n.i\u02d0.\u0283\u025bn/",
+          "ipa": "/nɔɹn.iː.ʃɛn/",
           "meaning": "child learning to speak",
           "files": {
             "alice": "norn/accented/alice/norni-shen.ogg",
@@ -7632,7 +7600,7 @@
           }
         },
         "norn-veshla": {
-          "ipa": "/n\u0254\u0279n.v\u025b\u0283.l\u0251/",
+          "ipa": "/nɔɹn.vɛʃ.lɑ/",
           "meaning": "adolescent, growing-norn",
           "files": {
             "alice": "norn/accented/alice/norn-veshla.ogg",
@@ -7648,7 +7616,7 @@
           }
         },
         "norn-kenna": {
-          "ipa": "/n\u0254\u0279n.k\u025bn.n\u0251/",
+          "ipa": "/nɔɹn.kɛn.nɑ/",
           "meaning": "adult, known-norn",
           "files": {
             "alice": "norn/accented/alice/norn-kenna.ogg",
@@ -7664,7 +7632,7 @@
           }
         },
         "norn-athel": {
-          "ipa": "/n\u0254\u0279n.\u0251.\u03b8\u025bl/",
+          "ipa": "/nɔɹn.ɑ.θɛl/",
           "meaning": "teacher-age, middle years",
           "files": {
             "alice": "norn/accented/alice/norn-athel.ogg",
@@ -7680,7 +7648,7 @@
           }
         },
         "norn-orn": {
-          "ipa": "/n\u0254\u0279n.\u0254\u0279n/",
+          "ipa": "/nɔɹn.ɔɹn/",
           "meaning": "elder, memory-carrier",
           "files": {
             "alice": "norn/accented/alice/norn-orn.ogg",
@@ -7696,7 +7664,7 @@
           }
         },
         "keth-norni": {
-          "ipa": "/k\u025b\u03b8.n\u0254\u0279n.i\u02d0/",
+          "ipa": "/kɛθ.nɔɹn.iː/",
           "meaning": "unborn, before-child",
           "files": {
             "alice": "norn/accented/alice/keth-norni.ogg",
@@ -7712,7 +7680,7 @@
           }
         },
         "ornsha-ain": {
-          "ipa": "/\u0254\u0279n.\u0283\u0251.a\u026an/",
+          "ipa": "/ɔɹn.ʃɑ.aɪn/",
           "meaning": "generation, one memory-line",
           "files": {
             "alice": "norn/accented/alice/ornsha-ain.ogg",
@@ -7728,7 +7696,7 @@
           }
         },
         "ornsha-vel-ain": {
-          "ipa": "/\u0254\u0279n.\u0283\u0251.v\u025bl.a\u026an/",
+          "ipa": "/ɔɹn.ʃɑ.vɛl.aɪn/",
           "meaning": "lineage, one gift-line",
           "files": {
             "alice": "norn/accented/alice/ornsha-vel-ain.ogg",
@@ -7744,7 +7712,7 @@
           }
         },
         "veshla-keth": {
-          "ipa": "/v\u025b\u0283.l\u0251.k\u025b\u03b8/",
+          "ipa": "/vɛʃ.lɑ.kɛθ/",
           "meaning": "maturity, growth-fulfilled",
           "files": {
             "alice": "norn/accented/alice/veshla-keth.ogg",
@@ -7760,7 +7728,7 @@
           }
         },
         "norni-ven": {
-          "ipa": "/n\u0254\u0279n.i\u02d0.v\u025bn/",
+          "ipa": "/nɔɹn.iː.vɛn/",
           "meaning": "twins, two-young",
           "files": {
             "alice": "norn/accented/alice/norni-ven.ogg",
@@ -7776,7 +7744,7 @@
           }
         },
         "ornsha-keth-oth": {
-          "ipa": "/\u0254\u0279n.\u0283\u0251.k\u025b\u03b8.\u0254\u03b8/",
+          "ipa": "/ɔɹn.ʃɑ.kɛθ.ɔθ/",
           "meaning": "ancestry, deep-line",
           "files": {
             "alice": "norn/accented/alice/ornsha-keth-oth.ogg",
@@ -7806,6 +7774,6 @@
       ]
     }
   },
-  "generated_at": "2026-03-23T06:12:41Z",
+  "generated_at": "2026-03-24T08:51:00Z",
   "total_clips": 1458
 }
