@@ -37,14 +37,14 @@
   --max-width: 1200px;
   --max-width-narrow: 800px;
 
-  /* Type scale — 7 steps, replaces 16+ ad-hoc sizes */
-  --text-xs:   0.85rem;   /* 13.6px — labels, fine print, overlines */
-  --text-sm:   1rem;      /* 16px — captions, secondary text */
+  /* Type scale — 7 steps (standardized: 20→8 font combos) */
+  --text-xs:   0.75rem;   /* 12px — buttons, labels, fine print, overlines */
+  --text-sm:   1rem;      /* 16px — body base, captions, secondary text */
   --text-base: 1.125rem;  /* 18px — card body, descriptions */
-  --text-lg:   1.3rem;    /* 20.8px — main body, section intros */
-  --text-xl:   1.6rem;    /* 25.6px — card headings, blockquotes */
-  --text-2xl:  clamp(1.8rem, 4vw, 2.8rem);   /* section H2 */
-  --text-3xl:  clamp(2.2rem, 6vw, 4.5rem); /* hero H1 */
+  --text-lg:   1.3rem;    /* 20.8px — taglines, section intros */
+  --text-xl:   1.5rem;    /* 24px — h3, card headings, blockquotes */
+  --text-2xl:  clamp(1.8rem, 4vw, 3rem);     /* 48px max — section H2 */
+  --text-3xl:  clamp(2.2rem, 6vw, 4.5rem);   /* hero H1 */
 }
 
 /* --- Reset --- */
@@ -60,7 +60,7 @@ body {
   background: var(--void);
   color: var(--star-white);
   font-family: var(--font-body);
-  font-size: var(--text-lg);
+  font-size: var(--text-sm);
   font-weight: 400;
   line-height: 1.7;
   overflow-x: hidden;
@@ -391,7 +391,7 @@ img { max-width: 100%; display: block; }
 
 .section h3 {
   font-family: var(--font-display);
-  font-weight: 600;
+  font-weight: 700;
   font-size: var(--text-xl);
   line-height: 1.2;
   margin-bottom: var(--space-sm);
@@ -711,7 +711,7 @@ img { max-width: 100%; display: block; }
 
 .feature-item h4 {
   font-family: var(--font-display);
-  font-weight: 600;
+  font-weight: 700;
   font-size: var(--text-xl);
   margin-bottom: var(--space-xs);
   color: var(--star-white);
@@ -741,7 +741,7 @@ img { max-width: 100%; display: block; }
 .stat-number {
   font-family: var(--font-display);
   font-weight: 800;
-  font-size: clamp(2rem, 4vw, 3rem);
+  font-size: var(--text-2xl);
   color: var(--biolume);
   line-height: 1;
 }
@@ -1065,7 +1065,7 @@ body::after {
   .section { padding: var(--space-lg) var(--space-sm); }
   .cta-band { padding: var(--space-lg) var(--space-sm); }
   .footer { padding: var(--space-md) var(--space-sm); }
-  .pullquote { font-size: 1.2rem; padding-left: var(--space-sm); }
+  .pullquote { font-size: var(--text-lg); padding-left: var(--space-sm); }
   .hero-actions { flex-direction: column; align-items: stretch; }
   .hero-actions .btn { text-align: center; justify-content: center; }
   .cta-actions { flex-direction: column; align-items: stretch; }
