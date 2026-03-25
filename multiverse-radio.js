@@ -222,6 +222,11 @@
     if (isLeader) doSkip('next');
   });
 
+  audio.addEventListener('error', () => {
+    // Skip tracks that fail to load (e.g. 404)
+    if (isLeader && playlist.length > 1) doSkip('next');
+  });
+
   // ── Public API ─────────────────────────────────────────────
 
   function dispatchStateChange() {
