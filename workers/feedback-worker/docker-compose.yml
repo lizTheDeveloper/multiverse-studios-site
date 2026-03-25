@@ -15,6 +15,9 @@ services:
       - MATRIX_ACCESS_TOKEN=${MATRIX_ACCESS_TOKEN}
       - ALLOWED_ORIGINS=https://multiversestudios.xyz,http://localhost:3000,http://localhost:5173
       - PORT=3000
+      - PAPERCLIP_API_URL=${PAPERCLIP_API_URL}
+      - PAPERCLIP_COMPANY_ID=${PAPERCLIP_COMPANY_ID}
+      - PAPERCLIP_BOT_API_KEY=${PAPERCLIP_BOT_API_KEY}
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.feedback.rule=Host(`feedback.multiversestudios.xyz`)"

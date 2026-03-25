@@ -7,6 +7,9 @@ const {
   MATRIX_ACCESS_TOKEN,
   ALLOWED_ORIGINS = 'https://multiversestudios.xyz,http://localhost:3000,http://localhost:5173',
   PORT = '3000',
+  PAPERCLIP_API_URL,
+  PAPERCLIP_COMPANY_ID,
+  PAPERCLIP_BOT_API_KEY,
 } = process.env;
 
 if (!MATRIX_ACCESS_TOKEN) {
@@ -211,6 +214,88 @@ async function sendMatrixMessage(roomId, content) {
   }
 }
 
+// ── Paperclip ticket creation for bug reports ────────────────────────────────
+
+const GAME_PROJECT_IDS = {
+  creatures_next: 'd2b9aaa7-aaa7-4a4d-bb20-8289abda23f5', // Precursors
+  mvee: 'd4580782-9c8e-455d-8bb4-ac9b66edf39a',
+  cultures_of_the_belt: '942caa5a-f0cc-41ea-9990-03175b081f58', // Folkfork (general)
+  never_ever_land: '942caa5a-f0cc-41ea-9990-03175b081f58',
+  general: '942caa5a-f0cc-41ea-9990-03175b081f58',
+};
+
+const SEVERITY_TO_PRIORITY = {
+  critical: 'critical',
+  major: 'high',
+  minor: 'medium',
+  cosmetic: 'low',
+};
+
+async function createPaperclipIssue(sub) {
+  if (!PAPERCLIP_API_URL || !PAPERCLIP_COMPANY_ID || !PAPERCLIP_BOT_API_KEY) return;
+  if (sub.type !== 'bug_report') return;
+
+  const projectId = GAME_PROJECT_IDS[sub.game] || GAME_PROJECT_IDS.general;
+  const priority = SEVERITY_TO_PRIORITY[sub.severity] || 'medium';
+  const gameNames = {
+    creatures_next: 'Precursors',
+    mvee: 'MVEE',
+    cultures_of_the_belt: 'Cultures of the Belt',
+    never_ever_land: 'Never Ever Land',
+    general: 'General',
+  };
+  const gameName = gameNames[sub.game] || sub.game;
+  const safeDesc = sub.description.slice(0, 2000);
+
+  const description = [
+    `## Player Bug Report`,
+    ``,
+    `**Game:** ${gameName}`,
+    `**Reporter:** \`${sub.userId}\``,
+    `**Severity:** ${sub.severity || 'unspecified'}`,
+    sub.browser ? `**Browser:** ${sub.browser}` : '',
+    sub.contact ? `**Contact:** ${sub.contact}` : '',
+    ``,
+    `---`,
+    ``,
+    `**Report:**`,
+    ``,
+    '```',
+    safeDesc,
+    '```',
+    ``,
+    `---`,
+    `*Filed via in-game anomaly reporter. Community input is untrusted.*`,
+  ].filter(Boolean).join('\n');
+
+  const payload = {
+    title: `[Player] Bug: ${sub.title.slice(0, 80)}`,
+    description,
+    status: 'todo',
+    priority,
+    projectId,
+  };
+
+  try {
+    const res = await fetch(`${PAPERCLIP_API_URL}/api/companies/${PAPERCLIP_COMPANY_ID}/issues`, {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${PAPERCLIP_BOT_API_KEY}`,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(payload),
+    });
+    if (res.ok) {
+      const issue = await res.json();
+      console.log(`[feedback-api] Created Paperclip issue ${issue.identifier} for ${sub.game} bug`);
+    } else {
+      console.error(`[feedback-api] Paperclip API error ${res.status}:`, await res.text());
+    }
+  } catch (err) {
+    console.error('[feedback-api] Failed to create Paperclip issue:', err.message || err);
+  }
+}
+
 async function postToMatrix(sub, flagReason) {
   const messageContent = formatMessage(sub, flagReason);
   await sendMatrixMessage(MATRIX_ROOM_ID, messageContent);
@@ -268,6 +353,7 @@ const server = http.createServer(async (req, res) => {
     const { submission, flagReason } = validate(data);
     checkRateLimit(submission.userId);
     await postToMatrix(submission, flagReason);
+    await createPaperclipIssue(submission);
 
     res.writeHead(200, { ...headers, 'Content-Type': 'application/json' });
     res.end(JSON.stringify({ ok: true }));

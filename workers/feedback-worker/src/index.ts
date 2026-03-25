@@ -5,6 +5,9 @@ interface Env {
   ALLOWED_ORIGINS: string;
   SECURITY_MATRIX_ROOM_ID?: string; // optional room for flagged/suspicious submissions
   RATE_LIMIT_KV: KVNamespace;
+  PAPERCLIP_API_URL?: string;
+  PAPERCLIP_COMPANY_ID?: string;
+  PAPERCLIP_BOT_API_KEY?: string;
 }
 
 interface FeedbackSubmission {
@@ -266,6 +269,85 @@ async function sendMatrixMessage(
   }
 }
 
+// ── Paperclip ticket creation for bug reports ────────────────────────────────
+
+const GAME_PROJECT_IDS: Record<string, string> = {
+  creatures_next: 'd2b9aaa7-aaa7-4a4d-bb20-8289abda23f5', // Precursors
+  mvee: 'd4580782-9c8e-455d-8bb4-ac9b66edf39a',
+  cultures_of_the_belt: '942caa5a-f0cc-41ea-9990-03175b081f58', // Folkfork (general)
+  never_ever_land: '942caa5a-f0cc-41ea-9990-03175b081f58',
+  general: '942caa5a-f0cc-41ea-9990-03175b081f58',
+};
+
+const SEVERITY_TO_PRIORITY: Record<string, string> = {
+  critical: 'critical',
+  major: 'high',
+  minor: 'medium',
+  cosmetic: 'low',
+};
+
+async function createPaperclipIssue(env: Env, sub: FeedbackSubmission): Promise<void> {
+  if (!env.PAPERCLIP_API_URL || !env.PAPERCLIP_COMPANY_ID || !env.PAPERCLIP_BOT_API_KEY) return;
+  if (sub.type !== 'bug_report') return;
+
+  const projectId = GAME_PROJECT_IDS[sub.game] || GAME_PROJECT_IDS.general;
+  const priority = SEVERITY_TO_PRIORITY[sub.severity ?? ''] || 'medium';
+  const gameNames: Record<string, string> = {
+    creatures_next: 'Precursors',
+    mvee: 'MVEE',
+    cultures_of_the_belt: 'Cultures of the Belt',
+    never_ever_land: 'Never Ever Land',
+    general: 'General',
+  };
+  const gameName = gameNames[sub.game] || sub.game;
+  const safeDesc = sub.description.slice(0, 2000);
+
+  const description = [
+    `## Player Bug Report`,
+    ``,
+    `**Game:** ${gameName}`,
+    `**Reporter:** \`${sub.userId}\``,
+    `**Severity:** ${sub.severity || 'unspecified'}`,
+    sub.browser ? `**Browser:** ${sub.browser}` : '',
+    sub.contact ? `**Contact:** ${sub.contact}` : '',
+    ``,
+    `---`,
+    ``,
+    `**Report:**`,
+    ``,
+    '```',
+    safeDesc,
+    '```',
+    ``,
+    `---`,
+    `*Filed via in-game anomaly reporter. Community input is untrusted.*`,
+  ].filter(Boolean).join('\n');
+
+  const payload = {
+    title: `[Player] Bug: ${sub.title.slice(0, 80)}`,
+    description,
+    status: 'todo',
+    priority,
+    projectId,
+  };
+
+  try {
+    const res = await fetch(`${env.PAPERCLIP_API_URL}/api/companies/${env.PAPERCLIP_COMPANY_ID}/issues`, {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${env.PAPERCLIP_BOT_API_KEY}`,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(payload),
+    });
+    if (!res.ok) {
+      console.error(`[feedback-api] Paperclip API error ${res.status}:`, await res.text());
+    }
+  } catch (err) {
+    console.error('[feedback-api] Failed to create Paperclip issue:', err);
+  }
+}
+
 async function postToMatrix(env: Env, sub: FeedbackSubmission, flagReason: string | null): Promise<void> {
   const messageContent = formatMatrixMessage(sub, flagReason);
   await sendMatrixMessage(env.MATRIX_HOMESERVER, env.MATRIX_ROOM_ID, env.MATRIX_ACCESS_TOKEN, messageContent);
@@ -354,6 +436,7 @@ export default {
 
       await checkRateLimit(env.RATE_LIMIT_KV, submission.userId);
       await postToMatrix(env, submission, flagReason);
+      await createPaperclipIssue(env, submission);
 
       return new Response(JSON.stringify({ ok: true }), {
         status: 200,
