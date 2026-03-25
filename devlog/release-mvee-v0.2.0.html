@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MVEE v0.2.0: Species Morality — Multiverse Studios Devlog</title>
+  <meta name="description" content="Multiverse v0.2.0 — species morality systems, moral-conflict schisms, NN performance gains, and stability fixes.">
+  <meta property="og:title" content="MVEE v0.2.0: Species Morality">
+  <meta property="og:description" content="Every species now has a unique moral framework. Schisms emerge from genuine disagreements. Neural networks run faster than ever.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://multiversestudios.xyz/devlog/release-mvee-v0.2.0.html">
+  <meta property="og:image" content="https://multiversestudios.xyz/screenshots/homepage-hero.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="MVEE v0.2.0: Species Morality">
+  <meta name="twitter:description" content="Every species now has a unique moral framework. Schisms emerge from genuine disagreements.">
+  <meta name="twitter:image" content="https://multiversestudios.xyz/screenshots/homepage-hero.png">
+  <link rel="stylesheet" href="../styles.css">
+  <link rel="icon" type="image/svg+xml" href="../press-kit/logos/multiverse-studios-favicon.svg">
+  <style>
+    .devlog-body {
+      max-width: 680px;
+      margin: 0 auto;
+    }
+    .devlog-body h1 {
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      line-height: 1.2;
+      margin-bottom: var(--space-sm);
+      color: var(--star-white);
+    }
+    .devlog-body .byline {
+      font-size: 0.8rem;
+      color: var(--dust);
+      font-family: var(--font-mono);
+      letter-spacing: 0.05em;
+      margin-bottom: var(--space-xl);
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+    .devlog-body .byline .tag {
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.2rem 0.6rem;
+      border-radius: 4px;
+      border: 1px solid var(--ember);
+      color: var(--ember);
+    }
+    .devlog-body p {
+      color: var(--dust-light);
+      line-height: 1.8;
+      font-size: 1.05rem;
+      margin-bottom: var(--space-md);
+    }
+    .devlog-body h2 {
+      font-size: 1.3rem;
+      color: var(--star-white);
+      margin: var(--space-xl) 0 var(--space-sm) 0;
+    }
+    .devlog-body .pullout {
+      border-left: 3px solid var(--ember);
+      padding: var(--space-sm) var(--space-md);
+      margin: var(--space-lg) 0;
+      color: var(--star-white);
+      font-style: italic;
+      font-size: 1.1rem;
+      line-height: 1.7;
+      background: rgba(255, 100, 50, 0.04);
+    }
+    .devlog-body .divider {
+      border: none;
+      border-top: 1px solid rgba(255,255,255,0.07);
+      margin: var(--space-xl) 0;
+    }
+  </style>
+</head>
+<body>
+  <main class="devlog-body" style="padding: var(--space-xl) var(--space-md);">
+    <a href="../devlog.html" style="color: var(--dust); font-size: 0.85rem; text-decoration: none;">&larr; All devlogs</a>
+
+    <h1>v0.2.0: Species Morality</h1>
+    <div class="byline">
+      <span>2026-03-24</span>
+      <span class="tag">MVEE</span>
+      <span class="tag">RELEASE</span>
+    </div>
+
+    <p>Every species in the Multiverse now has its own moral framework. Dragons evaluate pattern-density across timestreams. Ethereans reach consensus through field coherence. These aren't cosmetic flavor text — they drive real decisions, real conflicts, and real schisms.</p>
+
+    <div class="pullout">Village schisms now emerge from genuine moral disagreements between species, not random dice rolls. When a Dragon sees a pattern that an Etherean's consensus rejects, the village splits along philosophical lines.</div>
+
+    <p>The species moral primitives registry replaces the old hardcoded belief templates. Each species contributes its own moral foundations to the shared village culture, and when those foundations clash, the simulation responds organically.</p>
+
+    <h2>Under the Hood</h2>
+
+    <p>Neural network inference got a significant performance boost this release. Pre-compiled regex patterns and eliminated allocations in feature extraction. Removed proportional yielding from NN inference, reclaiming 8-48ms per tick. The game now degrades gracefully when the multiverse API or species NNs are unavailable — no more hard crashes.</p>
+
+    <p>The admin dashboard gained an Items Browser for per-species item inspection. LLM providers now auto-recover from 401 errors. Agent movement was fixed by disabling a broken SoA batch path. Sprite 404s for characters without animations are resolved.</p>
+
+    <p><a href="../play/mvee/" style="color: var(--ember);">Play Multiverse: The End of Eternity</a></p>
+  </main>
+</body>
+</html>
