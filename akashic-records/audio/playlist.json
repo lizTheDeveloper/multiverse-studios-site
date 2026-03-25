@@ -1,0 +1,921 @@
+{
+  "tracks": [
+    {
+      "id": "cotb-begin-slowly",
+      "title": "Begin Slowly",
+      "game": "cultures-of-the-belt",
+      "mood": "calm",
+      "path": "music/cultures-of-the-belt/Begin Slowly.mp3"
+    },
+    {
+      "id": "cotb-combat-in-space-is-almost-silent-but-people-still-die",
+      "title": "combat in space is almost silent but people still die",
+      "game": "cultures-of-the-belt",
+      "mood": "combat",
+      "path": "music/cultures-of-the-belt/combat in space is almost silent but people still die.mp3"
+    },
+    {
+      "id": "cotb-focus-and-mine",
+      "title": "Focus and Mine",
+      "game": "cultures-of-the-belt",
+      "mood": "focus",
+      "path": "music/cultures-of-the-belt/Focus and Mine.mp3"
+    },
+    {
+      "id": "cotb-keep-going-but-also-its-late-its-a-long-playsession-already",
+      "title": "keep going but also it's late it's a long playsession already",
+      "game": "cultures-of-the-belt",
+      "mood": "late-night",
+      "path": "music/cultures-of-the-belt/keep going but also it's late it's a long playsession already.mp3"
+    },
+    {
+      "id": "cotb-mine-quietly",
+      "title": "Mine Quietly",
+      "game": "cultures-of-the-belt",
+      "mood": "calm",
+      "path": "music/cultures-of-the-belt/Mine Quietly.mp3"
+    },
+    {
+      "id": "cotb-ok-the-attack-is-underway-focus-now",
+      "title": "ok the attack is underway, focus now",
+      "game": "cultures-of-the-belt",
+      "mood": "combat",
+      "path": "music/cultures-of-the-belt/ok the attack is underway, focus now.mp3"
+    },
+    {
+      "id": "cotb-quiet-and-chill-maybe-it-is-time-to-go-to-bed-you-have-been-playing-a-long-time",
+      "title": "Quiet and chill, maybe it is time to go to bed you have been playing a long time",
+      "game": "cultures-of-the-belt",
+      "mood": "late-night",
+      "path": "music/cultures-of-the-belt/Quiet and chill, maybe it is time to go to bed you have been playing a long time.mp3"
+    },
+    {
+      "id": "cotb-so-many-people-died-but-the-attack-is-now-over-and-you-need-to-clean-up",
+      "title": "so many people died but the attack is now over and you need to clean up",
+      "game": "cultures-of-the-belt",
+      "mood": "somber",
+      "path": "music/cultures-of-the-belt/so many people died but the attack is now over and you need to clean up.mp3"
+    },
+    {
+      "id": "cotb-space-is-deep",
+      "title": "Space is Deep",
+      "game": "cultures-of-the-belt",
+      "mood": "ambient",
+      "path": "music/cultures-of-the-belt/Space is Deep.mp3"
+    },
+    {
+      "id": "cotb-the-cosmos-is-peaceful",
+      "title": "The Cosmos is Peaceful",
+      "game": "cultures-of-the-belt",
+      "mood": "calm",
+      "path": "music/cultures-of-the-belt/The Cosmos is Peaceful.mp3"
+    },
+    {
+      "id": "cotb-we-are-all-in-this-together",
+      "title": "We Are All In This Together",
+      "game": "cultures-of-the-belt",
+      "mood": "uplifting",
+      "path": "music/cultures-of-the-belt/We Are All In This Together.mp3"
+    },
+    {
+      "id": "cotb-you-make-industrial-progress",
+      "title": "You make Industrial Progress",
+      "game": "cultures-of-the-belt",
+      "mood": "progress",
+      "path": "music/cultures-of-the-belt/You make Industrial Progress.mp3"
+    },
+    {
+      "id": "cotb-you-make-progress-over-time-longer-alt-ending-1",
+      "title": "You Make Progress Over Time (longer) (alt ending 1)",
+      "game": "cultures-of-the-belt",
+      "mood": "progress",
+      "path": "music/cultures-of-the-belt/You Make Progress Over Time (longer) (alt ending 1).mp3"
+    },
+    {
+      "id": "cotb-you-make-progress-over-time-longer-alt-ending-2",
+      "title": "You Make Progress Over Time (longer) (alt ending 2)",
+      "game": "cultures-of-the-belt",
+      "mood": "progress",
+      "path": "music/cultures-of-the-belt/You Make Progress Over Time (longer) (alt ending 2).mp3"
+    },
+    {
+      "id": "cotb-you-make-progress-over-time-longer-alt-ending-3",
+      "title": "You Make Progress Over Time (longer) (alt ending 3)",
+      "game": "cultures-of-the-belt",
+      "mood": "progress",
+      "path": "music/cultures-of-the-belt/You Make Progress Over Time (longer) (alt ending 3).mp3"
+    },
+    {
+      "id": "cotb-you-make-progress-over-time-longer",
+      "title": "You Make Progress Over Time (longer)",
+      "game": "cultures-of-the-belt",
+      "mood": "progress",
+      "path": "music/cultures-of-the-belt/You Make Progress Over Time (longer).mp3"
+    },
+    {
+      "id": "cotb-you-make-progress-over-time",
+      "title": "You Make Progress Over Time",
+      "game": "cultures-of-the-belt",
+      "mood": "progress",
+      "path": "music/cultures-of-the-belt/You Make Progress Over Time.mp3"
+    },
+    {
+      "id": "cotb-your-infrastructure-needs-your-focus",
+      "title": "Your infrastructure needs your focus",
+      "game": "cultures-of-the-belt",
+      "mood": "alert",
+      "path": "music/cultures-of-the-belt/Your infrastructure needs your focus.mp3"
+    },
+    {
+      "id": "cotb-your-people-are-dying",
+      "title": "Your people are dying",
+      "game": "cultures-of-the-belt",
+      "mood": "urgent",
+      "path": "music/cultures-of-the-belt/Your people are dying.mp3"
+    },
+    {
+      "id": "cotb-your-people-are-unhappy",
+      "title": "Your people are unhappy",
+      "game": "cultures-of-the-belt",
+      "mood": "somber",
+      "path": "music/cultures-of-the-belt/Your people are unhappy.mp3"
+    },
+    {
+      "id": "ettin-kemm-vor-driva-2",
+      "title": "Kemm-Vor Driva",
+      "game": "precursors",
+      "species": "ettin",
+      "path": "species-songs/Ettin/Kemm-Vor Driva (2).mp3"
+    },
+    {
+      "id": "ettin-kemm-vor-driva-3",
+      "title": "Kemm-Vor Driva",
+      "game": "precursors",
+      "species": "ettin",
+      "path": "species-songs/Ettin/Kemm-Vor Driva (3).mp3"
+    },
+    {
+      "id": "ettin-kemm-vor-driva-4",
+      "title": "Kemm-Vor Driva",
+      "game": "precursors",
+      "species": "ettin",
+      "path": "species-songs/Ettin/Kemm-Vor Driva (4).mp3"
+    },
+    {
+      "id": "ettin-kemm-vor-driva-5",
+      "title": "Kemm-Vor Driva",
+      "game": "precursors",
+      "species": "ettin",
+      "path": "species-songs/Ettin/Kemm-Vor Driva (5).mp3"
+    },
+    {
+      "id": "norn-ain-ven-sel-meshi-1",
+      "title": "Ain Ven Sel Meshi",
+      "game": "precursors",
+      "species": "norn",
+      "path": "species-songs/Norn/Ain Ven Sel Meshi (1).mp3"
+    },
+    {
+      "id": "norn-ain-ven-sel-meshi-2",
+      "title": "Ain Ven Sel Meshi",
+      "game": "precursors",
+      "species": "norn",
+      "path": "species-songs/Norn/Ain Ven Sel Meshi (2).mp3"
+    },
+    {
+      "id": "norn-ain-ven-sel-meshi",
+      "title": "Ain Ven Sel Meshi",
+      "game": "precursors",
+      "species": "norn",
+      "path": "species-songs/Norn/Ain Ven Sel Meshi.mp3"
+    },
+    {
+      "id": "norn-ennamira-keth-vel-sha-alternate",
+      "title": "Ennamira keth vel sha",
+      "game": "precursors",
+      "species": "norn",
+      "path": "species-songs/Norn/Ennamira keth vel sha - alternate.mp3"
+    },
+    {
+      "id": "norn-ennamira-keth-vel-sha",
+      "title": "Ennamira keth vel sha",
+      "game": "precursors",
+      "species": "norn",
+      "path": "species-songs/Norn/Ennamira keth vel sha.mp3"
+    },
+    {
+      "id": "norn-ennamira-meshi-1",
+      "title": "Ennamira Meshi",
+      "game": "precursors",
+      "species": "norn",
+      "path": "species-songs/Norn/Ennamira Meshi (1).mp3"
+    },
+    {
+      "id": "norn-ennamira-meshi",
+      "title": "Ennamira Meshi",
+      "game": "precursors",
+      "species": "norn",
+      "path": "species-songs/Norn/Ennamira Meshi.mp3"
+    },
+    {
+      "id": "norn-ennamira-keth-sha-mira-1",
+      "title": "Ennamira-keth sha mira",
+      "game": "precursors",
+      "species": "norn",
+      "path": "species-songs/Norn/Ennamira-keth sha mira (1).mp3"
+    },
+    {
+      "id": "norn-ennamira-keth-sha-mira-2",
+      "title": "Ennamira-keth sha mira",
+      "game": "precursors",
+      "species": "norn",
+      "path": "species-songs/Norn/Ennamira-keth sha mira (2).mp3"
+    },
+    {
+      "id": "norn-ennamira-keth-sha-mira-3",
+      "title": "Ennamira-keth sha mira",
+      "game": "precursors",
+      "species": "norn",
+      "path": "species-songs/Norn/Ennamira-keth sha mira (3).mp3"
+    },
+    {
+      "id": "norn-ennamira-keth-sha-mira",
+      "title": "Ennamira-keth sha mira",
+      "game": "precursors",
+      "species": "norn",
+      "path": "species-songs/Norn/Ennamira-keth sha mira.mp3"
+    },
+    {
+      "id": "norn-grendh-meshi-1",
+      "title": "Grendh Meshi",
+      "game": "precursors",
+      "species": "norn",
+      "path": "species-songs/Norn/Grendh Meshi (1).mp3"
+    },
+    {
+      "id": "norn-grendh-meshi",
+      "title": "Grendh Meshi",
+      "game": "precursors",
+      "species": "norn",
+      "path": "species-songs/Norn/Grendh Meshi.mp3"
+    },
+    {
+      "id": "norn-inna-vel-ain-1",
+      "title": "Inna Vel Ain",
+      "game": "precursors",
+      "species": "norn",
+      "path": "species-songs/Norn/Inna Vel Ain (1).mp3"
+    },
+    {
+      "id": "norn-inna-vel-ain",
+      "title": "Inna Vel Ain",
+      "game": "precursors",
+      "species": "norn",
+      "path": "species-songs/Norn/Inna Vel Ain.mp3"
+    },
+    {
+      "id": "norn-innavel-shael-vel-1",
+      "title": "Innavel Shael Vel",
+      "game": "precursors",
+      "species": "norn",
+      "path": "species-songs/Norn/Innavel Shael Vel (1).mp3"
+    },
+    {
+      "id": "norn-innavel-shael-vel",
+      "title": "Innavel Shael Vel",
+      "game": "precursors",
+      "species": "norn",
+      "path": "species-songs/Norn/Innavel Shael Vel.mp3"
+    },
+    {
+      "id": "norn-kel-mirshal-1",
+      "title": "Kel Mirshal",
+      "game": "precursors",
+      "species": "norn",
+      "path": "species-songs/Norn/Kel Mirshal (1).mp3"
+    },
+    {
+      "id": "norn-kel-mirshal-covered-by-another-singer",
+      "title": "Kel Mirshal",
+      "game": "precursors",
+      "species": "norn",
+      "path": "species-songs/Norn/Kel Mirshal- covered by another singer.mp3"
+    },
+    {
+      "id": "norn-kel-mirshal",
+      "title": "Kel Mirshal",
+      "game": "precursors",
+      "species": "norn",
+      "path": "species-songs/Norn/Kel Mirshal.mp3"
+    },
+    {
+      "id": "norn-kelshael-meshi-1",
+      "title": "Kelshael Meshi",
+      "game": "precursors",
+      "species": "norn",
+      "path": "species-songs/Norn/Kelshael Meshi (1).mp3"
+    },
+    {
+      "id": "norn-kelshael-meshi-oth-1",
+      "title": "Kelshael Meshi Oth",
+      "game": "precursors",
+      "species": "norn",
+      "path": "species-songs/Norn/Kelshael Meshi Oth (1).mp3"
+    },
+    {
+      "id": "norn-kelshael-meshi-oth-2",
+      "title": "Kelshael Meshi Oth",
+      "game": "precursors",
+      "species": "norn",
+      "path": "species-songs/Norn/Kelshael Meshi Oth (2).mp3"
+    },
+    {
+      "id": "norn-kelshael-meshi-oth-3",
+      "title": "Kelshael Meshi Oth",
+      "game": "precursors",
+      "species": "norn",
+      "path": "species-songs/Norn/Kelshael Meshi Oth (3).mp3"
+    },
+    {
+      "id": "norn-kelshael-meshi-oth",
+      "title": "Kelshael Meshi Oth",
+      "game": "precursors",
+      "species": "norn",
+      "path": "species-songs/Norn/Kelshael Meshi Oth.mp3"
+    },
+    {
+      "id": "norn-kelshael-meshi",
+      "title": "Kelshael Meshi",
+      "game": "precursors",
+      "species": "norn",
+      "path": "species-songs/Norn/Kelshael Meshi.mp3"
+    },
+    {
+      "id": "norn-ken-renna-ornvella-1",
+      "title": "Ken Renna Ornvella",
+      "game": "precursors",
+      "species": "norn",
+      "path": "species-songs/Norn/Ken Renna Ornvella (1).mp3"
+    },
+    {
+      "id": "norn-ken-renna-ornvella",
+      "title": "Ken Renna Ornvella",
+      "game": "precursors",
+      "species": "norn",
+      "path": "species-songs/Norn/Ken Renna Ornvella.mp3"
+    },
+    {
+      "id": "norn-keth-kel-thren-1",
+      "title": "Keth Kel Thren",
+      "game": "precursors",
+      "species": "norn",
+      "path": "species-songs/Norn/Keth Kel Thren (1).mp3"
+    },
+    {
+      "id": "norn-keth-kel-thren",
+      "title": "Keth Kel Thren",
+      "game": "precursors",
+      "species": "norn",
+      "path": "species-songs/Norn/Keth Kel Thren.mp3"
+    },
+    {
+      "id": "norn-keth-shira-vel-1",
+      "title": "Keth Shira Vel",
+      "game": "precursors",
+      "species": "norn",
+      "path": "species-songs/Norn/Keth Shira Vel (1).mp3"
+    },
+    {
+      "id": "norn-keth-shira-vel",
+      "title": "Keth Shira Vel",
+      "game": "precursors",
+      "species": "norn",
+      "path": "species-songs/Norn/Keth Shira Vel.mp3"
+    },
+    {
+      "id": "norn-lesh-mei-sha-1",
+      "title": "Lesh Mei Sha",
+      "game": "precursors",
+      "species": "norn",
+      "path": "species-songs/Norn/Lesh Mei Sha (1).mp3"
+    },
+    {
+      "id": "norn-lesh-mei-sha",
+      "title": "Lesh Mei Sha",
+      "game": "precursors",
+      "species": "norn",
+      "path": "species-songs/Norn/Lesh Mei Sha.mp3"
+    },
+    {
+      "id": "norn-lum-esh-nesh-1",
+      "title": "Lum Esh Nesh",
+      "game": "precursors",
+      "species": "norn",
+      "path": "species-songs/Norn/Lum Esh Nesh (1).mp3"
+    },
+    {
+      "id": "norn-lum-esh-nesh",
+      "title": "Lum Esh Nesh",
+      "game": "precursors",
+      "species": "norn",
+      "path": "species-songs/Norn/Lum Esh Nesh.mp3"
+    },
+    {
+      "id": "norn-mael-vel-shee-1",
+      "title": "Mael Vel Shee",
+      "game": "precursors",
+      "species": "norn",
+      "path": "species-songs/Norn/Mael Vel Shee (1).mp3"
+    },
+    {
+      "id": "norn-mael-vel-shee",
+      "title": "Mael Vel Shee",
+      "game": "precursors",
+      "species": "norn",
+      "path": "species-songs/Norn/Mael Vel Shee.mp3"
+    },
+    {
+      "id": "norn-meshi-lum-sha-1",
+      "title": "Meshi Lum Sha",
+      "game": "precursors",
+      "species": "norn",
+      "path": "species-songs/Norn/Meshi Lum Sha (1).mp3"
+    },
+    {
+      "id": "norn-meshi-lum-sha",
+      "title": "Meshi Lum Sha",
+      "game": "precursors",
+      "species": "norn",
+      "path": "species-songs/Norn/Meshi Lum Sha.mp3"
+    },
+    {
+      "id": "norn-meshi-norni-lum-1",
+      "title": "Meshi Norni Lum",
+      "game": "precursors",
+      "species": "norn",
+      "path": "species-songs/Norn/Meshi Norni Lum (1).mp3"
+    },
+    {
+      "id": "norn-meshi-norni-lum",
+      "title": "Meshi Norni Lum",
+      "game": "precursors",
+      "species": "norn",
+      "path": "species-songs/Norn/Meshi Norni Lum.mp3"
+    },
+    {
+      "id": "norn-meshi-oth-keth-kel-1",
+      "title": "Meshi Oth Keth Kel",
+      "game": "precursors",
+      "species": "norn",
+      "path": "species-songs/Norn/Meshi Oth Keth Kel (1).mp3"
+    },
+    {
+      "id": "norn-meshi-oth-keth-kel",
+      "title": "Meshi Oth Keth Kel",
+      "game": "precursors",
+      "species": "norn",
+      "path": "species-songs/Norn/Meshi Oth Keth Kel.mp3"
+    },
+    {
+      "id": "norn-meshi-thali-vel-1",
+      "title": "Meshi Thali Vel",
+      "game": "precursors",
+      "species": "norn",
+      "path": "species-songs/Norn/Meshi Thali Vel (1).mp3"
+    },
+    {
+      "id": "norn-meshi-thali-vel",
+      "title": "Meshi Thali Vel",
+      "game": "precursors",
+      "species": "norn",
+      "path": "species-songs/Norn/Meshi Thali Vel.mp3"
+    },
+    {
+      "id": "norn-mir-shen-sha-1",
+      "title": "Mir Shen Sha",
+      "game": "precursors",
+      "species": "norn",
+      "path": "species-songs/Norn/Mir Shen Sha (1).mp3"
+    },
+    {
+      "id": "norn-mir-shen-sha",
+      "title": "Mir Shen Sha",
+      "game": "precursors",
+      "species": "norn",
+      "path": "species-songs/Norn/Mir Shen Sha.mp3"
+    },
+    {
+      "id": "norn-mirkel-velsha-1",
+      "title": "Mirkel Velsha",
+      "game": "precursors",
+      "species": "norn",
+      "path": "species-songs/Norn/Mirkel Velsha (1).mp3"
+    },
+    {
+      "id": "norn-mirkel-velsha",
+      "title": "Mirkel Velsha",
+      "game": "precursors",
+      "species": "norn",
+      "path": "species-songs/Norn/Mirkel Velsha.mp3"
+    },
+    {
+      "id": "norn-mirvel-kelsha-1",
+      "title": "Mirvel Kelsha",
+      "game": "precursors",
+      "species": "norn",
+      "path": "species-songs/Norn/Mirvel Kelsha (1).mp3"
+    },
+    {
+      "id": "norn-mirvel-kelsha",
+      "title": "Mirvel Kelsha",
+      "game": "precursors",
+      "species": "norn",
+      "path": "species-songs/Norn/Mirvel Kelsha.mp3"
+    },
+    {
+      "id": "norn-neshil-lumen-sha-1",
+      "title": "Neshil Lumen Sha",
+      "game": "precursors",
+      "species": "norn",
+      "path": "species-songs/Norn/Neshil Lumen Sha (1).mp3"
+    },
+    {
+      "id": "norn-neshil-lumen-sha",
+      "title": "Neshil Lumen Sha",
+      "game": "precursors",
+      "species": "norn",
+      "path": "species-songs/Norn/Neshil Lumen Sha.mp3"
+    },
+    {
+      "id": "norn-orna-shira-urdh-lum-1",
+      "title": "Orna Shira Urdh Lum",
+      "game": "precursors",
+      "species": "norn",
+      "path": "species-songs/Norn/Orna Shira Urdh Lum (1).mp3"
+    },
+    {
+      "id": "norn-orna-shira-urdh-lum",
+      "title": "Orna Shira Urdh Lum",
+      "game": "precursors",
+      "species": "norn",
+      "path": "species-songs/Norn/Orna Shira Urdh Lum.mp3"
+    },
+    {
+      "id": "norn-ornsha-neshil-1",
+      "title": "Ornsha Neshil",
+      "game": "precursors",
+      "species": "norn",
+      "path": "species-songs/Norn/Ornsha Neshil (1).mp3"
+    },
+    {
+      "id": "norn-ornsha-neshil",
+      "title": "Ornsha Neshil",
+      "game": "precursors",
+      "species": "norn",
+      "path": "species-songs/Norn/Ornsha Neshil.mp3"
+    },
+    {
+      "id": "norn-ornsha-vel-keth-1",
+      "title": "Ornsha Vel Keth",
+      "game": "precursors",
+      "species": "norn",
+      "path": "species-songs/Norn/Ornsha Vel Keth (1).mp3"
+    },
+    {
+      "id": "norn-ornsha-vel-keth",
+      "title": "Ornsha Vel Keth",
+      "game": "precursors",
+      "species": "norn",
+      "path": "species-songs/Norn/Ornsha Vel Keth.mp3"
+    },
+    {
+      "id": "norn-oshel-threnkel-1",
+      "title": "Oshel Threnkel",
+      "game": "precursors",
+      "species": "norn",
+      "path": "species-songs/Norn/Oshel Threnkel (1).mp3"
+    },
+    {
+      "id": "norn-oshel-threnkel",
+      "title": "Oshel Threnkel",
+      "game": "precursors",
+      "species": "norn",
+      "path": "species-songs/Norn/Oshel Threnkel.mp3"
+    },
+    {
+      "id": "norn-selvai-thren-1",
+      "title": "Selvai Thren",
+      "game": "precursors",
+      "species": "norn",
+      "path": "species-songs/Norn/Selvai Thren (1).mp3"
+    },
+    {
+      "id": "norn-selvai-thren-mael-1",
+      "title": "Selvai Thren Mael",
+      "game": "precursors",
+      "species": "norn",
+      "path": "species-songs/Norn/Selvai Thren Mael (1).mp3"
+    },
+    {
+      "id": "norn-selvai-thren-mael",
+      "title": "Selvai Thren Mael",
+      "game": "precursors",
+      "species": "norn",
+      "path": "species-songs/Norn/Selvai Thren Mael.mp3"
+    },
+    {
+      "id": "norn-selvai-thren",
+      "title": "Selvai Thren",
+      "game": "precursors",
+      "species": "norn",
+      "path": "species-songs/Norn/Selvai Thren.mp3"
+    },
+    {
+      "id": "norn-sha-keth-drak-alternate",
+      "title": "Sha Keth Drak",
+      "game": "precursors",
+      "species": "norn",
+      "path": "species-songs/Norn/Sha Keth Drak -alternate.mp3"
+    },
+    {
+      "id": "norn-sha-keth-drak-1",
+      "title": "Sha Keth Drak",
+      "game": "precursors",
+      "species": "norn",
+      "path": "species-songs/Norn/Sha Keth Drak (1).mp3"
+    },
+    {
+      "id": "norn-sha-keth-drak",
+      "title": "Sha Keth Drak",
+      "game": "precursors",
+      "species": "norn",
+      "path": "species-songs/Norn/Sha Keth Drak.mp3"
+    },
+    {
+      "id": "norn-sha-vel-thi-1",
+      "title": "Sha Vel Thi",
+      "game": "precursors",
+      "species": "norn",
+      "path": "species-songs/Norn/Sha Vel Thi (1).mp3"
+    },
+    {
+      "id": "norn-sha-vel-thi",
+      "title": "Sha Vel Thi",
+      "game": "precursors",
+      "species": "norn",
+      "path": "species-songs/Norn/Sha Vel Thi.mp3"
+    },
+    {
+      "id": "norn-shen-ain-vel-1",
+      "title": "Shen Ain Vel",
+      "game": "precursors",
+      "species": "norn",
+      "path": "species-songs/Norn/Shen Ain Vel (1).mp3"
+    },
+    {
+      "id": "norn-shen-ain-vel",
+      "title": "Shen Ain Vel",
+      "game": "precursors",
+      "species": "norn",
+      "path": "species-songs/Norn/Shen Ain Vel.mp3"
+    },
+    {
+      "id": "norn-shen-thenni-vel-1",
+      "title": "Shen Thenni Vel",
+      "game": "precursors",
+      "species": "norn",
+      "path": "species-songs/Norn/Shen Thenni Vel (1).mp3"
+    },
+    {
+      "id": "norn-shen-thenni-vel",
+      "title": "Shen Thenni Vel",
+      "game": "precursors",
+      "species": "norn",
+      "path": "species-songs/Norn/Shen Thenni Vel.mp3"
+    },
+    {
+      "id": "norn-shenna-leshvel-1",
+      "title": "Shenna Leshvel",
+      "game": "precursors",
+      "species": "norn",
+      "path": "species-songs/Norn/Shenna Leshvel (1).mp3"
+    },
+    {
+      "id": "norn-shenna-leshvel",
+      "title": "Shenna Leshvel",
+      "game": "precursors",
+      "species": "norn",
+      "path": "species-songs/Norn/Shenna Leshvel.mp3"
+    },
+    {
+      "id": "norn-shenorna-nesh-1",
+      "title": "Shenorna Nesh",
+      "game": "precursors",
+      "species": "norn",
+      "path": "species-songs/Norn/Shenorna Nesh (1).mp3"
+    },
+    {
+      "id": "norn-shenorna-nesh",
+      "title": "Shenorna Nesh",
+      "game": "precursors",
+      "species": "norn",
+      "path": "species-songs/Norn/Shenorna Nesh.mp3"
+    },
+    {
+      "id": "norn-shevel-vel-orna-1",
+      "title": "Shevel Vel Orna",
+      "game": "precursors",
+      "species": "norn",
+      "path": "species-songs/Norn/Shevel Vel Orna (1).mp3"
+    },
+    {
+      "id": "norn-shevel-vel-orna",
+      "title": "Shevel Vel Orna",
+      "game": "precursors",
+      "species": "norn",
+      "path": "species-songs/Norn/Shevel Vel Orna.mp3"
+    },
+    {
+      "id": "norn-shirath-ain-thi-1",
+      "title": "Shirath Ain Thi",
+      "game": "precursors",
+      "species": "norn",
+      "path": "species-songs/Norn/Shirath Ain Thi (1).mp3"
+    },
+    {
+      "id": "norn-shirath-ain-thi",
+      "title": "Shirath Ain Thi",
+      "game": "precursors",
+      "species": "norn",
+      "path": "species-songs/Norn/Shirath Ain Thi.mp3"
+    },
+    {
+      "id": "norn-shirath-vel-kelshael-1",
+      "title": "Shirath Vel Kelshael",
+      "game": "precursors",
+      "species": "norn",
+      "path": "species-songs/Norn/Shirath Vel Kelshael (1).mp3"
+    },
+    {
+      "id": "norn-shirath-vel-kelshael",
+      "title": "Shirath Vel Kelshael",
+      "game": "precursors",
+      "species": "norn",
+      "path": "species-songs/Norn/Shirath Vel Kelshael.mp3"
+    },
+    {
+      "id": "norn-solin-thav-norni-1",
+      "title": "Solin Thav Norni",
+      "game": "precursors",
+      "species": "norn",
+      "path": "species-songs/Norn/Solin Thav Norni (1).mp3"
+    },
+    {
+      "id": "norn-solin-thav-norni",
+      "title": "Solin Thav Norni",
+      "game": "precursors",
+      "species": "norn",
+      "path": "species-songs/Norn/Solin Thav Norni.mp3"
+    },
+    {
+      "id": "norn-thav-grendh-kel-1",
+      "title": "Thav Grendh Kel",
+      "game": "precursors",
+      "species": "norn",
+      "path": "species-songs/Norn/Thav Grendh Kel (1).mp3"
+    },
+    {
+      "id": "norn-thav-grendh-kel",
+      "title": "Thav Grendh Kel",
+      "game": "precursors",
+      "species": "norn",
+      "path": "species-songs/Norn/Thav Grendh Kel.mp3"
+    },
+    {
+      "id": "norn-thav-oshel-sha-1",
+      "title": "Thav Oshel Sha",
+      "game": "precursors",
+      "species": "norn",
+      "path": "species-songs/Norn/Thav Oshel Sha (1).mp3"
+    },
+    {
+      "id": "norn-thav-oshel-sha",
+      "title": "Thav Oshel Sha",
+      "game": "precursors",
+      "species": "norn",
+      "path": "species-songs/Norn/Thav Oshel Sha.mp3"
+    },
+    {
+      "id": "norn-thav-shira-thinna-1",
+      "title": "Thav Shira Thinna",
+      "game": "precursors",
+      "species": "norn",
+      "path": "species-songs/Norn/Thav Shira Thinna (1).mp3"
+    },
+    {
+      "id": "norn-thav-shira-thinna",
+      "title": "Thav Shira Thinna",
+      "game": "precursors",
+      "species": "norn",
+      "path": "species-songs/Norn/Thav Shira Thinna.mp3"
+    },
+    {
+      "id": "norn-thav-vel-oth-1",
+      "title": "Thav Vel Oth",
+      "game": "precursors",
+      "species": "norn",
+      "path": "species-songs/Norn/Thav Vel Oth (1).mp3"
+    },
+    {
+      "id": "norn-thav-vel-oth",
+      "title": "Thav Vel Oth",
+      "game": "precursors",
+      "species": "norn",
+      "path": "species-songs/Norn/Thav Vel Oth.mp3"
+    },
+    {
+      "id": "norn-thav-velma-shira-1",
+      "title": "Thav Velma Shira",
+      "game": "precursors",
+      "species": "norn",
+      "path": "species-songs/Norn/Thav Velma Shira (1).mp3"
+    },
+    {
+      "id": "norn-thav-velma-shira",
+      "title": "Thav Velma Shira",
+      "game": "precursors",
+      "species": "norn",
+      "path": "species-songs/Norn/Thav Velma Shira.mp3"
+    },
+    {
+      "id": "norn-thel-oth-sira-vel-1",
+      "title": "Thel Oth Sira Vel",
+      "game": "precursors",
+      "species": "norn",
+      "path": "species-songs/Norn/Thel Oth Sira Vel (1).mp3"
+    },
+    {
+      "id": "norn-thel-oth-sira-vel",
+      "title": "Thel Oth Sira Vel",
+      "game": "precursors",
+      "species": "norn",
+      "path": "species-songs/Norn/Thel Oth Sira Vel.mp3"
+    },
+    {
+      "id": "norn-theli-urdh-vel-1",
+      "title": "Theli Urdh Vel",
+      "game": "precursors",
+      "species": "norn",
+      "path": "species-songs/Norn/Theli Urdh Vel (1).mp3"
+    },
+    {
+      "id": "norn-theli-urdh-vel",
+      "title": "Theli Urdh Vel",
+      "game": "precursors",
+      "species": "norn",
+      "path": "species-songs/Norn/Theli Urdh Vel.mp3"
+    },
+    {
+      "id": "norn-thi-vel-mirsha-1",
+      "title": "Thi Vel Mirsha",
+      "game": "precursors",
+      "species": "norn",
+      "path": "species-songs/Norn/Thi Vel Mirsha (1).mp3"
+    },
+    {
+      "id": "norn-thi-vel-mirsha",
+      "title": "Thi Vel Mirsha",
+      "game": "precursors",
+      "species": "norn",
+      "path": "species-songs/Norn/Thi Vel Mirsha.mp3"
+    },
+    {
+      "id": "norn-thi-vellorn-sha",
+      "title": "Thi Vellorn Sha",
+      "game": "precursors",
+      "species": "norn",
+      "path": "species-songs/Norn/Thi Vellorn Sha.mp3"
+    },
+    {
+      "id": "norn-urdh-shevel-vel-1",
+      "title": "Urdh Shevel Vel",
+      "game": "precursors",
+      "species": "norn",
+      "path": "species-songs/Norn/Urdh Shevel Vel (1).mp3"
+    },
+    {
+      "id": "norn-urdh-shevel-vel",
+      "title": "Urdh Shevel Vel",
+      "game": "precursors",
+      "species": "norn",
+      "path": "species-songs/Norn/Urdh Shevel Vel.mp3"
+    },
+    {
+      "id": "norn-vel-sha-ornmir-thi-keloth",
+      "title": "Vel sha ornmir thi keloth",
+      "game": "precursors",
+      "species": "norn",
+      "path": "species-songs/Norn/Vel sha ornmir thi keloth.mp3"
+    }
+  ]
+}

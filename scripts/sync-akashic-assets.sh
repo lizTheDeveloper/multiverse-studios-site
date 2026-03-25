@@ -85,5 +85,18 @@ if [ -d "$AKASHIC_ROOT/audio/species-songs/Ettin/" ]; then
     "$WEBSITE_ROOT/play/creatures/audio/ettin/"
 fi
 
+# 5. Radio music → akashic-records/audio/ (playlist + tracks for multiverse-radio.js)
+echo "=== Syncing radio music ==="
+mkdir -p "$WEBSITE_ROOT/akashic-records/audio/music"
+rsync -av \
+  "$AKASHIC_ROOT/audio/playlist.json" \
+  "$WEBSITE_ROOT/akashic-records/audio/"
+rsync -av \
+  --include='*.mp3' \
+  --exclude='*.aif' \
+  --exclude='*.md' \
+  "$AKASHIC_ROOT/audio/music/" \
+  "$WEBSITE_ROOT/akashic-records/audio/music/"
+
 echo ""
 echo "Sync complete."

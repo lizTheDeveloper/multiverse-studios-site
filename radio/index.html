@@ -1,0 +1,802 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Multiverse Radio — Listen to the Multiverse</title>
+  <meta name="description" content="Stream the full soundtrack from every Multiverse Studios game. Precursors species songs, Cultures of the Belt ambient tracks, and more.">
+  <meta property="og:title" content="Multiverse Radio — Listen to the Multiverse">
+  <meta property="og:description" content="Stream the full soundtrack from every Multiverse Studios game.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://multiversestudios.xyz/radio/">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Multiverse Radio">
+  <meta name="twitter:description" content="Stream the full soundtrack from every Multiverse Studios game.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=JetBrains+Mono:wght@300;400;500&family=Syne:wght@400;500;600;700;800&display=swap">
+  <link rel="stylesheet" href="../styles.css">
+  <link rel="icon" type="image/svg+xml" href="../press-kit/logos/multiverse-studios-favicon.svg">
+  <style>
+    /* Radio page — full-page player */
+    .radio-hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: var(--space-md);
+      position: relative;
+    }
+
+    .radio-container {
+      max-width: 640px;
+      width: 100%;
+      text-align: center;
+    }
+
+    .radio-title {
+      font-family: var(--font-display);
+      font-size: var(--text-2xl);
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      margin-bottom: var(--space-xs);
+      background: linear-gradient(135deg, var(--signal), var(--biolume));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .radio-subtitle {
+      font-family: var(--font-body);
+      font-size: var(--text-base);
+      color: var(--dust);
+      margin-bottom: var(--space-lg);
+      font-style: italic;
+    }
+
+    /* Now playing card */
+    .now-playing {
+      background: var(--void-surface);
+      border: 1px solid var(--void-border);
+      border-radius: 12px;
+      padding: var(--space-md) var(--space-md) var(--space-sm);
+      margin-bottom: var(--space-md);
+    }
+
+    .now-playing-label {
+      font-family: var(--font-mono);
+      font-size: var(--text-xs);
+      color: var(--signal);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: var(--space-xs);
+    }
+
+    .now-playing-track {
+      font-family: var(--font-display);
+      font-size: var(--text-xl);
+      font-weight: 600;
+      color: var(--star-white);
+      margin-bottom: 4px;
+      min-height: 1.6em;
+    }
+
+    .now-playing-source {
+      font-family: var(--font-body);
+      font-size: var(--text-sm);
+      color: var(--dust-light);
+      margin-bottom: var(--space-sm);
+      min-height: 1.4em;
+    }
+
+    .now-playing-mood {
+      display: inline-block;
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: var(--biolume-dim);
+      border: 1px solid rgba(0, 255, 200, 0.2);
+      border-radius: 4px;
+      padding: 2px 8px;
+      margin-bottom: var(--space-sm);
+    }
+
+    /* Seek bar */
+    .seek-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: var(--space-sm);
+    }
+
+    .seek-time {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: var(--dust);
+      min-width: 40px;
+    }
+
+    .seek-bar {
+      flex: 1;
+      height: 4px;
+      appearance: none;
+      -webkit-appearance: none;
+      background: var(--void-border);
+      border-radius: 2px;
+      outline: none;
+      cursor: pointer;
+    }
+
+    .seek-bar::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: var(--signal);
+      cursor: pointer;
+      transition: transform 0.1s;
+    }
+
+    .seek-bar::-webkit-slider-thumb:hover {
+      transform: scale(1.2);
+    }
+
+    /* Transport controls */
+    .transport {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      margin-bottom: var(--space-sm);
+    }
+
+    .transport-btn {
+      background: none;
+      border: 1px solid var(--void-border);
+      border-radius: 8px;
+      color: var(--star-white);
+      cursor: pointer;
+      font-size: 1.1rem;
+      padding: 8px 14px;
+      transition: background 0.2s, border-color 0.2s;
+      line-height: 1;
+    }
+
+    .transport-btn:hover {
+      background: var(--void-elevated);
+      border-color: var(--signal-dim);
+    }
+
+    .transport-btn.play-btn {
+      font-size: 1.4rem;
+      padding: 12px 20px;
+      border-color: var(--signal-dim);
+    }
+
+    .transport-btn.play-btn:hover {
+      background: rgba(123, 104, 238, 0.15);
+    }
+
+    /* Volume */
+    .volume-row {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    .volume-label {
+      font-size: 1rem;
+      color: var(--dust);
+    }
+
+    .volume-bar {
+      width: 100px;
+      height: 4px;
+      appearance: none;
+      -webkit-appearance: none;
+      background: var(--void-border);
+      border-radius: 2px;
+      outline: none;
+      cursor: pointer;
+    }
+
+    .volume-bar::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: var(--signal);
+      cursor: pointer;
+    }
+
+    /* Playlist */
+    .playlist-section {
+      margin-top: var(--space-md);
+      text-align: left;
+    }
+
+    .playlist-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: var(--space-sm);
+    }
+
+    .playlist-title {
+      font-family: var(--font-mono);
+      font-size: var(--text-xs);
+      color: var(--dust);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .playlist-filter {
+      display: flex;
+      gap: 6px;
+    }
+
+    .filter-btn {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      background: none;
+      border: 1px solid var(--void-border);
+      border-radius: 4px;
+      color: var(--dust);
+      padding: 3px 8px;
+      cursor: pointer;
+      transition: color 0.2s, border-color 0.2s;
+    }
+
+    .filter-btn:hover,
+    .filter-btn.active {
+      color: var(--signal);
+      border-color: var(--signal-dim);
+    }
+
+    .playlist-list {
+      list-style: none;
+      max-height: 320px;
+      overflow-y: auto;
+      border: 1px solid var(--void-border);
+      border-radius: 8px;
+      background: var(--void-surface);
+    }
+
+    .playlist-list::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    .playlist-list::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    .playlist-list::-webkit-scrollbar-thumb {
+      background: var(--void-border);
+      border-radius: 3px;
+    }
+
+    .playlist-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 14px;
+      border-bottom: 1px solid var(--void-border);
+      cursor: pointer;
+      transition: background 0.15s;
+    }
+
+    .playlist-item:last-child {
+      border-bottom: none;
+    }
+
+    .playlist-item:hover {
+      background: var(--void-elevated);
+    }
+
+    .playlist-item.active {
+      background: rgba(123, 104, 238, 0.1);
+      border-left: 3px solid var(--signal);
+    }
+
+    .playlist-item-title {
+      font-family: var(--font-body);
+      font-size: var(--text-sm);
+      color: var(--star-white);
+    }
+
+    .playlist-item-game {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      color: var(--dust);
+      white-space: nowrap;
+      margin-left: 12px;
+    }
+
+    .track-count {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      color: var(--dust);
+    }
+
+    .radio-sync-badge {
+      font-family: var(--font-mono);
+      font-size: var(--text-xs);
+      color: var(--signal-dim);
+      margin-top: var(--space-xs);
+      min-height: 1.2em;
+    }
+
+    /* Hide the floating widget on the radio page since we have the full player */
+    #mv-radio-widget {
+      display: none !important;
+    }
+  </style>
+</head>
+<body>
+
+<canvas id="starfield"></canvas>
+
+<!-- Nav -->
+<nav class="nav">
+  <a href="../index.html" class="nav-logo">
+    <img src="../press-kit/logos/multiverse-studios-mark.svg" alt="Multiverse Studios" class="logo-mark" width="28" height="28">
+    Multiverse Studios
+  </a>
+  <button class="nav-hamburger" aria-label="Menu" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+  <ul class="nav-links">
+    <li><a href="../index.html">Home</a></li>
+    <li><a href="../mvee.html">MVEE</a></li>
+    <li><a href="../precursors.html">Precursors</a></li>
+    <li><a href="../nevereverland.html">Never Ever Land</a></li>
+    <li><a href="/cultures-of-the-belt/">Cultures of the Belt</a></li>
+    <li><a href="../wiki/index.html">Wiki</a></li>
+    <li><a href="../library.html">My Library</a></li>
+    <li><a href="../about.html">About</a></li>
+    <li><a href="../devlog.html">Devlog</a></li>
+    <li><a href="../community.html">Community</a></li>
+    <li><a href="../radio/" class="active">Radio</a></li>
+    <li><a href="../playtest.html">Playtest</a></li>
+  </ul>
+</nav>
+
+<section class="radio-hero">
+  <div class="radio-container">
+    <h1 class="radio-title">Multiverse Radio</h1>
+    <p class="radio-subtitle">The soundtrack of every world, one stream.</p>
+
+    <div class="now-playing">
+      <div class="now-playing-label">Now Playing</div>
+      <div class="now-playing-track" id="r-track">Loading playlist&hellip;</div>
+      <div class="now-playing-source" id="r-source"></div>
+      <div class="now-playing-mood" id="r-mood" style="display:none;"></div>
+
+      <div class="seek-row">
+        <span class="seek-time" id="r-elapsed">0:00</span>
+        <input type="range" class="seek-bar" id="r-seek" min="0" max="100" value="0" step="0.1">
+        <span class="seek-time" id="r-duration">0:00</span>
+      </div>
+
+      <div class="transport">
+        <button class="transport-btn" id="r-prev" title="Previous">&#x25C4;&#x25C4;</button>
+        <button class="transport-btn play-btn" id="r-play" title="Play">&#x25B6;</button>
+        <button class="transport-btn" id="r-next" title="Next">&#x25BA;&#x25BA;</button>
+      </div>
+
+      <div class="volume-row">
+        <span class="volume-label">&#x1f509;</span>
+        <input type="range" class="volume-bar" id="r-volume" min="0" max="1" value="0.7" step="0.01">
+      </div>
+
+      <div class="radio-sync-badge" id="r-sync"></div>
+    </div>
+
+    <div class="playlist-section">
+      <div class="playlist-header">
+        <span class="playlist-title">Playlist</span>
+        <span class="track-count" id="r-count"></span>
+      </div>
+      <div class="playlist-filter" id="r-filters"></div>
+      <ul class="playlist-list" id="r-playlist"></ul>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="footer-bottom">
+    <span>&copy; 2026 Multiverse Studios</span>
+    <span>Built by AI agents. Guided by <a href="https://themultiverse.school" target="_blank" rel="noopener" style="color: var(--biolume);">The Multiverse School</a>.</span>
+  </div>
+</footer>
+
+<script src="../main.js"></script>
+<script>
+(function initRadioPage() {
+  'use strict';
+
+  const PLAYLIST_URL = '/akashic-records/audio/playlist.json';
+  const AUDIO_BASE   = '/akashic-records/audio/';
+  const CHANNEL_NAME = 'mv-radio';
+  const LS_VOLUME    = 'mv-radio-volume';
+  const RADIO_PRIORITY = 1; // Same as WIDGET — this IS the radio page
+
+  const GAME_LABELS = {
+    'cultures-of-the-belt': 'Cultures of the Belt',
+    'precursors': 'Precursors',
+    'mvee': 'MVEE',
+  };
+
+  // ── Elements ─────────────────────────────────────────────
+  const elTrack    = document.getElementById('r-track');
+  const elSource   = document.getElementById('r-source');
+  const elMood     = document.getElementById('r-mood');
+  const elElapsed  = document.getElementById('r-elapsed');
+  const elDuration = document.getElementById('r-duration');
+  const elSeek     = document.getElementById('r-seek');
+  const elPlay     = document.getElementById('r-play');
+  const elPrev     = document.getElementById('r-prev');
+  const elNext     = document.getElementById('r-next');
+  const elVolume   = document.getElementById('r-volume');
+  const elSync     = document.getElementById('r-sync');
+  const elPlaylist = document.getElementById('r-playlist');
+  const elFilters  = document.getElementById('r-filters');
+  const elCount    = document.getElementById('r-count');
+
+  // ── State ────────────────────────────────────────────────
+  const tabId = 'radio-page-' + Date.now() + '-' + Math.random().toString(36).slice(2, 6);
+  let allTracks = [];
+  let playlist  = [];
+  let trackIdx  = 0;
+  let isLeader  = false;
+  let currentLeaderPriority = -1;
+  let activeFilter = null;
+  let heartbeatTimer = null;
+  let seekDragging = false;
+
+  const audio = new Audio();
+  audio.volume = parseFloat(localStorage.getItem(LS_VOLUME) || '0.7');
+  elVolume.value = audio.volume;
+
+  // ── BroadcastChannel ────────────────────────────────────
+  let channel;
+  try { channel = new BroadcastChannel(CHANNEL_NAME); } catch (_) { channel = null; }
+
+  function broadcast(type, data) {
+    if (channel) {
+      try { channel.postMessage({ type, tabId, role: 'widget', priority: RADIO_PRIORITY, ...data }); } catch (_) {}
+    }
+  }
+
+  function startHeartbeat() {
+    clearInterval(heartbeatTimer);
+    heartbeatTimer = setInterval(function () { broadcast('leader-heartbeat'); }, 3000);
+  }
+
+  function becomeLeader() {
+    isLeader = true;
+    currentLeaderPriority = RADIO_PRIORITY;
+    broadcast('leader-claim');
+    startHeartbeat();
+    elSync.textContent = '';
+  }
+
+  function yieldLeadership() {
+    isLeader = false;
+    clearInterval(heartbeatTimer);
+    heartbeatTimer = null;
+    audio.pause();
+    updatePlayBtn(false);
+    elSync.textContent = 'synced to game tab';
+  }
+
+  function syncState() {
+    var track = playlist[trackIdx];
+    broadcast('sync-state', {
+      trackIdx: trackIdx,
+      path: track ? track.path : null,
+      playing: !audio.paused,
+      position: audio.currentTime,
+    });
+  }
+
+  if (channel) {
+    channel.onmessage = function (e) {
+      var d = e.data;
+      if (d.tabId === tabId) return;
+
+      if (d.type === 'leader-claim') {
+        var p = d.priority || 0;
+        currentLeaderPriority = p;
+        if (isLeader && p >= RADIO_PRIORITY) {
+          yieldLeadership();
+        }
+      } else if (d.type === 'leader-resign') {
+        currentLeaderPriority = -1;
+        setTimeout(function () {
+          if (currentLeaderPriority < 0) {
+            becomeLeader();
+            if (playlist.length) doPlay();
+          }
+        }, 200);
+      } else if (d.type === 'leader-heartbeat') {
+        if (d.priority !== undefined) currentLeaderPriority = d.priority;
+      } else if (d.type === 'sync-state' && !isLeader) {
+        applySyncState(d);
+      } else if (d.type === 'play' && isLeader) {
+        doPlay();
+      } else if (d.type === 'pause' && isLeader) {
+        doPause();
+      } else if (d.type === 'skip' && isLeader) {
+        doSkip(d.direction);
+      }
+    };
+  }
+
+  function applySyncState(data) {
+    if (data.path) {
+      var src = AUDIO_BASE + data.path;
+      if (audio.src !== src && audio.src !== location.origin + src) {
+        audio.src = src;
+      }
+      // Find matching track in our playlist for display
+      for (var i = 0; i < playlist.length; i++) {
+        if (playlist[i].path === data.path) {
+          trackIdx = i;
+          break;
+        }
+      }
+    }
+    updateNowPlaying();
+    updatePlayBtn(data.playing);
+    highlightActive();
+  }
+
+  window.addEventListener('beforeunload', function () {
+    if (isLeader) {
+      clearInterval(heartbeatTimer);
+      broadcast('leader-resign', { tabId: tabId });
+    }
+  });
+
+  // ── Time formatting ─────────────────────────────────────
+  function fmt(s) {
+    if (!s || !isFinite(s)) return '0:00';
+    var m = Math.floor(s / 60);
+    var sec = Math.floor(s % 60);
+    return m + ':' + (sec < 10 ? '0' : '') + sec;
+  }
+
+  // ── Playlist ────────────────────────────────────────────
+  function loadPlaylist() {
+    fetch(PLAYLIST_URL)
+      .then(function (r) { return r.ok ? r.json() : { tracks: [] }; })
+      .then(function (data) {
+        allTracks = (data && Array.isArray(data.tracks)) ? data.tracks : [];
+        buildFilters();
+        applyFilter(null);
+        // Become leader if no one else is
+        var leaderCheck = setTimeout(function () { becomeLeader(); }, 250);
+        if (channel) {
+          var orig = channel.onmessage;
+          var once = function (e) {
+            if (e.data.tabId === tabId) return;
+            if (e.data.type === 'leader-claim' || e.data.type === 'leader-heartbeat') {
+              clearTimeout(leaderCheck);
+              isLeader = false;
+              currentLeaderPriority = e.data.priority || 0;
+              elSync.textContent = 'synced to game tab';
+              broadcast('sync-state-request');
+            }
+            channel.onmessage = orig;
+          };
+          channel.onmessage = function (e) {
+            once(e);
+            if (orig) orig(e);
+          };
+          broadcast('sync-state-request');
+        }
+      })
+      .catch(function () {
+        elTrack.textContent = 'Could not load playlist';
+      });
+  }
+
+  function buildFilters() {
+    var games = {};
+    allTracks.forEach(function (t) {
+      if (t.game) games[t.game] = true;
+    });
+    var html = '<button class="filter-btn active" data-game="">All</button>';
+    Object.keys(games).sort().forEach(function (g) {
+      html += '<button class="filter-btn" data-game="' + g + '">' + (GAME_LABELS[g] || g) + '</button>';
+    });
+    elFilters.innerHTML = html;
+    elFilters.querySelectorAll('.filter-btn').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var game = btn.getAttribute('data-game') || null;
+        applyFilter(game);
+        elFilters.querySelectorAll('.filter-btn').forEach(function (b) { b.classList.remove('active'); });
+        btn.classList.add('active');
+      });
+    });
+  }
+
+  function shuffle(arr) {
+    var a = arr.slice();
+    for (var i = a.length - 1; i > 0; i--) {
+      var j = Math.floor(Math.random() * (i + 1));
+      var tmp = a[i]; a[i] = a[j]; a[j] = tmp;
+    }
+    return a;
+  }
+
+  function applyFilter(game) {
+    activeFilter = game;
+    var filtered = allTracks;
+    if (game) {
+      filtered = allTracks.filter(function (t) { return t.game === game; });
+      if (!filtered.length) filtered = allTracks;
+    }
+    playlist = shuffle(filtered);
+    trackIdx = 0;
+    renderPlaylist();
+    if (isLeader) loadTrack(false);
+  }
+
+  function renderPlaylist() {
+    var html = '';
+    playlist.forEach(function (t, i) {
+      var cls = i === trackIdx ? 'playlist-item active' : 'playlist-item';
+      var game = GAME_LABELS[t.game] || t.game || '';
+      html += '<li class="' + cls + '" data-idx="' + i + '">'
+        + '<span class="playlist-item-title">' + escHtml(t.title || t.path) + '</span>'
+        + '<span class="playlist-item-game">' + escHtml(game) + '</span>'
+        + '</li>';
+    });
+    elPlaylist.innerHTML = html;
+    elCount.textContent = playlist.length + ' tracks';
+
+    elPlaylist.querySelectorAll('.playlist-item').forEach(function (li) {
+      li.addEventListener('click', function () {
+        var idx = parseInt(li.getAttribute('data-idx'), 10);
+        if (isLeader) {
+          trackIdx = idx;
+          loadTrack(true);
+        } else {
+          // Ask leader to play this track
+          broadcast('skip', { direction: 'next' });
+        }
+      });
+    });
+  }
+
+  function highlightActive() {
+    elPlaylist.querySelectorAll('.playlist-item').forEach(function (li, i) {
+      li.classList.toggle('active', i === trackIdx);
+    });
+    // Scroll active into view
+    var activeLi = elPlaylist.querySelector('.playlist-item.active');
+    if (activeLi) activeLi.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+  }
+
+  function escHtml(s) {
+    var d = document.createElement('div');
+    d.textContent = s;
+    return d.innerHTML;
+  }
+
+  // ── Track loading & playback ────────────────────────────
+  function loadTrack(autoplay) {
+    var track = playlist[trackIdx];
+    if (!track) return;
+    audio.src = AUDIO_BASE + track.path;
+    updateNowPlaying();
+    highlightActive();
+    if (autoplay) doPlay();
+    if (isLeader) syncState();
+  }
+
+  function updateNowPlaying() {
+    var track = playlist[trackIdx];
+    if (!track) {
+      elTrack.textContent = 'No tracks';
+      elSource.textContent = '';
+      elMood.style.display = 'none';
+      return;
+    }
+    elTrack.textContent = track.title || track.path;
+    var game = GAME_LABELS[track.game] || track.game || '';
+    elSource.textContent = game;
+    if (track.mood) {
+      elMood.textContent = track.mood;
+      elMood.style.display = 'inline-block';
+    } else {
+      elMood.style.display = 'none';
+    }
+  }
+
+  function updatePlayBtn(playing) {
+    elPlay.innerHTML = playing ? '&#x275A;&#x275A;' : '&#x25B6;';
+    elPlay.title = playing ? 'Pause' : 'Play';
+  }
+
+  function doPlay() {
+    audio.play().then(function () {
+      updatePlayBtn(true);
+      if (isLeader) syncState();
+    }).catch(function () {
+      updatePlayBtn(false);
+    });
+  }
+
+  function doPause() {
+    audio.pause();
+    updatePlayBtn(false);
+    if (isLeader) syncState();
+  }
+
+  function doSkip(direction) {
+    if (!playlist.length) return;
+    trackIdx = (trackIdx + (direction === 'prev' ? -1 : 1) + playlist.length) % playlist.length;
+    loadTrack(true);
+  }
+
+  audio.addEventListener('ended', function () {
+    if (isLeader) doSkip('next');
+  });
+
+  audio.addEventListener('timeupdate', function () {
+    if (!seekDragging) {
+      elElapsed.textContent = fmt(audio.currentTime);
+      elDuration.textContent = fmt(audio.duration);
+      if (audio.duration) {
+        elSeek.value = (audio.currentTime / audio.duration) * 100;
+      }
+    }
+  });
+
+  // ── Controls ────────────────────────────────────────────
+  elPlay.addEventListener('click', function () {
+    if (isLeader) {
+      audio.paused ? doPlay() : doPause();
+    } else {
+      broadcast(audio.paused ? 'play' : 'pause');
+    }
+  });
+
+  elPrev.addEventListener('click', function () {
+    if (isLeader) doSkip('prev');
+    else broadcast('skip', { direction: 'prev' });
+  });
+
+  elNext.addEventListener('click', function () {
+    if (isLeader) doSkip('next');
+    else broadcast('skip', { direction: 'next' });
+  });
+
+  elSeek.addEventListener('mousedown', function () { seekDragging = true; });
+  elSeek.addEventListener('mouseup', function () { seekDragging = false; });
+  elSeek.addEventListener('input', function () {
+    if (audio.duration) {
+      audio.currentTime = (parseFloat(elSeek.value) / 100) * audio.duration;
+    }
+  });
+
+  elVolume.addEventListener('input', function () {
+    audio.volume = parseFloat(elVolume.value);
+    try { localStorage.setItem(LS_VOLUME, String(audio.volume)); } catch (_) {}
+  });
+
+  // ── Init ────────────────────────────────────────────────
+  loadPlaylist();
+
+})();
+</script>
+<script src="../matrix-auth.js"></script>
+<!-- radio page has its own player, so we skip multiverse-radio.js widget -->
+<script src="../matrix-chat.js"></script>
+<script defer src="https://analytics.themultiverse.school/script.js" data-website-id="38d680a7-28d1-42fd-9fd5-a66702675b88"></script>
+</body>
+</html>
