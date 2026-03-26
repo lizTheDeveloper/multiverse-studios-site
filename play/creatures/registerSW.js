@@ -1,1 +1,0 @@
-if('serviceWorker' in navigator) {window.addEventListener('load', () => {navigator.serviceWorker.register('/play/creatures/sw.js', { scope: '/play/creatures/' })})}
