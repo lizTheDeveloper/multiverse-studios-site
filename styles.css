@@ -399,6 +399,7 @@ img { max-width: 100%; display: block; }
 
 .section p {
   color: var(--dust);
+  font-size: var(--text-base);
   max-width: 65ch;
 }
 
@@ -616,6 +617,7 @@ img { max-width: 100%; display: block; }
 }
 
 .tier-price {
+  font-family: var(--font-display);
   font-size: var(--text-xl);
   font-weight: 800;
 }
@@ -712,7 +714,7 @@ img { max-width: 100%; display: block; }
 .feature-item h4 {
   font-family: var(--font-display);
   font-weight: 700;
-  font-size: var(--text-xl);
+  font-size: var(--text-lg);
   margin-bottom: var(--space-xs);
   color: var(--star-white);
 }
@@ -761,7 +763,7 @@ img { max-width: 100%; display: block; }
   padding-left: var(--space-md);
   margin: var(--space-lg) 0;
   font-family: var(--font-body);
-  font-size: var(--text-xl);
+  font-size: var(--text-lg);
   font-style: italic;
   font-weight: 300;
   color: var(--star-white);
@@ -810,7 +812,7 @@ img { max-width: 100%; display: block; }
 .species-card h4 {
   font-family: var(--font-display);
   font-weight: 700;
-  font-size: var(--text-xl);
+  font-size: var(--text-lg);
   margin-bottom: 0.3rem;
   color: var(--star-white);
 }
@@ -1057,7 +1059,7 @@ body::after {
     border-bottom: 1px solid var(--void-border);
   }
   .footer-grid { grid-template-columns: 1fr; }
-  .hero h1 { font-size: clamp(2.2rem, 10vw, 3.5rem); }
+  .hero h1 { font-size: var(--text-3xl); }
   .timeline { padding-left: var(--space-md); }
   .timeline-item::before { left: calc(-1 * var(--space-md) - 4px); }
   .features-grid { grid-template-columns: 1fr; }
