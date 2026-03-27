@@ -1,0 +1,61 @@
+{
+  "species": "norn",
+  "source": "PixelLab character ea574b8b-374a-4b8b-919b-13b11aefeded (board-approved deer, recolored to Norn palette)",
+  "source_account": "a27eb3cf-b890-450b-bb2c-fb3470dd355f",
+  "size": "48x48",
+  "view": "high top-down",
+  "directions": 8,
+  "recolor": {
+    "method": "HSV hue-shift",
+    "body": "brown/red (hue ~348) -> blue-grey (hue 210, sat*0.5)",
+    "highlights": "orange (hue ~33) -> lighter blue-grey",
+    "accents": "yellow (hue ~48) -> warm yellow (hue 60)"
+  },
+  "game_sprites": {
+    "core_poses": [
+      "norn_idle.png",
+      "norn_walk1.png",
+      "norn_walk2.png",
+      "norn_baby.png",
+      "norn_sleep.png"
+    ],
+    "emotions": [
+      "norn_happy.png",
+      "norn_sad.png",
+      "norn_angry.png",
+      "norn_fear.png",
+      "norn_pain.png",
+      "norn_boredom.png",
+      "norn_eat.png"
+    ],
+    "directional_idles": [
+      "norn_idle_south.png",
+      "norn_idle_southeast.png",
+      "norn_idle_right.png",
+      "norn_idle_northeast.png",
+      "norn_idle_north.png",
+      "norn_idle_northwest.png",
+      "norn_idle_left.png",
+      "norn_idle_southwest.png"
+    ]
+  },
+  "walk_animations": {
+    "directions": [
+      "south",
+      "southeast",
+      "right",
+      "northeast",
+      "north",
+      "northwest",
+      "left",
+      "southwest"
+    ],
+    "frames_per_direction": 8,
+    "naming": "norn_walk_{direction}_f{0-7}.png",
+    "note": "norn_walk1.png = south f0, norn_walk2.png = south f4 (game uses 2-frame cycle)"
+  },
+  "emotional_states_source": "PixelLab pixflux API with init_image=norn_idle_south.png, init_image_strength=150",
+  "baby_sleep_source": "PixelLab pixflux API with init_image=norn_idle_south.png",
+  "generated": "2026-03-21",
+  "total_sprites": 84
+}

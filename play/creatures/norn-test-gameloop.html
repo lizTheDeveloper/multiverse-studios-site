@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Norn GameLoop Test</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { background: #0a0b10; overflow: hidden; }
+    #game-container { width: 100vw; height: 100vh; }
+    #fps-overlay {
+      position: fixed; top: 8px; left: 8px; z-index: 100;
+      color: #3dfce0; font: 14px monospace; background: rgba(10,11,16,0.8);
+      padding: 4px 8px; border-radius: 4px;
+    }
+    #drive-overlay {
+      position: fixed; top: 40px; left: 8px; z-index: 100;
+      color: #b4b8ce; font: 12px monospace; background: rgba(10,11,16,0.88);
+      padding: 6px 10px; border-radius: 4px;
+      white-space: pre;
+      border: 1px solid #252637;
+      line-height: 1.6;
+      min-width: 260px;
+    }
+    #drive-overlay .label { color: #3dfce0; font-weight: bold; }
+    #drive-overlay .danger { color: #f0a050; }
+    #drive-overlay .critical { color: #f05050; }
+    #drive-overlay .dim { color: #565966; }
+  </style>
+  <script type="module" crossorigin src="/precursors/assets/norn-test-gameloop-D58nGRWF.js"></script>
+  <link rel="modulepreload" crossorigin href="/precursors/assets/LifeStage-069__A6x.js">
+  <link rel="modulepreload" crossorigin href="/precursors/assets/vendor-phaser-CaWnzXme.js">
+  <link rel="modulepreload" crossorigin href="/precursors/assets/Logger-BQAStHUz.js">
+  <link rel="modulepreload" crossorigin href="/precursors/assets/SpriteState-CGYNq8GJ.js">
+  <link rel="modulepreload" crossorigin href="/precursors/assets/WorldGenerator-QHm7IRxY.js">
+  <link rel="modulepreload" crossorigin href="/precursors/assets/ChemicalSet-C66bhg-H.js">
+  <link rel="modulepreload" crossorigin href="/precursors/assets/BiochemistrySystem-CEOH2V6R.js">
+  <link rel="modulepreload" crossorigin href="/precursors/assets/SimulationScheduler-DZrfbKS7.js">
+<link rel="manifest" href="/precursors/manifest.webmanifest"><script id="vite-plugin-pwa:register-sw" src="/precursors/registerSW.js"></script></head>
+<body>
+  <div id="fps-overlay">FPS: --</div>
+  <div id="drive-overlay">initializing scheduler...</div>
+  <div id="game-container"></div>
+</body>
+</html>

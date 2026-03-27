@@ -1,0 +1,74 @@
+{
+  "name": "Ancient Ark — Shee Generation Ship",
+  "description": "Multi-biome generation ship sprites for the Precursors game. The Ark is the central command infrastructure of the Shee generation ship, housing six decks: Observatory, Bridge, Terrarium, Laboratory, Engineering, and Cargo Hold.",
+  "generator": "PixelLab v2 map-objects API",
+  "generated_date": "2026-03-26",
+  "version": "v2",
+  "sprites": {
+    "shee_ark.png": {
+      "description": "Primary hull sprite — dormant state (game start default). Whale-like cylindrical bio-mechanical hull with transparent biome domes showing green terrarium, blue-violet energy veins tracing structural lines, bioluminescent fungal overgrowth at hull seams. Dormant: faint veins, heavy fungi, foggy domes.",
+      "size": "377x92",
+      "view": "side",
+      "state": "dormant",
+      "usage": "Loaded as 'shee_ark' texture in GameScene.ts, rendered by ShipSprite.ts"
+    },
+    "shee_ark_buried.png": {
+      "description": "Dormant/buried variant — same as shee_ark.png. Ancient ship partially overgrown with fungal growth in Fungal Grotto biome.",
+      "size": "377x92",
+      "view": "side",
+      "state": "dormant"
+    },
+    "shee_ark_launch.png": {
+      "description": "Launch-ready variant — ship fully powered up with bright blue-violet energy veins, orange-amber engine exhaust glow at stern, clearer biome domes, brighter hull. Use when ship awakens (Tier 25+).",
+      "size": "377x92",
+      "view": "side",
+      "state": "awakened"
+    },
+    "shee_ark_crosssection.png": {
+      "description": "Interior cross-section showing all 6 decks: Observatory (top), Bridge, Terrarium, Laboratory, Engineering, Cargo Hold (bottom). Reference/UI asset for discovery arc.",
+      "size": "192x384",
+      "view": "side cutaway",
+      "state": "reference"
+    },
+    "shee_ark_v2.png": {
+      "description": "v2 dormant hull — master copy. Same as shee_ark.png.",
+      "size": "377x92",
+      "view": "side",
+      "state": "dormant"
+    },
+    "shee_ark_v2_launch.png": {
+      "description": "v2 awakened hull — master copy. Same as shee_ark_launch.png.",
+      "size": "377x92",
+      "view": "side",
+      "state": "awakened"
+    },
+    "shee_ark_v2_buried.png": {
+      "description": "v2 dormant buried — master copy. Same as shee_ark_buried.png.",
+      "size": "377x92",
+      "view": "side",
+      "state": "dormant"
+    },
+    "shee_ark_v1_backup.png": {
+      "description": "v1 dormant hull backup.",
+      "size": "384x128",
+      "deprecated": true
+    },
+    "shee_ark_original.png": {
+      "description": "Original rocket-like design (v0). Fully deprecated.",
+      "size": "original",
+      "deprecated": true
+    }
+  },
+  "design_reference": "docs/lore/shee-ship-visual-reference.md",
+  "art_style": "Pixel art, selective outline, detailed shading, organic bio-mechanical aesthetic",
+  "color_palette": {
+    "hull": "dark steel-blue, slate gray",
+    "accent": "#6A5ACD (Shee blue-violet)",
+    "biome_domes": "green (terrarium), amber (laboratory)",
+    "engine": "orange-amber #C47D2E glow",
+    "fungi": "blue-purple bioluminescent",
+    "architecture": "#2E1A47 deep indigo",
+    "active_tech": "#DAC278 pale gold",
+    "dormant_tech": "#8A8A9A silver-grey"
+  }
+}

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Norn Performance Test</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { background: #0a0b10; overflow: hidden; }
+    #game-container { width: 100vw; height: 100vh; }
+    #fps-overlay {
+      position: fixed; top: 8px; left: 8px; z-index: 100;
+      color: #3dfce0; font: 14px monospace; background: rgba(10,11,16,0.8);
+      padding: 4px 8px; border-radius: 4px;
+    }
+  </style>
+  <script type="module" crossorigin src="/precursors/assets/norn-test-bYNyTCF-.js"></script>
+  <link rel="modulepreload" crossorigin href="/precursors/assets/LifeStage-069__A6x.js">
+  <link rel="modulepreload" crossorigin href="/precursors/assets/vendor-phaser-CaWnzXme.js">
+  <link rel="modulepreload" crossorigin href="/precursors/assets/Logger-BQAStHUz.js">
+  <link rel="modulepreload" crossorigin href="/precursors/assets/SpriteState-CGYNq8GJ.js">
+  <link rel="modulepreload" crossorigin href="/precursors/assets/WorldGenerator-QHm7IRxY.js">
+<link rel="manifest" href="/precursors/manifest.webmanifest"><script id="vite-plugin-pwa:register-sw" src="/precursors/registerSW.js"></script></head>
+<body>
+  <div id="fps-overlay">FPS: --</div>
+  <div id="game-container"></div>
+</body>
+</html>

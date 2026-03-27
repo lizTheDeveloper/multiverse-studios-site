@@ -1,0 +1,15 @@
+{
+  "species": "ettin",
+  "character_id": "dbb17480-5485-437d-9bfb-082c1e17a7ea",
+  "job_id": "3cbb4a29-2bbd-4e22-9ba4-594df4b3fc19",
+  "visual_tokens": {
+    "baseHue": 30,
+    "accentHue": 200,
+    "saturation": 0.55,
+    "lightness": 0.55,
+    "sizeClass": "large",
+    "bodyPlan": "bipedal",
+    "description": "large bipedal creature, tool-carrying appendages, mechanical attachment points, pixel sprite"
+  },
+  "created_at": "2026-03-21T21:13:09Z"
+}

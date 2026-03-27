@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <rect width="512" height="512" rx="64" fill="#0a0b10"/>
+  <!-- Outer rune ring -->
+  <circle cx="256" cy="256" r="200" fill="none" stroke="#1a7d6f" stroke-width="2" opacity="0.5"/>
+  <circle cx="256" cy="256" r="170" fill="none" stroke="#4d3e6e" stroke-width="1" stroke-dasharray="8 6" opacity="0.4"/>
+  <circle cx="256" cy="256" r="140" fill="none" stroke="#1a7d6f" stroke-width="1" opacity="0.3"/>
+  <!-- Core glow -->
+  <circle cx="256" cy="256" r="60" fill="#3dfce0" opacity="0.08"/>
+  <circle cx="256" cy="256" r="30" fill="#3dfce0" opacity="0.15"/>
+  <circle cx="256" cy="256" r="12" fill="#3dfce0" opacity="0.9"/>
+  <!-- Rune glyphs around the ring -->
+  <text x="256" y="80" text-anchor="middle" font-size="32" fill="#1a7d6f" font-family="serif">&#5792;</text>
+  <text x="432" y="264" text-anchor="middle" font-size="32" fill="#1a7d6f" font-family="serif">&#5809;</text>
+  <text x="256" y="448" text-anchor="middle" font-size="32" fill="#1a7d6f" font-family="serif">&#5799;</text>
+  <text x="80" y="264" text-anchor="middle" font-size="32" fill="#1a7d6f" font-family="serif">&#5827;</text>
+  <!-- Title text -->
+  <text x="256" y="240" text-anchor="middle" font-family="serif" font-size="48" font-weight="300" fill="#d8dce8" letter-spacing="8">CREATURES</text>
+  <text x="256" y="290" text-anchor="middle" font-family="serif" font-size="36" font-weight="300" fill="#3dfce0" letter-spacing="12" opacity="0.7">NEXT</text>
+</svg>
