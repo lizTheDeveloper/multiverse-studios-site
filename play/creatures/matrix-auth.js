@@ -782,12 +782,12 @@
       session.displayName = null;
       storageRemove('mx_user_id');
       storageRemove('mx_display_name');
-      // If auth service is unavailable (500/503), signal guest fallback
+      // If auth service is unavailable (500/503), signal error — no guest fallback
       if (err && (err.statusCode >= 500 || err.message === 'Failed to fetch')) {
-        console.warn('[matrix-auth] Auth service unavailable, allowing guest access');
+        console.warn('[matrix-auth] Auth service unavailable');
         updateNavUI();
-        window.dispatchEvent(new CustomEvent('matrixAuthUnavailable'));
-        window.dispatchEvent(new CustomEvent('matrixAuthReady', { detail: { loggedIn: false, guest: true } }));
+        window.dispatchEvent(new CustomEvent('matrixAuthError', { detail: { message: 'Sign-in service is temporarily unavailable. Please try again later.' } }));
+        window.dispatchEvent(new CustomEvent('matrixAuthReady', { detail: { loggedIn: false } }));
         return;
       }
     }
