@@ -201,6 +201,11 @@
       align-items: center;
       margin-top: auto;
     }
+    .game-card-note {
+      color: var(--dust);
+      font-size: 0.78rem;
+      line-height: 1.45;
+    }
     .btn-sm {
       font-family: var(--font-display);
       font-weight: 700;
@@ -294,6 +299,7 @@
     <li><a href="library.html">My Library</a></li>
     <li><a href="about.html">About</a></li>
     <li><a href="community.html">Community</a></li>
+    <li><a href="radio/">Radio</a></li>
     <li><a href="wiki/index.html">Wiki</a></li>
   </ul>
 </nav>
@@ -301,7 +307,7 @@
 <div class="library-hero">
   <div class="library-glyph">&#x1F4DA;</div>
   <h1>Your <span style="color: var(--biolume);">Game Library</span></h1>
-  <p>Sign in to see your playtester access and game collection.</p>
+  <p id="hero-subtitle">Your games and playtester access.</p>
 </div>
 
 <div class="library-section">
@@ -334,10 +340,6 @@
       <!-- populated by JS -->
     </div>
 
-    <div class="playtest-cta" id="playtest-cta" style="display:none;">
-      <p><strong>Not a playtester yet?</strong> Join the playtesting channel on Matrix to unlock Playtester access across all available games.</p>
-      <a href="playtest.html" class="btn-sm btn-sm-primary">Join Playtesting &rarr;</a>
-    </div>
 
     <div class="support-note">
       Questions about your library? <a href="community.html">Ask the community</a>
@@ -379,7 +381,7 @@
   </div>
   <div class="footer-bottom">
     <span>&copy; 2026 Multiverse Studios</span>
-    <span>Built by AI agents. Guided by humans.</span>
+    <span>Built by AI agents. Guided by <a href="https://lizthe.dev" target="_blank" rel="noopener" style="color: var(--biolume);">Liz Howard</a>.</span>
   </div>
 </footer>
 
@@ -411,6 +413,8 @@
       devStage: 'Early Access',
       desc: 'Evolve alien life from single cells to civilizations. Real genetics. Real biochemistry. Weird ecologies.',
       playUrl: 'creatures.html',
+      cmsUrl: 'https://play.multiversestudios.xyz/admin/',
+      cmsNote: 'Lore CMS is editor-only. Sign in on the play domain first; non-editor accounts will see Access Denied.',
       available: true,
     },
     {
@@ -427,7 +431,7 @@
       name: 'MVEE',
       icon: '\uD83C\uDFDB\uFE0F',
       devStage: 'Pre-Alpha',
-      desc: 'Dwarf Fortress-scale civilization sim. 200+ interconnected systems. Not yet open for public testing.',
+      desc: 'Dwarf Fortress meets Factorio meets 5D Chess With Multiverse Time Travel meets Civilization V. 200+ interconnected systems. Not yet open for public testing.',
       playUrl: null,
       available: false,
     },
@@ -441,7 +445,7 @@
   var libDisplayName = document.getElementById('lib-display-name');
   var libSubtitle    = document.getElementById('lib-subtitle');
   var gameCardsEl    = document.getElementById('game-cards');
-  var playtestCta    = document.getElementById('playtest-cta');
+  var heroSubtitle   = document.getElementById('hero-subtitle');
 
   // ── Matrix helpers ─────────────────────────────────────────
 
@@ -498,12 +502,16 @@
       pills += tierPillHtml(game.devStage, 'tier-pill-dev-stage');
     }
 
-    var playBtn = '';
+    var actions = [];
     if (game.available && game.playUrl) {
-      playBtn = '<a href="' + game.playUrl + '" class="btn-sm btn-sm-primary">Play &rarr;</a>';
-    } else if (!game.available) {
-      playBtn = '<span class="btn-sm btn-sm-ghost" disabled>Coming Soon</span>';
+      actions.push('<a href="' + game.playUrl + '" class="btn-sm btn-sm-primary">Play &rarr;</a>');
     }
+    if (game.cmsUrl) {
+      actions.push('<a href="' + game.cmsUrl + '" class="btn-sm btn-sm-ghost" target="_blank" rel="noopener">CMS/Admin &nearr;</a>');
+    } else if (!game.available) {
+      actions.push('<span class="btn-sm btn-sm-ghost" disabled>Coming Soon</span>');
+    }
+    var noteHtml = game.cmsNote ? '<p class="game-card-note">' + game.cmsNote + '</p>' : '';
 
     return [
       '<div class="game-card-lib' + (game.available ? '' : ' game-unavailable') + '">',
@@ -515,7 +523,8 @@
       '    </div>',
       '  </div>',
       '  <p class="game-card-desc">' + game.desc + '</p>',
-      '  <div class="game-card-actions">' + playBtn + '</div>',
+      '  <div class="game-card-actions">' + actions.join('') + '</div>',
+      noteHtml,
       '</div>',
     ].join('\n');
   }
@@ -526,10 +535,8 @@
 
     if (tiers.isPlaytester) {
       libSubtitle.textContent = 'Playtester — you have early access to all open games.';
-      playtestCta.style.display = 'none';
     } else {
-      libSubtitle.textContent = 'You have free access to all available games. Join playtesting for early-access builds and token credits.';
-      playtestCta.style.display = '';
+      libSubtitle.textContent = 'You have free access to all available games.';
     }
 
     gameCardsEl.innerHTML = GAMES.map(function (g) {
@@ -547,9 +554,11 @@
   }
   function showLoggedOut() {
     hide(stateLoading); show(stateLoggedOut); hide(stateLoggedIn);
+    heroSubtitle.textContent = 'Sign in to see your playtester access and game collection.';
   }
   function showLoggedIn() {
     hide(stateLoading); hide(stateLoggedOut); show(stateLoggedIn);
+    heroSubtitle.textContent = 'Your games and playtester access.';
   }
 
   // ── Main flow ──────────────────────────────────────────────
@@ -611,6 +620,7 @@
 }());
 </script>
 <script src="matrix-auth.js"></script>
+<script src="multiverse-radio.js"></script>
 <script src="matrix-chat.js"></script>
 <script defer src="https://analytics.themultiverse.school/script.js" data-website-id="38d680a7-28d1-42fd-9fd5-a66702675b88"></script>
 </body>
