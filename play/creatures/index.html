@@ -874,176 +874,36 @@
       letter-spacing: 0.06em;
     }
 
-    /* ── SHIP REVEAL OVERLAY ── dramatic cinematic for AI awakening */
-    .ship-reveal {
-      position: fixed;
-      inset: 0;
-      z-index: 9500;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      pointer-events: none;
-      opacity: 0;
-      transition: opacity 0.6s ease;
-    }
-    .ship-reveal--visible {
-      opacity: 1;
-      pointer-events: auto;
-    }
-    .ship-reveal__flash {
-      position: absolute;
-      inset: 0;
-      background: white;
-      opacity: 0;
-      animation: none;
-    }
-    .ship-reveal--visible .ship-reveal__flash {
-      animation: ship-flash 1.2s ease-out forwards;
-    }
-    @keyframes ship-flash {
-      0%   { opacity: 0.85; }
-      30%  { opacity: 0.4; }
-      100% { opacity: 0; }
-    }
-    .ship-reveal__inner {
-      position: relative;
-      text-align: center;
-      padding: 48px 64px;
-      opacity: 0;
-      transform: translateY(12px);
-      transition: opacity 1s ease 0.8s, transform 1s cubic-bezier(0.34,1.56,0.64,1) 0.8s;
-    }
-    .ship-reveal--visible .ship-reveal__inner {
-      opacity: 1;
-      transform: translateY(0);
-    }
-    .ship-reveal__label {
-      font-family: var(--font-display);
-      font-size: 10px;
-      letter-spacing: 0.4em;
-      color: rgba(61,252,224,0.7);
-      text-transform: uppercase;
-      margin-bottom: 20px;
-    }
-    .ship-reveal__text {
-      font-family: var(--font-display);
-      font-size: 26px;
-      font-weight: 300;
-      color: #e8ecf4;
-      letter-spacing: 0.02em;
-      line-height: 1.5;
-      margin-bottom: 18px;
-      text-shadow: 0 0 30px rgba(61,252,224,0.3);
-    }
-    .ship-reveal__sub {
-      font-family: var(--font-display);
-      font-size: 12px;
-      font-style: italic;
-      color: rgba(216,220,232,0.5);
-      letter-spacing: 0.06em;
-    }
-
-    /* ── SHIP NAMING DIALOG ── post-reveal naming prompt */
-    .ship-naming {
-      position: fixed;
-      inset: 0;
-      z-index: 9600;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: rgba(0,0,0,0.6);
-      opacity: 0;
-      transition: opacity 0.5s ease;
-      pointer-events: none;
-    }
-    .ship-naming--visible {
-      opacity: 1;
-      pointer-events: auto;
-    }
-    .ship-naming__inner {
-      background: linear-gradient(160deg, rgba(14,15,24,0.97) 0%, rgba(20,21,36,0.97) 100%);
-      border: 1px solid rgba(61,252,224,0.5);
-      border-radius: 6px;
-      padding: 36px 48px;
-      text-align: center;
-      max-width: 380px;
-      transform: translateY(10px);
-      transition: transform 0.5s cubic-bezier(0.34,1.56,0.64,1);
-    }
-    .ship-naming--visible .ship-naming__inner {
-      transform: translateY(0);
-    }
-    .ship-naming__label {
-      font-family: var(--font-display);
-      font-size: 10px;
-      letter-spacing: 0.3em;
-      color: rgba(61,252,224,0.7);
-      text-transform: uppercase;
-      margin-bottom: 12px;
-    }
-    .ship-naming__sub {
-      font-family: var(--font-display);
-      font-size: 13px;
-      color: rgba(216,220,232,0.7);
-      letter-spacing: 0.04em;
-      margin-bottom: 24px;
-    }
-    .ship-naming__input {
-      display: block;
-      width: 100%;
-      box-sizing: border-box;
-      padding: 10px 14px;
-      font-family: var(--font-display);
-      font-size: 18px;
-      letter-spacing: 0.04em;
-      color: #e8ecf4;
-      background: rgba(0,0,0,0.4);
-      border: 1px solid rgba(61,252,224,0.3);
-      border-radius: 4px;
-      outline: none;
-      margin-bottom: 20px;
-      text-align: center;
-    }
-    .ship-naming__input:focus {
-      border-color: rgba(61,252,224,0.6);
-      box-shadow: 0 0 12px rgba(61,252,224,0.15);
-    }
-    .ship-naming__input::placeholder {
-      color: rgba(216,220,232,0.3);
-    }
-    .ship-naming__confirm {
-      display: block;
-      width: 100%;
-      padding: 10px;
-      font-family: var(--font-display);
-      font-size: 12px;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: #0e0f18;
-      background: rgba(61,252,224,0.85);
-      border: none;
-      border-radius: 4px;
-      cursor: pointer;
-      margin-bottom: 12px;
-      transition: background 0.2s ease;
-    }
-    .ship-naming__confirm:hover {
-      background: rgba(61,252,224,1);
-    }
-    .ship-naming__skip {
-      display: inline-block;
-      padding: 4px 8px;
+    /* ── SHIP NAMING INLINE ── inline naming confirmation in chat area */
+    .ship-naming-inline {
       font-family: var(--font-display);
       font-size: 11px;
-      color: rgba(216,220,232,0.35);
-      background: none;
-      border: none;
-      cursor: pointer;
-      text-decoration: none;
+      color: rgba(61,252,224,0.7);
       letter-spacing: 0.04em;
+      padding: 4px 8px;
+      margin-top: 4px;
     }
-    .ship-naming__skip:hover {
-      color: rgba(216,220,232,0.6);
+    .ship-naming-inline__prompt {
+      margin-bottom: 4px;
+    }
+    .ship-naming-inline__actions {
+      display: flex;
+      gap: 8px;
+    }
+    .ship-naming-inline__actions button {
+      font-family: var(--font-display);
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      border: 1px solid rgba(61,252,224,0.4);
+      background: rgba(61,252,224,0.1);
+      color: rgba(61,252,224,0.8);
+      border-radius: 3px;
+      padding: 2px 8px;
+      cursor: pointer;
+    }
+    .ship-naming-inline__actions button:hover {
+      background: rgba(61,252,224,0.2);
     }
 
     /* ── NOISE TEXTURE OVERLAY ── subtle grain for atmosphere */
@@ -1449,7 +1309,7 @@
     }
 
   </style>
-  <script type="module" crossorigin src="/precursors/assets/main-DcL6WTmv.js"></script>
+  <script type="module" crossorigin src="/precursors/assets/main-yfASWjGM.js"></script>
   <link rel="modulepreload" crossorigin href="/precursors/assets/LifeStage-069__A6x.js">
   <link rel="modulepreload" crossorigin href="/precursors/assets/vendor-phaser-CaWnzXme.js">
   <link rel="modulepreload" crossorigin href="/precursors/assets/Logger-pBlzrZrY.js">
@@ -1457,7 +1317,7 @@
   <link rel="modulepreload" crossorigin href="/precursors/assets/InventionRegistry-DTQrQy6F.js">
   <link rel="modulepreload" crossorigin href="/precursors/assets/PerfTelemetry-CcaQFQMh.js">
   <link rel="modulepreload" crossorigin href="/precursors/assets/Ship-Bm7-OnyK.js">
-  <link rel="modulepreload" crossorigin href="/precursors/assets/DevMode-ComfTj2A.js">
+  <link rel="modulepreload" crossorigin href="/precursors/assets/DevMode-DIqiYQ-x.js">
 <link rel="manifest" href="/precursors/manifest.webmanifest"><script id="vite-plugin-pwa:register-sw" src="/precursors/registerSW.js"></script></head>
 <body>
   <!-- Loading Screen -->
