@@ -84,3 +84,20 @@
     a.addEventListener('click', () => links.classList.remove('open'));
   });
 })();
+
+// --- Akashic Records Nav Swap ---
+// Replace "Wiki" link with "Akashic Records" for signed-in users
+(function initAkashicNav() {
+  document.addEventListener('matrixAuthReady', function(e) {
+    if (!e.detail || !e.detail.loggedIn) return;
+    var navLinks = document.querySelectorAll('.nav-links a');
+    navLinks.forEach(function(a) {
+      if (a.textContent.trim() === 'Wiki' && a.getAttribute('href') &&
+          a.getAttribute('href').indexOf('wiki') !== -1) {
+        var basePath = a.getAttribute('href').replace(/wiki\/index\.html.*$/, '');
+        a.setAttribute('href', basePath + 'akashic/index.html');
+        a.textContent = 'Akashic Records';
+      }
+    });
+  });
+})();
