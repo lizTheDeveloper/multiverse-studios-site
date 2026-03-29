@@ -128,8 +128,10 @@ test.describe('NEL interactive features', () => {
     // Navigate to first chapter
     await page.goto('/play/neverland/#nightgown');
     await expect(storyEl).toBeVisible({ timeout: 15_000 });
+    await expect(storyEl).not.toContainText('Charting a new course', { timeout: 15_000 });
     await expect(storyEl).not.toContainText('could not be loaded', { timeout: 10_000 });
-    const text = await storyEl.textContent();
-    expect(text!.length).toBeGreaterThan(100);
+    await expect
+      .poll(async () => (await storyEl.textContent())?.trim().length ?? 0, { timeout: 15_000 })
+      .toBeGreaterThan(100);
   });
 });
