@@ -1309,16 +1309,16 @@
     }
 
   </style>
-  <script type="module" crossorigin src="/precursors/assets/main-Pj-xxQKp.js"></script>
+  <script type="module" crossorigin src="/precursors/assets/main-DAFyFnPD.js"></script>
   <link rel="modulepreload" crossorigin href="/precursors/assets/LifeStage-069__A6x.js">
   <link rel="modulepreload" crossorigin href="/precursors/assets/vendor-phaser-CaWnzXme.js">
-  <link rel="modulepreload" crossorigin href="/precursors/assets/Logger-a10HBk86.js">
-  <link rel="modulepreload" crossorigin href="/precursors/assets/ChemicalSet-DAPVLLPg.js">
-  <link rel="modulepreload" crossorigin href="/precursors/assets/InventionRegistry-DourZySJ.js">
-  <link rel="modulepreload" crossorigin href="/precursors/assets/PerfTelemetry-Bi1s2gl9.js">
-  <link rel="modulepreload" crossorigin href="/precursors/assets/PerfMode-B9DmYKZZ.js">
-  <link rel="modulepreload" crossorigin href="/precursors/assets/Ship-CQjhEDLR.js">
-  <link rel="modulepreload" crossorigin href="/precursors/assets/DevMode-ekaQ1-cX.js">
+  <link rel="modulepreload" crossorigin href="/precursors/assets/Logger-DzbExgN0.js">
+  <link rel="modulepreload" crossorigin href="/precursors/assets/ChemicalSet-B-xqk8s_.js">
+  <link rel="modulepreload" crossorigin href="/precursors/assets/InventionRegistry-C4TzxbIN.js">
+  <link rel="modulepreload" crossorigin href="/precursors/assets/PerfTelemetry-Cy2E30Nk.js">
+  <link rel="modulepreload" crossorigin href="/precursors/assets/PerfMode-CqGf5Dwh.js">
+  <link rel="modulepreload" crossorigin href="/precursors/assets/Ship-C5lBinwc.js">
+  <link rel="modulepreload" crossorigin href="/precursors/assets/DevMode-BtdjAgMX.js">
 <link rel="manifest" href="/precursors/manifest.webmanifest"><script id="vite-plugin-pwa:register-sw" src="/precursors/registerSW.js"></script></head>
 <body>
   <!-- Loading Screen -->
@@ -1371,15 +1371,15 @@
     <div class="bottom-zone-center">
       <div class="chat-container" id="chat-container">
         <div class="chat-mode-bar" id="chat-mode-bar">
-          <button class="chat-mode-btn" data-mode="area" title="Room Broadcast — broadcast via deck speaker to nearby creatures">
+          <button class="chat-mode-btn active" data-mode="area" title="Room Broadcast — broadcast via deck speaker to nearby creatures">
             <span class="chat-mode-icon">◎</span>
             <span class="chat-mode-label">room</span>
           </button>
-          <button class="chat-mode-btn active" data-mode="dm" title="Direct — speak to one creature">
+          <button class="chat-mode-btn" data-mode="dm" title="Direct — speak to one creature" style="display:none">
             <span class="chat-mode-icon">◇</span>
             <span class="chat-mode-label">direct</span>
           </button>
-          <button class="chat-mode-btn" data-mode="inspiration" title="Inspiration — whisper a thought into a creature's mind">
+          <button class="chat-mode-btn" data-mode="inspiration" title="Inspiration — whisper a thought into a creature's mind" style="display:none">
             <span class="chat-mode-icon">◆</span>
             <span class="chat-mode-label">inspire</span>
           </button>
@@ -1398,7 +1398,7 @@
         </div>
         <div class="chat-input-wrap">
           <input type="text" id="chat-input" placeholder="broadcast on deck speaker..." autocomplete="off" spellcheck="false" />
-          <span class="chat-mode-indicator" id="chat-mode-indicator">◇ direct</span>
+          <span class="chat-mode-indicator" id="chat-mode-indicator">◎ room</span>
           <span class="chat-hint">enter ↵</span>
         </div>
       </div>

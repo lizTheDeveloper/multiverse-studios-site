@@ -113,6 +113,17 @@
   ].join('\n');
   document.head.appendChild(style);
 
+  // ── Optimistic session check ────────────────────────────────
+  // If localStorage has a cached userId, the user was previously logged in.
+  // Start the gate invisible so there's no flash on page refresh for
+  // authenticated users. The session check runs async; if it comes back
+  // loggedIn: false the gate fades in. If it confirms loggedIn: true the
+  // gate is removed without ever being seen.
+  var cachedUserId = (function () {
+    try { return localStorage.getItem('mx_user_id'); } catch (_) { return null; }
+  }());
+  var gateHiddenOptimistically = !!cachedUserId;
+
   // ── Gate Element ────────────────────────────────────────────
 
   var gate = document.createElement('div');
@@ -120,6 +131,10 @@
   gate.setAttribute('role', 'dialog');
   gate.setAttribute('aria-modal', 'true');
   gate.setAttribute('aria-label', 'Sign in to play');
+  if (gateHiddenOptimistically) {
+    gate.style.opacity = '0';
+    gate.style.pointerEvents = 'none';
+  }
   gate.innerHTML =
     '<div id="play-gate-inner">' +
       '<div id="play-gate-logo">&#9670;</div>' +
@@ -183,6 +198,13 @@
     }, 500);
   }
 
+  // ── Reveal Gate (session expired for previously-logged-in user) ──
+
+  function revealGate() {
+    gate.style.opacity = '';
+    gate.style.pointerEvents = '';
+  }
+
   // ── Auth Event Listeners ────────────────────────────────────
 
   var readyReceived = false;
@@ -192,8 +214,11 @@
     clearTimeout(fallbackTimer);
     if (e.detail && e.detail.loggedIn) {
       removeGate();
+    } else if (gateHiddenOptimistically) {
+      // Session expired or invalidated — cached userId was stale
+      revealGate();
     }
-    // else: gate stays — user must sign in
+    // else: gate already visible — user must sign in
   });
 
   window.addEventListener('matrixAuthLogin', function () {
@@ -203,6 +228,9 @@
   // ── Auth Error Listener ────────────────────────────────────
   // If auth service is down (503), show error — do not allow guest access.
   window.addEventListener('matrixAuthError', function (e) {
+    if (gateHiddenOptimistically) {
+      revealGate();
+    }
     var errorEl = document.getElementById('play-gate-error');
     if (errorEl) {
       errorEl.textContent = (e.detail && e.detail.message) || 'Sign-in service is temporarily unavailable. Please try again later.';
@@ -218,6 +246,9 @@
     if (!readyReceived) {
       if (window.matrixAuth && window.matrixAuth.isLoggedIn()) {
         removeGate();
+      } else if (gateHiddenOptimistically) {
+        // matrixAuthReady never fired — reveal gate so user isn't locked out silently
+        revealGate();
       }
     }
   }, 12000);
