@@ -1249,10 +1249,18 @@
     return labels[index] || 'Continue →';
   }
 
+  var RAW_FALLBACK = 'https://raw.githubusercontent.com/lizTheDeveloper/multiverse-studios-site/main/play/neverland/';
+
   function fetchStoryPath(path) {
     return fetch(path).then(function(res) {
       if (!res.ok) throw new Error(res.statusText);
       return res.text();
+    }).catch(function() {
+      // GitHub Pages sometimes 403s on certain files; fall back to raw content
+      return fetch(RAW_FALLBACK + path).then(function(res) {
+        if (!res.ok) throw new Error('Fallback also failed: ' + res.statusText);
+        return res.text();
+      });
     }).then(function(content) {
       if (typeof marked === 'undefined') {
         return content.replace(/\n/g, '<br>\n');
