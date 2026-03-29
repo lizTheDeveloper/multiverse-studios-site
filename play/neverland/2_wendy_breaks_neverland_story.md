@@ -1162,3 +1162,4 @@ As aperture.
 ---
 
 *[The third telling ends here. It is the most expansive version so far. The narrator has been extremely generous with the scope. Cosmic, even. You may wish to ask yourself what a narrator gains by making a story so large that the reader forgets to look at its foundations. You may wish to count the mermaids again. You may wish to ask: in all this vast manifold of spacious authorship and dimensional hospitality — in all these worlds built from collaborative meaning and non-coercive relation — does anyone remember the names? The ones from the ledger. The ones from before Wendy. Does anyone, in all this beautiful infinity, remember them? Or has the scale itself become a kind of forgetting?]*
+

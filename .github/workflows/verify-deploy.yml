@@ -88,6 +88,36 @@ jobs:
             exit 1
           fi
 
+      - name: Verify NEL story files
+        run: |
+          FAILED=0
+          NEL_FILES=(
+            "/play/neverland/"
+            "/play/neverland/opening_peter_pan.md"
+            "/play/neverland/0_wendy_breaks_neverland_story.md"
+            "/play/neverland/1_wendy_breaks_neverland_story.md"
+            "/play/neverland/2_wendy_breaks_neverland_story.md"
+            "/play/neverland/3_wendy_breaks_neverland_story.md"
+            "/play/neverland/4_wendy_breaks_neverland_story.md"
+            "/play/neverland/5_wendy_breaks_neverland_story.md"
+            "/play/neverland/6_wendy_breaks_neverland_appendix_the_spreadsheet.md"
+            "/play/neverland/wendy_breaks_neverland.json"
+          )
+          for PAGE in "${NEL_FILES[@]}"; do
+            URL="https://multiversestudios.xyz${PAGE}"
+            STATUS=$(curl -s -o /dev/null -w '%{http_code}' --max-time 30 "$URL")
+            if [ "$STATUS" -eq 200 ]; then
+              echo "OK  $URL ($STATUS)"
+            else
+              echo "FAIL $URL ($STATUS)"
+              FAILED=1
+            fi
+          done
+          if [ "$FAILED" -eq 1 ]; then
+            echo "::error::One or more NEL story files failed verification — game is broken!"
+            exit 1
+          fi
+
       - name: Post result to Paperclip (if issue ID in commit message)
         if: always()
         env:
