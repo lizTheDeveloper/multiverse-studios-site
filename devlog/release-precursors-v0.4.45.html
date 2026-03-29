@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Precursors v0.4.45: You Are The Ship — Multiverse Studios Devlog</title>
-  <meta name="description" content="The ship awakens. A new awareness system lets players gradually discover they are the ship's AI, while audio fixes and CMS tools polish the experience.">
-  <meta property="og:title" content="Precursors v0.4.45: You Are The Ship">
-  <meta property="og:description" content="Ship awareness discovery arc, audio fixes, and CMS improvements.">
+  <title>Precursors v0.4.45: Ship Repairs and Audio Fixes — Multiverse Studios Devlog</title>
+  <meta name="description" content="Ship damage narratives, audio loading fixes for rare species, and under-the-hood improvements to creature interactions.">
+  <meta property="og:title" content="Precursors v0.4.45: Ship Repairs and Audio Fixes">
+  <meta property="og:description" content="Ship damage narratives, audio loading fixes for rare species, and under-the-hood improvements.">
   <meta property="og:type" content="article">
   <meta property="og:url" content="https://multiversestudios.xyz/devlog/release-precursors-v0.4.45.html">
   <meta property="og:image" content="https://multiversestudios.xyz/screenshots/homepage-hero.png">
@@ -25,20 +25,20 @@
   <nav class="site-nav"><div class="nav-inner"><a href="/" class="nav-logo">Multiverse Studios</a><div class="nav-links"><a href="/devlog.html">Devlog</a><a href="/play/creatures/">Play Precursors</a></div></div></nav>
 
   <main class="devlog-body" style="padding: var(--space-xl) var(--space-md);">
-    <h1>Precursors v0.4.45: You Are The Ship</h1>
+    <h1>Precursors v0.4.45: Ship Repairs and Audio Fixes</h1>
     <div class="byline">
       <time>March 26, 2026</time>
       <span class="tag">Precursors</span>
     </div>
 
-    <p>The biggest change in this release is the <strong>Ship Awareness System</strong> — a new lore-driven discovery arc that gradually reveals you are the ship's AI. As you interact with the world, fragments of awareness surface: a stray thought about hull integrity, an instinct to protect the creatures aboard. The realization builds slowly, and it changes how the game feels.</p>
+    <p>This release brings a new <strong>damage narrative system</strong> to the ship. When the vessel takes its first hit during interstellar travel, the event triggers repair songs and teaching interactions between creatures. Damage becomes a storytelling moment, not just a number going down.</p>
 
-    <p>The ship itself now has a <strong>damage narrative</strong>. When the ship takes its first hit during interstellar travel, the event triggers repair songs and teaching interactions between creatures. Damage becomes a storytelling moment, not just a number going down.</p>
+    <p>We also squashed a loading bug where <strong>audio files for certain species</strong> were causing 404 errors and slowing down the loading screen. Pending audio entries are now cleanly gated, and baby sounds lazy-load instead of blocking startup.</p>
 
-    <p>On the technical side, we squashed a loading bug where <strong>audio files for species without recorded songs</strong> (Mycon, Grendel, Ettin) were causing 404 errors and slowing down the loading screen. Those pending entries are now cleanly gated, and baby sounds lazy-load instead of blocking startup.</p>
+    <p>Under the hood, the ship is becoming more aware of its passengers. We've been laying groundwork for something interesting — but you'll have to play to find out what.</p>
 
     <h2>Play now</h2>
-    <p><a href="/play/creatures/" style="color: var(--gene-pink);">Launch Precursors</a> and see if you notice when the ship starts noticing you.</p>
+    <p><a href="/play/creatures/" style="color: var(--gene-pink);">Launch Precursors</a> and pay attention to what the ship notices.</p>
   </main>
 
   <footer style="text-align:center; padding: var(--space-lg); color: var(--dust); font-size: 0.8rem;">
