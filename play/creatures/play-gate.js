@@ -19,6 +19,30 @@
     return; // Local dev — no auth gate
   }
 
+  // ── Guest mode bypass (?guest=true) ───────────────────────
+  // Allows automated Playwright tests and board verification to access the
+  // game without Matrix credentials. Guest sessions have full game access
+  // but no persistent save/load (no userId for cloud saves).
+  // This is intentional and does not expose any privileged server endpoints.
+  var _params = new URLSearchParams(window.location.search);
+  if (_params.get('guest') === 'true') {
+    // Fire matrixAuthReady with loggedIn:true so main.ts and music gate
+    // proceed normally. We wait for DOMContentLoaded to match the timing
+    // of matrix-auth.js's own init(), ensuring main.ts module listeners
+    // are registered before this event fires.
+    function _fireGuestReady() {
+      window.dispatchEvent(new CustomEvent('matrixAuthReady', { detail: { loggedIn: true, guest: true } }));
+    }
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', _fireGuestReady);
+    } else {
+      // Already past DOMContentLoaded — fire on next tick so any
+      // synchronously-registered module listeners are in place.
+      setTimeout(_fireGuestReady, 0);
+    }
+    return; // Do not create the gate element at all
+  }
+
   // ── Styles ──────────────────────────────────────────────────
 
   var style = document.createElement('style');
