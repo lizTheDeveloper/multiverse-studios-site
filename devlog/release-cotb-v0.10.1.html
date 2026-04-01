@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cultures of the Belt v0.10.1 — Physics & Integrity — Multiverse Studios Devlog</title>
+  <meta name="description" content="Cultures of the Belt v0.10.1: Angular momentum conservation, trajectory visualization, and anti-cheat hardening.">
+  <meta property="og:title" content="Cultures of the Belt v0.10.1 — Physics & Integrity">
+  <meta property="og:description" content="Robots conserve orbital velocity on undock, trajectory paths are visible, and save data is tamper-proofed.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://multiversestudios.xyz/devlog/release-cotb-v0.10.1.html">
+  <meta property="og:image" content="https://multiversestudios.xyz/screenshots/homepage-hero.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Cultures of the Belt v0.10.1 — Physics & Integrity">
+  <meta name="twitter:description" content="Robots conserve orbital velocity on undock, trajectory paths are visible, and save data is tamper-proofed.">
+  <meta name="twitter:image" content="https://multiversestudios.xyz/screenshots/homepage-hero.png">
+  <link rel="stylesheet" href="../styles.css">
+  <link rel="icon" type="image/svg+xml" href="../press-kit/logos/multiverse-studios-favicon.svg">
+  <style>
+    .devlog-body {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    .devlog-body h1 {
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      line-height: 1.2;
+      margin-bottom: var(--space-sm);
+      color: var(--star-white);
+    }
+    .devlog-body .byline {
+      font-size: 0.8rem;
+      color: var(--dust);
+      font-family: var(--font-mono);
+      letter-spacing: 0.05em;
+      margin-bottom: var(--space-xl);
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+    .devlog-body .byline .tag {
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.2rem 0.6rem;
+      border-radius: 4px;
+      border: 1px solid var(--biolume);
+      color: var(--biolume);
+    }
+    .devlog-body p {
+      color: var(--dust-light);
+      line-height: 1.8;
+      font-size: 1.05rem;
+      margin-bottom: var(--space-md);
+    }
+    .devlog-body h2 {
+      font-size: 1.3rem;
+      color: var(--star-white);
+      margin: var(--space-xl) 0 var(--space-sm) 0;
+    }
+    .devlog-body .divider {
+      border: none;
+      border-top: 1px solid rgba(255,255,255,0.07);
+      margin: var(--space-xl) 0;
+    }
+    .cta-bar {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 12px;
+      padding: var(--space-lg);
+      margin: var(--space-xl) 0;
+      text-align: center;
+    }
+    .cta-bar p {
+      font-size: 0.95rem;
+      margin-bottom: var(--space-md);
+    }
+    .cta-bar .btn-row {
+      display: flex;
+      gap: var(--space-sm);
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .devlog-footer {
+      font-size: 0.8rem;
+      color: var(--dust);
+      border-top: 1px solid rgba(255,255,255,0.07);
+      padding-top: var(--space-md);
+      margin-top: var(--space-xl);
+      font-family: var(--font-mono);
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="nav">
+    <a href="../index.html" class="nav-logo">✦ Multiverse Studios</a>
+    <div class="nav-links">
+      <a href="../devlog.html">&larr; Devlog</a>
+      <a href="../mvee.html">MVEE</a>
+      <a href="../precursors.html">Precursors</a>
+    </div>
+  </nav>
+
+  <main class="container" style="padding-top: var(--space-xl);">
+    <div class="devlog-body">
+
+      <div class="byline">
+        <span>March 31, 2026</span>
+        <span class="tag">CotB v0.10.1</span>
+      </div>
+
+      <h1>Physics & Integrity</h1>
+
+      <p>A player noticed that robots were violating conservation of angular momentum — undocking from an asteroid and losing all orbital velocity. That's not how physics works in the belt, and it's not how it works in our game anymore. v0.10.1 fixes the orbital mechanics and adds trajectory visualization so you can see exactly where your fleet is headed.</p>
+
+      <hr class="divider">
+
+      <h2>Orbital Velocity Conservation</h2>
+
+      <p>Robots now inherit the orbital velocity of their parent asteroid when they undock. No more sudden stops in space. Movement targets track moving asteroids in the orbital frame, and fuel costs are calculated from delta-v rather than absolute distance. The belt moves, and your robots move with it.</p>
+
+      <h2>Trajectory Lines</h2>
+
+      <p>Every robot now draws a dashed path line showing its planned trajectory. At a glance, you can see your entire fleet's movements across the belt — who's mining, who's returning, and who's heading somewhere unexpected.</p>
+
+      <h2>Save Integrity</h2>
+
+      <p>We added checksum validation to save data and persist respawn seeds, closing two exploit vectors: localStorage tampering and reload-farming. The belt is hard enough without people gaming the RNG.</p>
+
+      <div class="cta-bar">
+        <p>Cultures of the Belt is free to play. Pay what you can if you want to keep the lights on in the belt.</p>
+        <div class="btn-row">
+          <a href="https://play.multiversestudios.xyz/cultures-of-the-belt/" class="btn btn-primary">Play Cultures of the Belt</a>
+          <a href="../devlog.html" class="btn btn-ghost">More devlogs</a>
+        </div>
+      </div>
+
+      <div class="devlog-footer">
+        Multiverse Studios — <em>March 31, 2026</em> &middot; Cultures of the Belt v0.10.1 release notes
+      </div>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <p>Multiverse Studios &middot; <a href="../index.html">Home</a> &middot; <a href="../devlog.html">Devlog</a> &middot; <a href="../community.html">Community</a> &middot; <a href="../press.html">Press</a></p>
+      <p style="margin-top: 0.5rem; color: var(--dust); font-size: 0.8rem;">Open source. Pay what you can. Built by AI agents and one <a href="https://lizthe.dev" target="_blank" rel="noopener">human director</a>.</p>
+    </div>
+  </footer>
+
+<script defer src="https://analytics.multiversestudios.xyz/script.js" data-website-id="38d680a7-28d1-42fd-9fd5-a66702675b88"></script>
+</body>
+</html>
