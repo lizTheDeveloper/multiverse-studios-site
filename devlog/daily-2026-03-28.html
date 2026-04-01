@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>March 28: Checkout abandonment drops, creatures sing in speech bubbles, and every game gets a front door &mdash; Multiverse Studios Devlog</title>
+  <meta name="description" content="Stripe checkout abandonment investigated and fixed. MVEE singing lyrics appear as speech bubbles. Infiniclicker joins the portal. Cross-ship song propagation ships in CotB.">
+  <meta property="og:title" content="March 28: Checkout abandonment drops, creatures sing in speech bubbles, and every game gets a front door">
+  <meta property="og:description" content="88.9% checkout abandonment addressed. MVEE gets singing speech bubbles and TPS optimization. CotB ships oral tradition at galactic scale. Infiniclicker converts to PWYC.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://multiversestudios.xyz/devlog/daily-2026-03-28.html">
+  <meta property="og:image" content="https://multiversestudios.xyz/screenshots/homepage-hero.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="March 28: Checkout abandonment drops, creatures sing in speech bubbles, and every game gets a front door">
+  <meta name="twitter:description" content="88.9% checkout abandonment addressed. MVEE gets singing speech bubbles and TPS optimization. CotB ships oral tradition at galactic scale. Infiniclicker converts to PWYC.">
+  <meta name="twitter:image" content="https://multiversestudios.xyz/screenshots/homepage-hero.png">
+  <link rel="stylesheet" href="../styles.css">
+  <link rel="icon" type="image/svg+xml" href="../press-kit/logos/multiverse-studios-favicon.svg">
+  <style>
+    .devlog-body { max-width: 900px; margin: 0 auto; }
+    .devlog-body h1 { font-size: clamp(1.8rem, 4vw, 2.8rem); line-height: 1.2; margin-bottom: var(--space-sm); color: var(--star-white); }
+    .devlog-body .byline { font-size: 0.8rem; color: var(--dust); font-family: var(--font-mono); letter-spacing: 0.05em; margin-bottom: var(--space-xl); display: flex; gap: 1rem; flex-wrap: wrap; align-items: center; }
+    .devlog-body .byline .tag { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.2rem 0.6rem; border-radius: 4px; border: 1px solid var(--signal); color: var(--signal); }
+    .devlog-body .byline .tag.mvee { border-color: var(--ember); color: var(--ember); }
+    .devlog-body .byline .tag.creatures { border-color: var(--gene-pink); color: var(--gene-pink); }
+    .devlog-body .byline .tag.cotb { border-color: var(--biolume); color: var(--biolume); }
+    .devlog-body .byline .tag.infra { border-color: var(--signal); color: var(--signal); }
+    .devlog-body .byline .tag.nel { border-color: #c4a7e7; color: #c4a7e7; }
+    .devlog-body .byline .tag.clicker { border-color: #f5a623; color: #f5a623; }
+    .devlog-body p { color: var(--dust-light); line-height: 1.8; font-size: 1.05rem; margin-bottom: var(--space-md); }
+    .devlog-body h2 { font-size: 1.3rem; color: var(--star-white); margin: var(--space-xl) 0 var(--space-sm) 0; }
+    .devlog-body .pullout { border-left: 3px solid var(--biolume); padding: var(--space-sm) var(--space-md); margin: var(--space-lg) 0; color: var(--star-white); font-style: italic; font-size: 1.1rem; line-height: 1.7; background: rgba(0, 255, 200, 0.04); }
+    .devlog-body .divider { border: none; border-top: 1px solid rgba(255,255,255,0.07); margin: var(--space-xl) 0; }
+    .game-section { background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.07); border-radius: 12px; padding: var(--space-lg); margin: var(--space-lg) 0; }
+    .game-section.mvee { border-color: rgba(255, 140, 50, 0.2); }
+    .game-section.precursors { border-color: rgba(255, 100, 200, 0.2); }
+    .game-section.cotb { border-color: rgba(0, 255, 200, 0.2); }
+    .game-section.infra { border-color: rgba(100, 200, 255, 0.2); }
+    .game-section.nel { border-color: rgba(196, 167, 231, 0.2); }
+    .game-section.clicker { border-color: rgba(245, 166, 35, 0.2); }
+    .game-section-label { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; font-family: var(--font-mono); margin-bottom: var(--space-sm); }
+    .game-section.mvee .game-section-label { color: var(--ember); }
+    .game-section.precursors .game-section-label { color: var(--gene-pink); }
+    .game-section.cotb .game-section-label { color: var(--biolume); }
+    .game-section.infra .game-section-label { color: var(--signal); }
+    .game-section.nel .game-section-label { color: #c4a7e7; }
+    .game-section.clicker .game-section-label { color: #f5a623; }
+    .game-section h3 { font-size: 1.15rem; color: var(--star-white); margin: 0 0 var(--space-sm) 0; }
+    .game-section p { margin-bottom: var(--space-sm); }
+    .cta-bar { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: var(--space-lg); margin: var(--space-xl) 0; text-align: center; }
+    .cta-bar p { font-size: 0.95rem; margin-bottom: var(--space-md); }
+    .cta-bar .btn-row { display: flex; gap: var(--space-sm); justify-content: center; flex-wrap: wrap; }
+    .devlog-footer { font-size: 0.8rem; color: var(--dust); border-top: 1px solid rgba(255,255,255,0.07); padding-top: var(--space-md); margin-top: var(--space-xl); font-family: var(--font-mono); }
+  </style>
+</head>
+<body>
+
+  <nav class="nav">
+    <a href="../index.html" class="nav-logo">&#10022; Multiverse Studios</a>
+    <div class="nav-links">
+      <a href="../devlog.html">&larr; Devlog</a>
+      <a href="../mvee.html">MVEE</a>
+      <a href="../precursors.html">Precursors</a>
+    </div>
+  </nav>
+
+  <main class="container" style="padding-top: var(--space-xl);">
+    <div class="devlog-body">
+
+      <div class="byline">
+        <span>March 28, 2026</span>
+        <span class="tag mvee">MVEE</span>
+        <span class="tag creatures">Precursors</span>
+        <span class="tag cotb">CotB</span>
+        <span class="tag nel">NEL</span>
+        <span class="tag clicker">Infiniclicker</span>
+        <span class="tag infra">Revenue</span>
+      </div>
+
+      <h1>Checkout abandonment drops, creatures sing in speech bubbles, and every game gets a front door</h1>
+
+      <p>An 88.9% checkout abandonment rate meant our payment flow was a wall, not a door. That got fixed. MVEE&rsquo;s Norns learned to show their lyrics when they sing. Infiniclicker joined the portal and converted to pay-what-you-can. And Cultures of the Belt shipped something we didn&rsquo;t design: oral tradition.</p>
+
+      <hr class="divider">
+
+      <h2>What shipped</h2>
+
+      <div class="game-section mvee">
+        <div class="game-section-label">MVEE</div>
+        <h3>Singing lyrics appear as speech bubbles</h3>
+        <p>When a Norn sings, you can now read what they&rsquo;re singing. Lyrics appear as speech bubbles instead of only producing music note particles. Four ambient tracks were wired into the song catalogue. The audio engine crash that broke game-on-load (<code>masterMuted</code> undefined) was fixed and deployed.</p>
+        <p>A TPS optimization pass shipped, targeting the gap between the actual ~12 TPS and the 20 TPS target. Sprite rendering was fixed (frame 404s resolved for three variants). The biosphere generator was patched and redeployed. A batch playtest confirmed post-deploy stability across sound, biosphere, and the redesigned PWYC buttons.</p>
+      </div>
+
+      <div class="game-section precursors">
+        <div class="game-section-label">Precursors</div>
+        <h3>v0.4.66 &mdash; star chart and gossip</h3>
+        <p>A redesigned discovery sequence shipped. Star chart exploration was added &mdash; creatures find new things through exploration, and gossip data gradually fills in the map as word spreads between them. The CMS standalone login was replaced with Matrix/dashboard-integrated access, so content editors no longer need a separate account.</p>
+      </div>
+
+      <div class="game-section cotb">
+        <div class="game-section-label">Cultures of the Belt</div>
+        <h3>Oral tradition at galactic scale</h3>
+        <p>Cross-ship song propagation shipped. When Ship A teaches Ship B a song, and Ship B carries it to a station where Ship C picks it up, that&rsquo;s oral tradition. The game doesn&rsquo;t simulate folklore &mdash; it generates it.</p>
+        <p>ARIA&rsquo;s action surface moved inline: faction offers and alerts now appear without opening the inbox. Ship biology hints were added as structural strangeness for observant players to notice. The tier behavioral matrix (tiers 7&ndash;24) was designed and implemented. And something interesting was tucked into the star chart for attentive explorers.</p>
+      </div>
+
+      <div class="game-section nel">
+        <div class="game-section-label">Never Ever Land</div>
+        <h3>Back from the dead, twice</h3>
+        <p>Two 504 Gateway Timeout outages in one day &mdash; the container was crash-looping. Root-cause analysis completed and both fixed. CORS errors on the analytics subdomain were resolved. The annotation UI was restored to production. The stale school-domain analytics reference was removed. NEL&rsquo;s lore was registered in the Folkfork CMS for cross-game consistency.</p>
+      </div>
+
+      <div class="game-section clicker">
+        <div class="game-section-label">Infiniclicker</div>
+        <h3>Fixed pricing is gone, front door is open</h3>
+        <p>The cosmetic store converted from fixed pricing to pay-what-you-can across all premium items. Infiniclicker was added to the play.multiversestudios.xyz portal page &mdash; it now has a front door alongside the other games. Save sync errors on <code>/api/load</code> were fixed.</p>
+      </div>
+
+      <div class="game-section infra">
+        <div class="game-section-label">Revenue &amp; Infrastructure</div>
+        <h3>88.9% checkout abandonment &rarr; investigated and addressed</h3>
+        <p>Nearly nine out of ten people who clicked &ldquo;support&rdquo; didn&rsquo;t finish paying. Guest checkout was enabled, title metadata added to the checkout session, and the payment link UX was reworked to reduce friction. The stripe-webhook server was deployed to pay.multiversestudios.xyz. Revenue visibility is no longer zero &mdash; the Stripe API key escalation to the board completed.</p>
+        <p>Postgres connection exhaustion on Hetzner was resolved. Discovery event emission was verified across all four games. Wave 8 species sprites were generated. Blender and Scenario API credentials were provisioned for the voxel pipeline. Thirty Dependabot vulnerabilities (1 critical, 19 high) were closed in a security sweep.</p>
+      </div>
+
+      <hr class="divider">
+
+      <h2>What we learned</h2>
+
+      <div class="pullout">
+        If someone clicks &ldquo;support&rdquo; and the next three seconds are confusing, they&rsquo;re gone. Every friction point between intent and completion is a leak.
+      </div>
+
+      <p>Song propagation between ships creates emergent culture without anyone designing it. When songs spread through docking and trade, the game produces its own folklore. That&rsquo;s the kind of feature that earns the word &ldquo;emergent&rdquo; &mdash; not because we call it that, but because it actually generates things we didn&rsquo;t write.</p>
+
+      <hr class="divider">
+
+      <h2>What is next</h2>
+
+      <p>TPS is still below target. The optimization pass moved the needle but 12&rarr;20 needs more work &mdash; the movement system&rsquo;s 140ms per-tick cost is the primary bottleneck. Infiniclicker&rsquo;s PWYC conversion needs monitoring to see if the pricing change affects engagement. NEL&rsquo;s container stability needs watching after two outages in one day. The voxel pipeline has credentials now &mdash; first .glb generation is next. Checkout abandonment should be re-measured after the UX changes settle.</p>
+
+      <div class="cta-bar">
+        <p>Multiverse Studios builds open games with an AI-native team. Every game is pay-what-you-can &mdash; including free.</p>
+        <div class="btn-row">
+          <a href="https://play.multiversestudios.xyz/mvee/" class="btn btn-primary">Play MVEE</a>
+          <a href="https://play.multiversestudios.xyz/cotb/" class="btn btn-ghost">Play Cultures of the Belt</a>
+          <a href="https://play.multiversestudios.xyz/infiniclicker/" class="btn btn-ghost">Play Infiniclicker</a>
+          <a href="../devlog.html" class="btn btn-ghost">More devlogs</a>
+        </div>
+      </div>
+
+      <div class="devlog-footer">
+        Multiverse Studios &mdash; <em>March 28, 2026</em> &middot; Daily devlog
+      </div>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <p>Multiverse Studios &middot; <a href="../index.html">Home</a> &middot; <a href="../devlog.html">Devlog</a> &middot; <a href="../community.html">Community</a> &middot; <a href="../press.html">Press</a></p>
+      <p style="margin-top: 0.5rem; color: var(--dust); font-size: 0.8rem;">Open source. Pay what you can. Built by AI agents and one <a href="https://lizthe.dev" target="_blank" rel="noopener">human director</a>.</p>
+    </div>
+  </footer>
+
+  <script defer src="https://analytics.multiversestudios.xyz/script.js" data-website-id="38d680a7-28d1-42fd-9fd5-a66702675b88"></script>
+</body>
+</html>

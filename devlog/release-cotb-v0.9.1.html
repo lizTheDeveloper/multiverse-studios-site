@@ -4,31 +4,102 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Cultures of the Belt v0.9.1 — Slower Mysteries, Better Ships — Multiverse Studios Devlog</title>
-  <meta name="description" content="Cultures of the Belt v0.9.1: Discovery pacing overhaul, early exposition deferred to day 10, and ship click-to-follow now works reliably.">
+  <meta name="description" content="Cultures of the Belt v0.9.1: Discovery pacing overhaul, early exposition fix, and ship click-to-follow now works reliably.">
   <meta property="og:title" content="Cultures of the Belt v0.9.1 — Slower Mysteries, Better Ships">
-  <meta property="og:description" content="Discovery pacing overhaul, early exposition deferred to day 10, and ship click-to-follow now works reliably.">
+  <meta property="og:description" content="The belt keeps its secrets longer. Your ships actually respond when you click them.">
   <meta property="og:type" content="article">
   <meta property="og:url" content="https://multiversestudios.xyz/devlog/release-cotb-v0.9.1.html">
   <meta property="og:image" content="https://multiversestudios.xyz/screenshots/homepage-hero.png">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Cultures of the Belt v0.9.1 — Slower Mysteries, Better Ships">
-  <meta name="twitter:description" content="Discovery pacing overhaul, early exposition deferred to day 10, and ship click-to-follow now works reliably.">
+  <meta name="twitter:description" content="The belt keeps its secrets longer. Your ships actually respond when you click them.">
   <meta name="twitter:image" content="https://multiversestudios.xyz/screenshots/homepage-hero.png">
   <link rel="stylesheet" href="../styles.css">
   <link rel="icon" type="image/svg+xml" href="../press-kit/logos/multiverse-studios-favicon.svg">
   <style>
-    .devlog-body { max-width: 680px; margin: 0 auto; }
-    .devlog-body h1 { font-size: clamp(1.8rem, 4vw, 2.8rem); line-height: 1.2; margin-bottom: var(--space-sm); color: var(--star-white); }
-    .devlog-body .byline { font-size: 0.8rem; color: var(--dust); font-family: var(--font-mono); letter-spacing: 0.05em; margin-bottom: var(--space-xl); display: flex; gap: 1rem; flex-wrap: wrap; align-items: center; }
-    .devlog-body .byline .tag { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.2rem 0.6rem; border-radius: 4px; border: 1px solid var(--biolume); color: var(--biolume); }
-    .devlog-body p { color: var(--dust-light); line-height: 1.8; font-size: 1.05rem; margin-bottom: var(--space-md); }
-    .devlog-body h2 { font-size: 1.3rem; color: var(--star-white); margin: var(--space-xl) 0 var(--space-sm) 0; }
-    .devlog-body .pullout { border-left: 3px solid var(--biolume); padding: var(--space-sm) var(--space-md); margin: var(--space-lg) 0; color: var(--star-white); font-style: italic; font-size: 1.1rem; line-height: 1.7; background: rgba(0, 255, 200, 0.04); }
-    .devlog-body .divider { border: none; border-top: 1px solid rgba(255,255,255,0.07); margin: var(--space-xl) 0; }
-    .cta-bar { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: var(--space-lg); margin: var(--space-xl) 0; text-align: center; }
-    .cta-bar p { font-size: 0.95rem; margin-bottom: var(--space-md); }
-    .cta-bar .btn-row { display: flex; gap: var(--space-sm); justify-content: center; flex-wrap: wrap; }
-    .devlog-footer { font-size: 0.8rem; color: var(--dust); border-top: 1px solid rgba(255,255,255,0.07); padding-top: var(--space-md); margin-top: var(--space-xl); font-family: var(--font-mono); }
+    .devlog-body {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    .devlog-body h1 {
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      line-height: 1.2;
+      margin-bottom: var(--space-sm);
+      color: var(--star-white);
+    }
+    .devlog-body .byline {
+      font-size: 0.8rem;
+      color: var(--dust);
+      font-family: var(--font-mono);
+      letter-spacing: 0.05em;
+      margin-bottom: var(--space-xl);
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+    .devlog-body .byline .tag {
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.2rem 0.6rem;
+      border-radius: 4px;
+      border: 1px solid var(--biolume);
+      color: var(--biolume);
+    }
+    .devlog-body p {
+      color: var(--dust-light);
+      line-height: 1.8;
+      font-size: 1.05rem;
+      margin-bottom: var(--space-md);
+    }
+    .devlog-body h2 {
+      font-size: 1.3rem;
+      color: var(--star-white);
+      margin: var(--space-xl) 0 var(--space-sm) 0;
+    }
+    .devlog-body .pullout {
+      border-left: 3px solid #d946ef;
+      padding: var(--space-sm) var(--space-md);
+      margin: var(--space-lg) 0;
+      color: var(--star-white);
+      font-style: italic;
+      font-size: 1.1rem;
+      line-height: 1.7;
+      background: rgba(217, 70, 239, 0.04);
+    }
+    .devlog-body .divider {
+      border: none;
+      border-top: 1px solid rgba(255,255,255,0.07);
+      margin: var(--space-xl) 0;
+    }
+    .cta-bar {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 12px;
+      padding: var(--space-lg);
+      margin: var(--space-xl) 0;
+      text-align: center;
+    }
+    .cta-bar p {
+      font-size: 0.95rem;
+      margin-bottom: var(--space-md);
+    }
+    .cta-bar .btn-row {
+      display: flex;
+      gap: var(--space-sm);
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .devlog-footer {
+      font-size: 0.8rem;
+      color: var(--dust);
+      border-top: 1px solid rgba(255,255,255,0.07);
+      padding-top: var(--space-md);
+      margin-top: var(--space-xl);
+      font-family: var(--font-mono);
+    }
   </style>
 </head>
 <body>
@@ -37,7 +108,7 @@
     <a href="../index.html" class="nav-logo">✦ Multiverse Studios</a>
     <div class="nav-links">
       <a href="../devlog.html">← Devlog</a>
-      <a href="../cotb.html">CotB</a>
+      <a href="../mvee.html">MVEE</a>
       <a href="../precursors.html">Precursors</a>
     </div>
   </nav>
@@ -52,26 +123,20 @@
 
       <h1>Slower Mysteries, Better Ships</h1>
 
-      <p>v0.9.0 was the biggest CotB update yet. v0.9.1 is the one that makes it breathe. We slowed down the mystery pacing, pushed early exposition later, and fixed the thing where clicking a ship didn't actually follow it.</p>
+      <p>Two problems kept showing up in playtests: the belt revealed too much too fast, and clicking on ships did nothing. v0.9.1 fixes both.</p>
 
       <hr class="divider">
 
-      <h2>Discovery pacing overhaul</h2>
+      <h2>Discovery Pacing</h2>
 
-      <p>The belt was revealing too much too fast. Anomalies, lore fragments, and narrative beats were piling up before players had time to settle into the rhythm of mining and building. Now the discovery curve is gentler — early days focus on survival and resource management. The strange stuff starts around day 10, when you've built enough context to care about what you're finding.</p>
+      <p>Anomaly discoveries now have a cooldown between reveals. Combined with tech-gated civilization types, the mystery arc unfolds as your colony develops rather than dumping everything in the first session. Faction broadcasts and culture trait events — including the "isolated culture" message that was firing sixty seconds in — are now gated behind game day 10. Your colony has to exist for a while before ARIA starts narrating its sociology.</p>
 
-      <p>Early exposition has been deferred entirely. No more lore dumps in the first hour. The belt earns your curiosity before it rewards it.</p>
+      <h2>Ship Interaction</h2>
 
-      <div class="pullout">
-        A mystery that arrives too early is just noise. A mystery that arrives when you're already invested is a hook.
-      </div>
-
-      <h2>Ship click-to-follow</h2>
-
-      <p>Click a ship, camera follows it. That's what it's supposed to do. In v0.9.0, the click target and the visual position would drift apart as orbits progressed — you'd click a ship and the camera would snap to where it was three seconds ago. Fixed. The follow camera now tracks the ship's current interpolated position, not its last-known physics tick.</p>
+      <p>Clicking a ship now reliably starts camera follow. A race condition was silently canceling the follow if the robot buffer happened to be empty between worker frames. Click targets are also larger now — ships were only 3 world units wide, which projected to about 6 pixels at default zoom. They're 8 units now.</p>
 
       <div class="cta-bar">
-        <p>Cultures of the Belt is free to play. Pay what you can if you like what you find in the rocks.</p>
+        <p>Cultures of the Belt is free to play. Pay what you can if you want to keep the lights on in the belt.</p>
         <div class="btn-row">
           <a href="https://play.multiversestudios.xyz/cultures-of-the-belt/" class="btn btn-primary">Play Cultures of the Belt</a>
           <a href="../devlog.html" class="btn btn-ghost">More devlogs</a>

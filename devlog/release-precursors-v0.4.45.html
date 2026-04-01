@@ -3,17 +3,13 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Precursors v0.4.45 — The Ship Stirs — Multiverse Studios Devlog</title>
-  <meta name="description" content="Precursors v0.4.45: The ship feels more present now. Damage leaves marks, repairs have weight, and audio loading no longer breaks on species without songs.">
-  <meta property="og:title" content="Precursors v0.4.45 — The Ship Stirs">
-  <meta property="og:description" content="The ship feels more present now. Damage leaves marks, repairs have weight, and audio loading no longer breaks on species without songs.">
+  <title>Precursors v0.4.45: The Ship Stirs — Multiverse Studios Devlog</title>
+  <meta name="description" content="The ship is more responsive than it used to be. Damage leaves marks. Repairs have weight. And the audio no longer breaks on load.">
+  <meta property="og:title" content="Precursors v0.4.45: The Ship Stirs">
+  <meta property="og:description" content="Ship responsiveness, damage narrative, and audio stability.">
   <meta property="og:type" content="article">
   <meta property="og:url" content="https://multiversestudios.xyz/devlog/release-precursors-v0.4.45.html">
   <meta property="og:image" content="https://multiversestudios.xyz/screenshots/homepage-hero.png">
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Precursors v0.4.45 — The Ship Stirs">
-  <meta name="twitter:description" content="The ship feels more present now. Damage leaves marks, repairs have weight, and audio loading no longer breaks on species without songs.">
-  <meta name="twitter:image" content="https://multiversestudios.xyz/screenshots/homepage-hero.png">
   <link rel="stylesheet" href="../styles.css">
   <link rel="icon" type="image/svg+xml" href="../press-kit/logos/multiverse-studios-favicon.svg">
   <style>
@@ -23,75 +19,30 @@
     .devlog-body .byline .tag { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.2rem 0.6rem; border-radius: 4px; border: 1px solid var(--gene-pink); color: var(--gene-pink); }
     .devlog-body p { color: var(--dust-light); line-height: 1.8; font-size: 1.05rem; margin-bottom: var(--space-md); }
     .devlog-body h2 { font-size: 1.3rem; color: var(--star-white); margin: var(--space-xl) 0 var(--space-sm) 0; }
-    .devlog-body .pullout { border-left: 3px solid var(--gene-pink); padding: var(--space-sm) var(--space-md); margin: var(--space-lg) 0; color: var(--star-white); font-style: italic; font-size: 1.1rem; line-height: 1.7; background: rgba(255, 100, 200, 0.04); }
-    .devlog-body .divider { border: none; border-top: 1px solid rgba(255,255,255,0.07); margin: var(--space-xl) 0; }
-    .cta-bar { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: var(--space-lg); margin: var(--space-xl) 0; text-align: center; }
-    .cta-bar p { font-size: 0.95rem; margin-bottom: var(--space-md); }
-    .cta-bar .btn-row { display: flex; gap: var(--space-sm); justify-content: center; flex-wrap: wrap; }
-    .devlog-footer { font-size: 0.8rem; color: var(--dust); border-top: 1px solid rgba(255,255,255,0.07); padding-top: var(--space-md); margin-top: var(--space-xl); font-family: var(--font-mono); }
   </style>
 </head>
 <body>
+  <nav class="site-nav"><div class="nav-inner"><a href="/" class="nav-logo">Multiverse Studios</a><div class="nav-links"><a href="/devlog.html">Devlog</a><a href="/play/creatures/">Play Precursors</a></div></div></nav>
 
-  <nav class="nav">
-    <a href="../index.html" class="nav-logo">✦ Multiverse Studios</a>
-    <div class="nav-links">
-      <a href="../devlog.html">← Devlog</a>
-      <a href="../precursors.html">Precursors</a>
-      <a href="../mvee.html">MVEE</a>
+  <main class="devlog-body" style="padding: var(--space-xl) var(--space-md);">
+    <h1>Precursors v0.4.45: The Ship Stirs</h1>
+    <div class="byline">
+      <time>March 26, 2026</time>
+      <span class="tag">Precursors</span>
     </div>
-  </nav>
 
-  <main class="container" style="padding-top: var(--space-xl);">
-    <div class="devlog-body">
+    <p>Something shifted in this release. The ship feels more present now — not in a way we can explain through patch notes, but in the way it responds to what happens aboard. Damage matters. When something breaks, the ship reacts. When something gets repaired, there's a story to it — repair songs, teaching moments between the creatures who fix things. The ship remembers what happened to it.</p>
 
-      <div class="byline">
-        <span>March 26, 2026</span>
-        <span class="tag">Precursors v0.4.45</span>
-      </div>
+    <p>On the practical side, we eliminated a class of audio 404 errors that were causing timeouts on the loading screen. Species whose songs hadn't been composed yet (Mycon, Grendel, Ettin) were being queued for playback anyway. Now the audio system only loads what actually exists, and baby sounds lazy-load after the world is already running.</p>
 
-      <h1>The Ship Stirs</h1>
+    <p>The admin CMS got drag-drop MP3 uploads and better species navigation for the lore editors working behind the scenes. Small thing for players, big thing for the team building out the musical traditions of each species.</p>
 
-      <p>The ship feels more present now. It's not just a container for your Norns — it's a place that bears the marks of what's happened to it. Damage is visible. Repairs take effort. And the audio system no longer crashes when a species doesn't have songs yet.</p>
-
-      <hr class="divider">
-
-      <h2>Visible damage and weighted repairs</h2>
-
-      <p>When the ship takes damage, you see it. Hull breaches leave scorch marks. Structural failures show cracks. Repairs aren't instant — they take time and resources, and the ship shows the process. A freshly repaired section looks different from one that's never been hit. The ship accumulates history.</p>
-
-      <p>This matters because Precursors is a game about evolution across generations. The ship is the one constant. Making it carry visible scars gives players a physical record of their journey — every collision, every hard landing, every close call written into the hull.</p>
-
-      <div class="pullout">
-        A ship that remembers what happened to it is a ship worth caring about. Pristine vessels don't tell stories.
-      </div>
-
-      <h2>Audio loading fix</h2>
-
-      <p>Species in Precursors develop their own music through emergent cultural evolution. But not every species has songs yet — especially young ones. The audio system was trying to load song files for species that hadn't developed music, hitting a missing-file error and crashing the audio context entirely. Now it gracefully handles species without songs, falling back to ambient ship sounds until the culture develops its own.</p>
-
-      <div class="cta-bar">
-        <p>Precursors is free to play. Watch evolution happen in real time.</p>
-        <div class="btn-row">
-          <a href="https://play.multiversestudios.xyz/precursors/" class="btn btn-primary">Play Precursors</a>
-          <a href="../devlog.html" class="btn btn-ghost">More devlogs</a>
-        </div>
-      </div>
-
-      <div class="devlog-footer">
-        Multiverse Studios — <em>March 26, 2026</em> · Precursors v0.4.45 release notes
-      </div>
-
-    </div>
+    <h2>Play now</h2>
+    <p><a href="/play/creatures/" style="color: var(--gene-pink);">Launch Precursors</a> and pay attention to the ship.</p>
   </main>
 
-  <footer class="footer">
-    <div class="container">
-      <p>Multiverse Studios · <a href="../index.html">Home</a> · <a href="../devlog.html">Devlog</a> · <a href="../community.html">Community</a> · <a href="../press.html">Press</a></p>
-      <p style="margin-top: 0.5rem; color: var(--dust); font-size: 0.8rem;">Open source. Pay what you can. Built by AI agents and one <a href="https://lizthe.dev" target="_blank" rel="noopener">human director</a>.</p>
-    </div>
+  <footer style="text-align:center; padding: var(--space-lg); color: var(--dust); font-size: 0.8rem;">
+    <a href="/devlog.html" style="color: var(--gene-pink);">Back to Devlog</a>
   </footer>
-
-<script defer src="https://analytics.multiversestudios.xyz/script.js" data-website-id="38d680a7-28d1-42fd-9fd5-a66702675b88"></script>
 </body>
 </html>

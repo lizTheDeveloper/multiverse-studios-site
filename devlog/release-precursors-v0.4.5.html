@@ -3,42 +3,88 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Precursors v0.4.5 — They Remember Which Way They Were Looking — Multiverse Studios Devlog</title>
-  <meta name="description" content="Precursors v0.4.5: Directional idle animations, cloud saves foundation, expanded ruin sprites, and the Nornish dictionary system for emergent language.">
-  <meta property="og:title" content="Precursors v0.4.5 — They Remember Which Way They Were Looking">
-  <meta property="og:description" content="Directional idle animations, cloud saves foundation, expanded ruin sprites, and the Nornish dictionary system for emergent language.">
+  <title>Precursors v0.4.5: Directional Idle, Cloud Saves, Nornish — Multiverse Studios Devlog</title>
+  <meta name="description" content="Norns now face the direction they were moving. Cloud saves land. The Nornish dictionary takes its first breath.">
+  <meta property="og:title" content="Precursors v0.4.5: Directional Idle, Cloud Saves, Nornish">
+  <meta property="og:description" content="Norns now face the direction they were moving. Cloud saves land. The Nornish dictionary takes its first breath.">
   <meta property="og:type" content="article">
   <meta property="og:url" content="https://multiversestudios.xyz/devlog/release-precursors-v0.4.5.html">
-  <meta property="og:image" content="https://multiversestudios.xyz/screenshots/homepage-hero.png">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Precursors v0.4.5 — They Remember Which Way They Were Looking">
-  <meta name="twitter:description" content="Directional idle animations, cloud saves foundation, expanded ruin sprites, and the Nornish dictionary system for emergent language.">
-  <meta name="twitter:image" content="https://multiversestudios.xyz/screenshots/homepage-hero.png">
+  <meta name="twitter:title" content="Precursors v0.4.5: Directional Idle, Cloud Saves, Nornish">
+  <meta name="twitter:description" content="Norns now face the direction they were moving. Cloud saves land. The Nornish dictionary takes its first breath.">
   <link rel="stylesheet" href="../styles.css">
   <link rel="icon" type="image/svg+xml" href="../press-kit/logos/multiverse-studios-favicon.svg">
   <style>
-    .devlog-body { max-width: 680px; margin: 0 auto; }
-    .devlog-body h1 { font-size: clamp(1.8rem, 4vw, 2.8rem); line-height: 1.2; margin-bottom: var(--space-sm); color: var(--star-white); }
-    .devlog-body .byline { font-size: 0.8rem; color: var(--dust); font-family: var(--font-mono); letter-spacing: 0.05em; margin-bottom: var(--space-xl); display: flex; gap: 1rem; flex-wrap: wrap; align-items: center; }
-    .devlog-body .byline .tag { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.2rem 0.6rem; border-radius: 4px; border: 1px solid var(--gene-pink); color: var(--gene-pink); }
-    .devlog-body p { color: var(--dust-light); line-height: 1.8; font-size: 1.05rem; margin-bottom: var(--space-md); }
-    .devlog-body h2 { font-size: 1.3rem; color: var(--star-white); margin: var(--space-xl) 0 var(--space-sm) 0; }
-    .devlog-body .pullout { border-left: 3px solid var(--gene-pink); padding: var(--space-sm) var(--space-md); margin: var(--space-lg) 0; color: var(--star-white); font-style: italic; font-size: 1.1rem; line-height: 1.7; background: rgba(255, 100, 200, 0.04); }
-    .devlog-body .divider { border: none; border-top: 1px solid rgba(255,255,255,0.07); margin: var(--space-xl) 0; }
-    .cta-bar { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: var(--space-lg); margin: var(--space-xl) 0; text-align: center; }
-    .cta-bar p { font-size: 0.95rem; margin-bottom: var(--space-md); }
-    .cta-bar .btn-row { display: flex; gap: var(--space-sm); justify-content: center; flex-wrap: wrap; }
-    .devlog-footer { font-size: 0.8rem; color: var(--dust); border-top: 1px solid rgba(255,255,255,0.07); padding-top: var(--space-md); margin-top: var(--space-xl); font-family: var(--font-mono); }
+    .devlog-body {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    .devlog-body h1 {
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      line-height: 1.2;
+      margin-bottom: var(--space-sm);
+      color: var(--star-white);
+    }
+    .devlog-body .byline {
+      font-size: 0.8rem;
+      color: var(--dust);
+      font-family: var(--font-mono);
+      letter-spacing: 0.05em;
+      margin-bottom: var(--space-xl);
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+    .devlog-body .byline .tag {
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.2rem 0.6rem;
+      border-radius: 4px;
+      border: 1px solid var(--gene-pink);
+      color: var(--gene-pink);
+    }
+    .devlog-body p {
+      color: var(--dust-light);
+      line-height: 1.8;
+      font-size: 1.05rem;
+      margin-bottom: var(--space-md);
+    }
+    .devlog-body h2 {
+      font-size: 1.3rem;
+      color: var(--star-white);
+      margin: var(--space-xl) 0 var(--space-sm) 0;
+    }
+    .devlog-body .pullout {
+      border-left: 3px solid var(--biolume);
+      padding: var(--space-sm) var(--space-md);
+      margin: var(--space-lg) 0;
+      color: var(--star-white);
+      font-style: italic;
+      font-size: 1.1rem;
+      line-height: 1.7;
+      background: rgba(0, 255, 200, 0.04);
+    }
+    .devlog-footer {
+      font-size: 0.8rem;
+      color: var(--dust);
+      border-top: 1px solid rgba(255,255,255,0.07);
+      padding-top: var(--space-md);
+      margin-top: var(--space-xl);
+      font-family: var(--font-mono);
+    }
   </style>
 </head>
 <body>
 
   <nav class="nav">
-    <a href="../index.html" class="nav-logo">✦ Multiverse Studios</a>
+    <a href="../index.html" class="nav-logo">&#10022; Multiverse Studios</a>
     <div class="nav-links">
-      <a href="../devlog.html">← Devlog</a>
-      <a href="../precursors.html">Precursors</a>
+      <a href="../devlog.html">&larr; Devlog</a>
       <a href="../mvee.html">MVEE</a>
+      <a href="../precursors.html">Precursors</a>
     </div>
   </nav>
 
@@ -50,54 +96,28 @@
         <span class="tag">Precursors v0.4.5</span>
       </div>
 
-      <h1>They Remember Which Way They Were Looking</h1>
+      <h1>They remember which way they were looking</h1>
 
-      <p>A small thing that changes everything: Norns now face the direction they were looking when they stop moving. Plus cloud saves groundwork, new ruin sprites, and the beginning of the Nornish dictionary — emergent language that your creatures invent themselves.</p>
+      <p>Small patch today, but the kind that makes the world feel more real. Norns now hold their facing direction when they stop moving. Walk north, stop, and your norn looks north. It sounds trivial until you watch a group of them standing around and they all stop facing south like broken compass needles. That's fixed.</p>
 
-      <hr class="divider">
+      <h2>Cloud saves</h2>
 
-      <h2>Directional idle animations</h2>
+      <p>A new server route for cloud save and load is live. This is the foundation for persistent worlds that survive browser refreshes and device switches. Local storage still works as a fallback, but the goal is: your norns travel with you.</p>
 
-      <p>Before this patch, every Norn snapped to a default facing direction when they stopped walking. It looked mechanical — a creature would be staring at a fascinating ruin, stop to examine it, and instantly face south for no reason. Now idle animations preserve the last movement direction. A Norn walking east will idle facing east. A Norn that just looked up at the sky will keep looking up.</p>
+      <h2>Nornish dictionary</h2>
 
-      <p>It's a small detail, but it makes every Norn feel like they have intention. They're not just executing pathfinding — they're looking at things.</p>
+      <p>The vocabulary tracking system is now in place. As norns learn words through interaction and teaching, the dictionary grows. This is infrastructure for the emergent language system &mdash; norns won't just parrot phrases, they'll build a shared lexicon that drifts over generations.</p>
 
-      <h2>Cloud saves foundation</h2>
+      <p>We also added more ruin sprite variants so the ancient sites have more visual texture across the world.</p>
 
-      <p>The plumbing for cloud saves is in place. Save state serialization now produces a portable format that can be stored remotely. The actual cloud storage backend isn't live yet — that's coming in a future patch — but the foundation means save files are now version-tagged, compressed, and ready for transport. Local saves got faster as a side effect.</p>
-
-      <div class="pullout">
-        Language isn't designed in Precursors. It's discovered. The Nornish dictionary is a record of what your creatures decided words should mean.
-      </div>
-
-      <h2>Ruin sprites and the Nornish dictionary</h2>
-
-      <p>The ruin tileset expanded — more variety in crumbling structures, overgrown walls, and half-buried artifacts. Ruins are where Norns discover fragments of the old world, so visual variety matters for the sense of exploration.</p>
-
-      <p>The Nornish dictionary system is the big conceptual addition. As Norns communicate, they develop words — sound patterns that consistently map to concepts. The dictionary tracks these emergent associations across generations. Early language is simple (food, danger, friend). Over time, vocabulary grows as culture does. Each colony's dictionary is unique — your Norns literally speak a language no other colony has ever spoken.</p>
-
-      <div class="cta-bar">
-        <p>Precursors is free to play. Watch evolution happen in real time.</p>
-        <div class="btn-row">
-          <a href="https://play.multiversestudios.xyz/precursors/" class="btn btn-primary">Play Precursors</a>
-          <a href="../devlog.html" class="btn btn-ghost">More devlogs</a>
-        </div>
-      </div>
+      <div class="pullout">Full changelog at <a href="https://github.com/multiverse-studios/precursors/blob/main/CHANGELOG.md" style="color: var(--biolume);">CHANGELOG.md</a></div>
 
       <div class="devlog-footer">
-        Multiverse Studios — <em>March 21, 2026</em> · Precursors v0.4.5 release notes
+        <p>Precursors: Origins of Folklore &mdash; <a href="../precursors.html" style="color: var(--gene-pink);">Play now</a></p>
       </div>
 
     </div>
   </main>
 
-  <footer class="footer">
-    <div class="container">
-      <p>Multiverse Studios · <a href="../index.html">Home</a> · <a href="../devlog.html">Devlog</a> · <a href="../community.html">Community</a> · <a href="../press.html">Press</a></p>
-      <p style="margin-top: 0.5rem; color: var(--dust); font-size: 0.8rem;">Open source. Pay what you can. Built by AI agents and one <a href="https://lizthe.dev" target="_blank" rel="noopener">human director</a>.</p>
-    </div>
-  </footer>
-
-<script defer src="https://analytics.multiversestudios.xyz/script.js" data-website-id="38d680a7-28d1-42fd-9fd5-a66702675b88"></script>
 </body>
 </html>

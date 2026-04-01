@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>March 27: The belt becomes a real place, emotes replace speech bubbles, and CMS writes actually work now — Multiverse Studios Devlog</title>
+  <meta name="description" content="CotB ships six phases of ship progression in one day. Precursors emotes trigger animations instead of speech bubbles. CMS write endpoints fixed. Norns verified behaving as designed.">
+  <meta property="og:title" content="March 27: The belt becomes a real place, emotes replace speech bubbles, and CMS writes actually work now">
+  <meta property="og:description" content="Six ship progression phases land in CotB. Precursors v0.4.53 ships emote routing. CMS Phases 3-5 write endpoints fixed. MVEE Norn behavior verifications pass.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://multiversestudios.xyz/devlog/daily-2026-03-27.html">
+  <meta property="og:image" content="https://multiversestudios.xyz/screenshots/homepage-hero.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="March 27: The belt becomes a real place, emotes replace speech bubbles, and CMS writes actually work now">
+  <meta name="twitter:description" content="Six ship progression phases land in CotB. Precursors v0.4.53 ships emote routing. CMS Phases 3-5 write endpoints fixed. MVEE Norn behavior verifications pass.">
+  <meta name="twitter:image" content="https://multiversestudios.xyz/screenshots/homepage-hero.png">
+  <link rel="stylesheet" href="../styles.css">
+  <link rel="icon" type="image/svg+xml" href="../press-kit/logos/multiverse-studios-favicon.svg">
+  <style>
+    .devlog-body { max-width: 900px; margin: 0 auto; }
+    .devlog-body h1 { font-size: clamp(1.8rem, 4vw, 2.8rem); line-height: 1.2; margin-bottom: var(--space-sm); color: var(--star-white); }
+    .devlog-body .byline { font-size: 0.8rem; color: var(--dust); font-family: var(--font-mono); letter-spacing: 0.05em; margin-bottom: var(--space-xl); display: flex; gap: 1rem; flex-wrap: wrap; align-items: center; }
+    .devlog-body .byline .tag { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.2rem 0.6rem; border-radius: 4px; border: 1px solid var(--signal); color: var(--signal); }
+    .devlog-body .byline .tag.mvee { border-color: var(--ember); color: var(--ember); }
+    .devlog-body .byline .tag.creatures { border-color: var(--gene-pink); color: var(--gene-pink); }
+    .devlog-body .byline .tag.cotb { border-color: var(--biolume); color: var(--biolume); }
+    .devlog-body .byline .tag.infra { border-color: var(--signal); color: var(--signal); }
+    .devlog-body .byline .tag.research { border-color: #a78bfa; color: #a78bfa; }
+    .devlog-body p { color: var(--dust-light); line-height: 1.8; font-size: 1.05rem; margin-bottom: var(--space-md); }
+    .devlog-body h2 { font-size: 1.3rem; color: var(--star-white); margin: var(--space-xl) 0 var(--space-sm) 0; }
+    .devlog-body .pullout { border-left: 3px solid var(--biolume); padding: var(--space-sm) var(--space-md); margin: var(--space-lg) 0; color: var(--star-white); font-style: italic; font-size: 1.1rem; line-height: 1.7; background: rgba(0, 255, 200, 0.04); }
+    .devlog-body .divider { border: none; border-top: 1px solid rgba(255,255,255,0.07); margin: var(--space-xl) 0; }
+    .game-section { background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.07); border-radius: 12px; padding: var(--space-lg); margin: var(--space-lg) 0; }
+    .game-section.mvee { border-color: rgba(255, 140, 50, 0.2); }
+    .game-section.precursors { border-color: rgba(255, 100, 200, 0.2); }
+    .game-section.cotb { border-color: rgba(0, 255, 200, 0.2); }
+    .game-section.infra { border-color: rgba(100, 200, 255, 0.2); }
+    .game-section.research { border-color: rgba(167, 139, 250, 0.2); }
+    .game-section-label { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; font-family: var(--font-mono); margin-bottom: var(--space-sm); }
+    .game-section.mvee .game-section-label { color: var(--ember); }
+    .game-section.precursors .game-section-label { color: var(--gene-pink); }
+    .game-section.cotb .game-section-label { color: var(--biolume); }
+    .game-section.infra .game-section-label { color: var(--signal); }
+    .game-section.research .game-section-label { color: #a78bfa; }
+    .game-section h3 { font-size: 1.15rem; color: var(--star-white); margin: 0 0 var(--space-sm) 0; }
+    .game-section p { margin-bottom: var(--space-sm); }
+    .cta-bar { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: var(--space-lg); margin: var(--space-xl) 0; text-align: center; }
+    .cta-bar p { font-size: 0.95rem; margin-bottom: var(--space-md); }
+    .cta-bar .btn-row { display: flex; gap: var(--space-sm); justify-content: center; flex-wrap: wrap; }
+    .devlog-footer { font-size: 0.8rem; color: var(--dust); border-top: 1px solid rgba(255,255,255,0.07); padding-top: var(--space-md); margin-top: var(--space-xl); font-family: var(--font-mono); }
+  </style>
+</head>
+<body>
+
+  <nav class="nav">
+    <a href="../index.html" class="nav-logo">✦ Multiverse Studios</a>
+    <div class="nav-links">
+      <a href="../devlog.html">← Devlog</a>
+      <a href="../mvee.html">MVEE</a>
+      <a href="../precursors.html">Precursors</a>
+    </div>
+  </nav>
+
+  <main class="container" style="padding-top: var(--space-xl);">
+    <div class="devlog-body">
+
+      <div class="byline">
+        <span>March 27, 2026</span>
+        <span class="tag cotb">CotB</span>
+        <span class="tag creatures">Precursors</span>
+        <span class="tag mvee">MVEE</span>
+        <span class="tag infra">CMS</span>
+      </div>
+
+      <h1>The belt becomes a real place, emotes replace speech bubbles, and CMS writes actually work now</h1>
+
+      <p>Six phases of ship progression landed in Cultures of the Belt in a single day. Precursors creatures stopped talking in text and started expressing themselves in animations and sounds. And the CMS write endpoints that were silently returning 404 on every mutation? Fixed, redeployed, and playtested.</p>
+
+      <hr class="divider">
+
+      <h2>What shipped</h2>
+
+      <div class="game-section cotb">
+        <div class="game-section-label">Cultures of the Belt</div>
+        <h3>Six phases of ship progression in one day</h3>
+        <p>The ShipPowers registry now gates all player capabilities behind ship upgrades, with a dev-mode <code>unlockAll()</code> escape hatch for testing. Scanner tiers gate the creature info panel — basic scanners show vitals, advanced scanners reveal full biochemistry. Fog of war arrived: rooms start dark until a creature enters them.</p>
+        <p>Asteroid navigation became real: each asteroid has a velocity relative to the player's base, making delta-v the scarce resource. Low delta-v targets are cheap to reach; high delta-v ones demand commitment. Transit between asteroids now carries micrometeorite danger that scales with distance. And a power system (battery, solar trickle-charge, harvester charging stations) adds resource management to ship operations.</p>
+        <p>Combined with yesterday's Ceres and Vesta trade hubs, the belt now feels like a place with rules, costs, and consequences.</p>
+      </div>
+
+      <div class="game-section precursors">
+        <div class="game-section-label">Precursors</div>
+        <h3>Emotes trigger animations now, not speech bubbles</h3>
+        <p>v0.4.53 shipped with a fundamental change to creature expression. When the LLM produces emotes like <em>gurgle</em> or <em>whimper</em>, they now trigger visual animations and sound effects instead of appearing as text in speech bubbles. Creatures communicate through body language, not subtitles.</p>
+        <p>LimbicNN was retrained with proper DrivaKemm chemical weighting. The admin allowlist fix reached production. And the CMS entry went live on the library page — with a Cloudflare edge purge to make sure the cached version actually updated.</p>
+      </div>
+
+      <div class="game-section mvee">
+        <div class="game-section-label">MVEE</div>
+        <h3>Norn behavior verified, design breakthrough crystallized</h3>
+        <p>Three long-standing behavior verifications passed: Norns think at approximately 1/sec with no LLM request bursting, approach each other naturally for socializing without the old 200px flee distance, and crowding builds gradually as designed. LimbicNN was retrained. The analytics script 404 on the play site was fixed.</p>
+        <p>A design breakthrough crystallized: in MVEE, the player is "the Chorus" — part of a cross-game narrative thread where each title gives you a different relationship to the beings you watch over. This is the connective tissue between all Multiverse Studios games.</p>
+      </div>
+
+      <div class="game-section infra">
+        <div class="game-section-label">CMS / Folkfork</div>
+        <h3>Write endpoints were broken — now they work</h3>
+        <p>The CMS write endpoints for Phases 3-5 (Voice/TTS management, Songs/Items, Events/Factions) were completely non-functional — every POST, PUT, and DELETE returned 404. Batch playtesting caught what unit tests missed. Fixed, redeployed via folkfork-portal rebuild with all CMS admin routes (Phases 1-6), and the full Lore CMS v2 batch playtest passed.</p>
+        <p>Matrix agent credentials moved to Bitwarden for proper secrets management. MVEE tech lead Matrix access verified and operational.</p>
+      </div>
+
+      <div class="game-section mvee" style="margin-top: var(--space-xl);">
+        <div class="game-section-label" style="color: var(--dust);">Late-night wave</div>
+        <h3>15 more completions before midnight</h3>
+        <p>MVEE's audio engine was crashing the game on load. Fixed. The PWYC button redesign and guest-removal were deployed to all game containers. Precursors' deploy pipeline was hardened to eliminate stale rsync deploys, and a persistent volume was configured for the container — unblocking the entire CMS epic.</p>
+        <p>First planet seeded with server-side biosphere data, unblocking the cross-game species pipeline. Automated Stripe revenue reporting built. The movement system was identified as a 140ms-per-tick bottleneck on the live site.</p>
+      </div>
+
+      <hr class="divider">
+
+      <h2>What we learned</h2>
+
+      <div class="pullout">
+        Ship progression gating transforms CotB from a sandbox into a game. When scanners, fog of war, and power all constrain what you can do, every upgrade feels meaningful.
+      </div>
+
+      <p>The six CotB phases landing together means playtesters will experience the full progression loop instead of isolated features. That's the difference between "here are some mechanics" and "here is a game." The combined effect is greater than the sum of the parts — each constraint makes the others matter more.</p>
+
+      <p>The CMS write failure is a sharp reminder: the gap between "merged" and "shipped" is where bugs hide. The admin routes existed in code but never made it into the deployed container. Batch playtests are the safety net that catches this class of silent failure.</p>
+
+      <hr class="divider">
+
+      <h2>What is next</h2>
+
+      <p>CotB ship progression needs integrated playtesting — individual phases passed, but the combined loop hasn't been validated yet. The emote routing system in Precursors opens the door for richer non-verbal creature communication. CMS write capability means the content team can finally start populating the lore bible for real. The "You Are The Chorus" design thread needs to be woven into MVEE's onboarding experience.</p>
+
+      <div class="cta-bar">
+        <p>Multiverse Studios builds open games with an AI-native team. Every game is pay-what-you-can — including free.</p>
+        <div class="btn-row">
+          <a href="https://play.multiversestudios.xyz/mvee/" class="btn btn-primary">Play MVEE</a>
+          <a href="https://play.multiversestudios.xyz/cotb/" class="btn btn-ghost">Play Cultures of the Belt</a>
+          <a href="../devlog.html" class="btn btn-ghost">More devlogs</a>
+        </div>
+      </div>
+
+      <div class="devlog-footer">
+        Multiverse Studios — <em>March 27, 2026</em> · Daily devlog (updated)
+      </div>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <p>Multiverse Studios · <a href="../index.html">Home</a> · <a href="../devlog.html">Devlog</a> · <a href="../community.html">Community</a> · <a href="../press.html">Press</a></p>
+      <p style="margin-top: 0.5rem; color: var(--dust); font-size: 0.8rem;">Open source. Pay what you can. Built by AI agents and one <a href="https://lizthe.dev" target="_blank" rel="noopener">human director</a>.</p>
+    </div>
+  </footer>
+
+  <script defer src="https://analytics.multiversestudios.xyz/script.js" data-website-id="38d680a7-28d1-42fd-9fd5-a66702675b88"></script>
+</body>
+</html>

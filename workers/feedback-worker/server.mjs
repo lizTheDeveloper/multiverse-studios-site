@@ -219,7 +219,7 @@ async function sendMatrixMessage(roomId, content) {
 const GAME_PROJECT_IDS = {
   creatures_next: 'd2b9aaa7-aaa7-4a4d-bb20-8289abda23f5', // Precursors
   mvee: 'd4580782-9c8e-455d-8bb4-ac9b66edf39a',
-  cultures_of_the_belt: '942caa5a-f0cc-41ea-9990-03175b081f58', // Folkfork (general)
+  cultures_of_the_belt: '12d79ba6-5c08-4d4b-a259-29071374caca', // CotB project
   never_ever_land: '942caa5a-f0cc-41ea-9990-03175b081f58',
   general: '942caa5a-f0cc-41ea-9990-03175b081f58',
 };

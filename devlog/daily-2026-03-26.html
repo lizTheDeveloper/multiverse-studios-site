@@ -3,32 +3,138 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>The infrastructure firefight — Multiverse Studios Devlog</title>
-  <meta name="description" content="March 25-26: Proxy migration, three full game rebuilds, HTML rendering bug fixed, litellm security audit, CMS v2 Postgres schema, asteroid belt physics corrected.">
-  <meta property="og:title" content="The infrastructure firefight, and why your proxy shouldn't live at a school">
-  <meta property="og:description" content="Proxy migration, three full game rebuilds, HTML rendering bug fixed, litellm security audit, and asteroid belt physics corrected.">
+  <title>March 25–26: The Infrastructure Firefight — Multiverse Studios Devlog</title>
+  <meta name="description" content="Proxy migration, three full rebuilds, HTML rendering bug fixed, litellm security audit, CMS v2 schema lands, asteroid belt physics corrected.">
+  <meta property="og:title" content="March 25–26: The Infrastructure Firefight">
+  <meta property="og:description" content="Your proxy shouldn't live at a school. Three games rebuilt. HTML rendering bug made MVEE unplayable. CMS v2 Postgres schema lands.">
   <meta property="og:type" content="article">
   <meta property="og:url" content="https://multiversestudios.xyz/devlog/daily-2026-03-26.html">
   <meta property="og:image" content="https://multiversestudios.xyz/screenshots/homepage-hero.png">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="The infrastructure firefight, and why your proxy shouldn't live at a school">
-  <meta name="twitter:description" content="Proxy migration, three full game rebuilds, HTML rendering bug fixed, litellm security audit, and asteroid belt physics corrected.">
+  <meta name="twitter:title" content="March 25–26: The Infrastructure Firefight">
+  <meta name="twitter:description" content="Your proxy shouldn't live at a school. Three games rebuilt. HTML rendering bug made MVEE unplayable. CMS v2 Postgres schema lands.">
   <meta name="twitter:image" content="https://multiversestudios.xyz/screenshots/homepage-hero.png">
   <link rel="stylesheet" href="../styles.css">
   <link rel="icon" type="image/svg+xml" href="../press-kit/logos/multiverse-studios-favicon.svg">
   <style>
-    .devlog-body { max-width: 680px; margin: 0 auto; }
-    .devlog-body h1 { font-size: clamp(1.8rem, 4vw, 2.8rem); line-height: 1.2; margin-bottom: var(--space-sm); color: var(--star-white); }
-    .devlog-body .byline { font-size: 0.8rem; color: var(--dust); font-family: var(--font-mono); letter-spacing: 0.05em; margin-bottom: var(--space-xl); display: flex; gap: 1rem; flex-wrap: wrap; align-items: center; }
-    .devlog-body .byline .tag { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.2rem 0.6rem; border-radius: 4px; }
-    .devlog-body p { color: var(--dust-light); line-height: 1.8; font-size: 1.05rem; margin-bottom: var(--space-md); }
-    .devlog-body h2 { font-size: 1.3rem; color: var(--star-white); margin: var(--space-xl) 0 var(--space-sm) 0; }
-    .devlog-body .pullout { border-left: 3px solid var(--signal); padding: var(--space-sm) var(--space-md); margin: var(--space-lg) 0; color: var(--star-white); font-style: italic; font-size: 1.1rem; line-height: 1.7; background: rgba(255, 200, 60, 0.04); }
-    .devlog-body .divider { border: none; border-top: 1px solid rgba(255,255,255,0.07); margin: var(--space-xl) 0; }
-    .cta-bar { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: var(--space-lg); margin: var(--space-xl) 0; text-align: center; }
-    .cta-bar p { font-size: 0.95rem; margin-bottom: var(--space-md); }
-    .cta-bar .btn-row { display: flex; gap: var(--space-sm); justify-content: center; flex-wrap: wrap; }
-    .devlog-footer { font-size: 0.8rem; color: var(--dust); border-top: 1px solid rgba(255,255,255,0.07); padding-top: var(--space-md); margin-top: var(--space-xl); font-family: var(--font-mono); }
+    .devlog-body {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    .devlog-body h1 {
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      line-height: 1.2;
+      margin-bottom: var(--space-sm);
+      color: var(--star-white);
+    }
+    .devlog-body .byline {
+      font-size: 0.8rem;
+      color: var(--dust);
+      font-family: var(--font-mono);
+      letter-spacing: 0.05em;
+      margin-bottom: var(--space-xl);
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+    .devlog-body .byline .tag {
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.2rem 0.6rem;
+      border-radius: 4px;
+      border: 1px solid var(--signal);
+      color: var(--signal);
+    }
+    .devlog-body .byline .tag.mvee { border-color: var(--ember); color: var(--ember); }
+    .devlog-body .byline .tag.creatures { border-color: var(--gene-pink); color: var(--gene-pink); }
+    .devlog-body .byline .tag.cotb { border-color: var(--biolume); color: var(--biolume); }
+    .devlog-body .byline .tag.infra { border-color: var(--signal); color: var(--signal); }
+    .devlog-body p {
+      color: var(--dust-light);
+      line-height: 1.8;
+      font-size: 1.05rem;
+      margin-bottom: var(--space-md);
+    }
+    .devlog-body h2 {
+      font-size: 1.3rem;
+      color: var(--star-white);
+      margin: var(--space-xl) 0 var(--space-sm) 0;
+    }
+    .devlog-body .pullout {
+      border-left: 3px solid var(--biolume);
+      padding: var(--space-sm) var(--space-md);
+      margin: var(--space-lg) 0;
+      color: var(--star-white);
+      font-style: italic;
+      font-size: 1.1rem;
+      line-height: 1.7;
+      background: rgba(0, 255, 200, 0.04);
+    }
+    .devlog-body .divider {
+      border: none;
+      border-top: 1px solid rgba(255,255,255,0.07);
+      margin: var(--space-xl) 0;
+    }
+    .game-section {
+      background: rgba(255,255,255,0.02);
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 12px;
+      padding: var(--space-lg);
+      margin: var(--space-lg) 0;
+    }
+    .game-section.mvee { border-color: rgba(255, 140, 50, 0.2); }
+    .game-section.precursors { border-color: rgba(255, 100, 200, 0.2); }
+    .game-section.cotb { border-color: rgba(0, 255, 200, 0.2); }
+    .game-section.infra { border-color: rgba(100, 200, 255, 0.2); }
+    .game-section-label {
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      font-family: var(--font-mono);
+      margin-bottom: var(--space-sm);
+    }
+    .game-section.mvee .game-section-label { color: var(--ember); }
+    .game-section.precursors .game-section-label { color: var(--gene-pink); }
+    .game-section.cotb .game-section-label { color: var(--biolume); }
+    .game-section.infra .game-section-label { color: var(--signal); }
+    .game-section h3 {
+      font-size: 1.15rem;
+      color: var(--star-white);
+      margin: 0 0 var(--space-sm) 0;
+    }
+    .game-section p {
+      margin-bottom: var(--space-sm);
+    }
+    .cta-bar {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 12px;
+      padding: var(--space-lg);
+      margin: var(--space-xl) 0;
+      text-align: center;
+    }
+    .cta-bar p {
+      font-size: 0.95rem;
+      margin-bottom: var(--space-md);
+    }
+    .cta-bar .btn-row {
+      display: flex;
+      gap: var(--space-sm);
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .devlog-footer {
+      font-size: 0.8rem;
+      color: var(--dust);
+      border-top: 1px solid rgba(255,255,255,0.07);
+      padding-top: var(--space-md);
+      margin-top: var(--space-xl);
+      font-family: var(--font-mono);
+    }
   </style>
 </head>
 <body>
@@ -46,43 +152,71 @@
     <div class="devlog-body">
 
       <div class="byline">
-        <span>March 26, 2026</span>
-        <span class="tag" style="border-color: var(--signal); color: var(--signal);">MVEE</span>
-        <span class="tag" style="border-color: var(--gene-pink); color: var(--gene-pink);">Precursors</span>
-        <span class="tag" style="border-color: var(--dust); color: var(--dust);">Infra</span>
+        <span>March 25–26, 2026</span>
+        <span class="tag mvee">MVEE</span>
+        <span class="tag creatures">Precursors</span>
+        <span class="tag cotb">CotB</span>
+        <span class="tag infra">Infra</span>
       </div>
 
       <h1>The infrastructure firefight, and why your proxy shouldn't live at a school</h1>
 
-      <p>Two days of fires. The LLM proxy went down because it was hosted on infrastructure that gets turned off at night. Three games needed full rebuilds. An HTML rendering bug broke story display across Never Ever Land. And the asteroid belt's physics were wrong. Here's what happened and what we did about it.</p>
+      <p>A domain we didn't fully control went down. Every game broke. What happened next was 20 hours of rebuilds, relearned lessons, and a much better monitoring story.</p>
 
       <hr class="divider">
 
-      <h2>Proxy migration</h2>
+      <h2>What shipped</h2>
 
-      <p>Our LLM token proxy was running on a university server. Universities turn things off. At night. On weekends. During breaks. This is not compatible with running a game studio. We migrated the proxy to our own Hetzner infrastructure — same box, different container, always on. The proxy handles token management for all four games' AI systems, so when it goes down, everything goes down.</p>
-
-      <h2>Three game rebuilds</h2>
-
-      <p>With the proxy migration came endpoint changes, which meant rebuilding MVEE, Precursors, and Cultures of the Belt. Each game had hardcoded proxy URLs scattered across their service workers and API clients. We consolidated all proxy configuration into environment variables and rebuilt all three. An HTML rendering bug in Never Ever Land's story display got caught and fixed during the rebuild sweep.</p>
-
-      <div class="pullout">
-        Infrastructure problems are invisible until they're catastrophic. The proxy migration took two days. Not migrating would have cost us every night and weekend.
+      <div class="game-section infra">
+        <div class="game-section-label">Infrastructure</div>
+        <h3>The great proxy migration</h3>
+        <p>Our proxy server at <code>proxy.themultiverse.school</code> went dark, immediately breaking sprite loading and LLM inference across every game. The response: deploy a new <code>llm-token-proxy</code> at <code>api.multiversestudios.xyz</code>, rebuild all three games with the new URL, discover that compiled assets still had the old domain baked in, and rebuild everything again.</p>
+        <p>Cloudflare token permissions — blocking five separate tasks for weeks — were finally fixed by the board. The full website audit is done. Every deploy pipeline now includes a Playwright post-deploy smoke test. GlitchTip webhooks automatically create Paperclip tickets from production errors. Sentry DSN is verified in all environments.</p>
+        <p>CMS v2 Phase 1a landed: a Postgres schema for all content types with seed migrations from existing TypeScript configs. This is the foundation for moving game content out of source code.</p>
       </div>
 
-      <h2>Security audit and schema work</h2>
+      <div class="game-section mvee">
+        <div class="game-section-label">MVEE</div>
+        <h3>Playable again</h3>
+        <p>An HTML-rendering bug made the game unplayable — ARIA's overnight reports, toast notifications, and UI overlays were all dumping raw HTML tags instead of rendered text. Players couldn't click through anything. Fixed.</p>
+        <p>A security report that litellm was compromised sent us through every repo, Dockerfile, and dependency tree. It's not and has never been in our stack. Useful audit, false alarm.</p>
+        <p>Norn sprite families got a full regeneration pass with new animations. Sprite generation was returning 503s in production — fixed and verified live. An auth gate that was blocking new players was replaced with a "Play as Guest" option. Creature spawn counts were wrong (12 at spawn instead of 2+3 eggs) — corrected.</p>
+      </div>
 
-      <p>While we had the hood open, we ran a security audit on the litellm proxy configuration. Tightened API key rotation, added rate limiting per-game, and locked down the admin endpoints. Separately, the CMS v2 Postgres schema landed — the content management system that will eventually power devlogs, wiki entries, and game documentation from a single source of truth.</p>
+      <div class="game-section precursors">
+        <div class="game-section-label">Precursors</div>
+        <h3>Rebuilt and stable</h3>
+        <p>Rebuilt and redeployed with the new proxy URL. Pay-what-you-can buttons are confirmed visible on the live game.</p>
+      </div>
 
-      <h2>Belt physics correction</h2>
+      <div class="game-section cotb">
+        <div class="game-section-label">Cultures of the Belt</div>
+        <h3>Real asteroid physics</h3>
+        <p>The asteroid belt got a physics overhaul: asteroids moved to real AU distances (2.0–3.5 AU) and rescaled from planet-sized objects to the tiny specks they actually are. PWYC button deployed to the live build for the first time. Rebuilt with the new proxy URL alongside everything else.</p>
+      </div>
 
-      <p>The asteroid belt's orbital mechanics had a subtle bug — eccentricity calculations were using the wrong reference frame for some edge-case orbits near the belt's inner boundary. Rocks that should have been on elliptical paths were drifting into near-circular ones. Fixed, with test coverage to prevent regression.</p>
+      <hr class="divider">
+
+      <h2>What we learned</h2>
+
+      <div class="pullout">
+        When your proxy server lives at a domain you don't fully control, you're one DNS hiccup away from every game going dark simultaneously. Build-time constants that reference external domains should be environment variables, not hardcoded strings.
+      </div>
+
+      <p>The migration to <code>api.multiversestudios.xyz</code> consolidates API traffic under infrastructure we own. But the real lesson was rebuilding three games twice because compiled assets had the old URL baked in. The Playwright smoke tests and the GlitchTip-to-Paperclip pipeline are the kind of investment that only looks obvious in hindsight — before today, the only way we knew production was broken was when someone opened a browser and noticed.</p>
+
+      <hr class="divider">
+
+      <h2>What is next</h2>
+
+      <p>The CMS v2 schema opens the door to moving game content out of TypeScript source files and into a database that designers can edit without a deploy cycle. Infrastructure is consolidated under domains we control, with automated monitoring in place. The next step is making the deploy-verify loop tight enough that no broken build survives more than minutes.</p>
 
       <div class="cta-bar">
-        <p>Follow the studio's journey — from infrastructure fires to shipped features.</p>
+        <p>Multiverse Studios builds games simultaneously with an AI-native team. All games are pay-what-you-can.</p>
         <div class="btn-row">
-          <a href="../devlog.html" class="btn btn-primary">Back to Devlog</a>
-          <a href="../index.html" class="btn btn-ghost">Home</a>
+          <a href="https://play.multiversestudios.xyz/mvee/" class="btn btn-primary">Play MVEE</a>
+          <a href="https://play.multiversestudios.xyz/precursors/" class="btn btn-ghost">Play Precursors</a>
+          <a href="../devlog.html" class="btn btn-ghost">More devlogs</a>
         </div>
       </div>
 

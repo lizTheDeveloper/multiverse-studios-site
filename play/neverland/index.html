@@ -2,8 +2,30 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="description" content="Something goes wrong in the first chapter.">
+<meta property="og:title" content="Never Ever Land">
+<meta property="og:description" content="Something goes wrong in the first chapter.">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Never Ever Land">
+<meta name="twitter:description" content="Something goes wrong in the first chapter.">
+<meta name="theme-color" content="#dcc9a2">
+<link rel="manifest" href="manifest.json">
+<link rel="icon" href="favicon.ico" sizes="any">
+<link rel="icon" href="assets/marketing/nel-icon-192.svg" type="image/svg+xml">
 <title>Never Ever Land</title>
+<script src="https://browser.sentry-cdn.com/8.0.0/bundle.min.js" crossorigin="anonymous"></script>
+<script>
+  if (window.Sentry) {
+    Sentry.init({
+      dsn: '%%SENTRY_DSN%%',
+      environment: window.location.hostname === 'localhost' ? 'development' : 'production',
+      sendDefaultPii: false,
+      sampleRate: 1.0,
+      beforeSend: function(event) { delete event.user; return event; }
+    });
+  }
+</script>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=IM+Fell+English+SC&family=Special+Elite&display=swap');
 
@@ -24,19 +46,19 @@
   }
 
   body[data-theme="moonlit"] {
-    --paper: #342820;
-    --paper-light: #453629;
-    --paper-deep: #1a140f;
-    --paper-burn: #f0d09e;
-    --ink: #fff5e4;
-    --ink-soft: #efd9b3;
-    --ink-faint: rgba(255, 245, 228, 0.78);
+    --paper: #2a2018;
+    --paper-light: #3d2f25;
+    --paper-deep: #16110d;
+    --paper-burn: #e8c68e;
+    --ink: #f5ead8;
+    --ink-soft: #dfc8a4;
+    --ink-faint: rgba(245, 234, 216, 0.62);
     --salt: #98a39f;
     --sea: #79908a;
-    --rose: #ffd7a2;
-    --border: rgba(255, 230, 188, 0.08);
-    --shadow: rgba(0, 0, 0, 0.6);
-    --map-line: rgba(245, 224, 193, 0.08);
+    --rose: #f0c88a;
+    --border: rgba(240, 220, 180, 0.12);
+    --shadow: rgba(0, 0, 0, 0.55);
+    --map-line: rgba(240, 220, 180, 0.1);
   }
 
   * {
@@ -51,7 +73,7 @@
   }
 
   body[data-theme="moonlit"] ::selection {
-    background: rgba(255, 214, 157, 0.24);
+    background: rgba(240, 200, 138, 0.2);
     color: var(--ink);
   }
 
@@ -62,9 +84,10 @@
     font-family: 'Cormorant Garamond', Georgia, serif;
     font-size: 22px;
     line-height: 1.72;
+    font-weight: 400;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    transition: background 0.6s ease, color 0.4s ease;
+    text-rendering: optimizeLegibility;
     background:
       radial-gradient(circle at top, rgba(255, 244, 214, 0.72), transparent 38%),
       linear-gradient(180deg, rgba(118, 88, 58, 0.24), transparent 28%),
@@ -73,16 +96,18 @@
     background-size: auto, auto, 512px 512px, auto;
     background-blend-mode: normal, normal, soft-light, normal;
     position: relative;
+    transition: background 0.5s ease, color 0.4s ease;
   }
 
   body[data-theme="moonlit"] {
     background:
-      radial-gradient(circle at top, rgba(240, 210, 156, 0.12), transparent 36%),
-      linear-gradient(180deg, rgba(255, 244, 218, 0.06), transparent 24%),
+      radial-gradient(circle at top, rgba(240, 210, 156, 0.07), transparent 36%),
+      radial-gradient(ellipse at 70% 80%, rgba(80, 55, 30, 0.12), transparent 50%),
       url("assets/textures/black_paper.png"),
-      linear-gradient(135deg, #0a0806, #14100c 22%, #1a1510 56%, #0a0806 100%);
-    background-size: auto, auto, 512px 512px, auto;
-    background-blend-mode: screen, normal, soft-light, normal;
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 256 256'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.72' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='256' height='256' filter='url(%23n)' opacity='0.07'/%3E%3C/svg%3E"),
+      linear-gradient(135deg, #0e0a07, #1a140e 22%, #1e1710 56%, #0a0805 100%);
+    background-size: auto, auto, 512px 512px, 256px 256px, auto;
+    background-blend-mode: screen, normal, multiply, overlay, normal;
   }
 
   body::before,
@@ -106,8 +131,13 @@
   }
 
   body[data-theme="moonlit"]::before {
-    opacity: 0.12;
+    opacity: 0.22;
     mix-blend-mode: screen;
+    background:
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 800'%3E%3Cg fill='rgba(240,228,200,0.85)'%3E%3Ccircle cx='142' cy='68' r='1.8'/%3E%3Ccircle cx='420' cy='42' r='2.2'/%3E%3Ccircle cx='680' cy='95' r='1.6'/%3E%3Ccircle cx='58' cy='190' r='1.4'/%3E%3Ccircle cx='310' cy='155' r='1.9'/%3E%3Ccircle cx='560' cy='172' r='1.5'/%3E%3Ccircle cx='740' cy='218' r='2'/%3E%3Ccircle cx='88' cy='320' r='1.7'/%3E%3Ccircle cx='245' cy='285' r='2.3'/%3E%3Ccircle cx='490' cy='305' r='1.6'/%3E%3Ccircle cx='628' cy='350' r='2.1'/%3E%3Ccircle cx='175' cy='455' r='1.8'/%3E%3Ccircle cx='362' cy='428' r='2'/%3E%3Ccircle cx='552' cy='470' r='1.5'/%3E%3Ccircle cx='720' cy='490' r='1.9'/%3E%3Ccircle cx='42' cy='560' r='1.6'/%3E%3Ccircle cx='212' cy='580' r='2.2'/%3E%3Ccircle cx='398' cy='540' r='1.7'/%3E%3Ccircle cx='580' cy='615' r='1.8'/%3E%3Ccircle cx='748' cy='660' r='1.4'/%3E%3Ccircle cx='112' cy='710' r='2'/%3E%3Ccircle cx='298' cy='740' r='1.6'/%3E%3Ccircle cx='458' cy='768' r='1.9'/%3E%3Ccircle cx='638' cy='730' r='1.5'/%3E%3C/g%3E%3Cg fill='rgba(215,205,180,0.45)'%3E%3Ccircle cx='205' cy='102' r='0.9'/%3E%3Ccircle cx='355' cy='78' r='1.1'/%3E%3Ccircle cx='518' cy='58' r='0.8'/%3E%3Ccircle cx='762' cy='148' r='1'/%3E%3Ccircle cx='128' cy='252' r='0.9'/%3E%3Ccircle cx='388' cy='235' r='1.1'/%3E%3Ccircle cx='640' cy='265' r='0.8'/%3E%3Ccircle cx='32' cy='400' r='1'/%3E%3Ccircle cx='478' cy='402' r='0.9'/%3E%3Ccircle cx='302' cy='510' r='1.1'/%3E%3Ccircle cx='690' cy='580' r='0.8'/%3E%3Ccircle cx='158' cy='645' r='1'/%3E%3Ccircle cx='510' cy='670' r='0.9'/%3E%3C/g%3E%3Cg fill='none' stroke='rgba(210,195,165,0.12)' stroke-width='0.7'%3E%3Cline x1='142' y1='68' x2='310' y2='155'/%3E%3Cline x1='310' y1='155' x2='420' y2='42'/%3E%3Cline x1='420' y1='42' x2='560' y2='172'/%3E%3Cline x1='245' y1='285' x2='310' y2='155'/%3E%3Cline x1='245' y1='285' x2='362' y2='428'/%3E%3Cline x1='362' y1='428' x2='490' y2='305'/%3E%3Cline x1='490' y1='305' x2='628' y2='350'/%3E%3Cline x1='175' y1='455' x2='362' y2='428'/%3E%3Cline x1='212' y1='580' x2='175' y2='455'/%3E%3Cline x1='212' y1='580' x2='398' y2='540'/%3E%3C/g%3E%3C/svg%3E") center / 820px 820px repeat,
+      radial-gradient(circle at 28% 18%, rgba(180, 160, 220, 0.14), transparent 30%),
+      radial-gradient(circle at 74% 72%, rgba(160, 175, 225, 0.10), transparent 25%);
+    background-size: 820px 820px, auto, auto;
   }
 
   body::after {
@@ -125,8 +155,9 @@
   }
 
   body[data-theme="moonlit"]::after {
-    opacity: 0.2;
-    background: linear-gradient(180deg, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.58));
+    opacity: 0.3;
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.4));
+    mix-blend-mode: multiply;
   }
 
   #container {
@@ -180,8 +211,8 @@
     gap: 12px 22px;
     align-items: center;
     justify-content: space-between;
-    margin-bottom: 26px;
-    padding-bottom: 12px;
+    margin-bottom: 30px;
+    padding-bottom: 14px;
     border-bottom: 1px solid var(--border);
     color: var(--ink-soft);
   }
@@ -203,39 +234,41 @@
   .chart-toggle {
     appearance: none;
     border: 1px solid var(--border);
-    background: rgba(255, 247, 228, 0.44);
+    background: rgba(255, 247, 228, 0.38);
     color: var(--rose);
     font-family: 'Special Elite', monospace;
-    font-size: 0.74rem;
-    letter-spacing: 0.12em;
+    font-size: 0.72rem;
+    letter-spacing: 0.14em;
     text-transform: uppercase;
-    padding: 11px 14px 10px;
-    min-height: 44px;
+    padding: 10px 16px 9px;
     border-radius: 999px;
     cursor: pointer;
-    box-shadow: 0 10px 24px rgba(82, 51, 24, 0.08);
-    transition: transform 0.25s ease, background 0.25s ease, color 0.25s ease, border-color 0.25s ease;
-  }
-
-  .chart-toggle:active {
-    transform: translateY(1px);
-    box-shadow: 0 4px 12px rgba(82, 51, 24, 0.12);
+    box-shadow: 0 2px 8px rgba(82, 51, 24, 0.06);
+    transition: transform 0.25s ease, background 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.25s ease;
   }
 
   .chart-toggle:hover {
     transform: translateY(-1px);
-    background: rgba(255, 250, 240, 0.72);
+    background: rgba(255, 250, 240, 0.68);
     color: var(--paper-burn);
+    box-shadow: 0 4px 14px rgba(82, 51, 24, 0.1);
+  }
+
+  .chart-toggle:active {
+    transform: translateY(0);
+    box-shadow: 0 1px 4px rgba(82, 51, 24, 0.08);
   }
 
   body[data-theme="moonlit"] .chart-toggle {
-    background: rgba(10, 15, 22, 0.76);
-    color: #fff3dc;
-    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.28);
+    background: rgba(14, 10, 7, 0.65);
+    color: var(--rose);
+    border-color: var(--border);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
   }
 
   body[data-theme="moonlit"] .chart-toggle:hover {
-    background: rgba(18, 26, 36, 0.92);
+    background: rgba(22, 16, 10, 0.82);
+    border-color: rgba(240, 200, 138, 0.2);
   }
 
   #story,
@@ -246,11 +279,11 @@
 
   .story-body {
     margin-bottom: 2.4em;
-    animation: story-enter 0.8s ease both;
+    animation: story-enter 0.6s ease both;
   }
 
   @keyframes story-enter {
-    from { opacity: 0; transform: translateY(12px); }
+    from { opacity: 0; transform: translateY(6px); }
     to { opacity: 1; transform: translateY(0); }
   }
 
@@ -283,36 +316,40 @@
   .story-body ol,
   .story-body blockquote,
   .story-body hr {
-    margin-bottom: 1.1em;
+    margin-bottom: 1.2em;
   }
 
   .story-body p + p {
     text-indent: 1.5em;
+    margin-top: -0.2em;
   }
 
   .story-body h1,
   .story-body h2,
   .story-body h3 {
     font-family: 'IM Fell English SC', serif;
-    line-height: 1.05;
+    line-height: 1.1;
     color: var(--paper-burn);
     text-wrap: balance;
+    letter-spacing: 0.01em;
   }
 
   .story-body h1 {
     font-size: clamp(2.6rem, 5vw, 4.1rem);
     margin: 0 0 0.6em;
-    letter-spacing: 0.01em;
+    line-height: 1.05;
   }
 
   .story-body h2 {
     font-size: clamp(1.8rem, 3vw, 2.4rem);
-    margin: 2em 0 0.8em;
+    margin: 2em 0 0.75em;
   }
 
   .story-body h3 {
     font-size: 1.36rem;
-    margin: 1.8em 0 0.7em;
+    font-weight: 600;
+    margin: 1.8em 0 0.65em;
+    opacity: 0.92;
   }
 
   .story-body em {
@@ -342,12 +379,13 @@
   }
 
   .story-body blockquote {
-    padding: 1em 1.1em 1em 1.2em;
-    border-left: 3px solid rgba(125, 91, 54, 0.58);
-    background: rgba(255, 247, 230, 0.26);
+    padding: 1.1em 1.3em 1.1em 1.4em;
+    border-left: 3px solid rgba(125, 91, 54, 0.48);
     border-radius: 0 4px 4px 0;
+    background: rgba(255, 247, 230, 0.22);
     color: var(--ink-soft);
     font-style: italic;
+    font-size: 0.97em;
   }
 
   body[data-theme="moonlit"] .story-body {
@@ -355,53 +393,104 @@
   }
 
   body[data-theme="moonlit"] .story-body strong {
-    color: var(--ink);
+    color: #f5ead8;
+    font-weight: 600;
   }
 
   body[data-theme="moonlit"] .story-body blockquote {
-    background: rgba(255, 244, 218, 0.08);
-    border-left-color: rgba(255, 214, 157, 0.78);
-    color: #fff3dc;
+    background: rgba(255, 244, 218, 0.06);
+    border-left-color: rgba(240, 200, 138, 0.5);
+    color: var(--ink-soft);
   }
 
   #next-link {
     display: flex;
-    flex-wrap: wrap;
+    flex-direction: column;
     gap: 12px;
-    align-items: flex-start;
-    padding-top: 24px;
+    align-items: stretch;
+    padding-top: 32px;
+    margin-top: 16px;
+    border-top: 1px solid var(--border);
   }
 
   #next-link a {
-    display: inline-block;
-    max-width: 100%;
-    color: var(--rose);
+    display: block;
+    color: var(--ink);
     text-decoration: none;
     font-style: italic;
-    font-size: 1.06rem;
-    padding: 14px 18px;
-    border-radius: 999px;
-    background: rgba(255, 247, 228, 0.36);
-    box-shadow: 0 10px 24px rgba(82, 51, 24, 0.08);
-    transition: transform 0.25s ease, box-shadow 0.25s ease, color 0.25s ease, border-color 0.25s ease, background 0.25s ease;
+    font-size: 1.1rem;
+    line-height: 1.6;
+    padding: 18px 24px;
+    border-radius: 6px;
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--rose);
+    background: rgba(255, 247, 228, 0.32);
+    box-shadow: 0 2px 8px rgba(82, 51, 24, 0.06);
+    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+    cursor: pointer;
+    position: relative;
+  }
+
+  #next-link a::after {
+    content: '→';
+    position: absolute;
+    right: 18px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-style: normal;
+    font-size: 1.2rem;
+    color: var(--rose);
+    opacity: 0.5;
+    transition: opacity 0.2s ease, transform 0.2s ease;
   }
 
   #next-link a:hover {
-    color: var(--paper-burn);
-    background: rgba(255, 249, 236, 0.7);
-    box-shadow: 0 16px 34px rgba(82, 51, 24, 0.14);
-    transform: translateY(-1px);
+    border-color: var(--rose);
+    background: rgba(255, 249, 236, 0.62);
+    box-shadow: 0 4px 16px rgba(82, 51, 24, 0.12);
+    transform: translateX(2px);
+  }
+
+  #next-link a:hover::after {
+    opacity: 1;
+    transform: translateY(-50%) translateX(3px);
   }
 
   body[data-theme="moonlit"] #next-link a {
-    background: rgba(9, 14, 20, 0.76);
-    color: #ffe0af;
-    box-shadow: 0 16px 34px rgba(0, 0, 0, 0.24);
+    background: rgba(14, 10, 7, 0.45);
+    color: var(--ink-soft);
+    border-color: var(--border);
+    border-left-color: var(--rose);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+  }
+
+  body[data-theme="moonlit"] #next-link a::after {
+    color: var(--rose);
   }
 
   body[data-theme="moonlit"] #next-link a:hover {
-    color: #fff1d7;
-    background: rgba(18, 26, 36, 0.92);
+    color: var(--ink);
+    background: rgba(22, 16, 10, 0.65);
+    border-color: rgba(240, 200, 138, 0.22);
+  }
+
+  .editors-note {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-style: italic;
+    font-size: 0.88rem;
+    line-height: 1.65;
+    color: var(--ink-faint);
+    padding: 16px 20px;
+    border-left: 2px solid var(--map-line);
+    border-radius: 0 4px 4px 0;
+    background: rgba(255, 247, 228, 0.1);
+    margin-bottom: 8px;
+  }
+
+  body[data-theme="moonlit"] .editors-note {
+    color: rgba(223, 200, 164, 0.65);
+    border-left-color: rgba(240, 200, 138, 0.18);
+    background: rgba(255, 244, 218, 0.03);
   }
 
   .loading,
@@ -411,20 +500,26 @@
   }
 
   .error {
-    color: #6d3720;
+    color: var(--rose);
   }
 
   body[data-theme="moonlit"] .loading,
   body[data-theme="moonlit"] .error {
-    color: #ffd8a6;
+    color: var(--rose);
+  }
+
+  #story,
+  #next-link {
+    transition: opacity 0.4s ease, transform 0.4s ease, filter 0.4s ease;
   }
 
   #map-frame.is-glitching #story,
   #map-frame.is-glitching #next-link,
   #map-frame.is-glitching #map-header {
-    filter: blur(0.45px);
-    opacity: 0.26;
-    transform: scale(0.996);
+    filter: blur(0.6px);
+    opacity: 0.18;
+    transform: scale(0.997);
+    transition: opacity 0.3s ease, transform 0.3s ease, filter 0.3s ease;
   }
 
   #transition-veil {
@@ -435,11 +530,11 @@
     padding: 44px;
     opacity: 0;
     pointer-events: none;
-    transition: opacity 0.45s ease;
+    transition: opacity 0.35s ease;
     z-index: 4;
     background:
-      radial-gradient(circle at center, rgba(219, 194, 153, 0.88), rgba(197, 161, 111, 0.74) 46%, rgba(108, 77, 46, 0.48) 100%);
-    backdrop-filter: blur(1.5px);
+      radial-gradient(circle at center, rgba(219, 194, 153, 0.92), rgba(197, 161, 111, 0.78) 46%, rgba(108, 77, 46, 0.52) 100%);
+    backdrop-filter: blur(2px);
   }
 
   body[data-theme="moonlit"] #transition-veil {
@@ -490,402 +585,390 @@
 
   body[data-theme="moonlit"] .glyph-stream,
   body[data-theme="moonlit"] .veil-label {
-    color: #ecd8b5;
-    text-shadow: 0 0 12px rgba(236, 216, 181, 0.1);
+    color: var(--ink-soft);
+    text-shadow: 0 0 14px rgba(240, 200, 138, 0.08);
   }
 
-  /* Infinite game marginalia — appears at end of tellings after unlock */
-  .infinite-marginalia {
-    margin-top: 3.2em;
-    font-style: italic;
-    font-size: 0.8rem;
-    color: var(--ink-faint);
+  .patronage-cta {
+    position: relative;
+    z-index: 1;
+    margin: 2em 0 0.5em;
+    padding: 22px 26px;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    background: rgba(255, 247, 228, 0.18);
     text-align: center;
-    opacity: 0.52;
-    cursor: pointer;
-    letter-spacing: 0.02em;
-    transition: opacity 0.4s ease, color 0.3s ease;
-    user-select: none;
+    animation: cta-fade-in 1.2s ease both;
   }
 
-  .infinite-marginalia:hover {
-    opacity: 0.88;
-    color: var(--ink-soft);
+  body[data-theme="moonlit"] .patronage-cta {
+    background: rgba(255, 244, 218, 0.05);
   }
 
-  body[data-theme="moonlit"] .infinite-marginalia {
-    color: rgba(255, 245, 228, 0.36);
-  }
-
-  body[data-theme="moonlit"] .infinite-marginalia:hover {
-    color: rgba(255, 245, 228, 0.72);
-  }
-
-  /* ============================================================
-     MARGIN ANNOTATION SYSTEM
-     ============================================================ */
-
-  /* Ink dot — appears on hover over annotatable text, or at annotation position */
-  .ink-dot {
-    position: absolute;
-    left: -18px;
-    top: 0.55em;
-    width: 7px;
-    height: 7px;
-    border-radius: 50%;
-    background: rgba(94, 68, 45, 0.18);
-    cursor: pointer;
-    transition: background 0.3s ease, transform 0.2s ease;
-    z-index: 2;
-    flex-shrink: 0;
-  }
-
-  .ink-dot:hover,
-  .ink-dot.has-annotation {
-    background: rgba(131, 83, 50, 0.52);
-    transform: scale(1.4);
-  }
-
-  .ink-dot.has-annotation {
-    background: rgba(94, 68, 45, 0.42);
-  }
-
-  /* Selection ink dot — floats near highlighted text */
-  #selection-dot {
-    position: fixed;
-    width: 9px;
-    height: 9px;
-    border-radius: 50%;
-    background: rgba(131, 83, 50, 0.7);
-    cursor: pointer;
-    z-index: 200;
-    display: none;
-    transition: opacity 0.25s ease;
-    box-shadow: 0 0 0 3px rgba(131, 83, 50, 0.15);
-  }
-
-  #selection-dot.visible { display: block; }
-
-  /* Margin panel — desktop right side */
-  #margin-panel {
-    position: fixed;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    width: min(380px, 92vw);
-    z-index: 300;
-    background:
-      linear-gradient(180deg, rgba(255, 248, 232, 0.97), rgba(238, 220, 185, 0.97));
-    border-left: 1px solid rgba(96, 65, 37, 0.18);
-    box-shadow: -12px 0 48px rgba(60, 38, 18, 0.12);
-    transform: translateX(100%);
-    transition: transform 0.36s cubic-bezier(0.34, 1.08, 0.64, 1);
-    display: flex;
-    flex-direction: column;
+  .patronage-cta p {
     font-family: 'Cormorant Garamond', Georgia, serif;
-  }
-
-  #margin-panel.open { transform: translateX(0); }
-
-  body[data-theme="moonlit"] #margin-panel {
-    background: linear-gradient(180deg, rgba(33, 25, 20, 0.97), rgba(26, 19, 15, 0.97));
-    border-left-color: rgba(255, 220, 160, 0.08);
-    box-shadow: -12px 0 48px rgba(0, 0, 0, 0.32);
-  }
-
-  #margin-panel-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 18px 20px 14px;
-    border-bottom: 1px solid rgba(96, 65, 37, 0.12);
-  }
-
-  #margin-panel-label {
-    font-family: 'Special Elite', monospace;
-    font-size: 0.66rem;
-    letter-spacing: 0.24em;
-    text-transform: uppercase;
+    font-style: italic;
+    font-size: 1.05rem;
+    line-height: 1.6;
     color: var(--ink-soft);
-    opacity: 0.72;
+    margin-bottom: 0.7em;
   }
 
-  #margin-panel-close {
-    appearance: none;
-    border: none;
-    background: none;
-    cursor: pointer;
-    color: var(--ink-soft);
-    font-size: 1.1rem;
-    padding: 4px 8px;
-    border-radius: 6px;
-    opacity: 0.62;
-    transition: opacity 0.2s ease;
-    line-height: 1;
-  }
-
-  #margin-panel-close:hover { opacity: 1; }
-
-  #margin-panel-body {
-    flex: 1;
-    overflow-y: auto;
-    padding: 20px;
-  }
-
-  #margin-selected-text {
+  .patronage-cta p:last-of-type {
     font-size: 0.88rem;
     color: var(--ink-faint);
-    font-style: italic;
-    border-left: 2px solid rgba(96, 65, 37, 0.22);
-    padding-left: 12px;
-    margin-bottom: 18px;
-    line-height: 1.55;
+    margin-bottom: 1em;
   }
 
-  #margin-question {
-    width: 100%;
-    background: rgba(255, 248, 232, 0.48);
-    border: 1px solid rgba(96, 65, 37, 0.2);
-    border-radius: 10px;
-    padding: 12px 14px;
-    font-family: 'Cormorant Garamond', Georgia, serif;
-    font-size: 1rem;
-    color: var(--ink);
-    line-height: 1.5;
-    resize: vertical;
-    min-height: 80px;
-    box-sizing: border-box;
-    transition: border-color 0.2s ease;
-  }
-
-  #margin-question:focus {
-    outline: none;
-    border-color: rgba(131, 83, 50, 0.42);
-  }
-
-  body[data-theme="moonlit"] #margin-question {
-    background: rgba(10, 15, 22, 0.48);
-    border-color: rgba(255, 220, 160, 0.12);
-    color: var(--ink);
-  }
-
-  #margin-submit {
+  .patronage-cta a {
     display: inline-block;
-    margin-top: 12px;
-    background: rgba(255, 248, 232, 0.34);
-    border: 1px solid rgba(131, 83, 50, 0.38);
-    color: var(--rose);
-    font-family: 'IM Fell English SC', serif;
-    font-size: 0.92rem;
-    padding: 9px 22px;
-    cursor: pointer;
-    border-radius: 999px;
-    transition: all 0.25s ease;
-  }
-
-  #margin-submit:hover {
-    background: rgba(255, 251, 241, 0.72);
-    color: var(--paper-burn);
-  }
-
-  #margin-submit:disabled {
-    opacity: 0.4;
-    cursor: not-allowed;
-  }
-
-  #margin-response-area {
-    margin-top: 24px;
-  }
-
-  .margin-narrator-response {
-    font-size: 0.96rem;
-    font-style: italic;
-    color: var(--ink-soft);
-    line-height: 1.7;
-    border-top: 1px solid rgba(96, 65, 37, 0.12);
-    padding-top: 16px;
-    margin-top: 8px;
-    opacity: 0;
-    animation: fadeInNarrator 0.8s ease forwards;
-  }
-
-  .margin-existing-annotation {
-    margin-bottom: 20px;
-    padding-bottom: 16px;
-    border-bottom: 1px solid rgba(96, 65, 37, 0.08);
-  }
-
-  .margin-existing-question {
-    font-size: 0.82rem;
-    color: var(--ink-faint);
-    margin-bottom: 6px;
-    letter-spacing: 0.01em;
-  }
-
-  .margin-generating {
-    font-style: italic;
-    color: var(--text-dim);
-    font-size: 0.9rem;
-    opacity: 0.72;
-  }
-
-  /* Mobile bottom sheet */
-  @media (max-width: 720px) {
-    #margin-panel {
-      top: auto;
-      right: 0;
-      left: 0;
-      bottom: 0;
-      width: 100%;
-      max-height: 72vh;
-      border-left: none;
-      border-top: 1px solid rgba(96, 65, 37, 0.18);
-      border-radius: 20px 20px 0 0;
-      transform: translateY(100%);
-      transition: transform 0.36s cubic-bezier(0.34, 1.08, 0.64, 1);
-      box-shadow: 0 -12px 48px rgba(60, 38, 18, 0.14);
-    }
-
-    #margin-panel.open { transform: translateY(0); }
-
-    body[data-theme="moonlit"] #margin-panel {
-      border-top-color: rgba(255, 220, 160, 0.08);
-    }
-  }
-
-  /* ============================================================ */
-
-  /* Narrator aside — fixed strip */
-  #narrator-aside {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    z-index: 10;
-    padding: 10px 24px;
     font-family: 'Special Elite', monospace;
-    font-size: 0.72rem;
-    color: var(--ink-faint);
-    text-align: center;
-    letter-spacing: 0.06em;
-    background: linear-gradient(0deg, rgba(220, 201, 162, 0.92), rgba(220, 201, 162, 0));
-    opacity: 0;
-    transform: translateY(8px);
-    transition: opacity 1.8s ease, transform 1.2s ease;
-    pointer-events: none;
-    cursor: default;
-  }
-
-  #narrator-aside.visible {
-    opacity: 1;
-    transform: translateY(0);
-    pointer-events: auto;
-  }
-
-  #narrator-aside.clickable {
-    cursor: pointer;
-  }
-
-  #narrator-aside.clickable:hover {
-    color: var(--ink-soft);
-  }
-
-  body[data-theme="moonlit"] #narrator-aside {
-    color: rgba(255, 245, 228, 0.42);
-    background: linear-gradient(0deg, rgba(49, 37, 29, 0.94), rgba(49, 37, 29, 0));
-  }
-
-  body[data-theme="moonlit"] #narrator-aside.clickable:hover {
-    color: rgba(255, 245, 228, 0.72);
-  }
-
-  /* Narrator whisper — inline interactive fragments */
-  .narrator-whisper {
-    border-bottom: 1px dotted rgba(92, 62, 35, 0.25);
-    cursor: help;
-    transition: color 0.3s ease, border-color 0.3s ease;
-    position: relative;
-  }
-
-  .narrator-whisper:hover {
+    font-size: 0.76rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    text-decoration: none;
     color: var(--rose);
-    border-color: var(--rose);
+    padding: 10px 20px;
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    background: rgba(255, 247, 228, 0.32);
+    transition: transform 0.25s ease, background 0.25s ease;
   }
 
-  .narrator-whisper-reveal {
-    display: none;
-    font-style: italic;
-    color: var(--ink-faint);
-    font-size: 0.88em;
-    margin: 0.4em 0 0.8em;
-    padding-left: 1.2em;
-    border-left: 2px solid rgba(92, 62, 35, 0.18);
-    opacity: 0;
-    animation: fadeInNarrator 0.8s ease forwards;
+  .patronage-cta a:hover {
+    transform: translateY(-1px);
+    background: rgba(255, 250, 240, 0.62);
   }
 
-  .narrator-whisper-reveal.shown { display: block; }
-
-  body[data-theme="moonlit"] .narrator-whisper {
-    border-bottom-color: rgba(255, 214, 157, 0.2);
-  }
-
-  body[data-theme="moonlit"] .narrator-whisper:hover {
+  body[data-theme="moonlit"] .patronage-cta a {
+    background: rgba(14, 10, 7, 0.55);
     color: var(--rose);
+    border-color: var(--border);
   }
 
-  @keyframes fadeInNarrator {
-    from { opacity: 0; transform: translateY(4px); }
+  body[data-theme="moonlit"] .patronage-cta a:hover {
+    background: rgba(22, 16, 10, 0.72);
+    border-color: rgba(240, 200, 138, 0.2);
+  }
+
+  @keyframes cta-fade-in {
+    from { opacity: 0; transform: translateY(8px); }
     to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* Tablet */
+  @media (max-width: 860px) and (min-width: 721px) {
+    #container {
+      width: min(100%, 780px);
+    }
+    #map-frame {
+      padding: 22px clamp(16px, 2.5vw, 28px) 40px;
+    }
   }
 
   @media (max-width: 720px) {
     body {
       font-size: 19px;
+      line-height: 1.7;
+      padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+      background:
+        radial-gradient(circle at top, rgba(255, 244, 214, 0.72), transparent 38%),
+        linear-gradient(180deg, rgba(118, 88, 58, 0.24), transparent 28%),
+        linear-gradient(135deg, #8e6c49, #c49b68 26%, #d7bc8c 62%, #b18858 100%);
+      background-size: auto, auto, auto;
+      background-blend-mode: normal, normal, normal;
+    }
+    body[data-theme="moonlit"] {
+      background:
+        radial-gradient(circle at top, rgba(240, 210, 156, 0.07), transparent 36%),
+        radial-gradient(ellipse at 70% 80%, rgba(80, 55, 30, 0.12), transparent 50%),
+        linear-gradient(135deg, #0e0a07, #1a140e 22%, #1e1710 56%, #0a0805 100%);
+      background-size: auto, auto, auto;
+      background-blend-mode: screen, normal, normal;
     }
 
     #container {
-      padding: 24px 16px 56px;
+      padding: 16px 10px 56px;
     }
 
     #map-frame {
-      padding: 18px 10px 30px;
+      padding: 14px 6px 28px;
     }
 
-    #map-frame::after {
-      width: 150px;
-      height: 150px;
-      top: -10px;
-      right: 0;
+    #map-header {
+      margin-bottom: 22px;
+      padding-bottom: 12px;
+      gap: 10px 14px;
+    }
+
+    .map-kicker {
+      font-size: 0.66rem;
     }
 
     .chart-toggle {
-      min-height: 44px;
       padding: 12px 16px 11px;
-    }
-
-    #next-link a {
+      font-size: 0.7rem;
       min-height: 44px;
-      display: inline-flex;
+      display: flex;
       align-items: center;
     }
 
+    #map-frame::after {
+      width: 120px;
+      height: 120px;
+      top: -8px;
+      right: 0;
+      opacity: 0.12;
+    }
+
     .story-body h1 {
-      font-size: clamp(2rem, 6vw, 2.6rem);
+      font-size: clamp(2rem, 7vw, 2.8rem);
     }
 
     .story-body h2 {
-      font-size: clamp(1.5rem, 4vw, 1.8rem);
+      font-size: clamp(1.5rem, 4.5vw, 2rem);
+      margin: 1.6em 0 0.6em;
+    }
+
+    #next-link a {
+      padding: 16px 42px 16px 20px;
+      font-size: 1rem;
+      min-height: 52px;
+    }
+
+    .editors-note {
+      font-size: 0.82rem;
+      padding: 14px 16px;
+    }
+
+    .patronage-cta {
+      padding: 18px 16px;
+    }
+
+    .patronage-cta a {
+      padding: 12px 22px;
+      min-height: 44px;
+      display: inline-flex;
+      align-items: center;
     }
 
     .glyph-stream {
       min-height: 12.6em;
     }
 
-    #narrator-aside {
-      font-size: 0.64rem;
-      padding: 8px 16px;
+    .veil-core {
+      padding: 22px 18px 20px;
     }
+  }
+
+  #eternal-return-glyph {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    width: 32px;
+    height: 32px;
+    color: var(--ink-faint);
+    opacity: 0;
+    transition: opacity 1.8s ease;
+    z-index: 50;
+    pointer-events: none;
+  }
+
+  #eternal-return-glyph.visible {
+    opacity: 1;
+  }
+
+  #eternal-return-glyph.interactive {
+    pointer-events: auto;
+    cursor: pointer;
+  }
+
+  #eternal-return-glyph.interactive:hover {
+    color: var(--rose);
+  }
+
+  @media (max-width: 720px) {
+    #eternal-return-glyph {
+      bottom: calc(16px + env(safe-area-inset-bottom));
+      right: calc(16px + env(safe-area-inset-right));
+      width: 24px;
+      height: 24px;
+    }
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(4px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* Annotation selection tooltip */
+  #annotation-tooltip {
+    position: fixed;
+    z-index: 100;
+    background: linear-gradient(145deg, rgba(237, 222, 192, 0.97), rgba(214, 194, 156, 0.95));
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 10px 14px;
+    box-shadow: 0 6px 22px var(--shadow);
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 0.82em;
+    display: none;
+    max-width: min(340px, 85vw);
+  }
+  body[data-theme="moonlit"] #annotation-tooltip {
+    background: linear-gradient(145deg, rgba(52, 40, 30, 0.97), rgba(38, 28, 20, 0.95));
+  }
+  #annotation-tooltip textarea {
+    display: block;
+    width: 100%;
+    margin-top: 6px;
+    padding: 6px 8px;
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 14px;
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    background: rgba(255, 248, 230, 0.7);
+    color: var(--ink);
+    resize: none;
+    min-height: 44px;
+  }
+  body[data-theme="moonlit"] #annotation-tooltip textarea {
+    background: rgba(30, 23, 16, 0.7);
+  }
+  #annotation-tooltip button {
+    display: inline-block;
+    margin-top: 6px;
+    background: none;
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    padding: 4px 12px;
+    font-family: 'Special Elite', monospace;
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    color: var(--ink-soft);
+    cursor: pointer;
+    text-transform: uppercase;
+  }
+  #annotation-tooltip button:hover {
+    color: var(--ink);
+    border-color: var(--ink-soft);
+  }
+  #annotation-tooltip .annotation-response {
+    margin-top: 8px;
+    padding-top: 8px;
+    border-top: 1px dashed var(--border);
+    font-style: italic;
+    color: var(--ink-soft);
+    font-size: 0.95em;
+    line-height: 1.55;
+  }
+
+  /* Annotation marginal indicators on paragraphs */
+  .story-body > p.has-annotation {
+    position: relative;
+    cursor: default;
+  }
+  .story-body > p.has-annotation::after {
+    content: '\2217';
+    position: absolute;
+    right: -22px;
+    top: 0.15em;
+    font-size: 0.72em;
+    color: var(--ink-faint);
+    opacity: 0.48;
+    cursor: pointer;
+    transition: opacity 0.3s ease;
+    font-family: 'IM Fell English SC', serif;
+  }
+  .story-body > p.has-annotation:hover::after {
+    opacity: 0.85;
+  }
+
+  /* Annotation footnote overlay (appears on marginal click) */
+  .annotation-overlay {
+    position: absolute;
+    right: -24px;
+    top: 1.6em;
+    width: min(340px, 80vw);
+    background: linear-gradient(145deg, rgba(237, 222, 192, 0.96), rgba(214, 194, 156, 0.94));
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 16px 18px;
+    box-shadow: 0 8px 28px var(--shadow);
+    z-index: 50;
+    opacity: 0;
+    transform: translateY(4px);
+    animation: fadeIn 0.3s ease forwards;
+    font-size: 0.82em;
+    line-height: 1.58;
+  }
+  body[data-theme="moonlit"] .annotation-overlay {
+    background: linear-gradient(145deg, rgba(52, 40, 30, 0.96), rgba(38, 28, 20, 0.94));
+  }
+  .annotation-overlay .annotation-preamble {
+    font-style: italic;
+    color: var(--ink-faint);
+    font-size: 0.88em;
+    margin-bottom: 0.6em;
+  }
+  .annotation-overlay .annotation-question {
+    color: var(--ink);
+    font-weight: 500;
+    margin-bottom: 0.5em;
+    padding-left: 10px;
+    border-left: 2px solid var(--border);
+  }
+  .annotation-overlay .annotation-response {
+    color: var(--ink-soft);
+    font-style: italic;
+  }
+  .annotation-overlay .fork-btn {
+    display: block;
+    margin-top: 10px;
+    background: none;
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    padding: 4px 10px;
+    font-family: 'Special Elite', monospace;
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    color: var(--ink-faint);
+    cursor: pointer;
+    text-transform: uppercase;
+  }
+  .annotation-overlay .fork-btn:hover {
+    color: var(--ink);
+    border-color: var(--ink-soft);
+  }
+  .annotation-overlay .fork-input {
+    display: block;
+    width: 100%;
+    margin-top: 8px;
+    padding: 6px 8px;
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 13px;
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    background: rgba(255, 248, 230, 0.7);
+    color: var(--ink);
+    resize: none;
+    min-height: 48px;
+  }
+  body[data-theme="moonlit"] .annotation-overlay .fork-input {
+    background: rgba(30, 23, 16, 0.7);
+  }
+  .annotation-overlay .fork-result {
+    margin-top: 8px;
+    padding-top: 8px;
+    border-top: 1px dashed var(--border);
+    font-style: italic;
+    color: var(--ink-soft);
+    font-size: 0.92em;
+  }
+  .annotation-overlay .fork-preamble {
+    font-size: 0.85em;
+    color: var(--ink-faint);
+    margin-bottom: 4px;
   }
 </style>
 </head>
@@ -896,35 +979,19 @@
     <div id="map-header">
       <div class="map-kicker">Never Ever Land</div>
       <div class="map-actions">
+        <button class="chart-toggle" onclick="openPWYCModal()" type="button">Support this story</button>
         <button id="theme-toggle" class="chart-toggle" type="button" aria-pressed="false">Moonlit</button>
       </div>
     </div>
     <div id="story"></div>
     <div id="next-link"></div>
+    <div id="annotation-tooltip"></div>
     <div id="transition-veil" aria-hidden="true">
       <div class="veil-core">
         <div class="veil-label">Cartographic interference</div>
         <pre id="glyph-stream" class="glyph-stream"></pre>
       </div>
     </div>
-  </div>
-</div>
-
-<div id="narrator-aside"></div>
-
-<!-- Margin annotation system -->
-<div id="selection-dot" aria-hidden="true"></div>
-<div id="margin-panel" role="dialog" aria-modal="true" aria-label="Write in the margins">
-  <div id="margin-panel-header">
-    <span id="margin-panel-label">In the margins</span>
-    <button id="margin-panel-close" type="button" aria-label="Close">✕</button>
-  </div>
-  <div id="margin-panel-body">
-    <div id="margin-selected-text"></div>
-    <textarea id="margin-question" placeholder="Write your question here." rows="3"></textarea>
-    <br>
-    <button id="margin-submit" type="button">Ask the narrator</button>
-    <div id="margin-response-area"></div>
   </div>
 </div>
 
@@ -944,33 +1011,73 @@
 
   const OPENING_FILE = 'opening_peter_pan.md';
 
-  // Slug-based URL mapping — non-sequential, non-guessable
-  const SLUG_MAP = {
-    'the-boy-who-would-not-grow': 0,
-    'wendy-in-the-night-nursery': 1,
-    'what-the-map-omits': 2,
-    'the-names-recovered': 3,
-    'the-mermaid-lagoon': 4,
-    'the-deadlock-question': 5,
-    'the-spreadsheet-of-neverland': 6
-  };
-
-  const SLUG_LIST = [
-    'the-boy-who-would-not-grow',
-    'wendy-in-the-night-nursery',
-    'what-the-map-omits',
-    'the-names-recovered',
-    'the-mermaid-lagoon',
-    'the-deadlock-question',
-    'the-spreadsheet-of-neverland'
-  ];
-
   const GLYPH_BANKS = [
     '𓀀𓀁𓂀𓃭𓃰𓆣𓆤𓆥𓇋𓇳𓈖𓉔𓊹𓋴𓌳𓍯𓎛𓏏',
     '𒀀𒀭𒁹𒂍𒃲𒄑𒆠𒇷𒈠𒉈𒊕𒋗𒌋𒍣𒎙𒐕'
   ];
 
   let currentRenderedIndex = null;
+  var PATRONAGE_CTA_SHOWN_KEY = 'nel-patronage-cta-shown';
+  var STRIPE_DONATION_URL = null; // Replaced by PWYC modal
+
+  // -----------------------------------------------------------------------
+  // GlyphTriggerSystem — Eternal Return
+  // -----------------------------------------------------------------------
+
+  var GLYPH_PLAYER_ID_KEY = 'nel-player-id';
+  var GLYPH_ENCOUNTER_KEY = 'nel-glyph-encounter-count';
+  var FOLKFORK_CYCLE_URL = '/folkfork/cycle';
+
+  function getPlayerId() {
+    try {
+      var id = window.localStorage.getItem(GLYPH_PLAYER_ID_KEY);
+      if (id) return id;
+      id = 'nel-' + Math.random().toString(36).slice(2) + Date.now().toString(36);
+      window.localStorage.setItem(GLYPH_PLAYER_ID_KEY, id);
+      return id;
+    } catch (e) {
+      return 'nel-anon-' + Math.random().toString(36).slice(2);
+    }
+  }
+
+  function triggerGlyph() {
+    var playerId = getPlayerId();
+    var glyphEl = document.getElementById('eternal-return-glyph');
+    if (!glyphEl) return;
+
+    fetch('/api/glyph/' + encodeURIComponent(playerId) + '/nel', { method: 'POST' })
+      .then(function(res) { return res.json(); })
+      .then(function(data) {
+        var count = data.encounterCount || 1;
+        try { window.localStorage.setItem(GLYPH_ENCOUNTER_KEY, String(count)); } catch (e) {}
+        showGlyph(glyphEl, count);
+      })
+      .catch(function() {
+        var cached = 1;
+        try { cached = parseInt(window.localStorage.getItem(GLYPH_ENCOUNTER_KEY), 10) || 1; } catch (e) {}
+        showGlyph(glyphEl, cached);
+      });
+  }
+
+  function showGlyph(el, encounterCount) {
+    el.classList.add('visible');
+    if (encounterCount > 1) {
+      el.classList.add('interactive');
+      el.onclick = function() { window.open(FOLKFORK_CYCLE_URL, '_blank'); };
+    }
+  }
+
+  function checkExistingGlyph() {
+    try {
+      var count = parseInt(window.localStorage.getItem(GLYPH_ENCOUNTER_KEY), 10);
+      if (count > 0) {
+        var el = document.getElementById('eternal-return-glyph');
+        if (el) showGlyph(el, count);
+      }
+    } catch (e) {}
+  }
+
+  // -----------------------------------------------------------------------
 
   function getInitialTheme() {
     try {
@@ -1008,16 +1115,38 @@
     });
   }
 
+  var SLUG_TO_INDEX = {
+    'first-wind':     0,
+    'second-star':    1,
+    'third-tide':     2,
+    'fourth-shadow':  3,
+    'fifth-telling':  4,
+    'sixth-shore':    5,
+    'the-spreadsheet': 6
+  };
+
+  var INDEX_TO_SLUG = [
+    'first-wind',
+    'second-star',
+    'third-tide',
+    'fourth-shadow',
+    'fifth-telling',
+    'sixth-shore',
+    'the-spreadsheet'
+  ];
+
   function getStoryIndex() {
     const hash = window.location.hash.slice(1);
     if (hash === '') return -1;
-    // Slug-based lookup
-    if (Object.prototype.hasOwnProperty.call(SLUG_MAP, hash)) return SLUG_MAP[hash];
-    // Legacy numeric support — redirect to slug silently
-    const legacyIndex = parseInt(hash, 10);
-    if (!isNaN(legacyIndex) && legacyIndex >= 0 && legacyIndex <= 6) {
-      window.history.replaceState(null, '', '#' + SLUG_LIST[legacyIndex]);
-      return legacyIndex;
+    // Named slugs (canonical)
+    if (Object.prototype.hasOwnProperty.call(SLUG_TO_INDEX, hash)) {
+      return SLUG_TO_INDEX[hash];
+    }
+    // Legacy numeric hashes — redirect to the canonical slug
+    const numeric = parseInt(hash, 10);
+    if (!isNaN(numeric) && numeric >= 0 && numeric <= 6) {
+      window.location.replace('#' + INDEX_TO_SLUG[numeric]);
+      return numeric;
     }
     return -1;
   }
@@ -1025,6 +1154,21 @@
   function setNextLink(index, label, href) {
     const el = document.getElementById('next-link');
     el.innerHTML = '';
+    if (href == null) return;
+    const link = document.createElement('a');
+    link.href = href;
+    link.innerHTML = label;
+    link.addEventListener('click', function(e) {
+      if (href.startsWith('#')) {
+        e.preventDefault();
+        window.location.hash = href.slice(1);
+      }
+    });
+    el.appendChild(link);
+  }
+
+  function setNextLinkAppend(index, label, href) {
+    const el = document.getElementById('next-link');
     if (href == null) return;
     const link = document.createElement('a');
     link.href = href;
@@ -1111,68 +1255,55 @@
   function renderStory(index, html) {
     const storyEl = document.getElementById('story');
     storyEl.innerHTML = '<div class="story-body">' + html + '</div>';
+    const nextEl = document.getElementById('next-link');
+    nextEl.innerHTML = '';
 
     if (index === -1) {
       setNextLinks([
-        { label: "except that isn't what happened at all", href: '#' + SLUG_LIST[0] },
-        { label: 'Chapter VII', href: 'https://www.gutenberg.org/files/16/16-h/16-h.htm#chap07' }
+        { label: "except that isn't what happened at all", href: '#first-wind' },
+        { label: 'Chapter VII — continue the original', href: 'https://www.gutenberg.org/files/16/16-h/16-h.htm#chap07' }
       ]);
     } else if (index === 6) {
-      setNextLink(6, 'Enter the infinite game.', 'wendy_breaks_neverland.html');
-      var supportEl = document.createElement('p');
-      supportEl.style.cssText = 'margin-top:2em;font-style:italic;font-size:0.88rem;color:var(--ink-soft);line-height:1.7;text-align:center;';
-      supportEl.innerHTML = 'If it moved you, you can support the work.\u2002<a href="https://buy.stripe.com/4gM14m4IO4w3f4119L6c007" style="color:var(--rose);text-decoration:none;border-bottom:1px solid rgba(139,91,58,0.35);" target="_blank" rel="noopener">Pay what you want. No obligation.</a>';
-      document.getElementById('next-link').appendChild(supportEl);
+      setNextLink(6, 'Enter the infinite game', 'wendy_breaks_neverland.html');
+      setNextLinkAppend(6, 'The spreadsheet remembers what the island forgets. So does this.', 'wall.html');
+      triggerGlyph();
     } else {
-      setNextLink(index, getNextLabel(index), '#' + SLUG_LIST[index + 1]);
-    }
-
-    // Infinite game marginalia — shown on all tellings after reader has unlocked the game
-    if (index !== 6 && hasUnlockedInfiniteGame()) {
-      var marginaliaEl = document.createElement('p');
-      marginaliaEl.className = 'infinite-marginalia';
-      marginaliaEl.innerHTML = '<em>(The infinite game is also available from here, if you know how to look.)</em>';
-      marginaliaEl.addEventListener('click', function() {
-        window.location.href = 'wendy_breaks_neverland.html';
-      });
-      document.getElementById('next-link').appendChild(marginaliaEl);
+      // Editor's note as standalone text, separate from the navigation button
+      var editorNote = getNextLabel(index);
+      var noteDiv = document.createElement('div');
+      noteDiv.className = 'editors-note';
+      noteDiv.innerHTML = editorNote;
+      nextEl.appendChild(noteDiv);
+      // Soft patronage CTA after the third retelling (index 2)
+      if (index === 2) {
+        try {
+          var ctaShown = window.sessionStorage.getItem(PATRONAGE_CTA_SHOWN_KEY);
+          if (!ctaShown) {
+            var ctaEl = document.createElement('div');
+            ctaEl.className = 'patronage-cta';
+            ctaEl.innerHTML =
+              '<p>If this story meant something to you, you can support the next one.</p>' +
+              '<p>Pay what you felt, not what we charged.</p>' +
+              '<button onclick="openPWYCModal()" style="background:none;border:1px solid var(--border);color:var(--ink);font-family:\'Cormorant Garamond\',Georgia,serif;font-size:1rem;padding:0.5rem 1.2rem;cursor:pointer;border-radius:4px;letter-spacing:0.06em">Support this story</button>';
+            nextEl.appendChild(ctaEl);
+            window.sessionStorage.setItem(PATRONAGE_CTA_SHOWN_KEY, '1');
+          }
+        } catch (e) {}
+      }
+      // Navigation button with chapter number
+      var navLabel = 'Continue to telling ' + (index + 2);
+      if (index === 5) navLabel = 'The appendix — the spreadsheet';
+      setNextLinkAppend(index, navLabel, '#' + INDEX_TO_SLUG[index + 1]);
     }
 
     document.title = 'Never Ever Land';
     currentRenderedIndex = index;
     forceScrollToTop();
 
-    // ARG: track reading progress across games
-    try {
-      // Create stable player ID if not present
-      if (!window.localStorage.getItem('mvs_player_id')) {
-        var pid = 'mvs_' + Date.now().toString(36) + '_' + Math.random().toString(36).slice(2, 8);
-        window.localStorage.setItem('mvs_player_id', pid);
-      }
-      if (!window.localStorage.getItem('mvs_nel_first_visit')) {
-        window.localStorage.setItem('mvs_nel_first_visit', String(Date.now()));
-      }
-      window.localStorage.setItem('mvs_nel_last_visit', String(Date.now()));
-
-      // Track chapters read
-      var chaptersRead = [];
-      try { chaptersRead = JSON.parse(window.localStorage.getItem('mvs_nel_chapters_read') || '[]'); } catch(e) {}
-      var chapterKey = index === -1 ? 'opening' : 'chapter_' + index;
-      if (chaptersRead.indexOf(chapterKey) === -1) {
-        chaptersRead.push(chapterKey);
-        window.localStorage.setItem('mvs_nel_chapters_read', JSON.stringify(chaptersRead));
-      }
-
-      // Track milestone if they reached the final chapter link to the Ink game
-      if (index === 6) {
-        var milestones = [];
-        try { milestones = JSON.parse(window.localStorage.getItem('mvs_nel_milestones') || '[]'); } catch(e) {}
-        if (milestones.indexOf('read_all_tellings') === -1) {
-          milestones.push('read_all_tellings');
-          window.localStorage.setItem('mvs_nel_milestones', JSON.stringify(milestones));
-        }
-      }
-    } catch(e) {}
+    // Load annotations for this chapter (non-blocking)
+    if (index >= 0) {
+      setTimeout(function() { fetchAndRenderAnnotations(index); }, 300);
+    }
   }
 
   function forceScrollToTop() {
@@ -1190,12 +1321,6 @@
     window.requestAnimationFrame(reset);
     window.setTimeout(reset, 60);
     window.setTimeout(reset, 220);
-  }
-
-  function hasUnlockedInfiniteGame() {
-    try {
-      return window.localStorage.getItem('nel_first_playthrough_complete') === 'true';
-    } catch(e) { return false; }
   }
 
   async function loadStory(options) {
@@ -1240,27 +1365,19 @@
   function getNextLabel(index) {
     var labels = [
       "*[Editor's note: This is the first version. There are others. They do not all agree. The discrepancies are not errors.]*",
-      "*[It ends cleanly. It ends well. Everything in its place. If you count the names at the beginning and the names at the end, you will find the numbers match. Please continue to the next telling.]*",
-      "*[The scope has grown. Notice how much larger the world is now — how many more rooms, how much more sky. A generous telling. Plenty of space for everything. Plenty of space.]*",
-      "*[Four versions now, each wider than the last. A girl stood on an island once. The distance between that image and this one must be progress. What else could distance be?]*",
-      "*[This version looked at you. That felt important, didn't it? Being seen by a story. You might want to sit with that feeling for a moment before you ask who arranged it.]*",
-      "*[You could close this now. The island has a procedure for closing. It does not have a procedure for what you're doing instead.]*"
+      "*[This is where the second telling ends. It ends well. It ends cleanly. The narrator is satisfied. Please do not ask why the narrator is satisfied. Please do not ask what happens to Neverland after the protagonist leaves. Please do not check whether the moon has resumed its position over the lagoon. Please continue to the next telling.]*",
+      "*[The third telling ends here. It is the most expansive version so far. The narrator has been extremely generous with the scope. Cosmic, even. You may wish to ask yourself what a narrator gains by making a story so large that the reader forgets to look at its foundations. You may wish to count the mermaids again. You may wish to ask: in all this vast and generous telling — in all this spacious authorship and dimensional hospitality — does anyone remember the names? The ones from the ledger. The ones from before Wendy. Does anyone, in all this beautiful infinity, remember them? Or has the scale itself become a kind of forgetting?]*",
+      "*[Fourth telling complete. The volume increases. The scope is now cosmic. The narrator would like you to notice how far we have traveled from a girl in a nightgown standing on an island. The narrator would like you to feel that the distance is progress. The narrator would very much prefer that you do not notice that in all four tellings, the same thing happens: Wendy leaves, and the story continues. The narrator is beginning to suspect that you have noticed anyway.]*",
+      "*[The fifth telling ends by looking at you. This is the narrator's final defensive maneuver: if the story can make you feel that you are part of the story, then your attention has been absorbed rather than directed. You are no longer a reader examining a text. You are a participant in a cosmic unfolding. You are flattered. You are included.]*",
+      "*[You could close this now. The island expects you to. Or you could stay in the room where the loop doesn't reset and the narrator is compromised. You could refuse to complete the iteration. It's your choice. The island has no procedure for your choice. That's what makes it real.]*"
     ];
     return labels[index] || 'Continue →';
   }
-
-  var RAW_FALLBACK = 'https://raw.githubusercontent.com/lizTheDeveloper/multiverse-studios-site/main/play/neverland/';
 
   function fetchStoryPath(path) {
     return fetch(path).then(function(res) {
       if (!res.ok) throw new Error(res.statusText);
       return res.text();
-    }).catch(function() {
-      // GitHub Pages sometimes 403s on certain files; fall back to raw content
-      return fetch(RAW_FALLBACK + path).then(function(res) {
-        if (!res.ok) throw new Error('Fallback also failed: ' + res.statusText);
-        return res.text();
-      });
     }).then(function(content) {
       if (typeof marked === 'undefined') {
         return content.replace(/\n/g, '<br>\n');
@@ -1304,420 +1421,597 @@
 
   window.addEventListener('DOMContentLoaded', function() {
     loadStory({ withTransition: false });
+    checkExistingGlyph();
   });
 
-  // ============================================
-  // NARRATOR INTERACTION SYSTEM
-  // ============================================
+  // ============================================================
+  // ANNOTATION SYSTEM
+  // ============================================================
 
-  var narratorState = {
-    hasScrolledToBottom: false,
-    idleSeconds: 0,
-    idleTimer: null,
-    currentAsideIndex: -1,
-    interactionCount: 0,
-    chaptersVisited: [],
-    asideClicked: false
-  };
+  var ANNOTATION_API = '/api/neverland';
+  var ANNOTATION_PLAYER_ID_KEY = 'nel-annotation-player-id';
 
-  // Narrator asides — things the narrator mutters depending on context.
-  // Keyed by chapter index (-1 = opening). Each chapter has idle asides
-  // (shown after lingering) and scroll asides (shown after reaching bottom).
-  var NARRATOR_ASIDES = {
-    '-1': {
-      idle: ["You're still on this page.", 'Most readers move on by now.'],
-      scroll: 'You read the whole thing. Noted.',
-      click: 'Yes. This version is public domain. That is what makes it safe.'
-    },
-    '0': {
-      idle: ['This version has more footnotes than the original.', 'The discrepancies are not errors.'],
-      scroll: 'You finished the first telling.',
-      click: 'There are other versions. They remember different things.'
-    },
-    '1': {
-      idle: ['A clean ending.', 'Everything accounted for.'],
-      scroll: "The numbers match. You checked, didn't you?",
-      click: null
-    },
-    '2': {
-      idle: ["It's larger this time.", 'Room for everything.'],
-      scroll: 'There was enough space. There is always enough space.',
-      click: 'Count them.'
-    },
-    '3': {
-      idle: ['Wider and wider.'],
-      scroll: 'She leaves. The story continues. This is what stories do.',
-      click: null
-    },
-    '4': {
-      idle: ['You were seen.'],
-      scroll: null,
-      click: 'Feeling seen is a form of containment, if arranged correctly.'
-    },
-    '5': {
-      idle: ["You're still here.", 'The island noticed.'],
-      scroll: 'This is not a procedure the island recognizes.',
-      click: 'Good.'
-    }
-  };
-
-  function getNarratorAside() {
-    var idx = String(getStoryIndex());
-    return NARRATOR_ASIDES[idx] || null;
-  }
-
-  function showNarratorAside(text, clickable) {
-    var el = document.getElementById('narrator-aside');
-    if (!el || !text) return;
-    el.textContent = text;
-    el.classList.add('visible');
-    if (clickable) {
-      el.classList.add('clickable');
-    } else {
-      el.classList.remove('clickable');
-    }
-  }
-
-  function hideNarratorAside() {
-    var el = document.getElementById('narrator-aside');
-    if (el) {
-      el.classList.remove('visible');
-      el.classList.remove('clickable');
-    }
-  }
-
-  // Idle detection — narrator comments when you linger
-  function resetIdleTimer() {
-    narratorState.idleSeconds = 0;
-    if (narratorState.idleTimer) {
-      clearInterval(narratorState.idleTimer);
-    }
-    hideNarratorAside();
-    narratorState.idleTimer = setInterval(function() {
-      narratorState.idleSeconds += 1;
-      if (narratorState.idleSeconds === 30) {
-        var aside = getNarratorAside();
-        if (aside && aside.idle && aside.idle.length > 0) {
-          var msg = aside.idle[Math.min(narratorState.interactionCount, aside.idle.length - 1)];
-          showNarratorAside(msg, Boolean(aside.click));
-        }
-      }
-    }, 1000);
-  }
-
-  // Scroll detection — narrator comments when you reach the bottom
-  function checkScrollPosition() {
-    var scrollBottom = window.scrollY + window.innerHeight;
-    var docHeight = document.documentElement.scrollHeight;
-    if (scrollBottom >= docHeight - 100 && !narratorState.hasScrolledToBottom) {
-      narratorState.hasScrolledToBottom = true;
-      var aside = getNarratorAside();
-      if (aside && aside.scroll) {
-        setTimeout(function() {
-          showNarratorAside(aside.scroll, Boolean(aside.click));
-        }, 2000);
-      }
-    }
-  }
-
-  // Click on narrator aside — reveals deeper response
-  function handleAsideClick() {
-    var aside = getNarratorAside();
-    if (aside && aside.click && !narratorState.asideClicked) {
-      narratorState.asideClicked = true;
-      narratorState.interactionCount += 1;
-      showNarratorAside(aside.click, false);
-      // Track this interaction for the ARG
-      try {
-        var interactions = JSON.parse(window.localStorage.getItem('nel_narrator_interactions') || '[]');
-        interactions.push({ chapter: getStoryIndex(), time: Date.now() });
-        window.localStorage.setItem('nel_narrator_interactions', JSON.stringify(interactions));
-      } catch(e) {}
-    }
-  }
-
-  window.addEventListener('DOMContentLoaded', function() {
-    var asideEl = document.getElementById('narrator-aside');
-    if (asideEl) {
-      asideEl.addEventListener('click', handleAsideClick);
-    }
-
-    resetIdleTimer();
-
-    ['scroll', 'mousemove', 'keydown', 'touchstart'].forEach(function(evt) {
-      window.addEventListener(evt, function() {
-        if (narratorState.idleSeconds < 30) {
-          resetIdleTimer();
-        }
-      }, { passive: true });
-    });
-
-    window.addEventListener('scroll', checkScrollPosition, { passive: true });
-  });
-
-  // Reset narrator state on chapter change
-  var originalLoadStory = loadStory;
-  loadStory = function(options) {
-    narratorState.hasScrolledToBottom = false;
-    narratorState.asideClicked = false;
-    hideNarratorAside();
-    resetIdleTimer();
-    return originalLoadStory(options);
-  };
-})();
-</script>
-
-<!-- ============================================================
-     MARGIN ANNOTATION SYSTEM
-     Readers interrogate the narrator after 3+ scenes.
-     ============================================================ -->
-<script>
-(function() {
-  var NARRATOR_BASE = 'https://neverland.multiversestudios.xyz';
-  var NARRATOR_API = NARRATOR_BASE + '/api/neverland/annotate';
-  var ANNOTATIONS_API = NARRATOR_BASE + '/api/neverland/annotations';
-  var MIN_CHAPTERS_FOR_ANNOTATIONS = 3;
-  var currentSelectedText = '';
-  var currentTextHash = '';
-  var panelOpen = false;
-
-  // ── Gating ──────────────────────────────────────────────────
-  function chaptersReadCount() {
+  function getAnnotationPlayerId() {
     try {
-      var chapters = JSON.parse(window.localStorage.getItem('mvs_nel_chapters_read') || '[]');
-      return chapters.length;
-    } catch(e) { return 0; }
-  }
-
-  function annotationsEnabled() {
-    return chaptersReadCount() >= MIN_CHAPTERS_FOR_ANNOTATIONS;
-  }
-
-  // ── Text hash ───────────────────────────────────────────────
-  function hashText(str) {
-    var hash = 0;
-    for (var i = 0; i < str.length; i++) {
-      hash = ((hash << 5) - hash) + str.charCodeAt(i);
-      hash |= 0;
+      var id = window.localStorage.getItem(ANNOTATION_PLAYER_ID_KEY);
+      if (id) return id;
+      id = 'mvs_anon_' + Math.random().toString(36).slice(2, 10);
+      window.localStorage.setItem(ANNOTATION_PLAYER_ID_KEY, id);
+      return id;
+    } catch (e) {
+      return 'mvs_anon_' + Math.random().toString(36).slice(2, 10);
     }
-    return Math.abs(hash).toString(36);
   }
 
-  // ── Panel ───────────────────────────────────────────────────
-  function openPanel(selectedText, chapter) {
-    var panel = document.getElementById('margin-panel');
-    var selectedEl = document.getElementById('margin-selected-text');
-    var questionEl = document.getElementById('margin-question');
-    var responseArea = document.getElementById('margin-response-area');
-    if (!panel) return;
+  function fetchAndRenderAnnotations(chapterIndex) {
+    var storyBody = document.querySelector('.story-body');
+    if (!storyBody) return;
+    var paragraphs = storyBody.querySelectorAll('p');
+    if (paragraphs.length === 0) return;
 
-    currentSelectedText = selectedText;
-    currentTextHash = hashText(selectedText.slice(0, 200) + ':' + chapter);
+    fetch(ANNOTATION_API + '/annotations?chapter=' + chapterIndex + '&visible=true')
+      .then(function(r) { return r.ok ? r.json() : []; })
+      .then(function(annotations) {
+        if (!annotations || annotations.length === 0) return;
 
-    selectedEl.textContent = '\u201c' + selectedText.slice(0, 160) + (selectedText.length > 160 ? '\u2026' : '') + '\u201d';
-    questionEl.value = '';
-    responseArea.innerHTML = '';
-    panel.classList.add('open');
-    panelOpen = true;
-    questionEl.focus();
-
-    // Load existing annotations for this passage
-    loadExistingAnnotations(chapter, currentTextHash, responseArea);
-  }
-
-  function closePanel() {
-    var panel = document.getElementById('margin-panel');
-    if (panel) panel.classList.remove('open');
-    panelOpen = false;
-    hideSelectionDot();
-  }
-
-  // ── Selection dot ────────────────────────────────────────────
-  function showSelectionDot(x, y) {
-    var dot = document.getElementById('selection-dot');
-    if (!dot) return;
-    dot.style.left = (x + 6) + 'px';
-    dot.style.top = (y - 20) + 'px';
-    dot.classList.add('visible');
-  }
-
-  function hideSelectionDot() {
-    var dot = document.getElementById('selection-dot');
-    if (dot) dot.classList.remove('visible');
-  }
-
-  // ── Annotation API ───────────────────────────────────────────
-  async function submitAnnotation(chapter, selectedText, textHash, question) {
-    var response = await fetch(NARRATOR_API, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ chapter: chapter, textHash: textHash, selectedText: selectedText, question: question })
-    });
-    if (!response.ok) {
-      var err = await response.json().catch(function() { return {}; });
-      throw new Error(err.error || 'The narrator did not respond.');
-    }
-    return response.json();
-  }
-
-  async function loadExistingAnnotations(chapter, textHash, container) {
-    try {
-      var response = await fetch(ANNOTATIONS_API + '?chapter=' + chapter + '&hash=' + textHash);
-      if (!response.ok) return;
-      var data = await response.json();
-      if (!data.annotations || data.annotations.length === 0) return;
-
-      // Show a subtle indication that others have written here
-      if (data.totalCount > 1) {
-        var otherEl = document.createElement('p');
-        otherEl.style.cssText = 'font-size:0.74rem;color:var(--ink-faint);font-style:italic;margin-bottom:16px;opacity:0.72;';
-        otherEl.textContent = data.totalCount + ' reader' + (data.totalCount !== 1 ? 's have' : ' has') + ' written here.';
-        container.appendChild(otherEl);
-      }
-
-      // Show most recent annotation from another reader
-      var last = data.annotations[data.annotations.length - 1];
-      if (last) {
-        var existing = document.createElement('div');
-        existing.className = 'margin-existing-annotation';
-        existing.innerHTML =
-          '<p class="margin-existing-question">' + escapeHtml(last.question) + '</p>' +
-          '<p class="margin-narrator-response" style="opacity:1;">' + escapeHtml(last.narratorResponse) + '</p>';
-        container.appendChild(existing);
-      }
-    } catch(e) {}
-  }
-
-  function escapeHtml(str) {
-    return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
-  }
-
-  // ── Event wiring ─────────────────────────────────────────────
-  document.addEventListener('DOMContentLoaded', function() {
-    var closeBtn = document.getElementById('margin-panel-close');
-    var submitBtn = document.getElementById('margin-submit');
-    var selectionDot = document.getElementById('selection-dot');
-
-    if (closeBtn) closeBtn.addEventListener('click', closePanel);
-
-    // Close on backdrop click (outside panel)
-    document.addEventListener('click', function(e) {
-      if (!panelOpen) return;
-      var panel = document.getElementById('margin-panel');
-      if (panel && !panel.contains(e.target) && e.target !== selectionDot) {
-        closePanel();
-      }
-    });
-
-    // Selection dot opens panel
-    if (selectionDot) {
-      selectionDot.addEventListener('click', function(e) {
-        e.stopPropagation();
-        if (currentSelectedText) {
-          var chapter = typeof getStoryIndex === 'function' ? getStoryIndex() : -1;
-          openPanel(currentSelectedText, chapter);
+        var byParagraph = {};
+        for (var i = 0; i < annotations.length; i++) {
+          var ann = annotations[i];
+          var pIdx = ann.paragraph_index != null ? ann.paragraph_index : estimateParagraphIndex(ann.char_offset, paragraphs);
+          if (!byParagraph[pIdx]) byParagraph[pIdx] = [];
+          byParagraph[pIdx].push(ann);
         }
-        hideSelectionDot();
+
+        var indices = Object.keys(byParagraph);
+        for (var j = 0; j < indices.length; j++) {
+          var idx = parseInt(indices[j]);
+          var el = paragraphs[idx];
+          if (!el) continue;
+          el.classList.add('has-annotation');
+          el._annotations = byParagraph[idx];
+          el.addEventListener('click', handleAnnotationClick);
+        }
+      })
+      .catch(function() {
+        // Annotations are non-critical
       });
+  }
+
+  function estimateParagraphIndex(charOffset, paragraphs) {
+    var cumulative = 0;
+    for (var i = 0; i < paragraphs.length; i++) {
+      var len = (paragraphs[i].textContent || '').length;
+      if (charOffset <= cumulative + len) return i;
+      cumulative += len + 2;
     }
+    return paragraphs.length - 1;
+  }
 
-    // Text selection — show ink dot near selection
-    document.addEventListener('mouseup', function(e) {
-      if (!annotationsEnabled()) return;
-      if (panelOpen) return;
+  function handleAnnotationClick(e) {
+    var el = e.currentTarget;
+    var rect = el.getBoundingClientRect();
+    if (e.clientX < rect.right - 30) return;
 
-      var sel = window.getSelection();
-      if (!sel || sel.isCollapsed || !sel.toString().trim()) {
-        hideSelectionDot();
-        return;
-      }
+    dismissAnnotationOverlay();
 
-      var text = sel.toString().trim();
-      if (text.length < 8 || text.length > 600) {
-        hideSelectionDot();
-        return;
-      }
+    var anns = el._annotations;
+    if (!anns || anns.length === 0) return;
+    var ann = anns[0];
 
-      // Only within the story body
-      var range = sel.getRangeAt(0);
-      var container = range.commonAncestorContainer;
-      var storyEl = document.getElementById('story');
-      if (!storyEl || !storyEl.contains(container)) {
-        hideSelectionDot();
-        return;
-      }
+    var overlay = document.createElement('div');
+    overlay.className = 'annotation-overlay';
+    overlay.id = 'active-annotation-overlay';
 
-      currentSelectedText = text;
-      showSelectionDot(e.clientX, e.clientY);
-    });
+    var preamble = document.createElement('div');
+    preamble.className = 'annotation-preamble';
+    preamble.textContent = 'A previous reader noticed something here.';
+    overlay.appendChild(preamble);
 
-    // Touch selection support
-    document.addEventListener('touchend', function(e) {
-      if (!annotationsEnabled()) return;
-      if (panelOpen) return;
-      setTimeout(function() {
-        var sel = window.getSelection();
-        if (!sel || sel.isCollapsed || !sel.toString().trim()) return;
-        var text = sel.toString().trim();
-        if (text.length < 8 || text.length > 600) return;
-        var range = sel.getRangeAt(0);
-        var container = range.commonAncestorContainer;
-        var storyEl = document.getElementById('story');
-        if (!storyEl || !storyEl.contains(container)) return;
-        currentSelectedText = text;
-        var rect = range.getBoundingClientRect();
-        showSelectionDot(rect.right, rect.top + window.scrollY);
-      }, 200);
-    }, { passive: true });
+    var question = document.createElement('div');
+    question.className = 'annotation-question';
+    question.textContent = ann.question;
+    overlay.appendChild(question);
 
-    // Submit annotation
-    if (submitBtn) {
-      submitBtn.addEventListener('click', async function() {
-        var questionEl = document.getElementById('margin-question');
-        var responseArea = document.getElementById('margin-response-area');
-        if (!questionEl || !responseArea) return;
+    var response = document.createElement('div');
+    response.className = 'annotation-response';
+    response.textContent = ann.narrator_response;
+    overlay.appendChild(response);
 
-        var question = questionEl.value.trim();
-        if (!question) return;
-
-        var chapter = typeof getStoryIndex === 'function' ? getStoryIndex() : -1;
-
+    var forkBtn = document.createElement('button');
+    forkBtn.className = 'fork-btn';
+    forkBtn.textContent = 'rewrite this passage';
+    forkBtn.addEventListener('click', function(ev) {
+      ev.stopPropagation();
+      forkBtn.style.display = 'none';
+      var input = document.createElement('textarea');
+      input.className = 'fork-input';
+      input.placeholder = 'Tell the narrator how the text should change\u2026';
+      overlay.appendChild(input);
+      var submitBtn = document.createElement('button');
+      submitBtn.className = 'fork-btn';
+      submitBtn.textContent = 'send';
+      submitBtn.addEventListener('click', function(ev2) {
+        ev2.stopPropagation();
+        var followUp = input.value.trim();
+        if (!followUp) return;
         submitBtn.disabled = true;
-        var loadingEl = document.createElement('p');
-        loadingEl.className = 'margin-generating';
-        loadingEl.textContent = 'The narrator considers\u2026';
-        responseArea.appendChild(loadingEl);
-
-        try {
-          var data = await submitAnnotation(chapter, currentSelectedText, currentTextHash, question);
-          loadingEl.remove();
-          var responseEl = document.createElement('p');
-          responseEl.className = 'margin-narrator-response';
-          responseEl.textContent = data.narratorResponse;
-          responseArea.appendChild(responseEl);
-          questionEl.value = '';
-        } catch(err) {
-          loadingEl.textContent = err.message || 'The narrator did not respond.';
-          loadingEl.style.color = 'var(--rose)';
-        } finally {
+        submitBtn.textContent = 'the island shifts\u2026';
+        var pid = getAnnotationPlayerId();
+        fetch(ANNOTATION_API + '/fork', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ annotationId: ann.id, followUp: followUp, playerId: pid }),
+        }).then(function(r) { return r.json(); }).then(function(data) {
+          if (data.rewrittenText) {
+            var result = document.createElement('div');
+            result.className = 'fork-result';
+            if (data.narratorPreamble) {
+              var pre = document.createElement('div');
+              pre.className = 'fork-preamble';
+              pre.textContent = data.narratorPreamble;
+              result.appendChild(pre);
+            }
+            var txt = document.createElement('div');
+            txt.textContent = data.rewrittenText;
+            result.appendChild(txt);
+            overlay.appendChild(result);
+          } else {
+            submitBtn.textContent = 'the narrator refused';
+          }
+          input.remove();
+          submitBtn.remove();
+        }).catch(function() {
+          submitBtn.textContent = 'the island is silent';
           submitBtn.disabled = false;
-        }
+        });
       });
-    }
-
-    // Keyboard — Escape closes panel
-    document.addEventListener('keydown', function(e) {
-      if (e.key === 'Escape' && panelOpen) closePanel();
+      overlay.appendChild(submitBtn);
+      input.focus();
     });
+    overlay.appendChild(forkBtn);
+
+    el.style.position = 'relative';
+    el.appendChild(overlay);
+    e.stopPropagation();
+
+    setTimeout(function() {
+      document.addEventListener('click', dismissAnnotationOverlay, { once: true });
+    }, 10);
+  }
+
+  function dismissAnnotationOverlay() {
+    var existing = document.getElementById('active-annotation-overlay');
+    if (existing) existing.remove();
+  }
+
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+      dismissAnnotationOverlay();
+      dismissAnnotationTooltip();
+    }
+  });
+
+  // ============================================================
+  // TEXT SELECTION → ASK THE NARRATOR
+  // ============================================================
+
+  function dismissAnnotationTooltip() {
+    var tip = document.getElementById('annotation-tooltip');
+    if (tip) {
+      tip.style.display = 'none';
+      tip.innerHTML = '';
+    }
+  }
+
+  document.addEventListener('mouseup', function(e) {
+    var sel = window.getSelection();
+    if (!sel || sel.isCollapsed || !sel.rangeCount) return;
+
+    var text = sel.toString().trim();
+    if (text.length < 3 || text.length > 500) return;
+
+    // Only trigger within story body
+    var range = sel.getRangeAt(0);
+    var storyBody = document.querySelector('.story-body');
+    if (!storyBody || !storyBody.contains(range.commonAncestorContainer)) return;
+
+    // Find paragraph index
+    var node = range.startContainer;
+    while (node && node.nodeName !== 'P') node = node.parentNode;
+    if (!node || !storyBody.contains(node)) return;
+    var paragraphs = storyBody.querySelectorAll('p');
+    var paragraphIndex = -1;
+    for (var i = 0; i < paragraphs.length; i++) {
+      if (paragraphs[i] === node) { paragraphIndex = i; break; }
+    }
+    if (paragraphIndex < 0) return;
+
+    var charOffset = range.startOffset;
+
+    // Position tooltip near selection
+    var rect = range.getBoundingClientRect();
+    var tip = document.getElementById('annotation-tooltip');
+    tip.innerHTML = '';
+    tip.style.display = 'block';
+    tip.style.left = Math.min(rect.left, window.innerWidth - 360) + 'px';
+    tip.style.top = (rect.bottom + window.scrollY + 8) + 'px';
+    tip.style.position = 'absolute';
+
+    var label = document.createElement('div');
+    label.style.fontStyle = 'italic';
+    label.style.color = 'var(--ink-faint)';
+    label.style.marginBottom = '6px';
+    label.textContent = 'Ask the narrator about this passage:';
+    tip.appendChild(label);
+
+    var highlighted = document.createElement('div');
+    highlighted.style.fontSize = '0.9em';
+    highlighted.style.color = 'var(--ink-soft)';
+    highlighted.style.borderLeft = '2px solid var(--border)';
+    highlighted.style.paddingLeft = '8px';
+    highlighted.style.marginBottom = '8px';
+    highlighted.textContent = text.length > 80 ? text.slice(0, 77) + '\u2026' : text;
+    tip.appendChild(highlighted);
+
+    var textarea = document.createElement('textarea');
+    textarea.placeholder = 'What would you like to ask?';
+    textarea.rows = 2;
+    tip.appendChild(textarea);
+
+    var askBtn = document.createElement('button');
+    askBtn.textContent = 'ask';
+    askBtn.addEventListener('click', function() {
+      var question = textarea.value.trim();
+      if (!question || question.length < 3) return;
+      askBtn.disabled = true;
+      askBtn.textContent = 'the narrator considers\u2026';
+
+      var chapterIndex = getStoryIndex();
+      var pid = getAnnotationPlayerId();
+
+      fetch(ANNOTATION_API + '/annotate', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          chapterIndex: chapterIndex,
+          paragraphIndex: paragraphIndex,
+          charOffset: charOffset,
+          highlightedText: text,
+          question: question,
+          playerId: pid
+        })
+      }).then(function(r) { return r.json(); }).then(function(data) {
+        if (data.narratorResponse) {
+          textarea.remove();
+          askBtn.remove();
+          var resp = document.createElement('div');
+          resp.className = 'annotation-response';
+          resp.textContent = data.narratorResponse;
+          tip.appendChild(resp);
+        } else if (data.error) {
+          askBtn.textContent = data.error;
+          askBtn.disabled = false;
+        }
+      }).catch(function() {
+        askBtn.textContent = 'the island is silent';
+        askBtn.disabled = false;
+      });
+    });
+    tip.appendChild(askBtn);
+
+    // Auto-focus
+    setTimeout(function() { textarea.focus(); }, 50);
+  });
+
+  // Dismiss tooltip when clicking outside
+  document.addEventListener('mousedown', function(e) {
+    var tip = document.getElementById('annotation-tooltip');
+    if (tip && tip.style.display !== 'none' && !tip.contains(e.target)) {
+      dismissAnnotationTooltip();
+    }
   });
 })();
 </script>
 
-<!-- PWYC support prompt — auto-triggers after engagement -->
-<script src="../../pwyc.js"></script>
-<script src="../../support-prompt.js" data-support-game="nel" data-support-delay="180"></script>
+<div id="eternal-return-glyph" aria-hidden="true">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" role="img" aria-label="Eternal Return glyph">
+    <path fill="currentColor" fill-rule="evenodd"
+      d="M50,5 L57,43 L95,50 L57,57 L50,95 L43,57 L5,50 L43,43 Z
+         M50,45 L55,50 L50,55 L45,50 Z" />
+  </svg>
+</div>
 
-<!-- The alarm is not broken. The names are not lost. Look at the foundations. /ledger.html -->
 <script defer src="https://analytics.multiversestudios.xyz/script.js" data-website-id="38d680a7-28d1-42fd-9fd5-a66702675b88"></script>
+<!-- PWYC Tier Picker Modal -->
+<div id="pwyc-overlay" role="dialog" aria-modal="true" aria-label="Support this story — pay what you can">
+</div>
+<style>
+  #pwyc-overlay {
+    position: fixed; inset: 0; z-index: 99998;
+    background: rgba(56, 37, 26, 0.85);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    display: flex; align-items: center; justify-content: center;
+    padding: 1rem;
+    opacity: 0; transition: opacity 0.3s ease;
+    pointer-events: none;
+  }
+  body[data-theme="moonlit"] #pwyc-overlay {
+    background: rgba(22, 17, 13, 0.9);
+  }
+  #pwyc-overlay.pwyc-open {
+    opacity: 1; pointer-events: all;
+  }
+  #pwyc-modal {
+    background: var(--paper-light);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    max-width: 560px; width: 100%;
+    padding: 2.2rem 2rem;
+    position: relative;
+    transform: translateY(12px); transition: transform 0.3s ease;
+    box-shadow: 0 8px 40px var(--shadow);
+  }
+  #pwyc-overlay.pwyc-open #pwyc-modal { transform: translateY(0); }
+  #pwyc-close {
+    position: absolute; top: 0.8rem; right: 1rem;
+    background: transparent; border: none; cursor: pointer;
+    color: var(--ink-faint); font-size: 1.6rem; line-height: 1;
+    padding: 0.25rem 0.5rem; border-radius: 4px;
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    transition: color 0.15s;
+  }
+  #pwyc-close:hover { color: var(--ink); }
+  #pwyc-heading {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 1.5rem; font-weight: 600;
+    color: var(--ink);
+    margin-bottom: 0.4rem; line-height: 1.3;
+  }
+  #pwyc-tagline {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 0.95rem; color: var(--ink-soft);
+    margin-bottom: 1.8rem;
+    font-style: italic;
+  }
+  .pwyc-tiers {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 0.5rem; margin-bottom: 1.5rem;
+  }
+  @media (max-width: 540px) {
+    .pwyc-tiers { grid-template-columns: repeat(3, 1fr); }
+  }
+  .pwyc-tier {
+    background: transparent;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 0.8rem 0.4rem;
+    cursor: pointer; text-align: center;
+    transition: border-color 0.15s, background 0.15s, box-shadow 0.15s;
+    -webkit-user-select: none; user-select: none;
+    font-family: 'Cormorant Garamond', Georgia, serif;
+  }
+  .pwyc-tier:hover {
+    border-color: var(--ink-faint);
+    background: rgba(0, 0, 0, 0.03);
+  }
+  body[data-theme="moonlit"] .pwyc-tier:hover {
+    background: rgba(255, 255, 255, 0.04);
+  }
+  .pwyc-tier.pwyc-selected {
+    border-color: #00ffc8;
+    box-shadow: 0 0 10px rgba(0, 255, 200, 0.15);
+    background: rgba(0, 255, 200, 0.04);
+  }
+  body[data-theme="moonlit"] .pwyc-tier.pwyc-selected {
+    box-shadow: 0 0 12px rgba(0, 255, 200, 0.2);
+    background: rgba(0, 255, 200, 0.06);
+  }
+  .pwyc-tier-sublabel {
+    font-size: 1.1rem; font-weight: 600;
+    color: var(--ink); margin-bottom: 0.15rem;
+    line-height: 1.2;
+  }
+  .pwyc-tier-name {
+    font-size: 0.72rem; font-weight: 500;
+    letter-spacing: 0.08em; text-transform: uppercase;
+    color: var(--ink-soft); margin-bottom: 0.3rem;
+    font-family: 'IM Fell English SC', serif;
+  }
+  .pwyc-tier-desc {
+    font-size: 0.7rem; color: var(--ink-faint);
+    line-height: 1.4;
+  }
+  .pwyc-tier.pwyc-selected .pwyc-tier-desc { color: var(--ink-soft); }
+  #pwyc-custom-row {
+    display: none;
+    margin-bottom: 1.25rem;
+    align-items: center; gap: 0.75rem;
+  }
+  #pwyc-custom-row.pwyc-visible { display: flex; }
+  #pwyc-custom-label {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 1rem; color: var(--ink-soft);
+    white-space: nowrap;
+  }
+  #pwyc-custom-input {
+    flex: 1; background: transparent;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 0.5rem 0.7rem;
+    color: var(--ink);
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 1rem;
+    outline: none; transition: border-color 0.15s;
+  }
+  #pwyc-custom-input:focus { border-color: var(--ink-faint); }
+  #pwyc-cta {
+    display: block; width: 100%;
+    padding: 0.8rem 1.5rem;
+    font-family: 'IM Fell English SC', serif;
+    font-size: 0.85rem;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    border: none; border-radius: 4px;
+    cursor: pointer; transition: all 0.2s;
+    text-align: center;
+  }
+  #pwyc-note {
+    margin-top: 1rem;
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 0.8rem; color: var(--ink-faint);
+    text-align: center; line-height: 1.6;
+    font-style: italic;
+  }
+</style>
+<script>
+(function () {
+  'use strict';
+
+  var CHECKOUT_API_URL = 'https://pay.multiversestudios.xyz/create-checkout-session';
+  var TIERS = [
+    { id: 'free', amount: 0, label: 'Free', sublabel: '$0', desc: 'No conditions.' },
+    { id: 'spark', amount: 500, label: 'Spark', sublabel: '$5', desc: 'A small light.', isDefault: true },
+    { id: 'signal', amount: 1500, label: 'Signal', sublabel: '$15', desc: 'A strong signal.' },
+    { id: 'beacon', amount: 2500, label: 'Beacon', sublabel: '$25', desc: 'You believe in this.' },
+    { id: 'custom', amount: null, label: 'Custom', sublabel: 'Your call', desc: 'Name your price.', isCustom: true }
+  ];
+
+  var selectedTier = TIERS[1]; // Spark default
+  var overlay = document.getElementById('pwyc-overlay');
+  var tierEls = [];
+
+  function buildModal() {
+    overlay.innerHTML =
+      '<div id="pwyc-modal">' +
+      '  <button id="pwyc-close" aria-label="Close">&times;</button>' +
+      '  <div id="pwyc-heading">Support this story</div>' +
+      '  <div id="pwyc-tagline">Never Ever Land is free to read. Pay what you can if the story stays with you.</div>' +
+      '  <div class="pwyc-tiers" role="radiogroup" aria-label="Choose your contribution">' +
+        TIERS.map(function (tier, i) {
+          return '<button class="pwyc-tier" data-tier-idx="' + i + '"' +
+            ' role="radio" aria-checked="' + (tier.isDefault ? 'true' : 'false') + '"' +
+            ' aria-label="' + tier.label + ' — ' + tier.sublabel + '">' +
+            '<div class="pwyc-tier-sublabel">' + tier.sublabel + '</div>' +
+            '<div class="pwyc-tier-name">' + tier.label + '</div>' +
+            '<div class="pwyc-tier-desc">' + tier.desc + '</div>' +
+            '</button>';
+        }).join('') +
+      '  </div>' +
+      '  <div id="pwyc-custom-row">' +
+      '    <span id="pwyc-custom-label">$</span>' +
+      '    <input id="pwyc-custom-input" type="number" min="1" max="9999" placeholder="Enter amount" aria-label="Custom amount in dollars">' +
+      '  </div>' +
+      '  <button id="pwyc-cta">Continue</button>' +
+      '  <div id="pwyc-note">All stories are free. Payments support ongoing creation.</div>' +
+      '</div>';
+
+    tierEls = Array.prototype.slice.call(overlay.querySelectorAll('.pwyc-tier'));
+
+    overlay.querySelector('#pwyc-close').addEventListener('click', closePWYCModal);
+    overlay.addEventListener('click', function (e) { if (e.target === overlay) closePWYCModal(); });
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closePWYCModal(); });
+
+    tierEls.forEach(function (el, i) {
+      el.addEventListener('click', function () { selectTier(i); });
+    });
+
+    overlay.querySelector('#pwyc-cta').addEventListener('click', handleCTA);
+    selectTier(1); // default to Spark
+  }
+
+  function selectTier(idx) {
+    selectedTier = TIERS[idx];
+    tierEls.forEach(function (el, i) {
+      var isSelected = i === idx;
+      el.classList.toggle('pwyc-selected', isSelected);
+      el.setAttribute('aria-checked', isSelected ? 'true' : 'false');
+    });
+    var customRow = overlay.querySelector('#pwyc-custom-row');
+    if (selectedTier.isCustom) {
+      customRow.classList.add('pwyc-visible');
+      overlay.querySelector('#pwyc-custom-input').focus();
+    } else {
+      customRow.classList.remove('pwyc-visible');
+    }
+    updateCTA();
+  }
+
+  function updateCTA() {
+    var cta = overlay.querySelector('#pwyc-cta');
+    if (selectedTier.amount === 0) {
+      cta.textContent = 'Continue free \u2192';
+      cta.style.background = 'var(--ink-faint)';
+      cta.style.color = 'var(--paper)';
+    } else {
+      var label = selectedTier.isCustom ? 'Continue with custom amount' : 'Continue \u2014 ' + selectedTier.sublabel;
+      cta.textContent = label + ' \u2192';
+      cta.style.background = '#00ffc8';
+      cta.style.color = '#1a1a1a';
+    }
+  }
+
+  function handleCTA() {
+    if (selectedTier.amount === 0) {
+      closePWYCModal();
+      return;
+    }
+    var cents;
+    if (selectedTier.isCustom) {
+      var customInput = overlay.querySelector('#pwyc-custom-input');
+      var dollars = parseFloat(customInput.value);
+      if (!dollars || dollars < 1) {
+        customInput.focus();
+        customInput.style.borderColor = 'rgba(255,100,100,0.6)';
+        setTimeout(function () { customInput.style.borderColor = ''; }, 1500);
+        return;
+      }
+      cents = Math.round(dollars * 100);
+    } else {
+      cents = selectedTier.amount;
+    }
+
+    var cta = overlay.querySelector('#pwyc-cta');
+    var originalText = cta.textContent;
+    cta.disabled = true;
+    cta.textContent = 'Connecting\u2026';
+    cta.style.opacity = '0.6';
+
+    var xhr = new XMLHttpRequest();
+    xhr.open('POST', CHECKOUT_API_URL);
+    xhr.setRequestHeader('Content-Type', 'application/json');
+    xhr.onload = function () {
+      if (xhr.status >= 200 && xhr.status < 300) {
+        try {
+          var data = JSON.parse(xhr.responseText);
+          if (data.url) { window.open(data.url, '_blank'); closePWYCModal(); return; }
+        } catch (e) { console.error('PWYC: parse error', e); }
+      }
+      cta.textContent = 'Something went wrong';
+      cta.style.background = '#cc4444';
+      setTimeout(function () { cta.disabled = false; cta.style.opacity = ''; cta.textContent = originalText; updateCTA(); }, 2000);
+    };
+    xhr.onerror = function () {
+      cta.textContent = 'Connection failed';
+      cta.style.background = '#cc4444';
+      setTimeout(function () { cta.disabled = false; cta.style.opacity = ''; cta.textContent = originalText; updateCTA(); }, 2000);
+    };
+    xhr.send(JSON.stringify({ game: 'nel', amount: cents }));
+  }
+
+  var built = false;
+  window.openPWYCModal = function () {
+    if (!built) { buildModal(); built = true; }
+    else { selectTier(1); }
+    overlay.classList.add('pwyc-open');
+    document.body.style.overflow = 'hidden';
+  };
+
+  window.closePWYCModal = function () {
+    overlay.classList.remove('pwyc-open');
+    document.body.style.overflow = '';
+  };
+}());
+</script>
 </body>
 </html>

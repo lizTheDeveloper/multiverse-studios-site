@@ -4,31 +4,92 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Cultures of the Belt v0.9.2 — Haulers to the Rescue — Multiverse Studios Devlog</title>
-  <meta name="description" content="Cultures of the Belt v0.9.2: Haulers rescue stranded miners, serve as mobile fuel depots, asteroid collisions are live, and ARIA speaks in show-dont-tell style.">
+  <meta name="description" content="Cultures of the Belt v0.9.2: Haulers rescue stranded miners, serve as mobile fuel depots, and asteroid collisions are now a thing.">
   <meta property="og:title" content="Cultures of the Belt v0.9.2 — Haulers to the Rescue">
-  <meta property="og:description" content="Haulers rescue stranded miners, serve as mobile fuel depots, asteroid collisions are live, and ARIA speaks in show-dont-tell style.">
+  <meta property="og:description" content="Your miners no longer drift into the void. Haulers have opinions about that.">
   <meta property="og:type" content="article">
   <meta property="og:url" content="https://multiversestudios.xyz/devlog/release-cotb-v0.9.2.html">
   <meta property="og:image" content="https://multiversestudios.xyz/screenshots/homepage-hero.png">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Cultures of the Belt v0.9.2 — Haulers to the Rescue">
-  <meta name="twitter:description" content="Haulers rescue stranded miners, serve as mobile fuel depots, asteroid collisions are live, and ARIA speaks in show-dont-tell style.">
+  <meta name="twitter:description" content="Your miners no longer drift into the void. Haulers have opinions about that.">
   <meta name="twitter:image" content="https://multiversestudios.xyz/screenshots/homepage-hero.png">
   <link rel="stylesheet" href="../styles.css">
   <link rel="icon" type="image/svg+xml" href="../press-kit/logos/multiverse-studios-favicon.svg">
   <style>
-    .devlog-body { max-width: 680px; margin: 0 auto; }
-    .devlog-body h1 { font-size: clamp(1.8rem, 4vw, 2.8rem); line-height: 1.2; margin-bottom: var(--space-sm); color: var(--star-white); }
-    .devlog-body .byline { font-size: 0.8rem; color: var(--dust); font-family: var(--font-mono); letter-spacing: 0.05em; margin-bottom: var(--space-xl); display: flex; gap: 1rem; flex-wrap: wrap; align-items: center; }
-    .devlog-body .byline .tag { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.2rem 0.6rem; border-radius: 4px; border: 1px solid var(--biolume); color: var(--biolume); }
-    .devlog-body p { color: var(--dust-light); line-height: 1.8; font-size: 1.05rem; margin-bottom: var(--space-md); }
-    .devlog-body h2 { font-size: 1.3rem; color: var(--star-white); margin: var(--space-xl) 0 var(--space-sm) 0; }
-    .devlog-body .pullout { border-left: 3px solid var(--biolume); padding: var(--space-sm) var(--space-md); margin: var(--space-lg) 0; color: var(--star-white); font-style: italic; font-size: 1.1rem; line-height: 1.7; background: rgba(0, 255, 200, 0.04); }
-    .devlog-body .divider { border: none; border-top: 1px solid rgba(255,255,255,0.07); margin: var(--space-xl) 0; }
-    .cta-bar { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: var(--space-lg); margin: var(--space-xl) 0; text-align: center; }
-    .cta-bar p { font-size: 0.95rem; margin-bottom: var(--space-md); }
-    .cta-bar .btn-row { display: flex; gap: var(--space-sm); justify-content: center; flex-wrap: wrap; }
-    .devlog-footer { font-size: 0.8rem; color: var(--dust); border-top: 1px solid rgba(255,255,255,0.07); padding-top: var(--space-md); margin-top: var(--space-xl); font-family: var(--font-mono); }
+    .devlog-body {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    .devlog-body h1 {
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      line-height: 1.2;
+      margin-bottom: var(--space-sm);
+      color: var(--star-white);
+    }
+    .devlog-body .byline {
+      font-size: 0.8rem;
+      color: var(--dust);
+      font-family: var(--font-mono);
+      letter-spacing: 0.05em;
+      margin-bottom: var(--space-xl);
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+    .devlog-body .byline .tag {
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.2rem 0.6rem;
+      border-radius: 4px;
+      border: 1px solid var(--biolume);
+      color: var(--biolume);
+    }
+    .devlog-body p {
+      color: var(--dust-light);
+      line-height: 1.8;
+      font-size: 1.05rem;
+      margin-bottom: var(--space-md);
+    }
+    .devlog-body h2 {
+      font-size: 1.3rem;
+      color: var(--star-white);
+      margin: var(--space-xl) 0 var(--space-sm) 0;
+    }
+    .devlog-body .divider {
+      border: none;
+      border-top: 1px solid rgba(255,255,255,0.07);
+      margin: var(--space-xl) 0;
+    }
+    .cta-bar {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 12px;
+      padding: var(--space-lg);
+      margin: var(--space-xl) 0;
+      text-align: center;
+    }
+    .cta-bar p {
+      font-size: 0.95rem;
+      margin-bottom: var(--space-md);
+    }
+    .cta-bar .btn-row {
+      display: flex;
+      gap: var(--space-sm);
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .devlog-footer {
+      font-size: 0.8rem;
+      color: var(--dust);
+      border-top: 1px solid rgba(255,255,255,0.07);
+      padding-top: var(--space-md);
+      margin-top: var(--space-xl);
+      font-family: var(--font-mono);
+    }
   </style>
 </head>
 <body>
@@ -37,7 +98,7 @@
     <a href="../index.html" class="nav-logo">✦ Multiverse Studios</a>
     <div class="nav-links">
       <a href="../devlog.html">← Devlog</a>
-      <a href="../cotb.html">CotB</a>
+      <a href="../mvee.html">MVEE</a>
       <a href="../precursors.html">Precursors</a>
     </div>
   </nav>
@@ -52,30 +113,24 @@
 
       <h1>Haulers to the Rescue</h1>
 
-      <p>Miners were getting stranded. They'd burn through their delta-v chasing a rock, nail the extraction, and then run out of fuel on the way back. They'd drift into weird orbits around the base, slowly dying. That's fixed now.</p>
+      <p>Miners used to run out of fuel and drift into weird orbits until they became someone else's problem. Not anymore. v0.9.2 gives haulers the autonomy to rescue stranded miners and serve as mobile fuel depots in the field.</p>
 
       <hr class="divider">
 
-      <h2>Hauler rescue operations</h2>
+      <h2>Hauler Rescue and Refueling</h2>
 
-      <p>Haulers now detect stranded miners and autonomously intercept them. When a miner's fuel drops below return-to-base threshold, the nearest hauler plots an intercept course, matches velocity, and transfers fuel. The hauler's larger fuel capacity means it can serve as a mobile depot — miners spin off, do their work, and the hauler handles the delta-v budget for the return trip.</p>
+      <p>When a miner's fuel drops below threshold, the nearest hauler breaks from its route, intercepts, and tows the miner back to base. Haulers also serve as mobile refueling stations, so miners can extend their range without returning to base every time they tap an asteroid dry. The result: your mining operations reach further and lose fewer ships to the void.</p>
 
-      <p>This isn't a player-managed feature. It's emergent fleet behavior. You build haulers, assign them to a mining group, and the AI handles the rest. The physics are still non-negotiable — every Newton-meter of thrust costs fuel — but now your fleet is smart enough to not leave miners stranded.</p>
+      <h2>Asteroid Collisions</h2>
 
-      <h2>Asteroid collisions</h2>
+      <p>Large asteroids drifting relative to your base now trigger proximity collision events. The belt was always moving around you. Now it has consequences.</p>
 
-      <p>Big rocks hit little rocks now. The base can get struck by asteroids moving relative to it. Collisions are real — they have mass, momentum, and consequences. Your base might look stationary, but everything in the belt is moving, and now the simulation respects that.</p>
+      <h2>ARIA Speaks Differently</h2>
 
-      <div class="pullout">
-        The belt doesn't care about your plans. It throws rocks. Your fleet adapts or it doesn't. That's the game.
-      </div>
-
-      <h2>ARIA narration overhaul</h2>
-
-      <p>ARIA — the station AI narrator — now speaks in show-don't-tell style. Instead of "A miner has low fuel," you'll hear something more like the miner's trajectory data shifting, the hauler's course correction. The belt tells its own story when you let the data speak.</p>
+      <p>ARIA and faction dialogue templates have been rewritten in show-dont-tell style. She no longer delivers sociology lectures at you. Instead, she drops observations and sensor readings. You connect the dots.</p>
 
       <div class="cta-bar">
-        <p>Cultures of the Belt is free to play. Pay what you can if you like what you find in the rocks.</p>
+        <p>Cultures of the Belt is free to play. Pay what you can if you want to keep the lights on in the belt.</p>
         <div class="btn-row">
           <a href="https://play.multiversestudios.xyz/cultures-of-the-belt/" class="btn btn-primary">Play Cultures of the Belt</a>
           <a href="../devlog.html" class="btn btn-ghost">More devlogs</a>

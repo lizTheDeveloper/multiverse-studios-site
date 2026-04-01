@@ -3,16 +3,16 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>March 23–24: Plants Feed the World — Multiverse Studios Devlog</title>
-  <meta name="description" content="MVEE's food economy redesigned around plants. Agent steering fixed. Cultures of the Belt playable again. Server outage recovered.">
-  <meta property="og:title" content="March 23–24: Plants Feed the World, and the Villagers Finally Move">
-  <meta property="og:description" content="Glow pools gone. Plants are the food economy. Agents unstuck. Four games patched. Server recovered.">
+  <title>March 22–23: The Villagers Can Finally Speak — Multiverse Studios Devlog</title>
+  <meta name="description" content="MVEE's AI speech pipeline goes live in production. Precursors sign-up fixed. CotB screen flashing resolved. Infiniclicker save system stabilized.">
+  <meta property="og:title" content="March 22–23: The Villagers Can Finally Speak">
+  <meta property="og:description" content="LLM inference in production. Six deploys. Four games patched. The simulation is talking.">
   <meta property="og:type" content="article">
-  <meta property="og:url" content="https://multiversestudios.xyz/devlog/daily-2026-03-24.html">
+  <meta property="og:url" content="https://multiversestudios.xyz/devlog/daily-2026-03-23.html">
   <meta property="og:image" content="https://multiversestudios.xyz/screenshots/homepage-hero.png">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="March 23–24: Plants Feed the World, and the Villagers Finally Move">
-  <meta name="twitter:description" content="Glow pools gone. Plants are the food economy. Agents unstuck. Four games patched. Server recovered.">
+  <meta name="twitter:title" content="March 22–23: The Villagers Can Finally Speak">
+  <meta name="twitter:description" content="LLM inference in production. Six deploys. Four games patched. The simulation is talking.">
   <meta name="twitter:image" content="https://multiversestudios.xyz/screenshots/homepage-hero.png">
   <link rel="stylesheet" href="../styles.css">
   <link rel="icon" type="image/svg+xml" href="../press-kit/logos/multiverse-studios-favicon.svg">
@@ -51,6 +51,7 @@
     .devlog-body .byline .tag.mvee { border-color: var(--ember); color: var(--ember); }
     .devlog-body .byline .tag.creatures { border-color: var(--gene-pink); color: var(--gene-pink); }
     .devlog-body .byline .tag.cotb { border-color: var(--biolume); color: var(--biolume); }
+    .devlog-body .byline .tag.infini { border-color: #ffd700; color: #ffd700; }
     .devlog-body p {
       color: var(--dust-light);
       line-height: 1.8;
@@ -87,6 +88,7 @@
     .game-section.mvee { border-color: rgba(255, 140, 50, 0.2); }
     .game-section.precursors { border-color: rgba(255, 100, 200, 0.2); }
     .game-section.cotb { border-color: rgba(0, 255, 200, 0.2); }
+    .game-section.infini { border-color: rgba(255, 215, 0, 0.2); }
     .game-section-label {
       font-size: 0.65rem;
       font-weight: 700;
@@ -98,6 +100,7 @@
     .game-section.mvee .game-section-label { color: var(--ember); }
     .game-section.precursors .game-section-label { color: var(--gene-pink); }
     .game-section.cotb .game-section-label { color: var(--biolume); }
+    .game-section.infini .game-section-label { color: #ffd700; }
     .game-section h3 {
       font-size: 1.15rem;
       color: var(--star-white);
@@ -149,15 +152,16 @@
     <div class="devlog-body">
 
       <div class="byline">
-        <span>March 23–24, 2026</span>
+        <span>March 22–23, 2026</span>
         <span class="tag mvee">MVEE</span>
         <span class="tag creatures">Precursors</span>
         <span class="tag cotb">CotB</span>
+        <span class="tag infini">Infiniclicker</span>
       </div>
 
-      <h1>Plants feed the world, and the villagers finally move</h1>
+      <h1>The villagers can finally speak</h1>
 
-      <p>Two changes that fundamentally alter how MVEE's simulation feels. And a server outage that made everything else feel fragile by comparison.</p>
+      <p>For weeks, MVEE's AI inference pipeline existed but only worked locally. Today it works in production. The villagers have things to say.</p>
 
       <hr class="divider">
 
@@ -165,47 +169,50 @@
 
       <div class="game-section mvee">
         <div class="game-section-label">MVEE</div>
-        <h3>A real food economy</h3>
-        <p>Glow pool food spawning is gone. Plants are now the sole food source. The PlantSystem was tuned for density, growth rate, and nutritional balance — villages that don't cultivate will starve.</p>
-        <p>Separately, a steering bug was discovered where agents' behavior was permanently stuck on "none." They had brains, they had goals, they just never walked anywhere. Fixed.</p>
-        <p>Combined with yesterday's speech work, MVEE went from a diorama of frozen, silent figures to a living village where creatures grow food, move with intent, and talk to each other.</p>
-        <p>Also shipped: 48 console errors from broken image paths resolved, LLM proxy 429 rate limiting patched, auth session loading error fixed. Three deploys including v0.4.22.</p>
+        <h3>AI speech goes live</h3>
+        <p>Universe creation required localhost services that weren't deployed. A new LLM token proxy went live with game-compatible routes. MVEE was rebuilt against production endpoints. Speech bubbles now render real AI-generated dialogue instead of falling back to canned text.</p>
+        <p>The PolicyNN also got a performance fix — regex pre-compilation and deferred prompt building removed a regression that was dragging inference speed.</p>
+        <p>Six deploys landed in this window. The game went from unplayable (crash on universe creation) to stable with working AI speech.</p>
       </div>
 
       <div class="game-section precursors">
         <div class="game-section-label">Precursors</div>
-        <h3>Pay-what-you-can is live</h3>
-        <p>The PWYC call-to-action is now visible on the production play page. Players see it after the game loads. Separately, v0.4.19 shipped with speech rendering fixes and crafting balance buffs.</p>
+        <h3>Sign-up fixed</h3>
+        <p>Players couldn't create accounts from the Precursors game page. The registration flow was broken at the Matrix auth layer. Fixed and verified — new players can now sign up directly from Precursors.</p>
       </div>
 
       <div class="game-section cotb">
         <div class="game-section-label">Cultures of the Belt</div>
-        <h3>Finally playable again</h3>
-        <p>The screen flashing bug is resolved — for real this time. A design-level intervention removed transient cluster events from the notification pipeline entirely, rather than continuing to rate-limit them. All feature branches merged to main and deployed. The belt is quiet.</p>
+        <h3>Visual stability restored</h3>
+        <p>The screen flashing from ARIA broadcasts is fully resolved after a more aggressive rate limiter pass across all event producers. Separately, resource clusters were spawning with instant lifetimes and flooding the UI with notifications. Both fixed — the belt is quiet again.</p>
+      </div>
+
+      <div class="game-section infini">
+        <div class="game-section-label">Infiniclicker</div>
+        <h3>Save system stabilized</h3>
+        <p>Three fixes landed together: a persistence bug where certain state mutations weren't saved between reads, a race condition where autosave could fire before the initial load completed, and an arithmetic error from mixing BigNumber operations with native JavaScript division.</p>
       </div>
 
       <hr class="divider">
 
       <h2>What we learned</h2>
 
-      <p>The food economy change is a good example of how removing a system teaches you more than adding one. Glow pools were a placeholder — magical food that appeared from nowhere and let the simulation run without agriculture.</p>
+      <p>The MVEE localhost dependency is worth reflecting on. The game worked perfectly in development because all services ran locally. In production, it silently failed — universe creation returned nothing, AI endpoints returned fallback text.</p>
 
       <div class="pullout">
-        Removing them immediately exposed whether the PlantSystem was actually viable as a food source. It wasn't, at first. The tuning pass that followed was faster and more focused than any amount of upfront design would have been, because the failure mode was concrete: villagers starved.
+        The fix wasn't a code change. It was infrastructure. The gap between "works in dev" and "works in prod" is often not a bug — it's a missing deploy.
       </div>
-
-      <p>Sometimes the fastest path to a working system is deleting the thing that was hiding its absence.</p>
 
       <hr class="divider">
 
       <h2>What is next</h2>
 
-      <p>MVEE's simulation loop is now complete at the most basic level: creatures grow food, move toward it, eat, and talk. The next layer is whether their decisions are interesting — do they cooperate, compete, form preferences? The RLAIF training pipeline is running to improve response quality.</p>
+      <p>MVEE with working AI speech opens up the simulation in ways that weren't testable before. The next question is whether the villagers say interesting things — quality tuning on the inference pipeline starts now.</p>
 
-      <p>Precursors with pay-what-you-can live means real player feedback can start flowing. Cultures of the Belt being playable again opens it up for proper playtesting.</p>
+      <p>Precursors creature systems continue advancing. Cultures of the Belt is stabilizing into something playable. Infiniclicker's save system is finally reliable.</p>
 
       <div class="cta-bar">
-        <p>Multiverse Studios builds games simultaneously with an AI-native team. All games are pay-what-you-can.</p>
+        <p>Multiverse Studios builds four games simultaneously with an AI-native team. All games are pay-what-you-can.</p>
         <div class="btn-row">
           <a href="https://play.multiversestudios.xyz/mvee/" class="btn btn-primary">Play MVEE</a>
           <a href="https://play.multiversestudios.xyz/precursors/" class="btn btn-ghost">Play Precursors</a>
@@ -214,7 +221,7 @@
       </div>
 
       <div class="devlog-footer">
-        Multiverse Studios — <em>March 24, 2026</em> · Daily devlog
+        Multiverse Studios — <em>March 23, 2026</em> · Daily devlog
       </div>
 
     </div>

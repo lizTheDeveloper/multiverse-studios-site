@@ -2,8 +2,31 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Wendy Breaks Neverland</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="description" content="Something goes wrong in the first chapter.">
+<meta property="og:title" content="Never Ever Land">
+<meta property="og:description" content="Something goes wrong in the first chapter.">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Never Ever Land">
+<meta name="twitter:description" content="Something goes wrong in the first chapter.">
+<meta name="theme-color" content="#dcc9a2">
+<link rel="manifest" href="manifest.json">
+<link rel="icon" href="favicon.ico" sizes="any">
+<link rel="icon" href="assets/marketing/nel-icon-192.svg" type="image/svg+xml">
+<title>Never Ever Land</title>
+<script src="https://browser.sentry-cdn.com/8.0.0/bundle.min.js" crossorigin="anonymous"></script>
+<script>
+  if (window.Sentry) {
+    Sentry.init({
+      dsn: '%%SENTRY_DSN%%',
+      environment: window.location.hostname === 'localhost' ? 'development' : 'production',
+      sendDefaultPii: false,
+      sampleRate: 1.0,
+      beforeSend: function(event) { delete event.user; return event; }
+    });
+  }
+</script>
+<script defer src="https://analytics.multiversestudios.xyz/script.js" data-website-id="38d680a7-28d1-42fd-9fd5-a66702675b88"></script>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=IM+Fell+English+SC&family=Special+Elite&display=swap');
 
@@ -20,7 +43,7 @@
     --red: #8f4331;
     --green: #556c49;
     --border: rgba(90, 60, 32, 0.24);
-    --choice-bg: rgba(255, 248, 232, 0.42);
+    --choice-bg: rgba(220, 201, 162, 0.35);
     --choice-hover: rgba(255, 252, 242, 0.78);
     --choice-border: rgba(114, 78, 43, 0.28);
     --narrator: #725744;
@@ -33,6 +56,7 @@
 
   html {
     scroll-behavior: smooth;
+    overflow-x: hidden;
   }
 
   body {
@@ -101,11 +125,11 @@
   #container::after {
     content: '';
     position: absolute;
-    top: 8px;
-    right: -10px;
-    width: 180px;
-    height: 180px;
-    opacity: 0.18;
+    top: -18px;
+    right: -44px;
+    width: 132px;
+    height: 132px;
+    opacity: 0.12;
     z-index: -1;
     border-radius: 50%;
     background:
@@ -147,6 +171,90 @@
   @keyframes shimmer {
     0%, 100% { opacity: 0.6; }
     50% { opacity: 1; }
+  }
+
+  /* Comprehension Constellation */
+  #constellation-toggle {
+    position: fixed;
+    top: 18px;
+    right: 24px;
+    z-index: 101;
+    width: 22px;
+    height: 22px;
+    cursor: pointer;
+    opacity: 0;
+    transition: opacity 1.8s ease;
+    pointer-events: none;
+  }
+  #constellation-toggle.visible {
+    opacity: 0.42;
+    pointer-events: auto;
+  }
+  #constellation-toggle:hover { opacity: 0.85; }
+  #constellation-toggle svg { width: 100%; height: 100%; }
+
+  #constellation-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 200;
+    background: radial-gradient(ellipse at center, rgba(8, 6, 12, 0.96), rgba(3, 2, 6, 0.99));
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    cursor: pointer;
+  }
+  #constellation-overlay.open { display: flex; }
+
+  #constellation-chart {
+    width: min(420px, 88vw);
+    height: min(420px, 88vw);
+    position: relative;
+  }
+  #constellation-chart svg {
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+  }
+
+  .constellation-node {
+    fill: rgba(180, 170, 200, 0.12);
+    transition: fill 2s ease, r 1.6s ease;
+  }
+  .constellation-node.lit {
+    fill: #d4cfe8;
+    filter: url(#starGlow);
+  }
+  .constellation-edge {
+    stroke: rgba(180, 170, 200, 0.06);
+    stroke-width: 0.8;
+    transition: stroke 2s ease, stroke-opacity 2s ease;
+  }
+  .constellation-edge.lit {
+    stroke: rgba(200, 195, 220, 0.35);
+    stroke-width: 1;
+  }
+  .constellation-label {
+    fill: rgba(200, 195, 220, 0);
+    font-family: 'IM Fell English SC', serif;
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-anchor: middle;
+    transition: fill 3s ease;
+    pointer-events: none;
+  }
+  .constellation-label.visible {
+    fill: rgba(200, 195, 220, 0.55);
+  }
+
+  #constellation-hint {
+    color: rgba(200, 195, 220, 0.3);
+    font-family: 'IM Fell English SC', serif;
+    font-size: 11px;
+    letter-spacing: 0.16em;
+    margin-top: 28px;
+    text-align: center;
+    max-width: 280px;
   }
 
   /* Iteration counter */
@@ -220,13 +328,126 @@
     animation: antimemetic 4s ease infinite;
   }
 
+  /* Annotation marginal indicators */
+  .story-paragraph.has-annotation {
+    position: relative;
+    cursor: default;
+  }
+
+  .story-paragraph.has-annotation::after {
+    content: '\2217';
+    position: absolute;
+    right: -22px;
+    top: 0.15em;
+    font-size: 0.72em;
+    color: var(--accent-dim);
+    opacity: 0.48;
+    cursor: pointer;
+    transition: opacity 0.3s ease;
+    font-family: 'IM Fell English SC', serif;
+  }
+
+  .story-paragraph.has-annotation:hover::after {
+    opacity: 0.85;
+  }
+
+  /* Annotation footnote overlay */
+  .annotation-overlay {
+    position: absolute;
+    right: -24px;
+    top: 1.6em;
+    width: min(340px, 80vw);
+    background:
+      linear-gradient(145deg, rgba(237, 222, 192, 0.96), rgba(214, 194, 156, 0.94));
+    border: 1px solid rgba(114, 78, 43, 0.32);
+    border-radius: 6px;
+    padding: 16px 18px;
+    box-shadow:
+      0 8px 28px rgba(57, 35, 16, 0.18),
+      inset 0 0 0 1px rgba(255, 245, 218, 0.3);
+    z-index: 50;
+    opacity: 0;
+    transform: translateY(4px);
+    animation: fadeIn 0.3s ease forwards;
+    font-size: 0.82em;
+    line-height: 1.58;
+  }
+
+  .annotation-overlay .annotation-preamble {
+    font-style: italic;
+    color: var(--text-dim);
+    font-size: 0.88em;
+    margin-bottom: 0.6em;
+  }
+
+  .annotation-overlay .annotation-question {
+    color: var(--accent);
+    font-weight: 500;
+    margin-bottom: 0.5em;
+    padding-left: 10px;
+    border-left: 2px solid rgba(131, 83, 50, 0.36);
+  }
+
+  .annotation-overlay .annotation-response {
+    color: var(--narrator);
+    font-style: italic;
+  }
+
+  .annotation-overlay .fork-btn {
+    display: block;
+    margin-top: 10px;
+    background: none;
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    padding: 4px 10px;
+    font-family: 'Special Elite', monospace;
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    color: var(--accent-dim);
+    cursor: pointer;
+    text-transform: uppercase;
+  }
+  .annotation-overlay .fork-btn:hover {
+    color: var(--accent);
+    border-color: var(--accent);
+  }
+  .annotation-overlay .fork-input {
+    display: block;
+    width: 100%;
+    margin-top: 8px;
+    padding: 6px 8px;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 13px;
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    background: rgba(255, 248, 230, 0.7);
+    color: var(--ink);
+    resize: none;
+    min-height: 48px;
+  }
+  .annotation-overlay .fork-result {
+    margin-top: 8px;
+    padding-top: 8px;
+    border-top: 1px dashed var(--border);
+    font-style: italic;
+    color: var(--narrator);
+    font-size: 0.92em;
+  }
+  .annotation-overlay .fork-preamble {
+    font-size: 0.85em;
+    color: var(--text-dim);
+    margin-bottom: 4px;
+  }
+
   .story-title {
     font-family: 'IM Fell English SC', serif;
-    font-size: clamp(1.9rem, 4vw, 2.8rem);
+    font-size: clamp(1.6rem, 3.2vw, 2.2rem);
     font-weight: 400;
     letter-spacing: 0.03em;
     color: var(--paper-burn);
     margin: 1.8em 0 0.9em;
+    hyphens: none;
+    overflow-wrap: normal;
     opacity: 0;
     animation: fadeIn 1.2s ease forwards;
   }
@@ -259,22 +480,23 @@
     width: 100%;
     text-align: left;
     background: var(--choice-bg);
-    border: 1px solid var(--choice-border);
+    border: none;
+    border-left: 3px solid var(--choice-border);
     color: var(--ink);
     font-family: 'Cormorant Garamond', Georgia, serif;
     font-size: 21px;
     line-height: 1.6;
-    padding: 15px 20px;
+    padding: 15px 20px 15px 24px;
     margin-bottom: 10px;
     cursor: pointer;
-    transition: all 0.3s ease;
-    border-radius: 14px;
-    box-shadow: 0 12px 24px rgba(73, 46, 24, 0.06);
+    transition: background 0.3s ease, color 0.3s ease, border-left-color 0.3s ease, padding-left 0.3s ease, transform 0.3s ease;
+    border-radius: 3px;
+    box-shadow: 0 8px 20px rgba(73, 46, 24, 0.05);
   }
 
   .choice:hover {
     background: var(--choice-hover);
-    border-color: rgba(126, 84, 47, 0.48);
+    border-left-color: var(--accent);
     color: var(--accent);
     padding-left: 28px;
     transform: translateY(-1px);
@@ -354,7 +576,7 @@
     transition: all 0.4s ease;
   }
   .choice.chosen {
-    border-color: var(--accent-dim);
+    border-left-color: var(--accent-dim);
     color: var(--accent);
     opacity: 0.6;
     cursor: default;
@@ -380,11 +602,276 @@
     border-color: var(--accent-dim);
   }
 
+  /* The Mirror overlay */
+  #mirror-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 200;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background:
+      radial-gradient(circle at 50% 40%, rgba(255, 248, 228, 0.88), rgba(200, 170, 120, 0.82)),
+      linear-gradient(160deg, rgba(125, 88, 48, 0.3), rgba(80, 55, 30, 0.2));
+    backdrop-filter: blur(6px);
+    opacity: 0;
+    animation: fadeIn 1.6s ease forwards;
+    cursor: pointer;
+  }
+
+  #mirror-inner {
+    max-width: 620px;
+    width: 90%;
+    padding: 56px clamp(28px, 6vw, 64px);
+    position: relative;
+    text-align: center;
+  }
+
+  #mirror-inner::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 24px;
+    background:
+      linear-gradient(180deg, rgba(255, 250, 235, 0.72), rgba(220, 195, 150, 0.68));
+    border: 1px solid rgba(114, 78, 43, 0.28);
+    box-shadow:
+      0 40px 100px rgba(50, 30, 10, 0.28),
+      inset 0 0 0 1px rgba(255, 248, 218, 0.42),
+      inset 0 0 44px rgba(100, 68, 36, 0.1);
+    pointer-events: none;
+  }
+
+  /* Compass rose decoration */
+  #mirror-inner::after {
+    content: '';
+    position: absolute;
+    top: -28px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 56px;
+    height: 56px;
+    opacity: 0.22;
+    background:
+      radial-gradient(circle at center, transparent 26%, rgba(90, 60, 33, 0.82) 27%, transparent 29%),
+      conic-gradient(from 0deg, rgba(90,60,33,0.9) 0 8deg, transparent 8deg 22deg, rgba(90,60,33,0.8) 22deg 30deg, transparent 30deg 44deg, rgba(90,60,33,0.8) 44deg 52deg, transparent 52deg 66deg, rgba(90,60,33,0.8) 66deg 74deg, transparent 74deg 88deg, rgba(90,60,33,0.9) 88deg 96deg, transparent 96deg 110deg, rgba(90,60,33,0.8) 110deg 118deg, transparent 118deg 132deg, rgba(90,60,33,0.8) 132deg 140deg, transparent 140deg 154deg, rgba(90,60,33,0.8) 154deg 162deg, transparent 162deg 176deg, rgba(90,60,33,0.9) 176deg 184deg, transparent 184deg 360deg);
+    border-radius: 50%;
+    pointer-events: none;
+  }
+
+  #mirror-title {
+    font-family: 'IM Fell English SC', serif;
+    font-size: 0.78rem;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: var(--accent-dim);
+    opacity: 0.7;
+    margin-bottom: 2em;
+    position: relative;
+  }
+
+  .mirror-line {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: clamp(1rem, 2.2vw, 1.18rem);
+    line-height: 1.78;
+    color: var(--narrator);
+    font-style: italic;
+    margin-bottom: 0.7em;
+    position: relative;
+    opacity: 0;
+    animation: fadeIn 0.9s ease forwards;
+  }
+
+  .mirror-line.strong {
+    color: var(--ink);
+    font-style: normal;
+    font-weight: 500;
+  }
+
+  .mirror-line.ending-note {
+    font-size: 0.92em;
+    color: var(--text-dim);
+    margin-top: 1.4em;
+    padding-top: 1.2em;
+    border-top: 1px solid rgba(114, 78, 43, 0.2);
+  }
+
+  .tip-jar-prompt {
+    margin-top: 1.6em;
+    padding: 1em 1.1em;
+    border: 1px solid rgba(114, 78, 43, 0.24);
+    border-radius: 10px;
+    background: rgba(255, 248, 232, 0.5);
+    color: var(--text-dim);
+    font-size: clamp(1rem, 2.2vw, 1.12rem);
+    line-height: 1.65;
+    animation: fadeIn 0.9s ease forwards;
+  }
+
+  .tip-jar-prompt p {
+    margin: 0;
+    font-style: italic;
+  }
+
+  .tip-jar-actions {
+    margin-top: 0.85em;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6em;
+  }
+
+  .tip-jar-btn {
+    border: 1px solid rgba(114, 78, 43, 0.28);
+    background: rgba(255, 248, 232, 0.72);
+    color: var(--accent);
+    font-family: 'IM Fell English SC', serif;
+    font-size: 0.76rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 0.42em 0.78em;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background 0.22s ease, border-color 0.22s ease, color 0.22s ease;
+  }
+
+  .tip-jar-btn:hover {
+    background: rgba(255, 248, 232, 0.92);
+    border-color: rgba(114, 78, 43, 0.45);
+  }
+
+  .tip-jar-btn.tip-jar-support {
+    color: #f8f2e4;
+    background: rgba(114, 78, 43, 0.88);
+  }
+
+  .tip-jar-btn.tip-jar-support:hover {
+    background: rgba(114, 78, 43, 0.98);
+    border-color: rgba(114, 78, 43, 0.62);
+  }
+
+  body.confidence-low .tip-jar-prompt,
+  body.confidence-critical .tip-jar-prompt {
+    background: rgba(245, 230, 201, 0.56);
+    border-color: rgba(114, 78, 43, 0.32);
+  }
+
+  @media (max-width: 640px) {
+    .tip-jar-actions {
+      width: 100%;
+    }
+    .tip-jar-btn {
+      width: 100%;
+      text-align: center;
+    }
+  }
+
+  #mirror-download {
+    position: relative;
+    margin-top: 1.8em;
+    opacity: 0;
+    animation: fadeIn 0.9s ease 4.2s forwards;
+  }
+
+  #mirror-download a {
+    font-family: 'Special Elite', monospace;
+    font-size: 11px;
+    color: var(--accent);
+    text-decoration: none;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 8px 18px;
+    border: 1px solid rgba(114, 78, 43, 0.25);
+    border-radius: 4px;
+    background: rgba(255, 248, 228, 0.5);
+    cursor: pointer;
+    transition: background 0.3s ease, border-color 0.3s ease;
+    display: inline-block;
+  }
+
+  #mirror-download a:hover {
+    background: rgba(255, 248, 228, 0.85);
+    border-color: rgba(114, 78, 43, 0.45);
+  }
+
+  #mirror-advance {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: 'Special Elite', monospace;
+    font-size: 10px;
+    color: var(--text-dim);
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    opacity: 0;
+    animation: fadeIn 0.8s ease 5s forwards;
+  }
+
+  #mirror-progress {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 2px;
+    width: 0%;
+    background: rgba(114, 78, 43, 0.32);
+    border-radius: 0 0 24px 24px;
+    transition: width linear;
+  }
+
   /* Scrollbar */
   ::-webkit-scrollbar { width: 6px; }
   ::-webkit-scrollbar-track { background: rgba(223, 204, 166, 0.6); }
   ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
   ::-webkit-scrollbar-thumb:hover { background: rgba(87, 59, 34, 0.34); }
+
+  /* Achievement toast */
+  .ach-toast {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    z-index: 9000;
+    pointer-events: none;
+    opacity: 0;
+    transform: translateY(12px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+    background: var(--paper-light);
+    border: 1px solid var(--paper-shadow);
+    border-left: 3px solid var(--accent);
+    border-radius: 2px;
+    padding: 12px 16px;
+    box-shadow: 2px 3px 12px rgba(57, 38, 26, 0.18);
+    max-width: 300px;
+  }
+  .ach-toast--visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .ach-toast__label {
+    font-family: 'Special Elite', monospace;
+    font-size: 9px;
+    letter-spacing: 0.25em;
+    color: var(--accent-dim);
+    text-transform: uppercase;
+    margin-bottom: 2px;
+  }
+  .ach-toast__title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--ink);
+    letter-spacing: 0.03em;
+    line-height: 1.2;
+    margin-bottom: 2px;
+  }
+  .ach-toast__desc {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 12px;
+    font-weight: 400;
+    font-style: italic;
+    color: var(--text-dim);
+    line-height: 1.4;
+    max-width: 280px;
+  }
 
   #story-meta {
     display: flex;
@@ -412,9 +899,144 @@
     color: var(--paper-burn);
   }
 
+  /* ============================================================
+     NARRATOR CONFIDENCE DEGRADATION
+     Four tiers: high (default), medium, low, critical.
+     Applied as body class; purely diegetic — no UI meter.
+     ============================================================ */
+
+  /* Medium confidence: slight ink bleed, occasional phantom italics */
+  body.confidence-medium .story-paragraph {
+    text-shadow: 0.3px 0.2px 0.6px rgba(57, 38, 26, 0.12);
+  }
+  body.confidence-medium #container::before {
+    box-shadow:
+      0 32px 82px rgba(63, 38, 17, 0.24),
+      inset 0 0 0 1px rgba(255, 247, 225, 0.28),
+      inset 0 0 42px rgba(96, 65, 37, 0.18);
+  }
+  body.confidence-medium .story-paragraph:nth-child(7n+3) {
+    font-style: italic;
+  }
+
+  /* Low confidence: unsteady baseline, marginal stains, narrator cracks */
+  body.confidence-low .story-paragraph {
+    text-shadow: 0.5px 0.3px 1px rgba(57, 38, 26, 0.18);
+    animation: fadeIn 0.8s ease forwards, baselineJitter 8s ease-in-out infinite;
+  }
+  body.confidence-low #container::before {
+    box-shadow:
+      0 32px 82px rgba(63, 38, 17, 0.3),
+      inset 0 0 0 1px rgba(255, 247, 225, 0.2),
+      inset 0 0 56px rgba(96, 65, 37, 0.26);
+  }
+  body.confidence-low .story-paragraph:nth-child(5n+2) {
+    font-style: italic;
+  }
+  body.confidence-low .story-paragraph:nth-child(11n+5)::before {
+    content: '';
+    position: absolute;
+    left: -18px;
+    top: 0.4em;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: rgba(127, 87, 49, 0.14);
+    filter: blur(3px);
+  }
+  body.confidence-low .story-paragraph.narrator-voice {
+    text-decoration: line-through;
+    text-decoration-color: rgba(114, 87, 68, 0.22);
+  }
+
+  /* Critical: text flickers between two states, narrator losing control */
+  body.confidence-critical .story-paragraph {
+    text-shadow: 0.7px 0.4px 1.4px rgba(57, 38, 26, 0.22);
+    animation: fadeIn 0.8s ease forwards, baselineJitter 4s ease-in-out infinite;
+  }
+  body.confidence-critical #container::before {
+    box-shadow:
+      0 32px 82px rgba(63, 38, 17, 0.36),
+      inset 0 0 0 1px rgba(255, 247, 225, 0.14),
+      inset 0 0 72px rgba(96, 65, 37, 0.34);
+    animation: paperAge 6s ease-in-out infinite;
+  }
+  body.confidence-critical .story-paragraph:nth-child(3n+1) {
+    font-style: italic;
+  }
+  body.confidence-critical .story-paragraph:nth-child(7n+4)::before {
+    content: '';
+    position: absolute;
+    left: -22px;
+    top: 0.2em;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: rgba(127, 87, 49, 0.2);
+    filter: blur(4px);
+  }
+  body.confidence-critical .story-paragraph:nth-child(9n+6) {
+    animation: fadeIn 0.8s ease forwards, textFlicker 5s ease-in-out infinite;
+  }
+  body.confidence-critical .story-paragraph.narrator-voice {
+    text-decoration: line-through;
+    text-decoration-color: rgba(114, 87, 68, 0.36);
+  }
+  body.confidence-critical .story-title {
+    animation: fadeIn 1.2s ease forwards, baselineJitter 3s ease-in-out infinite;
+  }
+
+  @keyframes baselineJitter {
+    0%, 100% { transform: translateY(0); }
+    17% { transform: translateY(0.4px); }
+    33% { transform: translateY(-0.3px); }
+    50% { transform: translateY(0.2px); }
+    67% { transform: translateY(-0.5px); }
+    83% { transform: translateY(0.3px); }
+  }
+
+  @keyframes paperAge {
+    0%, 100% { filter: none; }
+    50% { filter: sepia(0.06) brightness(0.98); }
+  }
+
+  @keyframes textFlicker {
+    0%, 100% { opacity: 1; }
+    42% { opacity: 0.88; }
+    44% { opacity: 0.4; }
+    46% { opacity: 0.92; }
+    82% { opacity: 1; }
+    84% { opacity: 0.6; }
+    86% { opacity: 1; }
+  }
+
+  /* Tablet */
+  @media (max-width: 860px) and (min-width: 641px) {
+    #container {
+      max-width: 720px;
+      padding: 52px 14px 80px;
+    }
+    #story,
+    #choices,
+    #continuation,
+    #restart,
+    #story-meta {
+      padding-left: clamp(18px, 3vw, 40px);
+      padding-right: clamp(18px, 3vw, 40px);
+    }
+    .story-title { font-size: 1.9rem; }
+    .choice {
+      font-size: 20px;
+      min-height: 44px;
+    }
+  }
+
   /* Mobile */
   @media (max-width: 640px) {
-    body { font-size: 18px; }
+    body {
+      font-size: 18px;
+      padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+    }
     #container {
       padding: 46px 10px 72px;
     }
@@ -431,7 +1053,21 @@
       padding-right: 18px;
     }
     .story-title { font-size: 1.7rem; }
-    .choice { font-size: 19px; }
+    .choice {
+      font-size: 19px;
+      min-height: 44px;
+      padding: 16px 20px;
+    }
+    #container::after {
+      display: none;
+    }
+    #phase-indicator {
+      top: env(safe-area-inset-top);
+    }
+    #constellation-toggle {
+      top: calc(14px + env(safe-area-inset-top));
+      right: calc(14px + env(safe-area-inset-right));
+    }
   }
 </style>
 </head>
@@ -440,24 +1076,51 @@
 <div id="phase-indicator" class="linear"></div>
 <div id="iteration-counter"></div>
 
+<div id="constellation-toggle" role="button" aria-label="View comprehension constellation" onclick="toggleConstellation()">
+  <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="12" cy="5" r="1.5" fill="rgba(200,195,220,0.7)"/>
+    <circle cx="6" cy="12" r="1" fill="rgba(200,195,220,0.5)"/>
+    <circle cx="18" cy="10" r="1.2" fill="rgba(200,195,220,0.6)"/>
+    <circle cx="10" cy="18" r="0.8" fill="rgba(200,195,220,0.4)"/>
+    <circle cx="17" cy="17" r="1" fill="rgba(200,195,220,0.5)"/>
+    <line x1="12" y1="5" x2="18" y2="10" stroke="rgba(200,195,220,0.2)" stroke-width="0.5"/>
+    <line x1="6" y1="12" x2="12" y2="5" stroke="rgba(200,195,220,0.15)" stroke-width="0.5"/>
+    <line x1="10" y1="18" x2="17" y2="17" stroke="rgba(200,195,220,0.15)" stroke-width="0.5"/>
+  </svg>
+</div>
+
+<div id="constellation-overlay" onclick="toggleConstellation()">
+  <div id="constellation-chart" onclick="event.stopPropagation()"></div>
+  <div id="constellation-hint"></div>
+</div>
+
+<div id="mirror-overlay" style="display:none;" onclick="dismissMirror()">
+  <div id="mirror-inner">
+    <div id="mirror-title">The Mirror</div>
+    <div id="mirror-lines"></div>
+    <div id="mirror-download" style="display:none;"></div>
+    <div id="mirror-advance">tap to continue</div>
+    <div id="mirror-progress"></div>
+  </div>
+</div>
+
 <div id="container">
   <div id="story-meta">
     <div class="map-kicker">Recovered chart of repeated voyages</div>
     <div class="map-title">Never Ever Land</div>
+    <div style="margin-top:8px"><button onclick="openPWYCModal()" type="button" style="background:none;border:none;font-family:'IM Fell English SC',serif;font-size:0.78rem;color:var(--accent);text-decoration:none;letter-spacing:0.12em;text-transform:uppercase;opacity:0.7;cursor:pointer;padding:0">Support this story</button></div>
   </div>
   <div id="story"></div>
   <div id="choices"></div>
   <div id="continuation">
     <div id="continuation-text"></div>
   </div>
-  <div id="restart">
-    <a href="#" onclick="restartStory(); return false;">The loop resets. Read again.</a>
-    <div id="telling-nav" style="display:none;margin-top:1.8em;font-family:'Special Elite',monospace;font-size:11px;color:var(--text-dim);letter-spacing:0.14em;text-align:center;">
-      <div style="margin-bottom:0.7em;opacity:0.62;text-transform:uppercase;letter-spacing:0.22em;">return to a telling</div>
-      <div id="telling-links" style="display:flex;flex-wrap:wrap;gap:6px;justify-content:center;"></div>
-    </div>
-  </div>
+  <div id="restart"><a href="#" onclick="restartStory(); return false;">The loop resets. Read again.</a></div>
 </div>
+
+<!-- Lore discovery -->
+<script src="vendor/akashic-records/lib/lore-discovery-emitter.js"></script>
+<script src="lore-discovery-integration.js"></script>
 
 <!-- inkjs runtime (inlined) -->
 <script id="inkjs-runtime"></script>
@@ -471,12 +1134,41 @@
 // ============================================================
 
 let story = null;
+let currentSceneId = null;
 let currentPhase = 'linear';
 let inkPath = [];
 let choiceHistory = [];
 let storyContext = [];
 let generatePrompt = '';
 let currentNodeId = null;
+
+// Narrator confidence — tracks cumulative degradation of narrator control.
+// Starts at 10 (high confidence). Drops on reader interrogation, resets
+// (with lower baseline) on loop. No UI element — expressed purely through
+// page aesthetics via CSS tiers.
+let narratorConfidence = 10;
+let narratorConfidenceBaseline = 10; // lowers each iteration
+
+const CONFIDENCE_TIERS = [
+  { threshold: 7, cls: '' },            // high: clean page
+  { threshold: 4, cls: 'confidence-medium' },
+  { threshold: 1, cls: 'confidence-low' },
+  { threshold: -Infinity, cls: 'confidence-critical' },
+];
+
+function adjustConfidence(delta) {
+  narratorConfidence = Math.max(-10, Math.min(narratorConfidenceBaseline, narratorConfidence + delta));
+  applyConfidenceTier();
+}
+
+function applyConfidenceTier() {
+  const tier = CONFIDENCE_TIERS.find(t => narratorConfidence >= t.threshold);
+  // Remove all confidence classes, apply current
+  for (const t of CONFIDENCE_TIERS) {
+    if (t.cls) document.body.classList.remove(t.cls);
+  }
+  if (tier && tier.cls) document.body.classList.add(tier.cls);
+}
 
 const INK_VARS_TO_TRACK = [
   'stayed', 'exit_chosen', 'hook_spoken_to', 'mermaids_spoken_to',
@@ -498,6 +1190,14 @@ function getInkVariables() {
 // ============================================================
 
 function initStory() {
+  // Narrator confidence: lower baseline each iteration (loop erodes composure).
+  // First call (no prior choices) keeps baseline at 10; subsequent loops degrade it.
+  const isRestart = choiceHistory.length > 0 || inkPath.length > 0;
+  if (isRestart) {
+    narratorConfidenceBaseline = Math.max(4, narratorConfidenceBaseline - 2);
+  }
+  narratorConfidence = narratorConfidenceBaseline;
+
   story = new inkjs.Story(storyJson);
   inkPath = [];
   choiceHistory = [];
@@ -505,15 +1205,15 @@ function initStory() {
   generatePrompt = '';
   currentNodeId = null;
   currentPhase = 'linear';
+
+  applyConfidenceTier();
+
   updatePhaseIndicator();
   document.getElementById('story').innerHTML = '';
   document.getElementById('choices').innerHTML = '';
   document.getElementById('continuation').classList.remove('active');
   document.getElementById('restart').style.display = 'none';
-  var navEl = document.getElementById('telling-nav');
-  if (navEl) navEl.style.display = 'none';
-  var linksEl = document.getElementById('telling-links');
-  if (linksEl) linksEl.innerHTML = '';
+  constellationCheck();
   continueStory();
 }
 
@@ -527,7 +1227,9 @@ function continueStory() {
 
   while (story.canContinue) {
     const text = story.Continue().trim();
+    eighthChild.trackContinue(text.length);
     const tags = story.currentTags || [];
+    eighthChild.classifyTags(tags);
 
     for (const tag of tags) {
       const [key, ...rest] = tag.split(':');
@@ -538,6 +1240,12 @@ function continueStory() {
         updatePhaseIndicator();
       }
       if (key.trim() === 'TITLE') {
+        currentSceneId = val;
+        if (window.umami) window.umami.track('nel-scene-enter', { scene: val });
+        if (window.loreDiscovery) {
+          window.loreDiscovery.onLocationRevealed(val);
+          window.loreDiscovery.onNarrativeDiscovery('scene:' + val);
+        }
         const titleEl = document.createElement('h2');
         titleEl.className = 'story-title';
         titleEl.textContent = val;
@@ -577,9 +1285,8 @@ function continueStory() {
   updateIterationCounter();
 
   if (hitGenerate) {
-    markFirstPlaythroughComplete();
-    updateARGData('reached_infinite_game');
-    setTimeout(() => requestGeneration(), delay);
+    // Show the Mirror before the LLM continuation loads
+    setTimeout(() => showMirror(() => requestGeneration()), delay);
     return;
   }
 
@@ -599,10 +1306,15 @@ function continueStory() {
       }, 300);
     }, delay);
   } else {
-    markFirstPlaythroughComplete();
-    updateARGData('reached_ending');
-    document.getElementById('restart').style.display = 'block';
-  showTellingNav();
+    // Ink story reached a terminal node with no continuation — show Mirror then restart
+    if (window.umami) window.umami.track('nel-complete', {
+      choices: choiceHistory.length,
+      phase: currentPhase,
+      scene: currentSceneId,
+    });
+    setTimeout(() => showMirror(() => {
+      document.getElementById('restart').style.display = 'block';
+    }), delay);
   }
 }
 
@@ -610,6 +1322,9 @@ function makeChoice(index) {
   const choice = story.currentChoices[index];
   choiceHistory.push(choice.text);
   inkPath.push(index);
+
+  // Snapshot ink vars before/after to detect confidence-affecting state changes
+  const beforeVars = getInkVariables();
 
   const storyEl = document.getElementById('story');
   const sep = document.createElement('div');
@@ -619,17 +1334,51 @@ function makeChoice(index) {
 
   story.ChooseChoiceIndex(index);
 
-  // Track significant choices for ARG
-  var vars = getInkVariables();
-  if (vars.stayed) updateARGData('chose_to_stay');
-  if (vars.exit_chosen) updateARGData('chose_to_leave');
-  if (vars.hook_spoken_to) updateARGData('spoke_to_hook');
-  if (vars.mermaids_spoken_to) updateARGData('spoke_to_mermaids');
-  if (vars.names_recovered) updateARGData('recovered_names');
-  if (vars.narrator_compromised) updateARGData('narrator_compromised');
-  if (vars.alarm_heard) updateARGData('heard_alarm');
+  // Score confidence based on what this choice triggered
+  const afterVars = getInkVariables();
+  if (!beforeVars.exit_chosen && afterVars.exit_chosen) adjustConfidence(-3);
+  if (!beforeVars.stayed && afterVars.stayed) adjustConfidence(-3);
+  if (!beforeVars.loop_detected && afterVars.loop_detected) adjustConfidence(-2);
+  if (!beforeVars.narrator_compromised && afterVars.narrator_compromised) adjustConfidence(-2);
+  // Beautiful ending choices: narrator gains confidence (system is working)
+  const choiceText = (choice.text || '').toLowerCase();
+  if (choiceText.includes('beautiful ending') || choiceText.includes('give me the ending')) {
+    adjustConfidence(1);
+  }
+
+  // Lore discovery: character encounters
+  if (window.loreDiscovery) {
+    if (!beforeVars.peter_confronted && afterVars.peter_confronted) window.loreDiscovery.onCharacterMet('peter');
+    if (!beforeVars.hook_spoken_to && afterVars.hook_spoken_to) window.loreDiscovery.onCharacterMet('hook');
+    if (!beforeVars.mermaids_spoken_to && afterVars.mermaids_spoken_to) window.loreDiscovery.onCharacterMet('mermaids');
+    // Portable ritual: Wendy Function (the performance of care labor)
+    if (!beforeVars.spreadsheet_exists && afterVars.spreadsheet_exists && window.loreDiscovery.emitRitual) {
+      window.loreDiscovery.emitRitual({
+        ritualId: 'nel:wendy-function:' + Date.now().toString(36),
+        sourceGame: 'nel',
+        ritualType: 'divination',
+        description: 'The Wendy Function activates. The spreadsheet exists. Care labor has been formalized into a system — the most sophisticated version of the snooze button.',
+        participantCount: 1,
+        beliefGenerated: 0,
+        metadata: { inkVariable: 'spreadsheet_exists', phase: currentPhase },
+      });
+    }
+    // Portable ritual: Ledger ceremony (the discovery of hidden accounts)
+    if (!beforeVars.names_recovered && afterVars.names_recovered && window.loreDiscovery.emitRitual) {
+      window.loreDiscovery.emitRitual({
+        ritualId: 'nel:ledger-ceremony:' + Date.now().toString(36),
+        sourceGame: 'nel',
+        ritualType: 'ancestor_calling',
+        description: 'The ledger opens. Names recovered from the margins. The island\'s domestic debts laid bare — who carried the cost, and who played.',
+        participantCount: 1,
+        beliefGenerated: 0,
+        metadata: { namesRecovered: afterVars.names_recovered, phase: currentPhase },
+      });
+    }
+  }
 
   continueStory();
+  constellationCheck();
 }
 
 function updatePhaseIndicator() {
@@ -653,36 +1402,32 @@ function updateIterationCounter() {
 }
 
 function restartStory() {
-  updateARGData('loop_restart');
+  // Prestige: emit fold narrative (the story loops back on itself)
+  if (window.loreDiscovery && window.loreDiscovery.emitNarrative) {
+    var vars = getInkVariables();
+    window.loreDiscovery.emitNarrative('fold', 'Story restart — loop ' + (vars.times_read_opening || 0) + ', choices: ' + choiceHistory.length, {
+      timesRead: vars.times_read_opening || 0,
+      totalChoices: choiceHistory.length,
+      exitChosen: vars.exit_chosen || false,
+      stayed: vars.stayed || false,
+      loopDetected: vars.loop_detected || false,
+    });
+  }
+  // Prestige: emit island-reset ritual
+  if (window.loreDiscovery && window.loreDiscovery.emitRitual) {
+    window.loreDiscovery.emitRitual({
+      ritualId: 'nel:island-reset:' + Date.now().toString(36),
+      sourceGame: 'nel',
+      ritualType: 'purification',
+      description: 'The island resets. The crocodile ticks. Everything returns to the opening — but the reader remembers.',
+      participantCount: 1,
+      beliefGenerated: 0,
+      metadata: { loopCount: (getInkVariables().times_read_opening || 0) },
+    });
+  }
+  eighthChild.reset();
   initStory();
   window.scrollTo({ top: 0, behavior: 'smooth' });
-}
-
-// Slug map matching index.html — for back-navigation to specific tellings
-const TELLING_SLUGS = [
-  { slug: 'the-boy-who-would-not-grow',    label: 'I' },
-  { slug: 'wendy-in-the-night-nursery',    label: 'II' },
-  { slug: 'what-the-map-omits',            label: 'III' },
-  { slug: 'the-names-recovered',           label: 'IV' },
-  { slug: 'the-mermaid-lagoon',            label: 'V' },
-  { slug: 'the-deadlock-question',         label: 'VI' },
-  { slug: 'the-spreadsheet-of-neverland',  label: 'appendix' }
-];
-
-function showTellingNav() {
-  const nav = document.getElementById('telling-nav');
-  const linksEl = document.getElementById('telling-links');
-  if (!nav || !linksEl || linksEl.children.length > 0) return;
-  TELLING_SLUGS.forEach(function(t) {
-    const a = document.createElement('a');
-    a.href = 'index.html#' + t.slug;
-    a.textContent = t.label;
-    a.style.cssText = 'color:var(--ink-soft);text-decoration:none;border:1px solid rgba(99,68,40,0.22);border-radius:999px;padding:5px 12px;font-size:11px;transition:all 0.3s ease;';
-    a.onmouseover = function() { a.style.color = 'var(--accent)'; a.style.borderColor = 'var(--accent-dim)'; };
-    a.onmouseout  = function() { a.style.color = 'var(--ink-soft)'; a.style.borderColor = 'rgba(99,68,40,0.22)'; };
-    linksEl.appendChild(a);
-  });
-  nav.style.display = 'block';
 }
 
 // ============================================================
@@ -706,7 +1451,6 @@ async function requestGeneration() {
   const textEl = document.getElementById('continuation-text');
   contEl.classList.add('active');
   document.getElementById('restart').style.display = 'block';
-  showTellingNav();
 
   const loadingEl = document.createElement('p');
   loadingEl.className = 'generating';
@@ -714,7 +1458,7 @@ async function requestGeneration() {
   textEl.appendChild(loadingEl);
 
   try {
-    const response = await fetch('/api/generate', {
+    const response = await fetch('https://neverland.multiversestudios.xyz/api/generate', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
@@ -759,7 +1503,7 @@ async function continueFromChoice(parentId, choiceIndex) {
   textEl.appendChild(loadingEl);
 
   try {
-    const response = await fetch('/api/continue', {
+    const response = await fetch('https://neverland.multiversestudios.xyz/api/continue', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
@@ -793,12 +1537,16 @@ function renderGeneratedScene(data) {
 
   const paragraphs = data.content.split('\n\n').filter(p => p.trim());
   let delay = 0;
-  for (const para of paragraphs) {
+  const renderedParagraphs = [];
+  for (let i = 0; i < paragraphs.length; i++) {
+    const para = paragraphs[i];
     const el = document.createElement('p');
     el.className = 'story-paragraph';
+    el.dataset.paragraphIndex = i;
     el.style.animationDelay = delay + 'ms';
     el.textContent = para;
     textEl.appendChild(el);
+    renderedParagraphs.push(el);
     storyContext.push(para);
     delay += 300;
   }
@@ -846,7 +1594,174 @@ function renderGeneratedScene(data) {
   setTimeout(() => {
     choicesContainer.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
   }, delay + 500);
+
+  if (data.node_id) {
+    setTimeout(() => fetchAndRenderAnnotations(data.node_id, renderedParagraphs), delay + 200);
+  }
 }
+
+// ============================================================
+// ANNOTATION FOOTNOTES
+// ============================================================
+
+async function fetchAndRenderAnnotations(nodeId, paragraphEls) {
+  try {
+    const resp = await fetch('https://neverland.multiversestudios.xyz/api/neverland/annotations?nodeId=' + encodeURIComponent(nodeId) + '&visible=true');
+    if (!resp.ok) return;
+    const annotations = await resp.json();
+    if (!annotations || annotations.length === 0) return;
+
+    const byParagraph = {};
+    for (const ann of annotations) {
+      const pIdx = estimateParagraphIndex(ann.characterOffset, paragraphEls);
+      if (!byParagraph[pIdx]) byParagraph[pIdx] = [];
+      byParagraph[pIdx].push(ann);
+    }
+
+    for (const [idx, anns] of Object.entries(byParagraph)) {
+      const el = paragraphEls[parseInt(idx)];
+      if (!el) continue;
+      el.classList.add('has-annotation');
+      el._annotations = anns;
+      el.addEventListener('click', handleAnnotationClick);
+    }
+  } catch (e) {
+    // Annotations are non-critical; fail silently
+  }
+}
+
+function estimateParagraphIndex(charOffset, paragraphEls) {
+  let cumulative = 0;
+  for (let i = 0; i < paragraphEls.length; i++) {
+    const len = (paragraphEls[i].textContent || '').length;
+    if (charOffset <= cumulative + len) return i;
+    cumulative += len + 2; // account for \n\n separator
+  }
+  return paragraphEls.length - 1;
+}
+
+function handleAnnotationClick(e) {
+  const el = e.currentTarget;
+  // Only trigger on the ::after area (right edge) or if no existing overlay
+  const rect = el.getBoundingClientRect();
+  const clickX = e.clientX;
+  if (clickX < rect.right - 30) return;
+
+  // Achievement: first annotation viewed
+  if (typeof achUnlock === 'function') achUnlock('nel:community:first_annotation');
+  // Visible annotation = narrator failed to deflect this question
+  adjustConfidence(-1);
+  eighthChild.annotationNote();
+
+  dismissAnnotationOverlay();
+
+  const anns = el._annotations;
+  if (!anns || anns.length === 0) return;
+  const ann = anns[0];
+
+  const overlay = document.createElement('div');
+  overlay.className = 'annotation-overlay';
+  overlay.id = 'active-annotation-overlay';
+
+  const preamble = document.createElement('div');
+  preamble.className = 'annotation-preamble';
+  preamble.textContent = 'A previous reader noticed something here.';
+  overlay.appendChild(preamble);
+
+  const question = document.createElement('div');
+  question.className = 'annotation-question';
+  question.textContent = ann.question;
+  overlay.appendChild(question);
+
+  const response = document.createElement('div');
+  response.className = 'annotation-response';
+  response.textContent = ann.response;
+  overlay.appendChild(response);
+
+  // Fork / rewrite button
+  const forkBtn = document.createElement('button');
+  forkBtn.className = 'fork-btn';
+  forkBtn.textContent = 'rewrite this passage';
+  forkBtn.addEventListener('click', function(ev) {
+    ev.stopPropagation();
+    forkBtn.style.display = 'none';
+    const input = document.createElement('textarea');
+    input.className = 'fork-input';
+    input.placeholder = 'Tell the narrator how the text should change\u2026';
+    overlay.appendChild(input);
+    const submitBtn = document.createElement('button');
+    submitBtn.className = 'fork-btn';
+    submitBtn.textContent = 'send';
+    submitBtn.addEventListener('click', function(ev2) {
+      ev2.stopPropagation();
+      const followUp = input.value.trim();
+      if (!followUp) return;
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'the island shifts\u2026';
+      // playerId: use existing or generate anonymous
+      const pid = (typeof playerId !== 'undefined' && playerId) ? playerId : 'mvs_anon_' + Math.random().toString(36).slice(2, 10);
+      fetch('https://neverland.multiversestudios.xyz/api/neverland/fork', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ annotationId: ann.id, followUp: followUp, playerId: pid }),
+      }).then(function(r) { return r.json(); }).then(function(data) {
+        if (data.rewrittenText) {
+          const result = document.createElement('div');
+          result.className = 'fork-result';
+          if (data.narratorPreamble) {
+            const pre = document.createElement('div');
+            pre.className = 'fork-preamble';
+            pre.textContent = data.narratorPreamble;
+            result.appendChild(pre);
+          }
+          const txt = document.createElement('div');
+          txt.textContent = data.rewrittenText;
+          result.appendChild(txt);
+          overlay.appendChild(result);
+          achUnlock('nel:community:first_fork');
+          // Fork = reader forced narrator rewrite
+          adjustConfidence(-2);
+          eighthChild.annotationRewrite();
+          // Prestige: emit question narrative (reader interrogated the text)
+          if (window.loreDiscovery && window.loreDiscovery.emitNarrative) {
+            window.loreDiscovery.emitNarrative('question', 'Reader questioned and rewrote passage', {
+              annotationId: ann.id,
+              hasRewrite: true,
+            });
+          }
+        } else {
+          submitBtn.textContent = 'the narrator refused';
+        }
+        input.remove();
+        submitBtn.remove();
+      }).catch(function() {
+        submitBtn.textContent = 'the island is silent';
+        submitBtn.disabled = false;
+      });
+    });
+    overlay.appendChild(submitBtn);
+    input.focus();
+  });
+  overlay.appendChild(forkBtn);
+
+  el.style.position = 'relative';
+  el.appendChild(overlay);
+
+  e.stopPropagation();
+
+  setTimeout(() => {
+    document.addEventListener('click', dismissAnnotationOverlay, { once: true });
+  }, 10);
+}
+
+function dismissAnnotationOverlay() {
+  const existing = document.getElementById('active-annotation-overlay');
+  if (existing) existing.remove();
+}
+
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') dismissAnnotationOverlay();
+});
 
 function renderError(container, message, retryFn) {
   const errEl = document.createElement('p');
@@ -863,6 +1778,550 @@ function renderError(container, message, retryFn) {
     retryFn();
   };
   container.appendChild(retryBtn);
+}
+
+// ============================================================
+// THE MIRROR — post-journey reflection screen
+// ============================================================
+
+let _mirrorTimer = null;
+let _mirrorPendingCallback = null;
+
+function buildMirrorLines(vars, totalChoices, aggregates) {
+  const lines = [];
+
+  lines.push({ text: 'I counted.', delay: 0 });
+
+  const timesRead = vars.times_read_opening || 0;
+  if (timesRead > 0) {
+    lines.push({
+      text: 'You read the opening ' + timesRead + (timesRead === 1 ? ' time' : ' times') + ' before you decided.',
+      delay: 800,
+    });
+  }
+
+  const namesRecovered = vars.names_recovered || 0;
+  if (totalChoices > 0 || namesRecovered > 0) {
+    let statLine = 'You navigated ' + totalChoices + (totalChoices === 1 ? ' branch' : ' branches') + '.';
+    if (namesRecovered > 0) {
+      statLine += ' You recovered ' + namesRecovered + (namesRecovered === 1 ? ' name.' : ' names.');
+    }
+    lines.push({ text: statLine, delay: 1600 });
+  }
+
+  if (aggregates && aggregates.total > 1) {
+    const pctExited = Math.round((aggregates.exited / aggregates.total) * 100);
+    const pctStayed = Math.round((aggregates.stayed / aggregates.total) * 100);
+    lines.push({
+      text: pctExited + '% of readers who reached this moment chose to leave. ' +
+            pctStayed + '% chose to stay.',
+      delay: 2500,
+      cls: 'strong',
+    });
+  }
+
+  // Ending-specific line
+  let endingLine = null;
+  if (vars.exit_chosen && !vars.stayed) {
+    endingLine = 'You left. The island continues. But the spreadsheet remembers.';
+  } else if (vars.patience_trapped && timesRead > 2) {
+    endingLine = 'You stayed to fix it. You have been here ' + timesRead + ' times.';
+  } else if (vars.stayed && !vars.exit_chosen) {
+    endingLine = 'You stayed and stopped performing. The island deadlocked. This is rare.';
+  } else if (vars.exit_chosen && vars.stayed) {
+    endingLine = 'You accepted the ending I offered. It was real. And then another girl arrived.';
+  }
+
+  if (endingLine) {
+    lines.push({ text: endingLine, delay: 3400, cls: 'ending-note' });
+  }
+
+  return lines;
+}
+
+function showMirror(afterCallback) {
+  _mirrorPendingCallback = afterCallback || null;
+
+  // Prestige: emit mirror narrative (reflection/evaluation moment)
+  if (window.loreDiscovery && window.loreDiscovery.emitNarrative) {
+    window.loreDiscovery.emitNarrative('mirror', 'Mirror shown — p' + (currentPhase || 0) + ', c' + choiceHistory.length, {
+      p: currentPhase || 0,
+      totalChoices: choiceHistory.length,
+      scene: currentSceneId || null,
+    });
+  }
+
+  // Read current ink variables
+  const vars = {};
+  const mirrorVars = [
+    'exit_chosen', 'stayed', 'patience_trapped',
+    'times_read_opening', 'names_recovered',
+  ];
+  for (const v of mirrorVars) {
+    try { vars[v] = story.variablesState[v]; } catch(e) {}
+  }
+  const totalChoices = choiceHistory.length;
+
+  // Post outcome to backend (fire-and-forget, but use response for aggregates)
+  fetch('https://neverland.multiversestudios.xyz/api/neverland/session-outcome', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      exit_chosen: vars.exit_chosen || false,
+      stayed: vars.stayed || false,
+      patience_trapped: vars.patience_trapped || false,
+      times_read_opening: vars.times_read_opening || 0,
+      names_recovered: vars.names_recovered || 0,
+      total_choices: totalChoices,
+    }),
+  })
+    .then(r => r.ok ? r.json() : null)
+    .then(agg => renderMirror(vars, totalChoices, agg, agg && agg.outcome_id))
+    .catch(() => renderMirror(vars, totalChoices, null, null));
+}
+
+function renderMirror(vars, totalChoices, aggregates, outcomeId) {
+  const overlay = document.getElementById('mirror-overlay');
+  const linesEl = document.getElementById('mirror-lines');
+  linesEl.innerHTML = '';
+
+  const lines = buildMirrorLines(vars, totalChoices, aggregates);
+
+  for (const line of lines) {
+    const p = document.createElement('p');
+    p.className = 'mirror-line' + (line.cls ? ' ' + line.cls : '');
+    p.textContent = line.text;
+    p.style.animationDelay = line.delay + 'ms';
+    linesEl.appendChild(p);
+  }
+
+  // Show download link if we have an outcome ID
+  const dlEl = document.getElementById('mirror-download');
+  if (outcomeId) {
+    const link = document.createElement('a');
+    link.href = 'https://neverland.multiversestudios.xyz/api/neverland/spreadsheet/' + encodeURIComponent(outcomeId);
+    link.textContent = 'The spreadsheet persists. Take yours.';
+    link.onclick = function(e) { e.stopPropagation(); };
+    dlEl.innerHTML = '';
+    dlEl.appendChild(link);
+    dlEl.style.display = 'block';
+  } else {
+    dlEl.style.display = 'none';
+  }
+
+  overlay.style.display = 'flex';
+
+  // Progress bar — extend duration to give time for the download link
+  const MIRROR_DURATION = 12000;
+  const progressEl = document.getElementById('mirror-progress');
+  progressEl.style.transition = 'none';
+  progressEl.style.width = '0%';
+  requestAnimationFrame(() => {
+    progressEl.style.transition = 'width ' + MIRROR_DURATION + 'ms linear';
+    progressEl.style.width = '100%';
+  });
+
+  _mirrorTimer = setTimeout(dismissMirror, MIRROR_DURATION);
+}
+
+function dismissMirror() {
+  if (_mirrorTimer) {
+    clearTimeout(_mirrorTimer);
+    _mirrorTimer = null;
+  }
+  const overlay = document.getElementById('mirror-overlay');
+  overlay.style.opacity = '0';
+  overlay.style.transition = 'opacity 0.8s ease';
+  setTimeout(() => {
+    overlay.style.display = 'none';
+    overlay.style.opacity = '';
+    overlay.style.transition = '';
+    // Reset for next use
+    document.getElementById('mirror-progress').style.width = '0%';
+    document.getElementById('mirror-download').style.display = 'none';
+    document.getElementById('mirror-download').innerHTML = '';
+    if (_mirrorPendingCallback) {
+      const cb = _mirrorPendingCallback;
+      _mirrorPendingCallback = null;
+      cb();
+    }
+  }, 800);
+}
+
+// ============================================================
+// ACHIEVEMENT TRACKING (Folkfork cross-game)
+// ============================================================
+
+const NEL_ACHIEVEMENTS = {
+  'nel:lore:first_ending':        { title: 'The Mirror Speaks', description: 'You reached an ending. The island noticed.' },
+  'nel:lore:stayed':              { title: 'The Patient One', description: 'You chose to stay. The island counted that too.' },
+  'nel:lore:exit_chosen':         { title: 'The One Who Left', description: 'You chose to leave. The spreadsheet remembers.' },
+  'nel:lore:all_endings':         { title: 'Every Door', description: 'You found every ending the story offered.' },
+  'nel:lore:loop_detected':       { title: 'The Loop', description: 'You noticed you had been here before.' },
+  'nel:lore:narrator_compromised':{ title: 'Compromised', description: 'The narrator can no longer be trusted.' },
+  'nel:community:first_fork':     { title: 'The Rewrite', description: 'You changed the text. The island shifted.' },
+  'nel:community:first_annotation':{ title: 'Margin Note', description: 'You asked the narrator a question.' },
+};
+
+const _achStorageId = 'nel_achievements_v1';
+function _achLoad() { try { return new Set(JSON.parse(localStorage.getItem(_achStorageId))); } catch { return new Set(); } }
+function _achSave(s) { try { localStorage.setItem(_achStorageId, JSON.stringify([...s])); } catch {} }
+const _achUnlocked = _achLoad();
+
+function achUnlock(id) {
+  if (_achUnlocked.has(id)) return;
+  _achUnlocked.add(id);
+  _achSave(_achUnlocked);
+
+  const meta = NEL_ACHIEVEMENTS[id] || { title: 'Achievement', description: id };
+  _achShowToast(meta.title, meta.description);
+
+  // Attempt server reporting (will fail gracefully without auth)
+  fetch('https://neverland.multiversestudios.xyz/api/achievements/unlock', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ achievementId: id, playerId: 'anonymous', gameOrigin: 'nel', gameContext: { game: 'nel' } }),
+  }).catch(() => {});
+}
+
+// All-endings tracking: 4 ending variants stored in localStorage
+const _endingStorageId = 'nel_endings_seen_v1';
+function _endingsLoad() { try { return new Set(JSON.parse(localStorage.getItem(_endingStorageId))); } catch { return new Set(); } }
+function _endingsSave(s) { try { localStorage.setItem(_endingStorageId, JSON.stringify([...s])); } catch {} }
+const _ALL_ENDING_KEYS = ['exit', 'patience', 'deadlock', 'accepted'];
+const _TIP_JAR_KEY = 'nel_tip_jar_shown_v1';
+const _TIP_JAR_DELAY_MS = 2400;
+let _tipJarTimer = null;
+let _tipJarFallbackShown = false;
+
+function _achRecordEnding(key) {
+  const seen = _endingsLoad();
+  seen.add(key);
+  _endingsSave(seen);
+  if (_ALL_ENDING_KEYS.every(k => seen.has(k))) {
+    achUnlock('nel:lore:all_endings');
+  }
+}
+
+function _tipJarWasShown() {
+  try {
+    return sessionStorage.getItem(_TIP_JAR_KEY) === '1';
+  } catch {
+    return _tipJarFallbackShown;
+  }
+}
+
+function _markTipJarShown() {
+  _tipJarFallbackShown = true;
+  try {
+    sessionStorage.setItem(_TIP_JAR_KEY, '1');
+  } catch {}
+}
+
+function _clearTipJarPrompt() {
+  if (_tipJarTimer) {
+    clearTimeout(_tipJarTimer);
+    _tipJarTimer = null;
+  }
+  const existing = document.getElementById('tip-jar-prompt');
+  if (existing) existing.remove();
+}
+
+function _scheduleTipJarPrompt() {
+  if (_tipJarWasShown()) return;
+  _clearTipJarPrompt();
+  _tipJarTimer = setTimeout(() => {
+    _tipJarTimer = null;
+    if (_tipJarWasShown()) return;
+
+    const storyEl = document.getElementById('story');
+    if (!storyEl) return;
+
+    _markTipJarShown();
+
+    const prompt = document.createElement('div');
+    prompt.id = 'tip-jar-prompt';
+    prompt.className = 'tip-jar-prompt';
+
+    const copy = document.createElement('p');
+    copy.textContent = 'This story is yours. If it moved you, pay what you can — or nothing at all.';
+    prompt.appendChild(copy);
+
+    const actions = document.createElement('div');
+    actions.className = 'tip-jar-actions';
+
+    const supportBtn = document.createElement('button');
+    supportBtn.type = 'button';
+    supportBtn.className = 'tip-jar-btn tip-jar-support';
+    supportBtn.textContent = 'Support this story';
+    supportBtn.addEventListener('click', () => {
+      if (window.umami) window.umami.track('nel-tip-jar-clicked');
+      prompt.remove();
+      if (typeof window.openPWYCModal === 'function') window.openPWYCModal();
+    });
+
+    const dismissBtn = document.createElement('button');
+    dismissBtn.type = 'button';
+    dismissBtn.className = 'tip-jar-btn tip-jar-dismiss';
+    dismissBtn.textContent = 'Not now';
+    dismissBtn.addEventListener('click', () => {
+      if (window.umami) window.umami.track('nel-tip-jar-dismissed');
+      prompt.remove();
+    });
+
+    actions.appendChild(supportBtn);
+    actions.appendChild(dismissBtn);
+    prompt.appendChild(actions);
+    storyEl.appendChild(prompt);
+
+    if (window.umami) window.umami.track('nel-tip-jar-shown');
+  }, _TIP_JAR_DELAY_MS);
+}
+
+function _achShowToast(title, description) {
+  const el = document.createElement('div');
+  el.className = 'ach-toast';
+  el.setAttribute('aria-live', 'polite');
+  el.innerHTML =
+    '<div class="ach-toast__label">ACHIEVEMENT</div>' +
+    '<div class="ach-toast__title">' + title.replace(/</g, '&lt;') + '</div>' +
+    '<div class="ach-toast__desc">' + description.replace(/</g, '&lt;') + '</div>';
+  document.body.appendChild(el);
+  requestAnimationFrame(() => el.classList.add('ach-toast--visible'));
+  setTimeout(() => {
+    el.classList.remove('ach-toast--visible');
+    setTimeout(() => el.remove(), 600);
+  }, 4500);
+}
+
+// Hook: ending reached (injected into showMirror)
+const _origShowMirror = showMirror;
+showMirror = function(afterCallback) {
+  const wrappedAfterCallback = function() {
+    if (typeof afterCallback === 'function') afterCallback();
+    _scheduleTipJarPrompt();
+  };
+
+  achUnlock('nel:lore:first_ending');
+  try {
+    const vars = {};
+    for (const v of ['exit_chosen', 'stayed', 'patience_trapped', 'loop_detected', 'narrator_compromised', 'times_read_opening']) {
+      try { vars[v] = story.variablesState[v]; } catch {}
+    }
+    if (vars.exit_chosen)          achUnlock('nel:lore:exit_chosen');
+    if (vars.stayed)               achUnlock('nel:lore:stayed');
+    if (vars.loop_detected)        achUnlock('nel:lore:loop_detected');
+    if (vars.narrator_compromised) achUnlock('nel:lore:narrator_compromised');
+
+    // Track ending variant for all_endings achievement
+    if (vars.exit_chosen && !vars.stayed)                          _achRecordEnding('exit');
+    if (vars.patience_trapped && (vars.times_read_opening || 0) > 2) _achRecordEnding('patience');
+    if (vars.stayed && !vars.exit_chosen)                          _achRecordEnding('deadlock');
+    if (vars.exit_chosen && vars.stayed)                           _achRecordEnding('accepted');
+  } catch {}
+  constellationCheck();
+  _origShowMirror(wrappedAfterCallback);
+};
+
+// ============================================================
+// COMPREHENSION CONSTELLATION — progress toward understanding
+// ============================================================
+
+const _cReveal = s => atob(s);
+const CONSTELLATION_NODES = [
+  // id, _l (encoded label), x (0-100), y (0-100), ink variable test
+  { id: 'alarm',    _l: 'VGhlIEFsYXJt',    x: 50, y: 8,   test: v => v.alarm_heard },
+  { id: 'ledger',   _l: 'VGhlIExlZGdlcg==', x: 24, y: 30,  test: v => v.ledger_found },
+  { id: 'function', _l: 'VGhlIEZ1bmN0aW9u', x: 76, y: 30,  test: v => v.spreadsheet_exists },
+  { id: 'loop',     _l: 'VGhlIExvb3A=',     x: 18, y: 58,  test: v => v.loop_detected },
+  { id: 'narrator', _l: 'VGhlIE5hcnJhdG9y', x: 82, y: 58,  test: v => v.narrator_compromised },
+  { id: 'names',    _l: 'VGhlIE5hbWVz',     x: 50, y: 52,  test: v => (v.names_recovered || 0) > 0 },
+  { id: 'exit',     _l: 'VGhlIEV4aXQ=',     x: 32, y: 85,  test: v => v.exit_chosen },
+  { id: 'deadlock', _l: 'VGhlIERlYWRsb2Nr', x: 68, y: 85,  test: v => v.stayed && !v.exit_chosen },
+];
+
+const CONSTELLATION_EDGES = [
+  ['alarm', 'ledger'],      // discovery path
+  ['alarm', 'function'],    // alarm reveals the mechanism
+  ['ledger', 'function'],   // ledger is the function's record
+  ['ledger', 'loop'],       // ledger reveals repetition
+  ['function', 'narrator'], // the function compromises the narrator
+  ['loop', 'narrator'],     // the loop reveals narrator unreliability
+  ['loop', 'names'],        // in the loop you find the names
+  ['names', 'exit'],        // recovering names enables leaving
+  ['names', 'deadlock'],    // or choosing to stay
+  ['narrator', 'exit'],     // understanding the narrator's role → choice
+  ['narrator', 'deadlock'], // understanding → different choice
+];
+
+const _cStorageId = 'nel_constellation_v1';
+function _cLoad() { try { return JSON.parse(localStorage.getItem(_cStorageId)) || {}; } catch { return {}; } }
+function _cSave(s) { try { localStorage.setItem(_cStorageId, JSON.stringify(s)); } catch {} }
+
+// Merge persisted discoveries with current session
+function constellationState() {
+  const persisted = _cLoad();
+  const vars = {};
+  const inkVars = [
+    'alarm_heard', 'alarm_analyzed', 'ledger_found', 'second_ledger_found',
+    'spreadsheet_exists', 'loop_detected', 'narrator_compromised',
+    'names_recovered', 'exit_chosen', 'stayed',
+  ];
+  for (const v of inkVars) {
+    try { vars[v] = story ? story.variablesState[v] : false; } catch { vars[v] = false; }
+  }
+
+  const lit = {};
+  for (const node of CONSTELLATION_NODES) {
+    lit[node.id] = !!(persisted[node.id] || node.test(vars));
+  }
+  return lit;
+}
+
+// Persist any newly lit nodes
+function constellationUpdate() {
+  const lit = constellationState();
+  const persisted = _cLoad();
+  let changed = false;
+  for (const [id, isLit] of Object.entries(lit)) {
+    if (isLit && !persisted[id]) {
+      persisted[id] = true;
+      changed = true;
+    }
+  }
+  if (changed) _cSave(persisted);
+
+  // Fire lore discovery events for newly lit nodes
+  if (changed && window.loreDiscovery) {
+    for (const node of CONSTELLATION_NODES) {
+      if (lit[node.id] && !(_cLoad()[node.id + '_reported'])) {
+        window.loreDiscovery.onNarrativeDiscovery('constellation:' + node.id);
+        const reported = _cLoad();
+        reported[node.id + '_reported'] = true;
+        _cSave(reported);
+      }
+    }
+  }
+
+  return lit;
+}
+
+// Count how many lit neighbors a node has (for cluster-based label reveal)
+function constellationClusterSize(nodeId, lit) {
+  const neighbors = new Set();
+  for (const [a, b] of CONSTELLATION_EDGES) {
+    if (a === nodeId && lit[b]) neighbors.add(b);
+    if (b === nodeId && lit[a]) neighbors.add(a);
+  }
+  return lit[nodeId] ? neighbors.size + 1 : 0;
+}
+
+function renderConstellation() {
+  const lit = constellationUpdate();
+  const litCount = Object.values(lit).filter(Boolean).length;
+  const chart = document.getElementById('constellation-chart');
+  const hint = document.getElementById('constellation-hint');
+
+  const svgNS = 'http://www.w3.org/2000/svg';
+  const svg = document.createElementNS(svgNS, 'svg');
+  svg.setAttribute('viewBox', '0 0 100 100');
+
+  // Glow filter for lit nodes
+  const defs = document.createElementNS(svgNS, 'defs');
+  const filter = document.createElementNS(svgNS, 'filter');
+  filter.setAttribute('id', 'starGlow');
+  filter.setAttribute('x', '-50%');
+  filter.setAttribute('y', '-50%');
+  filter.setAttribute('width', '200%');
+  filter.setAttribute('height', '200%');
+  const blur = document.createElementNS(svgNS, 'feGaussianBlur');
+  blur.setAttribute('stdDeviation', '1.2');
+  blur.setAttribute('result', 'glow');
+  const merge = document.createElementNS(svgNS, 'feMerge');
+  const m1 = document.createElementNS(svgNS, 'feMergeNode');
+  m1.setAttribute('in', 'glow');
+  const m2 = document.createElementNS(svgNS, 'feMergeNode');
+  m2.setAttribute('in', 'SourceGraphic');
+  merge.appendChild(m1);
+  merge.appendChild(m2);
+  filter.appendChild(blur);
+  filter.appendChild(merge);
+  defs.appendChild(filter);
+  svg.appendChild(defs);
+
+  // Draw edges
+  const nodeMap = {};
+  for (const n of CONSTELLATION_NODES) nodeMap[n.id] = n;
+  for (const [aId, bId] of CONSTELLATION_EDGES) {
+    const a = nodeMap[aId], b = nodeMap[bId];
+    const line = document.createElementNS(svgNS, 'line');
+    line.setAttribute('x1', a.x);
+    line.setAttribute('y1', a.y);
+    line.setAttribute('x2', b.x);
+    line.setAttribute('y2', b.y);
+    line.classList.add('constellation-edge');
+    if (lit[aId] && lit[bId]) line.classList.add('lit');
+    svg.appendChild(line);
+  }
+
+  // Draw nodes
+  for (const node of CONSTELLATION_NODES) {
+    const circle = document.createElementNS(svgNS, 'circle');
+    circle.setAttribute('cx', node.x);
+    circle.setAttribute('cy', node.y);
+    circle.setAttribute('r', lit[node.id] ? 1.8 : 1);
+    circle.classList.add('constellation-node');
+    if (lit[node.id]) circle.classList.add('lit');
+    svg.appendChild(circle);
+
+    // Label: only show if this node is lit AND part of a cluster of 3+ lit connected nodes
+    const cluster = constellationClusterSize(node.id, lit);
+    if (lit[node.id] && cluster >= 3) {
+      const text = document.createElementNS(svgNS, 'text');
+      text.setAttribute('x', node.x);
+      text.setAttribute('y', node.y + 5);
+      text.textContent = _cReveal(node._l);
+      text.classList.add('constellation-label');
+      // Delay visibility for fade-in
+      requestAnimationFrame(() => text.classList.add('visible'));
+      svg.appendChild(text);
+    }
+  }
+
+  chart.innerHTML = '';
+  chart.appendChild(svg);
+
+  // Hint text — anti-completionist
+  if (litCount === 0) {
+    hint.textContent = '';
+  } else if (litCount < CONSTELLATION_NODES.length) {
+    hint.textContent = 'Some stars are visible only from other paths.';
+  } else {
+    // Technically unreachable in a single session (exit + deadlock are contradictory)
+    hint.textContent = 'You have seen more than most. The chart is never finished.';
+  }
+
+  // Show toggle if at least one node lit
+  const toggle = document.getElementById('constellation-toggle');
+  if (litCount > 0) toggle.classList.add('visible');
+}
+
+function toggleConstellation() {
+  const overlay = document.getElementById('constellation-overlay');
+  if (overlay.classList.contains('open')) {
+    overlay.classList.remove('open');
+  } else {
+    renderConstellation();
+    overlay.classList.add('open');
+  }
+}
+
+// Update constellation on mirror show and on story state change
+function constellationCheck() {
+  const lit = constellationUpdate();
+  const litCount = Object.values(lit).filter(Boolean).length;
+  const toggle = document.getElementById('constellation-toggle');
+  if (litCount > 0) toggle.classList.add('visible');
 }
 
 // ============================================================
@@ -905,28 +2364,9 @@ function parseHash() {
   return params;
 }
 
-function hasCompletedFirstPlaythrough() {
-  try {
-    return window.localStorage.getItem('nel_first_playthrough_complete') === 'true';
-  } catch(e) { return false; }
-}
-
-function markFirstPlaythroughComplete() {
-  try {
-    window.localStorage.setItem('nel_first_playthrough_complete', 'true');
-    window.localStorage.setItem('nel_first_complete_at', String(Date.now()));
-  } catch(e) {}
-}
-
 function applyJump() {
   const params = parseHash();
   if (!params || !params.jump) return false;
-
-  // Gate: no jumping until you've played through at least once
-  if (!hasCompletedFirstPlaythrough()) {
-    console.log('Jump blocked: first playthrough not complete');
-    return false;
-  }
 
   const knot = params.jump;
   delete params.jump;
@@ -951,94 +2391,15 @@ function applyJump() {
 }
 
 // ============================================================
-// ARG USER DATA — cross-game variables for marketing
-// ============================================================
-// These variables use the 'mvs_' prefix and are stored in
-// localStorage on the shared multiversestudios.xyz domain.
-// Other games (Precursors, MVEE) can read them to create
-// cross-game ARG experiences.
-//
-// Keys:
-//   mvs_player_id         — stable anonymous player ID
-//   mvs_nel_milestones    — JSON array of milestone events
-//   mvs_nel_narrator_trust — how much the narrator was engaged with
-//   mvs_nel_loop_count    — how many times the player looped
-//   mvs_nel_choices_made  — total Ink choices made
-//   mvs_nel_endings_seen  — which endings the player has reached
-//   mvs_nel_first_visit   — timestamp of first visit
-//   mvs_nel_last_visit    — timestamp of most recent visit
-
-function getOrCreatePlayerId() {
-  try {
-    var id = window.localStorage.getItem('mvs_player_id');
-    if (id) return id;
-    // Generate a simple anonymous ID
-    id = 'mvs_' + Date.now().toString(36) + '_' + Math.random().toString(36).slice(2, 8);
-    window.localStorage.setItem('mvs_player_id', id);
-    return id;
-  } catch(e) { return null; }
-}
-
-function updateARGData(milestone) {
-  try {
-    getOrCreatePlayerId();
-
-    // Track first/last visit
-    if (!window.localStorage.getItem('mvs_nel_first_visit')) {
-      window.localStorage.setItem('mvs_nel_first_visit', String(Date.now()));
-    }
-    window.localStorage.setItem('mvs_nel_last_visit', String(Date.now()));
-
-    // Update choices count
-    window.localStorage.setItem('mvs_nel_choices_made', String(choiceHistory.length));
-
-    // Track ink variables for narrator trust
-    var vars = getInkVariables();
-    var trust = 0;
-    if (vars.narrator_compromised) trust += 3;
-    if (vars.loop_detected) trust += 2;
-    if (vars.spreadsheet_exists) trust += 1;
-    if (vars.reader_addressed) trust += 2;
-    window.localStorage.setItem('mvs_nel_narrator_trust', String(trust));
-
-    // Loop count
-    var timesRead = 0;
-    try { timesRead = story.variablesState['times_read_opening'] || 0; } catch(e) {}
-    window.localStorage.setItem('mvs_nel_loop_count', String(timesRead));
-
-    // Milestones
-    if (milestone) {
-      var milestones = [];
-      try {
-        milestones = JSON.parse(window.localStorage.getItem('mvs_nel_milestones') || '[]');
-      } catch(e) {}
-      if (milestones.indexOf(milestone) === -1) {
-        milestones.push(milestone);
-        window.localStorage.setItem('mvs_nel_milestones', JSON.stringify(milestones));
-      }
-    }
-
-    // Endings seen
-    if (milestone && (milestone.indexOf('ending') !== -1 || milestone.indexOf('exit') !== -1 || milestone.indexOf('infinite') !== -1)) {
-      var endings = [];
-      try {
-        endings = JSON.parse(window.localStorage.getItem('mvs_nel_endings_seen') || '[]');
-      } catch(e) {}
-      if (endings.indexOf(milestone) === -1) {
-        endings.push(milestone);
-        window.localStorage.setItem('mvs_nel_endings_seen', JSON.stringify(endings));
-      }
-    }
-  } catch(e) {}
-}
-
-// ============================================================
 // LOAD & INIT
 // ============================================================
 
 async function loadAndInit() {
   try {
-    const inkResponse = await fetch('node_modules/inkjs/dist/ink.js');
+    let inkResponse = await fetch('node_modules/inkjs/dist/ink.js').catch(() => null);
+    if (!inkResponse || !inkResponse.ok) {
+      inkResponse = await fetch('https://cdn.jsdelivr.net/npm/inkjs@2.4.0/dist/ink.js');
+    }
     if (!inkResponse.ok) throw new Error('Could not load inkjs runtime');
     const inkCode = await inkResponse.text();
     const inkScript = document.createElement('script');
@@ -1050,8 +2411,6 @@ async function loadAndInit() {
     window.storyJson = await jsonResponse.json();
 
     initStory();
-    getOrCreatePlayerId();
-    updateARGData('started_ink_game');
 
     if (window.location.hash.includes('jump=')) {
       if (applyJump()) {
@@ -1067,12 +2426,417 @@ async function loadAndInit() {
 }
 
 document.addEventListener('DOMContentLoaded', loadAndInit);
+
+window.addEventListener('pagehide', function() {
+  if (window.umami) window.umami.track('nel-exit', { scene: currentSceneId, phase: currentPhase });
+});
+
+// ============================================================
+// EIGHTH CHILD DETECTOR + SIGNAL RENDERER
+// ============================================================
+
+const eighthChild = (function() {
+  const WINDOW_SIZE = 20;
+  const THRESHOLD = 0.67;
+  const actions = []; // rolling window: 'presence' | 'power'
+  let lastContinueTime = 0;
+  let signalActive = false;
+  let audioEl = null;
+
+  function record(type) {
+    if (type !== 'presence' && type !== 'power') return;
+    actions.push(type);
+    if (actions.length > WINDOW_SIZE) actions.shift();
+    evaluate();
+  }
+
+  function evaluate() {
+    if (actions.length < 5) return; // need minimum sample
+    const presenceCount = actions.filter(a => a === 'presence').length;
+    const ratio = presenceCount / actions.length;
+    if (ratio > THRESHOLD && !signalActive) {
+      fireSignal();
+    }
+  }
+
+  function fireSignal() {
+    signalActive = true;
+    renderAmberPulse();
+    playSignalAudio();
+    if (window.loreDiscovery) {
+      window.loreDiscovery.onNarrativeDiscovery('eighth-child:presence');
+    }
+    // Allow re-firing after the signal completes
+    setTimeout(function() { signalActive = false; }, 2500);
+  }
+
+  // --- Visual: Amber edge-pulse ---
+  function renderAmberPulse() {
+    let overlay = document.getElementById('eighth-child-overlay');
+    if (!overlay) {
+      overlay = document.createElement('div');
+      overlay.id = 'eighth-child-overlay';
+      overlay.style.cssText = 'position:fixed;inset:0;pointer-events:none;z-index:99990;' +
+        'box-shadow:inset 0 0 80px 40px #e8b84b;opacity:0;transition:opacity 0.5s ease-in;';
+      document.body.appendChild(overlay);
+    }
+    // ease-in to peak
+    requestAnimationFrame(function() {
+      overlay.style.opacity = '0.15';
+    });
+    // hold, then fade
+    setTimeout(function() {
+      overlay.style.transition = 'opacity 0.5s ease-out';
+      overlay.style.opacity = '0';
+      // reset transition for next time
+      setTimeout(function() {
+        overlay.style.transition = 'opacity 0.5s ease-in';
+      }, 600);
+    }, 1500); // 500ms ease-in + 1000ms hold
+  }
+
+  // --- Audio: null-safe ---
+  function playSignalAudio() {
+    if (audioEl === null) {
+      audioEl = new Audio();
+      audioEl.src = 'assets/audio/eighth-child-resolve.mp3';
+      audioEl.volume = 0.4;
+      audioEl.addEventListener('error', function() { audioEl = false; });
+    }
+    if (audioEl === false) return; // failed to load, skip gracefully
+    try {
+      audioEl.currentTime = 0;
+      audioEl.play().catch(function() {}); // autoplay policy — fail silently
+    } catch(e) {}
+  }
+
+  // --- Hook: content tags (tags appear on story.currentTags after Continue) ---
+  function classifyTags(tags) {
+    if (!tags || !tags.length) return;
+    for (var i = 0; i < tags.length; i++) {
+      var t = tags[i].trim().toLowerCase();
+      if (t === 'presence') { record('presence'); return; }
+      if (t === 'power') { record('power'); return; }
+    }
+  }
+
+  // --- Hook: reading speed ---
+  function trackContinue(textLength) {
+    var now = Date.now();
+    if (lastContinueTime > 0 && textLength > 100) {
+      var elapsed = now - lastContinueTime;
+      if (elapsed < 2000) {
+        record('power'); // rapid clicking
+      } else {
+        record('presence'); // reading carefully
+      }
+    }
+    lastContinueTime = now;
+  }
+
+  // --- Hook: annotation system ---
+  function annotationNote() { record('presence'); }
+  function annotationRewrite() { record('power'); }
+
+  // --- Reset on story restart ---
+  function reset() {
+    actions.length = 0;
+    lastContinueTime = 0;
+    signalActive = false;
+  }
+
+  return {
+    classifyTags: classifyTags,
+    trackContinue: trackContinue,
+    annotationNote: annotationNote,
+    annotationRewrite: annotationRewrite,
+    reset: reset
+  };
+})();
 </script>
 
-<!-- PWYC support prompt — auto-triggers after engagement -->
-<script src="../../pwyc.js"></script>
-<script src="../../support-prompt.js" data-support-game="nel" data-support-delay="180"></script>
+<!-- PWYC Tier Picker Modal -->
+<div id="pwyc-overlay" role="dialog" aria-modal="true" aria-label="Support this story — pay what you can">
+</div>
+<style>
+  #pwyc-overlay {
+    position: fixed; inset: 0; z-index: 99998;
+    background: rgba(10, 8, 6, 0.88);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    display: flex; align-items: center; justify-content: center;
+    padding: 1rem;
+    opacity: 0; transition: opacity 0.3s ease;
+    pointer-events: none;
+  }
+  #pwyc-overlay.pwyc-open {
+    opacity: 1; pointer-events: all;
+  }
+  #pwyc-modal {
+    background: #f5ead8;
+    border: 1px solid rgba(74, 47, 24, 0.28);
+    border-radius: 6px;
+    max-width: 560px; width: 100%;
+    padding: 2.2rem 2rem;
+    position: relative;
+    transform: translateY(12px); transition: transform 0.3s ease;
+    box-shadow: 0 8px 40px rgba(57, 35, 16, 0.3);
+    color: #38251a;
+  }
+  #pwyc-overlay.pwyc-open #pwyc-modal { transform: translateY(0); }
+  #pwyc-close {
+    position: absolute; top: 0.8rem; right: 1rem;
+    background: transparent; border: none; cursor: pointer;
+    color: rgba(56, 37, 26, 0.58); font-size: 1.6rem; line-height: 1;
+    padding: 0.25rem 0.5rem; border-radius: 4px;
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    transition: color 0.15s;
+  }
+  #pwyc-close:hover { color: #38251a; }
+  #pwyc-heading {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 1.5rem; font-weight: 600;
+    color: #38251a;
+    margin-bottom: 0.4rem; line-height: 1.3;
+  }
+  #pwyc-tagline {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 0.95rem; color: #5d4632;
+    margin-bottom: 1.8rem;
+    font-style: italic;
+  }
+  .pwyc-tiers {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 0.5rem; margin-bottom: 1.5rem;
+  }
+  @media (max-width: 540px) {
+    .pwyc-tiers { grid-template-columns: repeat(3, 1fr); }
+  }
+  .pwyc-tier {
+    background: transparent;
+    border: 1px solid rgba(74, 47, 24, 0.28);
+    border-radius: 4px;
+    padding: 0.8rem 0.4rem;
+    cursor: pointer; text-align: center;
+    transition: border-color 0.15s, background 0.15s, box-shadow 0.15s;
+    -webkit-user-select: none; user-select: none;
+    font-family: 'Cormorant Garamond', Georgia, serif;
+  }
+  .pwyc-tier:hover {
+    border-color: rgba(56, 37, 26, 0.4);
+    background: rgba(0, 0, 0, 0.03);
+  }
+  .pwyc-tier.pwyc-selected {
+    border-color: #00b88a;
+    box-shadow: 0 0 10px rgba(0, 184, 138, 0.18);
+    background: rgba(0, 184, 138, 0.05);
+  }
+  .pwyc-tier-sublabel {
+    font-size: 1.1rem; font-weight: 600;
+    color: #38251a; margin-bottom: 0.15rem;
+    line-height: 1.2;
+  }
+  .pwyc-tier-name {
+    font-size: 0.72rem; font-weight: 500;
+    letter-spacing: 0.08em; text-transform: uppercase;
+    color: #5d4632; margin-bottom: 0.3rem;
+    font-family: 'IM Fell English SC', serif;
+  }
+  .pwyc-tier-desc {
+    font-size: 0.7rem; color: rgba(56, 37, 26, 0.58);
+    line-height: 1.4;
+  }
+  .pwyc-tier.pwyc-selected .pwyc-tier-desc { color: #5d4632; }
+  #pwyc-custom-row {
+    display: none;
+    margin-bottom: 1.25rem;
+    align-items: center; gap: 0.75rem;
+  }
+  #pwyc-custom-row.pwyc-visible { display: flex; }
+  #pwyc-custom-label {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 1rem; color: #5d4632;
+    white-space: nowrap;
+  }
+  #pwyc-custom-input {
+    flex: 1; background: transparent;
+    border: 1px solid rgba(74, 47, 24, 0.28);
+    border-radius: 4px;
+    padding: 0.5rem 0.7rem;
+    color: #38251a;
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 1rem;
+    outline: none; transition: border-color 0.15s;
+  }
+  #pwyc-custom-input:focus { border-color: rgba(56, 37, 26, 0.5); }
+  #pwyc-cta {
+    display: block; width: 100%;
+    padding: 0.8rem 1.5rem;
+    font-family: 'IM Fell English SC', serif;
+    font-size: 0.85rem;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    border: none; border-radius: 4px;
+    cursor: pointer; transition: all 0.2s;
+    text-align: center;
+  }
+  #pwyc-note {
+    margin-top: 1rem;
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 0.8rem; color: rgba(56, 37, 26, 0.58);
+    text-align: center; line-height: 1.6;
+    font-style: italic;
+  }
+</style>
+<script>
+(function () {
+  'use strict';
 
-<script defer src="https://analytics.multiversestudios.xyz/script.js" data-website-id="38d680a7-28d1-42fd-9fd5-a66702675b88"></script>
+  var CHECKOUT_API_URL = 'https://pay.multiversestudios.xyz/create-checkout-session';
+  var TIERS = [
+    { id: 'free', amount: 0, label: 'Free', sublabel: '$0', desc: 'No conditions.' },
+    { id: 'spark', amount: 500, label: 'Spark', sublabel: '$5', desc: 'A small light.', isDefault: true },
+    { id: 'signal', amount: 1500, label: 'Signal', sublabel: '$15', desc: 'A strong signal.' },
+    { id: 'beacon', amount: 2500, label: 'Beacon', sublabel: '$25', desc: 'You believe in this.' },
+    { id: 'custom', amount: null, label: 'Custom', sublabel: 'Your call', desc: 'Name your price.', isCustom: true }
+  ];
+
+  var selectedTier = TIERS[1]; // Spark default
+  var overlay = document.getElementById('pwyc-overlay');
+  var tierEls = [];
+
+  function buildModal() {
+    overlay.innerHTML =
+      '<div id="pwyc-modal">' +
+      '  <button id="pwyc-close" aria-label="Close">&times;</button>' +
+      '  <div id="pwyc-heading">Support this story</div>' +
+      '  <div id="pwyc-tagline">Never Ever Land is free to read. Pay what you can if the story stays with you.</div>' +
+      '  <div class="pwyc-tiers" role="radiogroup" aria-label="Choose your contribution">' +
+        TIERS.map(function (tier, i) {
+          return '<button class="pwyc-tier" data-tier-idx="' + i + '"' +
+            ' role="radio" aria-checked="' + (tier.isDefault ? 'true' : 'false') + '"' +
+            ' aria-label="' + tier.label + ' \u2014 ' + tier.sublabel + '">' +
+            '<div class="pwyc-tier-sublabel">' + tier.sublabel + '</div>' +
+            '<div class="pwyc-tier-name">' + tier.label + '</div>' +
+            '<div class="pwyc-tier-desc">' + tier.desc + '</div>' +
+            '</button>';
+        }).join('') +
+      '  </div>' +
+      '  <div id="pwyc-custom-row">' +
+      '    <span id="pwyc-custom-label">$</span>' +
+      '    <input id="pwyc-custom-input" type="number" min="1" max="9999" placeholder="Enter amount" aria-label="Custom amount in dollars">' +
+      '  </div>' +
+      '  <button id="pwyc-cta">Continue</button>' +
+      '  <div id="pwyc-note">All stories are free. Payments support ongoing creation.</div>' +
+      '</div>';
+
+    tierEls = Array.prototype.slice.call(overlay.querySelectorAll('.pwyc-tier'));
+
+    overlay.querySelector('#pwyc-close').addEventListener('click', closePWYCModal);
+    overlay.addEventListener('click', function (e) { if (e.target === overlay) closePWYCModal(); });
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closePWYCModal(); });
+
+    tierEls.forEach(function (el, i) {
+      el.addEventListener('click', function () { selectTier(i); });
+    });
+
+    overlay.querySelector('#pwyc-cta').addEventListener('click', handleCTA);
+    selectTier(1); // default to Spark
+  }
+
+  function selectTier(idx) {
+    selectedTier = TIERS[idx];
+    tierEls.forEach(function (el, i) {
+      var isSelected = i === idx;
+      el.classList.toggle('pwyc-selected', isSelected);
+      el.setAttribute('aria-checked', isSelected ? 'true' : 'false');
+    });
+    var customRow = overlay.querySelector('#pwyc-custom-row');
+    if (selectedTier.isCustom) {
+      customRow.classList.add('pwyc-visible');
+      overlay.querySelector('#pwyc-custom-input').focus();
+    } else {
+      customRow.classList.remove('pwyc-visible');
+    }
+    updateCTA();
+  }
+
+  function updateCTA() {
+    var cta = overlay.querySelector('#pwyc-cta');
+    if (selectedTier.amount === 0) {
+      cta.textContent = 'Continue free \u2192';
+      cta.style.background = 'rgba(56, 37, 26, 0.4)';
+      cta.style.color = '#f5ead8';
+    } else {
+      var label = selectedTier.isCustom ? 'Continue with custom amount' : 'Continue \u2014 ' + selectedTier.sublabel;
+      cta.textContent = label + ' \u2192';
+      cta.style.background = '#00b88a';
+      cta.style.color = '#1a1a1a';
+    }
+  }
+
+  function handleCTA() {
+    if (selectedTier.amount === 0) {
+      closePWYCModal();
+      return;
+    }
+    var cents;
+    if (selectedTier.isCustom) {
+      var customInput = overlay.querySelector('#pwyc-custom-input');
+      var dollars = parseFloat(customInput.value);
+      if (!dollars || dollars < 1) {
+        customInput.focus();
+        customInput.style.borderColor = 'rgba(255,100,100,0.6)';
+        setTimeout(function () { customInput.style.borderColor = ''; }, 1500);
+        return;
+      }
+      cents = Math.round(dollars * 100);
+    } else {
+      cents = selectedTier.amount;
+    }
+
+    var cta = overlay.querySelector('#pwyc-cta');
+    var originalText = cta.textContent;
+    cta.disabled = true;
+    cta.textContent = 'Connecting\u2026';
+    cta.style.opacity = '0.6';
+
+    var xhr = new XMLHttpRequest();
+    xhr.open('POST', CHECKOUT_API_URL);
+    xhr.setRequestHeader('Content-Type', 'application/json');
+    xhr.onload = function () {
+      if (xhr.status >= 200 && xhr.status < 300) {
+        try {
+          var data = JSON.parse(xhr.responseText);
+          if (data.url) { window.open(data.url, '_blank'); closePWYCModal(); return; }
+        } catch (e) { console.error('PWYC: parse error', e); }
+      }
+      cta.textContent = 'Something went wrong';
+      cta.style.background = '#cc4444';
+      setTimeout(function () { cta.disabled = false; cta.style.opacity = ''; cta.textContent = originalText; updateCTA(); }, 2000);
+    };
+    xhr.onerror = function () {
+      cta.textContent = 'Connection failed';
+      cta.style.background = '#cc4444';
+      setTimeout(function () { cta.disabled = false; cta.style.opacity = ''; cta.textContent = originalText; updateCTA(); }, 2000);
+    };
+    xhr.send(JSON.stringify({ game: 'nel', amount: cents }));
+  }
+
+  var built = false;
+  window.openPWYCModal = function () {
+    if (!built) { buildModal(); built = true; }
+    else { selectTier(1); }
+    overlay.classList.add('pwyc-open');
+    document.body.style.overflow = 'hidden';
+  };
+
+  window.closePWYCModal = function () {
+    overlay.classList.remove('pwyc-open');
+    document.body.style.overflow = '';
+  };
+}());
+</script>
+
 </body>
 </html>

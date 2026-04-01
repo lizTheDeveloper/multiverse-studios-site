@@ -3,16 +3,16 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Cultures of the Belt v0.9.0 — The Belt Remembers — Multiverse Studios Devlog</title>
-  <meta name="description" content="Cultures of the Belt v0.9.0: Anomaly pacing overhaul, fleet manifestos, mentorship bonds, distress signals, and smarter miners.">
-  <meta property="og:title" content="Cultures of the Belt v0.9.0 — The Belt Remembers">
-  <meta property="og:description" content="Anomalies unfold gradually. Your fleet has a manifesto. Factions offer mentorship. Miners stop stranding themselves.">
+  <title>Cultures of the Belt v0.8.2 — What ARIA Noticed — Multiverse Studios Devlog</title>
+  <meta name="description" content="Cultures of the Belt v0.8.2: ARIA now draws connections between the Seven Civilizations. Study two anomaly types simultaneously and she starts to understand.">
+  <meta property="og:title" content="Cultures of the Belt v0.8.2 — What ARIA Noticed">
+  <meta property="og:description" content="The seven civilizations failed in complementary ways. ARIA is starting to see how.">
   <meta property="og:type" content="article">
-  <meta property="og:url" content="https://multiversestudios.xyz/devlog/release-cotb-v0.9.0.html">
+  <meta property="og:url" content="https://multiversestudios.xyz/devlog/release-cotb-v0.8.2.html">
   <meta property="og:image" content="https://multiversestudios.xyz/screenshots/homepage-hero.png">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Cultures of the Belt v0.9.0 — The Belt Remembers">
-  <meta name="twitter:description" content="Anomalies unfold gradually. Your fleet has a manifesto. Factions offer mentorship. Miners stop stranding themselves.">
+  <meta name="twitter:title" content="Cultures of the Belt v0.8.2 — What ARIA Noticed">
+  <meta name="twitter:description" content="The seven civilizations failed in complementary ways. ARIA is starting to see how.">
   <meta name="twitter:image" content="https://multiversestudios.xyz/screenshots/homepage-hero.png">
   <link rel="stylesheet" href="../styles.css">
   <link rel="icon" type="image/svg+xml" href="../press-kit/logos/multiverse-studios-favicon.svg">
@@ -58,6 +58,16 @@
       font-size: 1.3rem;
       color: var(--star-white);
       margin: var(--space-xl) 0 var(--space-sm) 0;
+    }
+    .devlog-body .pullout {
+      border-left: 3px solid #d946ef;
+      padding: var(--space-sm) var(--space-md);
+      margin: var(--space-lg) 0;
+      color: var(--star-white);
+      font-style: italic;
+      font-size: 1.1rem;
+      line-height: 1.7;
+      background: rgba(217, 70, 239, 0.04);
     }
     .devlog-body .divider {
       border: none;
@@ -108,30 +118,33 @@
 
       <div class="byline">
         <span>March 28, 2026</span>
-        <span class="tag">CotB v0.9.0</span>
+        <span class="tag">CotB v0.8.2</span>
       </div>
 
-      <h1>The Belt Remembers</h1>
+      <h1>What ARIA Noticed</h1>
 
-      <p>This is the biggest Cultures of the Belt update yet. Anomalies no longer fire within seconds of starting a new game. Your fleet can declare a manifesto. Factions offer mentorship. And miners have finally learned to come home before they run out of fuel.</p>
+      <p>The Seven Civilizations left anomalies in the belt. You've been studying them — individually, sequentially, one at a time. That's how most players approach the research track. You pick a promising asteroid, deploy scouts, wait for ARIA to complete the analysis.</p>
+
+      <p>But the civilizations weren't separate stories. Their histories overlap in ways that only emerge when you look at more than one at a time. ARIA has been reading the anomalies in isolation. In v0.8.2, if you give her two to look at simultaneously, she starts drawing connections.</p>
 
       <hr class="divider">
 
-      <h2>Anomaly Pacing</h2>
+      <h2>Anomaly Cross-Pollination</h2>
 
-      <p>Discovery is no longer instant. Anomalies require minimum game time and depleted asteroids before they appear. The first anomaly is a subtle sensor reading, not a full overlay. Eight canonical anomaly types — geological, electromagnetic, structural, and more — replace the old instant reveal, each with weighted discovery rates tuned to feel earned rather than scripted.</p>
+      <p>When you have scouts studying anomalies from two or more different civilization types at the same time, ARIA occasionally delivers a <strong>cross-pollination insight</strong> — a message that appears in the ARIA panel with a distinct synthesis accent, different from normal briefings. She's noticed something about how these two civilizations connect. How their failure modes mirror or invert each other. What that might mean for what's coming.</p>
 
-      <h2>Fleet Manifesto</h2>
+      <div class="pullout">
+        "The Seeker silence and the Dreamer resonance are inversions. One asked the final question and stopped speaking. The other felt the final emotion and couldn't stop. The question destroyed language. The emotion destroyed silence."
+        <br><br>— ARIA, on studying Seeker and Dreamer anomalies simultaneously
+      </div>
 
-      <p>Declare your colony's values through a multi-statement manifesto. ARIA references your manifesto in briefings, and factions react to your stated principles with affinity shifts. What you say you believe in matters to the people watching from deeper in the belt.</p>
+      <p>There are 21 possible civilization pairs from the seven types. Each pair has one unique insight. If you're studying three types simultaneously, ARIA finds connections faster — 1.5% chance per second, versus 0.5% for two. The insights arrive as surprises. You don't know when one is coming, and you don't know which pair you'll unlock next.</p>
 
-      <h2>Mentorship Bonds</h2>
+      <h2>The Synthesis Tab</h2>
 
-      <p>Factions can now mentor your colony. Lesson messages route through your advisors with mechanical benefits that scale with bond strength. Earning a faction's trust means more than a number going up — it changes what they're willing to teach you.</p>
+      <p>A new <strong>Synthesis</strong> tab in the codex panel tracks your discoveries: N / 21 connections found, the civilization pair as a header, and the insight text listed newest first. If you haven't found any yet, it shows a hint about studying multiple types simultaneously. Discovered pairs persist through save/load — ARIA doesn't forget what she's figured out.</p>
 
-      <h2>Smarter Miners</h2>
-
-      <p>Two long-standing AI bugs are fixed. Miners now track orbiting asteroid positions each tick instead of flying to where the rock used to be. And miners with low energy return to base before stranding themselves on weird orbits in the middle of the belt. The physics are still non-negotiable — delta-v is delta-v — but at least the robots are making better decisions about when to head home.</p>
+      <p>At 7, 14, and 21 discoveries, ARIA delivers synthesis-level revelations — connections that reframe what you thought you understood. Those revelations are why this tab matters. The 21/21 collection is long-term. The first synthesis message is not.</p>
 
       <div class="cta-bar">
         <p>Cultures of the Belt is free to play. Pay what you can if you want to keep the lights on in the belt.</p>
@@ -142,7 +155,7 @@
       </div>
 
       <div class="devlog-footer">
-        Multiverse Studios — <em>March 28, 2026</em> · Cultures of the Belt v0.9.0 release notes
+        Multiverse Studios — <em>March 28, 2026</em> · Cultures of the Belt v0.8.2 release notes
       </div>
 
     </div>

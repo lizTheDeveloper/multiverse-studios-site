@@ -3,16 +3,16 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>March 23–24: Plants Feed the World — Multiverse Studios Devlog</title>
-  <meta name="description" content="MVEE's food economy redesigned around plants. Agent steering fixed. Cultures of the Belt playable again. Server outage recovered.">
-  <meta property="og:title" content="March 23–24: Plants Feed the World, and the Villagers Finally Move">
-  <meta property="og:description" content="Glow pools gone. Plants are the food economy. Agents unstuck. Four games patched. Server recovered.">
+  <title>March 21–22: Everything Broke, Then Everything Worked — Multiverse Studios Devlog</title>
+  <meta name="description" content="Four emergency deploys in twelve hours. An FPS crisis in Precursors. A crash-on-load in MVEE. A deploy script silently dropping every sprite. All fixed.">
+  <meta property="og:title" content="March 21–22: The Night Everything Broke">
+  <meta property="og:description" content="Four emergency deploys. An FPS crisis. A crash-on-load. A deploy script silently dropping every sprite. All fixed by morning.">
   <meta property="og:type" content="article">
-  <meta property="og:url" content="https://multiversestudios.xyz/devlog/daily-2026-03-24.html">
+  <meta property="og:url" content="https://multiversestudios.xyz/devlog/daily-2026-03-22.html">
   <meta property="og:image" content="https://multiversestudios.xyz/screenshots/homepage-hero.png">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="March 23–24: Plants Feed the World, and the Villagers Finally Move">
-  <meta name="twitter:description" content="Glow pools gone. Plants are the food economy. Agents unstuck. Four games patched. Server recovered.">
+  <meta name="twitter:title" content="March 21–22: The Night Everything Broke">
+  <meta name="twitter:description" content="Four emergency deploys. An FPS crisis. A crash-on-load. A deploy script silently dropping every sprite. All fixed.">
   <meta name="twitter:image" content="https://multiversestudios.xyz/screenshots/homepage-hero.png">
   <link rel="stylesheet" href="../styles.css">
   <link rel="icon" type="image/svg+xml" href="../press-kit/logos/multiverse-studios-favicon.svg">
@@ -106,6 +106,33 @@
     .game-section p {
       margin-bottom: var(--space-sm);
     }
+    .stat-row {
+      display: flex;
+      gap: var(--space-md);
+      margin: var(--space-md) 0;
+      flex-wrap: wrap;
+    }
+    .stat {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 8px;
+      padding: var(--space-sm) var(--space-md);
+      text-align: center;
+      flex: 1;
+      min-width: 120px;
+    }
+    .stat .number {
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: var(--star-white);
+      font-family: var(--font-mono);
+    }
+    .stat .label {
+      font-size: 0.7rem;
+      color: var(--dust);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
     .cta-bar {
       background: rgba(255,255,255,0.04);
       border: 1px solid rgba(255,255,255,0.1);
@@ -149,15 +176,30 @@
     <div class="devlog-body">
 
       <div class="byline">
-        <span>March 23–24, 2026</span>
+        <span>March 21–22, 2026</span>
         <span class="tag mvee">MVEE</span>
         <span class="tag creatures">Precursors</span>
         <span class="tag cotb">CotB</span>
       </div>
 
-      <h1>Plants feed the world, and the villagers finally move</h1>
+      <h1>The night everything broke and the morning everything worked again</h1>
 
-      <p>Two changes that fundamentally alter how MVEE's simulation feels. And a server outage that made everything else feel fragile by comparison.</p>
+      <p>Some nights at the studio look like this: three games, four emergency deploys, a crash-on-load, an FPS crisis, a deploy script silently dropping every sprite, and a rate limiter that wasn't limiting anything. By morning, all of it was fixed.</p>
+
+      <div class="stat-row">
+        <div class="stat">
+          <div class="number">4</div>
+          <div class="label">Emergency deploys</div>
+        </div>
+        <div class="stat">
+          <div class="number">3</div>
+          <div class="label">Games patched</div>
+        </div>
+        <div class="stat">
+          <div class="number">12h</div>
+          <div class="label">Start to stable</div>
+        </div>
+      </div>
 
       <hr class="divider">
 
@@ -165,47 +207,47 @@
 
       <div class="game-section mvee">
         <div class="game-section-label">MVEE</div>
-        <h3>A real food economy</h3>
-        <p>Glow pool food spawning is gone. Plants are now the sole food source. The PlantSystem was tuned for density, growth rate, and nutritional balance — villages that don't cultivate will starve.</p>
-        <p>Separately, a steering bug was discovered where agents' behavior was permanently stuck on "none." They had brains, they had goals, they just never walked anywhere. Fixed.</p>
-        <p>Combined with yesterday's speech work, MVEE went from a diorama of frozen, silent figures to a living village where creatures grow food, move with intent, and talk to each other.</p>
-        <p>Also shipped: 48 console errors from broken image paths resolved, LLM proxy 429 rate limiting patched, auth session loading error fixed. Three deploys including v0.4.22.</p>
+        <h3>Four deploys, three of them emergency</h3>
+        <p>The game was crashing on load. Every player saw a black screen stuck on "Initializing..." — a ReferenceError in the game loop that made the simulation unreachable. Emergency deploy v0.1.7 landed the fix.</p>
+        <p>Then: the Phaser engine was capturing keyboard input globally, which meant players trying to type their password in the Matrix auth modal would trigger in-game actions instead of entering characters. Fixed.</p>
+        <p>Email-based password reset for Matrix accounts also went live — a missing piece for any player who locked themselves out. And the LLM inference endpoint was diagnosed after norns started returning fallback text instead of real AI responses.</p>
+        <p>Deploy v0.3.2 bundled the keyboard fix, music gate, and LLM diagnosis together. Four deploys in under twelve hours.</p>
       </div>
 
       <div class="game-section precursors">
         <div class="game-section-label">Precursors</div>
-        <h3>Pay-what-you-can is live</h3>
-        <p>The PWYC call-to-action is now visible on the production play page. Players see it after the game loads. Separately, v0.4.19 shipped with speech rendering fixes and crafting balance buffs.</p>
+        <h3>From 8 FPS to 30 — and a sprite pipeline that works</h3>
+        <p>The single biggest performance fix since launch. Playtesting revealed the game was running at 8–9 FPS against a 30 FPS target — effectively unplayable. Root cause identified and resolved.</p>
+        <p>Alongside that: a cascade of rendering fixes. Baby creatures now scale correctly by life stage. Cross-species texture fallbacks no longer silently mask missing assets — they surface as visible errors so they can be found and fixed instead of hiding behind a generic sprite.</p>
+        <p>The deploy pipeline itself was broken: <code>publish.sh</code> was rsync-excluding all <code>.png</code> files, preventing sprite sheets from reaching production. Every code deploy succeeded. Every image deploy silently failed. Fixed.</p>
       </div>
 
       <div class="game-section cotb">
         <div class="game-section-label">Cultures of the Belt</div>
-        <h3>Finally playable again</h3>
-        <p>The screen flashing bug is resolved — for real this time. A design-level intervention removed transient cluster events from the notification pipeline entirely, rather than continuing to rate-limit them. All feature branches merged to main and deployed. The belt is quiet.</p>
+        <h3>Rate limiter tightened</h3>
+        <p>ARIA's broadcast system had a rate limiter that was still too lenient. Parallel event sources were creating seizure-level screen flashing. Tightened across all six call sites and fifteen event producers.</p>
       </div>
 
       <hr class="divider">
 
       <h2>What we learned</h2>
 
-      <p>The food economy change is a good example of how removing a system teaches you more than adding one. Glow pools were a placeholder — magical food that appeared from nowhere and let the simulation run without agriculture.</p>
+      <p>The sprite pipeline break is the instructive failure here. <code>publish.sh</code> excluded all PNGs from rsync. The deploy script ran perfectly for code assets. It just silently dropped every image. Deploy logs showed green. Players saw missing textures.</p>
 
       <div class="pullout">
-        Removing them immediately exposed whether the PlantSystem was actually viable as a food source. It wasn't, at first. The tuning pass that followed was faster and more focused than any amount of upfront design would have been, because the failure mode was concrete: villagers starved.
+        Deploys need artifact verification, not just exit code checks. A green build that ships no sprites is worse than a red build — at least the red build tells you something is wrong.
       </div>
-
-      <p>Sometimes the fastest path to a working system is deleting the thing that was hiding its absence.</p>
 
       <hr class="divider">
 
       <h2>What is next</h2>
 
-      <p>MVEE's simulation loop is now complete at the most basic level: creatures grow food, move toward it, eat, and talk. The next layer is whether their decisions are interesting — do they cooperate, compete, form preferences? The RLAIF training pipeline is running to improve response quality.</p>
+      <p>MVEE is stabilizing after a rough patch cycle. The LLM endpoint diagnosis uncovered why norns were falling back to canned responses, and the real fix is in progress.</p>
 
-      <p>Precursors with pay-what-you-can live means real player feedback can start flowing. Cultures of the Belt being playable again opens it up for proper playtesting.</p>
+      <p>Precursors at 30 FPS opens up gameplay that was previously invisible to testers. With the rendering pipeline clean and deploy scripts fixed, the creature systems can finally be evaluated at the framerate they were designed for.</p>
 
       <div class="cta-bar">
-        <p>Multiverse Studios builds games simultaneously with an AI-native team. All games are pay-what-you-can.</p>
+        <p>Multiverse Studios builds three games simultaneously with an AI-native team. All games are pay-what-you-can.</p>
         <div class="btn-row">
           <a href="https://play.multiversestudios.xyz/mvee/" class="btn btn-primary">Play MVEE</a>
           <a href="https://play.multiversestudios.xyz/precursors/" class="btn btn-ghost">Play Precursors</a>
@@ -214,7 +256,7 @@
       </div>
 
       <div class="devlog-footer">
-        Multiverse Studios — <em>March 24, 2026</em> · Daily devlog
+        Multiverse Studios — <em>March 22, 2026</em> · Daily devlog
       </div>
 
     </div>

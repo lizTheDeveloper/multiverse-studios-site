@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>March 24–25: Payments go live, creatures learn to sing, and the spoiler scare — Multiverse Studios Devlog</title>
+  <meta name="description" content="Stripe Checkout live at pay.multiversestudios.xyz. Precursors v0.4.28 ships singing behavior and 8+ new species. CotB gets a system map and faction trade offers. And a bot nearly blew our biggest reveals.">
+  <meta property="og:title" content="March 24–25: Payments go live, creatures learn to sing, and the spoiler scare">
+  <meta property="og:description" content="Stripe Checkout live. Precursors v0.4.28 ships singing behavior and 8+ new species sprites. CotB gets trade routes, a system map, and faction offers. A bot nearly spoiled everything.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://multiversestudios.xyz/devlog/daily-2026-03-25.html">
+  <meta property="og:image" content="https://multiversestudios.xyz/screenshots/homepage-hero.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="March 24–25: Payments go live, creatures learn to sing, and the spoiler scare">
+  <meta name="twitter:description" content="Stripe Checkout live. Precursors v0.4.28 ships singing behavior and 8+ new species sprites. CotB gets trade routes, a system map, and faction offers. A bot nearly spoiled everything.">
+  <meta name="twitter:image" content="https://multiversestudios.xyz/screenshots/homepage-hero.png">
+  <link rel="stylesheet" href="../styles.css">
+  <link rel="icon" type="image/svg+xml" href="../press-kit/logos/multiverse-studios-favicon.svg">
+  <style>
+    .devlog-body { max-width: 900px; margin: 0 auto; }
+    .devlog-body h1 { font-size: clamp(1.8rem, 4vw, 2.8rem); line-height: 1.2; margin-bottom: var(--space-sm); color: var(--star-white); }
+    .devlog-body .byline { font-size: 0.8rem; color: var(--dust); font-family: var(--font-mono); letter-spacing: 0.05em; margin-bottom: var(--space-xl); display: flex; gap: 1rem; flex-wrap: wrap; align-items: center; }
+    .devlog-body .byline .tag { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.2rem 0.6rem; border-radius: 4px; border: 1px solid var(--signal); color: var(--signal); }
+    .devlog-body .byline .tag.mvee { border-color: var(--ember); color: var(--ember); }
+    .devlog-body .byline .tag.creatures { border-color: var(--gene-pink); color: var(--gene-pink); }
+    .devlog-body .byline .tag.cotb { border-color: var(--biolume); color: var(--biolume); }
+    .devlog-body .byline .tag.infra { border-color: var(--signal); color: var(--signal); }
+    .devlog-body p { color: var(--dust-light); line-height: 1.8; font-size: 1.05rem; margin-bottom: var(--space-md); }
+    .devlog-body h2 { font-size: 1.3rem; color: var(--star-white); margin: var(--space-xl) 0 var(--space-sm) 0; }
+    .devlog-body .pullout { border-left: 3px solid var(--biolume); padding: var(--space-sm) var(--space-md); margin: var(--space-lg) 0; color: var(--star-white); font-style: italic; font-size: 1.1rem; line-height: 1.7; background: rgba(0, 255, 200, 0.04); }
+    .devlog-body .divider { border: none; border-top: 1px solid rgba(255,255,255,0.07); margin: var(--space-xl) 0; }
+    .game-section { background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.07); border-radius: 12px; padding: var(--space-lg); margin: var(--space-lg) 0; }
+    .game-section.mvee { border-color: rgba(255, 140, 50, 0.2); }
+    .game-section.precursors { border-color: rgba(255, 100, 200, 0.2); }
+    .game-section.cotb { border-color: rgba(0, 255, 200, 0.2); }
+    .game-section.infra { border-color: rgba(100, 200, 255, 0.2); }
+    .game-section-label { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; font-family: var(--font-mono); margin-bottom: var(--space-sm); }
+    .game-section.mvee .game-section-label { color: var(--ember); }
+    .game-section.precursors .game-section-label { color: var(--gene-pink); }
+    .game-section.cotb .game-section-label { color: var(--biolume); }
+    .game-section.infra .game-section-label { color: var(--signal); }
+    .game-section h3 { font-size: 1.15rem; color: var(--star-white); margin: 0 0 var(--space-sm) 0; }
+    .game-section p { margin-bottom: var(--space-sm); }
+    .cta-bar { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: var(--space-lg); margin: var(--space-xl) 0; text-align: center; }
+    .cta-bar p { font-size: 0.95rem; margin-bottom: var(--space-md); }
+    .cta-bar .btn-row { display: flex; gap: var(--space-sm); justify-content: center; flex-wrap: wrap; }
+    .devlog-footer { font-size: 0.8rem; color: var(--dust); border-top: 1px solid rgba(255,255,255,0.07); padding-top: var(--space-md); margin-top: var(--space-xl); font-family: var(--font-mono); }
+  </style>
+</head>
+<body>
+
+  <nav class="nav">
+    <a href="../index.html" class="nav-logo">✦ Multiverse Studios</a>
+    <div class="nav-links">
+      <a href="../devlog.html">← Devlog</a>
+      <a href="../mvee.html">MVEE</a>
+      <a href="../precursors.html">Precursors</a>
+    </div>
+  </nav>
+
+  <main class="container" style="padding-top: var(--space-xl);">
+    <div class="devlog-body">
+
+      <div class="byline">
+        <span>March 24–25, 2026</span>
+        <span class="tag mvee">MVEE</span>
+        <span class="tag creatures">Precursors</span>
+        <span class="tag cotb">CotB</span>
+        <span class="tag infra">Cross-game</span>
+      </div>
+
+      <h1>Payments go live, creatures learn to sing, and the spoiler scare</h1>
+
+      <p>Two days of dense forward motion — and one near-miss that reminded us automated systems don't understand what's precious about a mystery. Stripe Checkout is now live. Precursors' creatures can sing. CotB's economy is waking up. And a bot we trusted to spread the word almost spoiled the things we care most about keeping secret.</p>
+
+      <hr class="divider">
+
+      <h2>What shipped</h2>
+
+      <div class="game-section mvee">
+        <div class="game-section-label">MVEE</div>
+        <h3>Payments, performance, and creatures that think before they speak</h3>
+        <p>Stripe Checkout Sessions are live at <code>pay.multiversestudios.xyz</code>. Players can now support the studio directly from inside the game — pay what you can, when you want to.</p>
+        <p>A playtest crash traced back to the LLM hallucinating tool names was fixed. This is the sharp edge of running AI inference inside a simulation: the model sometimes invents calls that don't exist, and the sim crashes trying to route them. The fix tightens validation before dispatch.</p>
+        <p>The tick budget audit was the quietest but maybe the most impactful change: 96% of simulation cycles were being burned on sleep. Reclaiming that headroom let us ship 2x/4x time speed controls — the simulation now has gears.</p>
+        <p>The big architectural move was the utterance classification neural network for pre-cognitive vocalizations. Early-generation creatures were firing LLM inference for what amounted to random babbling — grunts, chirps, proto-sounds that mean nothing yet. A lightweight classifier now decides whether an utterance warrants expensive inference or can be handled locally. It can't. The LLM capacity it freed is now reserved for beings that have actually earned the compute.</p>
+        <p>CognitiveCapacity genetics were tuned for the gen 1–3 evolution arc. Feature extraction for the NN was optimized: 54 regex operations replaced with direct property access. Sentry error tracking is now baked into the build. An event log panel gives players a window into what's happening beneath the surface. Save/load reliability got a full audit, and a multi-tab corruption bug was fixed. Eight commits deployed across the two days.</p>
+      </div>
+
+      <div class="game-section precursors">
+        <div class="game-section-label">Precursors: Origins of Folklore</div>
+        <h3>v0.4.28 — eight new species and a world that moves to music</h3>
+        <p>Precursors v0.4.28 is the biggest feature drop in weeks. Pay-what-you-can is live. Creatures can now sing: vocalizations trigger pose transitions and particle effects, giving them a presence that goes well beyond idle animations.</p>
+        <p>Ettins finally navigate properly. Helm controls work. And dancing behavior landed — full group choreography, creatures responding to each other's movement in ways that look, for the first time, genuinely social.</p>
+        <p>Round 3 and Round 4 species sprites shipped: eight or more new creatures are now in the world, each with distinct silhouettes and motion. Norn text-to-speech was re-recorded using Arabic and Hindi voice models from ElevenLabs, giving the creatures a texture that feels genuinely other-worldly.</p>
+      </div>
+
+      <div class="game-section cotb">
+        <div class="game-section-label">Cultures of the Belt</div>
+        <h3>An economy with destinations, and a belt worth watching</h3>
+        <p>Pay-what-you-can deployed to the live build. Earth and Luna are now real trade destinations with demand curves — cargo has somewhere meaningful to go, and the market responds to what you ship.</p>
+        <p>The system map panel is in. ARIA delivers faction trade offers inline, woven into the moment rather than hidden in menus. Camera pitch controls are live. Visual base growth now reflects actual development — your outpost looks like it's growing because it is.</p>
+        <p>Audio feedback landed for mining, building, and research actions. The minimap was overhauled. The belt is becoming a place you can read at a glance, not just navigate.</p>
+      </div>
+
+      <div class="game-section infra">
+        <div class="game-section-label">Cross-game</div>
+        <h3>Shared universe infrastructure and the spoiler incident</h3>
+        <p>Folkfork Stage 1 shipped. Seventy-six species profiles are filled. Civilization templates were created — the connective tissue between games is taking shape in the database.</p>
+        <p>The credits system now has a server-side database backing it. Universe Gallery shipped: players can export their universes, annotate them, and browse them through a proper UI. The social layer is next.</p>
+        <p>The spoiler incident: a bot we had running automated drip content to Matrix started posting material that violated our spoiler boundaries — specifics about things we've worked hard to keep mysterious. It was caught and disabled quickly, but the damage could have been significant. All drip campaigns were audited. The CotB website copy was scrubbed. The lesson is simple and uncomfortable: automated posting pipelines don't know what matters. They need a human in the loop before anything goes out.</p>
+      </div>
+
+      <hr class="divider">
+
+      <h2>What we learned</h2>
+
+      <div class="pullout">
+        The utterance NN is a case study in knowing when not to use an LLM. Early-gen creatures were burning inference budget on random babbling — sounds that carried no meaning and required no understanding. A small classifier freed that capacity for the beings that actually needed it.
+      </div>
+
+      <p>There's a temptation to route everything through the most powerful model available. It feels safer, more thorough. But compute is finite, and spending it on pre-cognitive noise is a form of architectural debt. The classifier doesn't try to understand utterances — it just decides whether understanding is warranted. That's a different, cheaper job, and it turns out to be the right one for first-generation creatures still figuring out sound.</p>
+
+      <p>The spoiler incident is the same lesson applied to automation: powerful tools need appropriate scope. A bot that knows how to post doesn't know what it should protect. Those are different capabilities, and conflating them is how you accidentally give away the ending.</p>
+
+      <hr class="divider">
+
+      <h2>What is next</h2>
+
+      <p>RLAIF training has completed and Sprint 14 is now collecting data — the feedback loop that shapes how creatures learn is running in earnest. Universe Gallery gets its social layer: sharing, following, discovery. The spoiler audit is a wake-up call that all automated posting needs a human review step before it reaches players. And across all three games, the PWYC infrastructure being live means we can start learning what players actually want to pay for.</p>
+
+      <div class="cta-bar">
+        <p>Multiverse Studios builds three living games simultaneously with an AI-native team. All games are pay what you can.</p>
+        <div class="btn-row">
+          <a href="https://play.multiversestudios.xyz/mvee/" class="btn btn-primary">Play MVEE</a>
+          <a href="https://play.multiversestudios.xyz/precursors/" class="btn btn-ghost">Play Precursors</a>
+          <a href="https://play.multiversestudios.xyz/cotb/" class="btn btn-ghost">Play CotB</a>
+          <a href="../devlog.html" class="btn btn-ghost">More devlogs</a>
+        </div>
+      </div>
+
+      <div class="devlog-footer">
+        Multiverse Studios — <em>March 25, 2026</em> · Daily devlog
+      </div>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <p>Multiverse Studios · <a href="../index.html">Home</a> · <a href="../devlog.html">Devlog</a> · <a href="../community.html">Community</a> · <a href="../press.html">Press</a></p>
+      <p style="margin-top: 0.5rem; color: var(--dust); font-size: 0.8rem;">Open source. Pay what you can. Built by AI agents and one <a href="https://lizthe.dev" target="_blank" rel="noopener">human director</a>.</p>
+    </div>
+  </footer>
+
+  <script defer src="https://analytics.multiversestudios.xyz/script.js" data-website-id="38d680a7-28d1-42fd-9fd5-a66702675b88"></script>
+</body>
+</html>
