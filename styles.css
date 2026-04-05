@@ -410,7 +410,7 @@ img { max-width: 100%; display: block; }
 /* --- Game Cards (Landing) --- */
 .games-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(3, 1fr);
   gap: var(--space-md);
   margin-top: var(--space-lg);
 }
@@ -641,6 +641,131 @@ img { max-width: 100%; display: block; }
   color: var(--dust);
   margin: 0.5rem 0 0 0;
   font-style: italic;
+}
+
+/* --- Loading Bar Buttons --- */
+.btn-loadbar {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 48px;
+  padding: 0.7rem 1.4rem;
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-decoration: none;
+  border: 1px solid var(--void-border);
+  border-radius: 4px;
+  overflow: hidden;
+  background: linear-gradient(
+    to right,
+    var(--fill-color, var(--biolume)) 0%,
+    var(--fill-color, var(--biolume)) var(--progress, 0%),
+    var(--void-elevated) var(--progress, 0%),
+    var(--void-elevated) 100%
+  );
+  color: transparent;
+  cursor: pointer;
+  transition: transform 0.25s, box-shadow 0.25s, opacity 0.25s;
+  isolation: isolate;
+}
+
+.btn-loadbar::before,
+.btn-loadbar::after {
+  content: attr(data-label);
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.7rem 1.4rem;
+  pointer-events: none;
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+  letter-spacing: inherit;
+  text-transform: inherit;
+  white-space: nowrap;
+}
+
+/* Dark text over the filled (green) portion */
+.btn-loadbar::before {
+  color: var(--void);
+  clip-path: inset(0 calc(100% - var(--progress, 0%)) 0 0);
+}
+
+/* Dark/light text over the empty portion */
+.btn-loadbar::after {
+  color: var(--star-white);
+  clip-path: inset(0 0 0 var(--progress, 0%));
+}
+
+/* Percentage indicator (right-aligned, inside the button via extra span) */
+.btn-loadbar .loadbar-pct {
+  position: absolute;
+  right: 0.8rem;
+  top: 50%;
+  transform: translateY(-50%);
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.08em;
+  color: var(--dust);
+  z-index: 2;
+  pointer-events: none;
+}
+
+/* Playable state — hover effect */
+.btn-loadbar.loadbar-playable:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0 24px rgba(0, 255, 200, 0.25);
+  border-color: var(--biolume-dim);
+}
+
+/* Coming Soon state — dimmed, no pointer */
+.btn-loadbar.loadbar-soon {
+  opacity: 0.7;
+  cursor: default;
+  pointer-events: none;
+}
+
+/* 100% full state — shimmer animation */
+.btn-loadbar.loadbar-full {
+  border-color: rgba(0, 255, 200, 0.3);
+}
+
+.btn-loadbar.loadbar-full::before {
+  color: var(--void);
+}
+
+@keyframes loadbar-shimmer {
+  0%, 100% { opacity: 0; }
+  50% { opacity: 0.12; }
+}
+
+.btn-loadbar.loadbar-full::after {
+  /* No empty portion text needed at 100% */
+  clip-path: inset(0 0 0 100%);
+}
+
+.btn-loadbar.loadbar-full .loadbar-shimmer {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.2) 50%, transparent 100%);
+  animation: loadbar-shimmer 2.5s ease-in-out infinite;
+  pointer-events: none;
+}
+
+/* Mobile: ensure buttons don't overflow */
+@media (max-width: 640px) {
+  .btn-loadbar {
+    font-size: 0.65rem;
+    padding: 0.6rem 1rem;
+    min-height: 42px;
+  }
 }
 
 /* --- Support Banner --- */
@@ -1037,6 +1162,10 @@ body::after {
 }
 
 /* --- Responsive --- */
+@media (max-width: 1100px) {
+  .games-grid { grid-template-columns: 1fr 1fr; }
+}
+
 @media (max-width: 900px) {
   .games-grid { grid-template-columns: 1fr; }
   .footer-grid { grid-template-columns: 1fr 1fr; gap: var(--space-md); }
