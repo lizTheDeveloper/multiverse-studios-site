@@ -276,6 +276,7 @@ const GAME_PROJECT_IDS: Record<string, string> = {
   mvee: 'd4580782-9c8e-455d-8bb4-ac9b66edf39a',
   cultures_of_the_belt: '12d79ba6-5c08-4d4b-a259-29071374caca', // CotB project
   never_ever_land: '942caa5a-f0cc-41ea-9990-03175b081f58',
+  the_spaces_between: '84709434-376a-44c6-9de4-35bcbd3aa831',
   general: '942caa5a-f0cc-41ea-9990-03175b081f58',
 };
 
