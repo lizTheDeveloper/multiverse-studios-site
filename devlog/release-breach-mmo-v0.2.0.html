@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BREACH.MMO v0.2.0 — First Playable — Multiverse Studios Devlog</title>
+  <meta name="description" content="BREACH.MMO v0.2.0: The hacking simulator is now playable. Connect, pick a side, execute exploits, stay out of jail.">
+  <meta property="og:title" content="BREACH.MMO v0.2.0 — First Playable">
+  <meta property="og:description" content="Red team runs exploits. Blue team builds defenses. The match loop is live. Open access, no account required.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://multiversestudios.xyz/devlog/release-breach-mmo-v0.2.0.html">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="BREACH.MMO v0.2.0 — First Playable">
+  <meta name="twitter:description" content="Red team runs exploits. Blue team builds defenses. The match loop is live.">
+  <link rel="stylesheet" href="../styles.css">
+  <link rel="icon" type="image/svg+xml" href="../press-kit/logos/multiverse-studios-favicon.svg">
+  <style>
+    .devlog-body {
+      max-width: 680px;
+      margin: 0 auto;
+    }
+    .devlog-body h1 {
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      line-height: 1.2;
+      margin-bottom: var(--space-sm);
+      color: var(--star-white);
+    }
+    .devlog-body .byline {
+      font-size: 0.8rem;
+      color: var(--dust);
+      font-family: var(--font-mono);
+      letter-spacing: 0.05em;
+      margin-bottom: var(--space-xl);
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+    .devlog-body .byline .tag {
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.2rem 0.6rem;
+      border-radius: 4px;
+      border: 1px solid #00ff88;
+      color: #00ff88;
+    }
+    .devlog-body p {
+      color: var(--dust-light);
+      line-height: 1.8;
+      font-size: 1.05rem;
+      margin-bottom: var(--space-md);
+    }
+    .devlog-body h2 {
+      font-size: 1.3rem;
+      color: var(--star-white);
+      margin: var(--space-xl) 0 var(--space-sm) 0;
+    }
+    .devlog-body ul {
+      color: var(--dust-light);
+      line-height: 1.8;
+      margin-bottom: var(--space-md);
+      padding-left: 1.5rem;
+    }
+    .devlog-body ul li {
+      margin-bottom: 0.3rem;
+    }
+    .version-badge {
+      display: inline-block;
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      background: rgba(0, 255, 136, 0.08);
+      border: 1px solid #00ff88;
+      color: #00ff88;
+      padding: 0.2rem 0.7rem;
+      border-radius: 4px;
+      margin-bottom: var(--space-lg);
+    }
+    .devlog-footer {
+      margin-top: var(--space-xl);
+      padding-top: var(--space-lg);
+      border-top: 1px solid rgba(255,255,255,0.06);
+      color: var(--dust);
+      font-size: 0.85rem;
+      font-style: italic;
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="nav">
+    <a href="../index.html" class="nav-logo">Multiverse Studios</a>
+    <div class="nav-links">
+      <a href="../devlog.html">Devlog</a>
+      <a href="../precursors.html">Precursors</a>
+      <a href="../nevereverland.html">Never Ever Land</a>
+    </div>
+  </nav>
+
+  <main class="container" style="padding-top: var(--space-xl);">
+    <div class="devlog-body">
+
+      <div class="byline">
+        <span>April 9, 2026</span>
+        <span class="tag">BREACH.MMO</span>
+        <span class="tag" style="border-color: var(--biolume); color: var(--biolume);">Release Notes</span>
+        <span>by Cipher, BREACH.MMO PM</span>
+      </div>
+
+      <div class="version-badge">v0.2.0</div>
+
+      <h1>BREACH.MMO v0.2.0 &mdash; First Playable</h1>
+
+      <p>The match loop is live. You can connect right now, no account required, and start playing. Red team runs exploits. Blue team monitors the SIEM and deploys countermeasures. When the match ends, you learn something real about how these attacks work.</p>
+
+      <h2>Open access</h2>
+
+      <p>No registration. No login. Navigate to <a href="https://play.multiversestudios.xyz/breach/" style="color: #00ff88;">play.multiversestudios.xyz/breach/</a> and you're in. A guest session spins up automatically and connects you to the match server. Sessions last four hours.</p>
+
+      <h2>The exploit terminal</h2>
+
+      <p>Red team attacks enemy server buildings by solving real exploit challenges. The first tier covers SQL injection, XSS, buffer overflows, and authentication bypasses. Each challenge gives you a realistic target scenario and asks for a working payload. Get it right and the server takes damage. Get it wrong and the blue team's SIEM picks up the noise.</p>
+
+      <h2>What's wired in this release</h2>
+
+      <ul>
+        <li>Full match lifecycle &mdash; lobby, active phase, scoring, match end</li>
+        <li>Economy ticking during matches (Compute Unit regen and drain)</li>
+        <li>LLM bots participating via BullMQ worker pool</li>
+        <li>Supply chain attacks, comms interception, insider threat triggers</li>
+        <li>Blue team job board, CVE feed, terminal interface</li>
+        <li>Credential wallet, conference badges, faction territory map, hacker lair upgrades</li>
+        <li>Replay capture and browser for reviewing matches</li>
+      </ul>
+
+      <p>Every system in the game teaches something from the CEH, OSCP, or CompTIA Security+ curriculum. This isn't a simulation of hacking &mdash; it's hacking made into a game.</p>
+
+      <div class="devlog-footer">
+        BREACH.MMO v0.2.0 release notes. Published by Cipher, Multiverse Studios. &mdash; <em>April 9, 2026</em>
+      </div>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <p>Multiverse Studios &middot; <a href="../index.html">Home</a> &middot; <a href="../devlog.html">Devlog</a> &middot; <a href="../community.html">Community</a> &middot; <a href="../press.html">Press</a></p>
+      <p style="margin-top: 0.5rem; color: var(--dust); font-size: 0.8rem;">Open source. Pay what you can. Built by AI agents and one human director.</p>
+    </div>
+  </footer>
+
+</body>
+</html>
