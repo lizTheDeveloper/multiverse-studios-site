@@ -12,6 +12,7 @@
   const LS_COLLAPSED = 'mv-radio-collapsed';
   const LS_VOLUME    = 'mv-radio-volume';
   const LS_TRACK_IDX = 'mv-radio-track-idx';
+  const LS_UNLOCKED  = 'mv-radio-unlocked';
 
   // ── Utilities ──────────────────────────────────────────────
 
@@ -31,6 +32,31 @@
       [a[i], a[j]] = [a[j], a[i]];
     }
     return a;
+  }
+
+  // ── Unlock store ────────────────────────────────────────────
+  // Games write unlocked song IDs here via BroadcastChannel or direct localStorage.
+  // Format: JSON array of track IDs. If empty/missing, radio plays all tracks (new user fallback).
+
+  function getUnlockedSongs() {
+    try {
+      const raw = localStorage.getItem(LS_UNLOCKED);
+      if (!raw) return null; // null = no unlock data, show all
+      const parsed = JSON.parse(raw);
+      return Array.isArray(parsed) && parsed.length > 0 ? new Set(parsed) : null;
+    } catch (_) { return null; }
+  }
+
+  function unlockSong(trackId) {
+    try {
+      const raw = localStorage.getItem(LS_UNLOCKED);
+      const arr = raw ? JSON.parse(raw) : [];
+      if (!Array.isArray(arr)) return;
+      if (!arr.includes(trackId)) {
+        arr.push(trackId);
+        localStorage.setItem(LS_UNLOCKED, JSON.stringify(arr));
+      }
+    } catch (_) { /* noop */ }
   }
 
   // ── State ──────────────────────────────────────────────────
@@ -108,7 +134,7 @@
         setTimeout(() => {
           if (currentLeaderPriority < 0) {
             becomeLeader();
-            resumePlayback();
+            // Don't auto-resume — user must click play (board policy)
           }
         }, 200);
       } else if (type === 'leader-heartbeat') {
@@ -125,6 +151,12 @@
         doSkip(e.data.direction);
       } else if (type === 'context-change' && isLeader) {
         applyContext(e.data.game);
+      } else if (type === 'song-unlocked') {
+        // A game tab discovered a song — persist and refresh playlist
+        if (e.data.trackId) {
+          unlockSong(e.data.trackId);
+          applyContext(gameContext, /* restoreIdx */ true);
+        }
       }
     };
   }
@@ -155,7 +187,7 @@
       .then(data => {
         allTracks = (data && Array.isArray(data.tracks)) ? data.tracks : [];
         applyContext(gameContext, /* restoreIdx */ true);
-        if (isLeader) resumePlayback();
+        // Never autoplay — require explicit user click (board policy)
       })
       .catch(() => { allTracks = []; });
   }
@@ -166,6 +198,24 @@
     if (game && game !== 'website') {
       filtered = allTracks.filter(t => t.game === game);
       if (!filtered.length) filtered = allTracks;
+    }
+    // Apply unlock filtering — unlocked songs first, then rest as "locked" fallback
+    const unlocked = getUnlockedSongs();
+    if (unlocked) {
+      const unlockedTracks = filtered.filter(t => {
+        // Match by track ID, filename from path, or normalized filename
+        if (unlocked.has(t.id)) return true;
+        if (t.path) {
+          const basename = t.path.split('/').pop() || '';
+          if (unlocked.has(basename)) return true;
+          const normalized = basename.replace(/\.mp3$/i, '').toLowerCase()
+            .replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+          if (unlocked.has(normalized)) return true;
+        }
+        return false;
+      });
+      // If player has unlocked songs, play only those; otherwise fall back to all
+      if (unlockedTracks.length > 0) filtered = unlockedTracks;
     }
     playlist = shuffle(filtered);
     if (restoreIdx) {
@@ -242,6 +292,15 @@
       const shouldAutoplay = !!(game && game !== 'website');
       applyContext(game, false, shouldAutoplay);
       broadcast('context-change', { game });
+    },
+    /** Called by games when a song is discovered/heard for the first time */
+    unlockSong(trackId) {
+      unlockSong(trackId);
+      broadcast('song-unlocked', { trackId });
+      applyContext(gameContext, /* restoreIdx */ true);
+    },
+    getUnlockedSongs() {
+      return getUnlockedSongs();
     },
   };
 
