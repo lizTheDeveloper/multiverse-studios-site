@@ -1,5 +1,5 @@
 node_modules/
 package.json
 package-lock.json
-screenshot.js
+# screenshot.js — no longer ignored, uses resolve-dir routing
 .wrangler/

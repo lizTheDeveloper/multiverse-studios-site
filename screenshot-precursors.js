@@ -5,10 +5,10 @@
  */
 
 const { chromium } = require('playwright');
-const path = require('path');
+const { screenshotDir } = require('./screenshots/resolve-dir');
 
 const GAME_URL = 'http://localhost:3456';
-const OUT_DIR = path.join(__dirname, 'screenshots');
+const OUT_DIR = screenshotDir(GAME_URL);
 
 async function clickCanvas(page, normX, normY) {
   const box = await page.evaluate(() => {

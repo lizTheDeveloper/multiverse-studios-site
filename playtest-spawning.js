@@ -2,9 +2,10 @@
  * Playtest: Creature Spawning & Movement (MUL-237)
  */
 const { chromium } = require('playwright');
+const { screenshotDir } = require('./screenshots/resolve-dir');
 
 const GAME_URL = 'http://localhost:3456';
-const OUT = '/Users/annhoward/src/multiverse-studios-site/screenshots/';
+const OUT = screenshotDir(GAME_URL) + '/';
 const results = [];
 const bugs = [];
 

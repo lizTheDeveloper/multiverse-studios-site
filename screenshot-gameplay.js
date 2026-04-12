@@ -1,11 +1,14 @@
 const { chromium } = require('playwright');
+const { screenshotPath } = require('./screenshots/resolve-dir');
+
+const GAME_URL = 'http://localhost:3002';
 
 (async () => {
   const browser = await chromium.launch();
   const page = await browser.newPage({ viewport: { width: 1280, height: 800 } });
 
   try {
-    await page.goto('http://localhost:3002', { waitUntil: 'networkidle', timeout: 15000 });
+    await page.goto(GAME_URL, { waitUntil: 'networkidle', timeout: 15000 });
     await page.waitForTimeout(4000);
 
     // Click NEW GAME
@@ -20,7 +23,7 @@ const { chromium } = require('playwright');
     await page.waitForTimeout(3000);
 
     // Capture onboarding
-    await page.screenshot({ path: 'screenshots/creatures-onboarding.png' });
+    await page.screenshot({ path: screenshotPath(GAME_URL, 'creatures-onboarding.png') });
     console.log('Onboarding captured');
 
     // Click through onboarding steps using DOM button IDs
@@ -45,18 +48,18 @@ const { chromium } = require('playwright');
 
     // Wait for world to fully render with creatures
     await page.waitForTimeout(8000);
-    await page.screenshot({ path: 'screenshots/creatures-gameplay-1.png' });
+    await page.screenshot({ path: screenshotPath(GAME_URL, 'creatures-gameplay-1.png') });
     console.log('Gameplay 1 captured');
 
     // Wait for creatures to spawn and do things
     await page.waitForTimeout(10000);
-    await page.screenshot({ path: 'screenshots/creatures-gameplay-2.png' });
+    await page.screenshot({ path: screenshotPath(GAME_URL, 'creatures-gameplay-2.png') });
     console.log('Gameplay 2 captured');
 
     // Click on a creature if possible
     await page.mouse.click(640, 400);
     await page.waitForTimeout(2000);
-    await page.screenshot({ path: 'screenshots/creatures-gameplay-3.png' });
+    await page.screenshot({ path: screenshotPath(GAME_URL, 'creatures-gameplay-3.png') });
     console.log('Gameplay 3 captured');
 
   } catch (e) {
