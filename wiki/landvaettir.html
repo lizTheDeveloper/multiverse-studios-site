@@ -6,6 +6,7 @@
   <title>Landv&aelig;ttir &mdash; Precursors Wiki</title>
   <meta name="description" content="Guardian spirits of the land itself. Catalyzed by the Shee from a pre-existing distributed awareness. Full lore, genome, biochemistry, and secret history of the Landv&aelig;ttir.">
   <link rel="stylesheet" href="../styles.css">
+  <link rel="stylesheet" href="locked-state.css">
   <link rel="icon" type="image/svg+xml" href="../press-kit/logos/multiverse-studios-favicon.svg">
   <style>
     /* ---- Breadcrumb ---- */
@@ -294,35 +295,6 @@
       color: #86efac;
     }
 
-    /* ---- Secret / classified block ---- */
-    .classified-block {
-      background: rgba(134, 239, 172, 0.04);
-      border: 1px solid rgba(134, 239, 172, 0.2);
-      border-radius: 8px;
-      padding: 1.5rem 1.75rem;
-      margin: 2rem 0;
-      position: relative;
-    }
-    .classified-header {
-      display: flex;
-      align-items: center;
-      gap: 0.6rem;
-      margin-bottom: 1rem;
-    }
-    .classified-label {
-      font-family: var(--font-mono);
-      font-size: 0.68rem;
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
-      color: #86efac;
-    }
-    .classified-lock {
-      font-size: 0.85rem;
-    }
-    .classified-block .prose {
-      font-size: 0.95rem;
-    }
-
     /* ---- Lore connections (tags) ---- */
     .lore-tag {
       display: inline-block;
@@ -538,7 +510,7 @@
 </div>
 
 <!-- Quick Stats -->
-<div class="page-body">
+<div class="page-body" data-lore-key="species/landvaettir">
 
   <div class="stats-panel">
     <div class="stat-cell">
@@ -740,9 +712,7 @@
         <span class="classified-label">Classified &mdash; Secret History &mdash; IQ-gated lore</span>
       </div>
       <div class="prose">
-        <p>The Landv&aelig;ttir are unique among the Shee&rsquo;s species in that they were not created from nothing. The Shee&rsquo;s own surveys of Urd Prime, conducted before any species engineering began, detected what they termed &lsquo;distributed environmental reactivity&rsquo; &mdash; a coherent response pattern in soil chemistry, water flow, and geological micro-stress that behaved as though the land itself had a primitive nervous system.</p>
-        <p>The Shee did not create this. They catalyzed it: providing biochemical architecture that concentrated the existing distributed awareness into mobile bodies. The Landv&aelig;ttir are, in a sense, the land&rsquo;s immune system given legs.</p>
-        <p>Whether the land consented to this arrangement is a question the Shee&rsquo;s ethics review board debated for eleven years before the project was approved. The board&rsquo;s final vote was 4&ndash;3. The dissenting opinion has been redacted from all accessible copies of the Archive. The three dissenters departed with the other Shee. The four who voted yes are still here.<a href="#fn2" class="footnote-ref"><sup>[2]</sup></a></p>
+        <p><em>Undiscovered. Play to unlock this lore.</em></p>
       </div>
     </div>
   </div>
@@ -838,6 +808,8 @@
 </footer>
 
 <script src="../main.js"></script>
+<script src="../matrix-auth.js"></script>
+<script src="wiki-client.js"></script>
 <script defer src="https://analytics.multiversestudios.xyz/script.js" data-website-id="38d680a7-28d1-42fd-9fd5-a66702675b88"></script>
 </body>
 </html>

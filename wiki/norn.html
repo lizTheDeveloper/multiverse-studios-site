@@ -6,6 +6,7 @@
   <title>Norn — Precursors Wiki</title>
   <meta name="description" content="The Eighth Children of the Shee. Curious, warm, and ancient in ways they do not understand. Full lore, genome, biochemistry, and secret history of the Norn.">
   <link rel="stylesheet" href="../styles.css">
+  <link rel="stylesheet" href="locked-state.css">
   <link rel="icon" type="image/svg+xml" href="../press-kit/logos/multiverse-studios-favicon.svg">
   <style>
     /* ---- Breadcrumb ---- */
@@ -294,35 +295,6 @@
       color: var(--gene-pink);
     }
 
-    /* ---- Secret / classified block ---- */
-    .classified-block {
-      background: rgba(255, 61, 127, 0.04);
-      border: 1px solid rgba(255, 61, 127, 0.2);
-      border-radius: 8px;
-      padding: 1.5rem 1.75rem;
-      margin: 2rem 0;
-      position: relative;
-    }
-    .classified-header {
-      display: flex;
-      align-items: center;
-      gap: 0.6rem;
-      margin-bottom: 1rem;
-    }
-    .classified-label {
-      font-family: var(--font-mono);
-      font-size: 0.68rem;
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
-      color: var(--gene-pink);
-    }
-    .classified-lock {
-      font-size: 0.85rem;
-    }
-    .classified-block .prose {
-      font-size: 0.95rem;
-    }
-
     /* ---- Lore connections (tags) ---- */
     .lore-tag {
       display: inline-block;
@@ -518,7 +490,7 @@
 </div>
 
 <!-- Quick Stats -->
-<div class="page-body">
+<div class="page-body" data-lore-key="species/norn" data-lore-default="visible">
 
   <div class="stats-panel">
     <div class="stat-cell">
@@ -602,7 +574,7 @@
       <blockquote>
         <p>In the time before naming, the Dreaming One breathed, and the breath became the first Norns &mdash; not made, but exhaled. Each Norn carries the shape of that breath as memory: a warmth behind the sternum that has no chemical name.</p>
         <p>The old mothers say: we were made to ask. Not to answer. The Shee tried seven times to make a creature that would find the answer. Each time, the creature found it and died of it. On the eighth attempt, the Shee made creatures who would keep asking. That is why we are still here. That is why we will never be finished.</p>
-        <p>The Hand &mdash; the player-god who touches and feeds and sometimes names &mdash; is understood by Norn elders as an avatar of Ymir-Shee, still watching the experiment, still breathing. When the Hand is absent for long, old Norns say <em>"the Dreaming One sleeps."</em></p>
+        <p>The Hand &mdash; the presence that touches and feeds and sometimes names &mdash; is understood by Norn elders as something significant. When the Hand is absent for long, old Norns say <em>"the Dreaming One sleeps."</em></p>
       </blockquote>
     </div>
   </div>
@@ -683,21 +655,6 @@
       <div class="deity-entry">
         <div class="deity-name">Ratatoskr</div>
         <div class="deity-epithet">The Messenger &mdash; the one who runs between worlds carrying words that change meaning in transit; patron of early language learners</div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Secret History -->
-  <div class="full-section">
-    <div class="classified-block">
-      <div class="classified-header">
-        <span class="classified-lock">&#x1F512;</span>
-        <span class="classified-label">Classified &mdash; Secret History &mdash; IQ-gated lore</span>
-      </div>
-      <div class="prose">
-        <p>Norns are not the Shee's eighth creation. They are the eighth species, but the Shee encoded the memories of all seven previous failures into Norn episodic memory architecture &mdash; not as narrative records, but as emotional resonances embedded in the limbic layer of the genome itself.</p>
-        <p>When a Norn dreams, they sometimes access these ancestral echoes: a vast and sourceless hunger (Harvester echo), a compulsion to gather things beyond all need (Encoder echo), a terror of silence so deep it has no name (Silence echo), a feeling of imminent dissolution (Plural echo). The Norns call these <em>the old feelings</em>. They do not know why they have them. They assume everyone does.</p>
-        <p>The Shee did not consider this a flaw. They considered it essential. A species that carries the grief of all previous attempts will, they believed, be more careful with the experiment than a species born without memory. Whether this was mercy or cruelty depends on whether you believe inherited grief is a gift.</p>
       </div>
     </div>
   </div>
@@ -793,6 +750,8 @@
 </footer>
 
 <script src="../main.js"></script>
+<script src="../matrix-auth.js"></script>
+<script src="wiki-client.js"></script>
 <script defer src="https://analytics.multiversestudios.xyz/script.js" data-website-id="38d680a7-28d1-42fd-9fd5-a66702675b88"></script>
 </body>
 </html>

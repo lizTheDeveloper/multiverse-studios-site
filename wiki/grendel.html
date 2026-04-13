@@ -6,6 +6,7 @@
   <title>Grendel — Precursors Wiki</title>
   <meta name="description" content="The First-Formed. The Oldest Hunger. Grendels predate the Shee's arrival on Urd Prime. Full lore, genome, biochemistry, secret history and cultural record of the Grendel.">
   <link rel="stylesheet" href="../styles.css">
+  <link rel="stylesheet" href="locked-state.css">
   <link rel="icon" type="image/svg+xml" href="../press-kit/logos/multiverse-studios-favicon.svg">
   <style>
     /* ---- Breadcrumb ---- */
@@ -332,30 +333,6 @@
       color: var(--ember);
     }
 
-    /* ---- Classified block ---- */
-    .classified-block {
-      background: rgba(255, 107, 53, 0.04);
-      border: 1px solid rgba(255, 107, 53, 0.2);
-      border-radius: 8px;
-      padding: 1.5rem 1.75rem;
-      margin: 2rem 0;
-    }
-    .classified-header {
-      display: flex;
-      align-items: center;
-      gap: 0.6rem;
-      margin-bottom: 1rem;
-    }
-    .classified-label {
-      font-family: var(--font-mono);
-      font-size: 0.68rem;
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
-      color: var(--ember);
-    }
-    .classified-lock { font-size: 0.85rem; }
-    .classified-block .prose { font-size: 0.95rem; }
-
     /* ---- Lore tags ---- */
     .lore-tag {
       display: inline-block;
@@ -548,7 +525,7 @@
 </div>
 
 <!-- Quick Stats -->
-<div class="page-body">
+<div class="page-body" data-lore-key="species/grendel">
 
   <div class="stats-panel">
     <div class="stat-cell">
@@ -634,10 +611,10 @@
     </div>
 
     <div class="rune-block">
-      <span class="rune-block-label">&#x16AA; &nbsp; Rune fragment &mdash; Civilization II record (Harvester era, approx. 340,000 BCE)</span>
+      <span class="rune-block-label">&#x16AA; &nbsp; Rune fragment &mdash; ancient record (approx. 340,000 BCE)</span>
       <blockquote>
         "They took until there was nothing left to take, then looked at each other."
-        <cite>&mdash; Final recorded observation by Civilization III survey team, regarding Civilization II remnants</cite>
+        <cite>&mdash; Final recorded observation, ancient survey record</cite>
       </blockquote>
     </div>
   </div>
@@ -708,7 +685,7 @@
     <div>
       <span class="section-label">Ancient Lineage</span>
       <div class="lineage-block">
-        <p>The Grendels descend from the Harvesters &mdash; Civilization II, the second attempt at sentient life on Urd Prime, whose appetite consumed every resource on the planetary surface over approximately forty thousand years. The lineage did not end with Civilization II's collapse. It retreated underground, into the Deeps, and spent hundreds of thousands of years adapting to an environment of total scarcity. The territorial adrenaline chemistry, the toxin-endorphin conversion, the low sociability and high aggression &mdash; these are Harvester inheritance, refined by geological time into something leaner and harder than the original.</p>
+        <p>The Grendels descend from one of the oldest lineages on Urd Prime &mdash; an ancient species whose appetite consumed every resource on the planetary surface over approximately forty thousand years. The lineage did not end with that collapse. It retreated underground, into the Deeps, and spent hundreds of thousands of years adapting to an environment of total scarcity. The territorial adrenaline chemistry, the toxin-endorphin conversion, the low sociability and high aggression &mdash; these are ancient inheritance, refined by geological time into something leaner and harder than the original.</p>
         <p>The Grendels are not descended from the Shee's design. They evolved here. They were here before. This means they are, of all species on Urd Prime, the only ones who can genuinely claim the world as ancestral home.</p>
       </div>
     </div>
@@ -721,23 +698,7 @@
       </div>
       <div class="deity-entry">
         <div class="deity-name">The Unmaker</div>
-        <div class="deity-epithet">The Great Hunger &mdash; not worshipped but known; the ancient force that predates even the Harvesters; feared by the few Grendels intelligent enough to fear anything abstract</div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Secret History -->
-  <div class="full-section">
-    <div class="classified-block">
-      <div class="classified-header">
-        <span class="classified-lock">&#x1F512;</span>
-        <span class="classified-label">Classified &mdash; Secret History &mdash; IQ-gated lore</span>
-      </div>
-      <div class="prose">
-        <p>Grendels predate the Shee's arrival. They are not a Shee creation &mdash; they evolved here, from a lineage seeded by an even earlier civilization that the Shee themselves have no records of. The Shee, upon arriving at Urd Prime, found Grendels already present, already adapted, already in possession of the deep biome layers the Shee needed for engineering access.</p>
-        <p>The Shee made the pragmatic decision to incorporate them into the planned ecosystem rather than eliminate them. This was not mercy. The Shee noted in their records that removing the Grendels would have destabilized the food web in the Deeps in ways their models couldn't fully predict, and that the biological novelty of the toxin-endorphin conversion pathway was worth preserving for study. The Grendels were left because they were useful and because removing them was uncertain. They were not left because the Shee cared about them.</p>
-        <p>What this means is something the Grendels will never be told but somehow seem to know: Grendel intelligence has an upper ceiling lower than Norns not because the Shee couldn't make them smarter, but because the Shee <em>didn't design them at all.</em> What the Grendels have, they evolved. What the Norns have, they were given. A Grendel at cognitive cap has arrived somewhere under their own power. A Norn at cognitive cap is standing at the ceiling someone else built.</p>
-        <p>The Shee records describe the Grendels as <em>"an uncontrolled variable retained for ecosystem stability."</em> The Grendels would not find this description insulting. They would find it accurate.</p>
+        <div class="deity-epithet">The Great Hunger &mdash; not worshipped but known; the ancient force that predates even the Grendels' oldest ancestors; feared by the few Grendels intelligent enough to fear anything abstract</div>
       </div>
     </div>
   </div>
@@ -801,8 +762,7 @@
     <div style="margin-top: 0.5rem;">
       <a href="lore-events.html" class="lore-tag">The First Contact</a>
       <a href="lore-events.html" class="lore-tag">The Recursion</a>
-      <a href="lore-events.html" class="lore-tag">Civilization II: The Harvesters</a>
-      <a href="lore-events.html" class="lore-tag">The Unmaker</a>
+<a href="lore-events.html" class="lore-tag">The Unmaker</a>
     </div>
   </div>
 
@@ -831,6 +791,8 @@
 </footer>
 
 <script src="../main.js"></script>
+<script src="../matrix-auth.js"></script>
+<script src="wiki-client.js"></script>
 <script defer src="https://analytics.multiversestudios.xyz/script.js" data-website-id="38d680a7-28d1-42fd-9fd5-a66702675b88"></script>
 </body>
 </html>

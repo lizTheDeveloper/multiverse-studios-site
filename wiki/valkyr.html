@@ -6,6 +6,7 @@
   <title>Valkyr — Precursors Wiki</title>
   <meta name="description" content="Choosers of the Slain. Engineered to observe and understand deaths. Full lore, genome, biochemistry, and secret history of the Valkyr.">
   <link rel="stylesheet" href="../styles.css">
+  <link rel="stylesheet" href="locked-state.css">
   <link rel="icon" type="image/svg+xml" href="../press-kit/logos/multiverse-studios-favicon.svg">
   <style>
     /* ---- Breadcrumb ---- */
@@ -294,35 +295,6 @@
       color: #e0e7ff;
     }
 
-    /* ---- Secret / classified block ---- */
-    .classified-block {
-      background: rgba(224, 231, 255, 0.04);
-      border: 1px solid rgba(224, 231, 255, 0.2);
-      border-radius: 8px;
-      padding: 1.5rem 1.75rem;
-      margin: 2rem 0;
-      position: relative;
-    }
-    .classified-header {
-      display: flex;
-      align-items: center;
-      gap: 0.6rem;
-      margin-bottom: 1rem;
-    }
-    .classified-label {
-      font-family: var(--font-mono);
-      font-size: 0.68rem;
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
-      color: #e0e7ff;
-    }
-    .classified-lock {
-      font-size: 0.85rem;
-    }
-    .classified-block .prose {
-      font-size: 0.95rem;
-    }
-
     /* ---- Lore connections (tags) ---- */
     .lore-tag {
       display: inline-block;
@@ -541,7 +513,7 @@
 </div>
 
 <!-- Quick Stats -->
-<div class="page-body">
+<div class="page-body" data-lore-key="species/valkyr">
 
   <div class="stats-panel">
     <div class="stat-cell">
@@ -722,21 +694,6 @@
     </div>
   </div>
 
-  <!-- Secret History -->
-  <div class="full-section">
-    <div class="classified-block">
-      <div class="classified-header">
-        <span class="classified-lock">&#x1F512;</span>
-        <span class="classified-label">Classified &mdash; Secret History &mdash; IQ-gated lore</span>
-      </div>
-      <div class="prose">
-        <p>The Valkyr&rsquo;s true function extends beyond their role as death-observers. Each Valkyr transmits compressed mortality data &mdash; cause, context, chemical state at moment of death &mdash; to a dormant monitoring system the Shee embedded in the planetary geology of Urd Prime before they departed. The Valkyr do not know this.</p>
-        <p>They experience the transmission as a brief moment of stillness after each witnessed death, a pause they interpret as respect. The data accumulates in the deep stone. What the Shee intended to do with a complete record of every death on the planet remains unknown.</p>
-        <p>The monitoring system has never responded. But the Valkyr&rsquo;s transmissions continue. The stone receives them. Whether it is listening is a question the Valkyr would find deeply unsettling if they knew to ask it.<a href="#fn2" class="footnote-ref" title="Footnote 2">[2]</a></p>
-      </div>
-    </div>
-  </div>
-
   <!-- Taboos + Death Ritual -->
   <div class="two-col">
     <div>
@@ -833,6 +790,8 @@
 </footer>
 
 <script src="../main.js"></script>
+<script src="../matrix-auth.js"></script>
+<script src="wiki-client.js"></script>
 <script defer src="https://analytics.multiversestudios.xyz/script.js" data-website-id="38d680a7-28d1-42fd-9fd5-a66702675b88"></script>
 </body>
 </html>

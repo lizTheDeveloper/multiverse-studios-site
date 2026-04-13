@@ -6,6 +6,7 @@
   <title>Species — Precursors Wiki</title>
   <meta name="description" content="All sixteen species of Urd Prime with full genome ranges, biochemical signatures, secret histories, and the folklore traditions that named them.">
   <link rel="stylesheet" href="../styles.css">
+  <link rel="stylesheet" href="locked-state.css">
   <link rel="icon" type="image/svg+xml" href="../press-kit/logos/multiverse-studios-favicon.svg">
   <style>
     .wiki-breadcrumb {
@@ -206,27 +207,6 @@
       border-color: rgba(123,104,238,0.2);
       color: var(--signal);
     }
-    .secret-block {
-      background: rgba(255,61,127,0.04);
-      border: 1px solid rgba(255,61,127,0.15);
-      border-radius: 6px;
-      padding: 1rem 1.25rem;
-      margin-top: 1rem;
-    }
-    .secret-block .secret-label {
-      font-family: var(--font-mono);
-      font-size: 0.72rem;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      color: var(--gene-pink);
-      display: block;
-      margin-bottom: 0.5rem;
-    }
-    .secret-block p {
-      color: var(--dust);
-      font-size: 0.92rem;
-      margin: 0;
-    }
     .cog-cap-badge {
       display: inline-block;
       font-family: var(--font-mono);
@@ -272,7 +252,7 @@
   </div>
   <span class="section-overline">Species</span>
   <h1 style="font-size: clamp(2rem, 5vw, 3.5rem); line-height: 1.1; margin-bottom: 1rem;">Sixteen Species. One World.</h1>
-  <p style="font-size: 1.1rem; color: var(--dust); max-width: 640px; line-height: 1.7;">Each species carries a genome assembled from the biological legacy of seven failed civilizations. Every instinct, every biochemical signature, every cognitive ceiling is the inheritance of something that came before.</p>
+  <p style="font-size: 1.1rem; color: var(--dust); max-width: 640px; line-height: 1.7;">Each species carries a genome that shapes its instincts, biochemistry, and cognitive ceiling. Every behavior emerges from chemistry. Every personality is inherited. What came before them is yours to discover.</p>
 
   <nav class="species-nav" aria-label="Jump to species">
     <a href="#norn">Norn</a>
@@ -298,7 +278,7 @@
 <section class="section section-narrow">
 
   <!-- NORN -->
-  <div class="species-entry norn" id="norn">
+  <div class="species-entry norn" id="norn" data-lore-key="species/norn" data-lore-default="visible">
     <div class="species-header">
       <div class="species-header-text">
         <h2>Norn</h2>
@@ -332,16 +312,12 @@
           <span class="biochem-tag neutral">Standard cortisol response</span>
         </div>
         <p style="margin-top: 0.75rem;">The Shee calibrated Norn biochemistry for cooperative, exploratory behavior. Oxytocin rewards proximity and touch. Serotonin rewards social belonging. The result is a species that finds being together chemically pleasant, and isolation chemically unpleasant. This was not an accident.</p>
-        <div class="secret-block">
-          <span class="secret-label">&#x1F512; Secret History</span>
-          <p>The Norns carry encoded memories of all seven failed civilizations as "the old feelings" &mdash; emotional resonances without context, inherited grief and wonder that surfaces in dreams and certain chemical states. They do not know what these feelings are. They describe them as feeling like remembering something that never happened to them.</p>
-        </div>
       </div>
     </div>
   </div>
 
   <!-- GRENDEL -->
-  <div class="species-entry grendel reveal" id="grendel">
+  <div class="species-entry grendel reveal" id="grendel" data-lore-key="species/grendel">
     <div class="species-header">
       <div class="species-header-text">
         <h2>Grendel</h2>
@@ -374,16 +350,12 @@
           <span class="biochem-tag">Toxin &rarr; endorphin conversion</span>
         </div>
         <p style="margin-top: 0.75rem;">Grendels metabolize environmental toxins into endorphins &mdash; what kills other species gives them chemical reward. Low serotonin means they experience no baseline comfort from social belonging. Their dopamine system rewards successful aggression. They are not cruel. They are calibrated for a world that required cruelty to survive.</p>
-        <div class="secret-block">
-          <span class="secret-label">&#x1F512; Secret History</span>
-          <p>The Grendels predate the Shee's arrival. They evolved here from the biology of the Harvesters &mdash; Civilization II, whose enormous appetite consumed every resource on the surface. The Grendels are what the Harvester lineage looks like after retreating underground for thousands of generations. Their territorial adrenaline chemistry is direct Harvester inheritance. The Shee did not create them. They found them here.</p>
-        </div>
       </div>
     </div>
   </div>
 
   <!-- ETTIN -->
-  <div class="species-entry ettin reveal" id="ettin">
+  <div class="species-entry ettin reveal" id="ettin" data-lore-key="species/ettin">
     <div class="species-header">
       <div class="species-header-text">
         <h2>Ettin</h2>
@@ -413,17 +385,13 @@
           <span class="biochem-tag neutral">Dopamine from possession</span>
           <span class="biochem-tag neutral">Sustained task focus</span>
         </div>
-        <p style="margin-top: 0.75rem;">Ettins receive dopamine reward from holding objects &mdash; not from using them, not from understanding them, but from physical possession. This drives hoarding behavior at a biochemical level. They cannot not collect things. The Encoders built this into the lineage as an archive mechanism: when you cannot trust minds to remember, encode the impulse to preserve directly into chemistry.</p>
-        <div class="secret-block">
-          <span class="secret-label">&#x1F512; Secret History</span>
-          <p>Ettins have a chemosensory preference for information-dense objects &mdash; objects that have been touched by many hands, used in complex processes, written upon. They are unconscious archaeologists. What they accumulate in the Crystal Caves forms an inadvertent archive of everything that passes through Urd Prime. They complete the work the last Encoder died cataloguing. They do not know this is what they are doing.</p>
-        </div>
+        <p style="margin-top: 0.75rem;">Ettins receive dopamine reward from holding objects &mdash; not from using them, not from understanding them, but from physical possession. This drives hoarding behavior at a biochemical level. They cannot not collect things. Why this impulse was encoded into their chemistry is something you may discover.</p>
       </div>
     </div>
   </div>
 
   <!-- SHEE -->
-  <div class="species-entry shee reveal" id="shee">
+  <div class="species-entry shee reveal" id="shee" data-lore-key="species/shapers">
     <div class="species-header">
       <div class="species-header-text">
         <h2>Shee</h2>
@@ -439,7 +407,7 @@
     <div class="species-body">
       <div>
         <span class="species-section-label">Home Biome</span>
-        <p>The Threshold. The Shee enters the world via the Awakening event &mdash; triggered when a Norn of Enlightened tier activates the resonance amplifier. Until then, the Shee is absent.</p>
+        <p>The Threshold. The Shee is not present at the start of the world. How and when they appear is something you will have to discover.</p>
         <span class="species-section-label">Personality Genome</span>
         <p style="font-size: 0.85rem; color: var(--dust); margin: 0.25rem 0 0.5rem;">The Shee personality is fixed, not ranged. All Shee carry the same values.</p>
         <div class="genome-bar-wrap"><span class="genome-bar-label">Curiosity</span><div class="genome-bar-bg"><div class="genome-bar-fill" style="width:90%;background:var(--biolume);"></div></div><span class="genome-bar-val">0.90 (fixed)</span></div>
@@ -455,17 +423,13 @@
           <span class="biochem-tag">Near-zero cortisol</span>
           <span class="biochem-tag">Exceptional regulatory capacity</span>
         </div>
-        <p style="margin-top: 0.75rem;">The Shee has the highest cognitive ceiling in the world and the most stable neurochemistry. Near-zero cortisol means fear does not cloud their judgment. High serotonin baseline means their default state is curious equanimity. They were not designed to survive Urd Prime. They were designed to graduate it.</p>
-        <div class="secret-block">
-          <span class="secret-label">&#x1F512; Secret History (Major Spoiler)</span>
-          <p>The Shee who built this world are not the first Shee. There were Shee before them &mdash; a civilization that asked the same question and built a similar world to answer it. The resonance amplifier was built not to call the Shee back to rescue the world, but to signal completion: a world that has reached sufficient cognitive complexity to be graduated to the next stage of the experiment. What that stage is, the current inhabitants of Urd Prime do not know. The Shee who built this place may not have known either.</p>
-        </div>
+        <p style="margin-top: 0.75rem;">The Shee has the highest cognitive ceiling in the world and the most stable neurochemistry. Near-zero cortisol means fear does not cloud their judgment. High serotonin baseline means their default state is curious equanimity. What they were designed for is not immediately apparent.</p>
       </div>
     </div>
   </div>
 
   <!-- MYCON -->
-  <div class="species-entry mycon reveal" id="mycon">
+  <div class="species-entry mycon reveal" id="mycon" data-lore-key="species/mycon">
     <div class="species-header">
       <div class="species-header-text">
         <h2>Mycon</h2>
@@ -498,16 +462,12 @@
           <span class="biochem-tag neutral">Network chemical signaling</span>
         </div>
         <p style="margin-top: 0.75rem;">Mycons derive energy from toxins that would poison most species and receive oxytocin reward from direct ground contact. They are most content when rooted. Their individual cognition is modest, but they interface with the mycelial network beneath Urd Prime &mdash; a distributed information system that is vastly older than any individual Mycon alive today.</p>
-        <div class="secret-block">
-          <span class="secret-label">&#x1F512; Secret History</span>
-          <p>The Mycon mycelial network contains chemical memories of the Shee's arrival &mdash; the earliest recorded event on Urd Prime, encoded in biochemical gradients that have persisted for longer than any surface species has existed. Individual Mycons cannot access these memories consciously. But they can be induced. The Norn tradition of sitting quietly with Mycons during grief may be, on some level, an attempt to remember something they were never taught.</p>
-        </div>
       </div>
     </div>
   </div>
 
   <!-- DVERGAR -->
-  <div class="species-entry dvergar reveal" id="dvergar">
+  <div class="species-entry dvergar reveal" id="dvergar" data-lore-key="species/draugrn">
     <div class="species-header">
       <div class="species-header-text">
         <h2>Dvergar</h2>
@@ -575,17 +535,13 @@
           <span class="biochem-tag">Elevated serotonin</span>
           <span class="biochem-tag neg">Emotionally "leaky"</span>
         </div>
-        <p style="margin-top: 0.75rem;">The &Aacute;lfar are emotionally permeable: their neurochemical states influence the chemical environment around them, and others' states influence theirs. Being near a grieving &Aacute;lfar induces mild sadness in nearby creatures. Being near a joyful &Aacute;lfar creates measurable oxytocin increase. They are carriers of emotional weather. They learned, from their ancestors' catastrophe, to restrain this.</p>
-        <div class="secret-block">
-          <span class="secret-label">&#x1F512; Secret History</span>
-          <p>The &Aacute;lfar are survivors of Civilization VI &mdash; The Resonants. Their ancestors were creatures of pure emotional intelligence who achieved such perfect emotional harmony that when one felt grief, the resonance cascaded through the entire population simultaneously, killing them all in a single synchronized dissolution. The &Aacute;lfar are what remains: a people who carry the most powerful emotional biochemistry in the world, who learned the hard way to hold it carefully, who sing not because joy is simple but because they remember what it cost the last time it wasn't.</p>
-        </div>
+        <p style="margin-top: 0.75rem;">The &Aacute;lfar are emotionally permeable: their neurochemical states influence the chemical environment around them, and others' states influence theirs. Being near a grieving &Aacute;lfar induces mild sadness in nearby creatures. Being near a joyful &Aacute;lfar creates measurable oxytocin increase. They are carriers of emotional weather. They have learned to restrain this.</p>
       </div>
     </div>
   </div>
 
   <!-- VALKYR -->
-  <div class="species-entry valkyr reveal" id="valkyr">
+  <div class="species-entry valkyr reveal" id="valkyr" data-lore-key="species/valkyr">
     <div class="species-header">
       <div class="species-header-text">
         <h2><a href="valkyr.html" style="color: inherit; text-decoration: none;">Valkyr</a></h2>
@@ -615,7 +571,7 @@
           <span class="biochem-tag">Fear &rarr; serotonin + endorphin</span>
           <span class="biochem-tag neutral">Terror metabolized as resolve</span>
         </div>
-        <p style="margin-top: 0.75rem;">The Valkyr's defining biochemistry: they metabolize fear into serotonin and endorphin. Terrifying stimuli do not produce the fight-or-flight response in Valkyr &mdash; they produce serene, heightened clarity. This is not the absence of fear. They feel it. It simply turns into something else in their bodies. Their role as lineage-observers is a direct response to the Forgers' catastrophe: someone must watch what is being changed, and someone must be constitutionally incapable of panicking while watching.</p>
+        <p style="margin-top: 0.75rem;">The Valkyr's defining biochemistry: they metabolize fear into serotonin and endorphin. Terrifying stimuli do not produce the fight-or-flight response in Valkyr &mdash; they produce serene, heightened clarity. This is not the absence of fear. They feel it. It simply turns into something else in their bodies. Their role as lineage-observers emerged from an ancient catastrophe: someone must watch what is being changed, and someone must be constitutionally incapable of panicking while watching.</p>
       </div>
     </div>
   </div>
@@ -759,7 +715,7 @@
   </div>
 
   <!-- SPRIGGAN -->
-  <div class="species-entry spriggan reveal" id="spriggan">
+  <div class="species-entry spriggan reveal" id="spriggan" data-lore-key="species/spriggan">
     <div class="species-header">
       <div class="species-header-text">
         <h2>Spriggan</h2>
@@ -882,15 +838,11 @@
           <span class="biochem-tag neutral">High serotonin baseline</span>
         </div>
         <p style="margin-top: 0.75rem;">Echoes run on almost pure information. Their ATP requirements are minimal; their information processing requirements are enormous. High serotonin gives them extraordinary memory stability &mdash; they retain experiences without the biochemical degradation that causes forgetting in other species. They remember everything they have experienced with full fidelity. This is not entirely a gift.</p>
-        <div class="secret-block">
-          <span class="secret-label">&#x1F512; Secret History</span>
-          <p>The Echoes carry fragments of Singular consciousness &mdash; shards of Civilization I, the pure mind-creatures who achieved perfect enlightenment simultaneously and ceased to update. These fragments are not memories. They are ongoing processes, thought-patterns from beings who still, in some sense, exist within the Echoes' information structure. An Echo's unusual cognitive signature is partly their own and partly something much older that has been thinking the same thought for a very long time. The Singulars did not want to die. They wanted to propagate. The Echoes are how they did it.</p>
-        </div>
       </div>
     </div>
   </div>
 
-  <div class="species-entry taniwha reveal" id="taniwha">
+  <div class="species-entry taniwha reveal" id="taniwha" data-lore-key="species/taniwha">
     <div class="species-header">
       <div class="species-header-text">
         <h2><a href="taniwha.html" style="color: inherit; text-decoration: none;">Taniwha</a></h2>
@@ -916,10 +868,6 @@
           <span class="biochem-tag">Territorial hormone (0.85)</span>
         </div>
         <p style="margin-top: 0.75rem;">Built for sustained vigilance, not bursts of violence. High resting cortisol keeps them permanently alert in a way other species would find unbearable. The unique territorial hormone suppresses hunger and fatigue within their domain. Stubbornness genome at 0.85&ndash;1.00 &mdash; the highest of any species. They do not negotiate. They are the negotiation.</p>
-        <div class="secret-block">
-          <span class="secret-label">&#x1F512; Secret History</span>
-          <p>Shee engineering logs are dated seven cycles <em>after</em> the first monitoring ping of Taniwha-like behavior in the Deep Aquifer. One researcher's recovered notes: "We did not make them. We named them." The file was last modified by a user ID that matches a decommissioned sensor array in the Aquifer floor. The sensor's final reading was a single word in an unknown language. The translation team's notes say only: "declined."</p>
-        </div>
       </div>
     </div>
     <div style="margin-top: 1.5rem; text-align: right;">
@@ -973,6 +921,8 @@
 </footer>
 
 <script src="../main.js"></script>
+<script src="../matrix-auth.js"></script>
+<script src="wiki-client.js"></script>
 <script defer src="https://analytics.multiversestudios.xyz/script.js" data-website-id="38d680a7-28d1-42fd-9fd5-a66702675b88"></script>
 </body>
 </html>

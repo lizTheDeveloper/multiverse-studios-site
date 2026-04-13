@@ -6,6 +6,7 @@
   <title>Precursors Wiki — An Archive of Urd Prime</title>
   <meta name="description" content="The official wiki for Precursors: Origins of Folklore. Six biomes, sixteen species, seven fallen civilizations, and the intelligence system that shapes everything.">
   <link rel="stylesheet" href="../styles.css">
+  <link rel="stylesheet" href="locked-state.css">
   <link rel="icon" type="image/svg+xml" href="../press-kit/logos/multiverse-studios-favicon.svg">
   <style>
     .wiki-card-grid {
@@ -143,23 +144,23 @@
   <div style="margin-top: 2.5rem;">
     <span class="section-overline" style="margin-bottom: 1rem; display: block;">Species Deep Dives</span>
     <div class="wiki-card-grid" style="grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem;">
-      <a href="norn.html" class="wiki-card" style="border-top: 2px solid var(--gene-pink); padding: 1.25rem;">
+      <a href="norn.html" class="wiki-card" style="border-top: 2px solid var(--gene-pink); padding: 1.25rem;" data-lore-key="species/norn">
         <h3 style="font-size: 1rem; margin-bottom: 0.3rem;">Norn</h3>
         <p style="font-size: 0.85rem;">The Eighth Children. Made to ask, not to answer.</p>
       </a>
-      <a href="grendel.html" class="wiki-card" style="border-top: 2px solid var(--ember); padding: 1.25rem;">
+      <a href="grendel.html" class="wiki-card" style="border-top: 2px solid var(--ember); padding: 1.25rem;" data-lore-key="species/grendel">
         <h3 style="font-size: 1rem; margin-bottom: 0.3rem; color: var(--ember);">Grendel</h3>
         <p style="font-size: 0.85rem;">The Oldest Hunger. They were here before the light.</p>
       </a>
-      <a href="ettin.html" class="wiki-card" style="border-top: 2px solid var(--signal); padding: 1.25rem;">
+      <a href="ettin.html" class="wiki-card" style="border-top: 2px solid var(--signal); padding: 1.25rem;" data-lore-key="species/ettin">
         <h3 style="font-size: 1rem; margin-bottom: 0.3rem; color: var(--signal);">Ettin</h3>
         <p style="font-size: 0.85rem;">The Keepers. The world's unconscious archaeologists.</p>
       </a>
-      <a href="shee.html" class="wiki-card" style="border-top: 2px solid var(--biolume); padding: 1.25rem;">
+      <a href="shee.html" class="wiki-card" style="border-top: 2px solid var(--biolume); padding: 1.25rem;" data-lore-key="species/shapers">
         <h3 style="font-size: 1rem; margin-bottom: 0.3rem;">Shee</h3>
         <p style="font-size: 0.85rem;">The Architects. Absent until the Awakening.</p>
       </a>
-      <a href="mycon.html" class="wiki-card" style="border-top: 2px solid #4ade80; padding: 1.25rem;">
+      <a href="mycon.html" class="wiki-card" style="border-top: 2px solid #4ade80; padding: 1.25rem;" data-lore-key="species/mycon">
         <h3 style="font-size: 1rem; margin-bottom: 0.3rem; color: #4ade80;">Mycon</h3>
         <p style="font-size: 0.85rem;">The Ancient Ones. The network is their true form.</p>
       </a>
@@ -167,7 +168,7 @@
         <h3 style="font-size: 1rem; margin-bottom: 0.3rem; color: #c4b5fd;">&Aacute;lfar</h3>
         <p style="font-size: 0.85rem;">The Song Carriers. They are not elves. That is a mistranslation.</p>
       </a>
-      <a href="valkyr.html" class="wiki-card" style="border-top: 2px solid #e0e7ff; padding: 1.25rem;">
+      <a href="valkyr.html" class="wiki-card" style="border-top: 2px solid #e0e7ff; padding: 1.25rem;" data-lore-key="species/valkyr">
         <h3 style="font-size: 1rem; margin-bottom: 0.3rem; color: #e0e7ff;">Valkyr</h3>
         <p style="font-size: 0.85rem;">The Threshold Walkers. They do not kill. They clarify.</p>
       </a>
@@ -216,7 +217,7 @@
       <span class="species-glyph">&#x26F5;</span>
       <h4>The Ancient Ark</h4>
       <span class="species-role">Beneath Everything</span>
-      <p>Six decks. A resonance amplifier. Genetic archives. A cargo hold. And something sealed in brass that has been waiting longer than the Norns have existed.</p>
+      <p>Six decks. Systems whose purpose is not yet clear. Genetic archives. A cargo hold. And something sealed in brass that has been waiting longer than the Norns have existed.</p>
     </div>
     <div class="species-card">
       <span class="species-glyph">&#x1F4DC;</span>
@@ -271,6 +272,8 @@
 </footer>
 
 <script src="../main.js"></script>
+<script src="../matrix-auth.js"></script>
+<script src="wiki-client.js"></script>
 <script defer src="https://analytics.multiversestudios.xyz/script.js" data-website-id="38d680a7-28d1-42fd-9fd5-a66702675b88"></script>
 </body>
 </html>

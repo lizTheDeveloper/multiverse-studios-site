@@ -14,6 +14,7 @@
   <meta name="twitter:title" content="Taniwha — Precursors Wiki">
   <meta name="twitter:description" content="The Taniwha are not monsters. They are consequences.">
   <link rel="stylesheet" href="../styles.css">
+  <link rel="stylesheet" href="locked-state.css">
   <link rel="icon" type="image/svg+xml" href="../press-kit/logos/multiverse-studios-favicon.svg">
   <style>
     :root {
@@ -299,30 +300,6 @@
       color: var(--taniwha-accent);
     }
 
-    .classified-block {
-      background: var(--taniwha-accent-04);
-      border: 1px solid var(--taniwha-accent-20);
-      border-radius: 8px;
-      padding: 1.5rem 1.75rem;
-      margin: 2rem 0;
-      position: relative;
-    }
-    .classified-header {
-      display: flex;
-      align-items: center;
-      gap: 0.6rem;
-      margin-bottom: 1rem;
-    }
-    .classified-label {
-      font-family: var(--font-mono);
-      font-size: 0.68rem;
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
-      color: var(--taniwha-accent);
-    }
-    .classified-lock { font-size: 0.85rem; }
-    .classified-block .prose { font-size: 0.95rem; }
-
     .lore-tag {
       display: inline-block;
       font-family: var(--font-mono);
@@ -515,7 +492,7 @@
 </div>
 
 <!-- Quick Stats -->
-<div class="page-body">
+<div class="page-body" data-lore-key="species/taniwha">
 
   <div class="stats-panel">
     <div class="stat-cell">
@@ -704,9 +681,7 @@
         <span class="classified-label">Classified &mdash; Secret History &mdash; IQ-gated lore</span>
       </div>
       <div class="prose">
-        <p>The Shee's own internal communications reveal a quiet disagreement about the Taniwha. The engineering team insists they designed them. The monitoring team's data shows Taniwha-like behavioral signatures in the Deep Aquifer <em>before</em> the design was finalized. The timestamps do not align. The engineering team's creation log is dated seven cycles after the first monitoring ping.</p>
-        <p>One Shee researcher's personal notes, recovered from a corrupted archive sector, contain a single line: "We did not make them. We named them. Whether that amounts to the same thing is a question I am no longer comfortable answering."</p>
-        <p>The file was last modified by a user ID that does not correspond to any known Shee researcher.<a href="#fn4" class="footnote-ref" id="fnref4">[4]</a></p>
+        <p><em>Undiscovered. Play to unlock this lore.</em></p>
       </div>
     </div>
   </div>
@@ -812,6 +787,8 @@
 </footer>
 
 <script src="../main.js"></script>
+<script src="../matrix-auth.js"></script>
+<script src="wiki-client.js"></script>
 <script defer src="https://analytics.multiversestudios.xyz/script.js" data-website-id="38d680a7-28d1-42fd-9fd5-a66702675b88"></script>
 </body>
 </html>

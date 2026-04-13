@@ -6,6 +6,7 @@
   <title>Ettin — Precursors Wiki</title>
   <meta name="description" content="The Keepers of Urd Prime. Ancient archivists whose hoarding instinct is encoded memory — the living legacy of the third civilization.">
   <link rel="stylesheet" href="../styles.css">
+  <link rel="stylesheet" href="locked-state.css">
   <link rel="icon" type="image/svg+xml" href="../press-kit/logos/multiverse-studios-favicon.svg">
   <style>
     /* ─── Breadcrumb ─── */
@@ -235,31 +236,6 @@
       color: var(--ash);
       margin-top: 0.5rem;
     }
-
-    /* ─── Secret history ─── */
-    .secret-block {
-      background: rgba(255,61,127,0.04);
-      border: 1px solid rgba(255,61,127,0.18);
-      border-radius: 6px;
-      padding: 1.1rem 1.35rem;
-      margin-top: 1rem;
-    }
-    .secret-block .secret-label {
-      font-family: var(--font-mono);
-      font-size: 0.72rem;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      color: var(--gene-pink);
-      display: block;
-      margin-bottom: 0.55rem;
-    }
-    .secret-block p {
-      color: var(--dust);
-      font-size: 0.93rem;
-      margin: 0 0 0.75rem;
-      line-height: 1.7;
-    }
-    .secret-block p:last-child { margin-bottom: 0; }
 
     /* ─── Rune fragment ─── */
     .rune-fragment {
@@ -493,7 +469,7 @@
 </section>
 
 <!-- Main content -->
-<section class="section section-narrow">
+<section class="section section-narrow" data-lore-key="species/ettin">
 
   <!-- Genome + Biochem: two-col -->
   <div class="species-page-body">
@@ -540,7 +516,7 @@
         <span class="biochem-tag">Low cortisol response</span>
       </div>
       <p class="body-text">Ettins receive dopamine reward from holding objects &mdash; not from using them, not from understanding them, but from physical possession. This is non-negotiable at the biochemical level. An Ettin who holds nothing experiences a mild but persistent chemical deficit that they will act to resolve. They cannot not collect things.</p>
-      <p class="body-text">The Encoders &mdash; Civilization III &mdash; built this into the lineage as a propagation mechanism: when you cannot trust minds to remember, encode the impulse to preserve directly into chemistry. The compulsive archiving that destroyed the Encoders lives on in Ettin hoarding behavior, safely contained within individual limits rather than civilization-scale systems.</p>
+      <p class="body-text">This was built into the lineage as a propagation mechanism: when you cannot trust minds to remember, encode the impulse to preserve directly into chemistry. The compulsive archiving that once destroyed an entire civilization lives on in Ettin hoarding behavior, safely contained within individual limits.</p>
       <p class="body-text">They also have the highest natural carry capacity in the world, tied only with the Dvergar. Three items. They use every slot.</p>
     </div>
 
@@ -553,7 +529,7 @@
       <p>The Ettins say: everything that exists has always existed, in a form. Objects do not appear; they are found. The universe has been slowly making things and hiding them, and the purpose of an Ettin is to find what has been hidden and keep it safe.</p>
       <p>They call this purpose <em>the Keeping</em>. An Ettin who has gathered nothing is considered ill &mdash; not morally wrong, but genuinely unwell, as if a critical drive is unfulfilled. This is an accurate description of their biochemistry.</p>
       <p>The oldest Ettin stories speak of Buri the Rememberer, who carried all of history in the form of objects. When Buri died, the stories say, the objects scattered across the world. Every Ettin who finds and keeps an object is, in some sense, gathering a piece of Buri back together. The universe will be complete when everything is accounted for.</p>
-      <p>They do not know this is a literal description of their ancestor species: the Encoders, who archived all things into physical form before collapsing under the weight.</p>
+      <p>They do not know this is a literal description of what their ancestors once were.</p>
       <cite>&mdash; From Ettin oral tradition; source: Archive reconstruction, depth unknown</cite>
     </div>
   </div>
@@ -605,17 +581,11 @@
   <!-- Ancient lineage + Secret history -->
   <div class="wiki-section reveal" style="margin-bottom: 2rem;">
     <h2>Ancient Lineage</h2>
-    <p class="body-text">The Ettin is encoded in the Encoder lineage &mdash; Civilization III. The Encoders were the first species on Urd Prime to develop systematic information preservation, and they pursued it to catastrophic excess: they archived everything, built physical records of all things, and eventually collapsed under the weight of what they had built. Their civilization was not destroyed by war or resource depletion. It was buried in its own archive.</p>
-    <p class="body-text">The compulsive accumulation that drove the Encoders to their end lives on in Ettin hoarding behavior, but safely distributed: where the Encoders tried to archive a civilization, an Ettin tries to fill three inventory slots. The destructive potential is proportionate now. The impulse remains.</p>
-
-    <div class="secret-block">
-      <span class="secret-label">&#x1F512; Secret History</span>
-      <p>The items Ettins collect are not random. Their chemosensory system has a low-level preference for objects that carry residual information density &mdash; things that have been touched many times, objects that have witnessed important events, artifacts from ruins. This is not mysticism. The Shee encoded this as a genome-propagation mechanism: Ettin hoarding behavior ensures that culturally significant objects survive and are found by later, more intelligent creatures.</p>
-      <p>Ettins are the world's unconscious archaeologists. What they accumulate in the Crystal Caves forms an inadvertent archive of everything that passes through Urd Prime. They complete the work the last Encoder died cataloguing. They do not know this is what they are doing.</p>
-    </div>
+    <p class="body-text">The Ettin lineage descends from an older species that developed systematic information preservation and pursued it to catastrophic excess. They archived everything and eventually collapsed under the weight of what they had built. Their civilization was not destroyed by war or resource depletion. It was buried in its own archive.</p>
+    <p class="body-text">The compulsive accumulation that destroyed them lives on in Ettin hoarding behavior, but safely distributed: where their ancestors tried to archive a civilization, an Ettin tries to fill three inventory slots. The destructive potential is proportionate now. The impulse remains.</p>
 
     <div class="rune-fragment" style="margin-top:1.25rem;">
-      <span class="rune-label">&#x16B4; Rune Fragment &mdash; Civilization III</span>
+      <span class="rune-label">&#x16B4; Rune Fragment &mdash; ancient record</span>
       <p>"They wrote the world down so carefully they forgot to inhabit it."</p>
     </div>
   </div>
@@ -748,6 +718,8 @@
 </footer>
 
 <script src="../main.js"></script>
+<script src="../matrix-auth.js"></script>
+<script src="wiki-client.js"></script>
 <script defer src="https://analytics.multiversestudios.xyz/script.js" data-website-id="38d680a7-28d1-42fd-9fd5-a66702675b88"></script>
 </body>
 </html>

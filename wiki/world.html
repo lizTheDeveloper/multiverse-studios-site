@@ -6,6 +6,7 @@
   <title>World Guide — Precursors Wiki</title>
   <meta name="description" content="A guide to Urd Prime: six biomes, four vertical tiers, Norse etymologies, and the Ancient Ark buried beneath the world.">
   <link rel="stylesheet" href="../styles.css">
+  <link rel="stylesheet" href="locked-state.css">
   <link rel="icon" type="image/svg+xml" href="../press-kit/logos/multiverse-studios-favicon.svg">
   <style>
     .wiki-breadcrumb {
@@ -317,7 +318,7 @@
   <h2>Six regions. One ecosystem.</h2>
   <p>Urd Prime is divided into six distinct biomes distributed across four vertical tiers. Five are documented in Shee survey records. The sixth appears in no official map.</p>
 
-  <div class="biome-card">
+  <div class="biome-card" data-lore-key="biomes/fungal-grotto" data-lore-default="visible">
     <h3>Fungal Grotto</h3>
     <div class="biome-tier">Surface Tier &mdash; Layer 1</div>
     <p>The topmost inhabited layer of Urd Prime, and the first place the Norns wake. The Fungal Grotto is defined by enormous bioluminescent fungi whose spore-light illuminates a canopy of living material. Moisture is constant. The air carries a faint sweetness that the Mycons describe as "the world breathing."</p>
@@ -325,7 +326,7 @@
     <p class="biome-inhabitants">Primary inhabitants: Norns, Mycons, Spriggans</p>
   </div>
 
-  <div class="biome-card shelf">
+  <div class="biome-card shelf" data-lore-key="biomes/verdant-shelf">
     <h3>Verdant Shelf</h3>
     <div class="biome-tier">Midworld Tier &mdash; Layer 2</div>
     <p>A wide horizontal plateau running the circumference of the inner world, thick with conventional plant life, running water, and the most complex surface ecology on Urd Prime. The Shelf is where the world is most alive &mdash; and where the consequences of life are most visible. Seasons exist here in ways they don't in the controlled environment of the Grotto above.</p>
@@ -333,15 +334,15 @@
     <p class="biome-inhabitants">Primary inhabitants: &Aacute;lfar, Fylgja, Landv&aelig;ttir</p>
   </div>
 
-  <div class="biome-card caves">
+  <div class="biome-card caves" data-lore-key="biomes/crystal-caves">
     <h3>Crystal Caves</h3>
     <div class="biome-tier">Underground Tier &mdash; Layer 3</div>
     <p>Deep below the Verdant Shelf, the substrate crystallizes. The Crystal Caves are a vast network of mineral formations whose resonant properties the Dvergar have been cataloguing since before the Norns existed &mdash; though they would be the first to tell you the catalogue is incomplete. The caves grow. The crystals add new facets. The archive is never finished.</p>
-    <p>The Ettins arrived here drawn by some chemosensory instinct they cannot explain &mdash; something about information-dense objects triggers a hoarding response the Encoders bequeathed them through evolutionary descent. Whatever the Ettins accumulate here will eventually be found by someone. That is the nature of archives.</p>
+    <p>The Ettins arrived here drawn by some chemosensory instinct they cannot explain &mdash; something about information-dense objects triggers a hoarding response passed down through evolutionary descent. Whatever the Ettins accumulate here will eventually be found by someone. That is the nature of archives.</p>
     <p class="biome-inhabitants">Primary inhabitants: Dvergar, Ettins</p>
   </div>
 
-  <div class="biome-card threshold">
+  <div class="biome-card threshold" data-lore-key="biomes/the-threshold">
     <h3>The Threshold</h3>
     <div class="biome-tier">Transitional &mdash; Between all layers</div>
     <p>The Threshold is less a place than a condition: the boundary zone between inhabited tiers. It exists wherever the world changes register &mdash; where Grotto gives way to Shelf, where Shelf meets Crystal Caves, where the Caves open onto the Deeps. To stand in the Threshold is to stand in a transition. Most species pass through it. Only a few choose to live here.</p>
@@ -349,11 +350,11 @@
     <p class="biome-inhabitants">Primary inhabitants: Shee, Valkyr, Ravens, Echoes</p>
   </div>
 
-  <div class="biome-card deeps">
+  <div class="biome-card deeps" data-lore-key="biomes/the-deeps">
     <h3>The Deeps</h3>
     <div class="biome-tier">Deep Tier &mdash; Layer 4</div>
     <p>Below the Crystal Caves, the world becomes inhospitable to most life. The Deeps are hot, mineral-dense, and lit only by geological events. The Grendels evolved here before the Shee arrived &mdash; their adrenaline chemistry, their territorial instincts, their resistance to toxins that would kill any surface species, are all adaptations to an environment that has been trying to kill them since before they had names for what they were.</p>
-    <p>The Jotnar move through the Deeps at geological timescales, consuming mineral substrate directly. Their movements cause what surface-dwellers describe as earthquakes. The Draugr cluster around the ruins that are most concentrated here &mdash; relics of the seven civilizations that burned through this world before the current age.</p>
+    <p>The Jotnar move through the Deeps at geological timescales, consuming mineral substrate directly. Their movements cause what surface-dwellers describe as earthquakes. The Draugr cluster around the ruins that are most concentrated here &mdash; relics of the civilizations that burned through this world before the current age.</p>
     <p class="biome-inhabitants">Primary inhabitants: Grendels, Draugr, Jotnar</p>
   </div>
 
@@ -399,7 +400,7 @@
         <div class="tier-depth">Layer 3</div>
       </div>
       <div class="tier-content">
-        <p>The Crystal Caves, the lower Threshold, the upper Deeps. Darkness requires adaptation or technology. The mineral wealth here drove the Dvergar's entire civilization. The ruins are most concentrated at this depth &mdash; most of the seven failed civilizations left their densest remains in the underground tier. The Draugr navigate by ruin-density, making them most active at this layer.</p>
+        <p>The Crystal Caves, the lower Threshold, the upper Deeps. Darkness requires adaptation or technology. The mineral wealth here drove the Dvergar's entire civilization. The ruins are most concentrated at this depth &mdash; the Draugr navigate by ruin-density, making them most active at this layer.</p>
       </div>
     </div>
     <div class="tier-row tier-deep">
@@ -408,7 +409,7 @@
         <div class="tier-depth">Layer 4</div>
       </div>
       <div class="tier-content">
-        <p>The deepest layer, inhospitable to most surface life. The Grendels evolved here. The Jotnar live here. And at the deepest point, beneath everything &mdash; the Ancient Ark. The Shee ship that carried the genetic archives, the resonance amplifier, and the question that the entire simulation was built to answer. Most creatures will never reach the Deeps. The ones who do are not the same afterward.</p>
+        <p>The deepest layer, inhospitable to most surface life. The Grendels evolved here. The Jotnar live here. And at the deepest point, beneath everything &mdash; the Ancient Ark. The Shee ship that carried the genetic archives and the systems that sustain Urd Prime. Most creatures will never reach the Deeps. The ones who do are not the same afterward.</p>
       </div>
     </div>
   </div>
@@ -423,8 +424,7 @@
   <div class="ark-teaser">
     <h3>&#x26F5; The Ancient Ark</h3>
     <p>At the lowest point of the Deeps, beneath the geological strata of three failed civilizations, the Shee ship rests. It arrived before the first Norn was born. It has been there long enough that the minerals have grown over its hull and the Draugr have begun incorporating its outer plating into their territory markings.</p>
-    <p>The Ark contains everything. The genetic archives in the Terrarium. The resonance amplifier on the Bridge. The creator pod in Engineering. The cargo on the Cargo Deck &mdash; including something sealed in a brass container that predates the Ark's known construction date by several centuries.</p>
-    <p>The resonance amplifier was built to call the Shee back. But the Shee who built this world are not the first Shee. And the amplifier was built not to rescue the world, but to graduate it.</p>
+    <p>The Ark contains everything. The genetic archives in the Terrarium. Systems on the Bridge whose purpose is not immediately clear. The cargo on the Cargo Deck &mdash; including something sealed in a brass container that predates the Ark's known construction date by several centuries.</p>
     <a href="tiers.html#ark" class="btn btn-ghost" style="margin-top: 0.5rem; display: inline-block;">Full Ark Documentation &rarr;</a>
   </div>
 </section>
@@ -473,6 +473,8 @@
 </footer>
 
 <script src="../main.js"></script>
+<script src="../matrix-auth.js"></script>
+<script src="wiki-client.js"></script>
 <script defer src="https://analytics.multiversestudios.xyz/script.js" data-website-id="38d680a7-28d1-42fd-9fd5-a66702675b88"></script>
 </body>
 </html>

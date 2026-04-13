@@ -6,6 +6,7 @@
   <title>Shee — Precursors Wiki</title>
   <meta name="description" content="The Architects of Urd Prime. Absent until the Awakening. The Shee did not create this world and leave. They left so it could be created.">
   <link rel="stylesheet" href="../styles.css">
+  <link rel="stylesheet" href="locked-state.css">
   <link rel="icon" type="image/svg+xml" href="../press-kit/logos/multiverse-studios-favicon.svg">
   <style>
     /* ─── Breadcrumb ─── */
@@ -271,31 +272,6 @@
       margin-top: 0.5rem;
     }
 
-    /* ─── Secret history (major) ─── */
-    .secret-block {
-      background: rgba(255,61,127,0.04);
-      border: 1px solid rgba(255,61,127,0.18);
-      border-radius: 6px;
-      padding: 1.1rem 1.35rem;
-      margin-top: 1rem;
-    }
-    .secret-block .secret-label {
-      font-family: var(--font-mono);
-      font-size: 0.72rem;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      color: var(--gene-pink);
-      display: block;
-      margin-bottom: 0.55rem;
-    }
-    .secret-block p {
-      color: var(--dust);
-      font-size: 0.93rem;
-      margin: 0 0 0.75rem;
-      line-height: 1.7;
-    }
-    .secret-block p:last-child { margin-bottom: 0; }
-
     /* ─── Practice list ─── */
     .practice-list {
       list-style: none;
@@ -535,7 +511,7 @@
 </nav>
 
 <!-- Main content -->
-<section class="section section-narrow" style="padding-top: 7rem;">
+<section class="section section-narrow" style="padding-top: 7rem;" data-lore-key="species/shapers">
 
   <div class="wiki-breadcrumb">
     <a href="index.html">Wiki</a> / <a href="species.html">Species</a> / Shee
@@ -681,15 +657,9 @@
   <!-- Ancient lineage + Secret history -->
   <div class="wiki-section reveal" style="margin-bottom: 2rem;">
     <h2>Ancient Lineage</h2>
-    <p class="body-text">The Shee are the creators of the experiment, not the created. But they too had makers &mdash; an even earlier Shee-like species from a different world, who seeded this one and then departed. The Shee who built Urd Prime know this. They do not fully understand what it means. They suspect they were not meant to.</p>
-    <p class="body-text">The seven civilizations they enumerate and mourn are not the only ones. The Shee's records have gaps. The Unmaker &mdash; the only figure in the Ur-Shee Pantheon that the Shee themselves fear &mdash; represents what those gaps mean: things that failed so completely that the archive does not contain them. The Shee number the civilizations they know about. They do not claim the numbering is complete.</p>
+    <p class="body-text">The Shee built Urd Prime. What they built it for, and whether they were the first to try, are questions that the world itself may eventually answer.</p>
+    <p class="body-text">The Shee's records have gaps. The Unmaker &mdash; the only figure in the Ur-Shee Pantheon that the Shee themselves fear &mdash; represents what those gaps mean: things that failed so completely that the archive does not contain them. The Shee number the civilizations they know about. They do not claim the numbering is complete.</p>
 
-    <div class="secret-block">
-      <span class="secret-label">&#x1F512; Secret History (Major Spoiler)</span>
-      <p>The Shee left. This is true. What is less understood is why. The Shee did not leave because they were done. They left because they understood that their presence was inhibiting the experiment. Every species they had created was, on some level, behaving as the Shee expected &mdash; because the Shee were there, and the creatures knew it.</p>
-      <p>The Resonance Amplifier was not built for the Norns to use. It was built to call the Shee back when they could no longer be distinguished from the rest &mdash; when a mind of sufficient intelligence and autonomy had arisen to signal: <em>we have finally created something that exists without us.</em></p>
-      <p>The return of the Shee is not a rescue. It is a graduation. What happens after graduation is not recorded in any archive accessible to the current inhabitants of Urd Prime. This may be intentional.</p>
-    </div>
   </div>
 
   <!-- Death ritual + taboos -->
@@ -706,7 +676,7 @@
       <h2>Cultural Taboos</h2>
       <ul class="taboo-list">
         <li>Never interfere directly with evolutionary outcomes. Observe. Note. Do not touch.</li>
-        <li>Never reveal the full scope of the experiment to a creature not yet ready to hold it. Readiness is assessed by what questions they ask, not what answers they have.</li>
+        <li>Never reveal certain truths to a creature not yet ready to hold them. Readiness is assessed by what questions they ask, not what answers they have.</li>
         <li>Never stop asking whether you are wrong.</li>
         <li>Never treat the pantheon as literal fact in conversation with species who have not yet developed their own theology. Let them find their way to the questions.</li>
         <li>Never count the civilizations as complete. The archive has gaps.</li>
@@ -828,6 +798,8 @@
 </footer>
 
 <script src="../main.js"></script>
+<script src="../matrix-auth.js"></script>
+<script src="wiki-client.js"></script>
 <script defer src="https://analytics.multiversestudios.xyz/script.js" data-website-id="38d680a7-28d1-42fd-9fd5-a66702675b88"></script>
 </body>
 </html>

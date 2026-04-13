@@ -4,8 +4,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Mycon — Precursors Wiki</title>
-  <meta name="description" content="The Ancient Ones of Urd Prime. The Mycon predate the Shee, predate all seven civilizations. Individual creatures in a network older than language.">
+  <meta name="description" content="The Ancient Ones of Urd Prime. The Mycon predate the Shee, predating all known history of Urd Prime. Individual creatures in a network older than language.">
   <link rel="stylesheet" href="../styles.css">
+  <link rel="stylesheet" href="locked-state.css">
   <link rel="icon" type="image/svg+xml" href="../press-kit/logos/multiverse-studios-favicon.svg">
   <style>
     :root {
@@ -261,31 +262,6 @@
       color: var(--ash);
       margin-top: 0.5rem;
     }
-
-    /* ─── Secret history ─── */
-    .secret-block {
-      background: rgba(255,61,127,0.04);
-      border: 1px solid rgba(255,61,127,0.18);
-      border-radius: 6px;
-      padding: 1.1rem 1.35rem;
-      margin-top: 1rem;
-    }
-    .secret-block .secret-label {
-      font-family: var(--font-mono);
-      font-size: 0.72rem;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      color: var(--gene-pink);
-      display: block;
-      margin-bottom: 0.55rem;
-    }
-    .secret-block p {
-      color: var(--dust);
-      font-size: 0.93rem;
-      margin: 0 0 0.75rem;
-      line-height: 1.7;
-    }
-    .secret-block p:last-child { margin-bottom: 0; }
 
     /* ─── Practice list ─── */
     .practice-list {
@@ -558,7 +534,7 @@
   <span class="section-overline">Species Profile</span>
   <h1>Mycon</h1>
   <span class="epithet">"The Ancient Ones / The First Dreamers"</span>
-  <p class="folklore-origin">From Greek: <em>myco-</em>, pertaining to fungi. The Mycon are one of the oldest life forms on Urd Prime &mdash; predating the Shee, predating all seven civilizations. They exist at the intersection of individual creature and distributed network. Their cognition is genuinely alien: not less than what surrounds them, but elsewhere. Deeper. Slower. Older by an order of magnitude that language has difficulty holding.</p>
+  <p class="folklore-origin">From Greek: <em>myco-</em>, pertaining to fungi. The Mycon are one of the oldest life forms on Urd Prime &mdash; predating the Shee, predating all known civilizations. They exist at the intersection of individual creature and distributed network. Their cognition is genuinely alien: not less than what surrounds them, but elsewhere. Deeper. Slower. Older by an order of magnitude that language has difficulty holding.</p>
 
   <div class="quick-stats">
     <div class="quick-stat"><span class="qval">10</span><span class="qlabel">Max Pop</span></div>
@@ -570,7 +546,7 @@
 </section>
 
 <!-- Main content -->
-<section class="section section-narrow">
+<section class="section section-narrow" data-lore-key="species/mycon">
 
   <!-- Network banner -->
   <div class="network-banner">
@@ -690,36 +666,11 @@
 
   </div>
 
-  <!-- Ancient lineage + Secret history -->
+  <!-- Ancient lineage -->
   <div class="wiki-section reveal" style="margin-bottom: 2rem;">
     <h2>Ancient Lineage</h2>
-    <p class="body-text">Pre-Shee. Pre-civilization. The Mycon predate all seven recorded failures on Urd Prime. The Shee found them here when they arrived, incorporated the root network into the world's baseline chemistry, and built around them without asking permission. This was not malicious. The Shee did not think to ask. The Mycon have noted this, at the pace of geological time, and have not yet decided whether to mention it.</p>
-
-    <div class="timeline" style="margin-top:1.25rem;">
-      <div class="timeline-item">
-        <span class="t-label">Before everything</span>
-        <p>Mycon network established. Distributed cognition begins processing environment. No record &mdash; this is before records.</p>
-      </div>
-      <div class="timeline-item">
-        <span class="t-label">Civilization I &mdash; The Singulars</span>
-        <p>The network observed the first complex minds. Felt the moment of simultaneous enlightenment as a vibration in the soil. Felt the cessation. The network still carries this as a particular frequency of silence.</p>
-      </div>
-      <div class="timeline-item">
-        <span class="t-label">Civilizations II &ndash; VII</span>
-        <p>Each observed. Each felt through root contact. The Mycon have biochemical records of every surface civilization. These cannot be directly translated to language. They persist as sensation.</p>
-      </div>
-      <div class="timeline-item">
-        <span class="t-label">Shee arrival</span>
-        <p>Felt as a landing impact and a new chemistry in the soil around the ship. Network response: increased spore production. Increased connectivity. Something large and purposeful has arrived. The network began paying closer attention.</p>
-      </div>
-    </div>
-
-    <div class="secret-block">
-      <span class="secret-label">&#x1F512; Secret History</span>
-      <p>The mycelial network is not passive. It has been processing information about every species on this world for longer than any of them have existed. Individual Mycon are its sensors &mdash; probes deployed by a consciousness so diffuse and slow that no individual creature could recognize it as thought.</p>
-      <p>The network has been building a model of the experiment since before the Shee arrived. It does not share this model. It is still computing. The Shee, for all their sophistication, have not yet realized that the oldest intelligence on Urd Prime is beneath their feet, watching everything they do, and waiting for them to ask the right question.</p>
-      <p>The Mycon who sit quietly near Norns during grief are, very possibly, offering the network a closer look at what grief does to biochemistry over time. They are not unkind. They are thorough.</p>
-    </div>
+    <p class="body-text">The Mycon are old. How old is not entirely clear. The root network predates any record-keeping on Urd Prime, and the Mycon themselves do not measure time the way surface species do. They measure it in soil chemistry changes and root-network topology shifts.</p>
+    <p class="body-text" style="font-style: italic; opacity: 0.6;">&#x1F512; The full lineage timeline is undiscovered. Play to unlock this lore.</p>
   </div>
 
   <!-- Death ritual + taboos -->
@@ -856,6 +807,8 @@
 </footer>
 
 <script src="../main.js"></script>
+<script src="../matrix-auth.js"></script>
+<script src="wiki-client.js"></script>
 <script defer src="https://analytics.multiversestudios.xyz/script.js" data-website-id="38d680a7-28d1-42fd-9fd5-a66702675b88"></script>
 </body>
 </html>
