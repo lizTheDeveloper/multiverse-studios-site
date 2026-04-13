@@ -1,0 +1,92 @@
+/* Wiki lore-gating — default states and locked placeholders */
+
+/* All lore-gated content hidden by default */
+[data-lore-key] {
+  display: none;
+}
+
+/* Norn always visible (baseline species) */
+[data-lore-default="visible"] {
+  display: block;
+}
+
+/* Tiered subsections hidden by default */
+[data-lore-tier] {
+  display: none;
+}
+
+/* Tier 0 shown when parent is visible */
+[data-lore-key].lore-unlocked [data-lore-tier="0"],
+[data-lore-default="visible"] [data-lore-tier="0"] {
+  display: block;
+}
+
+/* JS adds lore-tier-N class to unlocked parents */
+[data-lore-key].lore-tier-1 [data-lore-tier="1"],
+[data-lore-key].lore-tier-2 [data-lore-tier="1"],
+[data-lore-key].lore-tier-3 [data-lore-tier="1"] {
+  display: block;
+}
+
+[data-lore-key].lore-tier-2 [data-lore-tier="2"],
+[data-lore-key].lore-tier-3 [data-lore-tier="2"] {
+  display: block;
+}
+
+[data-lore-key].lore-tier-3 [data-lore-tier="3"] {
+  display: block;
+}
+
+/* Locked placeholder */
+.lore-locked-placeholder {
+  text-align: center;
+  padding: 2.5rem 2rem;
+  opacity: 0.45;
+  border: 1px dashed rgba(255, 255, 255, 0.08);
+  border-radius: 10px;
+  margin-bottom: 2rem;
+}
+
+.lore-locked-placeholder .lock-icon {
+  font-size: 2rem;
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.lore-locked-placeholder .lock-text {
+  font-style: italic;
+  font-size: 0.95rem;
+  color: var(--dust, #7a7a8c);
+}
+
+/* Auth banner */
+.wiki-auth-banner {
+  text-align: center;
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+  border: 1px solid rgba(123, 104, 238, 0.2);
+  border-radius: 8px;
+  background: rgba(123, 104, 238, 0.04);
+}
+
+.wiki-auth-banner a {
+  color: var(--biolume, #7b68ee);
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+/* Discovery counter */
+.wiki-discovery-count {
+  font-family: var(--font-mono, monospace);
+  font-size: 0.82rem;
+  color: var(--dust, #7a7a8c);
+  text-align: center;
+  margin-bottom: 1.5rem;
+  letter-spacing: 0.04em;
+}
+
+/* Species nav links — dim undiscovered */
+nav[aria-label="Jump to species"] a.lore-nav-locked {
+  opacity: 0.3;
+  pointer-events: none;
+}
