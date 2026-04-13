@@ -84,3 +84,37 @@
     a.addEventListener('click', () => links.classList.remove('open'));
   });
 })();
+
+// --- Live Version Badges ---
+// Fetch current version from each game's /api/build-info endpoint
+// and patch the data-label attributes so the homepage stays current.
+(function initVersionBadges() {
+  const VERSION_RE = /v\d+\.\d+\.\d+/;
+  const GAMES = [
+    { slug: 'precursors', url: '/precursors/api/build-info' },
+    { slug: 'tsb',        url: '/the-spaces-between/api/build-info' },
+    { slug: 'mvee',       url: '/mvee/api/build-info' },
+    { slug: 'nel',        url: '/neverland/api/build-info' },
+    { slug: 'cotb',       url: '/cultures-of-the-belt/api/build-info' },
+    { slug: 'breach',     url: '/breach/api/build-info' },  // API server strips /breach
+  ];
+
+  GAMES.forEach(function (game) {
+    fetch('https://play.multiversestudios.xyz' + game.url)
+      .then(function (res) { return res.ok ? res.json() : null; })
+      .then(function (info) {
+        if (!info || !info.version || info.version === 'unknown') return;
+        const ver = 'v' + info.version;
+        document.querySelectorAll('[data-umami-event*="' + game.slug + '"]').forEach(function (el) {
+          const label = el.getAttribute('data-label');
+          if (!label) return;
+          if (VERSION_RE.test(label)) {
+            el.setAttribute('data-label', label.replace(VERSION_RE, ver));
+          } else {
+            el.setAttribute('data-label', label + ' ' + ver);
+          }
+        });
+      })
+      .catch(function () { /* keep hardcoded fallback */ });
+  });
+})();
