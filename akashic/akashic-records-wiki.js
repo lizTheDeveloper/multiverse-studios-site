@@ -12,34 +12,30 @@
 
   var LORE_API = 'https://play.multiversestudios.xyz/api/lore';
 
-  var TOTAL_SPECIES = 47;
+  var TOTAL_SPECIES = 44;
   var TOTAL_BIOMES = 6;
 
   /** Species that draw from living cultural traditions — attribution shown at ALL tiers. */
   var LIVING_TRADITION_SPECIES = [
-    'egungun-kin', 'auki-vel', 'lauma-gale', 'naga-vel',
-    'anansi-web', 'mimikin', 'zar-vel'
+    'auki-vel', 'lauma-gale', 'naga-vel',
+    'anansi-web', 'zar-vel'
   ];
 
   /** Attribution text for each living tradition species. */
   var LIVING_TRADITION_ATTRIBUTION = {
-    'egungun-kin': 'Yoruba (Egúngún) ancestral masquerade traditions',
     'auki-vel':    'Quechua (Auki) and Aymara (Awki) mountain spirit traditions',
     'lauma-gale':  'Baltic mythological traditions (Lauma / Laume)',
     'naga-vel':    'Hindu and Southeast Asian Nāga traditions',
     'anansi-web':  'West African and Afro-Caribbean Anansi storytelling traditions',
-    'mimikin':     'Australian Aboriginal Mimih spirit traditions',
     'zar-vel':     'East African and Middle Eastern Zār spirit traditions'
   };
 
   /** Display-name overrides for species with diacritics or special capitalisation. */
   var DISPLAY_NAMES = {
-    'egungun-kin': 'Egúngún-Kin',
     'auki-vel':    'Áuki-Vel',
     'lauma-gale':  'Lauma-Gale',
     'naga-vel':    'Nāga-Vel',
     'anansi-web':  'Anansi-Web',
-    'mimikin':     'Mimikin',
     'zar-vel':     'Zār-Vel',
     'cher-khan':   'Cher-Khan',
     'baku-ma':     'Baku-Ma',
