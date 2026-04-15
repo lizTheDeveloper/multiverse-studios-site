@@ -1,0 +1,7 @@
+# Cloudflare Pages redirects — play links to game servers
+/play/precursors/ https://play.multiversestudios.xyz/precursors/ 301
+/play/precursors https://play.multiversestudios.xyz/precursors/ 301
+/play/creatures/ /play/precursors/ 301
+/play/creatures /play/precursors/ 301
+/play/cultures-of-the-belt/ https://play.multiversestudios.xyz/cultures-of-the-belt/ 301
+/play/cultures-of-the-belt https://play.multiversestudios.xyz/cultures-of-the-belt/ 301
