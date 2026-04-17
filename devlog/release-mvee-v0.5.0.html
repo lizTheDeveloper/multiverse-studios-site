@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MVEE v0.5.0: Living Worlds — Multiverse Studios Devlog</title>
+  <meta name="description" content="Multiverse v0.5.0 — cross-game creature migration, myth-driven personalities, 592-planet biosphere data, and major stability fixes.">
+  <meta property="og:title" content="MVEE v0.5.0: Living Worlds">
+  <meta property="og:description" content="592 planets now teem with life. Creatures migrate between games. Myths shape who your villagers become.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://multiversestudios.xyz/devlog/release-mvee-v0.5.0.html">
+  <meta property="og:image" content="https://multiversestudios.xyz/screenshots/homepage-hero.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="MVEE v0.5.0: Living Worlds">
+  <meta name="twitter:description" content="592 planets now teem with life. Creatures migrate between games. Myths shape who your villagers become.">
+  <meta name="twitter:image" content="https://multiversestudios.xyz/screenshots/homepage-hero.png">
+  <link rel="stylesheet" href="../styles.css">
+  <link rel="icon" type="image/svg+xml" href="../press-kit/logos/multiverse-studios-favicon.svg">
+  <style>
+    .devlog-body {
+      max-width: 680px;
+      margin: 0 auto;
+    }
+    .devlog-body h1 {
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      line-height: 1.2;
+      margin-bottom: var(--space-sm);
+      color: var(--star-white);
+    }
+    .devlog-body .byline {
+      font-size: 0.8rem;
+      color: var(--dust);
+      font-family: var(--font-mono);
+      letter-spacing: 0.05em;
+      margin-bottom: var(--space-xl);
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+    .devlog-body .byline .tag {
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.2rem 0.6rem;
+      border-radius: 4px;
+      border: 1px solid var(--ember);
+      color: var(--ember);
+    }
+    .devlog-body p {
+      color: var(--dust-light);
+      line-height: 1.8;
+      font-size: 1.05rem;
+      margin-bottom: var(--space-md);
+    }
+    .devlog-body h2 {
+      font-size: 1.3rem;
+      color: var(--star-white);
+      margin: var(--space-xl) 0 var(--space-sm) 0;
+    }
+    .devlog-body .pullout {
+      border-left: 3px solid var(--ember);
+      padding: var(--space-sm) var(--space-md);
+      margin: var(--space-lg) 0;
+      color: var(--star-white);
+      font-style: italic;
+      font-size: 1.1rem;
+      line-height: 1.7;
+      background: rgba(255, 100, 50, 0.04);
+    }
+    .devlog-body .divider {
+      border: none;
+      border-top: 1px solid rgba(255,255,255,0.07);
+      margin: var(--space-xl) 0;
+    }
+  </style>
+</head>
+<body>
+  <main class="devlog-body" style="padding: var(--space-xl) var(--space-md);">
+    <a href="../devlog.html" style="color: var(--dust); font-size: 0.85rem; text-decoration: none;">&larr; All devlogs</a>
+
+    <h1>v0.5.0: Living Worlds</h1>
+    <div class="byline">
+      <span>2026-04-17</span>
+      <span class="tag">MVEE</span>
+      <span class="tag">RELEASE</span>
+    </div>
+
+    <p>The Multiverse is growing. 592 worlds now have biome-appropriate creatures, flora, and ecological relationships designed for them — the largest content update since launch. Cross-game creature migration, myth-driven personalities, and major stability fixes round out this release.</p>
+
+    <div class="pullout">Creatures from Precursors can now migrate into MVEE villages. A Norn raised in one game might appear in another, carrying memories of a life lived elsewhere.</div>
+
+    <p>The cross-game creature feed uses NATS transport to bridge Precursors and MVEE in real time. When a creature snapshot arrives from the Fae World, the CreatureFeedSubscriber ingests it into the local registry. The Multiverse is becoming genuinely interconnected.</p>
+
+    <h2>Myths Shape Personalities</h2>
+
+    <p>Agent personalities now emerge from the myths their species tells. The MythPersonalitySystem ties canonical Akashic Records myths to in-game behavior — beliefs and rituals respond dynamically as myths propagate through villages. Three new species join the roster: Sigkren, Dvergar, and the Alfar, each with full theological frameworks.</p>
+
+    <h2>Stability</h2>
+
+    <p>Memory leaks in the SongSystem, LLMScheduler, and ThreatIndicatorRenderer are fixed. Agents no longer wander into the wilderness — frontier bounds and home assignment keep them grounded. The starvation spiral from a farming priority bug is resolved. Buildings actually get built now, even after autonomic interrupts.</p>
+
+    <p><a href="../play/mvee/" style="color: var(--ember);">Play Multiverse: The End of Eternity</a></p>
+  </main>
+</body>
+</html>
