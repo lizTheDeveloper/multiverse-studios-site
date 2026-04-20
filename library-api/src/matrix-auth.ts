@@ -165,6 +165,21 @@ function createSession(accessToken: string, userId: string, deviceId: string): s
 
 export const router = Router();
 
+// GET /auth/matrix/check — Traefik forwardAuth passthrough target for the
+// studio-auth-optional middleware. Fires on every request to gated hosts so
+// it must (a) always return 200 (never block anonymous users) and (b) stay
+// outside the /login-/register rate limit. Sets X-Auth-User/X-Auth-Device
+// response headers when a valid session cookie is present; Traefik forwards
+// those to the downstream service per its authResponseHeaders config.
+router.get('/check', (req: Request, res: Response) => {
+  const session = resolveSession(req);
+  if (session) {
+    res.set('X-Auth-User', session.userId);
+    res.set('X-Auth-Device', session.deviceId);
+  }
+  res.status(200).end();
+});
+
 // Stricter rate limit for auth endpoints (login/register).
 const authRateLimit = rateLimit({
   windowMs: 60 * 1000,
