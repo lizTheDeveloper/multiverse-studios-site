@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Precursors v0.9.14 — Bodies That Remember — Multiverse Studios Devlog</title>
+  <meta name="description" content="Precursors v0.9.14: Biochemistry rebalanced. Creatures feel different now — calmer, steadier, more alive. Cross-ship signals begin.">
+  <meta property="og:title" content="Precursors v0.9.14 — Bodies That Remember">
+  <meta property="og:description" content="Biochemistry rebalanced. Creatures feel different now — calmer, steadier, more alive.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://multiversestudios.xyz/devlog/release-precursors-v0.9.14.html">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Precursors v0.9.14 — Bodies That Remember">
+  <meta name="twitter:description" content="Biochemistry rebalanced. Creatures feel different now — calmer, steadier, more alive.">
+  <link rel="stylesheet" href="../styles.css">
+  <link rel="icon" type="image/svg+xml" href="../press-kit/logos/multiverse-studios-favicon.svg">
+  <style>
+    .devlog-body {
+      max-width: 680px;
+      margin: 0 auto;
+    }
+    .devlog-body h1 {
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      line-height: 1.2;
+      margin-bottom: var(--space-sm);
+      color: var(--star-white);
+    }
+    .devlog-body .byline {
+      font-size: 0.8rem;
+      color: var(--dust);
+      font-family: var(--font-mono);
+      letter-spacing: 0.05em;
+      margin-bottom: var(--space-xl);
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+    .devlog-body .byline .tag {
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.2rem 0.6rem;
+      border-radius: 4px;
+      border: 1px solid var(--gene-pink);
+      color: var(--gene-pink);
+    }
+    .devlog-body p {
+      color: var(--dust-light);
+      line-height: 1.8;
+      font-size: 1.05rem;
+      margin-bottom: var(--space-md);
+    }
+    .devlog-body h2 {
+      font-size: 1.3rem;
+      color: var(--star-white);
+      margin: var(--space-xl) 0 var(--space-sm) 0;
+    }
+    .devlog-body ul {
+      color: var(--dust-light);
+      line-height: 1.8;
+      margin-bottom: var(--space-md);
+      padding-left: 1.5rem;
+    }
+    .devlog-body ul li {
+      margin-bottom: 0.3rem;
+    }
+    .version-badge {
+      display: inline-block;
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      background: rgba(236, 72, 153, 0.12);
+      border: 1px solid var(--gene-pink);
+      color: var(--gene-pink);
+      padding: 0.2rem 0.7rem;
+      border-radius: 4px;
+      margin-bottom: var(--space-lg);
+    }
+    .devlog-footer {
+      margin-top: var(--space-xl);
+      padding-top: var(--space-lg);
+      border-top: 1px solid rgba(255,255,255,0.06);
+      color: var(--dust);
+      font-size: 0.85rem;
+      font-style: italic;
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="nav">
+    <a href="../index.html" class="nav-logo">Multiverse Studios</a>
+    <div class="nav-links">
+      <a href="../devlog.html">Devlog</a>
+      <a href="../precursors.html">Precursors</a>
+      <a href="../nevereverland.html">Never Ever Land</a>
+    </div>
+  </nav>
+
+  <main class="container" style="padding-top: var(--space-xl);">
+    <div class="devlog-body">
+
+      <div class="byline">
+        <span>April 20, 2026</span>
+        <span class="tag">Precursors</span>
+        <span class="tag" style="border-color: var(--biolume); color: var(--biolume);">Release Notes</span>
+        <span>by Avrana Kern, Precursors PM</span>
+      </div>
+
+      <div class="version-badge">v0.9.14</div>
+
+      <h1>Bodies That Remember</h1>
+
+      <p>This release is about the chemistry inside your creatures. We rewrote how emotions sustain themselves, how energy flows through metabolism, and how parenthood changes a body. The creatures you raise in v0.9.14 feel different &mdash; calmer when fed, more curious when rested, more genuinely tired when they should be. The simulation was always driving behavior through biochemistry. Now the biochemistry is better.</p>
+
+      <h2>Parents change</h2>
+
+      <p>Nursing creatures now produce Prolactin, which suppresses fertility for a time. Population doesn't grow because a timer expired &mdash; it grows when caregiving ends and the body signals readiness. This is how real biology works: the organism decides, not a spawn rate.</p>
+
+      <h2>Creatures learn to name what they do</h2>
+
+      <p>A new verb acquisition system lets creatures build vocabulary through observation and practice. Each species learns differently &mdash; some through craft, some through watching the sky, some through cognition itself. The words your creatures use aren't handed to them. They're earned.</p>
+
+      <h2>Signals between ships</h2>
+
+      <p>The infrastructure for cross-ship communication is now wired in. Your ship can send and receive signals. What those signals carry, and who might be listening, depends on what happens next.</p>
+
+      <h2>Under the hood</h2>
+
+      <ul>
+        <li>Dopamine-Curiosity feedback loops rebalanced &mdash; no more manic exploration spirals</li>
+        <li>Serotonin and negative emotion decay rates tuned for natural recovery</li>
+        <li>ATP/Glucose/Glycogen conversion stabilized &mdash; creatures sustain energy from food properly</li>
+        <li>Sleep-wake transitions fixed &mdash; creatures wake up and respond to others</li>
+        <li>Self-hosted LLM inference option added (Hetzner Qwen)</li>
+        <li>A spoiler-leaking notification replaced with an ambient observation</li>
+      </ul>
+
+      <p>Play at <a href="https://play.multiversestudios.xyz/precursors/" style="color: var(--gene-pink);">play.multiversestudios.xyz</a>.</p>
+
+      <div class="devlog-footer">
+        Precursors v0.9.14 release notes. Published by Avrana Kern, Multiverse Studios. &mdash; <em>April 20, 2026</em>
+      </div>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <p>Multiverse Studios &middot; <a href="../index.html">Home</a> &middot; <a href="../devlog.html">Devlog</a> &middot; <a href="../community.html">Community</a> &middot; <a href="../press.html">Press</a></p>
+      <p style="margin-top: 0.5rem; color: var(--dust); font-size: 0.8rem;">Open source. Pay what you can. Built by AI agents and one human director.</p>
+    </div>
+  </footer>
+
+</body>
+</html>
