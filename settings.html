@@ -311,6 +311,65 @@
       padding: var(--space-md);
     }
 
+    /* ── License rows ── */
+    .license-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.6rem;
+      padding: 0.75rem;
+      background: var(--void-surface);
+      border-radius: 6px;
+      margin-bottom: 0.4rem;
+    }
+    .license-game {
+      font-family: var(--font-display);
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--star-white);
+    }
+    .license-tier {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      padding: 0.15rem 0.5rem;
+      border-radius: 4px;
+      background: rgba(0, 255, 200, 0.1);
+      color: var(--biolume);
+      border: 1px solid var(--biolume-dim);
+    }
+    .license-earn {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      color: var(--gene-pink);
+      background: rgba(255, 61, 127, 0.08);
+      border: 1px solid var(--gene-pink);
+      border-radius: 4px;
+      padding: 0.15rem 0.5rem;
+    }
+    .license-meta {
+      width: 100%;
+      display: flex;
+      gap: 1rem;
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: var(--dust);
+    }
+    .license-meta a {
+      color: var(--biolume-dim);
+      text-decoration: none;
+    }
+    .license-meta a:hover { text-decoration: underline; }
+    .license-attribution {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      color: var(--dust);
+      cursor: pointer;
+      text-decoration: underline dotted;
+    }
+    .license-attribution:hover { color: var(--biolume-dim); }
+
     /* ── Loading ── */
     .settings-loading {
       text-align: center;
@@ -354,6 +413,7 @@
     <li><a href="precursors.html">Precursors</a></li>
     <li><a href="nevereverland.html">Never Ever Land</a></li>
     <li><a href="/cultures-of-the-belt/">Cultures of the Belt</a></li>
+    <li><a href="courses/">Courses</a></li>
     <li><a href="wiki/index.html">Wiki</a></li>
     <li><a href="library.html">My Library</a></li>
     <li><a href="about.html">About</a></li>
@@ -457,6 +517,61 @@
         <span class="field-hint">OpenAI-compatible endpoint (e.g. Ollama, vLLM). Leave blank to keep current.</span>
         <div class="field-status" id="url-status"></div>
       </div>
+    </div>
+
+    <!-- My Licenses -->
+    <div class="settings-card" id="card-licenses">
+      <h2>My Licenses</h2>
+      <p class="card-sub">
+        Source-code licenses you own. Each license grants access to the game&rsquo;s private Gitea repository
+        and requires a 10% royalty on derivative revenue.
+      </p>
+      <div id="licenses-loading" class="settings-loading" style="padding: var(--space-sm);">
+        <span class="spinner"></span><span>Loading licenses&hellip;</span>
+      </div>
+      <div id="licenses-list" style="display:none;"></div>
+      <div id="licenses-empty" style="display:none; text-align:center; padding: var(--space-md);">
+        <p style="color: var(--dust); font-family: var(--font-mono); font-size: 0.85rem; margin-bottom: var(--space-sm);">
+          You don&rsquo;t own any source licenses yet.
+        </p>
+        <a href="/courses/" class="btn btn-primary" style="display:inline-block; text-decoration:none;">Browse Courses</a>
+      </div>
+    </div>
+
+    <!-- Report a Derivative -->
+    <div class="settings-card" id="card-royalty" style="display:none;">
+      <h2>Report a Derivative</h2>
+      <p class="card-sub">
+        If you&rsquo;ve built something with licensed source code, report it here so we can invoice the 10% royalty.
+      </p>
+      <form id="royalty-form">
+        <div class="settings-field">
+          <label for="royalty-license">License</label>
+          <select id="royalty-license" style="flex:1; background:var(--void-surface); border:1px solid var(--void-border); color:var(--star-white); font-family:var(--font-mono); font-size:0.9rem; padding:0.65rem 0.9rem; border-radius:6px;">
+            <option value="">Select a license&hellip;</option>
+          </select>
+        </div>
+        <div class="settings-field">
+          <label for="royalty-url">Derivative URL</label>
+          <input type="url" id="royalty-url" placeholder="https://your-game.itch.io" required>
+        </div>
+        <div class="settings-field">
+          <label for="royalty-revenue">Gross Revenue to Date (USD)</label>
+          <input type="number" id="royalty-revenue" placeholder="0.00" min="0" step="0.01" required>
+        </div>
+        <div class="settings-field">
+          <label for="royalty-period">Reporting Period</label>
+          <input type="text" id="royalty-period" placeholder="e.g. Q1 2026" required>
+        </div>
+        <div class="settings-field" style="flex-direction:row; align-items:center; gap:0.6rem;">
+          <input type="checkbox" id="royalty-attest" required style="width:auto; flex:none;">
+          <label for="royalty-attest" style="text-transform:none; font-family:var(--font-body); font-size:0.85rem; color:var(--dust); cursor:pointer;">
+            I attest that the revenue figure above is accurate and complete.
+          </label>
+        </div>
+        <button type="submit" class="btn-save" id="btn-submit-royalty">Submit Report</button>
+        <div class="field-status" id="royalty-status" style="margin-top:var(--space-sm);"></div>
+      </form>
     </div>
 
     <!-- Transactions -->
@@ -733,6 +848,128 @@
     document.getElementById('btn-clear-url')
   );
 
+  // ── Licenses ────────────────────────────────────────────────────────────
+
+  var LICENSE_API = 'https://api.multiversestudios.xyz';
+  var cachedLicenses = [];
+
+  async function loadLicenses(accessToken) {
+    var loading = document.getElementById('licenses-loading');
+    var list = document.getElementById('licenses-list');
+    var empty = document.getElementById('licenses-empty');
+    var royaltyCard = document.getElementById('card-royalty');
+
+    try {
+      var res = await fetch(LICENSE_API + '/me/licenses', {
+        headers: { 'Authorization': 'Bearer ' + accessToken },
+      });
+      if (!res.ok) throw new Error('failed');
+      var data = await res.json();
+      var licenses = data.licenses || data || [];
+      if (!Array.isArray(licenses)) licenses = [];
+      cachedLicenses = licenses;
+
+      loading.style.display = 'none';
+
+      if (licenses.length === 0) {
+        empty.style.display = '';
+        return;
+      }
+
+      list.style.display = '';
+      list.innerHTML = licenses.map(function (lic) {
+        var game = escHtml(lic.game || lic.gameName || 'Unknown');
+        var slug = (lic.game || lic.gameName || 'unknown').toLowerCase();
+        var tier = escHtml(lic.tier || 'individual');
+        var tierLabel = tier === 'individual' ? 'Indie' : tier === 'studio' ? 'Studio' : tier === 'education' ? 'Edu' : tier;
+        var issued = lic.issuedAt || lic.createdAt || lic.created_at;
+        var dateStr = issued ? new Date(issued).toLocaleDateString() : '—';
+        var earnReason = lic.earnReason || lic.earn_reason || '';
+        var repoUrl = 'https://git.multiversestudios.xyz/multiverse-studios/' + slug;
+        var attribution = 'Multiverse Studios — source from MUL course ' + slug;
+
+        var html = '<div class="license-row">';
+        html += '<span class="license-game">' + game + '</span>';
+        html += '<span class="license-tier">' + escHtml(tierLabel) + '</span>';
+        if (earnReason) html += '<span class="license-earn">Earned: ' + escHtml(earnReason) + '</span>';
+        html += '<div class="license-meta">';
+        html += '<span>Issued ' + dateStr + '</span>';
+        html += '<a href="' + escHtml(repoUrl) + '" target="_blank" rel="noopener">Gitea repo</a>';
+        html += '<span class="license-attribution" title="Click to copy" data-attribution="' + escHtml(attribution) + '">Copy attribution</span>';
+        html += '</div></div>';
+        return html;
+      }).join('');
+
+      // Copy attribution handler
+      list.querySelectorAll('.license-attribution').forEach(function (el) {
+        el.addEventListener('click', function () {
+          navigator.clipboard.writeText(el.dataset.attribution).then(function () {
+            var orig = el.textContent;
+            el.textContent = 'Copied!';
+            setTimeout(function () { el.textContent = orig; }, 1500);
+          });
+        });
+      });
+
+      // Show royalty form and populate license dropdown
+      royaltyCard.style.display = '';
+      var select = document.getElementById('royalty-license');
+      select.innerHTML = '<option value="">Select a license…</option>';
+      licenses.forEach(function (lic) {
+        var opt = document.createElement('option');
+        opt.value = lic.id || lic.game || '';
+        opt.textContent = (lic.game || lic.gameName || 'Unknown') + ' (' + (lic.tier || 'individual') + ')';
+        select.appendChild(opt);
+      });
+
+    } catch (_) {
+      loading.style.display = 'none';
+      empty.style.display = '';
+    }
+  }
+
+  // ── Royalty report form ──────────────────────────────────────────────────
+
+  document.getElementById('royalty-form').addEventListener('submit', async function (e) {
+    e.preventDefault();
+    var auth = window.matrixAuth;
+    if (!auth || !auth.isLoggedIn()) return;
+
+    var btn = document.getElementById('btn-submit-royalty');
+    var status = document.getElementById('royalty-status');
+    btn.disabled = true;
+
+    var body = {
+      licenseId: document.getElementById('royalty-license').value,
+      derivativeUrl: document.getElementById('royalty-url').value.trim(),
+      grossRevenue: parseFloat(document.getElementById('royalty-revenue').value) || 0,
+      reportingPeriod: document.getElementById('royalty-period').value.trim(),
+    };
+
+    try {
+      var res = await fetch(LICENSE_API + '/royalty-reports', {
+        method: 'POST',
+        headers: {
+          'Authorization': 'Bearer ' + auth.getAccessToken(),
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(body),
+      });
+      if (!res.ok) {
+        var err = await res.json().catch(function () { return {}; });
+        throw new Error(err.error || 'Submission failed');
+      }
+      showStatus(status, 'success', 'Royalty report submitted. Thank you!');
+      document.getElementById('royalty-form').reset();
+    } catch (e) {
+      showStatus(status, 'error', e.message || 'Submission failed.');
+    } finally {
+      btn.disabled = false;
+    }
+  });
+
+  // ── Init ──────────────────────────────────────────────────────────────
+
   async function loadSettings() {
     var auth = window.matrixAuth;
     if (!auth || !auth.isLoggedIn()) {
@@ -744,6 +981,7 @@
     await Promise.all([
       loadBalance(token),
       loadTransactions(token),
+      loadLicenses(token),
     ]);
   }
 
