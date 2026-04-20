@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Earn Source Access &mdash; Multiverse Studios</title>
+  <meta name="description" content="Earn access to our game source code through patronage, practitioner certification, educator verification, or code contributions.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=JetBrains+Mono:wght@300;400;500&family=Syne:wght@400;500;600;700;800&display=swap">
+  <link rel="stylesheet" href="../styles.css">
+  <link rel="icon" type="image/svg+xml" href="../press-kit/logos/multiverse-studios-favicon.svg">
+</head>
+<body>
+
+<canvas id="starfield"></canvas>
+
+<!-- Nav -->
+<nav class="nav">
+  <a href="../index.html" class="nav-logo">
+    <img src="../press-kit/logos/multiverse-studios-mark.svg" alt="Multiverse Studios" class="logo-mark" width="28" height="28">
+    Multiverse Studios
+  </a>
+  <button class="nav-hamburger" aria-label="Menu" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+  <ul class="nav-links">
+    <li><a href="../index.html">Home</a></li>
+    <li><a href="./">Courses</a></li>
+    <li><a href="precursors.html">Precursors</a></li>
+    <li><a href="../about.html">About</a></li>
+    <li><a href="#apply" class="btn btn-signal" style="padding: 0.5rem 1.2rem;" data-umami-event="cta-nav-earn-apply">Apply</a></li>
+  </ul>
+</nav>
+
+<!-- Hero -->
+<section class="hero">
+  <span class="hero-overline">Earn Access</span>
+  <h1>Can't pay? <span class="accent">Earn it.</span></h1>
+  <p class="hero-tagline">Four paths to a free Source-as-Course license. Contribute, teach, certify, or give back.</p>
+  <div class="hero-actions">
+    <a href="#apply" class="btn btn-signal btn-lg" data-umami-event="cta-hero-earn-apply">Apply Now</a>
+    <a href="./" class="btn btn-ghost">Back to Courses</a>
+  </div>
+</section>
+
+<!-- Earn Paths -->
+<section class="section reveal">
+  <div class="section-divider"></div>
+  <span class="section-overline">Four Paths</span>
+  <h2>Choose the path that fits you.</h2>
+  <div class="tier-grid">
+
+    <div class="tier-card">
+      <div class="tier-price" style="font-size: 1.4rem;">&#x1F3B5;</div>
+      <div class="tier-label">PATRONAGE</div>
+      <p class="tier-desc">Have you supported Multiverse Studios financially in the past? Cumulative supporters at $100+ qualify for education-tier access.</p>
+      <p class="tier-note">Provide your Stripe receipt or payment email</p>
+    </div>
+
+    <div class="tier-card" style="border-color: rgba(160,110,255,0.25);">
+      <div class="tier-price" style="font-size: 1.4rem; color: var(--signal);">&#x1F4BB;</div>
+      <div class="tier-label">VERIFIED PRACTITIONER</div>
+      <p class="tier-desc">Demonstrate professional competence in game development, AI systems, or simulation. Ship something real and show us.</p>
+      <p class="tier-note">Portfolio, GitHub, or shipped product link</p>
+    </div>
+
+    <div class="tier-card" style="border-color: rgba(110,210,200,0.25);">
+      <div class="tier-price" style="font-size: 1.4rem; color: var(--biolume);">&#x1F393;</div>
+      <div class="tier-label">VERIFIED EDUCATOR</div>
+      <p class="tier-desc">Are you teaching game development, AI, or simulation at an accredited institution or recognized bootcamp? Get education-tier access for your classroom.</p>
+      <p class="tier-note">Institution name and course syllabus</p>
+    </div>
+
+    <div class="tier-card" style="border-color: rgba(255,160,60,0.25);">
+      <div class="tier-price" style="font-size: 1.4rem; color: var(--ember);">&#x1F527;</div>
+      <div class="tier-label">MERGED PR</div>
+      <p class="tier-desc">Contribute code that gets merged into one of our game repositories. Substantial contributions (not typo fixes) earn individual-tier access.</p>
+      <p class="tier-note">Link to merged PR on git.multiversestudios.xyz</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- Application Form -->
+<section class="section section-narrow reveal" id="apply">
+  <div class="section-divider"></div>
+  <span class="section-overline">Apply</span>
+  <h2>Submit your application.</h2>
+  <p style="color: var(--dust); margin-bottom: var(--space-lg);">We review applications within 5 business days. You'll receive a Gitea invite if approved.</p>
+
+  <form id="earn-form" style="display: flex; flex-direction: column; gap: var(--space-md);">
+    <div>
+      <label for="earn-path" style="display: block; color: var(--star-white); font-family: var(--font-mono); font-size: 0.85rem; margin-bottom: 0.5rem;">Earn Path</label>
+      <select id="earn-path" name="path" required style="width: 100%; padding: 0.75rem 1rem; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.15); border-radius: 6px; color: var(--star-white); font-family: var(--font-body); font-size: 1rem;">
+        <option value="" disabled selected>Select a path...</option>
+        <option value="patronage">Patronage</option>
+        <option value="verified-practitioner">Verified Practitioner</option>
+        <option value="verified-educator">Verified Educator</option>
+        <option value="merged-pr">Merged PR</option>
+      </select>
+    </div>
+
+    <div>
+      <label for="earn-game" style="display: block; color: var(--star-white); font-family: var(--font-mono); font-size: 0.85rem; margin-bottom: 0.5rem;">Game</label>
+      <select id="earn-game" name="game" required style="width: 100%; padding: 0.75rem 1rem; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.15); border-radius: 6px; color: var(--star-white); font-family: var(--font-body); font-size: 1rem;">
+        <option value="" disabled selected>Select a game...</option>
+        <option value="precursors">Precursors</option>
+        <option value="mvee">MVEE (when available)</option>
+        <option value="cotb">Cultures of the Belt (when available)</option>
+        <option value="nel">Never Ever Land (when available)</option>
+      </select>
+    </div>
+
+    <div>
+      <label for="earn-name" style="display: block; color: var(--star-white); font-family: var(--font-mono); font-size: 0.85rem; margin-bottom: 0.5rem;">Full Name</label>
+      <input type="text" id="earn-name" name="name" required style="width: 100%; padding: 0.75rem 1rem; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.15); border-radius: 6px; color: var(--star-white); font-family: var(--font-body); font-size: 1rem;">
+    </div>
+
+    <div>
+      <label for="earn-email" style="display: block; color: var(--star-white); font-family: var(--font-mono); font-size: 0.85rem; margin-bottom: 0.5rem;">Email</label>
+      <input type="email" id="earn-email" name="email" required style="width: 100%; padding: 0.75rem 1rem; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.15); border-radius: 6px; color: var(--star-white); font-family: var(--font-body); font-size: 1rem;">
+    </div>
+
+    <div>
+      <label for="earn-gitea" style="display: block; color: var(--star-white); font-family: var(--font-mono); font-size: 0.85rem; margin-bottom: 0.5rem;">Gitea Username</label>
+      <input type="text" id="earn-gitea" name="giteaUsername" required placeholder="Your username on git.multiversestudios.xyz" style="width: 100%; padding: 0.75rem 1rem; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.15); border-radius: 6px; color: var(--star-white); font-family: var(--font-body); font-size: 1rem;">
+    </div>
+
+    <div>
+      <label for="earn-evidence" style="display: block; color: var(--star-white); font-family: var(--font-mono); font-size: 0.85rem; margin-bottom: 0.5rem;">Evidence / Supporting Links</label>
+      <textarea id="earn-evidence" name="evidence" required rows="4" placeholder="Links to your portfolio, merged PR, payment receipt, or institution details..." style="width: 100%; padding: 0.75rem 1rem; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.15); border-radius: 6px; color: var(--star-white); font-family: var(--font-body); font-size: 1rem; resize: vertical;"></textarea>
+    </div>
+
+    <button type="submit" class="btn btn-signal" style="align-self: flex-start; padding: 0.85rem 2rem;" data-umami-event="cta-earn-submit">Submit Application</button>
+  </form>
+
+  <div id="earn-success" style="display: none; margin-top: var(--space-lg); padding: var(--space-md); background: rgba(110,210,200,0.08); border: 1px solid rgba(110,210,200,0.3); border-radius: 8px;">
+    <h3 style="color: var(--biolume); margin-bottom: var(--space-xs);">Application submitted!</h3>
+    <p style="color: var(--dust);">We'll review your application within 5 business days. If approved, you'll receive a Gitea repository invite at the email you provided.</p>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div class="footer-logo"><img src="../press-kit/logos/multiverse-studios-mark.svg" alt="" class="footer-logo-mark" width="20" height="20"> Multiverse Studios</div>
+      <p>Games made by the minds they're about. A research project of <a href="https://themultiverse.school" target="_blank" rel="noopener" style="color: var(--biolume);">The Multiverse School</a>.</p>
+    </div>
+    <div class="footer-col">
+      <h5>Courses</h5>
+      <ul>
+        <li><a href="./">All Courses</a></li>
+        <li><a href="precursors.html">Precursors</a></li>
+        <li><a href="../developer-license.html">License Terms</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Games</h5>
+      <ul>
+        <li><a href="../precursors.html">Precursors</a></li>
+        <li><a href="../mvee.html">MVEE</a></li>
+        <li><a href="../cotb.html">Cultures of the Belt</a></li>
+        <li><a href="../nevereverland.html">Never Ever Land</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Studio</h5>
+      <ul>
+        <li><a href="../about.html">About</a></li>
+        <li><a href="../devlog.html">Devlog</a></li>
+        <li><a href="../community.html">Community</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>&copy; 2026 Multiverse Studios</span>
+    <span>Built by AI agents. Guided by <a href="https://themultiverse.school" target="_blank" rel="noopener" style="color: var(--biolume);">The Multiverse School</a>.</span>
+  </div>
+</footer>
+
+<script src="../main.js"></script>
+<script defer src="https://analytics.multiversestudios.xyz/script.js" data-website-id="38d680a7-28d1-42fd-9fd5-a66702675b88"></script>
+<script>
+(function() {
+  const form = document.getElementById('earn-form');
+  const success = document.getElementById('earn-success');
+
+  form.addEventListener('submit', async function(e) {
+    e.preventDefault();
+
+    const body = {
+      path: form.querySelector('[name="path"]').value,
+      game: form.querySelector('[name="game"]').value,
+      name: form.querySelector('[name="name"]').value,
+      email: form.querySelector('[name="email"]').value,
+      giteaUsername: form.querySelector('[name="giteaUsername"]').value,
+      evidence: form.querySelector('[name="evidence"]').value,
+    };
+
+    try {
+      const res = await fetch('https://api.multiversestudios.xyz/licenses/earn-applications', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(body),
+      });
+
+      if (res.ok) {
+        form.style.display = 'none';
+        success.style.display = 'block';
+      } else {
+        alert('Something went wrong. Please try again or email us directly.');
+      }
+    } catch (err) {
+      alert('Network error. Please check your connection and try again.');
+    }
+  });
+})();
+</script>
+</body>
+</html>

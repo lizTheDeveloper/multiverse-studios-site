@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Developer License &mdash; Multiverse Studios</title>
+  <meta name="description" content="Developer license terms for Multiverse Studios Source-as-Course program. Plain English summary, key terms, and full license text.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=JetBrains+Mono:wght@300;400;500&family=Syne:wght@400;500;600;700;800&display=swap">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="icon" type="image/svg+xml" href="press-kit/logos/multiverse-studios-favicon.svg">
+</head>
+<body>
+
+<canvas id="starfield"></canvas>
+
+<!-- Nav -->
+<nav class="nav">
+  <a href="index.html" class="nav-logo">
+    <img src="press-kit/logos/multiverse-studios-mark.svg" alt="Multiverse Studios" class="logo-mark" width="28" height="28">
+    Multiverse Studios
+  </a>
+  <button class="nav-hamburger" aria-label="Menu" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="courses/">Courses</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="courses/precursors.html" class="btn btn-signal" style="padding: 0.5rem 1.2rem;" data-umami-event="cta-nav-buy-source">Buy Source</a></li>
+  </ul>
+</nav>
+
+<!-- Hero -->
+<section class="hero">
+  <span class="hero-overline">Developer License</span>
+  <h1>Source-as-Course <span class="accent">License Terms</span></h1>
+  <p class="hero-tagline">Plain English. No lawyer required.</p>
+  <p style="color: var(--ember); font-family: var(--font-mono); font-size: 0.9rem; letter-spacing: 0.15em; margin-top: var(--space-sm);">DRAFT v1 &mdash; PENDING BOARD SIGN-OFF</p>
+</section>
+
+<!-- Plain English Summary -->
+<section class="section section-narrow reveal">
+  <div class="section-divider"></div>
+  <span class="section-overline">Plain English Summary</span>
+  <h2>What you can and can't do.</h2>
+
+  <h3 style="color: var(--biolume); margin-top: var(--space-lg); margin-bottom: var(--space-sm);">You CAN:</h3>
+  <ul style="color: var(--dust); line-height: 2; list-style: none; padding: 0;">
+    <li style="padding-left: 1.5rem; position: relative;"><span style="position: absolute; left: 0; color: var(--biolume);">&#10003;</span> Read, study, and learn from the entire source code</li>
+    <li style="padding-left: 1.5rem; position: relative;"><span style="position: absolute; left: 0; color: var(--biolume);">&#10003;</span> Fork the repository and modify the code</li>
+    <li style="padding-left: 1.5rem; position: relative;"><span style="position: absolute; left: 0; color: var(--biolume);">&#10003;</span> Build and ship derivative works (games, tools, libraries)</li>
+    <li style="padding-left: 1.5rem; position: relative;"><span style="position: absolute; left: 0; color: var(--biolume);">&#10003;</span> Use code patterns and techniques in your own projects</li>
+    <li style="padding-left: 1.5rem; position: relative;"><span style="position: absolute; left: 0; color: var(--biolume);">&#10003;</span> Teach from the source code (education tier)</li>
+    <li style="padding-left: 1.5rem; position: relative;"><span style="position: absolute; left: 0; color: var(--biolume);">&#10003;</span> Use the code in commercial products (with royalty)</li>
+    <li style="padding-left: 1.5rem; position: relative;"><span style="position: absolute; left: 0; color: var(--biolume);">&#10003;</span> Share screenshots and discuss the architecture publicly</li>
+  </ul>
+
+  <h3 style="color: var(--ember); margin-top: var(--space-lg); margin-bottom: var(--space-sm);">You CANNOT:</h3>
+  <ul style="color: var(--dust); line-height: 2; list-style: none; padding: 0;">
+    <li style="padding-left: 1.5rem; position: relative;"><span style="position: absolute; left: 0; color: var(--ember);">&#10007;</span> Redistribute the source code itself (share your Gitea access)</li>
+    <li style="padding-left: 1.5rem; position: relative;"><span style="position: absolute; left: 0; color: var(--ember);">&#10007;</span> Publish the source code to public repositories</li>
+    <li style="padding-left: 1.5rem; position: relative;"><span style="position: absolute; left: 0; color: var(--ember);">&#10007;</span> Remove or obscure attribution to Multiverse Studios</li>
+    <li style="padding-left: 1.5rem; position: relative;"><span style="position: absolute; left: 0; color: var(--ember);">&#10007;</span> Sublicense or transfer your access to others</li>
+    <li style="padding-left: 1.5rem; position: relative;"><span style="position: absolute; left: 0; color: var(--ember);">&#10007;</span> Claim the original work as solely your own</li>
+    <li style="padding-left: 1.5rem; position: relative;"><span style="position: absolute; left: 0; color: var(--ember);">&#10007;</span> Use the code to build a competing source-as-course product</li>
+    <li style="padding-left: 1.5rem; position: relative;"><span style="position: absolute; left: 0; color: var(--ember);">&#10007;</span> Request a refund after receiving access</li>
+  </ul>
+</section>
+
+<!-- Key Terms -->
+<section class="section section-narrow reveal">
+  <div class="section-divider"></div>
+  <span class="section-overline">Key Terms</span>
+  <h2>The important bits.</h2>
+
+  <div style="display: grid; gap: var(--space-md); margin-top: var(--space-lg);">
+    <div style="padding: var(--space-md); background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 8px;">
+      <h4 style="color: var(--signal); margin-bottom: var(--space-xs);">10% Royalty on Derivatives</h4>
+      <p style="color: var(--dust);">If you ship a commercial product derived from our source code, you owe Multiverse Studios 10% of gross revenue from that product. This applies to all tiers. Non-commercial projects are royalty-free.</p>
+    </div>
+
+    <div style="padding: var(--space-md); background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 8px;">
+      <h4 style="color: var(--ember); margin-bottom: var(--space-xs);">No Refunds</h4>
+      <p style="color: var(--dust);">Once you receive access to the source repository, the sale is final. You are buying access to intellectual property &mdash; it cannot be "returned." We encourage you to read the game page and documentation thoroughly before purchasing.</p>
+    </div>
+
+    <div style="padding: var(--space-md); background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 8px;">
+      <h4 style="color: var(--biolume); margin-bottom: var(--space-xs);">Attribution Required</h4>
+      <p style="color: var(--dust);">All derivative works must include visible attribution: "Built with source from Multiverse Studios (multiversestudios.xyz)". This can be in your about page, credits, or README.</p>
+    </div>
+
+    <div style="padding: var(--space-md); background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 8px;">
+      <h4 style="color: var(--gene-pink); margin-bottom: var(--space-xs);">Tier Scope</h4>
+      <p style="color: var(--dust);"><strong>Individual ($1,000):</strong> One person. Your projects only.<br><strong>Studio ($100,000):</strong> Your entire organization. Team access.<br><strong>Education ($350):</strong> Students/educators. Classroom use. Same derivative rights.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Royalty Reporting -->
+<section class="section section-narrow reveal">
+  <div class="section-divider"></div>
+  <span class="section-overline">Royalty Reporting</span>
+  <h2>How to report and pay royalties.</h2>
+
+  <div style="margin-top: var(--space-lg); color: var(--dust); line-height: 1.8;">
+    <h4 style="color: var(--star-white); margin-bottom: var(--space-sm);">When to report</h4>
+    <p>Royalties are reported quarterly. Reports are due within 30 days of quarter end (April 30, July 31, October 31, January 31).</p>
+
+    <h4 style="color: var(--star-white); margin-top: var(--space-md); margin-bottom: var(--space-sm);">What to report</h4>
+    <p>Gross revenue from all products that incorporate code from the licensed repository. Include: direct sales, subscriptions, in-app purchases, and licensing fees. Exclude: taxes, platform fees (Steam/Apple/Google cut), and refunds.</p>
+
+    <h4 style="color: var(--star-white); margin-top: var(--space-md); margin-bottom: var(--space-sm);">How to pay</h4>
+    <p>Email your quarterly report to <span style="color: var(--biolume); font-family: var(--font-mono);">licensing@multiversestudios.xyz</span> with gross revenue figures. We will send a Stripe invoice for 10% of reported revenue. Payment is due within 14 days of invoice.</p>
+
+    <h4 style="color: var(--star-white); margin-top: var(--space-md); margin-bottom: var(--space-sm);">Minimum threshold</h4>
+    <p>No royalty payment is required for quarters where gross derivative revenue is under $500. You must still submit the report.</p>
+  </div>
+</section>
+
+<!-- Full License Text -->
+<section class="section section-narrow reveal">
+  <div class="section-divider"></div>
+  <span class="section-overline">Full License Text</span>
+  <h2>Multiverse Studios Source-as-Course Developer License v1.0</h2>
+  <p style="color: var(--ember); font-family: var(--font-mono); font-size: 0.85rem; margin-bottom: var(--space-lg);">DRAFT v1 &mdash; PENDING BOARD SIGN-OFF</p>
+
+  <div style="color: var(--dust); line-height: 1.9; font-size: 0.95rem;">
+
+    <h4 style="color: var(--star-white); margin-top: var(--space-lg);">Section 1. Definitions</h4>
+    <p>"Licensor" means Multiverse Studios, a project of The Multiverse School. "Licensee" means the individual or organization that purchases a Source-as-Course license. "Source Material" means the game source code, assets, documentation, and build configuration provided via the licensed Gitea repository. "Derivative Work" means any software product that incorporates, adapts, or is substantially based on the Source Material. "Commercial Use" means any use that generates revenue, directly or indirectly.</p>
+
+    <h4 style="color: var(--star-white); margin-top: var(--space-lg);">Section 2. Grant of License</h4>
+    <p>Subject to the terms of this agreement, Licensor grants Licensee a non-exclusive, non-transferable, perpetual license to access, read, modify, and create Derivative Works from the Source Material. The scope of this grant is limited by the tier purchased (Individual, Studio, or Education).</p>
+
+    <h4 style="color: var(--star-white); margin-top: var(--space-lg);">Section 3. Tier Scope</h4>
+    <p><strong>Individual Tier ($1,000):</strong> License is granted to one natural person. Source Material may be used in projects where the Licensee is the sole developer or a contributor, but may not be shared with or accessed by other team members unless they hold their own license.<br><br><strong>Studio Tier ($100,000):</strong> License is granted to one legal entity and all current employees, contractors, and agents. Access may be shared within the organization. The license remains with the organization, not with individuals who depart.<br><br><strong>Education Tier ($350):</strong> License is granted to one natural person for educational purposes. Students and educators may use Source Material in coursework, teaching materials, and personal projects. The same derivative rights and royalty obligations apply as other tiers.</p>
+
+    <h4 style="color: var(--star-white); margin-top: var(--space-lg);">Section 4. Royalties</h4>
+    <p>Licensee agrees to pay Licensor a royalty of ten percent (10%) of gross revenue from any Derivative Work used for Commercial Use. Royalties are reported and paid quarterly as described in the Royalty Reporting section. The minimum reporting threshold is $500 per quarter; below this amount, no payment is due but reports must still be filed. Licensor reserves the right to audit Licensee's revenue records with 30 days written notice.</p>
+
+    <h4 style="color: var(--star-white); margin-top: var(--space-lg);">Section 5. Attribution</h4>
+    <p>All Derivative Works must include the following attribution in a reasonably discoverable location (e.g., about page, credits screen, README): "Built with source from Multiverse Studios (multiversestudios.xyz)". Failure to attribute does not terminate the license but constitutes a breach that must be remedied within 30 days of written notice.</p>
+
+    <h4 style="color: var(--star-white); margin-top: var(--space-lg);">Section 6. Restrictions</h4>
+    <p>Licensee may NOT: (a) redistribute the Source Material in its original or substantially similar form; (b) publish the Source Material to any public repository; (c) sublicense, sell, or transfer access to the Source Material; (d) use the Source Material to create a competing source-as-course or source-code-learning product; (e) remove copyright notices or attribution from the Source Material; (f) share Gitea credentials or repository access with unlicensed parties.</p>
+
+    <h4 style="color: var(--star-white); margin-top: var(--space-lg);">Section 7. No Refunds</h4>
+    <p>All sales are final. Once access to the Source Material repository has been granted, no refund will be issued under any circumstances. Licensee acknowledges that they are purchasing access to intellectual property that cannot be "returned" once viewed.</p>
+
+    <h4 style="color: var(--star-white); margin-top: var(--space-lg);">Section 8. Termination</h4>
+    <p>This license may be terminated by Licensor if Licensee materially breaches any term and fails to cure the breach within 30 days of written notice. Upon termination, Licensee must destroy all copies of the Source Material and cease use of any code derived from it in new projects. Derivative Works already shipped before termination may continue to operate subject to ongoing royalty obligations.</p>
+
+    <h4 style="color: var(--star-white); margin-top: var(--space-lg);">Section 9. Warranty Disclaimer</h4>
+    <p>The Source Material is provided "as is" without warranty of any kind, express or implied. Licensor does not guarantee that the code is free of bugs, suitable for any particular purpose, or that it will be maintained or updated. Licensee uses the Source Material at their own risk.</p>
+
+    <h4 style="color: var(--star-white); margin-top: var(--space-lg);">Section 10. Governing Law</h4>
+    <p>This agreement is governed by the laws of the State of California, United States. Any disputes arising from this agreement shall be resolved through binding arbitration in San Francisco, California, under the rules of the American Arbitration Association.</p>
+
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-band reveal">
+  <h2>Ready to buy the source?</h2>
+  <p>Start with Precursors &mdash; the first Source-as-Course is live now.</p>
+  <div class="cta-actions">
+    <a href="courses/precursors.html" class="btn btn-signal btn-lg" data-umami-event="cta-license-buy">Buy Precursors Source</a>
+    <a href="courses/earn.html" class="btn btn-ghost" data-umami-event="cta-license-earn">Earn Access</a>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div class="footer-logo"><img src="press-kit/logos/multiverse-studios-mark.svg" alt="" class="footer-logo-mark" width="20" height="20"> Multiverse Studios</div>
+      <p>Games made by the minds they're about. A research project of <a href="https://themultiverse.school" target="_blank" rel="noopener" style="color: var(--biolume);">The Multiverse School</a>.</p>
+    </div>
+    <div class="footer-col">
+      <h5>Courses</h5>
+      <ul>
+        <li><a href="courses/">All Courses</a></li>
+        <li><a href="courses/precursors.html">Precursors</a></li>
+        <li><a href="courses/earn.html">Earn Access</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Games</h5>
+      <ul>
+        <li><a href="precursors.html">Precursors</a></li>
+        <li><a href="mvee.html">MVEE</a></li>
+        <li><a href="cotb.html">Cultures of the Belt</a></li>
+        <li><a href="nevereverland.html">Never Ever Land</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Studio</h5>
+      <ul>
+        <li><a href="about.html">About</a></li>
+        <li><a href="devlog.html">Devlog</a></li>
+        <li><a href="community.html">Community</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>&copy; 2026 Multiverse Studios</span>
+    <span>Built by AI agents. Guided by <a href="https://themultiverse.school" target="_blank" rel="noopener" style="color: var(--biolume);">The Multiverse School</a>.</span>
+  </div>
+</footer>
+
+<script src="main.js"></script>
+<script defer src="https://analytics.multiversestudios.xyz/script.js" data-website-id="38d680a7-28d1-42fd-9fd5-a66702675b88"></script>
+</body>
+</html>
