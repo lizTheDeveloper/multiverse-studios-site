@@ -2389,41 +2389,6 @@
       "color_palette": "dark blue, water white",
       "suggested_role": "ocean leviathan or deep sea creature"
     },
-    "taniwha": {
-      "file_count": 12,
-      "files": [
-        "taniwha_angry.png",
-        "taniwha_baby.png",
-        "taniwha_boredom.png",
-        "taniwha_eat.png",
-        "taniwha_fear.png",
-        "taniwha_happy.png",
-        "taniwha_idle.png",
-        "taniwha_pain.png",
-        "taniwha_sad.png",
-        "taniwha_sleep.png",
-        "taniwha_walk1.png",
-        "taniwha_walk2.png"
-      ],
-      "poses": [
-        "angry",
-        "baby",
-        "boredom",
-        "eat",
-        "fear",
-        "happy",
-        "idle",
-        "pain",
-        "sad",
-        "sleep",
-        "walk1",
-        "walk2"
-      ],
-      "description": "Sea dragon/serpent, dark teal, long neck, aquatic dragon",
-      "body_plan": "dragon-aquatic",
-      "color_palette": "dark teal, green",
-      "suggested_role": "sea dragon or lake guardian"
-    },
     "tengura": {
       "file_count": 12,
       "files": [
