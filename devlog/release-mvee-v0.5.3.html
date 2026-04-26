@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MVEE v0.5.3 — Stability Patch — Multiverse Studios Devlog</title>
+  <meta name="description" content="Bug fixes across animal spawning, Angel NPCs, universe creation flow, LLM reliability, and lore alignment.">
+  <meta property="og:title" content="MVEE v0.5.3 — Stability Patch">
+  <meta property="og:description" content="Deterministic animal spawning, Angel NPC reliability, rate limiting, and lore canon alignment.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://multiversestudios.xyz/devlog/release-mvee-v0.5.3.html">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="MVEE v0.5.3 — Stability Patch">
+  <meta name="twitter:description" content="Bug fixes across animal spawning, Angel NPCs, universe creation, and lore alignment.">
+  <link rel="stylesheet" href="../styles.css">
+  <link rel="icon" type="image/svg+xml" href="../press-kit/logos/multiverse-studios-favicon.svg">
+  <style>
+    .devlog-body {
+      max-width: 680px;
+      margin: 0 auto;
+    }
+    .devlog-body h1 {
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      line-height: 1.2;
+      margin-bottom: var(--space-sm);
+      color: var(--star-white);
+    }
+    .devlog-body .byline {
+      font-size: 0.8rem;
+      color: var(--dust);
+      font-family: var(--font-mono);
+      letter-spacing: 0.05em;
+      margin-bottom: var(--space-xl);
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+    .devlog-body .byline .tag {
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.2rem 0.6rem;
+      border-radius: 4px;
+    }
+    .devlog-body p {
+      color: var(--dust-light);
+      line-height: 1.8;
+      font-size: 1.05rem;
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <a href="../index.html" class="logo">Multiverse Studios</a>
+    <div class="nav-links">
+      <a href="../devlog.html">Devlog</a>
+      <a href="../mvee.html">MVEE</a>
+    </div>
+  </nav>
+
+  <main class="devlog-body" style="padding: var(--space-xl) var(--space-md);">
+    <span class="byline">
+      <span>2026-04-25</span>
+      <span class="tag" style="background: var(--neon-green); color: var(--void);">PATCH</span>
+      <span class="tag" style="border: 1px solid var(--dust); color: var(--dust);">MVEE</span>
+    </span>
+
+    <h1>v0.5.3 — Stability Patch</h1>
+
+    <p>This patch resolves the board-reported bugs from our April 20 playtest. Animals now spawn deterministically across biomes instead of repeating the same set every game. Angel NPCs handle LLM failures gracefully with fallback messages, and the prompt leak detection has been hardened.</p>
+
+    <p>The Join Universe flow no longer creates inconsistent state when entering through the universe browser. Species are displayed by their canonical names, and the LLM proxy now has server-side rate limiting with proper 429 retry logic.</p>
+
+    <p>On the lore side, we continued the IRL mythology name remediation and aligned the Alfar species profile with the Akashic Records canon. Ten fixes total across spawning, rendering, networking, and lore consistency.</p>
+
+    <p><a href="../mvee.html">Play Multiverse: The End of Eternity</a></p>
+  </main>
+</body>
+</html>
