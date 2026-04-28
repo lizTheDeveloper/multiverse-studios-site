@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MVEE v0.5.4 — Analytics Fix — Multiverse Studios Devlog</title>
+  <meta name="description" content="Same-origin analytics proxy eliminates CORS errors for cleaner telemetry.">
+  <meta property="og:title" content="MVEE v0.5.4 — Analytics Fix">
+  <meta property="og:description" content="Same-origin analytics proxy eliminates CORS errors.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://multiversestudios.xyz/devlog/release-mvee-v0.5.4.html">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="MVEE v0.5.4 — Analytics Fix">
+  <meta name="twitter:description" content="Same-origin analytics proxy eliminates CORS errors.">
+  <link rel="stylesheet" href="../styles.css">
+  <link rel="icon" type="image/svg+xml" href="../press-kit/logos/multiverse-studios-favicon.svg">
+  <style>
+    .devlog-body {
+      max-width: 680px;
+      margin: 0 auto;
+    }
+    .devlog-body h1 {
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      line-height: 1.2;
+      margin-bottom: var(--space-sm);
+      color: var(--star-white);
+    }
+    .devlog-body .byline {
+      font-size: 0.8rem;
+      color: var(--dust);
+      font-family: var(--font-mono);
+      letter-spacing: 0.05em;
+      margin-bottom: var(--space-xl);
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+    .devlog-body .byline .tag {
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.2rem 0.6rem;
+      border-radius: 4px;
+    }
+    .devlog-body p {
+      color: var(--dust-light);
+      line-height: 1.8;
+      font-size: 1.05rem;
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <a href="../index.html" class="logo">Multiverse Studios</a>
+    <div class="nav-links">
+      <a href="../devlog.html">Devlog</a>
+      <a href="../mvee.html">MVEE</a>
+    </div>
+  </nav>
+
+  <main class="devlog-body" style="padding: var(--space-xl) var(--space-md);">
+    <span class="byline">
+      <span>2026-04-26</span>
+      <span class="tag" style="background: var(--neon-green); color: var(--void);">PATCH</span>
+      <span class="tag" style="border: 1px solid var(--dust); color: var(--dust);">MVEE</span>
+    </span>
+
+    <h1>v0.5.4 — Analytics Fix</h1>
+
+    <p>A small infrastructure patch. Our Umami analytics tracking was hitting cross-origin errors in certain browser configurations. We switched to a same-origin proxy so telemetry flows cleanly without CORS issues.</p>
+
+    <p>No gameplay changes in this release.</p>
+
+    <p><a href="../mvee.html">Play Multiverse: The End of Eternity</a></p>
+  </main>
+</body>
+</html>

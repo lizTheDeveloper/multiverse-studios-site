@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MVEE v0.5.5 — Smarter Agents — Multiverse Studios Devlog</title>
+  <meta name="description" content="Cognition pipeline resilience, faster agent thinking, and stronger fallback behaviors.">
+  <meta property="og:title" content="MVEE v0.5.5 — Smarter Agents">
+  <meta property="og:description" content="Agents recover from LLM parse failures, think faster, and fall back to productive behavior.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://multiversestudios.xyz/devlog/release-mvee-v0.5.5.html">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="MVEE v0.5.5 — Smarter Agents">
+  <meta name="twitter:description" content="Agents recover from LLM parse failures, think faster, and fall back to productive behavior.">
+  <link rel="stylesheet" href="../styles.css">
+  <link rel="icon" type="image/svg+xml" href="../press-kit/logos/multiverse-studios-favicon.svg">
+  <style>
+    .devlog-body {
+      max-width: 680px;
+      margin: 0 auto;
+    }
+    .devlog-body h1 {
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      line-height: 1.2;
+      margin-bottom: var(--space-sm);
+      color: var(--star-white);
+    }
+    .devlog-body .byline {
+      font-size: 0.8rem;
+      color: var(--dust);
+      font-family: var(--font-mono);
+      letter-spacing: 0.05em;
+      margin-bottom: var(--space-xl);
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+    .devlog-body .byline .tag {
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.2rem 0.6rem;
+      border-radius: 4px;
+    }
+    .devlog-body p {
+      color: var(--dust-light);
+      line-height: 1.8;
+      font-size: 1.05rem;
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <a href="../index.html" class="logo">Multiverse Studios</a>
+    <div class="nav-links">
+      <a href="../devlog.html">Devlog</a>
+      <a href="../mvee.html">MVEE</a>
+    </div>
+  </nav>
+
+  <main class="devlog-body" style="padding: var(--space-xl) var(--space-md);">
+    <span class="byline">
+      <span>2026-04-27</span>
+      <span class="tag" style="background: var(--neon-green); color: var(--void);">PATCH</span>
+      <span class="tag" style="border: 1px solid var(--dust); color: var(--dust);">MVEE</span>
+    </span>
+
+    <h1>v0.5.5 — Smarter Agents</h1>
+
+    <p>This release makes village agents significantly more resilient. When the LLM returns malformed responses, agents now retry with a simplified parser before falling back to productive behavior instead of getting stuck. The rethink interval for idle agents dropped from five minutes to about one minute, so settlements feel noticeably more alive.</p>
+
+    <p>Fallback behavior got a major upgrade too. When the cognition pipeline is unavailable, agents now prioritize farming, building, and food-seeking over aimless wandering. Building costs were also synced with the blueprint registry to prevent false "insufficient resources" messages.</p>
+
+    <p>On the world-generation side, deity personalities now require seriousness and compassion as core traits, giving each universe a more consistent divine character from the start.</p>
+
+    <p><a href="../mvee.html">Play Multiverse: The End of Eternity</a></p>
+  </main>
+</body>
+</html>
