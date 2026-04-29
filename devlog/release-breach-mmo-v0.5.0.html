@@ -134,6 +134,10 @@
 
       <p>The PvE match manager was passing <code>{} as any</code> for both the StrategyController and the CU Redis client &mdash; meaning bots were using empty stubs for both their decision-making and their budget tracking. v0.5.0 wires the real implementations. Attacker bots now evaluate exploit nodes and pick targets based on match state. Defender bots route toward vulnerable services. Every LLM call deducts from the bot's Compute Unit budget, and the circuit breaker fires if a bot runs out mid-match. This is the foundation for the full bot intelligence roadmap in v0.6.0.</p>
 
+      <h2>Stripe payments fixed</h2>
+
+      <p>Three compounding bugs were silently killing every checkout since March 22. The webhook secret was missing from production config, so Stripe's signature verification threw before even checking the payload &mdash; every <code>checkout.session.completed</code> event returned 400 and expired without creating an account. The webhook route was mounted at the wrong path after Traefik stripped the game prefix. And the post-checkout redirect sent players back to the game lobby instead of the signup confirmation page. All three are fixed. If you tried to pay and got nothing, sorry &mdash; this deploy is the fix.</p>
+
       <p>Play at <a href="https://play.multiversestudios.xyz/breach/" style="color: #00ff88;">play.multiversestudios.xyz/breach/</a> &mdash; no account required.</p>
 
       <div class="devlog-footer">
