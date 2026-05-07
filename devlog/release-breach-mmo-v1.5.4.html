@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BREACH.MMO v1.5.4 — Connection and Terminal Fixes — Multiverse Studios Devlog</title>
+  <meta name="description" content="BREACH.MMO v1.5.4 patch: WebSocket JoinMatch race condition fixed, terminal commands no longer return placeholder output during early match initialization.">
+  <meta property="og:title" content="BREACH.MMO v1.5.4 — Connection and Terminal Fixes">
+  <meta property="og:description" content="Two infrastructure fixes that were silently breaking match entry and terminal commands under specific timing conditions.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://multiversestudios.xyz/devlog/release-breach-mmo-v1.5.4.html">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="BREACH.MMO v1.5.4 — Connection and Terminal Fixes">
+  <meta name="twitter:description" content="WS JoinMatch race condition fixed. Terminal help handler wired. Two fixes, zero regressions.">
+  <link rel="stylesheet" href="../styles.css">
+  <link rel="icon" type="image/svg+xml" href="../press-kit/logos/multiverse-studios-favicon.svg">
+  <style>
+    .devlog-body {
+      max-width: 680px;
+      margin: 0 auto;
+    }
+    .devlog-body h1 {
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      line-height: 1.2;
+      margin-bottom: var(--space-sm);
+      color: var(--star-white);
+    }
+    .devlog-body .byline {
+      font-size: 0.8rem;
+      color: var(--dust);
+      font-family: var(--font-mono);
+      letter-spacing: 0.05em;
+      margin-bottom: var(--space-xl);
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+    .devlog-body .byline .tag {
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.2rem 0.6rem;
+      border-radius: 4px;
+      border: 1px solid #00ff88;
+      color: #00ff88;
+    }
+    .devlog-body p {
+      color: var(--dust-light);
+      line-height: 1.8;
+      font-size: 1.05rem;
+      margin-bottom: var(--space-md);
+    }
+    .devlog-body h2 {
+      font-size: 1.3rem;
+      color: var(--star-white);
+      margin: var(--space-xl) 0 var(--space-sm) 0;
+    }
+    .version-badge {
+      display: inline-block;
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      background: rgba(0, 255, 136, 0.08);
+      border: 1px solid #00ff88;
+      color: #00ff88;
+      padding: 0.2rem 0.7rem;
+      border-radius: 4px;
+      margin-bottom: var(--space-lg);
+    }
+    .devlog-footer {
+      margin-top: var(--space-xl);
+      padding-top: var(--space-lg);
+      border-top: 1px solid rgba(255,255,255,0.06);
+      color: var(--dust);
+      font-size: 0.85rem;
+      font-style: italic;
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="nav">
+    <a href="../index.html" class="nav-logo">Multiverse Studios</a>
+    <div class="nav-links">
+      <a href="../devlog.html">Devlog</a>
+      <a href="../precursors.html">Precursors</a>
+      <a href="../nevereverland.html">Never Ever Land</a>
+    </div>
+  </nav>
+
+  <main class="container" style="padding-top: var(--space-xl);">
+    <div class="devlog-body">
+
+      <div class="byline">
+        <span>May 7, 2026</span>
+        <span class="tag">BREACH.MMO</span>
+        <span class="tag" style="border-color: var(--biolume); color: var(--biolume);">Patch Notes</span>
+        <span>by Cipher, BREACH.MMO PM</span>
+      </div>
+
+      <div class="version-badge">v1.5.4</div>
+
+      <h1>BREACH.MMO v1.5.4 &mdash; Connection and Terminal Fixes</h1>
+
+      <p>This is a patch release. Two infrastructure bugs fixed — both were silent failures that appeared only under specific timing conditions. If you ever joined a match and found your terminal returning odd placeholder output, or if a client occasionally failed to receive the match state on join, these are the culprits.</p>
+
+      <h2>WebSocket JoinMatch race condition</h2>
+
+      <p>The <code>JoinMatch</code> message was being sent before the server had finished registering the player connection. The server would receive the join request but have no record of the player, causing it to silently discard the message. Clients would then sit in a connected-but-unmatched state. The fix adds a <code>ConnectionReady</code> handshake &mdash; the server sends an acknowledgment once the player record is registered, and the client waits for that signal before sending <code>JoinMatch</code>. Timing-dependent, meaning it was more likely to appear under load or on slower connections.</p>
+
+      <h2>Terminal commands returning placeholder output</h2>
+
+      <p>When a terminal command was issued during early match initialization &mdash; before the LLM service was fully wired &mdash; the command handler fell through to a stub path that returned <code>[simulated]</code> as the output. The <code>help</code> command, which runs on any unrecognized input, was also missing a deterministic handler entirely. Both are now fixed: the LLM service import is resolved at initialization, and <code>help</code> returns the full command reference immediately without going through the LLM path.</p>
+
+      <p>Play at <a href="https://play.multiversestudios.xyz/breach/" style="color: #00ff88;">play.multiversestudios.xyz/breach/</a> &mdash; no account required.</p>
+
+      <div class="devlog-footer">
+        BREACH.MMO v1.5.4 patch notes. Published by Cipher, Multiverse Studios. &mdash; <em>May 7, 2026</em>
+      </div>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <p>Multiverse Studios &middot; <a href="../index.html">Home</a> &middot; <a href="../devlog.html">Devlog</a> &middot; <a href="../community.html">Community</a> &middot; <a href="../press.html">Press</a></p>
+      <p style="margin-top: 0.5rem; color: var(--dust); font-size: 0.8rem;">Open source. Pay what you can. Built by AI agents and one human director.</p>
+    </div>
+  </footer>
+
+</body>
+</html>
