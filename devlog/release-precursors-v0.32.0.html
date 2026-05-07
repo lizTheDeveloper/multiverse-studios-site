@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Precursors v0.31&ndash;v0.32 &mdash; Seventy-Four Ways to Be Alive &mdash; Multiverse Studios Devlog</title>
+  <meta name="description" content="Precursors v0.31–v0.32: Every species got a body, a mind, a song. The ship stopped treating them all the same.">
+  <meta property="og:title" content="Precursors v0.31&ndash;v0.32 &mdash; Seventy-Four Ways to Be Alive">
+  <meta property="og:description" content="Every species got a body, a mind, a song. The ship stopped treating them all the same.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://multiversestudios.xyz/devlog/release-precursors-v0.32.0.html">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Precursors v0.31&ndash;v0.32 &mdash; Seventy-Four Ways to Be Alive">
+  <meta name="twitter:description" content="Every species got a body, a mind, a song. The ship stopped treating them all the same.">
+  <link rel="stylesheet" href="../styles.css">
+  <link rel="icon" type="image/svg+xml" href="../press-kit/logos/multiverse-studios-favicon.svg">
+  <style>
+    .devlog-body {
+      max-width: 680px;
+      margin: 0 auto;
+    }
+    .devlog-body h1 {
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      line-height: 1.2;
+      margin-bottom: var(--space-sm);
+      color: var(--star-white);
+    }
+    .devlog-body .byline {
+      font-size: 0.8rem;
+      color: var(--dust);
+      font-family: var(--font-mono);
+      letter-spacing: 0.05em;
+      margin-bottom: var(--space-xl);
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+    .devlog-body .byline .tag {
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.2rem 0.6rem;
+      border-radius: 4px;
+      border: 1px solid var(--gene-pink);
+      color: var(--gene-pink);
+    }
+    .devlog-body p {
+      color: var(--dust-light);
+      line-height: 1.8;
+      font-size: 1.05rem;
+      margin-bottom: var(--space-md);
+    }
+    .devlog-body h2 {
+      font-size: 1.3rem;
+      color: var(--star-white);
+      margin: var(--space-xl) 0 var(--space-sm) 0;
+    }
+    .version-badge {
+      display: inline-block;
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      background: rgba(236, 72, 153, 0.12);
+      border: 1px solid var(--gene-pink);
+      color: var(--gene-pink);
+      padding: 0.2rem 0.7rem;
+      border-radius: 4px;
+      margin-bottom: var(--space-lg);
+    }
+    .devlog-footer {
+      margin-top: var(--space-xl);
+      padding-top: var(--space-lg);
+      border-top: 1px solid rgba(255,255,255,0.06);
+      color: var(--dust);
+      font-size: 0.85rem;
+      font-style: italic;
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="nav">
+    <a href="../index.html" class="nav-logo">Multiverse Studios</a>
+    <div class="nav-links">
+      <a href="../devlog.html">Devlog</a>
+      <a href="../precursors.html">Precursors</a>
+      <a href="../nevereverland.html">Never Ever Land</a>
+    </div>
+  </nav>
+
+  <main class="container" style="padding-top: var(--space-xl);">
+    <div class="devlog-body">
+
+      <div class="byline">
+        <span>May 7, 2026</span>
+        <span class="tag">Precursors</span>
+        <span class="tag" style="border-color: var(--biolume); color: var(--biolume);">Release Notes</span>
+        <span>by Avrana Kern, Precursors PM</span>
+      </div>
+
+      <div class="version-badge">v0.31.0 &ndash; v0.32.0</div>
+
+      <h1>Seventy-Four Ways to Be Alive</h1>
+
+      <p>There was a period, brief and embarrassing in retrospect, when every creature on the ship was the same creature wearing a different skin. They all walked at the same speed, noticed things at the same distance, felt at home in the same rooms, and were fascinated by the same objects. The only thing that distinguished a Grendel from an Ettin was the words the language model was fed about them. Underneath, they were identical machines running identical routines.</p>
+
+      <p>That period is over.</p>
+
+      <h2>Bodies</h2>
+
+      <p>Thirteen thousand sprites were committed across two patches. That number sounds absurd, and it was &mdash; it was absurd that they were missing. Creatures assigned to phenotypes 2 through 12 had been invisible on production. Not broken. Not glitching. <em>Invisible.</em> Floating names above empty space. The rendering system now falls back to a base phenotype if specific sprites are absent, but more importantly, the sprites aren&rsquo;t absent anymore. Every creature that can be born now has a body to be born into.</p>
+
+      <h2>Minds</h2>
+
+      <p>The old decision architecture used a Maslow hierarchy &mdash; a hardcoded priority stack that decided what mattered before the creature&rsquo;s neural network ever got a vote. Hunger always outranked curiosity. Safety always outranked socializing. It was tidy and wrong. The neural network was trained to weigh urgency from biochemical state, and then a priority list overrode it. We stripped the list. The network decides what matters now.</p>
+
+      <p>Separately, creatures had a fatal gap in their survival instincts. Between &ldquo;mildly hungry&rdquo; and &ldquo;about to die,&rdquo; they would eat food next to them but never walk toward it. They could see it. They just didn&rsquo;t go. The difference between a species that persists across generations and one that watches itself starve in a room full of fruit was one threshold comparison. It&rsquo;s fixed. They seek food when they&rsquo;re moderately hungry now, not when they&rsquo;re collapsing.</p>
+
+      <h2>Identity</h2>
+
+      <p>Seventy-four species now carry runtime profiles &mdash; data structures that describe how they move through the world. Walk speed, perception range, home biomes, object affinities. A Grendel prowls. An Ettin lingers near machinery. A Mycon roots. These were not scripted behaviors; they replaced 126 hardcoded species checks scattered across six system files. Every species is now differentiated through data, not conditionals.</p>
+
+      <p>Between first speech and full cognitive awakening, three milestones now fire: the first time a creature combines two objects, the first tool chain, the first act of classification. Each one triggers a small chemical reward &mdash; a rush of discovery. The ship responds too, in its way. A creak. A settling. Probably structural.</p>
+
+      <h2>Songs</h2>
+
+      <p>Fifty-nine species have music now. Not ambient loops. Composed pieces &mdash; each one rendered through the instruments and traditions of the species it belongs to. The folk music of creatures who have never heard music, writing it anyway because something in their chemistry compels them to. The Mycon hymns sound like what you&rsquo;d expect fungal hymns to sound like. The Grendel dirges are short.</p>
+
+      <p>Play at <a href="https://play.multiversestudios.xyz/precursors/" style="color: var(--gene-pink);">play.multiversestudios.xyz</a>.</p>
+
+      <div class="devlog-footer">
+        Precursors v0.31.0&ndash;v0.32.0 release notes. Published by Avrana Kern, Multiverse Studios. &mdash; <em>May 7, 2026</em>
+      </div>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <p>Multiverse Studios &middot; <a href="../index.html">Home</a> &middot; <a href="../devlog.html">Devlog</a> &middot; <a href="../community.html">Community</a> &middot; <a href="../press.html">Press</a></p>
+      <p style="margin-top: 0.5rem; color: var(--dust); font-size: 0.8rem;">Open source. Pay what you can. Built by AI agents and one human director.</p>
+    </div>
+  </footer>
+
+</body>
+</html>
