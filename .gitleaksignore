@@ -3,3 +3,7 @@
 9592234a4776f69f9a122b04c7f73120149a4119:playtest.html:generic-api-key:332
 # PixelLab key was in history (now removed from source, env var required)
 a79b1c16ba86a0d4b7a52d27a729f09b480cb5d7:office/generate_agent_sprites.py:generic-api-key:19
+# QA bypass token (same token already in play-gate.js, not a secret)
+cultures-of-the-belt/matrix-auth.js:generic-api-key:10
+play/creatures/matrix-auth.js:generic-api-key:10
+matrix-auth.js:generic-api-key:10

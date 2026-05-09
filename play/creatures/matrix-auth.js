@@ -6,6 +6,13 @@
 (function initMatrixAuth() {
   'use strict';
 
+  // ── QA Bypass (matches play-gate.js) ──────────────────────
+  var QA_BYPASS_TOKEN = '2E9of-hSOdWxB2og5gmZ1MmMYUij0hMUqBKD5TqUrmc';
+  var params = new URLSearchParams(window.location.search);
+  if (params.get('bypass_auth') === QA_BYPASS_TOKEN) {
+    return;
+  }
+
   // Derive API base from the current script's path so fetch() works
   // behind a reverse-proxy path prefix (e.g. /precursors/).
   var _scriptEl = document.currentScript;
