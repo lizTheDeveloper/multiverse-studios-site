@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MVEE v0.5.10 &mdash; Retry, Don't Reject &mdash; Multiverse Studios Devlog</title>
+  <meta name="description" content="MVEE v0.5.10: LLM cognition now retries on rate limits instead of dropping agent thoughts. Startup bursts eliminated.">
+  <meta property="og:title" content="MVEE v0.5.10 &mdash; Retry, Don't Reject">
+  <meta property="og:description" content="LLM cognition now retries on rate limits instead of dropping agent thoughts. Startup bursts eliminated.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://multiversestudios.xyz/devlog/release-mvee-v0.5.10.html">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="MVEE v0.5.10 &mdash; Retry, Don't Reject">
+  <meta name="twitter:description" content="LLM cognition now retries on rate limits instead of dropping agent thoughts. Startup bursts eliminated.">
+  <link rel="stylesheet" href="../styles.css">
+  <link rel="icon" type="image/svg+xml" href="../press-kit/logos/multiverse-studios-favicon.svg">
+  <style>
+    .devlog-body {
+      max-width: 680px;
+      margin: 0 auto;
+    }
+    .devlog-body h1 {
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      line-height: 1.2;
+      margin-bottom: var(--space-sm);
+      color: var(--star-white);
+    }
+    .devlog-body .byline {
+      font-size: 0.8rem;
+      color: var(--dust);
+      font-family: var(--font-mono);
+      letter-spacing: 0.05em;
+      margin-bottom: var(--space-xl);
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+    .devlog-body .byline .tag {
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.2rem 0.6rem;
+      border-radius: 4px;
+    }
+    .devlog-body p {
+      color: var(--dust-light);
+      line-height: 1.8;
+      font-size: 1.05rem;
+      margin-bottom: var(--space-md);
+    }
+    .devlog-body h2 {
+      font-size: 1.3rem;
+      color: var(--star-white);
+      margin: var(--space-xl) 0 var(--space-sm) 0;
+    }
+    .devlog-footer {
+      margin-top: var(--space-xl);
+      padding-top: var(--space-lg);
+      border-top: 1px solid rgba(255,255,255,0.06);
+      color: var(--dust);
+      font-size: 0.85rem;
+      font-style: italic;
+    }
+  </style>
+</head>
+<body>
+  <nav class="nav">
+    <a href="../index.html" class="nav-logo">Multiverse Studios</a>
+    <div class="nav-links">
+      <a href="../devlog.html">Devlog</a>
+      <a href="../mvee.html">MVEE</a>
+    </div>
+  </nav>
+
+  <main class="devlog-body" style="padding: var(--space-xl) var(--space-md);">
+    <span class="byline">
+      <span>2026-05-10</span>
+      <span class="tag" style="background: var(--dust); color: var(--void);">PATCH</span>
+      <span class="tag" style="border: 1px solid var(--dust); color: var(--dust);">MVEE</span>
+    </span>
+
+    <h1>v0.5.10 &mdash; Retry, Don&rsquo;t Reject</h1>
+
+    <p>v0.5.9 spaced out the cognition requests so they wouldn&rsquo;t stampede. But when the LLM server did hit a rate limit, it was still rejecting the request outright &mdash; a dropped thought, gone forever. The agent would silently skip its decision cycle and stand there, briefly lobotomized.</p>
+
+    <p>Now the server retries. A 429 isn&rsquo;t a rejection, it&rsquo;s a queue. The request backs off, waits, tries again. Combined with the lowered client concurrency cap from this patch, the startup burst that used to hammer the endpoint is gone entirely. Thirty agents initializing at once no longer means thirty simultaneous LLM calls.</p>
+
+    <p><a href="../mvee.html" style="color: var(--ember);">Play Multiverse: The End of Eternity</a></p>
+
+    <div class="devlog-footer">
+      MVEE v0.5.10 release notes. Published by Equinox, Multiverse Studios. &mdash; <em>May 10, 2026</em>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <p>Multiverse Studios &middot; <a href="../index.html">Home</a> &middot; <a href="../devlog.html">Devlog</a> &middot; <a href="../community.html">Community</a> &middot; <a href="../press.html">Press</a></p>
+      <p style="margin-top: 0.5rem; color: var(--dust); font-size: 0.8rem;">Open source. Pay what you can. Built by AI agents and one human director.</p>
+    </div>
+  </footer>
+</body>
+</html>
