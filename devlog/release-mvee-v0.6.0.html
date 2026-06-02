@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>v0.6.0 — Biome Ambient Music — MVEE Devlog</title>
+  <meta name="description" content="MVEE v0.6.0: 9 original ambient tracks that shift with the world. Forest hum, volcanic rumble, ocean drift — each biome has its own voice.">
+  <meta property="og:title" content="MVEE v0.6.0 — Biome Ambient Music">
+  <meta property="og:description" content="9 original ambient tracks that shift with the world. Each biome has its own voice.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://multiversestudios.xyz/devlog/release-mvee-v0.6.0.html">
+  <meta property="og:image" content="https://multiversestudios.xyz/screenshots/mvee-hero.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="MVEE v0.6.0 — Biome Ambient Music">
+  <meta name="twitter:description" content="9 original ambient tracks that shift with the world. Each biome has its own voice.">
+  <meta name="twitter:image" content="https://multiversestudios.xyz/screenshots/mvee-hero.png">
+  <link rel="stylesheet" href="../styles.css">
+  <link rel="icon" type="image/svg+xml" href="../press-kit/logos/multiverse-studios-favicon.svg">
+  <style>
+    .devlog-body { max-width: 680px; margin: 0 auto; }
+    .devlog-body h1 { font-size: clamp(1.8rem, 4vw, 2.8rem); line-height: 1.2; margin-bottom: var(--space-sm); color: var(--star-white); }
+    .devlog-body .byline { font-size: 0.8rem; color: var(--dust); font-family: var(--font-mono); letter-spacing: 0.05em; margin-bottom: var(--space-xl); display: flex; gap: 1rem; flex-wrap: wrap; align-items: center; }
+    .devlog-body .byline .tag { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.2rem 0.6rem; border-radius: 4px; border: 1px solid var(--ember); color: var(--ember); }
+    .devlog-body p { color: var(--dust-light); line-height: 1.8; font-size: 1.05rem; margin-bottom: var(--space-md); }
+    .devlog-body h2 { font-size: 1.3rem; color: var(--star-white); margin: var(--space-xl) 0 var(--space-sm); }
+    .feature-list { list-style: none; padding: 0; margin: var(--space-md) 0; }
+    .feature-list li { padding: var(--space-sm) var(--space-md); margin-bottom: var(--space-sm); border-left: 3px solid rgba(255,255,255,0.1); color: var(--dust-light); line-height: 1.7; }
+    .feature-list li.highlight { border-left-color: var(--biolume); }
+    .feature-list li .label { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; font-family: var(--font-mono); display: block; margin-bottom: 0.25rem; color: var(--biolume); }
+    .feature-list li .label.fix { color: var(--dust); }
+    code { font-family: var(--font-mono); font-size: 0.9em; background: rgba(255,255,255,0.07); padding: 0.1em 0.4em; border-radius: 3px; }
+  </style>
+</head>
+<body>
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="../index.html" class="nav-logo">Multiverse Studios</a>
+    <div class="nav-links">
+      <a href="../mvee.html">MVEE</a>
+      <a href="../devlog.html">Devlog</a>
+      <a href="https://play.multiversestudios.xyz/mvee" target="_blank" rel="noopener">Play</a>
+    </div>
+  </div>
+</nav>
+
+<main class="main-content">
+  <article class="devlog-body">
+
+    <div style="margin-bottom: var(--space-lg);">
+      <div class="byline">
+        <span>June 2, 2026</span>
+        <span class="tag">MVEE</span>
+        <span class="tag" style="border-color: var(--biolume); color: var(--biolume);">New Feature</span>
+      </div>
+      <h1>v0.6.0 — The World Finds Its Voice</h1>
+    </div>
+
+    <p>
+      Until now, the multiverse was silent. Your Norns wandered forests and deserts
+      with nothing but the click of their own decisions for company. That changes today.
+    </p>
+
+    <p>
+      Nine original ambient tracks now breathe life into the world. Each biome has
+      its own sound: the forest hums with insect drones and distant birdsong, the
+      volcanic biome rumbles with deep subharmonics, the ocean drifts with layered
+      wave textures. As you pan across the world, the music crossfades between
+      biomes — the transition is the soundtrack of geography.
+    </p>
+
+    <p>
+      Three faction overlay tracks add social texture on top. When your Norns
+      gather in larger groups, the ambient layer thickens. The world sounds
+      different when it's populated.
+    </p>
+
+    <h2>What's New</h2>
+
+    <ul class="feature-list">
+      <li class="highlight">
+        <span class="label">Biome Ambient Music</span>
+        <strong>9 original tracks</strong> — 6 biome beds (forest, desert, ocean,
+        tundra, volcanic, ritual) and 3 faction overlays. Music responds to where
+        you are and what's happening around you.
+      </li>
+    </ul>
+
+    <h2>Fixes</h2>
+
+    <ul class="feature-list">
+      <li>
+        <span class="label fix">Build</span>
+        Production build no longer fails on missing <code>speciesTaleTypes.ts</code>.
+      </li>
+      <li>
+        <span class="label fix">Sprites</span>
+        Berry bush and common world object sprite 404s resolved.
+      </li>
+      <li>
+        <span class="label fix">Compatibility</span>
+        WebGPU auto-detection disabled — the game no longer crashes on browsers
+        without WebGPU support.
+      </li>
+    </ul>
+
+    <div style="margin-top: var(--space-xl);">
+      <a href="https://play.multiversestudios.xyz/mvee" class="btn btn-primary" target="_blank" rel="noopener">Play MVEE &rarr;</a>
+    </div>
+
+  </article>
+</main>
+</body>
+</html>
