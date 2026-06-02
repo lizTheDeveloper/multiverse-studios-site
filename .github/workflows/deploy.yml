@@ -49,19 +49,27 @@ jobs:
              echo 'Deployed at: $(date -u +%Y-%m-%dT%H:%M:%SZ)' >> /opt/marketing-site/html/.last-deployed-sha"
 
       - name: Send Matrix notification on success
-        if: ${{ success() && secrets.MATRIX_WEBHOOK_URL }}
+        if: success()
+        env:
+          MATRIX_WEBHOOK_URL: ${{ secrets.MATRIX_WEBHOOK_URL }}
         run: |
-          curl -X POST "${{ secrets.MATRIX_WEBHOOK_URL }}" \
-            -H "Content-Type: application/json" \
-            -d '{
-              "text": "✅ Marketing site deployed successfully\nCommit: ${{ github.sha }}\nAuthor: ${{ github.actor }}\nURL: https://multiversestudios.xyz/"
-            }'
+          if [ -n "$MATRIX_WEBHOOK_URL" ]; then
+            curl -X POST "$MATRIX_WEBHOOK_URL" \
+              -H "Content-Type: application/json" \
+              -d '{
+                "text": "✅ Marketing site deployed successfully\nCommit: ${{ github.sha }}\nAuthor: ${{ github.actor }}\nURL: https://multiversestudios.xyz/"
+              }'
+          fi
 
       - name: Send Matrix notification on failure
-        if: ${{ failure() && secrets.MATRIX_WEBHOOK_URL }}
+        if: failure()
+        env:
+          MATRIX_WEBHOOK_URL: ${{ secrets.MATRIX_WEBHOOK_URL }}
         run: |
-          curl -X POST "${{ secrets.MATRIX_WEBHOOK_URL }}" \
-            -H "Content-Type: application/json" \
-            -d '{
-              "text": "❌ Marketing site deploy failed\nCommit: ${{ github.sha }}\nAuthor: ${{ github.actor }}\nCheck: https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}"
-            }'
+          if [ -n "$MATRIX_WEBHOOK_URL" ]; then
+            curl -X POST "$MATRIX_WEBHOOK_URL" \
+              -H "Content-Type: application/json" \
+              -d '{
+                "text": "❌ Marketing site deploy failed\nCommit: ${{ github.sha }}\nAuthor: ${{ github.actor }}\nCheck: https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+              }'
+          fi
