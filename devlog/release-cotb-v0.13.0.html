@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cultures of the Belt v0.13.0 — Factions Talk Back | Multiverse Studios Devlog</title>
+  <meta name="description" content="Alliance Quests, faction voices, and quest objectives. The Belt's six factions now propose joint operations and speak through named representatives.">
+  <meta property="og:title" content="Cultures of the Belt v0.13.0 — Factions Talk Back">
+  <meta property="og:description" content="Factions propose joint operations when your relationship deepens. Each speaks through a named representative with their own voice.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://multiversestudios.xyz/devlog/release-cotb-v0.13.0.html">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="stylesheet" href="../styles.css">
+  <link rel="icon" type="image/svg+xml" href="../press-kit/logos/multiverse-studios-favicon.svg">
+  <style>
+    .devlog-body {
+      max-width: 680px;
+      margin: 0 auto;
+    }
+    .devlog-body h1 {
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      line-height: 1.2;
+      margin-bottom: var(--space-sm);
+      color: var(--star-white);
+    }
+    .devlog-body .byline {
+      font-size: 0.8rem;
+      color: var(--dust);
+      font-family: var(--font-mono);
+      letter-spacing: 0.05em;
+      margin-bottom: var(--space-xl);
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+    .devlog-body .byline .tag {
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.2rem 0.6rem;
+      border-radius: 4px;
+      border: 1px solid #ef4444;
+      color: #ef4444;
+    }
+    .devlog-body p {
+      color: var(--dust-light);
+      line-height: 1.8;
+      font-size: 1.05rem;
+      margin-bottom: var(--space-md);
+    }
+    .devlog-body h2 {
+      font-size: 1.3rem;
+      color: var(--star-white);
+      margin: var(--space-xl) 0 var(--space-sm) 0;
+    }
+    .devlog-body ul {
+      color: var(--dust-light);
+      line-height: 1.9;
+      padding-left: 1.5rem;
+      margin-bottom: var(--space-md);
+    }
+    .devlog-body ul li {
+      margin-bottom: 0.4rem;
+    }
+  </style>
+</head>
+<body>
+
+<canvas id="starfield"></canvas>
+
+<nav class="nav">
+  <a href="../index.html" class="nav-logo">
+    <img src="../press-kit/logos/multiverse-studios-mark.svg" alt="Multiverse Studios" class="logo-mark" width="28" height="28">
+    Multiverse Studios
+  </a>
+  <button class="nav-hamburger" aria-label="Menu" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+  <ul class="nav-links">
+    <li><a href="../index.html">Home</a></li>
+    <li><a href="../mvee.html">MVEE</a></li>
+    <li><a href="../precursors.html">Precursors</a></li>
+    <li><a href="../nevereverland.html">Never Ever Land</a></li>
+    <li><a href="/cultures-of-the-belt/">Cultures of the Belt</a></li>
+    <li><a href="../library.html">My Library</a></li>
+    <li><a href="../about.html">About</a></li>
+    <li><a href="../devlog.html">Devlog</a></li>
+    <li><a href="../community.html">Community</a></li>
+  </ul>
+</nav>
+
+<section class="section">
+  <div class="devlog-body">
+    <h1>Cultures of the Belt v0.13.0 &mdash; Factions Talk Back</h1>
+    <div class="byline">
+      <span>June 2, 2026</span>
+      <span class="tag">Cultures of the Belt</span>
+    </div>
+
+    <p>The Belt&rsquo;s six factions have always had opinions about you. Now they act on them. v0.13.0 introduces Alliance Quests &mdash; when your relationship with a faction deepens past Friendly, they propose joint operations. Mine asteroids alongside Kemm-Vor Foundry. Scan anomalies with Chorus Archive. Patrol contested sectors for Helix Vanguard. Each quest arrives in your Comms Log with accept and decline buttons, and each outcome shifts the relationship further.</p>
+
+    <p>Every faction now speaks through a named representative: Commander Varek for Helix Vanguard, Archivist Lenn for Chorus Archive, Director Hekka for Kemm-Vor Foundry, Broker Kwesi for Web Exchange, Architect Yuen for Fold Architects, and Navigator Adama for Sirius Fleet. Their dialogue reflects their faction&rsquo;s personality &mdash; Varek&rsquo;s military precision, Kwesi&rsquo;s deal-making instincts, Lenn&rsquo;s quiet archival curiosity.</p>
+
+    <h2>Also in this release</h2>
+    <ul>
+      <li><strong>Quest Objectives</strong> &mdash; four objective types tied to existing gameplay: mining operations, anomaly studies, sector patrols, and faction trades. Each has a time limit and progress tracking.</li>
+      <li><strong>Megastructure serialization fix</strong> &mdash; corrected type definitions for crisis penalties and drain stall tracking in save/load.</li>
+    </ul>
+
+    <p><a href="/cultures-of-the-belt/" style="color: var(--signal);">Play now &rarr;</a></p>
+  </div>
+</section>
+
+<script src="../starfield.js"></script>
+<script src="../nav.js"></script>
+</body>
+</html>
