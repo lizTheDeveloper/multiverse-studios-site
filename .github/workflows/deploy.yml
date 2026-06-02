@@ -1,0 +1,67 @@
+name: Deploy to Production
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up SSH
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.HETZNER_SSH_KEY }}" > ~/.ssh/id_ed25519
+          chmod 600 ~/.ssh/id_ed25519
+          ssh-keyscan -H ${{ secrets.HETZNER_HOST }} >> ~/.ssh/known_hosts
+
+      - name: Rsync files to server
+        run: |
+          rsync -avz --delete \
+            --exclude='.git' \
+            --exclude='node_modules' \
+            --exclude='.wrangler' \
+            ./ root@${{ secrets.HETZNER_HOST }}:/opt/marketing-site/html/
+
+      - name: Rebuild Docker container
+        run: |
+          ssh root@${{ secrets.HETZNER_HOST }} 'cd /opt/marketing-site && docker compose build && docker compose up -d'
+
+      - name: Health check
+        run: |
+          sleep 5
+          RESPONSE=$(curl -s -o /dev/null -w "%{http_code}" https://multiversestudios.xyz/)
+          if [ "$RESPONSE" != "200" ]; then
+            echo "Health check failed: HTTP $RESPONSE"
+            exit 1
+          fi
+          echo "Health check passed: HTTP 200"
+
+      - name: Update deployment marker
+        run: |
+          ssh root@${{ secrets.HETZNER_HOST }} \
+            "echo '${{ github.sha }}' > /opt/marketing-site/html/.last-deployed-sha && \
+             echo 'Deployed at: $(date -u +%Y-%m-%dT%H:%M:%SZ)' >> /opt/marketing-site/html/.last-deployed-sha"
+
+      - name: Send Matrix notification on success
+        if: success()
+        run: |
+          curl -X POST "${{ secrets.MATRIX_WEBHOOK_URL }}" \
+            -H "Content-Type: application/json" \
+            -d '{
+              "text": "✅ Marketing site deployed successfully\nCommit: ${{ github.sha }}\nAuthor: ${{ github.actor }}\nURL: https://multiversestudios.xyz/"
+            }'
+
+      - name: Send Matrix notification on failure
+        if: failure()
+        run: |
+          curl -X POST "${{ secrets.MATRIX_WEBHOOK_URL }}" \
+            -H "Content-Type: application/json" \
+            -d '{
+              "text": "❌ Marketing site deploy failed\nCommit: ${{ github.sha }}\nAuthor: ${{ github.actor }}\nCheck: https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+            }'
