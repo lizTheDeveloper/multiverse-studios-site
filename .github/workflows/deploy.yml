@@ -49,7 +49,7 @@ jobs:
              echo 'Deployed at: $(date -u +%Y-%m-%dT%H:%M:%SZ)' >> /opt/marketing-site/html/.last-deployed-sha"
 
       - name: Send Matrix notification on success
-        if: success() && secrets.MATRIX_WEBHOOK_URL != ''
+        if: ${{ success() && secrets.MATRIX_WEBHOOK_URL }}
         run: |
           curl -X POST "${{ secrets.MATRIX_WEBHOOK_URL }}" \
             -H "Content-Type: application/json" \
@@ -58,7 +58,7 @@ jobs:
             }'
 
       - name: Send Matrix notification on failure
-        if: failure() && secrets.MATRIX_WEBHOOK_URL != ''
+        if: ${{ failure() && secrets.MATRIX_WEBHOOK_URL }}
         run: |
           curl -X POST "${{ secrets.MATRIX_WEBHOOK_URL }}" \
             -H "Content-Type: application/json" \
