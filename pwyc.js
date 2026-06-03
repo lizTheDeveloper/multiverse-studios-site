@@ -64,6 +64,7 @@
       label: 'Spark',
       sublabel: '$5',
       desc: 'A coffee for the dev team.',
+      isDefault: true,
     },
     {
       id: 'signal',
@@ -71,7 +72,6 @@
       label: 'Signal',
       sublabel: '$15',
       desc: 'Our suggested amount.',
-      isDefault: true,
     },
     {
       id: 'beacon',
@@ -426,7 +426,7 @@
         updateCTA();
       }, 2000);
     };
-    xhr.send(JSON.stringify({ game: currentGame.gameKey, amount: cents }));
+    xhr.send(JSON.stringify({ game: currentGame.gameKey, amount: cents, source_page: window.location.href }));
   }
 
   // ── Open / close ─────────────────────────────────────────────
