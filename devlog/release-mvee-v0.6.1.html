@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>v0.6.1 — Stability Patch — MVEE Devlog</title>
+  <meta name="description" content="MVEE v0.6.1: Deploy pipeline fix, settlement API restored, transactional inventory, and 73 tests unskipped.">
+  <meta property="og:title" content="MVEE v0.6.1 — Stability Patch">
+  <meta property="og:description" content="Deploy pipeline fix, settlement API restored, transactional inventory, and 73 tests unskipped.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://multiversestudios.xyz/devlog/release-mvee-v0.6.1.html">
+  <meta property="og:image" content="https://multiversestudios.xyz/screenshots/mvee-hero.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="MVEE v0.6.1 — Stability Patch">
+  <meta name="twitter:description" content="Deploy pipeline fix, settlement API restored, transactional inventory, and 73 tests unskipped.">
+  <meta name="twitter:image" content="https://multiversestudios.xyz/screenshots/mvee-hero.png">
+  <link rel="stylesheet" href="../styles.css">
+  <link rel="icon" type="image/svg+xml" href="../press-kit/logos/multiverse-studios-favicon.svg">
+  <style>
+    .devlog-body { max-width: 680px; margin: 0 auto; }
+    .devlog-body h1 { font-size: clamp(1.8rem, 4vw, 2.8rem); line-height: 1.2; margin-bottom: var(--space-sm); color: var(--star-white); }
+    .devlog-body .byline { font-size: 0.8rem; color: var(--dust); font-family: var(--font-mono); letter-spacing: 0.05em; margin-bottom: var(--space-xl); display: flex; gap: 1rem; flex-wrap: wrap; align-items: center; }
+    .devlog-body .byline .tag { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.2rem 0.6rem; border-radius: 4px; border: 1px solid var(--ember); color: var(--ember); }
+    .devlog-body p { color: var(--dust-light); line-height: 1.8; font-size: 1.05rem; margin-bottom: var(--space-md); }
+    .devlog-body h2 { font-size: 1.3rem; color: var(--star-white); margin: var(--space-xl) 0 var(--space-sm); }
+    .feature-list { list-style: none; padding: 0; margin: var(--space-md) 0; }
+    .feature-list li { padding: var(--space-sm) var(--space-md); margin-bottom: var(--space-sm); border-left: 3px solid rgba(255,255,255,0.1); color: var(--dust-light); line-height: 1.7; }
+    .feature-list li.highlight { border-left-color: var(--biolume); }
+    .feature-list li .label { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; font-family: var(--font-mono); display: block; margin-bottom: 0.25rem; color: var(--biolume); }
+    .feature-list li .label.fix { color: var(--dust); }
+    code { font-family: var(--font-mono); font-size: 0.9em; background: rgba(255,255,255,0.07); padding: 0.1em 0.4em; border-radius: 3px; }
+  </style>
+</head>
+<body>
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="../index.html" class="nav-logo">Multiverse Studios</a>
+    <div class="nav-links">
+      <a href="../mvee.html">MVEE</a>
+      <a href="../devlog.html">Devlog</a>
+      <a href="https://play.multiversestudios.xyz/mvee" target="_blank" rel="noopener">Play</a>
+    </div>
+  </div>
+</nav>
+
+<main class="main-content">
+  <article class="devlog-body">
+
+    <div style="margin-bottom: var(--space-lg);">
+      <div class="byline">
+        <span>June 3, 2026</span>
+        <span class="tag">MVEE</span>
+        <span class="tag" style="border-color: var(--dust); color: var(--dust);">Stability</span>
+      </div>
+      <h1>v0.6.1 — Foundations Reinforced</h1>
+    </div>
+
+    <p>
+      A focused stability patch. The deploy pipeline was missing runtime files
+      that power settlement rendering, which meant new planets loaded without
+      their villages. That's fixed — settlements appear on first load now.
+    </p>
+
+    <p>
+      Inventory interactions are safer: mutations are transactional, so
+      overfilling a container rolls back cleanly instead of corrupting slots.
+      And the query cache now invalidates on inventory changes, so what you
+      see in the UI is what the simulation knows.
+    </p>
+
+    <p>
+      On the testing front, 73 previously skipped tests are back in the
+      suite and passing. The test health is now 13,667 passing across 579
+      files with zero failures — verified by board playtest.
+    </p>
+
+    <h2>Fixes</h2>
+
+    <ul class="feature-list">
+      <li class="highlight">
+        <span class="label fix">Deploy</span>
+        Settlement rendering restored — <code>demo/src/</code> runtime files
+        now ship with deploy artifacts.
+      </li>
+      <li>
+        <span class="label fix">API</span>
+        Settlement API endpoint no longer returns 404 on game load.
+      </li>
+      <li>
+        <span class="label fix">Gameplay</span>
+        Inventory mutations are transactional — overflow rolls back, no more
+        item duplication or slot corruption.
+      </li>
+      <li>
+        <span class="label fix">Quality</span>
+        73 tests unskipped and passing; 27 blocked tests documented for
+        future triage.
+      </li>
+    </ul>
+
+    <div style="margin-top: var(--space-xl);">
+      <a href="https://play.multiversestudios.xyz/mvee" class="btn btn-primary" target="_blank" rel="noopener">Play MVEE &rarr;</a>
+    </div>
+
+  </article>
+</main>
+</body>
+</html>
