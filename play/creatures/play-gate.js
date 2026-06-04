@@ -145,8 +145,8 @@
       '</div>' +
       '<div id="play-gate-error"></div>' +
       '<p id="play-gate-note">' +
-        'Never Ever Land is free &mdash; ' +
-        '<a href="/play/neverland/">no account needed</a>.' +
+        'This game is free &mdash; ' +
+        'just sign in to play.' +
       '</p>' +
     '</div>';
 
