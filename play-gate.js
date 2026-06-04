@@ -106,8 +106,8 @@
         '<button id="play-gate-btn" type="button">Sign In / Create Account</button>' +
       '</div>' +
       '<p id="play-gate-note">' +
-        'Never Ever Land is free &mdash; ' +
-        '<a href="/play/neverland/">no account needed</a>.' +
+        'This game is free &mdash; ' +
+        'just sign in to play.' +
       '</p>' +
     '</div>';
 
