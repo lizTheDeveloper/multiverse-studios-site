@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BREACH.MMO v2.0–2.1 — Community Platform + Hacker Identity — Multiverse Studios Devlog</title>
+  <meta name="description" content="Build and share your own exploit missions. Set your handle, earn your badge, track your CEH coverage. BREACH is now a platform.">
+  <meta property="og:title" content="BREACH.MMO v2.0–2.1 — Community Platform + Hacker Identity">
+  <meta property="og:description" content="Build and share your own exploit missions. Set your handle, earn your badge, track your CEH coverage. BREACH is now a platform.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://multiversestudios.xyz/devlog/release-breach-v2.1.0.html">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="BREACH.MMO v2.0–2.1 — Community Platform + Hacker Identity">
+  <meta name="twitter:description" content="Build and share your own exploit missions. Set your handle, earn your badge, track your CEH coverage. BREACH is now a platform.">
+  <link rel="stylesheet" href="../styles.css">
+  <link rel="icon" type="image/svg+xml" href="../press-kit/logos/multiverse-studios-favicon.svg">
+  <style>
+    .devlog-body { max-width: 680px; margin: 0 auto; }
+    .version-badge {
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--signal);
+      border: 1px solid var(--signal);
+      display: inline-block;
+      padding: 0.2rem 0.6rem;
+      margin-bottom: var(--space-lg);
+      opacity: 0.85;
+    }
+    .feature-list { padding-left: 1.4rem; margin: 1.2rem 0; }
+    .feature-list li {
+      font-size: 1.02rem;
+      line-height: 1.75;
+      margin-bottom: 0.6rem;
+      color: var(--silver);
+    }
+    .feature-list li strong { color: var(--text); }
+  </style>
+</head>
+<body>
+  <nav class="site-nav">
+    <a href="/" class="nav-home">Multiverse Studios</a>
+    <a href="/devlog.html">Devlog</a>
+    <a href="https://play.multiversestudios.xyz/breach/">Play BREACH.MMO</a>
+  </nav>
+
+  <main class="devlog-body page-content">
+    <span class="version-badge">BREACH.MMO v2.0–2.1 — 2026-06-04</span>
+
+    <h1>Community Platform + Hacker Identity</h1>
+
+    <p>
+      Two releases shipped back to back. v2.0.0 turns BREACH into a platform where
+      players and instructors build curriculum. v2.1.0 gives you an identity inside it —
+      a handle, a badge, a place on the Hall of Fame, and a map of your CEH coverage.
+      Together they mark the point where BREACH stops being a game you play and starts
+      being a place you inhabit.
+    </p>
+
+    <h2>v2.0.0 — Community Mission Platform</h2>
+
+    <p>
+      <strong>Mission Builder</strong> &mdash; a form-based builder lets you design your own
+      exploit scenarios using the same challenge primitives the core game is built on. Select
+      exploit type, tier, target org archetype, defensive posture, complicating factors, and
+      win condition. Add an optional educational overlay with a certification reference (CEH,
+      OSCP, Security+) that players see after completing. A live scenario preview updates as
+      you fill in fields. Save as draft or publish immediately &mdash; up to five missions per
+      day.
+    </p>
+
+    <p>
+      <strong>Community Library</strong> &mdash; every published mission is browsable in a
+      card grid. Filter by exploit type, tier, or verified status. Sort by newest, most played,
+      or top rated. Curators can verify missions with a badge so new players know what&rsquo;s
+      been reviewed for quality and accuracy. The Mission of the Week sits at the top of the
+      library and carries a 3&times; season point bonus.
+    </p>
+
+    <p>
+      <strong>Instructor Mode</strong> &mdash; teachers can create private class sets from
+      any community missions. Each set generates a 6-character human-readable access code.
+      Students enter the code to enroll. Instructors see aggregate completion bars per mission
+      in their dashboard. Enough to know who needs help; no individual grading. Designed for
+      a one-hour lab session: assign before class, review completions after.
+    </p>
+
+    <p>
+      The peer curriculum model: in v1.x, the challenge library was curated by us. In v2.0.0
+      it&rsquo;s curated by the community, with instructors selecting from that pool. The underlying
+      security concepts don&rsquo;t change &mdash; port scanning is still port scanning &mdash; but
+      the scenario framing and complicating factors can now reflect what an instructor actually
+      wants to teach that week.
+    </p>
+
+    <h2>v2.1.0 — Hacker Identity + Progress Tracking</h2>
+
+    <p>
+      <strong>Hacker Identity</strong> &mdash; set a handle color (hacker green, cyber blue,
+      exploit orange, purple, red, or white) and a short ASCII title badge (8-char max; presets
+      include <code>[NULL]</code>, <code>[GHOST]</code>, <code>[APT]</code>, <code>[0day]</code>,
+      <code>[r00t]</code>, <code>[SUDO]</code>, and more). Your color and badge appear above your
+      sprite in every match. Set them from the new ⚡ identity panel.
+    </p>
+
+    <p>
+      <strong>Hall of Fame</strong> &mdash; the top three Zero-Day God tier players are now
+      pinned to the season leaderboard with gold, silver, and bronze medals. Crew tags appear
+      next to every player in the ladder so the competitive picture includes team context.
+    </p>
+
+    <p>
+      <strong>CEH Domain Coverage Map</strong> &mdash; the new 📊 panel shows which CEH
+      knowledge domains you&rsquo;ve covered through in-game challenge completions, with a
+      percentage mastery bar per domain. If you&rsquo;re using BREACH as a study tool alongside
+      CEH exam prep, this is the panel that shows you where the gaps are.
+    </p>
+
+    <p>
+      <strong>Onboarding</strong> &mdash; first-time players now automatically enter the
+      faction quiz and onboarding pipeline. Returning players go straight to the game.
+      Completion is tracked server-side so the routing is persistent.
+    </p>
+
+    <p>
+      Play it now at <a href="https://play.multiversestudios.xyz/breach/">play.multiversestudios.xyz/breach/</a>.
+      Pay what you can.
+    </p>
+  </main>
+
+  <footer class="site-footer">
+    <p>
+      <a href="/devlog.html">&larr; Back to Devlog</a> &nbsp;|&nbsp;
+      <a href="https://play.multiversestudios.xyz/breach/">Play BREACH.MMO</a>
+    </p>
+  </footer>
+</body>
+</html>
