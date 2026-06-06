@@ -41,6 +41,85 @@
       max-width: 540px;
       font-size: 1.2rem;
     }
+    .impact-box {
+      background: rgba(0, 255, 200, 0.06);
+      border: 1px solid rgba(0, 255, 200, 0.2);
+      border-radius: 8px;
+      padding: var(--space-md);
+      margin: var(--space-md) auto;
+      max-width: 540px;
+      text-align: center;
+    }
+    .impact-box h3 {
+      font-family: var(--font-display);
+      font-size: 1.2rem;
+      color: var(--biolume);
+      margin-bottom: var(--space-xs);
+    }
+    .impact-box p {
+      color: var(--dust);
+      font-size: 1rem;
+      line-height: 1.6;
+    }
+    .community-section {
+      max-width: 860px;
+      margin: var(--space-xl) auto;
+      padding: 0 var(--space-md);
+    }
+    .community-section h2 {
+      font-family: var(--font-display);
+      font-size: 1.6rem;
+      font-weight: 600;
+      text-align: center;
+      margin-bottom: var(--space-md);
+    }
+    .community-links {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: var(--space-md);
+      margin-bottom: var(--space-lg);
+    }
+    .community-card {
+      background: var(--void-elevated);
+      border: 1px solid var(--void-border);
+      border-radius: 8px;
+      padding: var(--space-md);
+      text-align: center;
+      transition: border-color 0.2s;
+    }
+    .community-card:hover {
+      border-color: var(--biolume);
+    }
+    .community-card h3 {
+      font-family: var(--font-display);
+      font-size: 1.2rem;
+      margin-bottom: var(--space-xs);
+    }
+    .community-card p {
+      color: var(--dust);
+      font-size: 0.95rem;
+      margin-bottom: var(--space-sm);
+    }
+    .share-section {
+      text-align: center;
+      margin: var(--space-lg) auto;
+      padding: var(--space-lg) var(--space-md);
+      background: var(--void-elevated);
+      border: 1px solid var(--void-border);
+      border-radius: 8px;
+      max-width: 540px;
+    }
+    .share-section h3 {
+      font-family: var(--font-display);
+      font-size: 1.4rem;
+      margin-bottom: var(--space-sm);
+    }
+    .share-buttons {
+      display: flex;
+      gap: var(--space-sm);
+      justify-content: center;
+      flex-wrap: wrap;
+    }
     .downloads-section {
       max-width: 860px;
       margin: 0 auto;
@@ -147,6 +226,11 @@
       border: 1px solid rgba(255, 140, 0, 0.2);
       margin-left: 0.4em;
     }
+    .loading {
+      text-align: center;
+      padding: var(--space-xl);
+      color: var(--dust);
+    }
   </style>
 </head>
 <body>
@@ -173,63 +257,8 @@
   </ul>
 </nav>
 
-<div class="thankyou-hero">
-  <div class="thankyou-glyph">&#x2726;</div>
-  <h1>You're in. <span style="color: var(--biolume);">Thank you.</span></h1>
-  <p>Your support keeps these worlds alive. Both games are ready to play in your browser &mdash; no download, no waiting.</p>
-</div>
-
-<div class="beta-warning">
-  <strong>&#9888; Unstable Beta Builds</strong> &mdash; These are early access releases. Expect bugs, missing features, and frequent breaking changes. Save often. Things will break. Your feedback makes them better.
-</div>
-
-<div class="downloads-section">
-  <h2>Your Games</h2>
-  <div class="download-cards">
-
-    <div class="download-card">
-      <div class="download-card-header">
-        <span class="download-card-icon">&#x1F43E;</span>
-        <div>
-          <h3>Precursors<span class="build-tag">beta-0.1</span></h3>
-          <span class="download-tag">Unstable</span>
-        </div>
-      </div>
-      <p>Browser-based &mdash; no install needed. Norns, genetics, LLM cognition, and a 14,400px world waiting to be discovered. Click below to play instantly.</p>
-      <a href="https://play.multiversestudios.xyz" target="_blank" rel="noopener" class="btn btn-signal">Play Now &rarr;</a>
-    </div>
-
-    <div class="download-card">
-      <div class="download-card-header">
-        <span class="download-card-icon">&#x1F30C;</span>
-        <div>
-          <h3>Multiverse: The End of Eternity<span class="build-tag">beta</span></h3>
-          <span class="download-tag">Playable Now</span>
-        </div>
-      </div>
-      <p>AI village simulation with 200+ systems, 25 magic paradigms, genetics, and emergent civilizations. Live in your browser.</p>
-      <a href="/play/mvee/" class="btn btn-ember">Play MVEE — Free</a>
-    </div>
-
-    <div class="download-card">
-      <div class="download-card-header">
-        <span class="download-card-icon">&#x1F4D6;</span>
-        <div>
-          <h3>Never Ever Land<span class="build-tag">v1.0</span></h3>
-          <span class="download-tag">New</span>
-        </div>
-      </div>
-      <p>Something goes wrong in the first chapter. Free to read.</p>
-      <a href="play/neverland/index.html" target="_blank" rel="noopener" class="btn btn-ghost" style="border-color: var(--ember-glow); color: var(--ember-glow);">Read Now &rarr;</a>
-    </div>
-
-  </div>
-
-  <div class="note-box">
-    Questions or issues? <a href="mailto:ann@multiversegames.com">ann@multiversegames.com</a> &mdash; or <a href="https://github.com/lizTheDeveloper" target="_blank" rel="noopener">open an issue on GitHub</a>. Both games are early access and evolving fast. Thank you for being early.
-    <br><br>
-    Also check out <a href="https://themultiverse.school" target="_blank" rel="noopener">The Multiverse School</a> &mdash; where these games are built live with an AI agent team.
-  </div>
+<div id="content">
+  <div class="loading">Loading your purchase details...</div>
 </div>
 
 <footer class="footer">
@@ -244,16 +273,16 @@
         <li><a href="mvee.html">MVEE</a></li>
         <li><a href="precursors.html">Precursors</a></li>
         <li><a href="nevereverland.html">Never Ever Land</a></li>
-    <li><a href="/cultures-of-the-belt/">Cultures of the Belt</a></li>
+        <li><a href="/cultures-of-the-belt/">Cultures of the Belt</a></li>
       </ul>
     </div>
     <div class="footer-col">
       <h5>Studio</h5>
       <ul>
         <li><a href="library.html">My Library</a></li>
-    <li><a href="about.html">About</a></li>
+        <li><a href="about.html">About</a></li>
         <li><a href="devlog.html">Devlog</a></li>
-    <li><a href="community.html">Community</a></li>
+        <li><a href="community.html">Community</a></li>
       </ul>
     </div>
     <div class="footer-col">
@@ -274,5 +303,196 @@
 <script src="matrix-auth.js"></script>
 <script src="matrix-chat.js"></script>
 <script defer src="https://analytics.multiversestudios.xyz/script.js" data-website-id="38d680a7-28d1-42fd-9fd5-a66702675b88"></script>
+
+<script>
+(async function() {
+  const urlParams = new URLSearchParams(window.location.search);
+  const sessionId = urlParams.get('session_id');
+
+  const GAME_URLS = {
+    'precursors': 'https://play.multiversestudios.xyz',
+    'mvee': 'https://play.multiversestudios.xyz/mvee/',
+    'nel': 'https://play.multiversestudios.xyz/never-ever-land/',
+    'cotb': 'https://play.multiversestudios.xyz/cultures-of-the-belt/',
+    'infiniclicker': 'https://play.multiversestudios.xyz/infiniclicker/',
+  };
+
+  const SERVER_COST_PER_DAY = 5; // Approximate server cost per day in USD
+
+  if (!sessionId) {
+    // No session ID - show generic thank you page
+    showGenericThankYou();
+    return;
+  }
+
+  try {
+    const response = await fetch(`https://multiversestudios.xyz/stripe/session/${sessionId}`);
+    if (!response.ok) throw new Error('Session not found');
+
+    const data = await response.json();
+    showPersonalizedThankYou(data);
+  } catch (err) {
+    console.error('Failed to load session:', err);
+    showGenericThankYou();
+  }
+
+  function showPersonalizedThankYou(data) {
+    const customerName = data.customerName || 'friend';
+    const gameUrl = data.gameUrl || GAME_URLS[data.game] || 'https://play.multiversestudios.xyz';
+    const amount = data.amount;
+    const daysOfServer = Math.floor(amount / SERVER_COST_PER_DAY);
+
+    const gameShare = encodeURIComponent(`I just supported ${data.gameName} by @multiversestudios! Check it out: ${gameUrl}`);
+    const twitterUrl = `https://twitter.com/intent/tweet?text=${gameShare}`;
+    const blueskyUrl = `https://bsky.app/intent/compose?text=${gameShare}`;
+
+    document.getElementById('content').innerHTML = `
+      <div class="thankyou-hero">
+        <div class="thankyou-glyph">&#x2726;</div>
+        <h1>Thank you, <span style="color: var(--biolume);">${escapeHtml(customerName)}</span>!</h1>
+        <p>Your support for <strong>${escapeHtml(data.gameName)}</strong> keeps these worlds alive.</p>
+      </div>
+
+      <div class="impact-box">
+        <h3>Your Impact</h3>
+        <p>Your <strong>$${amount} ${data.currency}</strong> contribution keeps our servers running for approximately <strong>${daysOfServer} days</strong>. This enables continuous AI agent development, live playtesting, and community features.</p>
+      </div>
+
+      <div class="beta-warning">
+        <strong>&#9888; Unstable Beta Build</strong> &mdash; This is an early access release. Expect bugs, missing features, and frequent breaking changes. Save often. Things will break. Your feedback makes them better.
+      </div>
+
+      <div class="downloads-section">
+        <h2>Your Game</h2>
+        <div class="download-cards">
+          <div class="download-card">
+            <div class="download-card-header">
+              <span class="download-card-icon">${getGameIcon(data.game)}</span>
+              <div>
+                <h3>${escapeHtml(data.gameName)}</h3>
+                <span class="download-tag">Ready to Play</span>
+              </div>
+            </div>
+            <p>Browser-based — no install needed. Your game is ready to play instantly.</p>
+            <a href="${gameUrl}" class="btn btn-signal">Play Now &rarr;</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="community-section">
+        <h2>Join the Community</h2>
+        <div class="community-links">
+          <div class="community-card">
+            <h3>🦋 Bluesky</h3>
+            <p>Follow us for updates, behind-the-scenes development, and community discussions.</p>
+            <a href="https://bsky.app/profile/multiversestudios.bsky.social" target="_blank" rel="noopener" class="btn btn-ghost">Follow @multiversestudios</a>
+          </div>
+          <div class="community-card">
+            <h3>💬 Discord</h3>
+            <p>Chat with other players, report bugs, and influence development direction.</p>
+            <a href="https://discord.gg/multiversestudios" target="_blank" rel="noopener" class="btn btn-ghost">Join Discord</a>
+          </div>
+        </div>
+
+        <div class="share-section">
+          <h3>Tell Others About This Game</h3>
+          <p style="color: var(--dust); margin-bottom: var(--space-md);">Help us grow by sharing your support!</p>
+          <div class="share-buttons">
+            <a href="${twitterUrl}" target="_blank" rel="noopener" class="btn btn-ghost">Share on Twitter</a>
+            <a href="${blueskyUrl}" target="_blank" rel="noopener" class="btn btn-ghost">Share on Bluesky</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="downloads-section">
+        <div class="note-box">
+          Questions or issues? <a href="mailto:ann@multiversegames.com">ann@multiversegames.com</a> &mdash; or <a href="https://github.com/lizTheDeveloper" target="_blank" rel="noopener">open an issue on GitHub</a>.
+          <br><br>
+          Also check out <a href="https://themultiverse.school" target="_blank" rel="noopener">The Multiverse School</a> &mdash; where these games are built live with an AI agent team.
+        </div>
+      </div>
+    `;
+  }
+
+  function showGenericThankYou() {
+    document.getElementById('content').innerHTML = `
+      <div class="thankyou-hero">
+        <div class="thankyou-glyph">&#x2726;</div>
+        <h1>You're in. <span style="color: var(--biolume);">Thank you.</span></h1>
+        <p>Your support keeps these worlds alive. All games are ready to play in your browser &mdash; no download, no waiting.</p>
+      </div>
+
+      <div class="beta-warning">
+        <strong>&#9888; Unstable Beta Builds</strong> &mdash; These are early access releases. Expect bugs, missing features, and frequent breaking changes. Save often. Things will break. Your feedback makes them better.
+      </div>
+
+      <div class="downloads-section">
+        <h2>Your Games</h2>
+        <div class="download-cards">
+          <div class="download-card">
+            <div class="download-card-header">
+              <span class="download-card-icon">&#x1F43E;</span>
+              <div>
+                <h3>Precursors<span class="build-tag">beta</span></h3>
+                <span class="download-tag">Unstable</span>
+              </div>
+            </div>
+            <p>Browser-based &mdash; no install needed. Norns, genetics, LLM cognition, and a 14,400px world waiting to be discovered.</p>
+            <a href="https://play.multiversestudios.xyz" target="_blank" rel="noopener" class="btn btn-signal">Play Now &rarr;</a>
+          </div>
+
+          <div class="download-card">
+            <div class="download-card-header">
+              <span class="download-card-icon">&#x1F30C;</span>
+              <div>
+                <h3>Multiverse: The End of Eternity<span class="build-tag">beta</span></h3>
+                <span class="download-tag">Playable Now</span>
+              </div>
+            </div>
+            <p>AI village simulation with 200+ systems, 25 magic paradigms, genetics, and emergent civilizations.</p>
+            <a href="https://play.multiversestudios.xyz/mvee/" class="btn btn-ember">Play MVEE</a>
+          </div>
+
+          <div class="download-card">
+            <div class="download-card-header">
+              <span class="download-card-icon">&#x1F4D6;</span>
+              <div>
+                <h3>Never Ever Land<span class="build-tag">v1.0</span></h3>
+                <span class="download-tag">New</span>
+              </div>
+            </div>
+            <p>Something goes wrong in the first chapter. Free to read.</p>
+            <a href="https://play.multiversestudios.xyz/never-ever-land/" target="_blank" rel="noopener" class="btn btn-ghost" style="border-color: var(--ember-glow); color: var(--ember-glow);">Read Now &rarr;</a>
+          </div>
+        </div>
+
+        <div class="note-box">
+          Questions or issues? <a href="mailto:ann@multiversegames.com">ann@multiversegames.com</a> &mdash; or <a href="https://github.com/lizTheDeveloper" target="_blank" rel="noopener">open an issue on GitHub</a>.
+          <br><br>
+          Also check out <a href="https://themultiverse.school" target="_blank" rel="noopener">The Multiverse School</a> &mdash; where these games are built live with an AI agent team.
+        </div>
+      </div>
+    `;
+  }
+
+  function getGameIcon(gameKey) {
+    const icons = {
+      'precursors': '&#x1F43E;',
+      'mvee': '&#x1F30C;',
+      'nel': '&#x1F4D6;',
+      'cotb': '&#x1F680;',
+      'infiniclicker': '&#x1F4B0;',
+    };
+    return icons[gameKey] || '&#x1F3AE;';
+  }
+
+  function escapeHtml(text) {
+    const div = document.createElement('div');
+    div.textContent = text;
+    return div.innerHTML;
+  }
+})();
+</script>
+
 </body>
 </html>
