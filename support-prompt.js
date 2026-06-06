@@ -9,7 +9,7 @@
 
    data-support-game   — game key (required)
    data-support-delay  — seconds of active time before
-                          showing (default: 180 = 3 min)
+                          showing (default: 600 = 10 min)
    ============================================ */
 
 (function () {
@@ -25,7 +25,7 @@
     return;
   }
 
-  var delaySec = parseInt(scriptEl.getAttribute('data-support-delay'), 10) || 180;
+  var delaySec = parseInt(scriptEl.getAttribute('data-support-delay'), 10) || 600;
 
   // ── Storage keys (per-game) ────────────────────────────────
   var DISMISS_KEY = gameKey + '.supportPrompt.dismissedAt';
