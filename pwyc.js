@@ -44,41 +44,41 @@
       accentVar: 'var(--biolume, #00ffc8)',
       freeForever: true,
     },
+    breach: {
+      gameKey: 'breach',
+      playUrl: 'https://play.multiversestudios.xyz/breach/',
+      name: 'BREACH.MMO',
+      tagline: "Attack or defend. Don't get caught.",
+      accent: '#00ff41',   // matrix green
+      accentVar: 'var(--matrix-green, #00ff41)',
+    },
   };
 
   // Checkout session endpoint — creates Stripe Checkout Sessions server-side
   var CHECKOUT_API_URL = 'https://pay.multiversestudios.xyz/create-checkout-session';
 
-  // Tier definitions — copy TBD by CMO (Peggy)
   var TIERS = [
-    {
-      id: 'free',
-      amount: 0,
-      label: 'Free',
-      sublabel: '$0',
-      desc: 'Play free, no conditions.',
-    },
     {
       id: 'spark',
       amount: 500,       // cents
       label: 'Spark',
       sublabel: '$5',
-      desc: 'A coffee for the dev team.',
-      isDefault: true,
+      desc: 'Keeps a server running for a day.',
     },
     {
       id: 'signal',
       amount: 1500,      // cents
       label: 'Signal',
       sublabel: '$15',
-      desc: 'Our suggested amount.',
+      desc: 'Funds a week of development.',
+      isDefault: true,
     },
     {
       id: 'beacon',
       amount: 2500,      // cents
       label: 'Beacon',
       sublabel: '$25',
-      desc: 'You believe in this work.',
+      desc: 'Helps ship the next update.',
     },
     {
       id: 'custom',
@@ -144,11 +144,11 @@
     '}',
     '.pwyc-tiers {',
     '  display: grid;',
-    '  grid-template-columns: repeat(5, 1fr);',
+    '  grid-template-columns: repeat(4, 1fr);',
     '  gap: 0.5rem; margin-bottom: 1.5rem;',
     '}',
     '@media (max-width: 540px) {',
-    '  .pwyc-tiers { grid-template-columns: repeat(3, 1fr); }',
+    '  .pwyc-tiers { grid-template-columns: repeat(2, 1fr); }',
     '}',
     '.pwyc-tier {',
     '  background: rgba(255,255,255,0.03);',
@@ -224,6 +224,22 @@
     '}',
     '#pwyc-note a { color: #6b6578; text-decoration: underline; }',
     '#pwyc-note a:hover { color: #8a8694; }',
+    '#pwyc-free-link {',
+    '  display: block; text-align: center;',
+    '  margin-top: 0.75rem;',
+    '  font-family: var(--font-mono, "JetBrains Mono", monospace);',
+    '  font-size: 0.7rem; color: #8a8694;',
+    '  cursor: pointer; background: none; border: none;',
+    '  text-decoration: underline; text-underline-offset: 2px;',
+    '  transition: color 0.15s;',
+    '}',
+    '#pwyc-free-link:hover { color: #e8e6f0; }',
+    '#pwyc-ethos {',
+    '  font-family: var(--font-mono, "JetBrains Mono", monospace);',
+    '  font-size: 0.68rem; color: #6b6578;',
+    '  text-align: center; margin-bottom: 1rem;',
+    '  font-style: italic;',
+    '}',
   ].join('\n');
   document.head.appendChild(style);
 
@@ -249,6 +265,7 @@
       '  <div id="pwyc-game-name"></div>',
       '  <div id="pwyc-heading">Support this game</div>',
       '  <div id="pwyc-tagline"></div>',
+      '  <div id="pwyc-ethos">Independent studio. Player-funded. No investors, no ads.</div>',
       '  <div class="pwyc-tiers" role="radiogroup" aria-label="Choose your contribution">',
         TIERS.map(function (tier, i) {
           return [
@@ -268,9 +285,10 @@
       '    <input id="pwyc-custom-input" type="number" min="1" max="9999"',
       '      placeholder="Enter amount" aria-label="Custom amount in dollars">',
       '  </div>',
-      '  <button id="pwyc-cta">Continue</button>',
+      '  <button id="pwyc-cta">Support</button>',
+      '  <a id="pwyc-free-link" role="link">or play free — no account needed →</a>',
       '  <div id="pwyc-note">',
-      '    All games are free to play. Payments support ongoing development and keep the servers running.',
+      '    Every contribution directly funds development and keeps the servers running.',
       '    <br><a href="/devlog/pay-what-you-can.html">Why we use pay-what-you-can pricing →</a>',
       '  </div>',
       '</div>',
@@ -297,6 +315,11 @@
 
     // Event: CTA
     overlay.querySelector('#pwyc-cta').addEventListener('click', handleCTA);
+
+    // Event: play free link
+    overlay.querySelector('#pwyc-free-link').addEventListener('click', function () {
+      if (currentGame) window.location.href = currentGame.playUrl;
+    });
 
     // Keyboard: arrow keys within tier group
     overlay.querySelector('.pwyc-tiers').addEventListener('keydown', function (e) {
@@ -349,25 +372,14 @@
   function updateCTA() {
     if (!overlay || !currentGame) return;
     var cta = overlay.querySelector('#pwyc-cta');
-    if (selectedTier.amount === 0) {
-      cta.textContent = 'Play Free →';
-      cta.style.background = '#4a4656';
-      cta.style.color = '#e8e6f0';
-    } else {
-      var label = selectedTier.isCustom ? 'Continue with Custom Amount' : 'Continue — ' + selectedTier.sublabel;
-      cta.textContent = label + ' →';
-      cta.style.background = currentGame.accent;
-      cta.style.color = '#050508';
-    }
+    var label = selectedTier.isCustom ? 'Support — Custom Amount' : 'Support — ' + selectedTier.sublabel;
+    cta.textContent = label + ' →';
+    cta.style.background = currentGame.accent;
+    cta.style.color = '#050508';
   }
 
   function handleCTA() {
     if (!currentGame) return;
-
-    if (selectedTier.amount === 0) {
-      window.location.href = currentGame.playUrl;
-      return;
-    }
 
     var cents;
     if (selectedTier.isCustom) {
@@ -439,6 +451,10 @@
     // Update game context
     overlay.querySelector('#pwyc-game-name').textContent = currentGame.name;
     overlay.querySelector('#pwyc-tagline').textContent = currentGame.tagline;
+
+    // Update free link href
+    var freeLink = overlay.querySelector('#pwyc-free-link');
+    if (freeLink) freeLink.href = currentGame.playUrl;
 
     // Reset to default tier
     var defaultIdx = TIERS.findIndex(function (t) { return t.isDefault; });
