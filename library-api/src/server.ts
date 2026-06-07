@@ -5,6 +5,7 @@ import cookieParser from 'cookie-parser';
 import rateLimit from 'express-rate-limit';
 import { lookupPurchasesByEmail } from './stripe.js';
 import { router as matrixAuthRouter } from './matrix-auth.js';
+import { sourceCheckoutRouter } from './source-checkout.js';
 
 // ---------------------------------------------------------------------------
 // Startup validation — fail loudly rather than serve broken responses.
@@ -76,6 +77,9 @@ app.use(express.json({ limit: '16kb' }));
 
 // Auth routes use their own CORS (credentials + broader origin allowlist).
 app.use('/auth/matrix', authCors, matrixAuthRouter);
+
+// Source-license checkout (authenticated via Matrix session cookie).
+app.use('/me', authCors, sourceCheckoutRouter);
 
 app.use(libraryCors);
 

@@ -15,8 +15,9 @@ services:
       # Traefik — path-based routing so no new DNS record is needed.
       # Incoming:  https://api.multiversestudios.xyz/library/*
       #            https://api.multiversestudios.xyz/auth/*
+      #            https://api.multiversestudios.xyz/me/*
       - traefik.enable=true
-      - traefik.http.routers.library-api.rule=Host(`api.multiversestudios.xyz`) && (PathPrefix(`/library`) || PathPrefix(`/auth`))
+      - traefik.http.routers.library-api.rule=Host(`api.multiversestudios.xyz`) && (PathPrefix(`/library`) || PathPrefix(`/auth`) || PathPrefix(`/me`))
       - traefik.http.routers.library-api.entrypoints=https
       - traefik.http.routers.library-api.tls=true
       - traefik.http.routers.library-api.tls.certresolver=letsencrypt

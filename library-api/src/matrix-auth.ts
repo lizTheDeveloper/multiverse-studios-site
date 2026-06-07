@@ -94,7 +94,7 @@ function clearCookie(res: Response): void {
 // Session resolution — self-contained encrypted cookie; no server-side store
 // ---------------------------------------------------------------------------
 
-function resolveSession(req: Request): SessionData | null {
+export function resolveSession(req: Request): SessionData | null {
   const raw = (req.cookies as Record<string, string>)?.[COOKIE_NAME];
   if (!raw) return null;
   const data = decryptJSON<SessionData>(raw);
