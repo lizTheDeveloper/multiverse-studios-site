@@ -105,7 +105,10 @@
       .then(function (info) {
         if (!info || !info.version || info.version === 'unknown') return;
         const ver = 'v' + info.version;
-        document.querySelectorAll('[data-umami-event*="' + game.slug + '"]').forEach(function (el) {
+        // Match both data-umami-event and data-umami-skip: umami-link-fix.js
+        // renames data-umami-event -> data-umami-skip on navigational links so
+        // umami can't break navigation, so we must select either form here.
+        document.querySelectorAll('[data-umami-event*="' + game.slug + '"], [data-umami-skip*="' + game.slug + '"]').forEach(function (el) {
           const label = el.getAttribute('data-label');
           if (!label) return;
           if (VERSION_RE.test(label)) {
