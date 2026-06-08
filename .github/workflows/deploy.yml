@@ -20,12 +20,24 @@ jobs:
           chmod 600 ~/.ssh/id_ed25519
           ssh-keyscan -H ${{ secrets.HETZNER_HOST }} >> ~/.ssh/known_hosts
 
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Bake same-origin versions.json (server-side, no CORS)
+        run: node scripts/gen-versions.mjs .
+
+      - name: Content-hash asset refs for cache-busting (fail-closed)
+        run: node scripts/hash-assets.mjs .
+
       - name: Rsync files to server
         run: |
           rsync -avz --delete \
             --exclude='.git' \
             --exclude='node_modules' \
             --exclude='.wrangler' \
+            --exclude='scripts' \
             ./ root@${{ secrets.HETZNER_HOST }}:/opt/marketing-site/html/
 
       - name: Rebuild Docker container

@@ -86,29 +86,26 @@
 })();
 
 // --- Live Version Badges ---
-// Fetch current version from each game's /api/build-info endpoint
-// and patch the data-label attributes so the homepage stays current.
+// Read current game versions from same-origin /versions.json (baked at deploy
+// time by the CI step that curls each game's build-info server-side) and patch
+// the data-label attributes. Same-origin avoids the CORS wall that blocked the
+// old cross-origin fetches to play.multiversestudios.xyz. If versions.json is
+// missing or a game is absent, the hardcoded data-label is kept as fallback.
 (function initVersionBadges() {
   const VERSION_RE = /v\d+\.\d+\.\d+/;
-  const GAMES = [
-    { slug: 'precursors', url: '/precursors/api/build-info' },
-    { slug: 'tsb',        url: '/the-spaces-between/api/build-info' },
-    { slug: 'mvee',       url: '/mvee/api/build-info' },
-    { slug: 'nel',        url: '/neverland/api/build-info' },
-    { slug: 'cotb',       url: '/cultures-of-the-belt/api/build-info' },
-    { slug: 'breach',     url: '/breach/api/build-info' },  // API server strips /breach
-  ];
 
-  GAMES.forEach(function (game) {
-    fetch('https://play.multiversestudios.xyz' + game.url)
-      .then(function (res) { return res.ok ? res.json() : null; })
-      .then(function (info) {
-        if (!info || !info.version || info.version === 'unknown') return;
-        const ver = 'v' + info.version;
+  fetch('/versions.json', { cache: 'no-cache' })
+    .then(function (res) { return res.ok ? res.json() : null; })
+    .then(function (versions) {
+      if (!versions) return;
+      Object.keys(versions).forEach(function (slug) {
+        const version = versions[slug];
+        if (!version || version === 'unknown') return;
+        const ver = 'v' + String(version).replace(/^v/, '');
         // Match both data-umami-event and data-umami-skip: umami-link-fix.js
         // renames data-umami-event -> data-umami-skip on navigational links so
         // umami can't break navigation, so we must select either form here.
-        document.querySelectorAll('[data-umami-event*="' + game.slug + '"], [data-umami-skip*="' + game.slug + '"]').forEach(function (el) {
+        document.querySelectorAll('[data-umami-event*="' + slug + '"], [data-umami-skip*="' + slug + '"]').forEach(function (el) {
           const label = el.getAttribute('data-label');
           if (!label) return;
           if (VERSION_RE.test(label)) {
@@ -117,7 +114,7 @@
             el.setAttribute('data-label', label + ' ' + ver);
           }
         });
-      })
-      .catch(function () { /* keep hardcoded fallback */ });
-  });
+      });
+    })
+    .catch(function () { /* keep hardcoded fallback */ });
 })();
