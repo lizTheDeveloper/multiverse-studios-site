@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BREACH.MMO v2.4 — Season Engine — Multiverse Studios Devlog</title>
+  <meta name="description" content="The competitive season layer ships: faction war events, permanent title badges, automatic rollover, and mission collections for the community library.">
+  <meta property="og:title" content="BREACH.MMO v2.4 — Season Engine">
+  <meta property="og:description" content="The competitive season layer ships: faction war events, permanent title badges, automatic rollover, and mission collections for the community library.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://multiversestudios.xyz/devlog/release-breach-v2.4.0.html">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="BREACH.MMO v2.4 — Season Engine">
+  <meta name="twitter:description" content="The competitive season layer ships: faction war events, permanent title badges, automatic rollover, and mission collections for the community library.">
+  <link rel="stylesheet" href="../styles.css">
+  <link rel="icon" type="image/svg+xml" href="../press-kit/logos/multiverse-studios-favicon.svg">
+  <style>
+    .devlog-body { max-width: 680px; margin: 0 auto; }
+    .version-badge {
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--signal);
+      border: 1px solid var(--signal);
+      display: inline-block;
+      padding: 0.2rem 0.6rem;
+      margin-bottom: var(--space-lg);
+      opacity: 0.85;
+    }
+    .feature-list { padding-left: 1.4rem; margin: 1.2rem 0; }
+    .feature-list li {
+      font-size: 1.02rem;
+      line-height: 1.75;
+      margin-bottom: 0.6rem;
+      color: var(--silver);
+    }
+    .feature-list li strong { color: var(--text); }
+  </style>
+</head>
+<body>
+  <nav class="site-nav">
+    <a href="/" class="nav-home">Multiverse Studios</a>
+    <a href="/devlog.html">Devlog</a>
+    <a href="https://play.multiversestudios.xyz/breach/">Play BREACH.MMO</a>
+  </nav>
+
+  <main class="devlog-body page-content">
+    <span class="version-badge">BREACH.MMO v2.4 &mdash; 2026-06-09</span>
+
+    <h1>Season Engine</h1>
+
+    <p>
+      v2.4 completes the competitive layer that started with crew matches in v2.3.
+      Seasons now run on a 13-week cron schedule &mdash; no manual admin rollover needed.
+      Every season closes with a permanent title badge awarded to the top three players
+      per faction. These badges don&rsquo;t reset. They accumulate. &ldquo;Vanguard &mdash; Season 1&rdquo;
+      means something different two years from now than it does today.
+    </p>
+
+    <p>
+      <strong>Faction War Season Events</strong> add a two-week competitive window inside
+      each season. Curators map these to real APT campaigns &mdash; an &ldquo;Operation Midnight
+      Blizzard&rdquo; event awards Red team 2&times; season points for exfil challenges while the
+      event is active. The event banner shows in-game. The Breaking CVE alert toast
+      now displays the CVSS score and attack vector inline so the urgency signal is
+      immediate: <code>CRITICAL | RCE | Network</code> before you decide whether to click.
+    </p>
+
+    <p>
+      The community mission library gains <strong>Mission Collections</strong> &mdash; named
+      groups of missions curated into a series. Collections show your completion state
+      across the set, so a well-designed multi-part training arc has a visible finish
+      line. The backend shipped in v2.3; the browsable UI is live now.
+    </p>
+
+    <p>
+      Play it now at <a href="https://play.multiversestudios.xyz/breach/">play.multiversestudios.xyz/breach/</a>.
+      Pay what you can.
+    </p>
+  </main>
+
+  <footer class="site-footer">
+    <p>
+      <a href="/devlog.html">&larr; Back to Devlog</a> &nbsp;|&nbsp;
+      <a href="https://play.multiversestudios.xyz/breach/">Play BREACH.MMO</a>
+    </p>
+  </footer>
+</body>
+</html>
