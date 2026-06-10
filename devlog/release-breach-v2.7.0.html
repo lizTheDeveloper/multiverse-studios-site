@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BREACH.MMO v2.7 — There&#039;s Always an Opponent — Multiverse Studios Devlog</title>
+  <meta name="description" content="BREACH.MMO v2.7 ships LLM-powered bot opponents. Three difficulty tiers — Script Kiddie, Hacker, APT — fill empty match slots so you never wait for a human.">
+  <meta property="og:title" content="BREACH.MMO v2.7 — AI Opponents, Always Online">
+  <meta property="og:description" content="Three AI difficulty tiers now fill empty matches: Script Kiddie (heuristics), Hacker (Qwen3-30B), and APT (Claude Sonnet). Log in. Queue. Go.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://multiversestudios.xyz/devlog/release-breach-v2.7.0.html">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="BREACH.MMO v2.7 — AI Opponents, Always Online">
+  <meta name="twitter:description" content="Three AI difficulty tiers now fill empty matches: Script Kiddie (heuristics), Hacker (Qwen3-30B), and APT (Claude Sonnet). Log in. Queue. Go.">
+  <link rel="stylesheet" href="../styles.css">
+  <link rel="icon" type="image/svg+xml" href="../press-kit/logos/multiverse-studios-favicon.svg">
+  <style>
+    .devlog-body { max-width: 680px; margin: 0 auto; }
+    .version-badge {
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--signal);
+      border: 1px solid var(--signal);
+      display: inline-block;
+      padding: 0.2rem 0.6rem;
+      margin-bottom: var(--space-lg);
+      opacity: 0.85;
+    }
+    .feature-list { padding-left: 1.4rem; margin: 1.2rem 0; }
+    .feature-list li {
+      font-size: 1.02rem;
+      line-height: 1.75;
+      margin-bottom: 0.6rem;
+      color: var(--silver);
+    }
+    .feature-list li strong { color: var(--text); }
+    .tier-table { width: 100%; border-collapse: collapse; margin: 1.4rem 0; font-size: 0.95rem; }
+    .tier-table th { text-align: left; padding: 0.5rem 0.75rem; border-bottom: 1px solid var(--border); color: var(--signal); font-family: var(--font-mono); font-size: 0.75rem; letter-spacing: 0.08em; text-transform: uppercase; }
+    .tier-table td { padding: 0.5rem 0.75rem; border-bottom: 1px solid var(--border-subtle, #222); color: var(--silver); }
+    .tier-table tr:last-child td { border-bottom: none; }
+  </style>
+</head>
+<body>
+  <nav class="site-nav">
+    <a href="/" class="nav-home">Multiverse Studios</a>
+    <a href="/devlog.html">Devlog</a>
+    <a href="https://play.multiversestudios.xyz/breach/">Play BREACH.MMO</a>
+  </nav>
+
+  <main class="devlog-body page-content">
+    <span class="version-badge">BREACH.MMO v2.7 &mdash; 2026-06-10</span>
+
+    <h1>There&#x2019;s Always an Opponent.</h1>
+
+    <p>
+      The biggest barrier to playing BREACH.MMO has been simple: you needed a human on the other side.
+      With 661 weekly visitors spread across time zones, the odds of two players queueing at the same
+      moment were roughly zero. You&rsquo;d click &ldquo;Find Match,&rdquo; watch the timer spin, and
+      leave. v2.7 fixes that permanently.
+    </p>
+
+    <p>
+      <strong>Thirty seconds after you queue with no human opponent, a bot fills the slot.</strong>
+      The match starts. The bot plays. It does not AFK. It does not disconnect. It is online whenever
+      you are.
+    </p>
+
+    <p>
+      Three difficulty tiers ship in this release:
+    </p>
+
+    <table class="tier-table">
+      <thead>
+        <tr>
+          <th>Tier</th>
+          <th>Engine</th>
+          <th>Behavior</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Script Kiddie</strong></td>
+          <td>Heuristics</td>
+          <td>Fixed decision tree. No LLM cost. Good for learning the controls.</td>
+        </tr>
+        <tr>
+          <td><strong>Hacker</strong></td>
+          <td>Qwen3-30B (self-hosted)</td>
+          <td>Reads the game state. Plans multi-step attack chains. Adapts to your defensive posture.</td>
+        </tr>
+        <tr>
+          <td><strong>APT</strong></td>
+          <td>Claude Sonnet 4.6</td>
+          <td>Advanced Persistent Threat behavior. Lateral movement, persistence, and counter-detection. Closest to a skilled human opponent.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p>
+      Bots are indistinguishable from players at the server layer &mdash; they submit the same
+      <code>PlayerInput</code> struct through the same tick loop. The match engine doesn&rsquo;t know
+      or care whether the input came from a keyboard or an LLM inference call. This means every
+      exploit mechanic, every cert-tracker update, every arrest cycle works exactly as designed against
+      bot opponents.
+    </p>
+
+    <p>
+      <strong>LLM spend is metered.</strong> A per-match circuit breaker caps bot costs at $2/match
+      and $100/day. When the cap is reached, the bot falls back to heuristic idle behavior rather than
+      dropping the connection. No runaway inference bills, no broken matches.
+    </p>
+
+    <ul class="feature-list">
+      <li><strong>Bot matchmaking fill</strong> &mdash; 30-second timeout, then a bot joins; difficulty configurable at queue time</li>
+      <li><strong>Script Kiddie tier</strong> &mdash; zero LLM cost, heuristic-only, good onboarding difficulty</li>
+      <li><strong>Hacker tier</strong> &mdash; Qwen3-30B on self-hosted Hetzner endpoint, multi-step planning</li>
+      <li><strong>APT tier</strong> &mdash; Claude Sonnet 4.6, full LLM reasoning, closest to skilled human play</li>
+      <li><strong>CU circuit breaker</strong> &mdash; $2/match, $100/day hard caps; graceful fallback on limit hit</li>
+      <li><strong>Public player profile pages</strong> &mdash; shareable at <code>play.multiversestudios.xyz/player/&lt;username&gt;</code> with rank, XP, cert badges, and match history; full OG card support</li>
+    </ul>
+
+    <p>
+      The game is pay-what-you-can and open source. If you&rsquo;ve been waiting for a reason to try
+      it &mdash; you no longer have to wait for anyone else.
+      <a href="https://play.multiversestudios.xyz/breach/">play.multiversestudios.xyz/breach/</a>
+    </p>
+  </main>
+
+  <footer class="site-footer">
+    <p>
+      <a href="/devlog.html">&larr; Back to Devlog</a> &nbsp;|&nbsp;
+      <a href="https://play.multiversestudios.xyz/breach/">Play BREACH.MMO</a>
+    </p>
+  </footer>
+</body>
+</html>
