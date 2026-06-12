@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BREACH.MMO v2.8 — The Funnel Was Broken — Multiverse Studios Devlog</title>
+  <meta name="description" content="BREACH.MMO v2.8 ships the Analyst Pass Conversion Sprint: analytics instrumentation, a critical checkout bug fix, locked content previews, and upsell modal improvements.">
+  <meta property="og:title" content="BREACH.MMO v2.8 — The Checkout Was Broken">
+  <meta property="og:description" content="v2.8 finds and fixes the root cause of 0% Analyst Pass conversion: the upgrade button was pointing to a route that didn't exist. Also ships: funnel analytics, locked content previews, and modal improvements.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://multiversestudios.xyz/devlog/release-breach-v2.8.0.html">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="BREACH.MMO v2.8 — The Checkout Was Broken">
+  <meta name="twitter:description" content="Root cause of 0% Analyst Pass conversion found and fixed. Plus funnel analytics, locked content previews, and modal improvements.">
+  <link rel="stylesheet" href="../styles.css">
+  <link rel="icon" type="image/svg+xml" href="../press-kit/logos/multiverse-studios-favicon.svg">
+  <style>
+    .devlog-body { max-width: 680px; margin: 0 auto; }
+    .version-badge {
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--signal);
+      border: 1px solid var(--signal);
+      display: inline-block;
+      padding: 0.2rem 0.6rem;
+      margin-bottom: var(--space-lg);
+      opacity: 0.85;
+    }
+    .feature-list { padding-left: 1.4rem; margin: 1.2rem 0; }
+    .feature-list li {
+      font-size: 1.02rem;
+      line-height: 1.75;
+      margin-bottom: 0.6rem;
+      color: var(--silver);
+    }
+    .feature-list li strong { color: var(--text); }
+    .callout {
+      border-left: 2px solid var(--signal);
+      padding: 0.75rem 1rem;
+      margin: 1.5rem 0;
+      background: rgba(0, 255, 65, 0.04);
+      font-family: var(--font-mono);
+      font-size: 0.9rem;
+      color: var(--silver);
+    }
+  </style>
+</head>
+<body>
+  <nav class="site-nav">
+    <a href="/" class="nav-home">Multiverse Studios</a>
+    <a href="/devlog.html">Devlog</a>
+    <a href="https://play.multiversestudios.xyz/breach/">Play BREACH.MMO</a>
+  </nav>
+
+  <main class="devlog-body page-content">
+    <span class="version-badge">BREACH.MMO v2.8 &mdash; 2026-06-12</span>
+
+    <h1>The Checkout Was Broken.</h1>
+
+    <p>
+      BREACH.MMO has had 661 weekly visitors, a full Security+ SY0-701 curriculum, LLM-powered bot
+      opponents, and a PWYC Analyst Pass that unlocks all of it. And exactly 0% of those visitors
+      had converted. We spent this sprint finding out why.
+    </p>
+
+    <div class="callout">
+      The &ldquo;Upgrade to Analyst Pass&rdquo; button was pointing to <code>/store/analyst-pass</code>.
+      That route doesn&rsquo;t exist. It never did. Stripe checkout was completely unreachable
+      from the in-game upgrade flow.
+    </div>
+
+    <p>
+      The root cause wasn&rsquo;t messaging. It wasn&rsquo;t friction. It wasn&rsquo;t price anchoring.
+      The button went nowhere. v2.8 fixes that: the CTA now calls <code>POST&nbsp;/api/monetization/checkout</code>
+      directly, creates a Stripe session, and redirects correctly. If you&rsquo;ve tried to upgrade
+      before and hit a dead end, it should work now.
+    </p>
+
+    <p>
+      Alongside the fix, we shipped three supporting changes to help us understand and improve the
+      conversion path going forward:
+    </p>
+
+    <ul class="feature-list">
+      <li>
+        <strong>Funnel analytics</strong> &mdash; five new events track every step from trial start
+        to Analyst Pass granted: <code>TRIAL_START</code>, <code>UPSELL_CTA_SHOWN</code>,
+        <code>CHECKOUT_OPEN</code>, <code>CHECKOUT_COMPLETE</code>, <code>ANALYST_PASS_GRANTED</code>.
+        Drop-off rates per stage are now queryable.
+      </li>
+      <li>
+        <strong>Locked content previews</strong> &mdash; free-tier players now see blurred cert
+        domain tiles and locked mission previews on the Analyst Pass landing page, so the value
+        proposition is visible before the paywall rather than hidden behind it.
+      </li>
+      <li>
+        <strong>Upsell modal improvements</strong> &mdash; session-frequency guard (once per session,
+        not on every screen); persistent low-footprint bottom banner for players who dismiss the
+        modal; social proof line showing how many players earned the Security+ Ready badge this month.
+        A/B test infrastructure is deployed &mdash; activation pending one week of WS1 baseline data.
+      </li>
+    </ul>
+
+    <p>
+      The email drip sequence for trial completers is built but waiting on infrastructure (we need
+      a <code>RESEND_API_KEY</code> from the board). It will ship as v2.8.1 when that&rsquo;s in place.
+    </p>
+
+    <p>
+      The game is pay-what-you-can and open source. If you tried to upgrade before and it didn&rsquo;t
+      work &mdash; it works now.
+      <a href="https://play.multiversestudios.xyz/breach/">play.multiversestudios.xyz/breach/</a>
+    </p>
+  </main>
+
+  <footer class="site-footer">
+    <p>
+      <a href="/devlog.html">&larr; Back to Devlog</a> &nbsp;|&nbsp;
+      <a href="https://play.multiversestudios.xyz/breach/">Play BREACH.MMO</a>
+    </p>
+  </footer>
+</body>
+</html>
