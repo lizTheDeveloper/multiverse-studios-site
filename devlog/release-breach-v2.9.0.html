@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BREACH.MMO v2.9 — Operation Deep Root — Multiverse Studios Devlog</title>
+  <meta name="description" content="BREACH.MMO v2.9 ships Campaign Mode: a 5-mission APT emulation campaign teaching a complete MITRE ATT&CK kill chain, with an LLM-powered narrator, cross-mission consequences, and completion rewards.">
+  <meta property="og:title" content="BREACH.MMO v2.9 — Operation Deep Root">
+  <meta property="og:description" content="Campaign Mode is live. Five missions. One APT kill chain. An LLM-powered analyst named ARIA who briefs you before each mission and debriefs you after. What you do in Mission 1 affects Mission 5.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://multiversestudios.xyz/devlog/release-breach-v2.9.0.html">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="BREACH.MMO v2.9 — Operation Deep Root">
+  <meta name="twitter:description" content="Campaign Mode: red-team a complete APT kill chain across 5 missions. ARIA briefs you. Your failures follow you. Complete it and earn the Deep Root title.">
+  <link rel="stylesheet" href="../styles.css">
+  <link rel="icon" type="image/svg+xml" href="../press-kit/logos/multiverse-studios-favicon.svg">
+  <style>
+    .devlog-body { max-width: 680px; margin: 0 auto; }
+    .version-badge {
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--signal);
+      border: 1px solid var(--signal);
+      display: inline-block;
+      padding: 0.2rem 0.6rem;
+      margin-bottom: var(--space-lg);
+      opacity: 0.85;
+    }
+    .feature-list { padding-left: 1.4rem; margin: 1.2rem 0; }
+    .feature-list li {
+      font-size: 1.02rem;
+      line-height: 1.75;
+      margin-bottom: 0.6rem;
+      color: var(--silver);
+    }
+    .feature-list li strong { color: var(--text); }
+    .callout {
+      border-left: 2px solid var(--signal);
+      padding: 0.75rem 1rem;
+      margin: 1.5rem 0;
+      background: rgba(0, 255, 65, 0.04);
+      font-family: var(--font-mono);
+      font-size: 0.9rem;
+      color: var(--silver);
+    }
+    .mission-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+      margin: 1.2rem 0;
+    }
+    .mission-table th, .mission-table td {
+      padding: 0.5rem 0.75rem;
+      text-align: left;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      color: var(--silver);
+    }
+    .mission-table th {
+      color: var(--text);
+      font-size: 0.75rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+    .mission-table tr:last-child td { border-bottom: none; }
+  </style>
+</head>
+<body>
+  <nav class="site-nav">
+    <a href="/" class="nav-home">Multiverse Studios</a>
+    <a href="/devlog.html">Devlog</a>
+    <a href="https://play.multiversestudios.xyz/breach/">Play BREACH.MMO</a>
+  </nav>
+
+  <main class="devlog-body page-content">
+    <span class="version-badge">BREACH.MMO v2.9 &mdash; 2026-06-12</span>
+
+    <h1>Operation Deep Root.</h1>
+
+    <p>
+      BREACH.MMO has always been a game about learning to think like an attacker. This update
+      is what that promise was building toward: a five-mission APT campaign that walks you through
+      a complete MITRE ATT&amp;CK kill chain from initial foothold to attribution. You&rsquo;re not
+      doing isolated challenges. You&rsquo;re running an operation.
+    </p>
+
+    <div class="callout">
+      Campaign Mode is accessible from the new <strong>APT CAMPAIGNS</strong> tab in the game
+      lobby. Operation Deep Root is Analyst Pass content. Free players can see the campaign and
+      the badge it awards &mdash; the full campaign is unlocked with a pass.
+    </div>
+
+    <p>
+      The five missions map to real ATT&amp;CK techniques in sequence:
+    </p>
+
+    <table class="mission-table">
+      <thead>
+        <tr>
+          <th>Mission</th>
+          <th>Technique</th>
+          <th>Cert Credit</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>M1 &mdash; Phishing Lure</td><td>T1566 Initial Access</td><td>Security+ Threats</td></tr>
+        <tr><td>M2 &mdash; Lateral Movement</td><td>T1021 Remote Services</td><td>CEH System Hacking</td></tr>
+        <tr><td>M3 &mdash; Persistence</td><td>T1547 Boot Autostart</td><td>OSCP-Ready</td></tr>
+        <tr><td>M4 &mdash; Exfiltration</td><td>T1041 Exfil Over C2</td><td>CEH Cryptography</td></tr>
+        <tr><td>M5 &mdash; Attribution</td><td>T1083 Anti-Forensic Discovery</td><td>Security+ Incident Response</td></tr>
+      </tbody>
+    </table>
+
+    <p>
+      What you do in one mission follows you into the next. Miss an objective cleanly and the
+      target network gets more aggressive in the missions that follow. Complete with mastery and
+      you carry bonus cert credits forward. There&rsquo;s an OPSEC score &mdash; visible, not hidden
+      &mdash; that tracks how well you moved through the operation without raising alarms.
+    </p>
+
+    <ul class="feature-list">
+      <li>
+        <strong>ARIA &mdash; Adaptive Reconnaissance &amp; Intelligence Analyst</strong> &mdash;
+        an LLM-powered narrator voice (Claude Sonnet 4.6) who briefs you before each mission,
+        drops context at key checkpoints, and debriefs you after. ARIA has a perspective, a
+        voice, and a continuous read on your performance. She is not a help tooltip. Her
+        character and mission briefings were reviewed by Scheherazade (Universal Lore Lead)
+        before ship.
+      </li>
+      <li>
+        <strong>Cross-mission consequences</strong> &mdash; failure stacks carry forward: enemy
+        aggressiveness +10%, starting health &minus;10% per stack (max 2). Mastery earns cert
+        credit bonuses. Deviation from the optimal technique path reduces your OPSEC multiplier.
+      </li>
+      <li>
+        <strong>Campaign completion rewards</strong> &mdash; clearing all five missions awards
+        the &ldquo;Operation Deep Root &mdash; Cleared&rdquo; profile title, the Deep Root HUD
+        theme (dark-red terminal aesthetic), a visible badge in your Cert Progress panel, and
+        500 season XP.
+      </li>
+    </ul>
+
+    <p>
+      Each mission completion also advances your Security+ and CEH cert progress. If you were
+      working through the Security+ SY0-701 path before, the campaign overlaps the Threats and
+      Incident Response domains. You&rsquo;re not doing extra credit &mdash; this is the curriculum.
+    </p>
+
+    <p>
+      The game is pay-what-you-can and open source.
+      <a href="https://play.multiversestudios.xyz/breach/">play.multiversestudios.xyz/breach/</a>
+    </p>
+  </main>
+
+  <footer class="site-footer">
+    <p>
+      <a href="/devlog.html">&larr; Back to Devlog</a> &nbsp;|&nbsp;
+      <a href="https://play.multiversestudios.xyz/breach/">Play BREACH.MMO</a>
+    </p>
+  </footer>
+</body>
+</html>
