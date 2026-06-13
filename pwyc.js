@@ -55,9 +55,17 @@
   };
 
   // Checkout session endpoint — creates Stripe Checkout Sessions server-side
-  var CHECKOUT_API_URL = 'https://pay.multiversestudios.xyz/create-checkout-session';
+  var CHECKOUT_API_URL = 'https://multiversestudios.xyz/stripe/create-checkout-session';
 
   var TIERS = [
+    {
+      id: 'byte',
+      amount: 100,       // cents
+      label: 'Byte',
+      sublabel: '$1',
+      desc: 'Every bit counts.',
+      isDefault: true,
+    },
     {
       id: 'spark',
       amount: 500,       // cents
@@ -71,7 +79,6 @@
       label: 'Signal',
       sublabel: '$15',
       desc: 'Funds a week of development.',
-      isDefault: true,
     },
     {
       id: 'beacon',
@@ -144,11 +151,11 @@
     '}',
     '.pwyc-tiers {',
     '  display: grid;',
-    '  grid-template-columns: repeat(4, 1fr);',
+    '  grid-template-columns: repeat(5, 1fr);',
     '  gap: 0.5rem; margin-bottom: 1.5rem;',
     '}',
     '@media (max-width: 540px) {',
-    '  .pwyc-tiers { grid-template-columns: repeat(2, 1fr); }',
+    '  .pwyc-tiers { grid-template-columns: repeat(3, 1fr); }',
     '}',
     '.pwyc-tier {',
     '  background: rgba(255,255,255,0.03);',
