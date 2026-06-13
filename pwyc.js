@@ -54,8 +54,9 @@
     },
   };
 
-  // Checkout session endpoint — creates Stripe Checkout Sessions server-side
+  // Checkout session endpoints
   var CHECKOUT_API_URL = 'https://multiversestudios.xyz/stripe/create-checkout-session';
+  var CHECKOUT_EMBEDDED_API_URL = 'https://multiversestudios.xyz/stripe/create-checkout-session-embedded';
 
   var TIERS = [
     {
@@ -247,6 +248,44 @@
     '  text-align: center; margin-bottom: 1rem;',
     '  font-style: italic;',
     '}',
+    '#pwyc-checkout-container {',
+    '  min-height: 300px;',
+    '  margin-top: 1rem;',
+    '}',
+    '#pwyc-checkout-container iframe {',
+    '  border-radius: 8px;',
+    '}',
+    '.pwyc-tier-panel { }',
+    '.pwyc-tier-panel.pwyc-hidden { display: none; }',
+    '#pwyc-checkout-panel { display: none; }',
+    '#pwyc-checkout-panel.pwyc-visible { display: block; }',
+    '#pwyc-thankyou-panel { display: none; text-align: center; padding: 2rem 0; }',
+    '#pwyc-thankyou-panel.pwyc-visible { display: block; }',
+    '#pwyc-thankyou-panel h2 {',
+    '  font-family: var(--font-display, "Syne", sans-serif);',
+    '  font-size: 1.5rem; font-weight: 700; color: #e8e6f0;',
+    '  margin-bottom: 0.5rem;',
+    '}',
+    '#pwyc-thankyou-panel p {',
+    '  font-family: var(--font-mono, "JetBrains Mono", monospace);',
+    '  font-size: 0.85rem; color: #8a8694; line-height: 1.7;',
+    '}',
+    '#pwyc-thankyou-panel .pwyc-play-btn {',
+    '  display: inline-block; margin-top: 1.25rem;',
+    '  padding: 0.8em 1.8em; border-radius: 6px;',
+    '  font-family: var(--font-mono, "JetBrains Mono", monospace);',
+    '  font-size: 0.85rem; font-weight: 500;',
+    '  text-decoration: none; color: #050508;',
+    '  letter-spacing: 0.08em; text-transform: uppercase;',
+    '}',
+    '#pwyc-back-btn {',
+    '  background: none; border: none; cursor: pointer;',
+    '  color: #8a8694; font-size: 0.75rem;',
+    '  font-family: var(--font-mono, "JetBrains Mono", monospace);',
+    '  margin-bottom: 0.75rem; padding: 0;',
+    '  text-decoration: underline; text-underline-offset: 2px;',
+    '}',
+    '#pwyc-back-btn:hover { color: #e8e6f0; }',
   ].join('\n');
   document.head.appendChild(style);
 
@@ -272,31 +311,42 @@
       '  <div id="pwyc-game-name"></div>',
       '  <div id="pwyc-heading">Support this game</div>',
       '  <div id="pwyc-tagline"></div>',
-      '  <div id="pwyc-ethos">Independent studio. Player-funded. No investors, no ads.</div>',
-      '  <div class="pwyc-tiers" role="radiogroup" aria-label="Choose your contribution">',
-        TIERS.map(function (tier, i) {
-          return [
-            '<button class="pwyc-tier" data-tier-idx="' + i + '"',
-            '  role="radio" aria-checked="false"',
-            '  aria-label="' + tier.label + ' — ' + tier.sublabel + '"',
-            '>',
-            '  <div class="pwyc-tier-sublabel">' + tier.sublabel + '</div>',
-            '  <div class="pwyc-tier-name">' + tier.label + '</div>',
-            '  <div class="pwyc-tier-desc">' + tier.desc + '</div>',
-            '</button>',
-          ].join('');
-        }).join(''),
+      '  <div class="pwyc-tier-panel">',
+      '    <div id="pwyc-ethos">Independent studio. Player-funded. No investors, no ads.</div>',
+      '    <div class="pwyc-tiers" role="radiogroup" aria-label="Choose your contribution">',
+          TIERS.map(function (tier, i) {
+            return [
+              '<button class="pwyc-tier" data-tier-idx="' + i + '"',
+              '  role="radio" aria-checked="false"',
+              '  aria-label="' + tier.label + ' — ' + tier.sublabel + '"',
+              '>',
+              '  <div class="pwyc-tier-sublabel">' + tier.sublabel + '</div>',
+              '  <div class="pwyc-tier-name">' + tier.label + '</div>',
+              '  <div class="pwyc-tier-desc">' + tier.desc + '</div>',
+              '</button>',
+            ].join('');
+          }).join(''),
+      '    </div>',
+      '    <div id="pwyc-custom-row">',
+      '      <span id="pwyc-custom-label">$</span>',
+      '      <input id="pwyc-custom-input" type="number" min="1" max="9999"',
+      '        placeholder="Enter amount" aria-label="Custom amount in dollars">',
+      '    </div>',
+      '    <button id="pwyc-cta">Support</button>',
+      '    <a id="pwyc-free-link" role="link">or play free — no account needed →</a>',
+      '    <div id="pwyc-note">',
+      '      Every contribution directly funds development and keeps the servers running.',
+      '      <br><a href="/devlog/pay-what-you-can.html">Why we use pay-what-you-can pricing →</a>',
+      '    </div>',
       '  </div>',
-      '  <div id="pwyc-custom-row">',
-      '    <span id="pwyc-custom-label">$</span>',
-      '    <input id="pwyc-custom-input" type="number" min="1" max="9999"',
-      '      placeholder="Enter amount" aria-label="Custom amount in dollars">',
+      '  <div id="pwyc-checkout-panel">',
+      '    <button id="pwyc-back-btn">&larr; Change amount</button>',
+      '    <div id="pwyc-checkout-container"></div>',
       '  </div>',
-      '  <button id="pwyc-cta">Support</button>',
-      '  <a id="pwyc-free-link" role="link">or play free — no account needed →</a>',
-      '  <div id="pwyc-note">',
-      '    Every contribution directly funds development and keeps the servers running.',
-      '    <br><a href="/devlog/pay-what-you-can.html">Why we use pay-what-you-can pricing →</a>',
+      '  <div id="pwyc-thankyou-panel">',
+      '    <h2>Thank you!</h2>',
+      '    <p>Your support keeps these worlds alive.</p>',
+      '    <a class="pwyc-play-btn" id="pwyc-play-link">Play Now &rarr;</a>',
       '  </div>',
       '</div>',
     ].join('');
@@ -322,6 +372,9 @@
 
     // Event: CTA
     overlay.querySelector('#pwyc-cta').addEventListener('click', handleCTA);
+
+    // Event: back from checkout to tier selection
+    overlay.querySelector('#pwyc-back-btn').addEventListener('click', showTierPanel);
 
     // Event: play free link
     overlay.querySelector('#pwyc-free-link').addEventListener('click', function () {
@@ -385,6 +438,66 @@
     cta.style.color = '#050508';
   }
 
+  // ── Panel switching ──────────────────────────────────────────
+
+  var currentCheckout = null;
+
+  function showTierPanel() {
+    if (!overlay) return;
+    if (currentCheckout) {
+      currentCheckout.destroy();
+      currentCheckout = null;
+    }
+    overlay.querySelector('.pwyc-tier-panel').classList.remove('pwyc-hidden');
+    overlay.querySelector('#pwyc-checkout-panel').classList.remove('pwyc-visible');
+    overlay.querySelector('#pwyc-thankyou-panel').classList.remove('pwyc-visible');
+  }
+
+  function showCheckoutPanel() {
+    if (!overlay) return;
+    overlay.querySelector('.pwyc-tier-panel').classList.add('pwyc-hidden');
+    overlay.querySelector('#pwyc-checkout-panel').classList.add('pwyc-visible');
+    overlay.querySelector('#pwyc-thankyou-panel').classList.remove('pwyc-visible');
+  }
+
+  function showThankYouPanel() {
+    if (!overlay) return;
+    overlay.querySelector('.pwyc-tier-panel').classList.add('pwyc-hidden');
+    overlay.querySelector('#pwyc-checkout-panel').classList.remove('pwyc-visible');
+    overlay.querySelector('#pwyc-thankyou-panel').classList.add('pwyc-visible');
+
+    var playLink = overlay.querySelector('#pwyc-play-link');
+    if (currentGame) {
+      playLink.href = currentGame.playUrl;
+      playLink.style.background = currentGame.accent;
+    }
+  }
+
+  // ── Stripe.js loader ───────────────────────────────────────
+
+  var stripePromise = null;
+
+  function loadStripeJs(publishableKey) {
+    if (stripePromise) return stripePromise;
+    stripePromise = new Promise(function (resolve, reject) {
+      if (window.Stripe) {
+        resolve(window.Stripe(publishableKey));
+        return;
+      }
+      var script = document.createElement('script');
+      script.src = 'https://js.stripe.com/v3/';
+      script.onload = function () { resolve(window.Stripe(publishableKey)); };
+      script.onerror = function () {
+        stripePromise = null;
+        reject(new Error('Failed to load Stripe.js'));
+      };
+      document.head.appendChild(script);
+    });
+    return stripePromise;
+  }
+
+  // ── CTA handler — embedded checkout ────────────────────────
+
   function handleCTA() {
     if (!currentGame) return;
 
@@ -409,22 +522,69 @@
     cta.textContent = 'Connecting…';
     cta.style.opacity = '0.6';
 
-    var xhr = new XMLHttpRequest();
-    xhr.open('POST', CHECKOUT_API_URL);
-    xhr.setRequestHeader('Content-Type', 'application/json');
-    xhr.onload = function () {
-      if (xhr.status >= 200 && xhr.status < 300) {
-        try {
-          var data = JSON.parse(xhr.responseText);
-          if (data.url) {
-            window.location.href = data.url;
-            return;
-          }
-        } catch (e) {
-          console.error('PWYC: failed to parse checkout response', e);
-        }
+    var gameKey = currentGame.gameKey;
+    var requestBody = JSON.stringify({ game: gameKey, amount: cents, source_page: window.location.href });
+
+    fetch(CHECKOUT_EMBEDDED_API_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: requestBody,
+    })
+    .then(function (resp) {
+      if (!resp.ok) throw new Error('HTTP ' + resp.status);
+      return resp.json();
+    })
+    .then(function (data) {
+      if (!data.clientSecret || !data.publishableKey) {
+        throw new Error('Missing clientSecret or publishableKey');
       }
-      console.error('PWYC: checkout session failed', { status: xhr.status, response: xhr.responseText, game: currentGame.gameKey, amount: cents });
+      return loadStripeJs(data.publishableKey).then(function (stripe) {
+        return stripe.createEmbeddedCheckoutPage({
+          fetchClientSecret: function () { return Promise.resolve(data.clientSecret); },
+          onComplete: function () {
+            showThankYouPanel();
+          },
+        });
+      });
+    })
+    .then(function (checkout) {
+      currentCheckout = checkout;
+      var container = overlay.querySelector('#pwyc-checkout-container');
+      container.innerHTML = '';
+      checkout.mount(container);
+      showCheckoutPanel();
+
+      cta.disabled = false;
+      cta.style.opacity = '';
+      cta.textContent = originalText;
+      updateCTA();
+    })
+    .catch(function (err) {
+      console.error('PWYC: embedded checkout failed', { error: err.message, game: gameKey, amount: cents });
+      // Fall back to redirect checkout
+      fallbackRedirectCheckout(gameKey, cents, cta, originalText, requestBody);
+    });
+  }
+
+  function fallbackRedirectCheckout(gameKey, cents, cta, originalText, requestBody) {
+    fetch(CHECKOUT_API_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: requestBody,
+    })
+    .then(function (resp) {
+      if (!resp.ok) throw new Error('HTTP ' + resp.status);
+      return resp.json();
+    })
+    .then(function (data) {
+      if (data.url) {
+        window.location.href = data.url;
+      } else {
+        throw new Error('No checkout URL');
+      }
+    })
+    .catch(function (err) {
+      console.error('PWYC: fallback redirect also failed', { error: err.message, game: gameKey, amount: cents });
       cta.textContent = 'Something went wrong — try again';
       cta.style.background = '#ff4444';
       setTimeout(function () {
@@ -433,19 +593,7 @@
         cta.textContent = originalText;
         updateCTA();
       }, 2000);
-    };
-    xhr.onerror = function () {
-      console.error('PWYC: network error creating checkout session', { game: currentGame.gameKey, amount: cents });
-      cta.textContent = 'Connection failed — try again';
-      cta.style.background = '#ff4444';
-      setTimeout(function () {
-        cta.disabled = false;
-        cta.style.opacity = '';
-        cta.textContent = originalText;
-        updateCTA();
-      }, 2000);
-    };
-    xhr.send(JSON.stringify({ game: currentGame.gameKey, amount: cents, source_page: window.location.href }));
+    });
   }
 
   // ── Open / close ─────────────────────────────────────────────
@@ -463,7 +611,8 @@
     var freeLink = overlay.querySelector('#pwyc-free-link');
     if (freeLink) freeLink.href = currentGame.playUrl;
 
-    // Reset to default tier
+    // Reset to default tier and show tier panel
+    showTierPanel();
     var defaultIdx = TIERS.findIndex(function (t) { return t.isDefault; });
     selectTier(defaultIdx);
 
@@ -475,6 +624,10 @@
 
   function closeModal() {
     if (!overlay) return;
+    if (currentCheckout) {
+      currentCheckout.destroy();
+      currentCheckout = null;
+    }
     overlay.classList.remove('pwyc-open');
     document.body.style.overflow = '';
   }
