@@ -539,7 +539,7 @@
         throw new Error('Missing clientSecret or publishableKey');
       }
       return loadStripeJs(data.publishableKey).then(function (stripe) {
-        return stripe.createEmbeddedCheckoutPage({
+        return stripe.initEmbeddedCheckout({
           fetchClientSecret: function () { return Promise.resolve(data.clientSecret); },
           onComplete: function () {
             showThankYouPanel();
