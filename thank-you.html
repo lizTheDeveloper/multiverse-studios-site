@@ -303,7 +303,7 @@
 <script src="matrix-auth.js"></script>
 <script src="matrix-chat.js"></script>
 <script defer src="/umami-link-fix.js?v=1"></script>
-<script defer src="https://analytics.multiversestudios.xyz/script.js" data-website-id="38d680a7-28d1-42fd-9fd5-a66702675b88"></script>
+<script defer src="https://analytics.themultiverse.school/script.js" data-website-id="38d680a7-28d1-42fd-9fd5-a66702675b88"></script>
 
 <script>
 (async function() {
@@ -342,6 +342,13 @@
     const gameUrl = data.gameUrl || GAME_URLS[data.game] || 'https://play.multiversestudios.xyz';
     const amount = data.amount;
     const daysOfServer = Math.floor(amount / SERVER_COST_PER_DAY);
+
+    try {
+      const umami = window.umami;
+      if (umami && umami.track) {
+        umami.track('pwyc-checkout-completed', { game: data.game || 'unknown', amount: String(amount), currency: data.currency || 'USD' });
+      }
+    } catch (e) { /* no umami */ }
 
     const gameShare = encodeURIComponent(`I just supported ${data.gameName} by @multiversestudios! Check it out: ${gameUrl}`);
     const twitterUrl = `https://twitter.com/intent/tweet?text=${gameShare}`;
