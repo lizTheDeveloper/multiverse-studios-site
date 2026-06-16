@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BREACH.MMO v2.9.2 — Measuring Right — Multiverse Studios Devlog</title>
+  <meta name="description" content="BREACH.MMO v2.9.2 fixes analytics event naming inconsistencies that were silently dropping funnel data. If you shared a badge or opted into email, those events now record correctly.">
+  <meta property="og:title" content="BREACH.MMO v2.9.2 — Measuring Right">
+  <meta property="og:description" content="Analytics fixes: badge share events, email optin events, and upsell impression tracking were recording under the wrong names. They're corrected in v2.9.2.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://multiversestudios.xyz/devlog/release-breach-v2.9.2.html">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="BREACH.MMO v2.9.2 — Measuring Right">
+  <meta name="twitter:description" content="A patch that fixes what we were measuring wrong. Badge shares, email optins, and upsell impressions now track correctly.">
+  <link rel="stylesheet" href="../styles.css">
+  <link rel="icon" type="image/svg+xml" href="../press-kit/logos/multiverse-studios-favicon.svg">
+  <style>
+    .devlog-body { max-width: 680px; margin: 0 auto; }
+    .version-badge {
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--signal);
+      border: 1px solid var(--signal);
+      display: inline-block;
+      padding: 0.2rem 0.6rem;
+      margin-bottom: var(--space-lg);
+      opacity: 0.85;
+    }
+    .fix-list { padding-left: 1.4rem; margin: 1.2rem 0; }
+    .fix-list li {
+      font-size: 1.02rem;
+      line-height: 1.75;
+      margin-bottom: 0.6rem;
+      color: var(--silver);
+    }
+    .fix-list li strong { color: var(--text); }
+    .callout {
+      border-left: 2px solid var(--signal);
+      padding: 0.75rem 1rem;
+      margin: 1.5rem 0;
+      background: rgba(0, 255, 65, 0.04);
+      font-family: var(--font-mono);
+      font-size: 0.9rem;
+      color: var(--silver);
+    }
+  </style>
+</head>
+<body>
+  <nav class="site-nav">
+    <a href="/" class="nav-home">Multiverse Studios</a>
+    <a href="/devlog.html">Devlog</a>
+    <a href="https://play.multiversestudios.xyz/breach/">Play BREACH.MMO</a>
+  </nav>
+
+  <main class="devlog-body page-content">
+    <span class="version-badge">BREACH.MMO v2.9.2 &mdash; 2026-06-15</span>
+
+    <h1>Measuring right.</h1>
+
+    <p>
+      v2.9.2 is a patch. No new gameplay. But it matters: a handful of analytics events were
+      recording under the wrong names since v2.8.0 shipped, which meant some of the data we
+      were using to understand how players move through the game was silently wrong.
+    </p>
+
+    <div class="callout">
+      If you shared a badge, opted into the email list, or saw the Analyst Pass upsell after
+      a trial run &mdash; those events are now tracked correctly. They weren&rsquo;t broken for
+      you; they were broken for us.
+    </div>
+
+    <ul class="fix-list">
+      <li>
+        <strong>Badge share events</strong> &mdash; <code>badge_shared</code> corrected to
+        <code>badge.shared</code> to match the dot-notation convention used everywhere else.
+        Badge share completions were fragmenting from the campaign funnel view.
+      </li>
+      <li>
+        <strong>Email optin events</strong> &mdash; same fix: <code>email_optin_submitted</code>
+        &rarr; <code>email.optin.submitted</code>.
+      </li>
+      <li>
+        <strong>Upsell impression tracking</strong> &mdash; <code>ANALYST_PASS_UPSELL_SHOWN</code>
+        was missing from the server-side enum entirely, so every upsell impression went unrecorded.
+        It&rsquo;s added now.
+      </li>
+    </ul>
+
+    <p>
+      The email drip sequence for trial completers (Day 1/3/7 follow-up after finishing the
+      Security+ trial) is also pre-deployed in this build. It&rsquo;s dormant until a sending
+      key is configured &mdash; nothing sends yet.
+    </p>
+
+    <p>
+      The game is pay-what-you-can and open source.
+      <a href="https://play.multiversestudios.xyz/breach/">play.multiversestudios.xyz/breach/</a>
+    </p>
+  </main>
+
+  <footer class="site-footer">
+    <p>
+      <a href="/devlog.html">&larr; Back to Devlog</a> &nbsp;|&nbsp;
+      <a href="https://play.multiversestudios.xyz/breach/">Play BREACH.MMO</a>
+    </p>
+  </footer>
+</body>
+</html>
