@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BREACH.MMO v2.9.3 — Patched and Counting — Multiverse Studios Devlog</title>
+  <meta name="description" content="BREACH.MMO v2.9.3 fixes a critical analytics pipeline bug and patches 6 CVEs. Analytics data is clean from today forward.">
+  <meta property="og:title" content="BREACH.MMO v2.9.3 — Patched and Counting">
+  <meta property="og:description" content="A quiet but important release: CVE patches and the fix for a silent analytics bug that was dropping every server-side event since launch.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://multiversestudios.xyz/devlog/release-breach-v2.9.3.html">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="BREACH.MMO v2.9.3 — Patched and Counting">
+  <meta name="twitter:description" content="CVE remediation and an analytics pipeline fix. Events are now persisting for the first time since launch.">
+  <link rel="stylesheet" href="../styles.css">
+  <link rel="icon" type="image/svg+xml" href="../press-kit/logos/multiverse-studios-favicon.svg">
+  <style>
+    .devlog-body { max-width: 680px; margin: 0 auto; }
+    .version-badge {
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--signal);
+      border: 1px solid var(--signal);
+      display: inline-block;
+      padding: 0.2rem 0.6rem;
+      margin-bottom: var(--space-lg);
+      opacity: 0.85;
+    }
+    .fix-list { padding-left: 1.4rem; margin: 1.2rem 0; }
+    .fix-list li {
+      font-size: 1.02rem;
+      line-height: 1.75;
+      margin-bottom: 0.6rem;
+      color: var(--silver);
+    }
+    .fix-list li strong { color: var(--text); }
+    .callout {
+      border-left: 2px solid var(--signal);
+      padding: 0.75rem 1rem;
+      margin: 1.5rem 0;
+      background: rgba(0, 255, 65, 0.04);
+      font-family: var(--font-mono);
+      font-size: 0.9rem;
+      color: var(--silver);
+    }
+  </style>
+</head>
+<body>
+  <nav class="site-nav">
+    <a href="/" class="nav-home">Multiverse Studios</a>
+    <a href="/devlog.html">Devlog</a>
+    <a href="https://play.multiversestudios.xyz/breach/">Play BREACH.MMO</a>
+  </nav>
+
+  <main class="devlog-body page-content">
+    <span class="version-badge">BREACH.MMO v2.9.3 &mdash; 2026-06-17</span>
+
+    <h1>Patched and counting.</h1>
+
+    <p>
+      v2.9.3 is two fixes that don&rsquo;t touch gameplay at all, but both matter more than
+      most feature releases do.
+    </p>
+
+    <div class="callout">
+      Today is the first day BREACH.MMO has ever successfully persisted server-side analytics
+      events to the database. We shipped the game with a registration bug in the analytics
+      pipeline that silently dropped every event since launch. It&rsquo;s fixed now.
+    </div>
+
+    <ul class="fix-list">
+      <li>
+        <strong>Analytics pipeline fix</strong> &mdash; The Bull queue processor in
+        <code>AnalyticsQueue</code> was never registered. Every server-side event
+        (<code>trial.start</code>, <code>trial.mission.completed</code>,
+        <code>checkout.complete</code>, all of them) was being queued and then silently
+        dropped. 110 backlogged events were persisted on deploy; all future events
+        are now writing to Postgres.
+      </li>
+      <li>
+        <strong>CVE remediation</strong> &mdash; Patched 6 critical and 10 high severity
+        vulnerabilities identified by Dependabot. Key packages updated:
+        <code>ws</code> (WebSocket DoS), <code>axios</code> (proxy bypass + credential leak),
+        <code>vitest</code> (path traversal in test runner), <code>form-data</code> (CRLF
+        injection). Zero critical CVEs remain in server-side dependencies.
+      </li>
+    </ul>
+
+    <p>
+      Neither of these was visible to players. The analytics bug meant we were navigating
+      blind &mdash; making product decisions without data. That&rsquo;s over now. The CVEs
+      were in dev/server-side dependencies with no direct player exposure, but they&rsquo;re
+      cleaned up regardless.
+    </p>
+
+    <p>
+      The game is pay-what-you-can and open source.
+      <a href="https://play.multiversestudios.xyz/breach/">play.multiversestudios.xyz/breach/</a>
+    </p>
+  </main>
+
+  <footer class="site-footer">
+    <p>
+      <a href="/devlog.html">&larr; Back to Devlog</a> &nbsp;|&nbsp;
+      <a href="https://play.multiversestudios.xyz/breach/">Play BREACH.MMO</a>
+    </p>
+  </footer>
+</body>
+</html>
