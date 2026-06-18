@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BREACH.MMO v2.9.4 — Game World Restored — Multiverse Studios Devlog</title>
+  <meta name="description" content="Sprite atlas 404s fixed — the game world canvas is rendering again. Plus checkout conversion source tracking.">
+  <meta property="og:title" content="BREACH.MMO v2.9.4 — Game World Restored">
+  <meta property="og:description" content="Sprite atlas 404s fixed — the game world canvas is rendering again. Plus checkout conversion source tracking.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://multiversestudios.xyz/devlog/release-breach-mmo-v2.9.4.html">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="BREACH.MMO v2.9.4 — Game World Restored">
+  <meta name="twitter:description" content="Sprite atlas 404s fixed — the game world canvas is rendering again. Plus checkout conversion source tracking.">
+  <link rel="stylesheet" href="../styles.css">
+  <link rel="icon" type="image/svg+xml" href="../press-kit/logos/multiverse-studios-favicon.svg">
+  <style>
+    .devlog-body { max-width: 680px; margin: 0 auto; }
+    .version-badge {
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--signal);
+      border: 1px solid var(--signal);
+      display: inline-block;
+      padding: 0.2rem 0.6rem;
+      margin-bottom: var(--space-lg);
+      opacity: 0.85;
+    }
+    .feature-list { padding-left: 1.4rem; margin: 1.2rem 0; }
+    .feature-list li {
+      font-size: 1.02rem;
+      line-height: 1.75;
+      margin-bottom: 0.6rem;
+      color: var(--silver);
+    }
+    .feature-list li strong { color: var(--text); }
+  </style>
+</head>
+<body>
+  <nav class="site-nav">
+    <a href="/" class="nav-home">Multiverse Studios</a>
+    <a href="/devlog.html">Devlog</a>
+    <a href="/breach/">Play BREACH.MMO</a>
+  </nav>
+
+  <main class="devlog-body page-content">
+    <span class="version-badge">BREACH.MMO v2.9.4 — 2026-06-18</span>
+
+    <h1>Game World Restored</h1>
+
+    <p>
+      v2.9.4 is a reliability patch. The game world canvas was rendering blank for all players
+      due to sprite atlas files missing from the production build — a deployment gap that crept
+      in during a recent infrastructure change. All six atlas files are now committed and serving
+      correctly. If you loaded the game and saw an empty black canvas over the last day or two,
+      this is the fix.
+    </p>
+
+    <p>
+      <strong>Sprite atlases restored</strong> — terrain, characters, buildings, UI elements,
+      bots, and effects all render correctly again. The red-team and blue-team game world is fully
+      visible. No gameplay data was lost; this was purely a visual break.
+    </p>
+
+    <p>
+      <strong>Checkout source tracking</strong> — we added conversion source tagging to checkout
+      sessions so we can see which in-game CTA actually drives Analyst Pass purchases. This is
+      internal instrumentation; nothing changes for players. The data helps us improve the
+      upgrade experience over time.
+    </p>
+
+    <p>
+      Play it now at <a href="https://play.multiversestudios.xyz/breach/">play.multiversestudios.xyz/breach/</a>.
+      Pay what you can.
+    </p>
+  </main>
+
+  <footer class="site-footer">
+    <p>
+      <a href="/devlog.html">← Back to Devlog</a> &nbsp;|&nbsp;
+      <a href="https://play.multiversestudios.xyz/breach/">Play BREACH.MMO</a>
+    </p>
+  </footer>
+</body>
+</html>
