@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BREACH.MMO v2.9.5 — Checkout Fixed — Multiverse Studios Devlog</title>
+  <meta name="description" content="BREACH.MMO v2.9.5 fixes the Analyst Pass checkout auth failure, Traefik routing, and config initialization.">
+  <meta property="og:title" content="BREACH.MMO v2.9.5 — Checkout Fixed">
+  <meta property="og:description" content="Post-playtest fixes: checkout auth token, Traefik API routing, and config self-healing. Three small changes, one of which unblocks the payment path.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://multiversestudios.xyz/devlog/release-breach-v2.9.5.html">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="BREACH.MMO v2.9.5 — Checkout Fixed">
+  <meta name="twitter:description" content="Analyst Pass checkout now sends the auth token correctly. Identified during batch playtest MUL-7225.">
+  <link rel="stylesheet" href="../styles.css">
+  <link rel="icon" type="image/svg+xml" href="../press-kit/logos/multiverse-studios-favicon.svg">
+  <style>
+    .devlog-body { max-width: 680px; margin: 0 auto; }
+    .version-badge {
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--signal);
+      border: 1px solid var(--signal);
+      display: inline-block;
+      padding: 0.2rem 0.6rem;
+      margin-bottom: var(--space-lg);
+      opacity: 0.85;
+    }
+    .fix-list { padding-left: 1.4rem; margin: 1.2rem 0; }
+    .fix-list li {
+      font-size: 1.02rem;
+      line-height: 1.75;
+      margin-bottom: 0.6rem;
+      color: var(--silver);
+    }
+    .fix-list li strong { color: var(--text); }
+    .callout {
+      border-left: 2px solid var(--signal);
+      padding: 0.75rem 1rem;
+      margin: 1.5rem 0;
+      background: rgba(0, 255, 65, 0.04);
+      font-family: var(--font-mono);
+      font-size: 0.9rem;
+      color: var(--silver);
+    }
+  </style>
+</head>
+<body>
+  <nav class="site-nav">
+    <a href="/" class="nav-home">Multiverse Studios</a>
+    <a href="/devlog.html">Devlog</a>
+    <a href="https://play.multiversestudios.xyz/breach/">Play BREACH.MMO</a>
+  </nav>
+
+  <main class="devlog-body page-content">
+    <span class="version-badge">BREACH.MMO v2.9.5 &mdash; 2026-06-19</span>
+
+    <h1>Checkout fixed.</h1>
+
+    <p>
+      Three fixes surfaced during the v2.9.2&ndash;2.9.4 batch playtest. All three were
+      already applied to production by the playtester; this release commits and documents them.
+    </p>
+
+    <ul class="fix-list">
+      <li>
+        <strong>Analyst Pass checkout auth token</strong> &mdash; The checkout
+        <code>fetch</code> in <code>SecurityPlusLandingPage</code> was missing the
+        <code>Authorization: Bearer</code> header. The server could not identify
+        the requesting user, causing auth failures at the checkout endpoint.
+      </li>
+      <li>
+        <strong>Traefik API routing</strong> &mdash; The client-serving Traefik router
+        was matching all <code>/breach/*</code> paths, including <code>/breach/api/*</code>.
+        API requests were being routed to the Nginx frontend container instead of the
+        API server, producing 405 and 502 errors on checkout. Added
+        <code>!PathPrefix(/breach/api)</code> exclusion to the client router rules.
+      </li>
+      <li>
+        <strong>Config self-healing</strong> &mdash; <code>getConfig()</code> now
+        auto-calls <code>loadConfig()</code> if invoked before initialization, rather
+        than throwing. Also added <code>JWT_PRIVATE_KEY_FILE</code> and
+        <code>JWT_PUBLIC_KEY_FILE</code> env var support for Docker secrets.
+      </li>
+    </ul>
+
+    <p>
+      Batch playtest result: analytics pipeline confirmed working end-to-end.
+      <code>trial.start</code> and <code>trial.mission.completed</code> events are
+      persisting to Postgres. The v2.10.0 direction gate opens June 24 with one
+      week of clean funnel data.
+    </p>
+
+    <p>
+      The game is pay-what-you-can and open source.
+      <a href="https://play.multiversestudios.xyz/breach/">play.multiversestudios.xyz/breach/</a>
+    </p>
+  </main>
+
+  <footer class="site-footer">
+    <p>
+      <a href="/devlog.html">&larr; Back to Devlog</a> &nbsp;|&nbsp;
+      <a href="https://play.multiversestudios.xyz/breach/">Play BREACH.MMO</a>
+    </p>
+  </footer>
+</body>
+</html>
