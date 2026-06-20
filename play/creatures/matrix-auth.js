@@ -437,7 +437,7 @@
         <div id="mx-auth-error"></div>
         <div class="mx-auth-field">
           <label for="mx-auth-username">Username</label>
-          <input type="text" id="mx-auth-username" autocomplete="username" placeholder="@user:matrix.multiversestudios.xyz">
+          <input type="text" id="mx-auth-username" autocomplete="username" placeholder="@user:matrix.multiversegames.ai">
         </div>
         <div class="mx-auth-field">
           <label for="mx-auth-password">Password</label>

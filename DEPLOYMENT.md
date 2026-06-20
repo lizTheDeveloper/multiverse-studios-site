@@ -1,6 +1,6 @@
 # Deployment Guide
 
-The marketing site at `multiversestudios.xyz` automatically deploys on every push to `main` via GitHub Actions.
+The marketing site at `multiversestudios.xyz` (also `multiversegames.ai`) automatically deploys on every push to `main` via GitHub Actions. Both domains are mirrored via Traefik; the `.ai` domain was added because some ISPs block `.xyz` via SNI inspection.
 
 ## How it works
 
@@ -68,7 +68,7 @@ ssh root@<HETZNER_HOST> 'docker ps | grep marketing-site'
 
 ### Health check fails
 
-The workflow checks for HTTP 200 at `https://multiversestudios.xyz/`. If the site is temporarily down during restart, increase the `sleep` duration in the workflow.
+The workflow checks for HTTP 200 at `https://multiversestudios.xyz/` (also accessible at `https://multiversegames.ai/`). If the site is temporarily down during restart, increase the `sleep` duration in the workflow.
 
 ### SSH connection fails
 

@@ -10,7 +10,7 @@ services:
       retries: 3
       start_period: 15s
     environment:
-      - MATRIX_HOMESERVER=https://matrix.multiversestudios.xyz
+      - MATRIX_HOMESERVER=https://matrix.multiversegames.ai
       - MATRIX_ROOM_ID=!pQqsRZBEIHWLodysbV:matrix.multiversestudios.xyz
       - MATRIX_ACCESS_TOKEN=${MATRIX_ACCESS_TOKEN}
       - ALLOWED_ORIGINS=https://multiversestudios.xyz,http://localhost:3000,http://localhost:5173
