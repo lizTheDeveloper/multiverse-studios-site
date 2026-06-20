@@ -23,9 +23,10 @@ if (!process.env.STRIPE_SECRET_KEY) {
 const PORT = parseInt(process.env.PORT ?? '4000', 10);
 const ALLOWED_ORIGIN = process.env.ALLOWED_ORIGIN ?? 'https://multiversestudios.xyz';
 
-// Regex matching any https subdomain (or apex) of multiversestudios.xyz, plus localhost.
+// Regex matching any https subdomain (or apex) of multiversestudios.xyz or
+// multiversegames.ai (the dual-domain mirror), plus localhost.
 const MULTIVERSESTUDIOS_ORIGIN_RE =
-  /^https:\/\/([a-z0-9-]+\.)?multiversestudios\.xyz(:\d+)?$|^https?:\/\/localhost(:\d+)?$/;
+  /^https:\/\/([a-z0-9-]+\.)?multiversestudios\.xyz(:\d+)?$|^https:\/\/([a-z0-9-]+\.)?multiversegames\.ai(:\d+)?$|^https?:\/\/localhost(:\d+)?$/;
 
 // Characters that would break Stripe's search query syntax.
 const STRIPE_INJECTION_RE = /['"\\]/g;

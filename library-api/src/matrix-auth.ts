@@ -6,7 +6,7 @@ import rateLimit from 'express-rate-limit';
 // Config
 // ---------------------------------------------------------------------------
 
-const HOMESERVER = process.env.MATRIX_HOMESERVER ?? 'https://matrix.multiversestudios.xyz';
+const HOMESERVER = process.env.MATRIX_HOMESERVER ?? 'https://matrix.multiversegames.ai';
 const COOKIE_NAME = 'mx_session';
 const SESSION_TTL_MS = 24 * 60 * 60 * 1000; // 24 hours
 
@@ -77,17 +77,27 @@ const COOKIE_OPTS = {
   httpOnly: true,
   secure: true,
   sameSite: 'lax' as const,
-  domain: '.multiversestudios.xyz',
   path: '/',
   maxAge: SESSION_TTL_MS,
 };
 
-function setCookie(res: Response, sessionId: string): void {
-  res.cookie(COOKIE_NAME, sessionId, COOKIE_OPTS);
+// A cookie's Domain must be a suffix of the host that served the response
+// (RFC 6265), so one cookie cannot span both .multiversestudios.xyz and
+// .multiversegames.ai. Derive the registrable domain from the request host so
+// the session is set on whichever domain the user actually arrived through.
+function cookieDomain(req: Request): string {
+  const host = (req.hostname || '').toLowerCase();
+  return host === 'multiversegames.ai' || host.endsWith('.multiversegames.ai')
+    ? '.multiversegames.ai'
+    : '.multiversestudios.xyz';
 }
 
-function clearCookie(res: Response): void {
-  res.clearCookie(COOKIE_NAME, { ...COOKIE_OPTS, maxAge: undefined });
+function setCookie(res: Response, sessionId: string, req: Request): void {
+  res.cookie(COOKIE_NAME, sessionId, { ...COOKIE_OPTS, domain: cookieDomain(req) });
+}
+
+function clearCookie(res: Response, req: Request): void {
+  res.clearCookie(COOKIE_NAME, { ...COOKIE_OPTS, domain: cookieDomain(req), maxAge: undefined });
 }
 
 // ---------------------------------------------------------------------------
@@ -214,7 +224,7 @@ router.post('/login', async (req: Request, res: Response) => {
   }
 
   const sessionId = createSession(d.access_token as string, d.user_id as string, (d.device_id as string) ?? '');
-  setCookie(res, sessionId);
+  setCookie(res, sessionId, req);
   res.json({ user_id: d.user_id, device_id: d.device_id });
 });
 
@@ -269,7 +279,7 @@ router.post('/register', async (req: Request, res: Response) => {
   }
 
   const sessionId = createSession(accessToken, userId, deviceId);
-  setCookie(res, sessionId);
+  setCookie(res, sessionId, req);
   res.json({ user_id: userId, device_id: deviceId });
 });
 
@@ -289,7 +299,7 @@ router.get('/whoami', async (req: Request, res: Response) => {
 router.post('/logout', async (req: Request, res: Response) => {
   const token = resolveToken(req);
 
-  clearCookie(res);
+  clearCookie(res, req);
 
   if (token) {
     await matrixRequest('/_matrix/client/v3/logout', 'POST', token, {}).catch(() => {/* best-effort */});

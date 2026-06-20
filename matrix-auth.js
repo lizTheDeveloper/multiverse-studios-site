@@ -13,16 +13,13 @@
     return;
   }
 
-  // Match the homeserver endpoint to the domain the page was served from; both
-  // front the same Synapse. (See AUTH_PROXY note below.)
-  const MATRIX_DOMAIN = /(^|\.)multiversegames\.ai$/.test(location.hostname)
-    ? 'matrix.multiversegames.ai'
-    : 'matrix.multiversestudios.xyz';
+  // Match the homeserver + auth-proxy endpoints to the domain the page was
+  // served from; both domains front the same Synapse and the same library-api
+  // auth proxy, so the user stays on the domain family they arrived through.
+  const ON_AI = /(^|\.)multiversegames\.ai$/.test(location.hostname);
+  const MATRIX_DOMAIN = ON_AI ? 'matrix.multiversegames.ai' : 'matrix.multiversestudios.xyz';
   const HOMESERVER = 'https://' + MATRIX_DOMAIN;
-  // NOTE: login still routes through the .xyz auth proxy — it is not yet mirrored
-  // on api.multiversegames.ai, so we cannot domain-follow this endpoint without
-  // a 404. Switch to a derived host once api.multiversegames.ai/auth/matrix exists.
-  const AUTH_PROXY = 'https://api.multiversestudios.xyz/auth/matrix';
+  const AUTH_PROXY = 'https://' + (ON_AI ? 'api.multiversegames.ai' : 'api.multiversestudios.xyz') + '/auth/matrix';
 
   // ── Utilities ──────────────────────────────────────────────
 
