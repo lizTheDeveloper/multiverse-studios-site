@@ -1,6 +1,6 @@
 /* ============================================
    MULTIVERSE STUDIOS — Matrix Authentication
-   Matrix homeserver: matrix.multiversestudios.xyz
+   Matrix homeserver: matrix.multiversegames.ai
    ============================================ */
 
 (function initMatrixAuth() {
@@ -13,7 +13,15 @@
     return;
   }
 
-  const HOMESERVER = 'https://matrix.multiversestudios.xyz';
+  // Match the homeserver endpoint to the domain the page was served from; both
+  // front the same Synapse. (See AUTH_PROXY note below.)
+  const MATRIX_DOMAIN = /(^|\.)multiversegames\.ai$/.test(location.hostname)
+    ? 'matrix.multiversegames.ai'
+    : 'matrix.multiversestudios.xyz';
+  const HOMESERVER = 'https://' + MATRIX_DOMAIN;
+  // NOTE: login still routes through the .xyz auth proxy — it is not yet mirrored
+  // on api.multiversegames.ai, so we cannot domain-follow this endpoint without
+  // a 404. Switch to a derived host once api.multiversegames.ai/auth/matrix exists.
   const AUTH_PROXY = 'https://api.multiversestudios.xyz/auth/matrix';
 
   // ── Utilities ──────────────────────────────────────────────

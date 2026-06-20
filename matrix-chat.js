@@ -1,10 +1,17 @@
 /* ============================================
    MULTIVERSE STUDIOS — Community Chat Widget
-   Matrix homeserver: matrix.multiversestudios.xyz
+   Matrix homeserver: derived from page domain
+   (.ai → matrix.multiversegames.ai, else .xyz)
    ============================================ */
 
 (function initMatrixChat() {
-  const HOMESERVER = 'https://matrix.multiversestudios.xyz';
+  // Match the homeserver endpoint to the domain the page was served from; both
+  // front the same Synapse. Room aliases stay on the canonical server_name
+  // (matrix.multiversestudios.xyz) and resolve fine via either endpoint.
+  const MATRIX_DOMAIN = /(^|\.)multiversegames\.ai$/.test(location.hostname)
+    ? 'matrix.multiversegames.ai'
+    : 'matrix.multiversestudios.xyz';
+  const HOMESERVER = 'https://' + MATRIX_DOMAIN;
   const ELEMENT_BASE = 'https://app.element.io/#/room/';
 
   // Page-specific room routing — set window.MATRIX_CHAT_PAGE before this script loads
@@ -257,7 +264,7 @@
       <div id="mx-chat-header-icon">◈</div>
       <div>
         <div id="mx-chat-header-title">Community</div>
-        <div id="mx-chat-header-sub">matrix.multiversestudios.xyz</div>
+        <div id="mx-chat-header-sub">matrix.multiversegames.ai</div>
       </div>
     </div>
     <div id="mx-chat-scroll">

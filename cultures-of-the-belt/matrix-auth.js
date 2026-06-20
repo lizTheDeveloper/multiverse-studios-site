@@ -1,6 +1,7 @@
 /* ============================================
    MULTIVERSE STUDIOS — Matrix Authentication
-   Matrix homeserver: matrix.multiversestudios.xyz
+   Matrix homeserver: derived from page domain
+   (.ai → matrix.multiversegames.ai, else .xyz)
    ============================================ */
 
 (function initMatrixAuth() {
@@ -13,9 +14,26 @@
     return;
   }
 
-  const HOMESERVER = 'https://matrix.multiversestudios.xyz';
+  // Derive the Matrix domain from the page's own hostname so the auth UI and
+  // API endpoint match whichever domain the user arrived through. Both domains
+  // front the same Synapse homeserver, so accounts and sessions are identical
+  // either way — "wherever you land, you stay".
+  const MATRIX_DOMAIN = /(^|\.)multiversegames\.ai$/.test(location.hostname)
+    ? 'matrix.multiversegames.ai'
+    : 'matrix.multiversestudios.xyz';
+  const HOMESERVER = 'https://' + MATRIX_DOMAIN;
 
   // ── Utilities ──────────────────────────────────────────────
+
+  // Accept a bare localpart or a full "@user:domain" MXID for either of our
+  // domains. The homeserver is shared, so the localpart is the canonical login.
+  function normalizeLocalpart(raw) {
+    var s = (raw || '').trim();
+    if (s.charAt(0) === '@') s = s.slice(1);
+    var colon = s.indexOf(':');
+    if (colon !== -1) s = s.slice(0, colon);
+    return s;
+  }
 
   function escapeHtml(str) {
     const div = document.createElement('div');
@@ -621,7 +639,7 @@
         <div id="mx-auth-error"></div>
         <div class="mx-auth-field">
           <label for="mx-auth-username">Username</label>
-          <input type="text" id="mx-auth-username" autocomplete="username" placeholder="@user:matrix.multiversestudios.xyz">
+          <input type="text" id="mx-auth-username" autocomplete="username" placeholder="@user:${MATRIX_DOMAIN}">
         </div>
         <div class="mx-auth-field">
           <label for="mx-auth-password">Password</label>
@@ -715,7 +733,7 @@
   // Submit handler
   async function handleSubmit() {
     elError.classList.remove('visible');
-    var username = elUsername.value.trim();
+    var username = normalizeLocalpart(elUsername.value);
     var password = elPassword.value;
 
     if (!username || !password) {
