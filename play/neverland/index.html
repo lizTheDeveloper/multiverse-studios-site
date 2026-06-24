@@ -1721,7 +1721,7 @@
   </svg>
 </div>
 
-<script defer src="/umami-link-fix.js?v=1"></script>
+<script defer src="/umami-link-fix.js?v=e40c84db3b"></script>
 <script defer src="https://analytics.multiversestudios.xyz/script.js" data-website-id="38d680a7-28d1-42fd-9fd5-a66702675b88"></script>
 <!-- PWYC Tier Picker Modal -->
 <div id="pwyc-overlay" role="dialog" aria-modal="true" aria-label="Support this story — pay what you can">
@@ -1864,6 +1864,20 @@
     text-align: center; line-height: 1.6;
     font-style: italic;
   }
+  #pwyc-email-row { margin-bottom: 1rem; }
+  #pwyc-email-label {
+    display: block; font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 0.8rem; color: var(--ink-faint); margin-bottom: 0.3rem;
+  }
+  #pwyc-email-input {
+    width: 100%; box-sizing: border-box;
+    background: var(--ink-deep); border: 1px solid var(--ink-faint);
+    border-radius: 4px; padding: 0.5rem 0.7rem;
+    color: var(--paper); font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 0.9rem; outline: none; transition: border-color 0.15s;
+  }
+  #pwyc-email-input:focus { border-color: var(--ink-faint); }
+  #pwyc-email-input::placeholder { color: var(--ink-faint); opacity: 0.5; }
 </style>
 <script>
 (function () {
@@ -1902,6 +1916,10 @@
       '  <div id="pwyc-custom-row">' +
       '    <span id="pwyc-custom-label">$</span>' +
       '    <input id="pwyc-custom-input" type="number" min="1" max="9999" placeholder="Enter amount" aria-label="Custom amount in dollars">' +
+      '  </div>' +
+      '  <div id="pwyc-email-row">' +
+      '    <label id="pwyc-email-label" for="pwyc-email-input">Where should we send your receipt? (optional)</label>' +
+      '    <input id="pwyc-email-input" type="email" autocomplete="email" placeholder="you@example.com" aria-label="Email address for receipt">' +
       '  </div>' +
       '  <button id="pwyc-cta">Continue</button>' +
       '  <div id="pwyc-note">All stories are free. Payments support ongoing creation.</div>' +
@@ -1997,13 +2015,19 @@
       cta.style.background = '#cc4444';
       setTimeout(function () { cta.disabled = false; cta.style.opacity = ''; cta.textContent = originalText; updateCTA(); }, 2000);
     };
-    xhr.send(JSON.stringify({ game: 'nel', amount: cents }));
+    var nelEmailInput = overlay.querySelector('#pwyc-email-input');
+    var nelEmail = nelEmailInput ? nelEmailInput.value.trim() : '';
+    var nelPayload = { game: 'nel', amount: cents };
+    if (nelEmail) nelPayload.customer_email = nelEmail;
+    xhr.send(JSON.stringify(nelPayload));
   }
 
   var built = false;
   window.openPWYCModal = function () {
     if (!built) { buildModal(); built = true; }
     else { selectTier(1); }
+    var nelEmailEl = overlay.querySelector('#pwyc-email-input');
+    if (nelEmailEl) nelEmailEl.value = '';
     overlay.classList.add('pwyc-open');
     document.body.style.overflow = 'hidden';
   };

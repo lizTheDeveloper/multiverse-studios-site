@@ -26,7 +26,7 @@
     });
   }
 </script>
-<script defer src="/umami-link-fix.js?v=1"></script>
+<script defer src="/umami-link-fix.js?v=e40c84db3b"></script>
 <script defer src="https://analytics.multiversestudios.xyz/script.js" data-website-id="38d680a7-28d1-42fd-9fd5-a66702675b88"></script>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=IM+Fell+English+SC&family=Special+Elite&display=swap');
@@ -2688,6 +2688,20 @@ const eighthChild = (function() {
     text-align: center; line-height: 1.6;
     font-style: italic;
   }
+  #pwyc-email-row { margin-bottom: 1rem; }
+  #pwyc-email-label {
+    display: block; font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 0.8rem; color: rgba(56, 37, 26, 0.58); margin-bottom: 0.3rem;
+  }
+  #pwyc-email-input {
+    width: 100%; box-sizing: border-box;
+    background: rgba(56, 37, 26, 0.12); border: 1px solid rgba(56, 37, 26, 0.3);
+    border-radius: 4px; padding: 0.5rem 0.7rem;
+    color: #f5ead8; font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 0.9rem; outline: none; transition: border-color 0.15s;
+  }
+  #pwyc-email-input:focus { border-color: rgba(56, 37, 26, 0.5); }
+  #pwyc-email-input::placeholder { color: rgba(56, 37, 26, 0.35); }
 </style>
 <script>
 (function () {
@@ -2726,6 +2740,10 @@ const eighthChild = (function() {
       '  <div id="pwyc-custom-row">' +
       '    <span id="pwyc-custom-label">$</span>' +
       '    <input id="pwyc-custom-input" type="number" min="1" max="9999" placeholder="Enter amount" aria-label="Custom amount in dollars">' +
+      '  </div>' +
+      '  <div id="pwyc-email-row">' +
+      '    <label id="pwyc-email-label" for="pwyc-email-input">Where should we send your receipt? (optional)</label>' +
+      '    <input id="pwyc-email-input" type="email" autocomplete="email" placeholder="you@example.com" aria-label="Email address for receipt">' +
       '  </div>' +
       '  <button id="pwyc-cta">Continue</button>' +
       '  <div id="pwyc-note">All stories are free. Payments support ongoing creation.</div>' +
@@ -2821,13 +2839,19 @@ const eighthChild = (function() {
       cta.style.background = '#cc4444';
       setTimeout(function () { cta.disabled = false; cta.style.opacity = ''; cta.textContent = originalText; updateCTA(); }, 2000);
     };
-    xhr.send(JSON.stringify({ game: 'nel', amount: cents }));
+    var wendyEmailInput = overlay.querySelector('#pwyc-email-input');
+    var wendyEmail = wendyEmailInput ? wendyEmailInput.value.trim() : '';
+    var wendyPayload = { game: 'nel', amount: cents };
+    if (wendyEmail) wendyPayload.customer_email = wendyEmail;
+    xhr.send(JSON.stringify(wendyPayload));
   }
 
   var built = false;
   window.openPWYCModal = function () {
     if (!built) { buildModal(); built = true; }
     else { selectTier(1); }
+    var wendyEmailEl = overlay.querySelector('#pwyc-email-input');
+    if (wendyEmailEl) wendyEmailEl.value = '';
     overlay.classList.add('pwyc-open');
     document.body.style.overflow = 'hidden';
   };

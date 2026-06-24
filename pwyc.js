@@ -248,6 +248,28 @@
     '  text-align: center; margin-bottom: 1rem;',
     '  font-style: italic;',
     '}',
+    '#pwyc-email-row {',
+    '  margin-bottom: 1.25rem;',
+    '}',
+    '#pwyc-email-label {',
+    '  display: block;',
+    '  font-family: var(--font-mono, "JetBrains Mono", monospace);',
+    '  font-size: 0.75rem; color: #8a8694;',
+    '  margin-bottom: 0.35rem;',
+    '}',
+    '#pwyc-email-input {',
+    '  width: 100%; box-sizing: border-box;',
+    '  background: rgba(255,255,255,0.04);',
+    '  border: 1px solid rgba(255,255,255,0.12);',
+    '  border-radius: 6px;',
+    '  padding: 0.6rem 0.8rem;',
+    '  color: #e8e6f0;',
+    '  font-family: var(--font-mono, "JetBrains Mono", monospace);',
+    '  font-size: 0.85rem;',
+    '  outline: none; transition: border-color 0.15s;',
+    '}',
+    '#pwyc-email-input:focus { border-color: rgba(255,255,255,0.3); }',
+    '#pwyc-email-input::placeholder { color: #4a4656; }',
     '#pwyc-checkout-container {',
     '  min-height: 300px;',
     '  margin-top: 1rem;',
@@ -331,6 +353,11 @@
       '      <span id="pwyc-custom-label">$</span>',
       '      <input id="pwyc-custom-input" type="number" min="1" max="9999"',
       '        placeholder="Enter amount" aria-label="Custom amount in dollars">',
+      '    </div>',
+      '    <div id="pwyc-email-row">',
+      '      <label id="pwyc-email-label" for="pwyc-email-input">Where should we send your receipt? (optional)</label>',
+      '      <input id="pwyc-email-input" type="email" autocomplete="email"',
+      '        placeholder="you@example.com" aria-label="Email address for receipt">',
       '    </div>',
       '    <button id="pwyc-cta">Support</button>',
       '    <a id="pwyc-free-link" role="link">or play free — no account needed →</a>',
@@ -523,7 +550,11 @@
     cta.style.opacity = '0.6';
 
     var gameKey = currentGame.gameKey;
-    var requestBody = JSON.stringify({ game: gameKey, amount: cents, source_page: window.location.href });
+    var emailInput = overlay.querySelector('#pwyc-email-input');
+    var customerEmail = emailInput ? emailInput.value.trim() : '';
+    var payload = { game: gameKey, amount: cents, source_page: window.location.href };
+    if (customerEmail) payload.customer_email = customerEmail;
+    var requestBody = JSON.stringify(payload);
 
     fetch(CHECKOUT_EMBEDDED_API_URL, {
       method: 'POST',
@@ -615,6 +646,10 @@
     showTierPanel();
     var defaultIdx = TIERS.findIndex(function (t) { return t.isDefault; });
     selectTier(defaultIdx);
+
+    // Clear email from previous session
+    var emailInput = overlay.querySelector('#pwyc-email-input');
+    if (emailInput) emailInput.value = '';
 
     // Show
     overlay.classList.add('pwyc-open');
