@@ -43,6 +43,7 @@ sourceCheckoutRouter.post('/checkout', async (req: Request, res: Response) => {
       game,
       tier,
       source: 'source_checkout',
+      traffic_type: 'real_user',
       matrix_user_id: session.userId,
       gitea_username: typeof giteaUsername === 'string' ? giteaUsername.slice(0, 200) : '',
     };
