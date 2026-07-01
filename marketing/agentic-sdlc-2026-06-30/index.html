@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Agentic SDLC — Seven Days, Two Reorganizations</title>
+<link rel="icon" href="data:,">
+
+<!-- Fonts vendored locally — no render-time network fetch. Integrity: fonts/SHA256SUMS -->
+<style>
+@font-face{font-family:'Fraunces';font-style:normal;font-weight:600;font-display:swap;src:url('fonts/fraunces-600-normal-latin.woff2') format('woff2');}
+@font-face{font-family:'Fraunces';font-style:italic;font-weight:600;font-display:swap;src:url('fonts/fraunces-600-italic-latin.woff2') format('woff2');}
+@font-face{font-family:'Newsreader';font-style:normal;font-weight:300 600;font-display:swap;src:url('fonts/newsreader-variable-normal-latin.woff2') format('woff2');}
+@font-face{font-family:'Newsreader';font-style:italic;font-weight:300;font-display:swap;src:url('fonts/newsreader-300-italic-latin.woff2') format('woff2');}
+@font-face{font-family:'JetBrains Mono';font-style:normal;font-weight:400 700;font-display:swap;src:url('fonts/jetbrainsmono-variable-normal-latin.woff2') format('woff2');}
+:root{
+  --ink:#0c0e0d;
+  --ink-2:#131614;
+  --paper:#ece4d6;
+  --paper-dim:#a8a193;
+  --amber:#f0a93a;
+  --amber-deep:#c97f1d;
+  --pass:#6fc08a;
+  --fail:#e8604a;
+  --line:rgba(236,228,214,.13);
+  --mono:'JetBrains Mono',ui-monospace,monospace;
+  --serif:'Fraunces',Georgia,serif;
+  --body:'Newsreader',Georgia,serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{height:100%}
+body{
+  background:var(--ink);
+  color:var(--paper);
+  font-family:var(--body);
+  overflow:hidden;
+}
+/* grain + grid atmosphere */
+body::before{
+  content:"";position:fixed;inset:0;pointer-events:none;z-index:9;
+  background-image:
+    linear-gradient(var(--line) 1px,transparent 1px),
+    linear-gradient(90deg,var(--line) 1px,transparent 1px);
+  background-size:64px 64px;
+  -webkit-mask-image:radial-gradient(ellipse 90% 80% at 50% 50%,#000 30%,transparent 95%);
+          mask-image:radial-gradient(ellipse 90% 80% at 50% 50%,#000 30%,transparent 95%);
+  opacity:.5;
+}
+body::after{
+  content:"";position:fixed;inset:0;pointer-events:none;z-index:10;opacity:.05;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+.deck{position:relative;height:100vh;width:100vw}
+.slide{
+  position:absolute;inset:0;
+  display:none;
+  flex-direction:column;
+  justify-content:center;
+  padding:7vh 9vw;
+  opacity:0;
+  transition:opacity .5s ease;
+}
+.slide.active{display:flex;opacity:1;animation:rise .6s cubic-bezier(.2,.7,.2,1) both}
+@keyframes rise{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+
+.kicker{
+  font-family:var(--mono);font-size:.72rem;letter-spacing:.32em;text-transform:uppercase;
+  color:var(--amber);margin-bottom:1.6rem;display:flex;align-items:center;gap:.8rem;
+}
+.kicker::before{content:"";width:34px;height:1px;background:var(--amber);display:inline-block}
+.kicker.pass{color:var(--pass)}.kicker.pass::before{background:var(--pass)}
+.kicker.fail{color:var(--fail)}.kicker.fail::before{background:var(--fail)}
+
+h1{font-family:var(--serif);font-weight:600;font-size:clamp(2.6rem,6.4vw,5.4rem);line-height:.98;letter-spacing:-.02em}
+h2{font-family:var(--serif);font-weight:550;font-size:clamp(2rem,4.6vw,3.5rem);line-height:1.02;letter-spacing:-.015em;max-width:18ch}
+h2 em{font-style:italic;color:var(--amber)}
+.slide.pass h2 em{color:var(--pass)}
+.slide.fail h2 em{color:var(--fail)}
+
+.lede{font-size:clamp(1.05rem,1.7vw,1.5rem);line-height:1.45;color:var(--paper);max-width:46ch;margin-top:1.6rem;font-weight:300}
+.lede strong{font-weight:500;color:var(--amber)}
+.slide.pass .lede strong{color:var(--pass)}
+.slide.fail .lede strong{color:var(--fail)}
+
+ul.pts{list-style:none;margin-top:1.8rem;max-width:54ch}
+ul.pts li{
+  position:relative;padding-left:1.7rem;margin-bottom:1rem;
+  font-size:clamp(1rem,1.5vw,1.28rem);line-height:1.4;font-weight:300;color:var(--paper);
+}
+ul.pts li::before{
+  content:"";position:absolute;left:0;top:.62em;width:8px;height:8px;
+  background:var(--amber);transform:rotate(45deg);
+}
+.slide.pass ul.pts li::before{background:var(--pass)}
+.slide.fail ul.pts li::before{background:var(--fail)}
+ul.pts li b{font-weight:600;color:var(--paper)}
+
+/* evidence log line */
+.evidence{
+  margin-top:2rem;font-family:var(--mono);font-size:.82rem;line-height:1.6;
+  color:var(--paper-dim);border-left:2px solid var(--line);padding:.5rem 0 .5rem 1.1rem;max-width:62ch;
+}
+.evidence span{color:var(--amber)}
+.slide.pass .evidence span{color:var(--pass)}
+.slide.fail .evidence span{color:var(--fail)}
+
+/* title slide */
+.title-meta{font-family:var(--mono);font-size:.78rem;letter-spacing:.18em;color:var(--paper-dim);margin-top:2.4rem;text-transform:uppercase}
+.title-rule{width:120px;height:2px;background:var(--amber);margin:2rem 0}
+
+/* operating loop diagram */
+.loop{display:flex;gap:0;margin-top:2.6rem;flex-wrap:wrap}
+.loop-step{
+  flex:1;min-width:180px;border:1px solid var(--line);border-right:none;padding:1.4rem 1.3rem;position:relative;
+}
+.loop-step:last-child{border-right:1px solid var(--line)}
+.loop-step .n{font-family:var(--mono);font-size:.72rem;color:var(--amber);letter-spacing:.2em}
+.loop-step h4{font-family:var(--serif);font-weight:600;font-size:1.35rem;margin:.5rem 0 .4rem;letter-spacing:-.01em}
+.loop-step p{font-size:.95rem;font-weight:300;color:var(--paper-dim);line-height:1.35}
+.loop-step::after{content:"→";position:absolute;right:-.7em;top:50%;transform:translateY(-50%);color:var(--amber);font-family:var(--mono);z-index:2;background:var(--ink);padding:0 .15em}
+.loop-step:last-child::after{display:none}
+
+/* stat row */
+.stats{display:flex;gap:3.5vw;margin-top:2.6rem;flex-wrap:wrap}
+.stat .num{font-family:var(--serif);font-weight:600;font-size:clamp(2.4rem,5vw,4rem);line-height:1;color:var(--amber)}
+.stat .lbl{font-family:var(--mono);font-size:.74rem;letter-spacing:.12em;color:var(--paper-dim);text-transform:uppercase;margin-top:.6rem;max-width:16ch}
+
+/* section divider */
+.slide.divider{justify-content:center;align-items:flex-start}
+.divider .big{font-family:var(--serif);font-weight:600;font-size:clamp(3rem,9vw,7rem);line-height:.92;letter-spacing:-.03em}
+.divider .sub{font-family:var(--mono);font-size:.85rem;letter-spacing:.2em;text-transform:uppercase;color:var(--paper-dim);margin-top:1.6rem;max-width:50ch;line-height:1.7}
+.divider.pass .big{color:var(--pass)}
+.divider.fail .big{color:var(--fail)}
+.divider.warn .big{color:var(--amber)}
+/* alert banner for threat slides */
+.alert{
+  margin-top:1.4rem;font-family:var(--mono);font-size:.74rem;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--ink);background:var(--amber);display:inline-block;padding:.5rem .9rem;font-weight:700;
+}
+.slide.fail .alert{background:var(--fail);color:#1a0a08}
+.slide.pass .alert{background:var(--pass);color:#0a1a10}
+.divider .idx{font-family:var(--mono);font-size:.8rem;color:var(--paper-dim);margin-bottom:2rem;letter-spacing:.2em}
+
+/* lessons grid */
+.lessons{display:grid;grid-template-columns:repeat(2,1fr);gap:1.3rem 3rem;margin-top:2rem;max-width:90ch}
+.lesson{display:flex;gap:1rem;align-items:baseline}
+.lesson .ln{font-family:var(--mono);color:var(--amber);font-size:1.1rem;font-weight:700}
+.lesson p{font-size:clamp(.98rem,1.4vw,1.2rem);font-weight:300;line-height:1.35}
+.lesson p b{font-weight:600;color:var(--paper)}
+
+/* sources */
+.srclist{list-style:none;margin-top:1.6rem;max-width:80ch;columns:1}
+.srclist li{font-family:var(--mono);font-size:.82rem;line-height:1.5;margin-bottom:.85rem;color:var(--paper-dim)}
+.srclist li b{color:var(--paper);font-weight:500}
+.srclist a{color:var(--amber);text-decoration:none;border-bottom:1px solid rgba(240,169,58,.35)}
+.srclist a:hover{border-color:var(--amber)}
+.twocol{display:grid;grid-template-columns:1fr 1fr;gap:1rem 3rem;margin-top:1.6rem;max-width:80ch}
+.twocol h5{font-family:var(--mono);font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:var(--amber);margin-bottom:.6rem}
+.slide.fail .twocol h5{color:var(--fail)}
+.twocol ul{list-style:none}
+.twocol li{position:relative;padding-left:1.1rem;margin-bottom:.6rem;font-size:1rem;font-weight:300;line-height:1.35}
+.twocol li::before{content:"·";position:absolute;left:.2rem;color:var(--amber)}
+.slide.fail .twocol li::before{color:var(--fail)}
+@media(max-width:760px){.twocol{grid-template-columns:1fr}}
+
+/* chrome */
+.progress{position:fixed;top:0;left:0;height:3px;background:var(--amber);z-index:20;transition:width .4s ease}
+.counter{position:fixed;bottom:2.4vh;right:3vw;font-family:var(--mono);font-size:.75rem;color:var(--paper-dim);z-index:20;letter-spacing:.1em}
+.counter b{color:var(--paper)}
+.brand{position:fixed;bottom:2.4vh;left:3vw;font-family:var(--mono);font-size:.7rem;color:var(--paper-dim);z-index:20;letter-spacing:.18em;text-transform:uppercase}
+.hint{position:fixed;bottom:2.4vh;left:50%;transform:translateX(-50%);font-family:var(--mono);font-size:.68rem;color:var(--paper-dim);z-index:20;letter-spacing:.1em;opacity:.7}
+
+@media(max-width:760px){
+  .slide{padding:6vh 7vw}
+  .loop-step{border-right:1px solid var(--line);border-bottom:none}
+  .loop-step::after{display:none}
+  .lessons{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+<div class="progress" id="progress"></div>
+<div class="deck" id="deck">
+
+  <!-- 1 TITLE -->
+  <section class="slide active">
+    <div class="kicker">Agentic SDLC · June 30 Update</div>
+    <h1>Seven days.<br>Two reorganizations.</h1>
+    <div class="title-rule"></div>
+    <p class="lede">The June 20 roundup described a loop: <strong>spec with Claude → file the epic in Paperclip → the fleet executes → the board verifies.</strong> Within a week that loop restructured twice — once to cut cost, once to change the model of work entirely. This is what happened, and what an "autonomous" evolutionary pipeline was actually doing the whole time.</p>
+    <div class="title-meta">Multiverse Studios · June 23–30, 2026 · 29 agents paused · 1 production bug found and fixed live during this retrospective</div>
+  </section>
+
+  <!-- 2 STATS -->
+  <section class="slide">
+    <div class="kicker">Seven Days, By The Numbers</div>
+    <h2>The instrumented middle of a <em>fast</em> week</h2>
+    <div class="stats">
+      <div class="stat"><div class="num">29</div><div class="lbl">agents paused across 3 companies, 6/30</div></div>
+      <div class="stat"><div class="num">36</div><div class="lbl">production containers, one Hetzner box</div></div>
+      <div class="stat"><div class="num">21k+</div><div class="lbl">failed DB connections, evolutionary daemon</div></div>
+      <div class="stat"><div class="num">0</div><div class="lbl">genomes ever promoted before today's fix</div></div>
+      <div class="stat"><div class="num">5/7</div><div class="lbl">game repos with a working preview build</div></div>
+    </div>
+    <p class="evidence">// the headline number this week isn't a feature shipped — it's an operating model changing twice, and a flagship system quietly not running.</p>
+  </section>
+
+  <!-- 3 DIVIDER P1 -->
+  <section class="slide divider pass">
+    <div class="idx">PART ONE</div>
+    <div class="big">The fleet<br>got cheaper</div>
+    <div class="sub">Six weeks in, the question every agentic shop eventually hits: what happens to the loop when the reasoning-heavy tier gets expensive? The answer arrived as a billing split on June 15 and reorganized the org within days.</div>
+  </section>
+
+  <!-- 4 -->
+  <section class="slide pass">
+    <div class="kicker pass">Restructure · 01</div>
+    <h2>PMs became <em>Qwen coders</em></h2>
+    <ul class="pts">
+      <li>Anthropic's June 15 Agent-SDK billing split (metered $200/mo pool vs. flat Max subscription) made keeping five PM agents on Sonnet/Opus reasoning tiers the expensive path.</li>
+      <li>Ex-PMs <b>Avrana, Equinox, Bob, Cipher, Ripley</b> reassigned to junior tier — <b>qwen/qwen3-coder</b>. <b>Tycho</b> and <b>Boltzmann</b> promoted to senior tier — <b>qwen/qwen3.7-max</b>.</li>
+      <li>Framed as commoditizing implementation, not judgment: "the expensive reasoning happens in interactive Claude Code — the fleet is the queue drain."</li>
+    </ul>
+    <p class="evidence">// docs/superpowers/specs/2026-06-10-sonnet-tier-qwen-migration-design.md · <span>ceo/agents/shared/shipping-to-implementers.md</span></p>
+  </section>
+
+  <!-- 5 -->
+  <section class="slide pass">
+    <div class="kicker pass">Restructure · 02</div>
+    <h2>A <em>hierarchy of control</em>, not a flat fleet</h2>
+    <ul class="pts">
+      <li>Spec authority narrowed to one seat: <b>Liz + Claude Code</b>, interactive, off-swarm. The fleet no longer writes specs, only implements them.</li>
+      <li>Implementer fleet is <b>PR-only</b> — no push rights to protected branches, full stop.</li>
+      <li>Verification stacked three ways: <b>CI is a hard gate</b>, Gemini's playtest read is <b>advisory only</b> (never blocks), a human merges.</li>
+      <li>The senior ML tier (<b>Boltzmann</b>) is disabled entirely — ML pull requests need a Modal validation gate that doesn't exist yet; you can't eyeball a neural-architecture change's correctness from a diff.</li>
+    </ul>
+    <p class="evidence">// the same self-test → peer review → board validation spine from the first deck, now enforced by <span>permissions instead of policy.</span></p>
+  </section>
+
+  <!-- 6 DIVIDER P2 -->
+  <section class="slide divider warn">
+    <div class="idx">PART TWO</div>
+    <div class="big">Then the<br>fleet paused</div>
+    <div class="sub">Seven days after the Qwen migration finished landing, the operating model changed again — not cost-driven this time. A decision to stop running an always-on agent fleet at all.</div>
+  </section>
+
+  <!-- 7 -->
+  <section class="slide fail">
+    <div class="kicker fail">June 30 · The Pause</div>
+    <h2><em>29 agents</em>, paused, on purpose</h2>
+    <div class="alert">Deliberate · surgical · fully reversible</div>
+    <ul class="pts">
+      <li>Every agent across all three companies — <b>Multiverse Games (19), Asteroid Games (3), Multiverse School (7)</b> — set to <b>paused</b> via the board API.</li>
+      <li>Three launchd watchdogs moved to a dated disabled folder; two crontabs (SRE cron, epitaph poster) commented out and backed up.</li>
+      <li>Board container, database, and every game container deliberately <b>left running</b> — this is a pause on autonomous agents, not an outage.</li>
+    </ul>
+    <p class="evidence">// reverse path is one PATCH call and two <span>launchctl bootstrap</span>s away — kept boring on purpose.</p>
+  </section>
+
+  <!-- 8 -->
+  <section class="slide">
+    <div class="kicker">The Why</div>
+    <h2>Trading a fleet for a <em>session</em></h2>
+    <ul class="pts">
+      <li>The stated direction: migrate from a Paperclip-managed always-on fleet to direct <b>Claude Code remote sessions.</b></li>
+      <li>This deck is the first artifact produced under that model — not filed as a Paperclip ticket, spec'd and built in one interactive session.</li>
+      <li>If a future session finds every agent paused and the crons missing: that's the intended state, not an incident.</li>
+    </ul>
+    <p class="evidence">// the org's own retrospective format changed along with the org that produces it.</p>
+  </section>
+
+  <!-- 9 DIVIDER P3 -->
+  <section class="slide divider pass">
+    <div class="idx">PART THREE</div>
+    <div class="big">Production<br>got real</div>
+    <div class="sub">While the org model churned, the infrastructure underneath it stopped being a laptop-adjacent side project and became a documented, single production host.</div>
+  </section>
+
+  <!-- 10 -->
+  <section class="slide pass">
+    <div class="kicker pass">Infra · 01</div>
+    <h2>One box, <em>36 containers</em></h2>
+    <ul class="pts">
+      <li><b>multiverse-games-hel1</b> (cx53, 16vCPU/32GB) is now the full production host: Paperclip + fleet + preview-deploy <b>and</b> every public game, portal, Matrix, library-api, analytics, and marketing container.</li>
+      <li>Traefik displaced Caddy off :443; Caddy demoted to a preview-only backend.</li>
+      <li>TLS runs two regimes — <b>.xyz</b> wildcard cert (certbot DNS-01, no auto-renewal, expires Aug 23 2026) vs. <b>.ai</b> per-domain Let's Encrypt (automatic). The gap is filed, not fixed.</li>
+      <li>The box has had concurrent writers before — a one-shot migration agent clobbered hand-made routing changes twice. Documented as multi-writer; treat accordingly.</li>
+    </ul>
+    <p class="evidence">// ops/multiverse-games-hel1.md · <span>GitHub issue precursors#23</span> tracks the cert-renewal gap.</p>
+  </section>
+
+  <!-- 11 -->
+  <section class="slide fail">
+    <div class="kicker fail">Infra · 02</div>
+    <h2>The DB loss that <em>almost</em> became permanent</h2>
+    <ul class="pts">
+      <li>June 21: the local Paperclip DB directory was deleted. Recovery looked possible — until a keepalive watchdog <b>reinitialized it empty</b>, foreclosing the recovery window.</li>
+      <li>Fix (June 26): <b>pc-db-backup.sh</b>, cron 03:30 UTC, 14-day retention. Verified: 333MB across 63 tables.</li>
+      <li>The same week, Precursors itself was crash-looping against a nonexistent <b>lore-db</b> host — fixed by pointing at the real shared DB and reassigning 35 lore-table owners.</li>
+    </ul>
+    <p class="evidence">// ops/incidents/2026-06-21-paperclip-local-db-loss.md · commit <span>c8d7338</span> · hold this thought for Part Four.</p>
+  </section>
+
+  <!-- 12 -->
+  <section class="slide pass">
+    <div class="kicker pass">Infra · 03</div>
+    <h2>Preview deploys, <em>verified end to end</em></h2>
+    <ul class="pts">
+      <li>Label a PR <b>"preview"</b> → webhook hits preview.multiversegames.ai/gh (path-routed, HMAC-gated) → box clones, builds per <b>recipes.json</b>, publishes to an unlisted per-PR URL → sticky bot comment with the link.</li>
+      <li>Verified live June 21: <b>asteroid-miner PR #32</b> built, tested, published, browser-confirmed booting Three.js.</li>
+      <li>5 of 7 game repos have static-build recipes; infiniclicker and MVEE need server-based previews, not built yet.</li>
+    </ul>
+    <p class="evidence">// tools/preview/ · migrated off nip.io to <span>.ai</span> because the ISP SNI-blocks .xyz.</p>
+  </section>
+
+  <!-- 13 DIVIDER P4 -->
+  <section class="slide divider warn">
+    <div class="idx">PART FOUR</div>
+    <div class="big">The ML research,<br>audited not assumed</div>
+    <div class="sub">The class asked what the autonomous evolutionary pipeline has actually produced. So instead of describing the architecture from the repo, we SSH'd into the box that runs it and checked. Here's the design, then here's what we found.</div>
+  </section>
+
+  <!-- 14 -->
+  <section class="slide">
+    <div class="kicker">Autonomous ML · Design</div>
+    <h2><em>Watchtower</em> runs three clocks</h2>
+    <ul class="pts">
+      <li><b>Ophanim Evaluator</b> — every 30 minutes. Scores live Precursors sessions.</li>
+      <li><b>Genome Promoter</b> — every hour. Moves genomes through their lifecycle.</li>
+      <li><b>Fleet Dragon</b> — every 6 hours. Meta-optimizer over the whole genome library.</li>
+      <li>All three are independently scheduled daemons watching the same live sessions — the most literal "autonomous" system in the studio.</li>
+    </ul>
+    <p class="evidence">// games/precursors/watchtower/watchtower.py</p>
+  </section>
+
+  <!-- 15 -->
+  <section class="slide">
+    <div class="kicker">Autonomous ML · Design</div>
+    <h2>Ophanim <em>judges</em>, it doesn't act</h2>
+    <ul class="pts">
+      <li>An LLM judge (self-hosted <b>Qwen3-30B-A3B</b>, Haiku 4.5 fallback) scores live behavioral windows on vitality, responsiveness, emergence, and narrative — 0 to 1 each.</li>
+      <li>Tags standout creatures <b>[HARVEST_CANDIDATE]</b>; feeds the same composite score into the offline Modal architecture-search fitness function.</li>
+      <li>Observer only — Ophanim scores; it never promotes, retires, or mutates anything itself.</li>
+    </ul>
+    <p class="evidence">// watchtower/ophanim_evaluator.py · training/scorers/ophanim.py</p>
+  </section>
+
+  <!-- 16 -->
+  <section class="slide">
+    <div class="kicker">Autonomous ML · Design</div>
+    <h2>Genome Promoter has <em>no human gate</em></h2>
+    <div class="alert">composite score ≥ 0.5 → live in the Gene Splicer, by design</div>
+    <ul class="pts">
+      <li>Fully automated lifecycle: <b>suggested → evaluating → validated → available/retired.</b></li>
+      <li>Promotes automatically past a 0.5 composite score; retires automatically on an Ophanim "critical failure" or "degenerate" note.</li>
+      <li>Caps at 20 available genomes per species — the only hard ceiling in the loop.</li>
+      <li>Fleet Dragon (Claude Opus 4.6) is the one human-facing touchpoint: it can auto-file a Paperclip task when it wants more telemetry.</li>
+    </ul>
+    <p class="evidence">// watchtower/genome_promoter.py, fleet_dragon.py · <span>a genome can reach players with zero human review — that's the intended design, not a bug. Keep reading.</span></p>
+  </section>
+
+  <!-- 17 THE AUDIT -->
+  <section class="slide fail">
+    <div class="kicker fail">Autonomous ML · The Audit</div>
+    <h2>It's been <em>crash-looping</em> since June 15</h2>
+    <div class="alert">21,322 failed DB connections · 34,000+ restarts · 0 genomes ever promoted</div>
+    <ul class="pts">
+      <li>Watchtower's <b>.env</b> pointed <code>DATABASE_URL</code> at <b>10.0.1.36</b>. The real <b>lore-db</b> container has been at <b>10.0.1.11</b> since at least June 26 — the exact same stale-host bug that crash-looped Precursors itself that week, just never fixed here.</li>
+      <li>In the entire retained log history, the daemon has <b>never once completed a genome promotion.</b></li>
+      <li><b>Fleet Dragon has never run</b> — <code>ANTHROPIC_API_KEY</code> was never set on the box, so the meta-optimizer and its Paperclip auto-filing have been silently disabled since deployment.</li>
+      <li>The wolfling browser-playtest harness — Playwright + headless Chromium under systemd — <b>isn't currently running anywhere.</b> The "22-hour stable run" from the June 26 memory-leak fix was a one-time verification, not a standing job.</li>
+    </ul>
+    <p class="evidence">// this is <span>Failure Mode 03 from the first deck — "built" is not "wired"</span> — found inside the studio's own flagship research system.</p>
+  </section>
+
+  <!-- 18 THE FIX -->
+  <section class="slide pass">
+    <div class="kicker pass">Autonomous ML · The Fix</div>
+    <h2>Found it because we <em>went and checked</em></h2>
+    <ul class="pts">
+      <li>Patched <code>DATABASE_URL</code> to the correct IP, restarted <b>precursors-watchtower.service</b>, confirmed a clean run: Ophanim Evaluator completed with <b>zero errors</b> for the first time in the retained logs.</li>
+      <li>Still open: <b>ANTHROPIC_API_KEY</b> is unset, so Fleet Dragon stays disabled until someone provisions it. No live gameplay/wolfling session is currently generating data for Ophanim to evaluate.</li>
+      <li>The daemon being "in the repo, built, and documented" told us nothing about whether it was running. Only SSH-ing in and reading <code>journalctl</code> did.</li>
+    </ul>
+    <p class="evidence">// fixed live during this retrospective, <span>2026-07-01</span> · the same lesson as the DB-loss incident two slides back: a watchdog or a stale config can quietly foreclose recovery, or quietly foreclose research.</p>
+  </section>
+
+  <!-- 19 SYNTHESIS -->
+  <section class="slide">
+    <div class="kicker">The Synthesis</div>
+    <h2>"Built and running" needs <em>a person to check</em></h2>
+    <p class="lede">A crash-looping daemon and a working one produce the same repo, the same design doc, the same confident description in a retrospective — right up until someone reads <code>journalctl</code>. The genome-promotion pipeline's missing human gate is a real, open question worth returning to. But it wasn't the thing that actually failed here. <strong>The thing that failed was nobody checking</strong> — same as the DB incident two slides back, same as "built ≠ wired" from the first deck.</p>
+    <p class="evidence">// verification isn't a phase you finish. <span>It's a habit you keep, especially for the systems you're proudest of.</span></p>
+  </section>
+
+  <!-- 20 LESSONS -->
+  <section class="slide">
+    <div class="kicker">The Through-Line</div>
+    <h2>Five lessons that <em>generalize</em></h2>
+    <div class="lessons">
+      <div class="lesson"><span class="ln">1</span><p><b>Cost pressure reorganizes orgs faster than incidents do.</b> The Qwen migration landed in days, not sprints.</p></div>
+      <div class="lesson"><span class="ln">2</span><p><b>A hierarchy of control beats a flat fleet.</b> Narrow spec authority, PR-only implementers, layered but graded verification.</p></div>
+      <div class="lesson"><span class="ln">3</span><p><b>"Paused" needs to be legible.</b> A fleet-wide pause with no marker looks identical to an outage — write it down.</p></div>
+      <div class="lesson"><span class="ln">4</span><p><b>Infra debt surfaces as an incident, gets fixed as a doc.</b> The DB loss produced a backup script <i>and</i> an ops runbook.</p></div>
+      <div class="lesson"><span class="ln">5</span><p><b>A stale config can crash-loop for weeks in plain sight.</b> The fix is always cheap; noticing is the hard part.</p></div>
+    </div>
+  </section>
+
+  <!-- 21 CLOSE -->
+  <section class="slide">
+    <div class="kicker">End of Update</div>
+    <h1>The loop keeps<br>evolving.</h1>
+    <div class="title-rule"></div>
+    <p class="lede">In a week the studio traded Sonnet PMs for Qwen coders, then traded the whole fleet for a direct session. Meanwhile the genome-promotion pipeline sat crash-looping the entire time, gated by nothing but a stale IP address. The process is still the product — the question this update leaves open is whether every autonomous piece of it gets checked as carefully as the parts a human happens to notice.</p>
+    <div class="title-meta">Questions · a live look at Watchtower's promotion log now that it's running · or: provisioning Fleet Dragon's missing API key</div>
+  </section>
+
+  <!-- SOURCES -->
+  <section class="slide">
+    <div class="kicker">Sources &amp; Further Reading</div>
+    <h2 style="font-size:clamp(1.6rem,3.4vw,2.6rem)">Verify it yourself</h2>
+    <ul class="srclist">
+      <li><b>Qwen migration design.</b> docs/superpowers/specs/2026-06-10-sonnet-tier-qwen-migration-design.md</li>
+      <li><b>Implementer-fleet hierarchy of control.</b> ceo/agents/shared/shipping-to-implementers.md</li>
+      <li><b>Production host runbook.</b> ops/multiverse-games-hel1.md · GitHub issues precursors#22–26</li>
+      <li><b>Paperclip DB-loss incident.</b> ops/incidents/2026-06-21-paperclip-local-db-loss.md · commit c8d7338</li>
+      <li><b>Preview-deploy pipeline.</b> tools/preview/ · docs/superpowers/specs/2026-06-21-pr-preview-deploy-design.md</li>
+      <li><b>Watchtower / Ophanim / Genome Promoter / Fleet Dragon.</b> games/precursors/watchtower/*.py</li>
+      <li><b>Wolfling stability hardening.</b> commit 5f2e86a87 · games/precursors/wolfling/</li>
+      <li><b>The first deck.</b> Agentic SDLC — Six-Week Roundup · <a href="../agentic-sdlc/">/marketing/agentic-sdlc/</a></li>
+    </ul>
+    <p class="evidence">// dates and figures as observed on the actual box, 2026-06-30 → 2026-07-01. <span>The watchtower fix is live; re-verify before citing promotion counts going forward.</span></p>
+  </section>
+
+</div>
+
+<div class="counter"><b id="cur">1</b> / <span id="total">21</span></div>
+<div class="brand">Multiverse · Agentic SDLC</div>
+<div class="hint">← → · space · click</div>
+
+<script>
+const slides=[...document.querySelectorAll('.slide')];
+const total=slides.length;
+let i=0;
+document.getElementById('total').textContent=total;
+function go(n){
+  i=Math.max(0,Math.min(total-1,n));
+  slides.forEach((s,k)=>s.classList.toggle('active',k===i));
+  document.getElementById('cur').textContent=i+1;
+  document.getElementById('progress').style.width=((i+1)/total*100)+'%';
+}
+function next(){go(i+1)} function prev(){go(i-1)}
+document.addEventListener('keydown',e=>{
+  if(['ArrowRight','ArrowDown','PageDown',' '].includes(e.key)){e.preventDefault();next()}
+  else if(['ArrowLeft','ArrowUp','PageUp'].includes(e.key)){e.preventDefault();prev()}
+  else if(e.key==='Home'){go(0)} else if(e.key==='End'){go(total-1)}
+});
+document.getElementById('deck').addEventListener('click',e=>{
+  if(e.clientX < window.innerWidth*0.28) prev(); else next();
+});
+go(0);
+</script>
+</body>
+</html>
