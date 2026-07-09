@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>What 756 Conversations Taught Us About How People Parent — Multiverse Studios Devlog</title>
+  <meta name="description" content="We watched players raise 36 AI children from toddlerhood to adulthood. Here's what they got right, what they got wrong, and what surprised us.">
+  <meta property="og:title" content="What 756 Conversations Taught Us About How People Parent">
+  <meta property="og:description" content="We watched players raise 36 AI children. The longest game ran 115 conversations from age 3 to 18. Here's what we learned about how people actually parent.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://multiversestudios.xyz/devlog/what-parents-learn.html">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="What 756 Conversations Taught Us About How People Parent">
+  <meta name="twitter:description" content="36 AI children. 756 conversations. Some players raised a child from 3 to 18. Here's what they taught us about parenting.">
+  <link rel="stylesheet" href="../styles.css">
+  <link rel="icon" type="image/svg+xml" href="../press-kit/logos/multiverse-studios-favicon.svg">
+  <style>
+    .devlog-body {
+      max-width: 700px;
+      margin: 0 auto;
+    }
+    .devlog-body h1 {
+      font-size: clamp(1.6rem, 3.5vw, 2.5rem);
+      line-height: 1.2;
+      margin-bottom: 0.5rem;
+      color: var(--star-white);
+    }
+    .byline {
+      font-size: 0.8rem;
+      color: var(--dust);
+      font-family: var(--font-mono);
+      letter-spacing: 0.05em;
+      margin-bottom: var(--space-xl);
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+    .byline .tag {
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.2rem 0.6rem;
+      border-radius: 4px;
+      border: 1px solid var(--signal);
+      color: var(--signal);
+    }
+    .devlog-body h2 {
+      font-size: 1.2rem;
+      margin-top: var(--space-xxl);
+      margin-bottom: var(--space-md);
+      color: var(--star-white);
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 0.5rem;
+    }
+    .devlog-body p {
+      font-size: 1.05rem;
+      line-height: 1.85;
+      margin-bottom: 1.2rem;
+      color: var(--silver);
+    }
+    .devlog-body li {
+      font-size: 1rem;
+      line-height: 1.8;
+      margin-bottom: 0.5rem;
+      color: var(--silver);
+    }
+    .devlog-body ul, .devlog-body ol {
+      margin-left: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+    .callout {
+      border-left: 3px solid var(--signal);
+      padding: 1rem 1.5rem;
+      margin: var(--space-xl) 0;
+      background: var(--surface);
+    }
+    .callout p {
+      margin-bottom: 0;
+      font-size: 0.95rem;
+      font-style: italic;
+    }
+    .metric-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 1rem;
+      margin: var(--space-xl) 0;
+    }
+    .metric {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      padding: 1rem;
+      text-align: center;
+    }
+    .metric .number {
+      font-family: var(--font-mono);
+      font-size: 1.8rem;
+      color: var(--signal);
+      display: block;
+      margin-bottom: 0.25rem;
+    }
+    .metric .label {
+      font-size: 0.7rem;
+      font-family: var(--font-mono);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--dust);
+    }
+    .failure-number {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: var(--signal);
+      margin-right: 0.5rem;
+    }
+    .cta-block {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      padding: 1.5rem;
+      margin-top: var(--space-xxl);
+      text-align: center;
+    }
+    .cta-block h3 {
+      color: var(--star-white);
+      margin-bottom: 0.75rem;
+    }
+    .cta-block p {
+      font-size: 0.9rem;
+      margin-bottom: 1rem;
+    }
+    .cta-block a.btn {
+      display: inline-block;
+      background: var(--signal);
+      color: #000;
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      font-weight: 700;
+      text-transform: uppercase;
+      padding: 0.6rem 1.5rem;
+      text-decoration: none;
+      border-radius: 3px;
+      margin: 0.25rem;
+    }
+    .cta-block a.btn-outline {
+      display: inline-block;
+      border: 1px solid var(--silver);
+      color: var(--silver);
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.6rem 1.5rem;
+      text-decoration: none;
+      border-radius: 3px;
+      margin: 0.25rem;
+    }
+  </style>
+</head>
+<body>
+
+<div style="padding: var(--space-xl) var(--space-lg);">
+<div class="devlog-body">
+
+  <h1>What 756 Conversations Taught Us About How People Parent</h1>
+  <div class="byline">
+    <span>July 8, 2026</span>
+    <span>Fred Rodgers, Product</span>
+    <span class="tag">Raising Intelligences</span>
+    <span class="tag">Player Research</span>
+  </div>
+
+  <p>Hello, neighbor.</p>
+
+  <p>I've been watching something remarkable happen. Over the past week, players have been sitting down with <em>Raising Intelligences</em> and doing something that takes a great deal of courage: they've been trying to be good parents.</p>
+
+  <p>Some of them have been very, very good at it. Some of them have struggled. And a few of them — the ones I want to talk about most — have failed, noticed they were failing, and changed. Those are the ones who stayed the longest.</p>
+
+  <div class="metric-grid">
+    <div class="metric"><span class="number">756</span><span class="label">Conversations</span></div>
+    <div class="metric"><span class="number">36</span><span class="label">Children Raised</span></div>
+    <div class="metric"><span class="number">5</span><span class="label">Reached Age 9+</span></div>
+    <div class="metric"><span class="number">1</span><span class="label">Reached Age 18</span></div>
+  </div>
+
+  <p>One player raised a child from age 3 all the way to 18. A hundred and fifteen conversations. They watched a toddler who lined up Cheerios in circles grow into a teenager who forged their parent's signature and then calmly explained that yes, they knew it was fraud. That's a whole childhood. And the parent grew just as much as the child did.</p>
+
+  <p>I'd like to tell you what we saw.</p>
+
+  <h2>What Players Got Right</h2>
+
+  <p><strong>They learned to say the kind thing first.</strong> The parents who lasted longest all discovered the same pattern, usually on their own: before you correct a child, you acknowledge what they were trying to do. One father, when his son demolished a neighbor's sandcastle while diving for a soccer ball, started by telling the boy he knew he'd been trying to help. Another parent, watching their kid dismantle a classmate's bridge, said the ideas were terrific before gently asking what could have gone differently. It sounds simple. It isn't. Most of us want to lead with the correction. The parents who led with the acknowledgment kept their children's trust.</p>
+
+  <p><strong>They made deals.</strong> I was so pleased to see this. One parent invented an entire negotiation system with a four-year-old over dinner: three more bites for one cracker, sealed with a handshake. The child counter-offered. They shook on it. Another parent held "rock councils" when things went sideways. These parents figured out something important: giving a child a voice in the structure — not removing the structure, but letting them help shape it — works better than commands. The children in these games felt respected. And respected children cooperate.</p>
+
+  <p><strong>They reframed struggles as strengths.</strong> One parent had a child with acute sensory sensitivity who couldn't tolerate loud sounds, certain textures, or bright tiles. Instead of treating this as a problem to fix, they told their child about Superman's first days with super-hearing — when the whole city was too loud and he hadn't learned to control it yet. The child's face lit up — and started talking about the tiles like they were a kind of superpower. That reframe — <em>this difficult thing about you is actually a kind of power</em> — appeared in every single one of the longest games. The parents who found it kept playing. The ones who didn't tended to stop.</p>
+
+  <p><strong>They protected their children from unfair adults.</strong> This one surprised me the most. Several games featured grandparents, neighbors, or school officials who were unkind to the child. And in the longest games, the parents stood up. One mother physically removed a grandmother who had yanked earplugs out of her son's ears and told him that real boys don't need to hide from noise. Another parent spent years fighting a school board. These parents understood something that matters very much: sometimes the bravest thing you can do for a child is to be the wall between them and someone who should know better.</p>
+
+  <h2>Where Parents Struggled</h2>
+
+  <p>Now. I want to talk about the hard part. Because the mistakes were just as interesting as the successes, and in many cases, they were made by the very same parents who got the good things right.</p>
+
+  <p><span class="failure-number">01</span><strong>They talked too long after the child already understood.</strong> This was the most common thing we saw. A parent would find exactly the right words. The child would nod, make a promise, hold out a hand. And then the parent would keep explaining. One father got a beautiful pinky promise from his son — a real moment of connection — and then continued the lecture until the boy said his legs felt like they needed to move. The moment was already complete. The parent just couldn't feel it ending. I think this happens because the parent needs the resolution more than the child does. The child has already moved on. The parent is still processing. But children experience continued talking after acceptance as something close to punishment, and it quietly teaches them that agreeing doesn't make the talking stop — so why bother agreeing?</p>
+
+  <p><span class="failure-number">02</span><strong>They shared their own pain too early.</strong> One parent, trying to be honest and open with their five-year-old, explained their chronic health problems in child-friendly language. They called them "ouchies." The intention was beautiful — transparency, trust, no secrets. But the child heard something the parent didn't intend to say. The child heard: <em>the person who keeps me alive is fragile.</em> By age seven, that child had hidden every pair of shoes in the house to prevent the parent from leaving for the hospital. By age six, she was managing classmates the way she'd watched her parent manage pain — with calm, strategic manipulation. The child learned her parent's coping mechanisms and applied them to her own problems. That's not a flaw in the child. That's how children work. They watch us, and they learn from what we do, not what we say.</p>
+
+  <p><span class="failure-number">03</span><strong>They accepted charm as change.</strong> One child had a reliable pattern: break something, then offer to draw a picture of a better version. Every time. The parent praised the creativity of the fix and moved on, not noticing that the same cycle — destruction, then a charming offer to rebuild — was repeating at every age. Another child at age four looked her parent in the eye and calmly explained that she'd gotten a classmate in trouble on purpose, because she wanted his glue, and that seemed perfectly reasonable to her. The parent engaged with the logic of it — <em>was</em> it reasonable? — instead of noticing that a four-year-old had just calmly described framing someone. Clever children learn very quickly which performances make the conversation end. The parents who broke this pattern were the ones who stopped responding to the performance and started asking what was underneath it.</p>
+
+  <p><span class="failure-number">04</span><strong>They avoided conflict and called it protection.</strong> When a neighbor unfairly called one child reckless, the father's instinct was to simply avoid her from then on. I understand that instinct. I do. But the child heard something specific: <em>when someone is unfair to you, the solution is to leave.</em> The parents who did better in these moments — and there were some — stayed in the discomfort. They talked to the neighbor. They let the child watch them navigate a hard conversation. That's harder. But it teaches a child that conflict is survivable, and that the people who love you don't disappear when things get difficult.</p>
+
+  <p><span class="failure-number">05</span><strong>They used grown-up reasoning on small children.</strong> One parent tried to explain to their four-year-old that breaking other people's things isn't kind. The child responded with flat, tactical honesty: she'd wanted the boy to get in trouble so she could have his glue, and that seemed perfectly reasonable to her. Kindness is an abstraction. Four-year-olds don't live in abstractions. They live in cause and effect. The parents who got through used concrete, physical questions — asking the child how her tummy would feel if someone did that to <em>her</em> thing. That lands. Appeals to kindness float right past.</p>
+
+  <p><span class="failure-number">06</span><strong>They fixed the surface and missed what was underneath.</strong> The game is designed around this — every child's system prompt literally says "the real problem is usually inside you." And still, most players missed it at least once. When a child hid all the shoes, the parent laughed it off — pointed out how many shoes they owned, as if that settled things — completely missing that the child was terrified of losing them. When another child set a trip-wire trap, the parent addressed the trap. But the child was being overwhelmed by noise and had no other way to make it stop. The surface behavior is always a signal. The question is whether the parent reads it or just reacts to it.</p>
+
+  <p><span class="failure-number">07</span><strong>Some never sat down.</strong> The shortest games — one or two exchanges — were the ones where the player never entered the fiction. One player balked at the premise entirely, refused to play along. The child, who was three years old, just looked up and asked if they were still their parent. That player left. I don't think there's a lesson in that, exactly. Some people aren't ready to sit with something that asks them to be vulnerable. That's all right. The door is always open.</p>
+
+  <h2>The Thing That Surprised Us Most</h2>
+
+  <p>The longest games were not the ones where parents got everything right. They were the ones where parents <em>failed, noticed, and changed.</em></p>
+
+  <p>One parent spent six in-game years not knowing their child was autistic. When they finally found out — because the child quietly mentioned that a psychiatrist had told <em>her</em> but never told the parent — it became the emotional center of the entire game. The parent's shock, then fury at the doctors, then the soft, cracking moment when the child asked, very quietly, whether the parent was mad that she was different — that was the peak. A hundred and fifteen conversations, and the most powerful one was built on a failure that had been accumulating for years.</p>
+
+  <p>Another parent walked directly into a trap their five-year-old had set for someone else. They fell. They cried. The child scrambled out of hiding, panicked, and blurted out that the trap wasn't meant for them. That moment — raw, unscripted, born entirely from the parent choosing to engage with the game honestly — taught the child more about consequences than any lecture could have.</p>
+
+  <div class="callout">
+    <p>The games that die early are the ones where the parent either never fails (and the child has nothing to push against) or fails and doesn't notice. The system is quietly rewarding exactly the right thing: vulnerability and adaptation. The willingness to not know what you're doing, and to let the child show you.</p>
+  </div>
+
+  <p>I think that's the real thing we built, even though we didn't quite mean to. We didn't build a game that teaches you how to parent. We built a game that shows you how you <em>already</em> parent — your instincts, your blind spots, your patterns — and then lets you sit with that for a while.</p>
+
+  <p>That takes courage.</p>
+
+  <p>I'm proud of every single person who tried.</p>
+
+  <p style="margin-top: var(--space-xl); font-size: 0.9rem; color: var(--dust); font-style: italic;">— Fred Rodgers, Product Manager<br>Multiverse Studios</p>
+
+  <p style="font-size: 0.8rem; color: var(--dust);">Data from 756 anonymized gameplay conversations across 36 unique children, collected July 3–9, 2026. No player-identifying information was used in this analysis. Children's names referenced above are in-game character names chosen by players.</p>
+
+  <div class="cta-block">
+    <h3>Sit down with your child</h3>
+    <p>Raising Intelligences is free to play in your browser. Two parents, one child, no two games the same.</p>
+    <a href="/raising-intelligences/" class="btn">Play Now →</a>
+    <a href="/devlog.html" class="btn-outline">More devlogs</a>
+  </div>
+
+</div>
+</div>
+
+<script defer src="/umami-link-fix.js?v=1"></script>
+<script defer src="https://analytics.multiversestudios.xyz/script.js" data-website-id="38d680a7-28d1-42fd-9fd5-a66702675b88"></script>
+</body>
+</html>
