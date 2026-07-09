@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Three Corps — Multiverse Studios Devlog</title>
+  <meta name="description" content="Terran Foundries, Ares Water Authority, Ceres Independent Exchange. The human corporations that carved up the belt before you got here.">
+  <meta property="og:title" content="The Three Corps">
+  <meta property="og:description" content="Terran Foundries, Ares Water Authority, Ceres Independent Exchange. The human corporations that carved up the belt before you got here.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://multiversestudios.xyz/devlog/cotb-human-corps.html">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="The Three Corps">
+  <meta name="twitter:description" content="The human corporations that carved up the belt before you got here.">
+  <link rel="stylesheet" href="../styles.css">
+  <link rel="icon" type="image/svg+xml" href="../press-kit/logos/multiverse-studios-favicon.svg">
+  <style>
+    .devlog-body {
+      max-width: 700px;
+      margin: 0 auto;
+    }
+    .devlog-body h1 {
+      font-size: clamp(1.6rem, 3.5vw, 2.5rem);
+      line-height: 1.2;
+      margin-bottom: 0.5rem;
+      color: var(--star-white);
+    }
+    .byline {
+      font-size: 0.8rem;
+      color: var(--dust);
+      font-family: var(--font-mono);
+      letter-spacing: 0.05em;
+      margin-bottom: var(--space-xl);
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+    .byline .tag {
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.2rem 0.6rem;
+      border-radius: 4px;
+    }
+    .tag-cotb { border: 1px solid #ef4444; color: #ef4444; }
+    .tag-lore { border: 1px solid #e879f9; color: #e879f9; }
+    .devlog-body h2 {
+      font-size: 1.2rem;
+      color: var(--star-white);
+      margin-top: var(--space-xl);
+      margin-bottom: var(--space-sm);
+    }
+    .devlog-body p {
+      color: var(--dust-light);
+      line-height: 1.75;
+      margin-bottom: var(--space-md);
+      font-size: 1.02rem;
+    }
+    .corp-card {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 8px;
+      padding: 1.2rem 1.4rem;
+      margin: var(--space-md) 0;
+    }
+    .corp-card h3 {
+      font-size: 1.05rem;
+      color: var(--star-white);
+      margin: 0 0 0.4rem 0;
+    }
+    .corp-card p {
+      margin: 0;
+      font-size: 0.95rem;
+    }
+    .corp-card .corp-color {
+      display: inline-block;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      margin-right: 0.5rem;
+      vertical-align: middle;
+    }
+  </style>
+</head>
+<body>
+  <nav class="site-nav">
+    <a href="/" class="nav-home">Multiverse Studios</a>
+    <a href="/devlog.html">Devlog</a>
+    <a href="https://play.multiversestudios.xyz/cultures-of-the-belt/">Play CotB</a>
+  </nav>
+
+  <main class="devlog-body page-content">
+    <div class="byline">
+      <span>July 8, 2026</span>
+      <span class="tag tag-cotb">COTB</span>
+      <span class="tag tag-lore">Lore</span>
+    </div>
+
+    <h1>The Three Corps</h1>
+
+    <p>
+      Before today&rsquo;s update, Cultures of the Belt had factions, but they were
+      abstractions &mdash; names on a standings panel, numbers that moved when you
+      traded. We wanted factions that felt like neighbors. Organizations with
+      agendas that existed whether you interacted with them or not.
+    </p>
+
+    <p>
+      So we rebuilt the faction layer from the ground up. When you start a new game,
+      three human corporations are already in the belt, already competing, already
+      forming opinions about your operation.
+    </p>
+
+    <div class="corp-card">
+      <h3><span class="corp-color" style="background: #3b82f6;"></span>Terran Foundries</h3>
+      <p>Industrial backbone. They were processing ore in the belt before you
+      arrived and they&rsquo;ll be processing it after you leave. Neutral disposition,
+      transactional relationship. They care about throughput, not diplomacy.</p>
+    </div>
+
+    <div class="corp-card">
+      <h3><span class="corp-color" style="background: #06b6d4;"></span>Ares Water Authority</h3>
+      <p>Water is life, and Ares controls the ice. They regulate extraction
+      rights across the inner belt and they take that mandate seriously. Cooperative
+      if you play by their rules. Less cooperative if you don&rsquo;t.</p>
+    </div>
+
+    <div class="corp-card">
+      <h3><span class="corp-color" style="background: #f59e0b;"></span>Ceres Independent Exchange</h3>
+      <p>The free market, belt-style. Ceres runs the commodity exchange and takes
+      a position on everything that moves. They don&rsquo;t mine, they don&rsquo;t
+      refine &mdash; they broker. Your trade volume is their livelihood, and they
+      want more of it.</p>
+    </div>
+
+    <h2>Dispositions That Move</h2>
+
+    <p>
+      Each corporation tracks a disposition score toward your colony. It shifts
+      based on what you do &mdash; trade with them and they warm up, compete for
+      the same claims and they cool down. The score affects commodity pricing,
+      contract availability, and how their messages read in your inbox.
+    </p>
+
+    <p>
+      Disposition isn&rsquo;t binary. A faction at +15 and a faction at +60 will both
+      trade with you, but one of them is offering better rates. The gradient matters
+      more than the label.
+    </p>
+
+    <h2>Why Human First</h2>
+
+    <p>
+      We could have launched with a full roster of exotic factions. We didn&rsquo;t.
+      The belt needed to feel human first &mdash; corporate, competitive, familiar.
+      You need to understand normal before anything unusual has weight.
+    </p>
+
+    <p>
+      What comes next? Keep mining. ARIA will let you know.
+    </p>
+
+    <p>
+      Play it now at <a href="https://play.multiversestudios.xyz/cultures-of-the-belt/">play.multiversestudios.xyz/cultures-of-the-belt/</a>.
+      Pay what you can.
+    </p>
+  </main>
+
+  <footer class="site-footer">
+    <p>
+      <a href="/devlog.html">&larr; Back to Devlog</a> &nbsp;|&nbsp;
+      <a href="https://play.multiversestudios.xyz/cultures-of-the-belt/">Play Cultures of the Belt</a>
+    </p>
+  </footer>
+</body>
+</html>
