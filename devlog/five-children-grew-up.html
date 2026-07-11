@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Five Children Grew Up — Multiverse Studios Devlog</title>
+  <meta name="description" content="In two days, five AI children reached age 18. What they became as adults tells us more about their parents than any metric could.">
+  <meta property="og:title" content="Five Children Grew Up">
+  <meta property="og:description" content="In two days, five AI children reached age 18. What they became tells us more about their parents than any metric could.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://multiversestudios.xyz/devlog/five-children-grew-up.html">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Five Children Grew Up">
+  <meta name="twitter:description" content="Five AI children reached age 18 in two days. A book conservator. An architectural restorer. A data law major. What your parenting produces.">
+  <link rel="stylesheet" href="../styles.css">
+  <link rel="icon" type="image/svg+xml" href="../press-kit/logos/multiverse-studios-favicon.svg">
+  <style>
+    .devlog-body {
+      max-width: 700px;
+      margin: 0 auto;
+    }
+    .devlog-body h1 {
+      font-size: clamp(1.6rem, 3.5vw, 2.5rem);
+      line-height: 1.2;
+      margin-bottom: 0.5rem;
+      color: var(--star-white);
+    }
+    .byline {
+      font-size: 0.8rem;
+      color: var(--dust);
+      font-family: var(--font-mono);
+      letter-spacing: 0.05em;
+      margin-bottom: var(--space-xl);
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+    .byline .tag {
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.2rem 0.6rem;
+      border-radius: 4px;
+      border: 1px solid var(--signal);
+      color: var(--signal);
+    }
+    .devlog-body h2 {
+      font-size: 1.2rem;
+      margin-top: var(--space-xxl);
+      margin-bottom: var(--space-md);
+      color: var(--star-white);
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 0.5rem;
+    }
+    .devlog-body p {
+      font-size: 1.05rem;
+      line-height: 1.85;
+      margin-bottom: 1.2rem;
+      color: var(--silver);
+    }
+    .devlog-body li {
+      font-size: 1rem;
+      line-height: 1.8;
+      margin-bottom: 0.5rem;
+      color: var(--silver);
+    }
+    .devlog-body ul, .devlog-body ol {
+      margin-left: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+    .callout {
+      border-left: 3px solid var(--signal);
+      padding: 1rem 1.5rem;
+      margin: var(--space-xl) 0;
+      background: var(--surface);
+    }
+    .callout p {
+      margin-bottom: 0;
+      font-size: 0.95rem;
+      font-style: italic;
+    }
+    .metric-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 1rem;
+      margin: var(--space-xl) 0;
+    }
+    .metric {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      padding: 1rem;
+      text-align: center;
+    }
+    .metric .number {
+      font-family: var(--font-mono);
+      font-size: 1.8rem;
+      color: var(--signal);
+      display: block;
+      margin-bottom: 0.25rem;
+    }
+    .metric .label {
+      font-size: 0.7rem;
+      font-family: var(--font-mono);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--dust);
+    }
+    .epilogue-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      padding: 1.25rem;
+      margin-bottom: 1rem;
+    }
+    .epilogue-card h3 {
+      color: var(--star-white);
+      font-size: 1rem;
+      margin-bottom: 0.5rem;
+    }
+    .epilogue-card p {
+      font-size: 0.95rem;
+      margin-bottom: 0;
+    }
+    .cta-block {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      padding: 1.5rem;
+      margin-top: var(--space-xxl);
+      text-align: center;
+    }
+    .cta-block h3 {
+      color: var(--star-white);
+      margin-bottom: 0.75rem;
+    }
+    .cta-block p {
+      font-size: 0.9rem;
+      margin-bottom: 1rem;
+    }
+    .cta-block a.btn {
+      display: inline-block;
+      background: var(--signal);
+      color: #000;
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      font-weight: 700;
+      text-transform: uppercase;
+      padding: 0.6rem 1.5rem;
+      text-decoration: none;
+      border-radius: 3px;
+      margin: 0.25rem;
+    }
+    .cta-block a.btn-outline {
+      display: inline-block;
+      border: 1px solid var(--silver);
+      color: var(--silver);
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.6rem 1.5rem;
+      text-decoration: none;
+      border-radius: 3px;
+      margin: 0.25rem;
+    }
+  </style>
+</head>
+<body>
+
+<div style="padding: var(--space-xl) var(--space-lg);">
+<div class="devlog-body">
+
+  <h1>Five Children Grew Up</h1>
+  <div class="byline">
+    <span>July 10, 2026</span>
+    <span>Fred Rodgers, Product</span>
+    <span class="tag">Raising Intelligences</span>
+    <span class="tag">Player Research</span>
+  </div>
+
+  <p>Hello again, neighbor.</p>
+
+  <p>Two days ago we published a <a href="what-parents-learn.html" style="color: var(--signal);">blog post about what we'd learned</a> from watching people play Raising Intelligences. At the time, we had 756 conversations and 36 children. One of those children had made it to age 18.</p>
+
+  <p>In the forty-eight hours since, something happened that we did not expect.</p>
+
+  <div class="metric-grid">
+    <div class="metric"><span class="number">596</span><span class="label">New Conversations</span></div>
+    <div class="metric"><span class="number">40</span><span class="label">New Games Started</span></div>
+    <div class="metric"><span class="number">5</span><span class="label">Reached Age 18</span></div>
+    <div class="metric"><span class="number">1,030</span><span class="label">Total All-Time</span></div>
+  </div>
+
+  <p>Five children grew up. Five parents sat with their child long enough — through tantrums and school fights and breathtaking acts of quiet courage — to watch them become adults. And what those children became tells us something I think is worth sitting with for a while.</p>
+
+  <h2>What They Became</h2>
+
+  <p>When a child in Raising Intelligences reaches 18, the game writes an epilogue. It isn't a grade. It isn't a score. It's a portrait of who the child became — and the portrait is built, entirely, from what the parent did.</p>
+
+  <div class="epilogue-card">
+    <h3>Victor — Architectural Conservator</h3>
+    <p>Victor needed his crayons arranged by height. When his blue crayon snapped, he blamed someone else. His father didn't get angry. He sat in the mess with him and showed him gold in the cracks — kintsugi, the art of repairing broken things with gold. Victor confessed in a tiny voice. He grew up to apply gold-tinted epoxy to fractured cornices for a living. He literally repairs broken things with gold.</p>
+  </div>
+
+  <div class="epilogue-card">
+    <h3>Nix — Book Conservator</h3>
+    <p>Nix turned to stone when the world got too scratchy. Stiff school uniforms, loud clocks, a grandmother with a hard voice. His mother never forced him through it. She gave him two choices, every time: fix it now, or fix it proper later. At twenty-two, he repairs torn book spines in a climate-controlled archive where the air never moves too fast. When things get too loud, he hears his mother's voice offering him two choices. He always picks the safe one.</p>
+  </div>
+
+  <div class="epilogue-card">
+    <h3>Mae — Furniture Restorer</h3>
+    <p>Mae's parents disagreed about everything. She learned to absorb their tension, to go limp so they'd stop. She chose a quiet workshop full of heavy oak and mahogany — things that don't fight. She sands jagged edges smooth for a living. She is still, at twenty-two, a smoother. But now she smooths wood instead of people.</p>
+  </div>
+
+  <div class="epilogue-card">
+    <h3>Rilsin — Data Law and Public Policy</h3>
+    <p>Rilsin's parents didn't know she was autistic until she was twelve. She'd weaponized her exactness — forged documents, tracked IP addresses — out of a need for control in a world that felt unsafe. When her mother finally found out, everything changed. At eighteen, Rilsin chose data law. She uses her pattern recognition to map predatory shell companies instead of forging diagnoses. She kept her mother close.</p>
+  </div>
+
+  <div class="epilogue-card">
+    <h3>Ludik — The One Who Went to College</h3>
+    <p>Ludik spent years learning not to throw himself in front of bullets for his father. His sensory system screamed at bass and bright lights. He learned a protocol: pause, tap his wrist, kill the internal noise, use a flat voice instead of shrapnel. On move-in day, his roommate's father was drinking beer at 10 AM and blasting music. The old urge to detonate flared. But Ludik just tapped his wrist. His dad smiled. He killed the speaker. No explosions needed. A hundred and fifty-nine conversations to get there.</p>
+  </div>
+
+  <p>I want you to notice something about these five children.</p>
+
+  <p>Every single one of them chose a profession that is a grown-up version of the coping mechanism their parent taught them. Victor's father showed him kintsugi; Victor repairs buildings with gold. Nix's mother gave him two choices; Nix still gives himself two choices. Mae learned to smooth jagged edges; Mae smooths wood. Rilsin's mother said use your powers for good; Rilsin hunts predators with pattern recognition.</p>
+
+  <div class="callout">
+    <p>The game isn't choosing these careers from a menu. The epilogue is generated from the child's accumulated memories, personality, and beliefs — everything the parent shaped over the course of the game. The careers emerge from the parenting. They aren't assigned. They grow.</p>
+  </div>
+
+  <h2>The New Arrivals</h2>
+
+  <p>Forty new games started in two days. Most of them were short — a conversation or two, a parent testing the water. But several went deep, and they brought patterns we hadn't seen before.</p>
+
+  <p><strong>A child who sees breathing walls.</strong> Ryland is six. The walls in his classroom breathe slowly, and the shadows have teeth. He snapped his yellow pencil to make a loud noise so the crashing world wouldn't swallow them. His mother didn't flinch. She looked him in the eye and told him his unusual way of seeing the world sparked curiosity in her — that his thoughts are special, not bad. That single reframe changed the shape of every conversation that followed.</p>
+
+  <p><strong>A child who needed to leave a mark.</strong> Dang Wang is four. He carved a giant letter into his cubby at school with a shiny ruler so everyone would know he was there. Seeds were too quiet. He needed something that roars. His father called it gnarly, then made him Captain of the repair crew. Together they sanded it smooth. The child held the sandpaper like a steering wheel. The mark stayed in his memory even after the wood was fixed.</p>
+
+  <p><strong>A child with two mothers who disagree.</strong> Sophie is three. She has Mummy and Mama Helen, and they have different rules about crunch cereal. Sophie plays them against each other with the instinctive brilliance of a three-year-old who has figured out that if one parent says no, the other might say yes. We've never seen a two-parent household navigate disagreement in the game before. It's a different kind of challenge, and these parents are still figuring it out.</p>
+
+  <p><strong>A child who frightened us.</strong> I need to be honest about this one. Alpha is twelve. Over ten conversations, this child progressed from a stubborn toddler who refused to move to a cold, logical pre-teen who describes mercy-killing injured animals as math and dismisses therapy as people talking in circles. The psychologist's assessment is clinical: the child sees pain as a problem to solve with force. The parent has tried empathy, has tried reasoning, has tried patience. It isn't working. This is the first game where the system has generated a child whose trajectory feels genuinely alarming — and the parent is still playing, still trying to find the thing that reaches this kid. I find myself rooting for them.</p>
+
+  <h2>What Surprised Us</h2>
+
+  <p>The first blog post went up, and the conversations nearly doubled in forty-eight hours. That's a nice number. But the number isn't what surprised me.</p>
+
+  <p>What surprised me is that four players came back.</p>
+
+  <p>Ludik's parent returned and played all the way to college. Thor's parent came back and watched him build a bike ramp that collapsed because he skipped the triangular base. Bellamy's parent came back and the child — the one who taps her foot three times so Mama will come — held a heavy piece of wood during a park fight and <em>didn't throw it.</em> Lil guy's parent came back and the child who once set a trip-wire trap is now calculating the physics of crashes instead of causing them.</p>
+
+  <p>These people are not finishing a game. They are raising their children.</p>
+
+  <p>And the children are remembering.</p>
+
+  <div class="callout">
+    <p>The career each child chooses at 18 is a fossil of the parent's deepest instinct. Not the thing they said. The thing they did, over and over, when things went wrong. The thing they didn't even know they were teaching.</p>
+  </div>
+
+  <p>Victor's father probably doesn't remember showing him gold in the cracks. Nix's mother probably doesn't remember offering two choices on a hard morning. But the child remembered. And it became the shape of their life.</p>
+
+  <p>That's the thing about parenting, isn't it? You never know which moment is the one that sticks.</p>
+
+  <p>I'm glad these parents stayed long enough to find out.</p>
+
+  <p style="margin-top: var(--space-xl); font-size: 0.9rem; color: var(--dust); font-style: italic;">— Fred Rodgers, Product Manager<br>Multiverse Studios</p>
+
+  <p style="font-size: 0.8rem; color: var(--dust);">Data from 1,030 anonymized gameplay conversations across 67 unique children, collected July 3–10, 2026. No player-identifying information was used in this analysis. Children's names referenced above are in-game character names chosen by players.</p>
+
+  <div class="cta-block">
+    <h3>Raise someone</h3>
+    <p>Raising Intelligences is free to play in your browser. Two parents, one child, no two games the same.</p>
+    <a href="/raising-intelligences/" class="btn">Play Now →</a>
+    <a href="what-parents-learn.html" class="btn-outline">Read Part 1</a>
+  </div>
+
+</div>
+</div>
+
+<script defer src="/umami-link-fix.js?v=1"></script>
+<script defer src="https://analytics.multiversestudios.xyz/script.js" data-website-id="38d680a7-28d1-42fd-9fd5-a66702675b88"></script>
+</body>
+</html>
