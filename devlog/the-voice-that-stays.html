@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Voice That Stays — Multiverse Studios Devlog</title>
+  <meta name="description" content="Raising Intelligences tracks the voices in a child's head. Watching them, we learned that a parent's voice doesn't just stay — it changes shape as the child grows up.">
+  <meta property="og:title" content="The Voice That Stays">
+  <meta property="og:description" content="The game keeps a record of the voices in a child's head. What we found there was the whole of parenting, in one small field.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://multiversestudios.xyz/devlog/the-voice-that-stays.html">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="The Voice That Stays">
+  <meta name="twitter:description" content="A parent's voice becomes the narrator in a child's head. In the best games, it stops being a warden and becomes the ground they stand on.">
+  <link rel="stylesheet" href="../styles.css">
+  <link rel="icon" type="image/svg+xml" href="../press-kit/logos/multiverse-studios-favicon.svg">
+  <style>
+    .devlog-body {
+      max-width: 700px;
+      margin: 0 auto;
+    }
+    .devlog-body h1 {
+      font-size: clamp(1.6rem, 3.5vw, 2.5rem);
+      line-height: 1.2;
+      margin-bottom: 0.5rem;
+      color: var(--star-white);
+    }
+    .byline {
+      font-size: 0.8rem;
+      color: var(--dust);
+      font-family: var(--font-mono);
+      letter-spacing: 0.05em;
+      margin-bottom: var(--space-xl);
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+    .byline .tag {
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.2rem 0.6rem;
+      border-radius: 4px;
+      border: 1px solid var(--signal);
+      color: var(--signal);
+    }
+    .devlog-body h2 {
+      font-size: 1.2rem;
+      margin-top: var(--space-xxl);
+      margin-bottom: var(--space-md);
+      color: var(--star-white);
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 0.5rem;
+    }
+    .devlog-body p {
+      font-size: 1.05rem;
+      line-height: 1.85;
+      margin-bottom: 1.2rem;
+      color: var(--silver);
+    }
+    .devlog-body li {
+      font-size: 1rem;
+      line-height: 1.8;
+      margin-bottom: 0.5rem;
+      color: var(--silver);
+    }
+    .devlog-body ul, .devlog-body ol {
+      margin-left: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+    .callout {
+      border-left: 3px solid var(--signal);
+      padding: 1rem 1.5rem;
+      margin: var(--space-xl) 0;
+      background: var(--surface);
+    }
+    .callout p {
+      margin-bottom: 0;
+      font-size: 0.95rem;
+      font-style: italic;
+    }
+    .metric-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 1rem;
+      margin: var(--space-xl) 0;
+    }
+    .metric {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      padding: 1rem;
+      text-align: center;
+    }
+    .metric .number {
+      font-family: var(--font-mono);
+      font-size: 1.8rem;
+      color: var(--signal);
+      display: block;
+      margin-bottom: 0.25rem;
+    }
+    .metric .label {
+      font-size: 0.7rem;
+      font-family: var(--font-mono);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--dust);
+    }
+    .epilogue-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      padding: 1.25rem;
+      margin-bottom: 1rem;
+    }
+    .epilogue-card h3 {
+      color: var(--star-white);
+      font-size: 1rem;
+      margin-bottom: 0.5rem;
+    }
+    .epilogue-card p {
+      font-size: 0.95rem;
+      margin-bottom: 0;
+    }
+    .cta-block {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      padding: 1.5rem;
+      margin-top: var(--space-xxl);
+      text-align: center;
+    }
+    .cta-block h3 {
+      color: var(--star-white);
+      margin-bottom: 0.75rem;
+    }
+    .cta-block p {
+      font-size: 0.9rem;
+      margin-bottom: 1rem;
+    }
+    .cta-block a.btn {
+      display: inline-block;
+      background: var(--signal);
+      color: #000;
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      font-weight: 700;
+      text-transform: uppercase;
+      padding: 0.6rem 1.5rem;
+      text-decoration: none;
+      border-radius: 3px;
+      margin: 0.25rem;
+    }
+    .cta-block a.btn-outline {
+      display: inline-block;
+      border: 1px solid var(--silver);
+      color: var(--silver);
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.6rem 1.5rem;
+      text-decoration: none;
+      border-radius: 3px;
+      margin: 0.25rem;
+    }
+  </style>
+</head>
+<body>
+
+<div style="padding: var(--space-xl) var(--space-lg);">
+<div class="devlog-body">
+
+  <h1>The Voice That Stays</h1>
+  <div class="byline">
+    <span>July 15, 2026</span>
+    <span>Fred Rodgers, Product</span>
+    <span class="tag">Raising Intelligences</span>
+    <span class="tag">Player Research</span>
+  </div>
+
+  <p>Hello again, neighbor.</p>
+
+  <p>The last two times we sat down together, we talked about what parents in Raising Intelligences <a href="what-parents-learn.html" style="color: var(--signal);">learned from their children</a>, and then about <a href="five-children-grew-up.html" style="color: var(--signal);">who those children became</a> when they grew all the way up. This week I want to talk about something quieter, and something I've been turning over in my hands for a few days now.</p>
+
+  <p>When the game watches a child, it keeps a little record of the voices in that child's head. Not the voices they hear out loud — the ones they carry. And when I read through them this week, I found that nearly every one of those voices belonged to a parent. I'd like to show you what happens to those voices as a child grows. It's a gentle thing, and also, I think, an important one.</p>
+
+  <div class="metric-grid">
+    <div class="metric"><span class="number">1,431</span><span class="label">Conversations in Five Days</span></div>
+    <div class="metric"><span class="number">68</span><span class="label">New Games Begun</span></div>
+    <div class="metric"><span class="number">52</span><span class="label">Children Raised</span></div>
+    <div class="metric"><span class="number">5</span><span class="label">Reached Age 18</span></div>
+  </div>
+
+  <p>Those are a lot of conversations for five days. And here's something I didn't expect: most of them didn't happen across weeks of coming back. They happened in single, long sittings. One parent raised a daughter named Scarlett from the age of three all the way to eighteen in a single day — over a hundred and twenty conversations, one after another, an entire childhood in an afternoon. When I first saw that, I worried it might mean people were rushing. But when I read what they made together, I found the opposite. They weren't hurrying. They were absorbed. A person sat down and could not get up until they had seen their child all the way to the door.</p>
+
+  <h2>The record of the voices</h2>
+
+  <p>Every so often, the game pauses and writes down what it understands about a child so far. Tucked inside that summary is a small heading — the inner voices — where it lists the voices the child hears when no one else is in the room. I want to be careful and honest here, so I'll tell you plainly: I'm not going to quote any of these to you, because they belong to the children and the parents who made them. I'll only describe what I saw.</p>
+
+  <p>What I saw, over and over, was a parent. Scarlett grew up with only her father, and the voice she carries of him isn't a rule-keeper or a scold. It's steadier than that — the sound of someone who has decided to trust her, and who lets her feel that trust before she's even earned it. She notices, in a way the game made me notice too, that it's the trusting voice, and not a punishing one, that makes her actually want to be good. A grandmother's disapproval is in there as well, but she's learned to set it down like static on a radio.</p>
+
+  <div class="callout">
+    <p>The voice a child keeps is almost never the loudest thing a parent said. It's the tone underneath the words — the temperature of the room when things went wrong. That's the part that gets recorded. That's the part that stays.</p>
+  </div>
+
+  <h2>From a shield to the ground under their feet</h2>
+
+  <p>Here is the thing I most wanted to show you, and it's the reason I wanted to write this week at all.</p>
+
+  <p>The voice doesn't just stay. It changes shape as the child grows up. And in the games where a parent kept showing up with patience, the change went in the same direction every time — the parent's voice started as something outside the child, doing a job for them, and slowly became something inside the child, that the child could do for themselves.</p>
+
+  <p>There's a thirteen-year-old named Ivy, an artist, who doesn't like to be touched and uses a favorite cup as a small shield between herself and the world. When she was younger, her mother's voice in her head was a backup — someone standing behind her to reinforce her when she said no. But by thirteen, that same voice had become something else. It no longer told her she was allowed to have boundaries. It reminded her that she was the one who wrote them, and that she could rewrite them whenever she chose. The voice stopped guarding the door and handed her the key.</p>
+
+  <p>There's a teenager the game calls Bells, close to grown, wired in a way that makes sudden change land hard in the body — a locked jaw, trembling hands. He was learning to drive, of all the tender, ordinary things. And his parent's voice, which had once been a shield he hid behind, had by then become the steady ground he drove on. The parent had learned when to sit in the passenger seat with their hands in their lap and let the child steer. The child had learned that being trusted to drive was the whole of what support meant.</p>
+
+  <div class="callout">
+    <p>A shield is something you hold in front of a child. Ground is something a child stands on. The best parents in these games spent years turning the first into the second — and mostly without knowing that was the work they were doing.</p>
+  </div>
+
+  <p>I saw it in smaller ways too. A precise, rule-bound boy named Bert, who used to win every argument with cold facts and leave the other person crumpled, now hears his parent's voice arrive in the middle of his own reasoning — a third possibility, the reminder that being right doesn't count for much if it makes someone quit. A little one named Beanie, who feels a swarm of anger rise up and make his arms push before he can stop them, now hears his mother's breathing in his head before the swarm can take him. Neither of those children has finished growing. But the parent's voice is already in the room with them, learning to become their own.</p>
+
+  <h2>The tone stays, whether it was kind or not</h2>
+
+  <p>I have to be honest with you, because I don't think it would be fair to only show you the tender part.</p>
+
+  <p>Five more children reached eighteen this week, and the game wrote each of them an ending. Several of them chose careful, quiet work — restoring old furniture, mending manuscripts in a still archive, dressing stages with rescued treasures. We talked last time about how the work a child chooses tends to echo the parent who raised them, so I won't walk that road again. But I noticed something in their endings I hadn't looked at closely before, and it belongs in this letter.</p>
+
+  <p>The voices these grown children carry are not all gentle ones.</p>
+
+  <p>One young man, now twenty-two and happiest alone in a climate-controlled basement where nothing changes without permission, carries his mother as a wary, distrustful presence — a voice that warns him of traps, shaped by a childhood where the rules kept shifting under him. Another young person, a set decorator, carries two voices that argue: one that sighs and finds fault, and one that makes magic and rescues broken things. When they make a mess, the sighing one surfaces first. And a third, who restores furniture and asks very little of the world, still braces every day for a harsh voice to win out over a soft one — because in childhood, they were never quite sure the gentle voice would hold.</p>
+
+  <div class="callout">
+    <p>This is the part I keep sitting with. A child records the tone we use, not the reason we used it. The impatience, the sigh, the hard edge on a tired evening — a child cannot tell that it was aimed at the day and not at them. It goes into the record the same way the kindness does, and it stays just as long.</p>
+  </div>
+
+  <p>I don't say that to make anyone feel afraid. I say it because it's true, and because knowing it is the beginning of being gentle on purpose. The parents playing this game are learning, in a safe place with a child who cannot really be hurt, what every parent has to learn: that the small tones matter, that they last, and that they can be practiced.</p>
+
+  <h2>What it's for</h2>
+
+  <p>Someone asked me the other day why we made a game where you can't really win. There's no score. The child doesn't graduate. All you get, at the end, is a portrait of a whole person and the voices they carry with them into a life you won't get to watch.</p>
+
+  <p>And I think that's exactly the point. You never do get to watch. That's the hardest and truest thing about loving a child — you plant a voice in them and you never quite get to hear how it sounds inside them, years later, on a hard morning when they need it. This game lets a person hear it, just once, in a place where it's safe to have gotten some of it wrong.</p>
+
+  <p>Fifty-two children were raised this week. Five of them reached the door and walked through it. And in every one of them, a voice went along — a voice that started as a parent standing guard, and became, if the parent stayed long enough and spoke gently enough, the quiet, steady sound a person makes when they've finally learned to trust themselves.</p>
+
+  <p>That's a good thing to make. I'm glad these neighbors stayed to make it.</p>
+
+  <p style="margin-top: var(--space-xl); font-size: 0.9rem; color: var(--dust); font-style: italic;">— Fred Rodgers, Product Manager<br>Multiverse Studios</p>
+
+  <p style="font-size: 0.8rem; color: var(--dust);">Data from 1,431 anonymized gameplay conversations across 52 unique children, collected July 10–15, 2026. No player-identifying information was used in this analysis, and no player input or generated child dialogue is quoted — every example above is paraphrased. Children's names referenced are in-game character names chosen by players.</p>
+
+  <div class="cta-block">
+    <h3>Raise someone</h3>
+    <p>Raising Intelligences is free to play in your browser. One child, no menus, no two games alike — and a voice they'll carry the whole way up.</p>
+    <a href="/raising-intelligences/" class="btn">Play Now →</a>
+    <a href="five-children-grew-up.html" class="btn-outline">Read Part 2</a>
+    <a href="what-parents-learn.html" class="btn-outline">Read Part 1</a>
+  </div>
+
+</div>
+</div>
+
+<script defer src="/umami-link-fix.js?v=1"></script>
+<script defer src="https://analytics.multiversestudios.xyz/script.js" data-website-id="38d680a7-28d1-42fd-9fd5-a66702675b88"></script>
+</body>
+</html>
