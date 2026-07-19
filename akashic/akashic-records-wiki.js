@@ -708,6 +708,30 @@
   // Markdown renderer (no external deps)
   // ---------------------------------------------------------------------------
 
+  // Groups consecutive lines matching `isBlockLine` and renders each run with
+  // `renderBlock`. This replaces the previous approach of matching an entire
+  // multi-line block with a single `(...)+` regex (e.g. `/((?:^\|.+\|\n)+)/gm`),
+  // which is catastrophically backtracking on near-matching input (a long run
+  // of lines that almost — but don't quite — close the pattern forces the
+  // engine to re-try every partition of the block). Walking lines and testing
+  // each one independently with a simple anchored regex is linear in input size.
+  function replaceLineBlocks(text, isBlockLine, renderBlock) {
+    var lines = text.split('\n');
+    var out = [];
+    var i = 0;
+    while (i < lines.length) {
+      if (isBlockLine(lines[i])) {
+        var start = i;
+        while (i < lines.length && isBlockLine(lines[i])) i++;
+        out.push(renderBlock(lines.slice(start, i)));
+      } else {
+        out.push(lines[i]);
+        i++;
+      }
+    }
+    return out.join('\n');
+  }
+
   function renderMarkdown(md) {
     if (!md) return '';
 
@@ -715,20 +739,20 @@
     var html = md.replace(/\r\n/g, '\n').replace(/\r/g, '\n');
 
     // Tables: pipe-delimited blocks
-    html = html.replace(
-      /((?:^\|.+\|\n)+)/gm,
-      function (block) {
-        var lines = block.trim().split('\n');
-        if (lines.length < 2) return block;
+    html = replaceLineBlocks(
+      html,
+      function (line) { return /^\|.+\|$/.test(line); },
+      function (blockLines) {
+        if (blockLines.length < 2) return blockLines.join('\n');
 
         var sepIdx = -1;
-        for (var i = 0; i < lines.length; i++) {
-          if (/^\|[\s\-|:]+\|$/.test(lines[i].trim())) { sepIdx = i; break; }
+        for (var i = 0; i < blockLines.length; i++) {
+          if (/^\|[\s\-|:]+\|$/.test(blockLines[i].trim())) { sepIdx = i; break; }
         }
-        if (sepIdx === -1) return block;
+        if (sepIdx === -1) return blockLines.join('\n');
 
-        var headerLine = lines[0];
-        var bodyLines = lines.slice(sepIdx + 1);
+        var headerLine = blockLines[0];
+        var bodyLines = blockLines.slice(sepIdx + 1);
 
         function rowToHtml(line, tag) {
           var cells = line.replace(/^\||\|$/g, '').split('|');
@@ -744,7 +768,7 @@
           '<tbody>' +
             bodyLines.map(function (l) { return rowToHtml(l, 'td'); }).join('') +
           '</tbody>' +
-        '</table>\n';
+        '</table>';
       }
     );
 
@@ -754,10 +778,14 @@
     });
 
     // Blockquotes
-    html = html.replace(/((?:^> .+\n?)+)/gm, function (block) {
-      var inner = block.replace(/^> /gm, '');
-      return '<blockquote>' + inner.trim() + '</blockquote>\n';
-    });
+    html = replaceLineBlocks(
+      html,
+      function (line) { return /^> .+$/.test(line); },
+      function (blockLines) {
+        var inner = blockLines.map(function (l) { return l.replace(/^> /, ''); }).join('\n');
+        return '<blockquote>' + inner.trim() + '</blockquote>';
+      }
+    );
 
     // Headings
     html = html.replace(/^#### (.+)$/gm, function (_, t) { return '<h4>' + inlineMarkdown(t) + '</h4>'; });
@@ -769,20 +797,28 @@
     html = html.replace(/^---+$/gm, '<hr>');
 
     // Unordered lists
-    html = html.replace(/((?:^- .+\n?)+)/gm, function (block) {
-      var items = block.trim().split('\n').map(function (l) {
-        return '<li>' + inlineMarkdown(l.replace(/^- /, '')) + '</li>';
-      });
-      return '<ul>' + items.join('') + '</ul>\n';
-    });
+    html = replaceLineBlocks(
+      html,
+      function (line) { return /^- .+$/.test(line); },
+      function (blockLines) {
+        var items = blockLines.map(function (l) {
+          return '<li>' + inlineMarkdown(l.replace(/^- /, '')) + '</li>';
+        });
+        return '<ul>' + items.join('') + '</ul>';
+      }
+    );
 
     // Ordered lists
-    html = html.replace(/((?:^\d+\. .+\n?)+)/gm, function (block) {
-      var items = block.trim().split('\n').map(function (l) {
-        return '<li>' + inlineMarkdown(l.replace(/^\d+\. /, '')) + '</li>';
-      });
-      return '<ol>' + items.join('') + '</ol>\n';
-    });
+    html = replaceLineBlocks(
+      html,
+      function (line) { return /^\d+\. .+$/.test(line); },
+      function (blockLines) {
+        var items = blockLines.map(function (l) {
+          return '<li>' + inlineMarkdown(l.replace(/^\d+\. /, '')) + '</li>';
+        });
+        return '<ol>' + items.join('') + '</ol>';
+      }
+    );
 
     // Paragraphs
     var BLOCK_TAGS = /^<(h[1-6]|ul|ol|li|blockquote|pre|table|thead|tbody|tr|th|td|hr)/;
