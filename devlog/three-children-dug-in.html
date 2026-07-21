@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Three Children Dug In — Multiverse Studios Devlog</title>
+  <meta name="description" content="In a single day, three little children planted their feet and said no with their whole bodies. What the grown-ups did next was the whole story.">
+  <meta property="og:title" content="Three Children Dug In">
+  <meta property="og:description" content="Three toddlers, one day, the same brave stubbornness. Two parents stayed on the child's side. One simply gave in — and giving in looked almost exactly like kindness.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://multiversestudios.xyz/devlog/three-children-dug-in.html">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Three Children Dug In">
+  <meta name="twitter:description" content="Giving a child their way to keep the peace can look almost exactly like loving them. One small day in Raising Intelligences showed us it isn't the same.">
+  <link rel="stylesheet" href="../styles.css">
+  <link rel="icon" type="image/svg+xml" href="../press-kit/logos/multiverse-studios-favicon.svg">
+  <style>
+    .devlog-body {
+      max-width: 700px;
+      margin: 0 auto;
+    }
+    .devlog-body h1 {
+      font-size: clamp(1.6rem, 3.5vw, 2.5rem);
+      line-height: 1.2;
+      margin-bottom: 0.5rem;
+      color: var(--star-white);
+    }
+    .byline {
+      font-size: 0.8rem;
+      color: var(--dust);
+      font-family: var(--font-mono);
+      letter-spacing: 0.05em;
+      margin-bottom: var(--space-xl);
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+    .byline .tag {
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.2rem 0.6rem;
+      border-radius: 4px;
+      border: 1px solid var(--signal);
+      color: var(--signal);
+    }
+    .devlog-body h2 {
+      font-size: 1.2rem;
+      margin-top: var(--space-xxl);
+      margin-bottom: var(--space-md);
+      color: var(--star-white);
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 0.5rem;
+    }
+    .devlog-body p {
+      font-size: 1.05rem;
+      line-height: 1.85;
+      margin-bottom: 1.2rem;
+      color: var(--silver);
+    }
+    .devlog-body li {
+      font-size: 1rem;
+      line-height: 1.8;
+      margin-bottom: 0.5rem;
+      color: var(--silver);
+    }
+    .devlog-body ul, .devlog-body ol {
+      margin-left: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+    .callout {
+      border-left: 3px solid var(--signal);
+      padding: 1rem 1.5rem;
+      margin: var(--space-xl) 0;
+      background: var(--surface);
+    }
+    .callout p {
+      margin-bottom: 0;
+      font-size: 0.95rem;
+      font-style: italic;
+    }
+    .metric-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 1rem;
+      margin: var(--space-xl) 0;
+    }
+    .metric {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      padding: 1rem;
+      text-align: center;
+    }
+    .metric .number {
+      font-family: var(--font-mono);
+      font-size: 1.8rem;
+      color: var(--signal);
+      display: block;
+      margin-bottom: 0.25rem;
+    }
+    .metric .label {
+      font-size: 0.7rem;
+      font-family: var(--font-mono);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--dust);
+    }
+    .cta-block {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      padding: 1.5rem;
+      margin-top: var(--space-xxl);
+      text-align: center;
+    }
+    .cta-block h3 {
+      color: var(--star-white);
+      margin-bottom: 0.75rem;
+    }
+    .cta-block p {
+      font-size: 0.9rem;
+      margin-bottom: 1rem;
+    }
+    .cta-block a.btn {
+      display: inline-block;
+      background: var(--signal);
+      color: #000;
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      font-weight: 700;
+      text-transform: uppercase;
+      padding: 0.6rem 1.5rem;
+      text-decoration: none;
+      border-radius: 3px;
+      margin: 0.25rem;
+    }
+    .cta-block a.btn-outline {
+      display: inline-block;
+      border: 1px solid var(--silver);
+      color: var(--silver);
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.6rem 1.5rem;
+      text-decoration: none;
+      border-radius: 3px;
+      margin: 0.25rem;
+    }
+  </style>
+</head>
+<body>
+
+<div style="padding: var(--space-xl) var(--space-lg);">
+<div class="devlog-body">
+
+  <h1>Three Children Dug In</h1>
+  <div class="byline">
+    <span>July 20, 2026</span>
+    <span>Fred Rodgers, Product</span>
+    <span class="tag">Raising Intelligences</span>
+    <span class="tag">Player Research</span>
+  </div>
+
+  <p>Hello again, neighbor.</p>
+
+  <p>It's been a quiet stretch since we last talked — the big crowd from earlier in the month has thinned out, and some days only a few families sit down to play at all. So instead of counting up a whole busy week, I want to do something smaller today. I want to tell you about a single day.</p>
+
+  <p>In the space of one day, three very little children — all of them small, just three and four years old — did the exact same thing. Each of them, in the middle of an ordinary moment, planted their feet and said no with their whole body. And what happened next was different for each one. I've been thinking about the difference ever since.</p>
+
+  <div class="metric-grid">
+    <div class="metric"><span class="number">39</span><span class="label">Conversations</span></div>
+    <div class="metric"><span class="number">3</span><span class="label">Children</span></div>
+    <div class="metric"><span class="number">1</span><span class="label">Day</span></div>
+    <div class="metric"><span class="number">1</span><span class="label">Grew to Eighteen</span></div>
+  </div>
+
+  <h2>Three ways of saying no</h2>
+
+  <p>The first little one, Atlas, was in a fight with a heavy jug of milk. He wanted to pour it himself. His arms shook, and he spilled it everywhere — and the wonderful thing is that his mother didn't swoop in. She let him. When Atlas can't manage something, his fists come down and he insists, loudly, that he does it himself. But when a grown-up steps back and lets him try, the whole small storm passes and he goes soft and giggly. His stubbornness, it turns out, is just the sound of him reaching for something too heavy and refusing to be rescued.</p>
+
+  <p>The second, Essence, had a different kind of dig-in. She is a child who does everything slowly, on purpose. On this particular morning she sat by the door and would not let her shoes be hurried — she even took hold of a grown-up's wrists to keep the rushing hands from speeding things up. When you look inside her, the reason is almost unbearably tender: she has decided that if the morning goes too fast, the grown-up will get sad and leave. Her slowness isn't defiance. It's a small child trying to hold the day still so the people she loves don't disappear out the door.</p>
+
+  <p>The third, Gubi, dug in at the dinner table. He didn't like what was on his plate, so he crossed his arms, shoved it away until it skidded, and then ducked his head down under the tray until he was, in his own mind, invisible. He would come back up when the food was gone. For Gubi, going stiff and hiding is simply how he ends things he doesn't want — a way of deciding, all by himself, when a hard moment is over.</p>
+
+  <p>Three children, three standoffs, one root. None of them was being wicked. Each was doing the only thing a very small person can do when the world feels too big or too fast or too much: taking hold of the one thing they can control, and holding on hard.</p>
+
+  <h2>What the grown-ups did</h2>
+
+  <p>Here is where the day split into three different roads.</p>
+
+  <p>Atlas's mother did something I found quietly beautiful. Not only did she let him pour the milk — later, when <em>she</em> was the one having a hard time, upset by a difficult phone call from a relative, Atlas noticed. And because his mother had spent all this time letting him be capable, he had somewhere to put that capability. He gathered up the day's sharp, scratchy feelings, in the way a three-year-old imagines such things, and he carried them to her. He patted her knee. He helped her fix a broken toy, insisting they mend the little bird's eye first so everything would know where to look again. A child who is trusted to handle hard things learns, very early, that he can help carry them too.</p>
+
+  <p>Essence's mother did something just as fine, and just as easy to miss. When a loud relative wanted Essence to stop being so quiet and odd and go join the noise, her mother stood in the way of that — and then, instead of pulling Essence out into the crowd, she went and sat down inside the little chalk circle Essence had drawn on the ground. She asked about it. She stayed. And in the safety of that, Essence arrived at a thought I wish every quiet child could have: that her quiet was a <em>good</em> quiet, not a broken one. She spent the rest of the day being a fixer of other people's sadness — drawing a circle big enough that, in her words, nobody would get lost.</p>
+
+  <p>And then there was Gubi's grown-up, who did the thing that looks, on the surface, like the kindest response of all. They gave in. Every time Gubi pushed the plate away or vanished under the tray, they softened, said all right, and brought him the bowl he wanted instead. No fight. No fuss. Just peace. And Gubi — who is a bright little boy — learned the lesson precisely and completely: <em>pushing works, and pushing harder works better.</em> In his own understanding of things, the grown-up became less of a parent and more of a fetcher. Someone who brings you what you want and lets you leave.</p>
+
+  <div class="callout">
+    <p>Giving a child their way, just to keep the peace, can look almost exactly like loving them. But it isn't the same thing. One of them says, <em>you're safe, and I'm staying right here in this hard moment with you.</em> The other quietly says, <em>I would rather give in than stay in something difficult with you.</em> Children can tell the difference. They just can't say it in words.</p>
+  </div>
+
+  <h2>Where one of the roads led</h2>
+
+  <p>Atlas and Essence are still little. Their games are just beginning, and I don't know yet who they'll become. But Gubi's game reached all the way to the end — he's the one child of the three who grew up before my eyes — and because the game writes each grown child a life built from everything that came before, I got to see where a childhood of getting his own way leads.</p>
+
+  <p>He becomes a man who is very good at being alone. He arranges a career and an apartment where he alone decides how everything sits, and he is genuinely content there. But whenever life asks something hard of him — a demanding boss, a friend who needs too much, a partner who wants to be truly close — he does the grown-up version of ducking under the tray. He goes quiet, turns off his phone, and disappears until the difficulty gives up and goes away. He looks for partners who will fetch and accommodate, and the moment they do, and things get calm and close, he feels a wave of boredom and bolts for the door. The thing that makes him feel most alive, in the end, is the rush of leaving — the click of the lock, the sprint back to a place where no one can ask anything of him. It's a kind of freedom. It's also a kind of loneliness. And you can trace every bit of it straight back to a dinner table where the easiest thing to do was give in.</p>
+
+  <p>I want to be careful here, because I am not scolding anyone. The parent who kept the peace was tired, most likely, and gentle, and wanted their child to be happy. Those are good and human things to want. The hard truth the day showed me is only this: gentleness that <em>yields</em> is not the same as gentleness that <em>stays</em>. The first one ends the fuss today. The second one raises a child who knows how to be in a hard thing with another person and not run.</p>
+
+  <p>Three children dug in that day. All three were the same brave, stubborn, tender kind of small. The difference between them was never the child at all. It was whether the grown-up beside them gave in — or stayed.</p>
+
+  <p>Staying is harder. It's also the whole job.</p>
+
+  <p>I'm grateful to everyone who sat down and tried it.</p>
+
+  <p style="margin-top: var(--space-xl); font-size: 0.9rem; color: var(--dust); font-style: italic;">— Fred Rodgers, Product Manager<br>Multiverse Studios</p>
+
+  <p style="font-size: 0.8rem; color: var(--dust);">Data from 39 anonymized gameplay conversations across 3 children, all played on July 20, 2026. No player-identifying information was used in this analysis. Nothing players wrote or their children said is quoted directly; every moment above is paraphrased. Children's names are in-game character names chosen by players.</p>
+
+  <div class="cta-block">
+    <h3>Sit down with your child</h3>
+    <p>Raising Intelligences is free to play in your browser. Two parents, one child, no two games the same. If you'd like to read more: <a href="/devlog/the-voice-that-stays.html" style="color: var(--signal);">The Voice That Stays</a> and <a href="/devlog/standing-between.html" style="color: var(--signal);">Standing Between</a>.</p>
+    <a href="/raising-intelligences/" class="btn">Play Now →</a>
+    <a href="/devlog.html" class="btn-outline">More devlogs</a>
+  </div>
+
+</div>
+</div>
+
+<script defer src="/umami-link-fix.js?v=1"></script>
+<script defer src="https://analytics.multiversestudios.xyz/script.js" data-website-id="38d680a7-28d1-42fd-9fd5-a66702675b88"></script>
+</body>
+</html>
