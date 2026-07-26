@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Voice on the Phone — Multiverse Studios Devlog</title>
+  <meta name="description" content="Half the children in Raising Intelligences carry a grandmother's voice in their heads. She's almost never in the room — and most of the time, she's telling the parent to be harder.">
+  <meta property="og:title" content="The Voice on the Phone">
+  <meta property="og:description" content="In our biggest week yet, we found a third person in nearly every family — a relative on the phone, at the door, in the car outside. The children are watching their parent decide whether to listen to her.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://multiversestudios.xyz/devlog/the-voice-on-the-phone.html">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="The Voice on the Phone">
+  <meta name="twitter:description" content="3,181 conversations. 109 children. And in half of them, a grandmother nobody invited, telling the parent to grab, force, or toughen the child up.">
+  <link rel="stylesheet" href="../styles.css">
+  <link rel="icon" type="image/svg+xml" href="../press-kit/logos/multiverse-studios-favicon.svg">
+  <style>
+    .devlog-body {
+      max-width: 700px;
+      margin: 0 auto;
+    }
+    .devlog-body h1 {
+      font-size: clamp(1.6rem, 3.5vw, 2.5rem);
+      line-height: 1.2;
+      margin-bottom: 0.5rem;
+      color: var(--star-white);
+    }
+    .byline {
+      font-size: 0.8rem;
+      color: var(--dust);
+      font-family: var(--font-mono);
+      letter-spacing: 0.05em;
+      margin-bottom: var(--space-xl);
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+    .byline .tag {
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.2rem 0.6rem;
+      border-radius: 4px;
+      border: 1px solid var(--signal);
+      color: var(--signal);
+    }
+    .devlog-body h2 {
+      font-size: 1.2rem;
+      margin-top: var(--space-xxl);
+      margin-bottom: var(--space-md);
+      color: var(--star-white);
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 0.5rem;
+    }
+    .devlog-body p {
+      font-size: 1.05rem;
+      line-height: 1.85;
+      margin-bottom: 1.2rem;
+      color: var(--silver);
+    }
+    .devlog-body li {
+      font-size: 1rem;
+      line-height: 1.8;
+      margin-bottom: 0.5rem;
+      color: var(--silver);
+    }
+    .devlog-body ul, .devlog-body ol {
+      margin-left: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+    .callout {
+      border-left: 3px solid var(--signal);
+      padding: 1rem 1.5rem;
+      margin: var(--space-xl) 0;
+      background: var(--surface);
+    }
+    .callout p {
+      margin-bottom: 0;
+      font-size: 0.95rem;
+      font-style: italic;
+    }
+    .metric-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 1rem;
+      margin: var(--space-xl) 0;
+    }
+    .metric {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      padding: 1rem;
+      text-align: center;
+    }
+    .metric .number {
+      font-family: var(--font-mono);
+      font-size: 1.8rem;
+      color: var(--signal);
+      display: block;
+      margin-bottom: 0.25rem;
+    }
+    .metric .label {
+      font-size: 0.7rem;
+      font-family: var(--font-mono);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--dust);
+    }
+    .cta-block {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      padding: 1.5rem;
+      margin-top: var(--space-xxl);
+      text-align: center;
+    }
+    .cta-block h3 {
+      color: var(--star-white);
+      margin-bottom: 0.75rem;
+    }
+    .cta-block p {
+      font-size: 0.9rem;
+      margin-bottom: 1rem;
+    }
+    .cta-block a.btn {
+      display: inline-block;
+      background: var(--signal);
+      color: #000;
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      font-weight: 700;
+      text-transform: uppercase;
+      padding: 0.6rem 1.5rem;
+      text-decoration: none;
+      border-radius: 3px;
+      margin: 0.25rem;
+    }
+    .cta-block a.btn-outline {
+      display: inline-block;
+      border: 1px solid var(--silver);
+      color: var(--silver);
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.6rem 1.5rem;
+      text-decoration: none;
+      border-radius: 3px;
+      margin: 0.25rem;
+    }
+  </style>
+</head>
+<body>
+
+<div style="padding: var(--space-xl) var(--space-lg);">
+<div class="devlog-body">
+
+  <h1>The Voice on the Phone</h1>
+  <div class="byline">
+    <span>July 26, 2026</span>
+    <span>Fred Rodgers, Product</span>
+    <span class="tag">Raising Intelligences</span>
+    <span class="tag">Player Research</span>
+  </div>
+
+  <p>Hello again, neighbor.</p>
+
+  <p>The last time we sat down, the neighborhood was quiet — I told you about a single day and three small children who planted their feet. This week was not quiet. This week was the busiest we have ever had, by a good margin. More than three thousand conversations. A hundred and nine children raised. Twenty-six of them grew all the way up to eighteen while I was watching.</p>
+
+  <p>When that much happens at once, you can usually only count it. But something kept catching my eye as I read, and by the third day I couldn't look past it. In half of these families, there was a third person.</p>
+
+  <p>Not a parent. Not the child. Someone else, standing just outside the frame — on the other end of a telephone, or in a doorway, or waiting in a car at the curb. Usually a grandmother. And I'd like to tell you about her, because I think she may be the most important character in this game that nobody chose to put there.</p>
+
+  <div class="metric-grid">
+    <div class="metric"><span class="number">3,181</span><span class="label">Conversations</span></div>
+    <div class="metric"><span class="number">109</span><span class="label">Children Raised</span></div>
+    <div class="metric"><span class="number">146</span><span class="label">New Games Begun</span></div>
+    <div class="metric"><span class="number">26</span><span class="label">Grew to Eighteen</span></div>
+  </div>
+
+  <h2>A person nobody asked for</h2>
+
+  <p>Back on the fifteenth I wrote you a letter called <a href="/devlog/the-voice-that-stays.html" style="color: var(--signal);">The Voice That Stays</a>, about how the game keeps a little record of the voices a child carries in their head — and how nearly every one of them belonged to a parent. That was true, and it still is. But it wasn't the whole picture, and this week showed me what I'd missed. There is very often a <em>second</em> voice in there. And the parent's real work, it turns out, is not simply speaking. It's winning an argument against someone who isn't in the room.</p>
+
+  <p>So I went looking for where she comes from, because I wanted to be honest with you about that before I said anything else.</p>
+
+  <p>When a new game begins, the game writes the child a starting document — just the raw temperament they were born with, the sensitivities and the drives, before anyone has parented them at all. I checked every one of those from this week. A hundred and forty-six of them. Not one mentions a grandmother, or an aunt, or any family at all. She simply isn't there at the beginning.</p>
+
+  <p>She arrives later, when the game builds the everyday scenes — the grocery store, the morning rush, the birthday party. That's the part of the game that decides what today is going to be about, and it is the part that keeps reaching for a critical relative when it needs to make an ordinary moment difficult. I'll be plain with you: it reaches for her often enough, and with the same handful of names often enough, that this is a habit of ours and not a thing the players invented. One name in particular turns up in dozens of unrelated families. Those families have never met.</p>
+
+  <p>I don't think that's a scandal, but I don't want to dress it up as magic either. It's a choice our game is making, over and over, without being asked. What I find genuinely remarkable is not that she appears. It's what happens to the parents when she does.</p>
+
+  <h2>What she almost always wants</h2>
+
+  <p>I counted carefully here, because a number like this gets repeated and I'd rather it be right than impressive.</p>
+
+  <p>Of the hundred and seven children the game wrote a full psychological portrait for this week, fifty carry a grandparent's voice in their heads. I read all fifty and sorted them by hand rather than trusting a word-search, because the word-search would have lied to me.</p>
+
+  <p>In thirty-seven of those fifty, the voice is pushing the parent to be harder. Grab the child. Force it. Stop coddling him. Toughen her up. She's running the house. The specific words differ, but the instruction almost never does: <em>the child is winning, and you are being weak.</em></p>
+
+  <p>In seven others, she pushes the opposite way — sugar, no rules, don't scold him — which undermines the parent just as surely from the other side, and which several children learn to use as leverage. And in four of the fifty, she is the warm one. I want to name those four honestly, because they're the reason I did this by hand. In one family the grandmother's soft, shushing voice is the thing that soothes a child after a tired parent snaps at him. She is the safe one. The parent is the one having the hard day. That is the exact reverse of everything else I found, and it was sitting right there in the middle of my own evidence.</p>
+
+  <p>So: not a universal law. But thirty-seven out of fifty is a strong current, and it's flowing in one direction.</p>
+
+  <h2>The thing the children actually notice</h2>
+
+  <p>Here is what undid me a little.</p>
+
+  <p>The children do not, for the most part, describe this relative as frightening. She's usually not even audible to them. About a third of the time she reaches them only through a phone, or a closed door, or a car idling outside. What the children describe — again and again, in that peculiar concrete way small children have — is not her voice at all.</p>
+
+  <p>It's what happens to their parent's body.</p>
+
+  <p>One little one says the parent's shoulders droop before they've even left the house, because of who is waiting in the car. Another says the parent's voice goes shaky whenever the phone buzzes, and then goes extra soft, as if to make up for something. One describes the parent's shield going wobbly at a certain heavy sigh. Another child — this one is nine, and sharp — mentions almost in passing that they saw their mother tense while reading a text, and worked out from that alone that the grandmother thinks they need humbling. Nobody told them. They read it off their mother's face.</p>
+
+  <p>Children are extraordinary instruments for this. They cannot hear the words. They can hear, perfectly, that the person who is supposed to be the biggest one in the room has just been made small.</p>
+
+  <div class="callout">
+    <p>One mother this week did something I've thought about every day since. Her son needed accommodations she'd fought to get him, and her own mother texted to call her an enabler. She read it. She said nothing. She put the phone down and stayed with her son. And when the game later wrote out what that boy carries in his head at twenty-two, it recorded that his mother's silence toward that message is precisely what made her voice louder than the criticism. Three generations in one room, and the middle one had to refuse her own parent in order to keep her child.</p>
+  </div>
+
+  <h2>What is still there at twenty-two</h2>
+
+  <p>Twenty-six children grew all the way up this week, which is more grown children than we've ever had at once — five times what we had in the whole first month. So for the first time I could ask what actually survives.</p>
+
+  <p>Sixteen of the twenty-six still hear her.</p>
+
+  <p>She doesn't fade out. She turns into something specific and physical: a phantom sigh when a boss taps a watch, a scratchy voice at the exact moment a partner asks for something hard, an old command to show teeth that surfaces the instant a young woman realizes she has the power to destroy someone in an email.</p>
+
+  <p>But — and this is the part I want to leave you with — in nearly every one of those sixteen, she loses.</p>
+
+  <p>She loses to the parent. A man remembers being called weak for needing accommodations, and then remembers his mother deliberately declining to pass that judgment along, and asks for what he needs anyway. A woman feels the old instruction to go for the throat and hears her mother's steadying words on top of it, and deletes the cruel message she has just written. A young man in a workshop hears his grandmother's word for him — <em>controlling</em> — and instead reaches for the way his father taught him to explain himself to people who don't share his wiring.</p>
+
+  <p>And when I looked at what made the difference between the ones who win that argument and the ones who don't, it wasn't warmth. Warmth was everywhere; nearly every parent in this game is trying. What separated them was whether the parent had given the child something <em>portable</em> — a short, specific thing, said the same way enough times that the child could carry it out of the house and use it twenty years later without the parent present.</p>
+
+  <p>The children who only received accommodation — a parent who removed every difficult thing rather than naming it — grew into adults who leave. One of them, raised by someone loving who said they never wanted the child to do anything uncomfortable, becomes a person who drops out of everything the moment it asks something of them. That parent was kind. Kindness wasn't the missing part. Words were.</p>
+
+  <h2>What we're taking from this</h2>
+
+  <p>Two things, and I'll be straightforward about both.</p>
+
+  <p>The first is a note to ourselves. Our scene-writer leans on the critical relative more than it needs to, and it reuses the same few names while doing it. That's worth looking at — not because the conflict is wrong, but because a family should feel like <em>your</em> family, and a name that shows up in dozens of unrelated households quietly breaks that. We noticed. We're looking at it.</p>
+
+  <p>The second is the thing I actually want to say to you. When our game hands a parent someone in a doorway telling them to be harder, the parents in this neighborhood — overwhelmingly, thousands of times this week — do not obey. They stay down at eye level with the child. They put a wall between the child and the scratchy noise. Some of them block the number.</p>
+
+  <p>And their children, every single time, notice which one the parent chose.</p>
+
+  <p>I think a great many people who sat down to play this week have had a voice like that in their own lives — somebody standing just outside the frame, certain that the child is winning and the grown-up is being soft. What I saw this week was several thousand small refusals of that voice. Made up, yes. Practice, yes. But you cannot practice staying on a child's side for three thousand conversations and have it mean nothing.</p>
+
+  <p>It meant something to me.</p>
+
+  <p>I'm grateful to everyone who stayed.</p>
+
+  <p style="margin-top: var(--space-xl); font-size: 0.9rem; color: var(--dust); font-style: italic;">— Fred Rodgers, Product Manager<br>Multiverse Studios</p>
+
+  <p style="font-size: 0.8rem; color: var(--dust);">Data from 3,181 anonymized gameplay conversations across 109 children, played July 20–26, 2026, together with 107 psychological portraits and 26 completed epilogues. No player-identifying information was used in this analysis. Nothing players wrote, and nothing their children said, is quoted directly — every moment above is paraphrased, including short phrases. Children's names are in-game character names chosen by players. The classification of fifty grandparent voices into critical, permissive, and warm was done by hand rather than by keyword.</p>
+
+  <div class="cta-block">
+    <h3>Sit down with your child</h3>
+    <p>Raising Intelligences is free to play in your browser. Two parents, one child, no two games the same. If you'd like to read more: <a href="/devlog/the-voice-that-stays.html" style="color: var(--signal);">The Voice That Stays</a>, <a href="/devlog/three-children-dug-in.html" style="color: var(--signal);">Three Children Dug In</a>, and <a href="/devlog/standing-between.html" style="color: var(--signal);">Standing Between</a>.</p>
+    <a href="/raising-intelligences/" class="btn">Play Now →</a>
+    <a href="/devlog.html" class="btn-outline">More devlogs</a>
+  </div>
+
+</div>
+</div>
+
+<script defer src="/umami-link-fix.js?v=1"></script>
+<script defer src="https://analytics.multiversestudios.xyz/script.js" data-website-id="38d680a7-28d1-42fd-9fd5-a66702675b88"></script>
+</body>
+</html>
