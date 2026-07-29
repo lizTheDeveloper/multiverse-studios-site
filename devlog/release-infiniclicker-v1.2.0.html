@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Infiniclicker v1.2.0 — The Checkout That Actually Works — Multiverse Studios Devlog</title>
+  <meta name="description" content="Infiniclicker v1.2.0: styled PWYC price selector replaces the broken browser prompt, 5 new Belt-lore skins, leaderboards, daily challenges.">
+  <meta property="og:title" content="Infiniclicker v1.2.0 — The Checkout That Actually Works">
+  <meta property="og:description" content="We replaced the browser prompt() with a real price selector. Plus 5 new Belt-lore skins, leaderboards, and daily challenges.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://multiversestudios.xyz/devlog/release-infiniclicker-v1.2.0.html">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Infiniclicker v1.2.0 — The Checkout That Actually Works">
+  <link rel="stylesheet" href="../styles.css">
+  <link rel="icon" type="image/svg+xml" href="../press-kit/logos/multiverse-studios-favicon.svg">
+  <style>
+    .devlog-body {
+      max-width: 700px;
+      margin: 0 auto;
+    }
+    .devlog-body h1 {
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      line-height: 1.2;
+      margin-bottom: var(--space-sm);
+      color: var(--star-white);
+    }
+    .devlog-body .byline {
+      font-size: 0.8rem;
+      color: var(--dust);
+      font-family: var(--font-mono);
+      letter-spacing: 0.05em;
+      margin-bottom: var(--space-xl);
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+    .devlog-body .byline .tag {
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.2rem 0.6rem;
+      border-radius: 4px;
+      border: 1px solid var(--signal);
+      color: var(--signal);
+    }
+    .devlog-body p {
+      color: var(--dust-light);
+      line-height: 1.85;
+      font-size: 1.05rem;
+      margin-bottom: var(--space-md);
+    }
+    .devlog-body h2 {
+      font-size: 1.35rem;
+      color: var(--star-white);
+      margin: var(--space-xl) 0 var(--space-sm) 0;
+    }
+    .devlog-body ul {
+      margin: var(--space-sm) 0 var(--space-md);
+      padding-left: 1.5rem;
+      color: var(--dust-light);
+      line-height: 1.8;
+    }
+    .devlog-footer {
+      margin-top: var(--space-xl);
+      padding-top: var(--space-lg);
+      border-top: 1px solid rgba(255,255,255,0.06);
+      color: var(--dust);
+      font-size: 0.85rem;
+      font-style: italic;
+    }
+  </style>
+</head>
+<body>
+
+<canvas id="starfield"></canvas>
+
+<nav class="nav">
+  <a href="../index.html" class="nav-logo">
+    <img src="../press-kit/logos/multiverse-studios-mark.svg" alt="Multiverse Studios" class="logo-mark" width="28" height="28">
+    Multiverse Studios
+  </a>
+  <button class="nav-hamburger" aria-label="Menu" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+  <ul class="nav-links">
+    <li><a href="../index.html">Home</a></li>
+    <li><a href="../devlog.html" class="active">Devlog</a></li>
+    <li><a href="../community.html">Community</a></li>
+  </ul>
+</nav>
+
+<section class="section">
+  <div class="devlog-body">
+    <h1>Infiniclicker v1.2.0 &mdash; The Checkout That Actually Works</h1>
+    <div class="byline">
+      <span>June 8, 2026</span>
+      <span class="tag">INFINICLICKER</span>
+      <span class="tag">RELEASE</span>
+    </div>
+
+    <p>This is the one where we stop losing every single purchase attempt. Infiniclicker v1.2.0 replaces the browser <code>prompt()</code> dialog &mdash; the thing that made every PWYC checkout look like a phishing popup &mdash; with a proper styled price selector that matches the Bloomberg Terminal aesthetic.</p>
+
+    <p>We also added five new Belt-lore cosmetic skins at $2&ndash;$10 price points, a leaderboard system, daily challenges, and a supporter recognition badge. But the price selector is the headline. Sixteen checkout sessions, zero conversions. That era is over.</p>
+
+    <h2>What's New</h2>
+    <ul>
+      <li><strong>Styled PWYC price selector</strong> &mdash; preset buttons ($2, $5, $8, custom) replace the browser prompt. Looks like it belongs in the game.</li>
+      <li><strong>5 Belt-lore cosmetic skins</strong> &mdash; faction-themed skins expanding the cosmetic catalog.</li>
+      <li><strong>Belt Exchange Rankings</strong> &mdash; anonymous leaderboard with share-your-rank.</li>
+      <li><strong>Daily challenges</strong> &mdash; rotating objectives with bonus rewards.</li>
+      <li><strong>Supporter recognition</strong> &mdash; badge, social proof counter, and thank-you modal for supporters.</li>
+    </ul>
+
+    <h2>Fixes</h2>
+    <ul>
+      <li>Checkout now redirects back to the game after Stripe payment.</li>
+      <li>All available payment methods enabled in Checkout Sessions.</li>
+    </ul>
+
+    <p class="devlog-footer"><a href="https://play.multiversestudios.xyz/infiniclicker/" style="color: var(--signal);">Play Infiniclicker</a> &mdash; it's free, and if you like it, the price selector actually works now.</p>
+  </div>
+</section>
+
+<script src="../scripts.js"></script>
+</body>
+</html>

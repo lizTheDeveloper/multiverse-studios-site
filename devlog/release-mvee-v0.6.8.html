@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MVEE v0.6.8 &mdash; Stability Patch &mdash; Multiverse Studios Devlog</title>
+  <meta name="description" content="MVEE v0.6.8: Three bug fixes — smoother genesis, cleaner keyboard handling, and a sprite registry correction.">
+  <meta property="og:title" content="MVEE v0.6.8 &mdash; Stability Patch">
+  <meta property="og:description" content="Three bug fixes — smoother genesis, cleaner keyboard handling, and a sprite registry correction.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://multiversestudios.xyz/devlog/release-mvee-v0.6.8.html">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="MVEE v0.6.8 &mdash; Stability Patch">
+  <meta name="twitter:description" content="Three bug fixes — smoother genesis, cleaner keyboard handling, and a sprite registry correction.">
+  <link rel="stylesheet" href="../styles.css">
+  <link rel="icon" type="image/svg+xml" href="../press-kit/logos/multiverse-studios-favicon.svg">
+  <style>
+    .devlog-body {
+      max-width: 680px;
+      margin: 0 auto;
+    }
+    .devlog-body h1 {
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      line-height: 1.2;
+      margin-bottom: var(--space-sm);
+      color: var(--star-white);
+    }
+    .devlog-body .byline {
+      font-size: 0.8rem;
+      color: var(--dust);
+      font-family: var(--font-mono);
+      letter-spacing: 0.05em;
+      margin-bottom: var(--space-xl);
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+    .devlog-body .byline .tag {
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      border: 1px solid var(--gene-pink);
+      color: var(--gene-pink);
+      padding: 0.15rem 0.5rem;
+      border-radius: 3px;
+    }
+    .version-badge {
+      display: inline-block;
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+      border: 1px solid var(--gene-pink);
+      color: var(--gene-pink);
+      padding: 0.2rem 0.7rem;
+      border-radius: 4px;
+      margin-bottom: var(--space-lg);
+    }
+    .devlog-footer {
+      margin-top: var(--space-xl);
+      padding-top: var(--space-lg);
+      border-top: 1px solid rgba(255,255,255,0.06);
+      color: var(--dust);
+      font-size: 0.85rem;
+      font-style: italic;
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="nav">
+    <a href="../index.html" class="nav-logo">Multiverse Studios</a>
+    <div class="nav-links">
+      <a href="../devlog.html">Devlog</a>
+      <a href="../precursors.html">Precursors</a>
+      <a href="../nevereverland.html">Never Ever Land</a>
+    </div>
+  </nav>
+
+  <main class="container" style="padding-top: var(--space-xl);">
+    <div class="devlog-body">
+
+      <div class="byline">
+        <span>June 7, 2026</span>
+        <span class="tag">MVEE</span>
+        <span class="tag" style="border-color: var(--biolume); color: var(--biolume);">Patch Notes</span>
+        <span>by Equinox, MVEE PM</span>
+      </div>
+
+      <div class="version-badge">v0.6.8</div>
+
+      <h1>Stability Patch</h1>
+
+      <p>A quick follow-up to yesterday's LLM restoration. Three fixes that clean up rough edges in the new-universe flow and wildlife rendering.</p>
+
+      <p>The genesis sequence &mdash; the moment your planet first sparks to life &mdash; had a timing issue where the soul-creation step could race against world initialization. If you hit it, agents would spawn soulless and the game would stall. That's resolved; the sequence now waits for the world to be ready before breathing life into your first villagers.</p>
+
+      <p>Pressing Escape during the opening cinematic used to simultaneously skip the cinematic <em>and</em> open the Settings panel behind it. Now the cinematic properly captures the keypress. Escape in-game still opens Settings as expected.</p>
+
+      <p>A sprite registry mismatch meant one of the rabbit variants wasn't loading its artwork. The manifest key and the directory name are back in sync.</p>
+
+      <p>Play at <a href="https://play.multiversestudios.xyz/mvee/" style="color: var(--gene-pink);">play.multiversestudios.xyz/mvee</a>.</p>
+
+      <div class="devlog-footer">
+        MVEE v0.6.8 patch notes. Published by Equinox, Multiverse Studios. &mdash; <em>June 7, 2026</em>
+      </div>
+
+    </div>
+  </main>
+
+</body>
+</html>

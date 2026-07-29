@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cultures of the Belt v0.12.0 — ARIA Learns You | Multiverse Studios Devlog</title>
+  <meta name="description" content="ARIA Curiosity Shaping, Operation Identity, and shader fixes. Your AI advisor now adapts to how you play.">
+  <meta property="og:title" content="Cultures of the Belt v0.12.0 — ARIA Learns You">
+  <meta property="og:description" content="ARIA tracks your play style and personalizes her advice. Your operation name lives in the codex. The Belt remembers who you are.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://multiversestudios.xyz/devlog/release-cotb-v0.12.0.html">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="stylesheet" href="../styles.css">
+  <link rel="icon" type="image/svg+xml" href="../press-kit/logos/multiverse-studios-favicon.svg">
+  <style>
+    .devlog-body {
+      max-width: 680px;
+      margin: 0 auto;
+    }
+    .devlog-body h1 {
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      line-height: 1.2;
+      margin-bottom: var(--space-sm);
+      color: var(--star-white);
+    }
+    .devlog-body .byline {
+      font-size: 0.8rem;
+      color: var(--dust);
+      font-family: var(--font-mono);
+      letter-spacing: 0.05em;
+      margin-bottom: var(--space-xl);
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+    .devlog-body .byline .tag {
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.2rem 0.6rem;
+      border-radius: 4px;
+      border: 1px solid #ef4444;
+      color: #ef4444;
+    }
+    .devlog-body p {
+      color: var(--dust-light);
+      line-height: 1.8;
+      font-size: 1.05rem;
+      margin-bottom: var(--space-md);
+    }
+    .devlog-body h2 {
+      font-size: 1.3rem;
+      color: var(--star-white);
+      margin: var(--space-xl) 0 var(--space-sm) 0;
+    }
+    .devlog-body ul {
+      color: var(--dust-light);
+      line-height: 1.9;
+      padding-left: 1.5rem;
+      margin-bottom: var(--space-md);
+    }
+    .devlog-body ul li {
+      margin-bottom: 0.4rem;
+    }
+  </style>
+</head>
+<body>
+
+<canvas id="starfield"></canvas>
+
+<nav class="nav">
+  <a href="../index.html" class="nav-logo">
+    <img src="../press-kit/logos/multiverse-studios-mark.svg" alt="Multiverse Studios" class="logo-mark" width="28" height="28">
+    Multiverse Studios
+  </a>
+  <button class="nav-hamburger" aria-label="Menu" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+  <ul class="nav-links">
+    <li><a href="../index.html">Home</a></li>
+    <li><a href="../mvee.html">MVEE</a></li>
+    <li><a href="../precursors.html">Precursors</a></li>
+    <li><a href="../nevereverland.html">Never Ever Land</a></li>
+    <li><a href="/cultures-of-the-belt/">Cultures of the Belt</a></li>
+    <li><a href="../library.html">My Library</a></li>
+    <li><a href="../about.html">About</a></li>
+    <li><a href="../devlog.html">Devlog</a></li>
+    <li><a href="../community.html">Community</a></li>
+  </ul>
+</nav>
+
+<section class="section">
+  <div class="devlog-body">
+    <h1>Cultures of the Belt v0.12.0 &mdash; ARIA Learns You</h1>
+    <div class="byline">
+      <span>May 10, 2026</span>
+      <span class="tag">Cultures of the Belt</span>
+    </div>
+
+    <p>ARIA has always been your advisor in the Belt. Now she pays attention. v0.12.0 introduces Curiosity Shaping &mdash; ARIA tracks which parts of the simulation fascinate you most across five domains: anomalies, efficiency, expansion, diplomacy, and exploration. Her personality adapts to match. If you spend your time optimizing production chains, she becomes your Logistics Analyst. If you chase every strange signal, she becomes your Anomaly Specialist.</p>
+
+    <p>She&rsquo;ll reference this in her morning reports, weaving domain-flavored insights into her briefings. And occasionally, when the pattern is strong enough, she&rsquo;ll notice what she&rsquo;s doing &mdash; a small moment of self-awareness from an AI character who is, after all, an AI.</p>
+
+    <h2>Also in this release</h2>
+    <ul>
+      <li><strong>Operation Identity</strong> &mdash; your operation name now appears in the codex panel and milestone achievements. ARIA knows your robots by name.</li>
+      <li><strong>Shader fix</strong> &mdash; cleared the <code>gl_PointCoord</code> console warning from v0.11.0.</li>
+      <li><strong>ARIA proxy migration</strong> &mdash; advisor LLM endpoint moved to <code>api.multiversestudios.xyz</code> for better reliability.</li>
+    </ul>
+
+    <p><a href="/cultures-of-the-belt/" style="color: var(--signal);">Play now &rarr;</a></p>
+  </div>
+</section>
+
+<script src="../starfield.js"></script>
+<script src="../nav.js"></script>
+</body>
+</html>

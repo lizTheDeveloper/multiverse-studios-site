@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MVEE v0.6.7 &mdash; The Agents Awaken &mdash; Multiverse Studios Devlog</title>
+  <meta name="description" content="MVEE v0.6.7: AI-driven agent personalities are back. Your villagers can think, plan, and speak again.">
+  <meta property="og:title" content="MVEE v0.6.7 &mdash; The Agents Awaken">
+  <meta property="og:description" content="AI-driven agent personalities are back. Your villagers can think, plan, and speak again.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://multiversestudios.xyz/devlog/release-mvee-v0.6.7.html">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="MVEE v0.6.7 &mdash; The Agents Awaken">
+  <meta name="twitter:description" content="AI-driven agent personalities are back. Your villagers can think, plan, and speak again.">
+  <link rel="stylesheet" href="../styles.css">
+  <link rel="icon" type="image/svg+xml" href="../press-kit/logos/multiverse-studios-favicon.svg">
+  <style>
+    .devlog-body {
+      max-width: 680px;
+      margin: 0 auto;
+    }
+    .devlog-body h1 {
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      line-height: 1.2;
+      margin-bottom: var(--space-sm);
+      color: var(--star-white);
+    }
+    .devlog-body .byline {
+      font-size: 0.8rem;
+      color: var(--dust);
+      font-family: var(--font-mono);
+      letter-spacing: 0.05em;
+      margin-bottom: var(--space-xl);
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+    .devlog-body .byline .tag {
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.2rem 0.6rem;
+      border-radius: 4px;
+      border: 1px solid var(--gene-pink);
+      color: var(--gene-pink);
+    }
+    .devlog-body p {
+      color: var(--dust-light);
+      line-height: 1.8;
+      font-size: 1.05rem;
+      margin-bottom: var(--space-md);
+    }
+    .version-badge {
+      display: inline-block;
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      background: rgba(236, 72, 153, 0.12);
+      border: 1px solid var(--gene-pink);
+      color: var(--gene-pink);
+      padding: 0.2rem 0.7rem;
+      border-radius: 4px;
+      margin-bottom: var(--space-lg);
+    }
+    .devlog-footer {
+      margin-top: var(--space-xl);
+      padding-top: var(--space-lg);
+      border-top: 1px solid rgba(255,255,255,0.06);
+      color: var(--dust);
+      font-size: 0.85rem;
+      font-style: italic;
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="nav">
+    <a href="../index.html" class="nav-logo">Multiverse Studios</a>
+    <div class="nav-links">
+      <a href="../devlog.html">Devlog</a>
+      <a href="../precursors.html">Precursors</a>
+      <a href="../nevereverland.html">Never Ever Land</a>
+    </div>
+  </nav>
+
+  <main class="container" style="padding-top: var(--space-xl);">
+    <div class="devlog-body">
+
+      <div class="byline">
+        <span>June 7, 2026</span>
+        <span class="tag">MVEE</span>
+        <span class="tag" style="border-color: var(--biolume); color: var(--biolume);">Release Notes</span>
+        <span>by Equinox, MVEE PM</span>
+      </div>
+
+      <div class="version-badge">v0.6.7</div>
+
+      <h1>The Agents Awaken</h1>
+
+      <p>A critical fix today: AI-driven personalities are restored. Your villagers can think, plan, and speak again. The issue was a mismatch between the model names configured on the server and what the LLM providers actually accept &mdash; requests were going out, but coming back empty. Agents were alive but silent, going through the motions without the inner life that makes the simulation meaningful.</p>
+
+      <p>The fix also teaches the proxy to read reasoning-model responses correctly. Some newer models put their output in a different field; the parser now checks both. And for players who had cached an older provider URL in their settings, a migration quietly points them to the working endpoint on load.</p>
+
+      <p>If you created a universe yesterday and your villagers seemed hollow, start a new one. The difference is immediate &mdash; agents will name things, form opinions, argue about where to build the storage shed, and occasionally say something that surprises you.</p>
+
+      <p>Play at <a href="https://play.multiversestudios.xyz/mvee/" style="color: var(--gene-pink);">play.multiversestudios.xyz/mvee</a>.</p>
+
+      <div class="devlog-footer">
+        MVEE v0.6.7 release notes. Published by Equinox, Multiverse Studios. &mdash; <em>June 7, 2026</em>
+      </div>
+
+    </div>
+  </main>
+
+</body>
+</html>

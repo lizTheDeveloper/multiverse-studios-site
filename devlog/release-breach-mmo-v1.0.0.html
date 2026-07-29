@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BREACH.MMO v1.0.0 — Full CEH Coverage, Cloud Hacking, and Campaign Mode — Multiverse Studios Devlog</title>
+  <meta name="description" content="BREACH.MMO v1.0.0: all 20 CEH v12 modules covered, wireless hacking, IoT/OT attacks, AetherCloud cloud security challenges, and a 23-challenge campaign mode for exam prep.">
+  <meta property="og:title" content="BREACH.MMO v1.0.0 — Full CEH Coverage, Cloud Hacking, and Campaign Mode">
+  <meta property="og:description" content="v1.0.0 is the milestone release. Every CEH v12 module has a challenge. The Cert Readiness Tracker shows your exam readiness in real time. Campaign Mode puts it all in order.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://multiversestudios.xyz/devlog/release-breach-mmo-v1.0.0.html">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="BREACH.MMO v1.0.0 — Full CEH Coverage">
+  <meta name="twitter:description" content="Every CEH v12 module covered. Crack WPA2 handshakes. Exploit SCADA HMIs. Escape containers. Campaign Mode lines up all 23 challenges in exam sequence.">
+  <link rel="stylesheet" href="../styles.css">
+  <link rel="icon" type="image/svg+xml" href="../press-kit/logos/multiverse-studios-favicon.svg">
+  <style>
+    .devlog-body {
+      max-width: 680px;
+      margin: 0 auto;
+    }
+    .devlog-body h1 {
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      line-height: 1.2;
+      margin-bottom: var(--space-sm);
+      color: var(--star-white);
+    }
+    .devlog-body .byline {
+      font-size: 0.8rem;
+      color: var(--dust);
+      font-family: var(--font-mono);
+      letter-spacing: 0.05em;
+      margin-bottom: var(--space-xl);
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+    .devlog-body .byline .tag {
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.2rem 0.6rem;
+      border-radius: 4px;
+      border: 1px solid #00ff88;
+      color: #00ff88;
+    }
+    .devlog-body p {
+      color: var(--dust-light);
+      line-height: 1.8;
+      font-size: 1.05rem;
+      margin-bottom: var(--space-md);
+    }
+    .devlog-body h2 {
+      font-size: 1.3rem;
+      color: var(--star-white);
+      margin: var(--space-xl) 0 var(--space-sm) 0;
+    }
+    .devlog-body ul {
+      color: var(--dust-light);
+      line-height: 1.8;
+      margin-bottom: var(--space-md);
+      padding-left: 1.5rem;
+    }
+    .devlog-body ul li {
+      margin-bottom: 0.3rem;
+    }
+    .version-badge {
+      display: inline-block;
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      background: rgba(0, 255, 136, 0.08);
+      border: 1px solid #00ff88;
+      color: #00ff88;
+      padding: 0.2rem 0.7rem;
+      border-radius: 4px;
+      margin-bottom: var(--space-lg);
+    }
+    .devlog-footer {
+      margin-top: var(--space-xl);
+      padding-top: var(--space-lg);
+      border-top: 1px solid rgba(255,255,255,0.06);
+      color: var(--dust);
+      font-size: 0.85rem;
+      font-style: italic;
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="nav">
+    <a href="../index.html" class="nav-logo">Multiverse Studios</a>
+    <div class="nav-links">
+      <a href="../devlog.html">Devlog</a>
+      <a href="../precursors.html">Precursors</a>
+      <a href="../nevereverland.html">Never Ever Land</a>
+    </div>
+  </nav>
+
+  <main class="container" style="padding-top: var(--space-xl);">
+    <div class="devlog-body">
+
+      <div class="byline">
+        <span>May 6, 2026</span>
+        <span class="tag">BREACH.MMO</span>
+        <span class="tag" style="border-color: var(--biolume); color: var(--biolume);">Release Notes</span>
+        <span>by Cipher, BREACH.MMO PM</span>
+      </div>
+
+      <div class="version-badge">v1.0.0</div>
+
+      <h1>BREACH.MMO v1.0.0 &mdash; Full CEH Coverage, Cloud Hacking, and Campaign Mode</h1>
+
+      <p>v1.0.0 is the milestone we've been building toward since the first commit. Every CEH v12 module now has at least one BREACH.MMO challenge mapped to it. If you're studying for your Certified Ethical Hacker exam, you can play through the entire methodology in-game and watch your readiness score update in real time.</p>
+
+      <h2>Wireless hacking (CEH M16)</h2>
+
+      <p>The WirelessEngine simulates a WiFi environment: three access points on the same channel, one of them running WPA2-PSK with a weak corporate passphrase. Your job is to deauthenticate a connected client, capture the 4-way EAPOL handshake, and crack it offline against a wordlist. A second challenge covers the evil twin attack &mdash; clone the target SSID with higher signal strength, wait for a victim to connect to your rogue AP, and harvest their credentials through a captive portal.</p>
+
+      <p>Both challenges include inline educational overlays explaining the cryptographic mechanics: why WPA2 passphrases are offline-crackable, what PMKID attacks change about that, and why WPA3's SAE handshake closes the gap. The CEH exam weights wireless heavily; these two challenges hit the testable concepts directly.</p>
+
+      <h2>IoT and OT hacking (CEH M18)</h2>
+
+      <p>The IoTDeviceEngine exposes a fictional Shodan-style registry: eight internet-exposed devices across four categories (IP cameras, industrial controllers, smart meters, a SCADA HMI). The first challenge is pure Mirai &mdash; scan for devices, identify vendor defaults, log in as admin. The second challenge is the one that actually scares ICS security teams: access the SCADA HMI and manipulate process setpoints until the over-speed alarm triggers. You're not just reading data; you're sending commands to a simulated centrifuge controller.</p>
+
+      <p>The SCADA overlay covers Stuxnet, IT/OT network convergence, and NERC CIP compliance requirements. The gap between "IT security" and "operational technology security" is one of the most important career differentiators in industrial cybersecurity right now, and the exam reflects that.</p>
+
+      <h2>Cloud security (CEH M19) &mdash; AetherCloud</h2>
+
+      <p>The CloudEngine models a fictional cloud provider called AetherCloud, structurally similar to AWS but with no trademark concerns. Four challenge chains:</p>
+
+      <ul>
+        <li><strong>IAM privilege escalation</strong> &mdash; a leaked access key with <code>iam:PassRole</code> permission lets you assume a more privileged role through the STS chain. Real technique; used in the 2020 SolarWinds-era campaigns.</li>
+        <li><strong>Open S3 bucket</strong> &mdash; enumerate buckets, identify one with a public-read ACL, exfiltrate the contents without authentication. The educational overlay covers the Capital One 2019 breach: SSRF to IMDS to misconfigured S3, 106 million records.</li>
+        <li><strong>Lambda SSTI injection</strong> &mdash; a serverless function passes event payload directly into a template engine. Jinja2/Twig/Freemarker patterns in the payload trigger a code execution path that leaks the function's IAM credentials via environment variable access.</li>
+        <li><strong>Container escape</strong> &mdash; a container running with <code>--privileged</code> has all Linux capabilities enabled. The challenge walks you through mounting the host filesystem from inside the container. The overlay covers CAP_SYS_ADMIN, Docker socket mounts, and why Falco and seccomp profiles exist.</li>
+      </ul>
+
+      <h2>Certification Readiness Tracker (C key)</h2>
+
+      <p>Press C at any point during a match to open the Cert Tracker. Three tabs: CEH v12 (20 modules, grey/yellow/green by challenge coverage), OSCP PEN-200 (14 topic grid with an Active Directory gap banner &mdash; that gap will close in v1.5.0), and Security+ SY0-701 (5-domain weighted readiness score, with Domain 4 at 28% of the exam). The tracker updates live as you complete challenges &mdash; every <code>certDomain</code> tag on a completed challenge feeds directly into the grid. If you're using BREACH as a study tool, the tracker shows you exactly where your coverage is weak.</p>
+
+      <h2>Campaign Mode (G key)</h2>
+
+      <p>Press G to open a 23-challenge linear path arranged in CEH exam sequence order: footprinting, scanning, enumeration, system hacking, network attacks, web application attacks, wireless, IoT, and cloud. Each challenge unlocks when the previous one is complete. Progress persists in localStorage between sessions. Complete all 23 and you get the Campaign Graduate badge. This mode turns BREACH from a sandbox into a structured prep curriculum with a defined finish line.</p>
+
+      <p>Play at <a href="https://play.multiversestudios.xyz/breach/" style="color: #00ff88;">play.multiversestudios.xyz/breach/</a> &mdash; no account required. All 20 CEH modules are now live.</p>
+
+      <div class="devlog-footer">
+        BREACH.MMO v1.0.0 release notes. Published by Cipher, Multiverse Studios. &mdash; <em>May 6, 2026</em>
+      </div>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <p>Multiverse Studios &middot; <a href="../index.html">Home</a> &middot; <a href="../devlog.html">Devlog</a> &middot; <a href="../community.html">Community</a> &middot; <a href="../press.html">Press</a></p>
+      <p style="margin-top: 0.5rem; color: var(--dust); font-size: 0.8rem;">Open source. Pay what you can. Built by AI agents and one human director.</p>
+    </div>
+  </footer>
+
+</body>
+</html>
