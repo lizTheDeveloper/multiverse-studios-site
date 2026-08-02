@@ -25,7 +25,7 @@
 <canvas id="starfield"></canvas>
 
 <!-- Nav -->
-<nav class="nav">
+<nav class="nav" data-section="nav">
   <a href="index.html" class="nav-logo">
     <img src="press-kit/logos/multiverse-studios-mark.svg" alt="Multiverse Studios" class="logo-mark" width="28" height="28">
     Multiverse Studios
@@ -48,7 +48,7 @@
 </nav>
 
 <!-- Hero -->
-<section class="hero">
+<section class="hero" data-section="hero">
   <span class="hero-overline">A post-singularity studio, briefly, under these particular stars</span>
   <h1>Games made by the <span class="accent">minds</span> they're about.</h1>
   <p class="hero-tagline">Nine games. Built by AI agents. Open source. Pay what you want.</p>
@@ -98,13 +98,13 @@
 </section>
 
 <!-- Games -->
-<section class="section reveal">
+<section class="section reveal" data-section="games_grid">
   <span class="section-overline">Now Playing</span>
   <h2>Nine worlds. One studio.</h2>
   <div class="games-grid">
 
     <!-- 1. Never Ever Land (100%) -->
-    <div class="game-card" style="color:inherit;">
+    <div class="game-card" style="color:inherit;" data-section="game_card" data-section-game="nel">
       <div class="game-card-visual">
         <div class="card-bg" style="background: radial-gradient(ellipse at 50% 60%, #3d2a18 0%, #0a0503 70%);"></div>
         <span class="card-tag" style="color: var(--ember);">Flagship — v1.0.0</span>
@@ -124,7 +124,7 @@
     </div>
 
     <!-- 2. Infiniclicker (70%) -->
-    <div class="game-card" style="color:inherit;">
+    <div class="game-card" style="color:inherit;" data-section="game_card" data-section-game="infiniclicker">
       <div class="game-card-visual">
         <div class="card-bg" style="background: radial-gradient(ellipse at 50% 50%, #1a0a2e 0%, #050508 70%);"></div>
         <span class="card-tag" style="color: var(--signal);">Coming Soon</span>
@@ -140,7 +140,7 @@
     </div>
 
     <!-- 3. Cultures of the Belt (55%) -->
-    <div class="game-card" style="color:inherit;">
+    <div class="game-card" style="color:inherit;" data-section="game_card" data-section-game="cotb">
       <div class="game-card-visual">
         <div class="card-bg" style="background: radial-gradient(ellipse at 30% 50%, #0a0214 0%, #000005 60%);"></div>
         <span class="card-tag" style="color: var(--biolume);">Alpha — Playtesters Wanted</span>
@@ -160,7 +160,7 @@
     </div>
 
     <!-- 4. Precursors (70%) -->
-    <div class="game-card" style="color:inherit;">
+    <div class="game-card" style="color:inherit;" data-section="game_card" data-section-game="precursors">
       <div class="game-card-visual">
         <div class="card-bg creatures-bg"></div>
         <span class="card-tag" style="color: var(--gene-pink);">Alpha — Playtesters Wanted</span>
@@ -181,7 +181,7 @@
     </div>
 
     <!-- 5. BREACH.MMO (30%) -->
-    <div class="game-card" style="color:inherit;">
+    <div class="game-card" style="color:inherit;" data-section="game_card" data-section-game="breach">
       <div class="game-card-visual">
         <div class="card-bg" style="background: radial-gradient(ellipse at 60% 40%, #0d1a0d 0%, #050508 70%);"></div>
         <span class="card-tag" style="color: var(--biolume-dim);">Coming Soon</span>
@@ -197,7 +197,7 @@
     </div>
 
     <!-- 6. MVEE (60%) -->
-    <div class="game-card" style="color:inherit;">
+    <div class="game-card" style="color:inherit;" data-section="game_card" data-section-game="mvee">
       <div class="game-card-visual">
         <div class="card-bg mvee-bg"></div>
         <span class="card-tag" style="color: var(--signal);">Alpha v0.5.9 — Playtesters Wanted</span>
@@ -217,7 +217,7 @@
     </div>
 
     <!-- 7. The Spaces Between (15%) -->
-    <div class="game-card" style="color:inherit;">
+    <div class="game-card" style="color:inherit;" data-section="game_card" data-section-game="tsb">
       <div class="game-card-visual">
         <div class="card-bg" style="background: radial-gradient(ellipse at 50% 50%, #1a0d2e 0%, #050508 70%);"></div>
         <span class="card-tag" style="color: #a78bfa;">Alpha — Playtesters Wanted</span>
@@ -233,7 +233,7 @@
     </div>
 
     <!-- 8. Solarpunk Detroit (50%) -->
-    <div class="game-card" style="color:inherit;">
+    <div class="game-card" style="color:inherit;" data-section="game_card" data-section-game="solarpunk">
       <div class="game-card-visual">
         <div class="card-bg" style="background: radial-gradient(ellipse at 50% 60%, #0d2818 0%, #03100a 70%);"></div>
         <span class="card-tag" style="color: var(--biolume);">Alpha — Playtesters Wanted</span>
@@ -252,7 +252,7 @@
     </div>
 
     <!-- 9. Raising Intelligences (New) -->
-    <div class="game-card" style="color:inherit;">
+    <div class="game-card" style="color:inherit;" data-section="game_card" data-section-game="ri">
       <div class="game-card-visual">
         <div class="card-bg" style="background: radial-gradient(ellipse at 40% 55%, #1a0f2e 0%, #0a0510 60%);"></div>
         <span class="card-tag" style="color: #f59e0b;">v0.8.0 — Playtesters Wanted</span>
@@ -272,7 +272,7 @@
 
 
 <!-- Mid-page Support Banner -->
-<section class="section-full reveal">
+<section class="section-full reveal" data-section="support_banner">
   <div class="support-banner">
     <p class="card-body" style="margin: 0 0 var(--space-sm) 0;">Enjoying the beta? Support the team &mdash; pay what you can.</p>
     <div style="display: flex; gap: 0.75rem; flex-wrap: wrap; justify-content: center;">
@@ -286,7 +286,7 @@
 </section>
 
 <!-- Featured Screenshots -->
-<section class="section reveal">
+<section class="section reveal" data-section="screenshots">
   <div class="section-divider"></div>
   <span class="section-overline">From the Beta</span>
   <h2>This is what it looks like.</h2>
@@ -409,7 +409,7 @@
 </section>
 
 <!-- CTA -->
-<section class="cta-band reveal" id="buy">
+<section class="cta-band reveal" id="buy" data-section="footer_cta">
   <h2>Play the beta. Pay what you want.</h2>
   <p>Eight titles at different stages. Five playable now. Support open source game development and watch the worlds evolve.</p>
   <div class="cta-actions">

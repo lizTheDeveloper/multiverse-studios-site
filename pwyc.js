@@ -8,6 +8,29 @@
 (function () {
   'use strict';
 
+  // ── Analytics ────────────────────────────────────────────────
+  // Routed through the single chokepoint (window.MVS.track, installed by
+  // umami-link-fix.js). This file is not `defer` and the chokepoint's file is,
+  // so at parse time it may not exist yet — early events go to the pre-init
+  // queue it drains on install. Never call window.umami directly.
+  function pwycTrack(name, props) {
+    try {
+      if (window.MVS && typeof window.MVS.track === 'function') {
+        window.MVS.track(name, props || {});
+        return;
+      }
+      var q = (window.__mvsQueue = window.__mvsQueue || []);
+      if (q.length < 100) q.push([name, props || {}]);
+    } catch (err) {
+      /* analytics must never break the money path */
+    }
+  }
+
+  function surfaceOf(el) {
+    var sec = el && el.closest && el.closest('[data-section]');
+    return sec ? sec.getAttribute('data-section') : 'unknown';
+  }
+
   // ── Game configurations ──────────────────────────────────────
 
   var GAMES = {
@@ -52,11 +75,37 @@
       accent: '#00ff41',   // matrix green
       accentVar: 'var(--matrix-green, #00ff41)',
     },
+    solarpunk: {
+      gameKey: 'solarpunk',
+      playUrl: 'https://play.multiversestudios.xyz/solarpunk-detroit/',
+      name: 'Solarpunk Detroit',
+      tagline: 'Govern the city. Build community power.',
+      accent: '#3ddc84',   // solar green
+      accentVar: 'var(--biolume, #3ddc84)',
+    },
   };
 
-  // Checkout session endpoints
-  var CHECKOUT_API_URL = 'https://multiversestudios.xyz/stripe/create-checkout-session';
-  var CHECKOUT_EMBEDDED_API_URL = 'https://multiversestudios.xyz/stripe/create-checkout-session-embedded';
+  // Checkout session endpoints.
+  //
+  // P0 FIX 2026-08-02: these previously pointed at
+  //   https://multiversestudios.xyz/stripe/create-checkout-session[-embedded]
+  // which returns nginx 404 — there is no Traefik route for /stripe/* on the
+  // .xyz host. The stripe-webhook container is healthy but routed ONLY at
+  // pay.multiversegames.ai (ops/.../traefik-dynamic/multiversegames-ai.yml).
+  // Every Support attempt on the site 404ed, silently, for an unknown period.
+  //
+  // Verified from an https://multiversestudios.xyz origin on 2026-08-02:
+  //   OPTIONS preflight -> 204, access-control-allow-origin: multiversestudios.xyz
+  //   POST              -> 200 with a live clientSecret + publishableKey
+  // multiversestudios.xyz, www., play. and multiversegames.ai are all in the
+  // server's ALLOWED_ORIGINS set, so this cross-origin call is legitimate.
+  //
+  // The cleaner long-term fix is a /stripe/* route on the .xyz host mirroring
+  // multiversegames-ai.yml:242-254; until that ships and is deployed, point at
+  // the host that actually answers.
+  var CHECKOUT_HOST = 'https://pay.multiversegames.ai';
+  var CHECKOUT_API_URL = CHECKOUT_HOST + '/create-checkout-session';
+  var CHECKOUT_EMBEDDED_API_URL = CHECKOUT_HOST + '/create-checkout-session-embedded';
 
   var TIERS = [
     {
@@ -367,7 +416,7 @@
 
     // Event: tier selection
     tierEls.forEach(function (el, i) {
-      el.addEventListener('click', function () { selectTier(i); });
+      el.addEventListener('click', function () { selectTier(i, true); });
     });
 
     // Event: CTA
@@ -378,7 +427,10 @@
 
     // Event: play free link
     overlay.querySelector('#pwyc-free-link').addEventListener('click', function () {
-      if (currentGame) window.location.href = currentGame.playUrl;
+      if (!currentGame) return;
+      // Folds to pwyc_tier_selected via the taxonomy's `pwyc-free-selected` row.
+      pwycTrack('pwyc_tier_selected', { game: currentGame.gameKey, tier: 'free', amount: 0 });
+      window.location.href = currentGame.playUrl;
     });
 
     // Keyboard: arrow keys within tier group
@@ -387,11 +439,11 @@
       if (idx < 0) return;
       if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
         e.preventDefault();
-        selectTier((idx + 1) % tierEls.length);
+        selectTier((idx + 1) % tierEls.length, true);
         tierEls[selectedTierIdx()].focus();
       } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
         e.preventDefault();
-        selectTier((idx - 1 + tierEls.length) % tierEls.length);
+        selectTier((idx - 1 + tierEls.length) % tierEls.length, true);
         tierEls[selectedTierIdx()].focus();
       }
     });
@@ -401,8 +453,27 @@
     return TIERS.indexOf(selectedTier);
   }
 
-  function selectTier(idx) {
+  // userInitiated: openModal() preselects the default tier on every open. Without
+  // this guard every modal open would emit a phantom pwyc_tier_selected, making
+  // the modal_shown -> tier_selected ratio a constant 1.0 and therefore useless.
+  // Arrow-key navigation can walk the group quickly, so repeats of the same
+  // (game, tier) pair are dropped — deterministic, not sampled.
+  var tierEmitted = {};
+
+  function selectTier(idx, userInitiated) {
     selectedTier = TIERS[idx];
+
+    if (userInitiated && currentGame) {
+      var key = currentGame.gameKey + '|' + selectedTier.id;
+      if (!tierEmitted[key]) {
+        tierEmitted[key] = true;
+        pwycTrack('pwyc_tier_selected', {
+          game: currentGame.gameKey,
+          tier: selectedTier.id,
+          amount: selectedTier.amount == null ? 0 : selectedTier.amount / 100,
+        });
+      }
+    }
 
     tierEls.forEach(function (el, i) {
       var isSelected = i === idx;
@@ -525,13 +596,18 @@
     var gameKey = currentGame.gameKey;
     var requestBody = JSON.stringify({ game: gameKey, amount: cents, source_page: window.location.href });
 
+    // Emitted BEFORE the fetch, deliberately: a dead endpoint must still leave
+    // an intent record. Paired with the server-authoritative purchase_completed
+    // this gives the checkout abandonment rate, which is currently undefined.
+    pwycTrack('checkout_started', { game: gameKey, amount: cents / 100, method: 'embedded' });
+
     fetch(CHECKOUT_EMBEDDED_API_URL, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: requestBody,
     })
     .then(function (resp) {
-      if (!resp.ok) throw new Error('HTTP ' + resp.status);
+      if (!resp.ok) { var e = new Error('HTTP ' + resp.status); e.httpStatus = resp.status; throw e; }
       return resp.json();
     })
     .then(function (data) {
@@ -561,19 +637,33 @@
     })
     .catch(function (err) {
       console.error('PWYC: embedded checkout failed', { error: err.message, game: gameKey, amount: cents });
+      // This console.error already carried exactly the right context and reached
+      // nobody. The money path had no failure signal at all, which is why "zero
+      // purchases last month" could not be distinguished from "the endpoint was
+      // gone". It is now alertable.
+      pwycTrack('checkout_failed', {
+        game: gameKey,
+        amount: cents / 100,
+        stage: 'embedded',
+        status: err.httpStatus || 'network',
+      });
       // Fall back to redirect checkout
       fallbackRedirectCheckout(gameKey, cents, cta, originalText, requestBody);
     });
   }
 
   function fallbackRedirectCheckout(gameKey, cents, cta, originalText, requestBody) {
+    // Second attempt, distinct method — hence the `method` property, so the two
+    // attempts of one session stay distinguishable (max 2 checkout_started/session).
+    pwycTrack('checkout_started', { game: gameKey, amount: cents / 100, method: 'redirect' });
+
     fetch(CHECKOUT_API_URL, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: requestBody,
     })
     .then(function (resp) {
-      if (!resp.ok) throw new Error('HTTP ' + resp.status);
+      if (!resp.ok) { var e = new Error('HTTP ' + resp.status); e.httpStatus = resp.status; throw e; }
       return resp.json();
     })
     .then(function (data) {
@@ -585,6 +675,12 @@
     })
     .catch(function (err) {
       console.error('PWYC: fallback redirect also failed', { error: err.message, game: gameKey, amount: cents });
+      pwycTrack('checkout_failed', {
+        game: gameKey,
+        amount: cents / 100,
+        stage: 'redirect_fallback',
+        status: err.httpStatus || 'network',
+      });
       cta.textContent = 'Something went wrong — try again';
       cta.style.background = '#ff4444';
       setTimeout(function () {
@@ -598,8 +694,9 @@
 
   // ── Open / close ─────────────────────────────────────────────
 
-  function openModal(gameKey) {
+  function openModal(gameKey, context) {
     currentGame = GAMES[gameKey] || GAMES.precursors;
+    context = context || {};
 
     if (!overlay) buildModal();
 
@@ -611,15 +708,25 @@
     var freeLink = overlay.querySelector('#pwyc-free-link');
     if (freeLink) freeLink.href = currentGame.playUrl;
 
-    // Reset to default tier and show tier panel
+    // Reset to default tier and show tier panel. Not user-initiated — this
+    // preselect must NOT emit pwyc_tier_selected.
     showTierPanel();
     var defaultIdx = TIERS.findIndex(function (t) { return t.isDefault; });
-    selectTier(defaultIdx);
+    selectTier(defaultIdx, false);
 
     // Show
     overlay.classList.add('pwyc-open');
     overlay.querySelector('#pwyc-modal').focus();
     document.body.style.overflow = 'hidden';
+
+    // Stage 3, consideration. The support_clicked -> pwyc_modal_shown ratio is
+    // the only way to see the modal failing to open (a JS error mid-page in an
+    // in-app webview) as distinct from nobody clicking.
+    pwycTrack('pwyc_modal_shown', {
+      game: currentGame.gameKey,
+      surface: context.surface || 'unknown',
+      trigger: context.trigger || 'deep_link',
+    });
   }
 
   function closeModal() {
@@ -637,10 +744,20 @@
   function init() {
     document.querySelectorAll('[data-pwyc-game]').forEach(function (el) {
       var game = el.getAttribute('data-pwyc-game');
+      var surface = surfaceOf(el);
       // Intercept click
       el.addEventListener('click', function (e) {
+        // Stage 2, intent — emitted BEFORE preventDefault(). umami-link-fix.js's
+        // click handler is now capture-phase so it is no longer swallowed here,
+        // but ordering this first keeps support_clicked correct regardless of
+        // what any other handler on this element does.
+        pwycTrack('support_clicked', {
+          game: game,
+          surface: surface,
+          page: window.location.pathname,
+        });
         e.preventDefault();
-        openModal(game);
+        openModal(game, { surface: surface, trigger: 'button' });
       });
       // Strip href so middle-click doesn't bypass
       if (el.tagName === 'A') {
