@@ -53,6 +53,7 @@
   // Deterministic per-session hard caps. A session that exceeds a cap stops
   // emitting that name — it never samples, so counts up to the cap are exact.
   var CAPS = {
+    game_loaded: 1,
     chapter_viewed: 40,
     reading_depth: 60,
     content_load_failed: 10,
@@ -1462,6 +1463,24 @@
     window.setTimeout(reset, 220);
   }
 
+  // Where the reader came from. Measured on arrival, since a referrer is the
+  // only cross-property signal available (umami hashes website_id into
+  // session_id, so sessions cannot be joined across properties).
+  var gameLoadedEmitted = false;
+  var PORTAL_HOSTS = ['multiversestudios.xyz', 'www.multiversestudios.xyz',
+                      'play.multiversestudios.xyz', 'multiversegames.ai'];
+
+  function entrySource(index) {
+    var ref = '';
+    try { ref = document.referrer ? new URL(document.referrer).hostname : ''; } catch (e) { ref = ''; }
+    if (ref && PORTAL_HOSTS.indexOf(ref) !== -1) return 'from_portal';
+    // getStoryIndex() returns -1 for "no hash" (the cover) and 0..6 for chapters,
+    // so a plain truthiness test would call every hashless landing a deep link.
+    // Only chapter 2 onward is genuinely a deep link.
+    if (index >= 1) return 'deep_link';
+    return 'direct';
+  }
+
   async function loadStory(options) {
     const settings = options || {};
     const index = getStoryIndex();
@@ -1493,6 +1512,16 @@
 
       const html = await htmlPromise;
       renderStory(index, html);
+
+      // game_loaded — the canonical lifecycle event. This page is the #2 URL on
+      // the studio property (223 sessions/30d) and until the retag it produced
+      // no evidence of anything, so "223 arrived" could not be told apart from
+      // "223 opened the reader". Exactly once per page load, guarded by a
+      // module-level flag so a hashchange re-render cannot double-fire.
+      if (!gameLoadedEmitted) {
+        gameLoadedEmitted = true;
+        if (window.nelTrack) window.nelTrack('game_loaded', { game: 'nel', entry: entrySource(index) });
+      }
 
       if (transition) {
         await wait(180);
@@ -1936,7 +1965,7 @@
   </svg>
 </div>
 
-<script defer src="/umami-link-fix.js?v=1"></script>
+<script defer src="/umami-link-fix.js?v=2"></script>
 <!-- Never Ever Land's OWN Umami property (7a3dafe2…). This page was previously
      tagged with the Multiverse Studios marketing id (38d680a7…), which put all
      of NEL's traffic in the wrong bucket. Domain-aware loader per README §4. -->
