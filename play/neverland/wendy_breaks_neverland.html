@@ -27,7 +27,134 @@
   }
 </script>
 <script defer src="/umami-link-fix.js?v=1"></script>
-<script>(function(){var s=document.createElement("script");s.defer=true;s.src=(location.hostname.endsWith("multiversestudios.xyz")?"https://analytics.multiversestudios.xyz":"https://analytics.multiversegames.ai")+"/script.js";s.setAttribute("data-website-id","38d680a7-28d1-42fd-9fd5-a66702675b88");document.head.appendChild(s);})();</script>
+<!-- Never Ever Land's OWN Umami property (7a3dafe2…). This page was previously
+     tagged with the Multiverse Studios marketing id (38d680a7…), which put all
+     of NEL's traffic in the wrong bucket. Domain-aware loader per README §4. -->
+<script>(function(){var s=document.createElement("script");s.defer=true;s.src=(location.hostname.endsWith("multiversestudios.xyz")?"https://analytics.multiversestudios.xyz":"https://analytics.multiversegames.ai")+"/script.js";s.setAttribute("data-website-id","7a3dafe2-e37e-4138-a788-003b9fb83080");document.head.appendChild(s);})();</script>
+<script>
+/* ============================================================================
+ * NEL analytics chokepoint — window.nelTrack(name, props)
+ * ----------------------------------------------------------------------------
+ * The SINGLE tracking path for this surface. Everything on this page goes
+ * through here; nothing calls window.umami.track() directly.
+ *
+ * See docs/analytics/README.md (§4 loader, §5 taxonomy, §7 firehose control)
+ * and docs/analytics/event-taxonomy.md for the canonical vocabulary.
+ *
+ * SPOILER RULE — Never Ever Land is maximum spoiler sensitivity. Event names
+ * and property VALUES are STRUCTURAL ONLY: scene indices, counts, fixed slugs,
+ * bucketed times. Never a scene TITLE (the old `nel-scene-enter {scene:…}` sent
+ * the TITLE tag verbatim and put 86 rows of plot into the analytics DB), never
+ * a choice string, never a raw error message (the generation API's error text
+ * has echoed the upstream provider's message verbatim).
+ *
+ * FIREHOSE RULE — de-noise here, deterministically. Hard per-session caps
+ * below; no random sampling (random loses precision AND makes totals wrong).
+ * ==========================================================================*/
+(function () {
+  'use strict';
+
+  var SURFACE = 'story';
+  var START = Date.now();
+
+  // Deterministic per-session hard caps. A session that exceeds a cap stops
+  // emitting that name — it never samples, so counts up to the cap are exact.
+  // Every event here is user-click-driven or lifecycle; none can fire from a
+  // frame loop or a simulation tick.
+  var CAPS = {
+    scene_entered: 80,
+    choice_made: 80,
+    generation_started: 25,
+    generation_finished: 25,
+    story_restarted: 20,
+    story_completed: 10,
+    content_load_failed: 10,
+    support_prompt_shown: 4,
+    support_clicked: 10,
+    support_dismissed: 10,
+    pwyc_modal_shown: 10,
+    pwyc_tier_selected: 30,
+    checkout_started: 10,
+    checkout_failed: 10
+  };
+  var counts = Object.create(null);
+
+  var queue = [];
+  var pumping = false;
+  var tries = 0;
+
+  function ready() {
+    return !!(window.umami && typeof window.umami.track === 'function');
+  }
+
+  function flush() {
+    if (!ready()) return false;
+    while (queue.length) {
+      var e = queue.shift();
+      try { window.umami.track(e[0], e[1]); } catch (err) {}
+    }
+    return true;
+  }
+
+  function pump() {
+    if (flush()) { pumping = false; return; }
+    if (++tries > 40) { pumping = false; return; }   // give up after ~10s
+    window.setTimeout(pump, 250);
+  }
+
+  window.nelTrack = function (name, props) {
+    try {
+      var cap = CAPS[name];
+      if (cap) {
+        counts[name] = (counts[name] || 0) + 1;
+        if (counts[name] > cap) return;
+      }
+      var payload = { surface: SURFACE };
+      if (props) {
+        for (var k in props) {
+          if (!Object.prototype.hasOwnProperty.call(props, k)) continue;
+          if (props[k] === undefined || props[k] === null) continue;
+          payload[k] = props[k];
+        }
+      }
+      if (ready()) { window.umami.track(name, payload); return; }
+      if (queue.length < 60) queue.push([name, payload]);
+      if (!pumping) { pumping = true; window.setTimeout(pump, 250); }
+    } catch (err) {}
+  };
+
+  window.nelSecondsBucket = function () {
+    var s = (Date.now() - START) / 1000;
+    if (s < 10) return '<10s';
+    if (s < 60) return '10-60s';
+    if (s < 300) return '1-5m';
+    if (s < 900) return '5-15m';
+    if (s < 2700) return '15-45m';
+    return '>45m';
+  };
+
+  window.nelLatencyBucket = function (ms) {
+    if (ms < 2000) return '<2s';
+    if (ms < 5000) return '2-5s';
+    if (ms < 15000) return '5-15s';
+    if (ms < 30000) return '15-30s';
+    return '>30s';
+  };
+
+  // Fixed slug set. NEVER the raw error message.
+  window.nelReasonCode = function (status, err) {
+    if (typeof status === 'number' && status >= 500) return 'http_5xx';
+    if (typeof status === 'number' && status === 404) return 'http_404';
+    if (typeof status === 'number' && status >= 400) return 'http_4xx';
+    if (err && (err.name === 'SyntaxError' || /json/i.test(String(err.name || '')))) return 'parse';
+    if (err && err.name === 'AbortError') return 'timeout';
+    if (typeof status === 'number' && status === 0) return 'network';
+    return 'other';
+  };
+
+  window.addEventListener('pagehide', function () { flush(); });
+}());
+</script>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=IM+Fell+English+SC&family=Special+Elite&display=swap');
 
@@ -1143,6 +1270,16 @@ let storyContext = [];
 let generatePrompt = '';
 let currentNodeId = null;
 
+// --- Analytics state (structural only; see the chokepoint comment in <head>) ---
+// Monotonic per-session scene counter. This is what gets reported instead of the
+// scene TITLE, which is plot and must never leave the browser.
+let sceneIndex = 0;
+// Suppresses the scene event for the throwaway first pass when a #jump= deeplink
+// is present — loadAndInit() renders once, then clears the DOM and re-renders.
+let suppressSceneEvents = false;
+// Which inkjs fetch actually succeeded, reported on game_loaded.
+let inkRuntimeSource = 'local';
+
 // Narrator confidence — tracks cumulative degradation of narrator control.
 // Starts at 10 (high confidence). Drops on reader interrogation, resets
 // (with lower baseline) on loop. No UI element — expressed purely through
@@ -1184,6 +1321,15 @@ function getInkVariables() {
     try { vars[name] = story.variablesState[name]; } catch(e) {}
   }
   return vars;
+}
+
+// Single ink variable, safe before the runtime exists. Only ever used for
+// numeric/structural analytics properties (iteration counts), never for text.
+function inkVar(name) {
+  try {
+    const v = story && story.variablesState ? story.variablesState[name] : undefined;
+    return typeof v === 'number' ? v : undefined;
+  } catch (e) { return undefined; }
 }
 
 // ============================================================
@@ -1242,7 +1388,18 @@ function continueStory() {
       }
       if (key.trim() === 'TITLE') {
         currentSceneId = val;
-        if (window.umami) window.umami.track('nel-scene-enter', { scene: val });
+        // scene_entered (was `nel-scene-enter`). The old call sent `{ scene: val }`
+        // — the literal scene TITLE — which put 86 rows of plot into the analytics
+        // DB. Structural index only now; `val` never leaves the browser.
+        if (!suppressSceneEvents) {
+          sceneIndex += 1;
+          if (window.nelTrack) window.nelTrack('scene_entered', {
+            scene_index: sceneIndex,
+            source: 'authored',
+            phase: currentPhase,
+            iteration: inkVar('times_read_opening')
+          });
+        }
         if (window.loreDiscovery) {
           window.loreDiscovery.onLocationRevealed(val);
           window.loreDiscovery.onNarrativeDiscovery('scene:' + val);
@@ -1308,10 +1465,13 @@ function continueStory() {
     }, delay);
   } else {
     // Ink story reached a terminal node with no continuation — show Mirror then restart
-    if (window.umami) window.umami.track('nel-complete', {
+    // story_completed (was `nel-complete`, which had ZERO rows all-time and also
+    // sent the scene TITLE). `scene_index` replaces `scene`; no plot leaves the page.
+    if (window.nelTrack) window.nelTrack('story_completed', {
       choices: choiceHistory.length,
+      scene_index: sceneIndex,
       phase: currentPhase,
-      scene: currentSceneId,
+      iteration: inkVar('times_read_opening')
     });
     setTimeout(() => showMirror(() => {
       document.getElementById('restart').style.display = 'block';
@@ -1321,6 +1481,18 @@ function continueStory() {
 
 function makeChoice(index) {
   const choice = story.currentChoices[index];
+
+  // choice_made — the central deliberate action of the interactive half, and it
+  // emitted nothing before this. POSITION ONLY: `choice.text` is plot and is
+  // never sent. Gives branch popularity without storing any branch text.
+  if (window.nelTrack) window.nelTrack('choice_made', {
+    choice_index: index,
+    choice_count: story.currentChoices.length,
+    scene_index: sceneIndex,
+    phase: currentPhase,
+    source: 'authored'
+  });
+
   choiceHistory.push(choice.text);
   inkPath.push(index);
 
@@ -1403,6 +1575,14 @@ function updateIterationCounter() {
 }
 
 function restartStory() {
+  // story_restarted — looping is this game's whole design thesis (linear ->
+  // looping -> infinite) and it has never been measured at all.
+  if (window.nelTrack) window.nelTrack('story_restarted', {
+    iteration: inkVar('times_read_opening'),
+    choices: choiceHistory.length,
+    phase_at_restart: currentPhase
+  });
+
   // Prestige: emit fold narrative (the story loops back on itself)
   if (window.loreDiscovery && window.loreDiscovery.emitNarrative) {
     var vars = getInkVariables();
@@ -1458,6 +1638,13 @@ async function requestGeneration() {
   const dotsTimer = startLoadingDots(loadingEl);
   textEl.appendChild(loadingEl);
 
+  // generation_started/_finished — the game's payoff. This endpoint has been
+  // returning HTTP 500 (upstream quota) and NOTHING reported it. Fires only on a
+  // real fetch attempt; renderError's retry is user-initiated, so no auto-loop.
+  const t0 = Date.now();
+  let httpStatus = 0;
+  if (window.nelTrack) window.nelTrack('generation_started', { stage: 'initial' });
+
   try {
     const response = await fetch('https://neverland.multiversestudios.xyz/api/generate', {
       method: 'POST',
@@ -1470,6 +1657,8 @@ async function requestGeneration() {
       })
     });
 
+    httpStatus = response.status;
+
     if (!response.ok) {
       const err = await response.json().catch(() => ({ error: response.statusText }));
       throw new Error(err.error || 'Server error ' + response.status);
@@ -1481,7 +1670,24 @@ async function requestGeneration() {
     currentNodeId = data.node_id;
     renderGeneratedScene(data);
 
+    if (window.nelTrack) window.nelTrack('generation_finished', {
+      stage: 'initial',
+      result: 'ok',
+      status: httpStatus,
+      latency_bucket: window.nelLatencyBucket(Date.now() - t0)
+    });
+
   } catch (err) {
+    // reason_code is a fixed slug. err.message is the SERVER's error string —
+    // it has contained the upstream provider's raw message and a request id —
+    // so it is never sent.
+    if (window.nelTrack) window.nelTrack('generation_finished', {
+      stage: 'initial',
+      result: 'error',
+      status: httpStatus,
+      reason_code: window.nelReasonCode(httpStatus, err),
+      latency_bucket: window.nelLatencyBucket(Date.now() - t0)
+    });
     stopLoadingDots(dotsTimer);
     textEl.removeChild(loadingEl);
     renderError(textEl, err.message, function() {
@@ -1503,6 +1709,10 @@ async function continueFromChoice(parentId, choiceIndex) {
   const dotsTimer = startLoadingDots(loadingEl);
   textEl.appendChild(loadingEl);
 
+  const t0 = Date.now();
+  let httpStatus = 0;
+  if (window.nelTrack) window.nelTrack('generation_started', { stage: 'continue' });
+
   try {
     const response = await fetch('https://neverland.multiversestudios.xyz/api/continue', {
       method: 'POST',
@@ -1512,6 +1722,8 @@ async function continueFromChoice(parentId, choiceIndex) {
         choice_index: choiceIndex,
       })
     });
+
+    httpStatus = response.status;
 
     if (!response.ok) {
       const err = await response.json().catch(() => ({ error: response.statusText }));
@@ -1524,7 +1736,22 @@ async function continueFromChoice(parentId, choiceIndex) {
     currentNodeId = data.node_id;
     renderGeneratedScene(data);
 
+    if (window.nelTrack) window.nelTrack('generation_finished', {
+      stage: 'continue',
+      result: 'ok',
+      status: httpStatus,
+      latency_bucket: window.nelLatencyBucket(Date.now() - t0)
+    });
+
   } catch (err) {
+    // Fixed slug only — err.message is the server's string and can echo upstream text.
+    if (window.nelTrack) window.nelTrack('generation_finished', {
+      stage: 'continue',
+      result: 'error',
+      status: httpStatus,
+      reason_code: window.nelReasonCode(httpStatus, err),
+      latency_bucket: window.nelLatencyBucket(Date.now() - t0)
+    });
     stopLoadingDots(dotsTimer);
     textEl.removeChild(loadingEl);
     renderError(textEl, err.message, function() {
@@ -1535,6 +1762,16 @@ async function continueFromChoice(parentId, choiceIndex) {
 
 function renderGeneratedScene(data) {
   const textEl = document.getElementById('continuation-text');
+
+  // The LLM-authored half of "the infinite game" emitted no scene event at all
+  // before this, so the deepest state of the game was entirely unmeasured.
+  sceneIndex += 1;
+  if (window.nelTrack) window.nelTrack('scene_entered', {
+    scene_index: sceneIndex,
+    source: 'generated',
+    phase: currentPhase,
+    iteration: inkVar('times_read_opening')
+  });
 
   const paragraphs = data.content.split('\n\n').filter(p => p.trim());
   let delay = 0;
@@ -1576,7 +1813,17 @@ function renderGeneratedScene(data) {
     btn.textContent = data.choices[idx];
     btn.dataset.choiceIdx = idx;
     const capturedIdx = idx;
+    const generatedChoiceCount = data.choices.length;
+    const generatedSceneIndex = sceneIndex;
     btn.onclick = function() {
+      // Position only — data.choices[idx] is generated plot text, never sent.
+      if (window.nelTrack) window.nelTrack('choice_made', {
+        choice_index: capturedIdx,
+        choice_count: generatedChoiceCount,
+        scene_index: generatedSceneIndex,
+        phase: currentPhase,
+        source: 'generated'
+      });
       choicesContainer.querySelectorAll('.choice').forEach(function(other) {
         if (parseInt(other.dataset.choiceIdx) === capturedIdx) {
           other.classList.add('chosen');
@@ -2056,7 +2303,9 @@ function _scheduleTipJarPrompt() {
     supportBtn.className = 'tip-jar-btn tip-jar-support';
     supportBtn.textContent = 'Support this story';
     supportBtn.addEventListener('click', () => {
-      if (window.umami) window.umami.track('nel-tip-jar-clicked');
+      // support_clicked (was `nel-tip-jar-clicked`) — funnel stage 2. Zero rows
+      // all-time on the old name, so the money path has never been exercised.
+      if (window.nelTrack) window.nelTrack('support_clicked', { placement: 'story_timer' });
       prompt.remove();
       if (typeof window.openPWYCModal === 'function') window.openPWYCModal();
     });
@@ -2066,7 +2315,9 @@ function _scheduleTipJarPrompt() {
     dismissBtn.className = 'tip-jar-btn tip-jar-dismiss';
     dismissBtn.textContent = 'Not now';
     dismissBtn.addEventListener('click', () => {
-      if (window.umami) window.umami.track('nel-tip-jar-dismissed');
+      // support_dismissed (was `nel-tip-jar-dismissed`). NOT yet in
+      // event-taxonomy.md — flagged in the report as a proposed canonical name.
+      if (window.nelTrack) window.nelTrack('support_dismissed', { placement: 'story_timer' });
       prompt.remove();
     });
 
@@ -2075,7 +2326,8 @@ function _scheduleTipJarPrompt() {
     prompt.appendChild(actions);
     storyEl.appendChild(prompt);
 
-    if (window.umami) window.umami.track('nel-tip-jar-shown');
+    // support_prompt_shown (was `nel-tip-jar-shown`) — funnel stage 1.
+    if (window.nelTrack) window.nelTrack('support_prompt_shown', { placement: 'story_timer' });
   }, _TIP_JAR_DELAY_MS);
 }
 
@@ -2396,40 +2648,80 @@ function applyJump() {
 // ============================================================
 
 async function loadAndInit() {
+  // Which asset we are on, so a boot failure reports WHERE it broke instead of
+  // being indistinguishable from a one-pageview bounce.
+  let bootAsset = 'ink_runtime';
+  let bootStatus = 0;
+  const deeplink = window.location.hash.includes('jump=');
+
   try {
     let inkResponse = await fetch('node_modules/inkjs/dist/ink.js').catch(() => null);
     if (!inkResponse || !inkResponse.ok) {
+      inkRuntimeSource = 'cdn';
       inkResponse = await fetch('https://cdn.jsdelivr.net/npm/inkjs@2.4.0/dist/ink.js');
     }
+    bootStatus = inkResponse.status;
     if (!inkResponse.ok) throw new Error('Could not load inkjs runtime');
     const inkCode = await inkResponse.text();
     const inkScript = document.createElement('script');
     inkScript.textContent = inkCode;
     document.head.appendChild(inkScript);
 
+    bootAsset = 'story_json';
+    bootStatus = 0;
     const jsonResponse = await fetch('wendy_breaks_neverland.json');
+    bootStatus = jsonResponse.status;
     if (!jsonResponse.ok) throw new Error('Could not load story JSON');
     window.storyJson = await jsonResponse.json();
 
-    initStory();
+    bootAsset = 'init';
+    bootStatus = 0;
 
-    if (window.location.hash.includes('jump=')) {
+    // With a #jump= deeplink the first render is thrown away below, so its scene
+    // event would be a phantom. Suppress it rather than double-count.
+    suppressSceneEvents = deeplink;
+    initStory();
+    suppressSceneEvents = false;
+
+    if (deeplink) {
       if (applyJump()) {
         document.getElementById('story').innerHTML = '';
         document.getElementById('choices').innerHTML = '';
         continueStory();
       }
     }
+
+    // game_loaded — of the sessions that load this page, how many actually boot.
+    if (window.nelTrack) window.nelTrack('game_loaded', {
+      runtime_source: inkRuntimeSource,
+      deeplink: deeplink
+    });
   } catch(e) {
+    suppressSceneEvents = false;
+    // content_load_failed — a total boot failure used to look exactly like a
+    // bounce. reason_code is a fixed slug; the raw message is never sent.
+    if (window.nelTrack) window.nelTrack('content_load_failed', {
+      asset: bootAsset,
+      reason_code: window.nelReasonCode(bootStatus, e)
+    });
     console.error('Load error:', e);
-    document.getElementById('story').innerHTML = '<p class="story-paragraph narrator-voice">The story could not be loaded. The island may be interfering. Ensure the files are served from a web server (not file://). Try: <code>python server.py</code> in the project directory.</p>';
+    document.getElementById('story').innerHTML = '<p class="story-paragraph narrator-voice">The story could not be loaded. The island may be interfering. Please try again in a moment.</p>';
   }
 }
 
 document.addEventListener('DOMContentLoaded', loadAndInit);
 
+// session_ended (was `nel-exit`, which sent the scene TITLE). Structural
+// position + a bucketed duration; guarded so a bfcache restore can't double-fire.
+let sessionEndSent = false;
 window.addEventListener('pagehide', function() {
-  if (window.umami) window.umami.track('nel-exit', { scene: currentSceneId, phase: currentPhase });
+  if (sessionEndSent) return;
+  sessionEndSent = true;
+  if (window.nelTrack) window.nelTrack('session_ended', {
+    scene_index: sceneIndex,
+    phase: currentPhase,
+    seconds_bucket: window.nelSecondsBucket()
+  });
 });
 
 // ============================================================
@@ -2693,7 +2985,13 @@ const eighthChild = (function() {
 (function () {
   'use strict';
 
-  var CHECKOUT_API_URL = 'https://multiversestudios.xyz/stripe/create-checkout-session';
+  // P0 FIX: the previous value, https://multiversestudios.xyz/stripe/create-checkout-session,
+  // returns HTTP 404 — there is no /stripe path on the marketing host, so NEL's tip
+  // jar could never take a payment. The stripe-webhook service is routed at
+  // pay.multiversegames.ai (verified: OPTIONS -> 204 with
+  // access-control-allow-origin: https://multiversestudios.xyz). See
+  // ops/multiverse-games-hel1/traefik-dynamic/multiversegames-ai.yml (mg-ai-pay).
+  var CHECKOUT_API_URL = 'https://pay.multiversegames.ai/create-checkout-session';
   var TIERS = [
     { id: 'free', amount: 0, label: 'Free', sublabel: '$0', desc: 'No conditions.' },
     { id: 'spark', amount: 500, label: 'Spark', sublabel: '$5', desc: 'A small light.', isDefault: true },
@@ -2738,7 +3036,18 @@ const eighthChild = (function() {
     document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closePWYCModal(); });
 
     tierEls.forEach(function (el, i) {
-      el.addEventListener('click', function () { selectTier(i); });
+      // Funnel stage 4. Tracked HERE and not inside selectTier(), because
+      // selectTier(1) is called programmatically on open and would fabricate
+      // a selection for every session that merely opened the modal.
+      el.addEventListener('click', function () {
+        selectTier(i);
+        if (window.nelTrack) {
+          window.nelTrack('pwyc_tier_selected', {
+            tier: TIERS[i].id,
+            amount: TIERS[i].isCustom ? undefined : TIERS[i].amount
+          });
+        }
+      });
     });
 
     overlay.querySelector('#pwyc-cta').addEventListener('click', handleCTA);
@@ -2806,21 +3115,40 @@ const eighthChild = (function() {
     xhr.open('POST', CHECKOUT_API_URL);
     xhr.setRequestHeader('Content-Type', 'application/json');
     xhr.onload = function () {
+      var failureReason = 'http_error';
       if (xhr.status >= 200 && xhr.status < 300) {
+        failureReason = 'no_url';
         try {
           var data = JSON.parse(xhr.responseText);
           if (data.url) { window.open(data.url, '_blank'); closePWYCModal(); return; }
-        } catch (e) { console.error('PWYC: parse error', e); }
+        } catch (e) { failureReason = 'parse_error'; console.error('PWYC: parse error', e); }
+      }
+      // checkout_failed is the difference between "nobody wanted to pay" and
+      // "nobody could pay" — currently indistinguishable for this title.
+      if (window.nelTrack) {
+        window.nelTrack('checkout_failed', {
+          status_code: xhr.status,
+          reason_code: failureReason,
+          amount: cents
+        });
       }
       cta.textContent = 'Something went wrong';
       cta.style.background = '#cc4444';
       setTimeout(function () { cta.disabled = false; cta.style.opacity = ''; cta.textContent = originalText; updateCTA(); }, 2000);
     };
     xhr.onerror = function () {
+      if (window.nelTrack) {
+        window.nelTrack('checkout_failed', { status_code: 0, reason_code: 'network', amount: cents });
+      }
       cta.textContent = 'Connection failed';
       cta.style.background = '#cc4444';
       setTimeout(function () { cta.disabled = false; cta.style.opacity = ''; cta.textContent = originalText; updateCTA(); }, 2000);
     };
+    // Funnel stage 5 — hands off to the server-authoritative purchase_completed
+    // that the Stripe webhook already emits for `nel` (7a3dafe2…).
+    if (window.nelTrack) {
+      window.nelTrack('checkout_started', { amount: cents, tier: selectedTier.id, game: 'nel' });
+    }
     xhr.send(JSON.stringify({ game: 'nel', amount: cents }));
   }
 
@@ -2830,6 +3158,7 @@ const eighthChild = (function() {
     else { selectTier(1); }
     overlay.classList.add('pwyc-open');
     document.body.style.overflow = 'hidden';
+    if (window.nelTrack) window.nelTrack('pwyc_modal_shown', {});   // funnel stage 3
   };
 
   window.closePWYCModal = function () {

@@ -26,6 +26,115 @@
     });
   }
 </script>
+<script>
+/* ============================================================================
+ * NEL analytics chokepoint — window.nelTrack(name, props)
+ * ----------------------------------------------------------------------------
+ * The SINGLE tracking path for this surface. Everything on this page goes
+ * through here; nothing calls window.umami.track() directly.
+ *
+ * See docs/analytics/README.md (§4 loader, §5 taxonomy, §7 firehose control)
+ * and docs/analytics/event-taxonomy.md for the canonical vocabulary.
+ *
+ * SPOILER RULE — Never Ever Land is maximum spoiler sensitivity. Event names
+ * and property VALUES are STRUCTURAL ONLY: chapter/scene indices, counts,
+ * fixed slugs, bucketed times. Never a scene title, a chapter slug, a choice
+ * string, or a raw error message (upstream errors have echoed provider text).
+ *
+ * FIREHOSE RULE — de-noise here, deterministically. Hard per-session caps
+ * below; no random sampling (random loses precision AND makes totals wrong).
+ * ==========================================================================*/
+(function () {
+  'use strict';
+
+  var SURFACE = 'reader';
+  var START = Date.now();
+
+  // Deterministic per-session hard caps. A session that exceeds a cap stops
+  // emitting that name — it never samples, so counts up to the cap are exact.
+  var CAPS = {
+    chapter_viewed: 40,
+    reading_depth: 60,
+    content_load_failed: 10,
+    support_prompt_shown: 4,
+    support_clicked: 10,
+    pwyc_modal_shown: 10,
+    pwyc_tier_selected: 30,
+    checkout_started: 10,
+    checkout_failed: 10
+  };
+  var counts = Object.create(null);
+
+  var queue = [];
+  var pumping = false;
+  var tries = 0;
+
+  function ready() {
+    return !!(window.umami && typeof window.umami.track === 'function');
+  }
+
+  function flush() {
+    if (!ready()) return false;
+    while (queue.length) {
+      var e = queue.shift();
+      try { window.umami.track(e[0], e[1]); } catch (err) {}
+    }
+    return true;
+  }
+
+  function pump() {
+    if (flush()) { pumping = false; return; }
+    if (++tries > 40) { pumping = false; return; }   // give up after ~10s
+    window.setTimeout(pump, 250);
+  }
+
+  window.nelTrack = function (name, props) {
+    try {
+      var cap = CAPS[name];
+      if (cap) {
+        counts[name] = (counts[name] || 0) + 1;
+        if (counts[name] > cap) return;
+      }
+      var payload = { surface: SURFACE };
+      if (props) {
+        for (var k in props) {
+          if (!Object.prototype.hasOwnProperty.call(props, k)) continue;
+          if (props[k] === undefined || props[k] === null) continue;
+          payload[k] = props[k];
+        }
+      }
+      if (ready()) { window.umami.track(name, payload); return; }
+      if (queue.length < 60) queue.push([name, payload]);
+      if (!pumping) { pumping = true; window.setTimeout(pump, 250); }
+    } catch (err) {}
+  };
+
+  // Bucketed session duration — low cardinality, and it is what separates
+  // "left instantly" from "read for forty minutes and stopped".
+  window.nelSecondsBucket = function () {
+    var s = (Date.now() - START) / 1000;
+    if (s < 10) return '<10s';
+    if (s < 60) return '10-60s';
+    if (s < 300) return '1-5m';
+    if (s < 900) return '5-15m';
+    if (s < 2700) return '15-45m';
+    return '>45m';
+  };
+
+  // Fixed slug set. NEVER the raw error message.
+  window.nelReasonCode = function (status, err) {
+    if (typeof status === 'number' && status >= 500) return 'http_5xx';
+    if (typeof status === 'number' && status === 404) return 'http_404';
+    if (typeof status === 'number' && status >= 400) return 'http_4xx';
+    if (err && (err.name === 'SyntaxError' || /json/i.test(String(err.name || '')))) return 'parse';
+    if (err && err.name === 'AbortError') return 'timeout';
+    if (typeof status === 'number' && status === 0) return 'network';
+    return 'other';
+  };
+
+  window.addEventListener('pagehide', function () { flush(); });
+}());
+</script>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=IM+Fell+English+SC&family=Special+Elite&display=swap');
 
@@ -1017,6 +1126,7 @@
   ];
 
   let currentRenderedIndex = null;
+  let deepestChapterIndex = -1;
   var PATRONAGE_CTA_SHOWN_KEY = 'nel-patronage-cta-shown';
   var STRIPE_DONATION_URL = null; // Replaced by PWYC modal
 
@@ -1253,6 +1363,7 @@
   }
 
   function renderStory(index, html) {
+    const previousRenderedIndex = currentRenderedIndex;
     const storyEl = document.getElementById('story');
     storyEl.innerHTML = '<div class="story-body">' + html + '</div>';
     const nextEl = document.getElementById('next-link');
@@ -1284,9 +1395,20 @@
             ctaEl.innerHTML =
               '<p>If this story meant something to you, you can support the next one.</p>' +
               '<p>Pay what you felt, not what we charged.</p>' +
-              '<button onclick="openPWYCModal()" style="background:none;border:1px solid var(--border);color:var(--ink);font-family:\'Cormorant Garamond\',Georgia,serif;font-size:1rem;padding:0.5rem 1.2rem;cursor:pointer;border-radius:4px;letter-spacing:0.06em">Support this story</button>';
+              '<button class="patronage-cta-btn" style="background:none;border:1px solid var(--border);color:var(--ink);font-family:\'Cormorant Garamond\',Georgia,serif;font-size:1rem;padding:0.5rem 1.2rem;cursor:pointer;border-radius:4px;letter-spacing:0.06em">Support this story</button>';
             nextEl.appendChild(ctaEl);
+            // Revenue funnel stage 2 (intent). Was an inline onclick="openPWYCModal()";
+            // bound here instead so the click can be tracked at the chokepoint.
+            var patronBtn = ctaEl.querySelector('.patronage-cta-btn');
+            if (patronBtn) {
+              patronBtn.addEventListener('click', function () {
+                if (window.nelTrack) window.nelTrack('support_clicked', { placement: 'chapter_cta', chapter_index: index });
+                if (typeof window.openPWYCModal === 'function') window.openPWYCModal();
+              });
+            }
             window.sessionStorage.setItem(PATRONAGE_CTA_SHOWN_KEY, '1');
+            // Revenue funnel stage 1 (impression) — this CTA has never reported once.
+            if (window.nelTrack) window.nelTrack('support_prompt_shown', { placement: 'chapter_cta', chapter_index: index });
           }
         } catch (e) {}
       }
@@ -1298,6 +1420,23 @@
 
     document.title = 'Never Ever Land';
     currentRenderedIndex = index;
+
+    // chapter_viewed — the reading funnel. Umami's tracker has NO hashchange or
+    // popstate listener (it only hooks history.pushState/replaceState, which this
+    // page never calls), so the seven hash-driven chapter steps emit no pageview
+    // at all. We emit the step ourselves. STRUCTURAL ONLY: the integer index,
+    // never the slug or the chapter title.
+    if (window.nelTrack) {
+      window.nelTrack('chapter_viewed', {
+        chapter_index: index,                       // -1 = prologue, 0..6 = tellings + appendix
+        entry_mode: previousRenderedIndex === null
+          ? (window.location.hash ? 'deeplink' : 'landing')
+          : 'nav',
+        chapter_count: STORY_FILES.length
+      });
+    }
+    deepestChapterIndex = Math.max(deepestChapterIndex, index);
+
     forceScrollToTop();
 
     // Load annotations for this chapter (non-blocking)
@@ -1342,6 +1481,12 @@
       }
 
       const htmlPromise = resolveStoryHtml(index);
+      // The transition below awaits 1125ms BEFORE awaiting htmlPromise. A chapter
+      // fetch that fails inside that window used to reject with no handler
+      // attached, producing an uncaught promise rejection (and a Sentry error) on
+      // top of the real failure. Attach an inert handler; `await htmlPromise`
+      // still throws into the catch below, so behaviour is unchanged.
+      htmlPromise.catch(function() {});
       if (shouldTransition) {
         await wait(1125);
       }
@@ -1356,6 +1501,15 @@
     } catch (error) {
       if (transition) {
         transition.stop();
+      }
+      // A failed chapter fetch is indistinguishable from a reader who quit unless
+      // we say so. reason_code is a fixed slug — never the raw error message.
+      if (window.nelTrack) {
+        window.nelTrack('content_load_failed', {
+          asset: 'chapter',
+          chapter_index: index,
+          reason_code: window.nelReasonCode(error && error.status, error)
+        });
       }
       storyEl.innerHTML = '<p class="error">The story could not be loaded.</p>';
       nextEl.innerHTML = '';
@@ -1376,7 +1530,11 @@
 
   function fetchStoryPath(path) {
     return fetch(path).then(function(res) {
-      if (!res.ok) throw new Error(res.statusText);
+      if (!res.ok) {
+        var httpError = new Error(res.statusText);
+        httpError.status = res.status;   // so content_load_failed can classify it
+        throw httpError;
+      }
       return res.text();
     }).then(function(content) {
       if (typeof marked === 'undefined') {
@@ -1422,6 +1580,63 @@
   window.addEventListener('DOMContentLoaded', function() {
     loadStory({ withTransition: false });
     checkExistingGlyph();
+  });
+
+  // ------------------------------------------------------------------
+  // reading_depth — the only signal that can tell "landed and left in
+  // three seconds" apart from "read the prologue and chose not to go on".
+  // Without it every bounce number for this title is uninterpretable.
+  //
+  // ONE listener, attached once (renderStory runs on every hashchange, so
+  // attaching there would stack eight listeners). rAF-coalesced, never raw
+  // per-scroll. Deduped deterministically on a `${chapter}:${pct}` key — at
+  // most 4 events per chapter, so <=32 per session. Never sampled.
+  // ------------------------------------------------------------------
+  var DEPTH_BUCKETS = [25, 50, 75, 100];
+  var depthSeen = Object.create(null);
+  var depthQueued = false;
+
+  function measureReadingDepth() {
+    depthQueued = false;
+    var index = currentRenderedIndex;
+    if (index === null || index === undefined) return;
+
+    var doc = document.documentElement;
+    var scrollable = Math.max((doc.scrollHeight || 0) - (window.innerHeight || 0), 0);
+    if (scrollable <= 0) return;              // nothing to scroll: no depth signal
+    var scrolled = window.pageYOffset || doc.scrollTop || 0;
+    var pct = (scrolled / scrollable) * 100;
+
+    for (var i = 0; i < DEPTH_BUCKETS.length; i++) {
+      var bucket = DEPTH_BUCKETS[i];
+      if (pct + 0.5 < bucket) break;          // buckets ascend; stop at the first miss
+      var key = index + ':' + bucket;
+      if (depthSeen[key]) continue;
+      depthSeen[key] = true;
+      if (window.nelTrack) window.nelTrack('reading_depth', { chapter_index: index, pct: bucket });
+    }
+  }
+
+  window.addEventListener('scroll', function() {
+    if (depthQueued) return;
+    depthQueued = true;
+    window.requestAnimationFrame(measureReadingDepth);
+  }, { passive: true });
+
+  // session_ended — where sessions actually end on the reader, with a time
+  // dimension. Bucketed seconds (low cardinality) + the deepest STRUCTURAL
+  // position reached. Guarded so a bfcache restore cannot double-fire.
+  var sessionEndSent = false;
+  window.addEventListener('pagehide', function() {
+    if (sessionEndSent) return;
+    sessionEndSent = true;
+    if (window.nelTrack) {
+      window.nelTrack('session_ended', {
+        chapter_index: deepestChapterIndex,
+        chapter_count: STORY_FILES.length,
+        seconds_bucket: window.nelSecondsBucket()
+      });
+    }
   });
 
   // ============================================================
@@ -1722,7 +1937,10 @@
 </div>
 
 <script defer src="/umami-link-fix.js?v=1"></script>
-<script>(function(){var s=document.createElement("script");s.defer=true;s.src=(location.hostname.endsWith("multiversestudios.xyz")?"https://analytics.multiversestudios.xyz":"https://analytics.multiversegames.ai")+"/script.js";s.setAttribute("data-website-id","38d680a7-28d1-42fd-9fd5-a66702675b88");document.head.appendChild(s);})();</script>
+<!-- Never Ever Land's OWN Umami property (7a3dafe2…). This page was previously
+     tagged with the Multiverse Studios marketing id (38d680a7…), which put all
+     of NEL's traffic in the wrong bucket. Domain-aware loader per README §4. -->
+<script>(function(){var s=document.createElement("script");s.defer=true;s.src=(location.hostname.endsWith("multiversestudios.xyz")?"https://analytics.multiversestudios.xyz":"https://analytics.multiversegames.ai")+"/script.js";s.setAttribute("data-website-id","7a3dafe2-e37e-4138-a788-003b9fb83080");document.head.appendChild(s);})();</script>
 <!-- PWYC Tier Picker Modal -->
 <div id="pwyc-overlay" role="dialog" aria-modal="true" aria-label="Support this story — pay what you can">
 </div>
@@ -1869,7 +2087,13 @@
 (function () {
   'use strict';
 
-  var CHECKOUT_API_URL = 'https://multiversestudios.xyz/stripe/create-checkout-session';
+  // P0 FIX: the previous value, https://multiversestudios.xyz/stripe/create-checkout-session,
+  // returns HTTP 404 — there is no /stripe path on the marketing host, so NEL's tip
+  // jar could never take a payment. The stripe-webhook service is routed at
+  // pay.multiversegames.ai (verified: OPTIONS -> 204 with
+  // access-control-allow-origin: https://multiversestudios.xyz). See
+  // ops/multiverse-games-hel1/traefik-dynamic/multiversegames-ai.yml (mg-ai-pay).
+  var CHECKOUT_API_URL = 'https://pay.multiversegames.ai/create-checkout-session';
   var TIERS = [
     { id: 'free', amount: 0, label: 'Free', sublabel: '$0', desc: 'No conditions.' },
     { id: 'spark', amount: 500, label: 'Spark', sublabel: '$5', desc: 'A small light.', isDefault: true },
@@ -1914,7 +2138,18 @@
     document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closePWYCModal(); });
 
     tierEls.forEach(function (el, i) {
-      el.addEventListener('click', function () { selectTier(i); });
+      // Funnel stage 4. Tracked HERE and not inside selectTier(), because
+      // selectTier(1) is called programmatically on open and would fabricate
+      // a selection for every session that merely opened the modal.
+      el.addEventListener('click', function () {
+        selectTier(i);
+        if (window.nelTrack) {
+          window.nelTrack('pwyc_tier_selected', {
+            tier: TIERS[i].id,
+            amount: TIERS[i].isCustom ? undefined : TIERS[i].amount
+          });
+        }
+      });
     });
 
     overlay.querySelector('#pwyc-cta').addEventListener('click', handleCTA);
@@ -1982,21 +2217,40 @@
     xhr.open('POST', CHECKOUT_API_URL);
     xhr.setRequestHeader('Content-Type', 'application/json');
     xhr.onload = function () {
+      var failureReason = 'http_error';
       if (xhr.status >= 200 && xhr.status < 300) {
+        failureReason = 'no_url';
         try {
           var data = JSON.parse(xhr.responseText);
           if (data.url) { window.open(data.url, '_blank'); closePWYCModal(); return; }
-        } catch (e) { console.error('PWYC: parse error', e); }
+        } catch (e) { failureReason = 'parse_error'; console.error('PWYC: parse error', e); }
+      }
+      // checkout_failed is the difference between "nobody wanted to pay" and
+      // "nobody could pay" — currently indistinguishable for this title.
+      if (window.nelTrack) {
+        window.nelTrack('checkout_failed', {
+          status_code: xhr.status,
+          reason_code: failureReason,
+          amount: cents
+        });
       }
       cta.textContent = 'Something went wrong';
       cta.style.background = '#cc4444';
       setTimeout(function () { cta.disabled = false; cta.style.opacity = ''; cta.textContent = originalText; updateCTA(); }, 2000);
     };
     xhr.onerror = function () {
+      if (window.nelTrack) {
+        window.nelTrack('checkout_failed', { status_code: 0, reason_code: 'network', amount: cents });
+      }
       cta.textContent = 'Connection failed';
       cta.style.background = '#cc4444';
       setTimeout(function () { cta.disabled = false; cta.style.opacity = ''; cta.textContent = originalText; updateCTA(); }, 2000);
     };
+    // Funnel stage 5 — hands off to the server-authoritative purchase_completed
+    // that the Stripe webhook already emits for `nel` (7a3dafe2…).
+    if (window.nelTrack) {
+      window.nelTrack('checkout_started', { amount: cents, tier: selectedTier.id, game: 'nel' });
+    }
     xhr.send(JSON.stringify({ game: 'nel', amount: cents }));
   }
 
@@ -2006,6 +2260,7 @@
     else { selectTier(1); }
     overlay.classList.add('pwyc-open');
     document.body.style.overflow = 'hidden';
+    if (window.nelTrack) window.nelTrack('pwyc_modal_shown', {});   // funnel stage 3
   };
 
   window.closePWYCModal = function () {
