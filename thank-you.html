@@ -327,7 +327,10 @@
   }
 
   try {
-    const response = await fetch(`https://multiversestudios.xyz/stripe/session/${sessionId}`);
+    // pay.multiversegames.ai is the live stripe-webhook host; the old
+    // multiversestudios.xyz/stripe/* path returns an nginx 404, so this
+    // receipt lookup failed for every player who actually completed a payment.
+    const response = await fetch(`https://pay.multiversegames.ai/session/${sessionId}`);
     if (!response.ok) throw new Error('Session not found');
 
     const data = await response.json();
