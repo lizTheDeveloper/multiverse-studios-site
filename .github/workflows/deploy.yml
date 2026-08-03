@@ -40,25 +40,41 @@ jobs:
             --exclude='scripts' \
             ./ root@${{ secrets.HETZNER_HOST }}:/opt/marketing-site/html/
 
+      # Must run BEFORE the build: the Dockerfile does `COPY html/ ...`, so anything
+      # written to html/ after the build never reaches the served image.
+      - name: Stamp deployment marker
+        run: |
+          ssh root@${{ secrets.HETZNER_HOST }} \
+            "echo '${{ github.sha }}' > /opt/marketing-site/html/deployed-sha.txt"
+
       - name: Rebuild Docker container
         run: |
           ssh root@${{ secrets.HETZNER_HOST }} 'cd /opt/marketing-site && docker compose build && docker compose up -d'
 
-      - name: Health check
+      # Fail-closed: proves the box we rsynced to is the box actually serving
+      # multiversestudios.xyz, with THIS commit. The previous check only curled `/`
+      # for a 200, which passed even while the deploy went to a decommissioned box —
+      # every run reported success for weeks while production was untouched (2026-08-02).
+      - name: Health check (verify the deployed commit is live)
         run: |
           sleep 5
           RESPONSE=$(curl -s -o /dev/null -w "%{http_code}" https://multiversestudios.xyz/)
           if [ "$RESPONSE" != "200" ]; then
-            echo "Health check failed: HTTP $RESPONSE"
+            echo "Health check failed: site returned HTTP $RESPONSE"
             exit 1
           fi
-          echo "Health check passed: HTTP 200"
 
-      - name: Update deployment marker
-        run: |
-          ssh root@${{ secrets.HETZNER_HOST }} \
-            "echo '${{ github.sha }}' > /opt/marketing-site/html/.last-deployed-sha && \
-             echo 'Deployed at: $(date -u +%Y-%m-%dT%H:%M:%SZ)' >> /opt/marketing-site/html/.last-deployed-sha"
+          LIVE_SHA=$(curl -s --max-time 20 https://multiversestudios.xyz/deployed-sha.txt | tr -d '[:space:]')
+          if [ "$LIVE_SHA" != "${{ github.sha }}" ]; then
+            echo "DEPLOY VERIFICATION FAILED."
+            echo "  expected commit: ${{ github.sha }}"
+            echo "  live site serves: '${LIVE_SHA}'"
+            echo ""
+            echo "The rsync target is not the host serving multiversestudios.xyz."
+            echo "Check the HETZNER_HOST secret against: dig +short multiversestudios.xyz"
+            exit 1
+          fi
+          echo "Verified: multiversestudios.xyz is serving ${{ github.sha }}"
 
       - name: Send Matrix notification on success
         if: success()
