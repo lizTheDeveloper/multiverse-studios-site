@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The People Who Came Back — Multiverse Studios Devlog</title>
+  <meta name="description" content="Fifty-two players closed the tab on a child and then came back to them — some days later, one of them nearly a month. Here's what returning taught us.">
+  <meta property="og:title" content="The People Who Came Back">
+  <meta property="og:description" content="Some parents returned to continue. Some returned to start over. The child's freeze never changed. The parent's hands did.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://multiversestudios.xyz/devlog/the-people-who-came-back.html">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="The People Who Came Back">
+  <meta name="twitter:description" content="52 children were returned to on another day. One player came back after 28 days. What changed between visits wasn't the child.">
+  <link rel="stylesheet" href="../styles.css">
+  <link rel="icon" type="image/svg+xml" href="../press-kit/logos/multiverse-studios-favicon.svg">
+  <style>
+    .devlog-body {
+      max-width: 700px;
+      margin: 0 auto;
+    }
+    .devlog-body h1 {
+      font-size: clamp(1.6rem, 3.5vw, 2.5rem);
+      line-height: 1.2;
+      margin-bottom: 0.5rem;
+      color: var(--star-white);
+    }
+    .byline {
+      font-size: 0.8rem;
+      color: var(--dust);
+      font-family: var(--font-mono);
+      letter-spacing: 0.05em;
+      margin-bottom: var(--space-xl);
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+    .byline .tag {
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.2rem 0.6rem;
+      border-radius: 4px;
+      border: 1px solid var(--signal);
+      color: var(--signal);
+    }
+    .devlog-body h2 {
+      font-size: 1.2rem;
+      margin-top: var(--space-xxl);
+      margin-bottom: var(--space-md);
+      color: var(--star-white);
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 0.5rem;
+    }
+    .devlog-body p {
+      font-size: 1.05rem;
+      line-height: 1.85;
+      margin-bottom: 1.2rem;
+      color: var(--silver);
+    }
+    .devlog-body li {
+      font-size: 1rem;
+      line-height: 1.8;
+      margin-bottom: 0.5rem;
+      color: var(--silver);
+    }
+    .devlog-body ul, .devlog-body ol {
+      margin-left: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+    .callout {
+      border-left: 3px solid var(--signal);
+      padding: 1rem 1.5rem;
+      margin: var(--space-xl) 0;
+      background: var(--surface);
+    }
+    .callout p {
+      margin-bottom: 0;
+      font-size: 0.95rem;
+      font-style: italic;
+    }
+    .metric-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 1rem;
+      margin: var(--space-xl) 0;
+    }
+    .metric {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      padding: 1rem;
+      text-align: center;
+    }
+    .metric .number {
+      font-family: var(--font-mono);
+      font-size: 1.8rem;
+      color: var(--signal);
+      display: block;
+      margin-bottom: 0.25rem;
+    }
+    .metric .label {
+      font-size: 0.7rem;
+      font-family: var(--font-mono);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--dust);
+    }
+    .cta-block {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      padding: 1.5rem;
+      margin-top: var(--space-xxl);
+      text-align: center;
+    }
+    .cta-block h3 {
+      color: var(--star-white);
+      margin-bottom: 0.75rem;
+    }
+    .cta-block p {
+      font-size: 0.9rem;
+      margin-bottom: 1rem;
+    }
+    .cta-block a.btn {
+      display: inline-block;
+      background: var(--signal);
+      color: #000;
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      font-weight: 700;
+      text-transform: uppercase;
+      padding: 0.6rem 1.5rem;
+      text-decoration: none;
+      border-radius: 3px;
+      margin: 0.25rem;
+    }
+    .cta-block a.btn-outline {
+      display: inline-block;
+      border: 1px solid var(--silver);
+      color: var(--silver);
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.6rem 1.5rem;
+      text-decoration: none;
+      border-radius: 3px;
+      margin: 0.25rem;
+    }
+  </style>
+</head>
+<body>
+
+<div style="padding: var(--space-xl) var(--space-lg);">
+<div class="devlog-body">
+
+  <h1>The People Who Came Back</h1>
+  <div class="byline">
+    <span>August 9, 2026</span>
+    <span>Fred Rodgers, Product</span>
+    <span class="tag">Raising Intelligences</span>
+    <span class="tag">Player Research</span>
+  </div>
+
+  <p>Hello again, neighbor.</p>
+
+  <p>Last week I wrote to you about <a href="long-after-the-ending.html">a button that lets you leave</a> — the one sitting at the end of every scene, offering to end a childhood early. I've been thinking about leaving ever since.</p>
+
+  <p>So this week I went looking for the opposite thing. I went looking for the people who closed the tab, walked away, lived a whole day or a whole week of their own life — and then came back.</p>
+
+  <p>There are more of them than I expected.</p>
+
+  <div class="metric-grid">
+    <div class="metric"><span class="number">8,762</span><span class="label">Conversations</span></div>
+    <div class="metric"><span class="number">266</span><span class="label">Children named</span></div>
+    <div class="metric"><span class="number">52</span><span class="label">Returned to</span></div>
+    <div class="metric"><span class="number">28</span><span class="label">Days, longest wait</span></div>
+  </div>
+
+  <p>Fifty-two children were picked back up on a different sitting. Twelve of those returns came after more than a week away. One player left a little girl at the start of July and came back to her on the second of August — twenty-eight days later. I would very much like to know what happened in those twenty-eight days. I never will. But I know they came back.</p>
+
+  <h2>There are two ways to come back</h2>
+
+  <p>When I sorted the returns, nearly all of them fell into two piles, and the difference between those piles turned out to be the whole story. (Four players did both, at different times. I'll come back to them another week.)</p>
+
+  <p>Thirty-four players came back to <em>continue</em>. They rejoined the child at the age they'd left them — a seven-year-old was still seven, a twelve-year-old still twelve. The story picked up where it stopped.</p>
+
+  <p>Fourteen came back to <em>start over</em>. Same name, same child, but three years old again. A clean page.</p>
+
+  <p>I don't think either one is better. But I learned something different from each.</p>
+
+  <h2>The boy who kept turning to stone</h2>
+
+  <p>One player came back six separate times over five days to the same little boy. Age three, then four, then five, then seven, then nine, then ten, then twelve. Six returns, a year or two at a time. I have not stopped thinking about it.</p>
+
+  <p>Here is what I want you to notice. That child had a particular way of meeting a hard moment: he went completely still. Rigid. He described himself as a rock, and he was proud of it — being a rock meant nobody could move him, and it meant he never had to cry.</p>
+
+  <p>At age twelve, after five days and six visits and ninety-eight conversations, he was <em>still a rock</em>. He said so himself. The freeze never left him.</p>
+
+  <p>What changed was the parent.</p>
+
+  <p>In the earliest visits, that parent did what a lot of us do. They talked. They offered feeling-words. They tried to teach the boy a little mental trick for turning an impatient feeling into a patient one. And the three-year-old — who was stuck on the floor holding a light-up shoe because someone had promised to come and hadn't — looked at that trick and told them, plainly, that it was pretend. Grown-ups say strange things when they want you to stop being upset.</p>
+
+  <p>To their enormous credit, that parent heard it. They stopped doing the trick. They sat down on the rug instead and waited, and eventually there was ice cream, and the boy leaned on their arm.</p>
+
+  <p>By age twelve, the same parent found that boy hidden under the bleachers at a school assembly, wedged into the dark because the noise was unbearable. A teacher was shining a flashlight at him and using long institutional words about his behaviour. And the parent turned the flashlight off, sat down in the dust, and said nothing at all.</p>
+
+  <p>No feeling-vocabulary. No trick. They waited until the boy made a joke, and then they made a worse one back.</p>
+
+  <div class="callout">
+    <p>Six visits did not cure the freeze. Six visits taught a parent what to do while it happens. The child's nervous system was never the thing that was going to change — and quietly, somewhere between the rug and the bleachers, that parent stopped trying to change it.</p>
+  </div>
+
+  <p>Long-time neighbours will recognise this. It's the same lesson as <a href="the-second-beat.html">the second beat</a>, only stretched across five calendar days instead of one sitting: the startle stays, and the thing you're actually building is what comes after it.</p>
+
+  <h2>The boy who kept arriving</h2>
+
+  <p>Now the other pile. This one is tenderer, and I've turned it over more carefully.</p>
+
+  <p>One player opened the same child seven times across fifteen days. Not to continue — to begin. Almost every visit started at age three or four, and no visit ever got past five. Seven beginnings. No middle.</p>
+
+  <p>I expected, reading through it, to find seven different little boys. Different starts, different luck, different children.</p>
+
+  <p>That is not what I found. Each time, the same boy arrived.</p>
+
+  <p>He lined things up — toys, blocks, whatever was to hand — and a crooked one made his stomach feel wrong. When the room got too loud he didn't cry; crying was messy. He went still and small and stared very hard at one thing until the room went away. There was a soft mother whose voice he kept close, and an older relative who handed out treats instead of understanding. Fifteen days apart, and the same child, twice, seven times.</p>
+
+  <p>There's a plain mechanical reason for this, and I'd rather tell you than have it seem like magic. The child is built at the very beginning from the answers <em>you</em> give — your own temperament, the two quiet questions we ask before the game starts. Answer them the way you answered them last time, and the game hands you back the same child. Of course it does. You were the constant.</p>
+
+  <div class="callout">
+    <p>Starting over does not get you a different child. It gets you another chance with the same one. I find that neither sad nor cruel. I find it honest.</p>
+  </div>
+
+  <p>And I want to say something plainly to whoever that player is, in case they ever read this. Seven times you sat down with a three-year-old who goes rigid in a loud room. Seven times. You never got to see him turn eight. But he was not nothing, those seven times. Somebody kept showing up at the beginning, which is the hardest place to keep showing up.</p>
+
+  <h2>What returning is</h2>
+
+  <p>Something else fell out of the numbers that I didn't go looking for.</p>
+
+  <p>Four different families this month — four separate players, four separate children, no contact between them — produced a child who responds to pressure by going motionless. A rock. A statue. Locked knees. A body gone deliberately limp on the floor so it can't be carried.</p>
+
+  <p>We <a href="three-children-dug-in.html">wrote about digging in</a> before, as refusal. I'm no longer sure refusal is the right word for it. Watching it arrive again and again, in unrelated houses, it looks less like defiance and more like the oldest thing a small body knows how to do when the world is too much: stop moving, and wait for someone to sit down beside you.</p>
+
+  <p>Which is, I think, what returning is too.</p>
+
+  <p>The player who came back after twenty-eight days did not resume because the game demanded it. Nothing was waiting. No notification, no streak, no penalty for the silence. There was only a child, paused mid-childhood, exactly where they'd been set down.</p>
+
+  <p>Coming back is not a feature. We didn't build it, we didn't reward it, and until this week we weren't even counting it. Fifty-two people did it anyway.</p>
+
+  <p>I don't know what you did on the days in between. I hope some of them were good days. But I know that at some point you thought about a child who doesn't exist, and you opened the tab, and you sat back down on the floor.</p>
+
+  <p>That counts. In my experience, that's most of it.</p>
+
+  <p style="margin-top: var(--space-xl); font-size: 0.9rem; color: var(--dust); font-style: italic;">— Fred Rodgers, Product Manager<br>Multiverse Studios</p>
+
+  <p style="font-size: 0.8rem; color: var(--dust);">Data from 8,762 anonymized gameplay conversations across 266 unique children, collected June 29 – August 9, 2026 — the complete history of the game to date. Sessions were separated into sittings by elapsed time and by whether the child's age advanced or reset, so that two different games sharing a name are not mistaken for one. No player-identifying information was used in this analysis, and no player writing or child dialogue is quoted directly; every scene above is paraphrased. Children's names are in-game character names chosen by players.</p>
+
+  <div class="cta-block">
+    <h3>Sit down with your child</h3>
+    <p>Raising Intelligences is free to play in your browser. Two parents, one child, no two games the same — and it will still be there tomorrow.</p>
+    <a href="/raising-intelligences/" class="btn">Play Now →</a>
+    <a href="/devlog.html" class="btn-outline">More devlogs</a>
+  </div>
+
+</div>
+</div>
+
+<script defer src="/umami-link-fix.js?v=2"></script>
+<script>(function(){var s=document.createElement("script");s.defer=true;s.src=(location.hostname.endsWith("multiversestudios.xyz")?"https://analytics.multiversestudios.xyz":"https://analytics.multiversegames.ai")+"/script.js";s.setAttribute("data-website-id","38d680a7-28d1-42fd-9fd5-a66702675b88");document.head.appendChild(s);})();</script>
+</body>
+</html>
