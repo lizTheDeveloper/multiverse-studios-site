@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Multiverse Mages — The Host's Rules Govern Every Spell Cast Inside It</title>
+  <meta name="description" content="You are the god of magic for one universe. You set what magic can exist. Every permission you grant arms your enemies as surely as your own scholars.">
+  <meta property="og:title" content="Multiverse Mages">
+  <meta property="og:description" content="The host universe's ruleset governs all magic cast inside it — for both attacker and defender. Permitting fire arms your wardens and every raider who already knows it.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://multiversestudios.xyz/multiverse-mages/">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Multiverse Mages">
+  <meta name="twitter:description" content="Kill the last mage who knew it and burn the book, and it is gone.">
+  <link rel="stylesheet" href="../styles.css">
+  <link rel="icon" type="image/svg+xml" href="../press-kit/logos/multiverse-studios-favicon.svg">
+  <style>
+    /* Palette and type per docs/design/marketing-page.md §5.
+       Dark ground is an identity decision, not a theme. Ember is semantic:
+       it appears only where something is lost. No webfont CDN — system stack. */
+    .mm {
+      --ground: #0E1018;
+      --surface: #171A24;
+      --vellum: #E8E0CE;
+      --muted:  #9A9384;
+      --lamp:   #D9A441;
+      --slate:  #3A4358;
+      --ember:  #C4552F;
+      --serif: "Iowan Old Style", "Palatino Linotype", Palatino, "Book Antiqua", Georgia, serif;
+      --mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+
+      background: var(--ground);
+      color: var(--vellum);
+      font-family: var(--serif);
+      position: relative;
+      z-index: 1;
+    }
+    .mm ::selection { background: var(--lamp); color: var(--ground); }
+    .mm section { padding: 5rem 1.5rem; }
+    .mm .wrap { max-width: 62rem; margin: 0 auto; }
+    .mm .col { max-width: 40rem; }
+    .mm h1, .mm h2 { font-weight: 600; line-height: 1.15; }
+    .mm h1 { font-size: clamp(2rem, 5vw, 3.3rem); margin: 0 0 1.5rem; }
+    .mm h2 { font-size: clamp(1.4rem, 3vw, 1.9rem); margin: 0 0 1.2rem; }
+    .mm p { font-size: 1.08rem; line-height: 1.75; margin: 0 0 1.1rem; }
+    .mm .muted { color: var(--muted); }
+    .mm .label {
+      font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.18em;
+      text-transform: uppercase; color: var(--muted);
+    }
+
+    .mm .rule {
+      font-size: clamp(1.15rem, 2.4vw, 1.45rem);
+      line-height: 1.5;
+      border-left: 2px solid var(--lamp);
+      padding: 0.2rem 0 0.2rem 1.4rem;
+      margin: 0 0 1.6rem;
+    }
+
+    /* ── The mirror: the whole pitch in one object ──────────── */
+    .mirror { margin-top: 2.6rem; }
+    .sky-label { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 0.6rem; gap: 1rem; }
+    .tally { font-family: var(--mono); font-size: 0.78rem; color: var(--lamp); }
+
+    .grid-shell { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 0.35rem; }
+    .tech-col { display: grid; gap: 3px; align-content: start; padding-top: calc(1.35rem + 3px); }
+    .form-row { display: grid; grid-template-columns: repeat(14, minmax(0, 1fr)); gap: 3px; margin-bottom: 3px; }
+    .cells { display: grid; grid-template-columns: repeat(14, minmax(0, 1fr)); gap: 3px; }
+
+    .axis {
+      font-family: var(--mono); font-size: 0.56rem; letter-spacing: 0.05em;
+      text-transform: uppercase; background: transparent; color: var(--muted);
+      border: 1px solid var(--slate); cursor: pointer; padding: 0.3rem 0.1rem;
+      transition: color 120ms, border-color 120ms;
+      overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+    }
+    .axis.tech { text-align: right; padding: 0.3rem 0.5rem; min-width: 5.4rem; }
+    .axis:hover { color: var(--vellum); border-color: var(--muted); }
+    .axis[aria-pressed="true"] { color: var(--lamp); border-color: var(--lamp); }
+    .axis:focus-visible { outline: 2px solid var(--lamp); outline-offset: 2px; }
+
+    .cell {
+      aspect-ratio: 1; max-width: 45px; background: var(--surface);
+      border: 1px solid rgba(58,67,88,0.5);
+      transition: background 140ms, border-color 140ms;
+    }
+    .cell.on { background: rgba(217,164,65,0.22); border-color: var(--lamp); }
+
+    /* The reflection — same nineteen switches, seen from the other side. */
+    /* The waterline. Needs real contrast or the reflection reads as a second
+       grid rather than as the same sky seen from underneath. */
+    .horizon { height: 2px; margin: 1.9rem 0 1.3rem;
+      background: linear-gradient(90deg, transparent, rgba(217,164,65,0.55) 20%, rgba(217,164,65,0.55) 80%, transparent); }
+    .reflected { opacity: 0.6; transform: scaleY(-1); }
+    .reflected .cell { background: #12141c; }
+    .reflected .cell.on { background: rgba(196,85,47,0.18); border-color: rgba(196,85,47,0.7); }
+    .mirror-caption { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; margin-top: 0.75rem; }
+    .mm .hint { font-family: var(--mono); font-size: 0.72rem; line-height: 1.5; color: var(--muted); margin-top: 1.1rem; }
+
+    /* ── The archive, intact and burned ─────────────────────── */
+    .archive { margin-top: 2.2rem; }
+    .archive-frame {
+      position: relative; border: 1px solid var(--slate); background: var(--surface);
+      aspect-ratio: 16 / 7; overflow: hidden;
+    }
+    .archive-state { position: absolute; inset: 0; display: grid; place-content: center; text-align: center; padding: 1.5rem; }
+    .archive-state .big { font-size: clamp(1.05rem, 2.5vw, 1.5rem); line-height: 1.45; margin: 0; }
+    .archive-burned { opacity: 0; background: #14100F; transition: opacity 160ms linear; }
+    .archive-burned .big { color: var(--ember); }
+    .shelf { font-family: var(--mono); font-size: 0.74rem; color: var(--muted); margin: 0.9rem 0 0; }
+    .archive input[type="range"] { width: 100%; margin-top: 0.8rem; accent-color: var(--ember); }
+    .archive-pair { display: none; gap: 1rem; }
+
+    /* ── Roadmap ────────────────────────────────────────────── */
+    .roadmap { width: 100%; border-collapse: collapse; font-size: 0.92rem; margin: 1.5rem 0 0; }
+    .roadmap th {
+      text-align: left; font-family: var(--mono); font-size: 0.65rem; letter-spacing: 0.14em;
+      text-transform: uppercase; color: var(--muted);
+      border-bottom: 1px solid var(--slate); padding: 0.5rem 0.7rem 0.5rem 0;
+    }
+    .roadmap td { padding: 0.75rem 0.7rem 0.75rem 0; border-bottom: 1px solid rgba(58,67,88,0.35); vertical-align: top; }
+    .roadmap code { font-family: var(--mono); font-size: 0.85em; color: var(--vellum); }
+    .rm-version { font-family: var(--mono); color: var(--muted); white-space: nowrap; }
+    .rm-what { display: block; color: var(--muted); font-size: 0.88rem; margin-top: 0.35rem; line-height: 1.55; }
+    .rm-state { white-space: nowrap; }
+    .rm-detail { display: block; color: var(--muted); font-size: 0.7rem; font-family: var(--mono); margin-top: 0.35rem; }
+    .rm-badge {
+      display: inline-block; font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.12em;
+      text-transform: uppercase; padding: 0.2rem 0.45rem; border: 1px solid currentColor;
+    }
+    .rm-badge-shipped  { color: var(--lamp); }
+    .rm-badge-built    { color: var(--vellum); }
+    .rm-badge-building { color: var(--muted); }
+    .rm-badge-proposed { color: var(--slate); }
+    .rm-stamp { font-family: var(--mono); font-size: 0.68rem; color: var(--muted); margin-top: 1rem; }
+
+    .mm .links { display: flex; gap: 1.5rem; flex-wrap: wrap; margin-top: 2.2rem; font-family: var(--mono); font-size: 0.8rem; }
+    .mm .links a { color: var(--lamp); text-decoration: none; border-bottom: 1px solid rgba(217,164,65,0.35); padding-bottom: 2px; }
+    .mm .links a:hover { border-bottom-color: var(--lamp); }
+
+    @media (prefers-reduced-motion: reduce) {
+      .mm *, .mm *::before, .mm *::after { transition: none !important; }
+      .reflected { transform: none; }
+      /* §4: the crossfade falls back to a side-by-side pair. */
+      .archive-frame, .archive input[type="range"], .archive label { display: none; }
+      .archive-pair { display: grid; grid-template-columns: 1fr 1fr; }
+      .archive-pair .archive-state { position: static; border: 1px solid var(--slate); background: var(--surface); }
+      .archive-pair .archive-burned { opacity: 1; }
+    }
+    @media (max-width: 620px) {
+      .mm section { padding: 3.5rem 1.1rem; }
+      .axis.tech { min-width: 3.8rem; font-size: 0.48rem; padding: 0.3rem 0.25rem; }
+      .archive-pair { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<nav class="nav">
+  <a href="../index.html" class="nav-logo">
+    <img src="../press-kit/logos/multiverse-studios-mark.svg" alt="Multiverse Studios" class="logo-mark" width="28" height="28">
+    Multiverse Studios
+  </a>
+  <button class="nav-hamburger" aria-label="Menu" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+  <ul class="nav-links">
+    <li><a href="../index.html">Home</a></li>
+    <li><a href="../mvee.html">MVEE</a></li>
+    <li><a href="../precursors.html">Precursors</a></li>
+    <li><a href="../nevereverland.html">Never Ever Land</a></li>
+    <li><a href="/cultures-of-the-belt/">Cultures of the Belt</a></li>
+    <li><a href="/multiverse-mages/" class="active">Multiverse Mages</a></li>
+    <li><a href="../devlog.html">Devlog</a></li>
+    <li><a href="../about.html">About</a></li>
+  </ul>
+</nav>
+
+<main class="mm">
+
+  <!-- 1. Hero — the mirror -->
+  <section>
+    <div class="wrap">
+      <p class="label">Multiverse Mages</p>
+      <h1>You never cast a spell.<br>You decide which spells <em>exist</em>.</h1>
+
+      <div class="col">
+        <p class="rule">The host universe&rsquo;s ruleset governs all magic cast inside it &mdash; for both attacker and defender.</p>
+        <p>Permit fire and your wardens throw it. So does every raider who walks through your portal already knowing how. Forbid it and it is inert in your sky &mdash; for them and for you.</p>
+        <p class="muted">Nineteen switches: five techniques, fourteen forms. A body of magic exists where a permitted technique crosses a permitted form. Toggle one and watch both skies.</p>
+      </div>
+
+      <div class="mirror">
+        <div class="sky-label">
+          <span class="label">Your sky</span>
+          <span class="tally" id="tally">0 / 70 in your sky &middot; 0 in theirs</span>
+        </div>
+
+        <div class="grid-shell">
+          <div class="tech-col" id="techCol"></div>
+          <div>
+            <div class="form-row" id="formRow"></div>
+            <div class="cells" id="cellsTop"></div>
+          </div>
+        </div>
+
+        <div class="horizon"></div>
+
+        <div class="grid-shell reflected" aria-hidden="true">
+          <div class="tech-col" id="techGhost"></div>
+          <div><div class="cells" id="cellsBottom"></div></div>
+        </div>
+
+        <div class="mirror-caption">
+          <span class="label" style="color:var(--ember)">Anyone raiding you</span>
+          <span class="label">The same nineteen switches</span>
+        </div>
+
+        <p class="hint">Click a technique or a form to permit it.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2. Knowledge is physical -->
+  <section style="background:var(--surface)">
+    <div class="wrap">
+      <h2>Knowledge is physical, and it can be destroyed</h2>
+      <div class="col">
+        <p>A spell is not a node on a tech tree. It is a set of <em>copies</em>, and each one sits somewhere &mdash; in a scholar&rsquo;s memory, in a book on a shelf, in a university library, or in a memory palace that cannot be stolen and cannot be written down.</p>
+        <p>Kill the last mage who knew it and burn the book, and it is <em>gone</em>. Not disabled, not greyed out. Gone from your universe, until somebody derives it again from first principles at several times the cost of having been taught it.</p>
+      </div>
+
+      <div class="archive">
+        <div class="archive-frame">
+          <div class="archive-state">
+            <p class="big">Four centuries of Rego Terram.<br>Eleven scholars can teach it.</p>
+            <p class="shelf">shelf &middot; 63 volumes &middot; two copies of the deepest working</p>
+          </div>
+          <div class="archive-state archive-burned" id="burned">
+            <p class="big">Four centuries of Rego Terram.<br>Nobody alive can teach it.</p>
+            <p class="shelf" style="color:var(--ember)">shelf &middot; ash &middot; the last copy went in the fire</p>
+          </div>
+        </div>
+
+        <div class="archive-pair">
+          <div class="archive-state">
+            <p class="big">Four centuries of Rego Terram.<br>Eleven scholars can teach it.</p>
+            <p class="shelf">shelf &middot; 63 volumes</p>
+          </div>
+          <div class="archive-state archive-burned">
+            <p class="big">Four centuries of Rego Terram.<br>Nobody alive can teach it.</p>
+            <p class="shelf" style="color:var(--ember)">shelf &middot; ash</p>
+          </div>
+        </div>
+
+        <label class="label" for="burn">Drag &mdash; the raid arrives</label>
+        <input type="range" id="burn" min="0" max="100" value="0" aria-label="Burn the archive">
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. The scholars -->
+  <section>
+    <div class="wrap col">
+      <h2>Your mages are academics, and they do not take orders</h2>
+      <p>They have careers, curiosity, and lifespans. A human works for eighty years and dies mid-sentence. An elf spends two centuries being described as promising. They choose what to research, who to teach, and whether your library is still worth staying at.</p>
+      <p>You bless, you fund, you forbid, and you hand a founding scholar the seed of a body of magic nobody in your world has ever held. Then you let go &mdash; including during a raid, where you are a spectator with a budget.</p>
+      <p class="muted">A universe of pure archmages does not function. Somebody has to copy the books, raise the buildings, and hold the line with no magic at all.</p>
+    </div>
+  </section>
+
+  <!-- 4. Status -->
+  <section style="background:var(--surface)">
+    <div class="wrap">
+      <h2>Where it actually is</h2>
+      <div class="col">
+        <p>Pre-alpha, not playable. The simulation runs, raids resolve and burn real libraries, and the whole repository is public &mdash; including the measurements that say what is still wrong with it.</p>
+        <p class="muted">The table below is generated from the repository&rsquo;s git tags and its OpenSpec task lists. <em>Shipped</em> means a release tag exists. <em>Built</em> means the work is finished and unreleased, which is a different thing and gets a different word.</p>
+      </div>
+
+<!-- ROADMAP:START -->
+    <table class="roadmap">
+      <thead><tr><th>Version</th><th>Change</th><th>State</th></tr></thead>
+      <tbody>
+      <tr class="rm-shipped">
+        <td class="rm-version">0.1.0</td>
+        <td><code>sim-core-foundation</code><span class="rm-what">The deterministic substrate — fixed-point arithmetic, a splittable PRNG, the entity store, replay.</span></td>
+        <td class="rm-state"><span class="rm-badge rm-badge-shipped">shipped</span><span class="rm-detail">released as v0.1.0</span></td>
+      </tr>
+      <tr class="rm-shipped">
+        <td class="rm-version">0.2.0</td>
+        <td><code>core-contracts</code><span class="rm-what">The contracts everything downstream is built against: state schema, content schemas, primitive semantics.</span></td>
+        <td class="rm-state"><span class="rm-badge rm-badge-shipped">shipped</span><span class="rm-detail">released as v0.2.0</span></td>
+      </tr>
+      <tr class="rm-shipped">
+        <td class="rm-version">0.3.0</td>
+        <td><code>knowledge-model</code><span class="rm-what">The seventy-cell grid, knowledge instances with decay and loss, and the three traditions.</span></td>
+        <td class="rm-state"><span class="rm-badge rm-badge-shipped">shipped</span><span class="rm-detail">released as v0.3.0</span></td>
+      </tr>
+      <tr class="rm-building">
+        <td class="rm-version">0.4.0</td>
+        <td><code>mages-and-species</code><span class="rm-what">Mages with careers and lifespans, six species, universities, and an economy underneath them.</span></td>
+        <td class="rm-state"><span class="rm-badge rm-badge-building">building</span><span class="rm-detail">102/107 tasks</span></td>
+      </tr>
+      <tr class="rm-built">
+        <td class="rm-version">0.5.0</td>
+        <td><code>agent-interface</code><span class="rm-what">One observation and action API serving scripted bots, Monte Carlo, and later reinforcement learning.</span></td>
+        <td class="rm-state"><span class="rm-badge rm-badge-built">built</span><span class="rm-detail">91/91 tasks — built, not yet released</span></td>
+      </tr>
+      <tr class="rm-building">
+        <td class="rm-version">0.7.0</td>
+        <td><code>god-agency</code><span class="rm-what">Favor, worship, interventions, and the terminal condition — ascension and what carries forward.</span></td>
+        <td class="rm-state"><span class="rm-badge rm-badge-building">building</span><span class="rm-detail">59/75 tasks</span></td>
+      </tr>
+      <tr class="rm-building">
+        <td class="rm-version">0.9.0</td>
+        <td><code>raid-engagement</code><span class="rm-what">Portals, host-ruleset arbitration, a positional battlefield, and permanent consequences.</span></td>
+        <td class="rm-state"><span class="rm-badge rm-badge-building">building</span><span class="rm-detail">67/92 tasks</span></td>
+      </tr>
+      <tr class="rm-built">
+        <td class="rm-version">0.11.0</td>
+        <td><code>gym-bridge</code><span class="rm-what">The reinforcement-learning bridge. It ships before the client, deliberately.</span></td>
+        <td class="rm-state"><span class="rm-badge rm-badge-built">built</span><span class="rm-detail">76/76 tasks — built, not yet released</span></td>
+      </tr>
+      <tr class="rm-proposed">
+        <td class="rm-version">—</td>
+        <td><code>metis-knowledge</code><span class="rm-what">Knowledge that cannot be written down at all. Held at proposal depth until the harness can price it.</span></td>
+        <td class="rm-state"><span class="rm-badge rm-badge-proposed">proposed</span><span class="rm-detail">1/51 tasks — proposal depth</span></td>
+      </tr>
+      </tbody>
+    </table>
+    <p class="rm-stamp">Generated from <code>git tag</code> and <code>openspec/changes/*/tasks.md</code> at <code>59d7a2d</code>. Nothing on this table is typed by hand.</p>
+<!-- ROADMAP:END -->
+
+      <div class="col" style="margin-top:2.6rem">
+        <p>The design describes more than the build contains, and that gap is stated rather than hidden. The most recent honest result: a bot that flipped two permission switches and then submitted nothing for the remaining 2,260 ticks beat the bot that funded universities and blessed scholars, forty games to nil. Those verbs were worth slightly less than nothing &mdash; and the harness found it long before a human playtester would have.</p>
+      </div>
+
+      <div class="links">
+        <a href="https://github.com/lizTheDeveloper/multiverse_mages">The repository</a>
+        <a href="../devlog/the-instruments-were-lying.html">Devlog &mdash; The Instruments Were Lying</a>
+        <a href="../devlog.html">All devlogs</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. Close — the portal -->
+  <section>
+    <div class="wrap col">
+      <p class="rule" style="border-color:var(--slate)">Somewhere else, another god is deciding what fire means.</p>
+      <p class="label" style="letter-spacing:0.08em">AGPL-3.0-or-later &middot; assets CC BY-SA 4.0 &middot; built in the open</p>
+    </div>
+  </section>
+
+</main>
+
+<script>
+(function () {
+  var TECHNIQUES = ['Creo', 'Intellego', 'Muto', 'Perdo', 'Rego'];
+  var FORMS = ['Animal','Aquam','Auram','Corpus','Herbam','Ignem','Imaginem',
+               'Mentem','Terram','Vim','Umbra','Fatum','Limen','Nomen'];
+
+  var techOn = TECHNIQUES.map(function () { return false; });
+  var formOn = FORMS.map(function () { return false; });
+
+  var techCol = document.getElementById('techCol');
+  var techGhost = document.getElementById('techGhost');
+  var formRow = document.getElementById('formRow');
+  var topCells = document.getElementById('cellsTop');
+  var bottomCells = document.getElementById('cellsBottom');
+  var tally = document.getElementById('tally');
+  if (!techCol || !topCells) return;
+
+  function axis(text, cls, onClick) {
+    var b = document.createElement('button');
+    b.className = 'axis' + (cls ? ' ' + cls : '');
+    b.type = 'button';
+    b.textContent = text;
+    b.setAttribute('aria-pressed', 'false');
+    b.addEventListener('click', onClick);
+    return b;
+  }
+
+  FORMS.forEach(function (name, f) {
+    formRow.appendChild(axis(name, '', function () { formOn[f] = !formOn[f]; render(); }));
+  });
+
+  TECHNIQUES.forEach(function (name, t) {
+    techCol.appendChild(axis(name, 'tech', function () { techOn[t] = !techOn[t]; render(); }));
+    var ghost = document.createElement('div');
+    ghost.className = 'axis tech';
+    ghost.style.visibility = 'hidden';
+    techGhost.appendChild(ghost);
+  });
+
+  var cellsTop = [], cellsBottom = [];
+  for (var i = 0; i < TECHNIQUES.length * FORMS.length; i++) {
+    var a = document.createElement('div'); a.className = 'cell';
+    var b = document.createElement('div'); b.className = 'cell';
+    topCells.appendChild(a); bottomCells.appendChild(b);
+    cellsTop.push(a); cellsBottom.push(b);
+  }
+
+  function render() {
+    var lit = 0;
+    for (var t = 0; t < TECHNIQUES.length; t++) {
+      for (var f = 0; f < FORMS.length; f++) {
+        // The rule itself: a cell is live iff both its axes are permitted.
+        var on = techOn[t] && formOn[f];
+        var i = t * FORMS.length + f;
+        cellsTop[i].className = 'cell' + (on ? ' on' : '');
+        cellsBottom[i].className = 'cell' + (on ? ' on' : '');
+        if (on) lit++;
+      }
+    }
+    Array.prototype.forEach.call(techCol.querySelectorAll('.axis'), function (b, t) {
+      b.setAttribute('aria-pressed', techOn[t] ? 'true' : 'false');
+    });
+    Array.prototype.forEach.call(formRow.querySelectorAll('.axis'), function (b, f) {
+      b.setAttribute('aria-pressed', formOn[f] ? 'true' : 'false');
+    });
+    tally.textContent = lit + ' / 70 in your sky · ' + lit + ' in theirs';
+  }
+
+  render();
+
+  var burn = document.getElementById('burn');
+  var burned = document.getElementById('burned');
+  if (burn && burned) {
+    burn.addEventListener('input', function () { burned.style.opacity = burn.value / 100; });
+  }
+})();
+</script>
+
+<script defer src="/umami-link-fix.js?v=2"></script>
+<script>(function(){var s=document.createElement("script");s.defer=true;s.src=(location.hostname.endsWith("multiversestudios.xyz")?"https://analytics.multiversestudios.xyz":"https://analytics.multiversegames.ai")+"/script.js";s.setAttribute("data-website-id","38d680a7-28d1-42fd-9fd5-a66702675b88");document.head.appendChild(s);})();</script>
+</body>
+</html>

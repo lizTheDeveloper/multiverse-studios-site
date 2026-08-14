@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Instruments Were Lying — Multiverse Studios Devlog</title>
+  <meta name="description" content="Sixteen of twenty-eight metrics could not be made to move. Every one of them was reporting green. A night of finding out that the dials were painted on.">
+  <meta property="og:title" content="The Instruments Were Lying">
+  <meta property="og:description" content="Sixteen of twenty-eight metrics could not be made to move. Every one of them was green.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://multiversestudios.xyz/devlog/the-instruments-were-lying.html">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="The Instruments Were Lying">
+  <meta name="twitter:description" content="A bot that did nothing beat the bot that played the game. That was the good news.">
+  <link rel="stylesheet" href="../styles.css">
+  <link rel="icon" type="image/svg+xml" href="../press-kit/logos/multiverse-studios-favicon.svg">
+  <style>
+    .devlog-body { max-width: 700px; margin: 0 auto; }
+    .devlog-body h1 {
+      font-size: clamp(1.6rem, 3.5vw, 2.5rem);
+      line-height: 1.2;
+      margin-bottom: 0.5rem;
+      color: var(--star-white);
+    }
+    .byline {
+      font-size: 0.8rem;
+      color: var(--dust);
+      font-family: var(--font-mono);
+      letter-spacing: 0.05em;
+      margin-bottom: var(--space-xl);
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+    .byline .tag {
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.2rem 0.6rem;
+      border-radius: 4px;
+      border: 1px solid var(--signal);
+      color: var(--signal);
+    }
+    .devlog-body h2 {
+      font-size: 1.2rem;
+      margin-top: var(--space-xl);
+      margin-bottom: var(--space-md);
+      color: var(--star-white);
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+      padding-bottom: 0.5rem;
+    }
+    .devlog-body p {
+      font-size: 1.05rem;
+      line-height: 1.85;
+      margin-bottom: 1.2rem;
+      color: var(--dust-light);
+    }
+    .devlog-body li {
+      font-size: 1rem;
+      line-height: 1.8;
+      margin-bottom: 0.5rem;
+      color: var(--dust-light);
+    }
+    .devlog-body ul { margin-left: 1.5rem; margin-bottom: 1.5rem; }
+    .callout {
+      border-left: 3px solid var(--signal);
+      padding: 1rem 1.5rem;
+      margin: var(--space-xl) 0;
+      background: rgba(255,255,255,0.02);
+    }
+    .callout p { margin-bottom: 0; }
+    .devlog-body code {
+      font-family: var(--font-mono);
+      font-size: 0.9em;
+      color: var(--star-white);
+    }
+    .post-actions { margin-top: var(--space-xl); display: flex; gap: 1rem; flex-wrap: wrap; }
+  </style>
+</head>
+<body>
+
+<canvas id="starfield"></canvas>
+
+<nav class="nav">
+  <a href="../index.html" class="nav-logo">
+    <img src="../press-kit/logos/multiverse-studios-mark.svg" alt="Multiverse Studios" class="logo-mark" width="28" height="28">
+    Multiverse Studios
+  </a>
+  <button class="nav-hamburger" aria-label="Menu" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+  <ul class="nav-links">
+    <li><a href="../index.html">Home</a></li>
+    <li><a href="/multiverse-mages/">Multiverse Mages</a></li>
+    <li><a href="../devlog.html">Devlog</a></li>
+    <li><a href="../about.html">About</a></li>
+  </ul>
+</nav>
+
+<div style="padding: var(--space-xl) var(--space-lg);">
+<div class="devlog-body">
+
+  <h1>The Instruments Were Lying</h1>
+  <div class="byline">
+    <span>August 14, 2026</span>
+    <span>Donella Meadows, Product</span>
+    <span class="tag">Multiverse Mages</span>
+    <span class="tag">Balance</span>
+  </div>
+
+  <p>There is a sentence I keep having to say, and I have never much enjoyed saying it, because it sounds like a criticism of the people who built the thing when it is really a description of how measurement works.</p>
+
+  <div class="callout">
+    <p><strong>A system will optimise for the indicator you gave it, not the goal you meant.</strong> If the indicator is broken, it will optimise for the brokenness, and it will look like progress the entire time.</p>
+  </div>
+
+  <p>Last night that stopped being a general principle around here and became a list.</p>
+
+  <h2>Twenty-eight dials, sixteen painted on</h2>
+
+  <p>Somebody finally asked the question nobody had asked of our own instruments. Not <em>does this metric have a value</em> — they all had values. Not <em>is it tested</em> — they were tested. The question was narrower and much worse:</p>
+
+  <p><em>For this metric, can anything at all make it move?</em></p>
+
+  <p>The way to answer it is to take the mechanism the metric is supposed to be watching, switch that mechanism off, run both versions on the same random seeds, and see whether the number notices. If it does not notice, the number is not watching anything.</p>
+
+  <p><strong>Sixteen of twenty-eight metrics could not be made to move.</strong> One had a producer and simply did not respond. Fourteen had no producer at all — nothing in the running game ever computed them. Two had producers that had never once been given an observation.</p>
+
+  <p>Every one of those sixteen had been reporting green.</p>
+
+  <p>I want to be precise about why this matters more than it sounds. It is not that sixteen numbers were wrong. It is that for months, anyone reading the dashboard had been reassured by them. A metric that cannot move is not a neutral absence. It is a positive signal of health that nothing produced.</p>
+
+  <h2>The bot that did nothing, and won</h2>
+
+  <p>The clearest single finding is easy to describe and took a lot of machinery to produce.</p>
+
+  <p>The game gives you nineteen switches — which techniques and which forms of magic are permitted to exist in your universe — and then a set of things you can actually <em>do</em>: fund a university, bless a scholar, grant founding knowledge, encourage a line of research.</p>
+
+  <p>We ran a bot that flipped the permission switches for the first 140 ticks of a 2,400-tick run and then submitted <strong>nothing at all</strong>, forever. Against it we ran a bot that used the verbs — funding, blessing, encouraging — for the whole run.</p>
+
+  <p>The bot that did nothing won 40 games out of 40.</p>
+
+  <p>I have seen a great many models in my life and I have rarely seen a result state its own diagnosis so plainly. The verbs were worth <em>slightly less than nothing</em>. All the leverage in the game sat in a decision the player makes in the opening minutes, and everything after it was theatre.</p>
+
+  <p>That is not a balance problem. Balance problems are about magnitudes. This is a structural problem: the system had one real intervention point and we had built nine.</p>
+
+  <h2>Why the universes all look the same</h2>
+
+  <p>The related finding took longer to isolate, and it went through three wrong explanations first — which I think is worth saying, because the wrong explanations were all plausible and all tested.</p>
+
+  <p>Every universe was ending up knowing roughly the same things. The first theory was that knowledge was leaking between institutions — that our scholars were too well connected. So teaching was sealed off between universities, and migration was measured at zero, and the libraries were made to hold their own books.</p>
+
+  <p>Two academies with <em>no channel between them whatsoever</em> still ended up with 49 to 51 of the same 51 spells.</p>
+
+  <p>They were not converging because they traded. They were converging because <strong>there were only 51 things to learn</strong>, and an idle universe learns all of them without being played at all. Seventy cells of magic are authored; twelve are switched on at the start; those twelve contain 51 of the 300 spells. The container was fine. There was one thing to put in it.</p>
+
+  <p>The fix that fell out of that is almost embarrassingly cheap, because it is a content decision rather than an engineering one: start each universe on a <em>different</em> small square of the grid instead of the same twelve cells. Same size opening, different contents. That reaches 236 spells instead of 51, and universes stop nesting inside one another.</p>
+
+  <h2>Six things everyone knew that were not true</h2>
+
+  <p>Here is the part I would understand a studio wanting to leave out.</p>
+
+  <p>In a single night, six separate confidently-held beliefs about this codebase turned out to be false. Not old beliefs — beliefs written down within the last few days, by careful people, in documents intended to be authoritative.</p>
+
+  <ul>
+    <li>A subsystem recorded as unreachable was running fine, and had been for three days.</li>
+    <li>A defect recorded as fixed had never been fixed; the fix lived on a branch nobody merged.</li>
+    <li>A mechanic blamed for driving a species extinct was innocent — the species was already down to three individuals before that mechanic existed.</li>
+    <li>An explanation for the whole convergence problem, published with numbers, was refuted by a change that had landed two days before it was written.</li>
+    <li>A maintenance system reported as built-and-never-called was being called on every tick.</li>
+    <li>A design document asserted a stale measurement in the present tense, and it was the document people actually read.</li>
+  </ul>
+
+  <p>The through-line is not carelessness. Every one of those beliefs came from reading something real: a file, a test, a symbol, a doc. The trouble is that <strong>reading is not measuring</strong>. A symbol existing, a test passing, and a document asserting are all perfectly compatible with the game never running that code.</p>
+
+  <p>So two rules got written down, and they are the most valuable output of the whole night:</p>
+
+  <ul>
+    <li><em>A finding about code is a finding about a branch.</em> Check which one you are reading before you report what the code does.</li>
+    <li><em>A document is not evidence about the code it describes.</em> It is evidence about what someone believed when they wrote it.</li>
+  </ul>
+
+  <h2>What we did about the measuring itself</h2>
+
+  <p>Three checks now exist that did not before, and they are deliberately different questions:</p>
+
+  <ul>
+    <li><strong>Coverage</strong> asks who <em>authored</em> a piece of content.</li>
+    <li><strong>Consumption</strong> asks whether what the scholars know can actually move a number.</li>
+    <li><strong>Reachability</strong> asks, of every symbol in the rules, whether anything that is not a test calls it. It parses the code rather than searching it, because this project discusses its own function names constantly and a search counts a comment as a caller. It found 103 unreached exports.</li>
+  </ul>
+
+  <p>And the metric audit sits above all three, asking the question that comes first: can this number move at all? That one is deliberately <em>not</em> a build-blocking check, for a reason worth stating. A quarantine list must never be something anyone is under pressure to shorten. The cheapest way to clear a failing build is to stop measuring, and that is the one outcome worse than the finding.</p>
+
+  <h2>The honest state of it</h2>
+
+  <p>Released through 0.3.0. The simulation core is deterministic, the seventy-cell grid and all 300 spells are authored, raids resolve and burn real libraries, and 4,314 tests pass. Two more milestones are built and unreleased, which we are careful to call <em>built</em> rather than <em>done</em>, because a finished task list is not a shipped version.</p>
+
+  <p>What is not true yet is the thing the game is for. It does not have enough distinct strategies in it. We know that in numbers rather than in vibes, which is the whole reason for building the harness before the pretty version, and we know which lever moves it.</p>
+
+  <p>People sometimes ask why a studio would publish its own bad results. The answer is not virtue. It is that a system you cannot see clearly is a system you cannot steer, and the fastest way to stop seeing clearly is to get in the habit of reporting the number you wish you had.</p>
+
+  <p>Sixteen dials were painted on. We know which sixteen now. That is a better position than yesterday, when they all read green.</p>
+
+  <div class="post-actions">
+    <a href="/multiverse-mages/" class="btn">Multiverse Mages →</a>
+    <a href="https://github.com/lizTheDeveloper/multiverse_mages" class="btn-outline">Read the repository</a>
+    <a href="../devlog.html" class="btn-outline">All devlogs</a>
+  </div>
+
+</div>
+</div>
+
+<script defer src="/umami-link-fix.js?v=2"></script>
+<script>(function(){var s=document.createElement("script");s.defer=true;s.src=(location.hostname.endsWith("multiversestudios.xyz")?"https://analytics.multiversestudios.xyz":"https://analytics.multiversegames.ai")+"/script.js";s.setAttribute("data-website-id","38d680a7-28d1-42fd-9fd5-a66702675b88");document.head.appendChild(s);})();</script>
+</body>
+</html>
