@@ -97,19 +97,36 @@
     .mirror-caption { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; margin-top: 0.75rem; }
     .mm .hint { font-family: var(--mono); font-size: 0.72rem; line-height: 1.5; color: var(--muted); margin-top: 1.1rem; }
 
+    .verdict { border-left: 2px solid var(--slate); padding: 0.1rem 0 0.1rem 1rem; margin-top: 1.3rem; min-height: 3.2rem; }
+    .verdict-line { font-size: 1rem; line-height: 1.6; margin: 0; color: var(--vellum); }
+    .verdict-line .warn { color: var(--ember); }
+    .verdict-line .good { color: var(--lamp); }
+
+    .presets { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1.2rem; }
+    .preset {
+      font-family: var(--mono); font-size: 0.68rem; letter-spacing: 0.08em;
+      text-transform: uppercase; background: transparent; color: var(--muted);
+      border: 1px solid var(--slate); padding: 0.4rem 0.7rem; cursor: pointer;
+      transition: color 120ms, border-color 120ms;
+    }
+    .preset:hover { color: var(--lamp); border-color: var(--lamp); }
+    .preset:focus-visible { outline: 2px solid var(--lamp); outline-offset: 2px; }
+
     /* ── The archive, intact and burned ─────────────────────── */
     .archive { margin-top: 2.2rem; }
-    .archive-frame {
-      position: relative; border: 1px solid var(--slate); background: var(--surface);
-      aspect-ratio: 16 / 7; overflow: hidden;
+    .archive { display: grid; grid-template-columns: minmax(0, 22rem) minmax(0, 1fr); gap: 1.6rem; align-items: center; }
+    .archive-frame { position: relative; border: 1px solid var(--slate); background: #0a0b10; aspect-ratio: 1; }
+    .archive-img {
+      position: absolute; inset: 0; width: 100%; height: 100%;
+      /* Pixel art scaled smoothly is pixel art wasted (art-plan.md). */
+      image-rendering: pixelated;
     }
-    .archive-state { position: absolute; inset: 0; display: grid; place-content: center; text-align: center; padding: 1.5rem; }
-    .archive-state .big { font-size: clamp(1.05rem, 2.5vw, 1.5rem); line-height: 1.45; margin: 0; }
-    .archive-burned { opacity: 0; background: #14100F; transition: opacity 160ms linear; }
-    .archive-burned .big { color: var(--ember); }
-    .shelf { font-family: var(--mono); font-size: 0.74rem; color: var(--muted); margin: 0.9rem 0 0; }
-    .archive input[type="range"] { width: 100%; margin-top: 0.8rem; accent-color: var(--ember); }
+    .archive-burned { opacity: 0; transition: opacity 120ms linear; }
+    .shelf { font-family: var(--mono); font-size: 0.74rem; line-height: 1.6; color: var(--muted); margin: 0 0 1.1rem; }
+    .archive input[type="range"] { width: 100%; margin-top: 0.5rem; accent-color: var(--ember); }
     .archive-pair { display: none; gap: 1rem; }
+    .archive-pair img { width: 100%; image-rendering: pixelated; border: 1px solid var(--slate); }
+    .archive-pair figure { margin: 0; }
 
     /* ── Roadmap ────────────────────────────────────────────── */
     .roadmap { width: 100%; border-collapse: collapse; font-size: 0.92rem; margin: 1.5rem 0 0; }
@@ -142,15 +159,14 @@
       .mm *, .mm *::before, .mm *::after { transition: none !important; }
       .reflected { transform: none; }
       /* §4: the crossfade falls back to a side-by-side pair. */
-      .archive-frame, .archive input[type="range"], .archive label { display: none; }
+      .archive-frame, .archive-readout { display: none; }
+      .archive { grid-template-columns: 1fr; }
       .archive-pair { display: grid; grid-template-columns: 1fr 1fr; }
-      .archive-pair .archive-state { position: static; border: 1px solid var(--slate); background: var(--surface); }
-      .archive-pair .archive-burned { opacity: 1; }
     }
     @media (max-width: 620px) {
       .mm section { padding: 3.5rem 1.1rem; }
       .axis.tech { min-width: 3.8rem; font-size: 0.48rem; padding: 0.3rem 0.25rem; }
-      .archive-pair { grid-template-columns: 1fr; }
+      .archive, .archive-pair { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -216,7 +232,20 @@
           <span class="label">The same nineteen switches</span>
         </div>
 
-        <p class="hint">Click a technique or a form to permit it.</p>
+        <div class="verdict" id="verdict">
+          <p class="verdict-line" id="verdictLine">Nothing is permitted. Your scholars have nothing to learn and your enemies have nothing to bring.</p>
+        </div>
+
+        <div class="presets">
+          <span class="label" style="align-self:center">Try a ruleset</span>
+          <button type="button" class="preset" data-preset="v1">The shipped opening</button>
+          <button type="button" class="preset" data-preset="fire">Fire and earth</button>
+          <button type="button" class="preset" data-preset="deny">The denier</button>
+          <button type="button" class="preset" data-preset="all">Permit everything</button>
+          <button type="button" class="preset" data-preset="none">Clear</button>
+        </div>
+
+        <p class="hint">Click any technique or form to permit it. Both skies change together &mdash; that is the whole game.</p>
       </div>
     </div>
   </section>
@@ -232,29 +261,19 @@
 
       <div class="archive">
         <div class="archive-frame">
-          <div class="archive-state">
-            <p class="big">Four centuries of Rego Terram.<br>Eleven scholars can teach it.</p>
-            <p class="shelf">shelf &middot; 63 volumes &middot; two copies of the deepest working</p>
-          </div>
-          <div class="archive-state archive-burned" id="burned">
-            <p class="big">Four centuries of Rego Terram.<br>Nobody alive can teach it.</p>
-            <p class="shelf" style="color:var(--ember)">shelf &middot; ash &middot; the last copy went in the fire</p>
-          </div>
+          <img class="archive-img" src="art/hero-library.png" alt="An intact archive: shelves of bound volumes, lamplight, a reading stand." width="200" height="200">
+          <img class="archive-img archive-burned" id="burnedImg" src="art/burned-library.png" alt="The same archive after a raid: shelves scorched, barrels overturned, fire at the open gate." width="200" height="200">
+        </div>
+        <div class="archive-readout">
+          <p class="shelf" id="shelfLine">shelf &middot; 63 volumes &middot; eleven scholars can teach the deepest working</p>
+          <label class="label" for="burn">Drag &mdash; the raid arrives</label>
+          <input type="range" id="burn" min="0" max="100" value="0" aria-label="Burn the archive">
         </div>
 
         <div class="archive-pair">
-          <div class="archive-state">
-            <p class="big">Four centuries of Rego Terram.<br>Eleven scholars can teach it.</p>
-            <p class="shelf">shelf &middot; 63 volumes</p>
-          </div>
-          <div class="archive-state archive-burned">
-            <p class="big">Four centuries of Rego Terram.<br>Nobody alive can teach it.</p>
-            <p class="shelf" style="color:var(--ember)">shelf &middot; ash</p>
-          </div>
+          <figure><img src="art/hero-library.png" alt="An intact archive." width="200" height="200"><figcaption class="shelf">63 volumes</figcaption></figure>
+          <figure><img src="art/burned-library.png" alt="The archive after a raid." width="200" height="200"><figcaption class="shelf" style="color:var(--ember)">ash</figcaption></figure>
         </div>
-
-        <label class="label" for="burn">Drag &mdash; the raid arrives</label>
-        <input type="range" id="burn" min="0" max="100" value="0" aria-label="Burn the archive">
       </div>
     </div>
   </section>
@@ -420,14 +439,92 @@
       b.setAttribute('aria-pressed', formOn[f] ? 'true' : 'false');
     });
     tally.textContent = lit + ' / 70 in your sky · ' + lit + ' in theirs';
+    verdict(lit);
   }
+
+  // The consequence, stated in the game's own terms. Named cells are the real
+  // ones: rego-limen is the portal cell, intellego-mentem is where knowledge
+  // theft lives, perdo is unmaking.
+  var line = document.getElementById('verdictLine');
+  function verdict(lit) {
+    if (!line) return;
+    var portal = techOn[4] && formOn[12];        // Rego × Limen
+    var theft  = techOn[1] && formOn[7];         // Intellego × Mentem
+    var unmake = techOn[3];                      // Perdo, any form
+    var parts = [];
+
+    if (lit === 0) {
+      line.innerHTML = 'Nothing is permitted. Your scholars have nothing to learn and your ' +
+        'enemies have nothing to bring.';
+      return;
+    }
+
+    parts.push('<span class="good">' + lit + ' ' + (lit === 1 ? 'body' : 'bodies') +
+      ' of magic</span> exist in your universe — and in the hands of anyone who raids you knowing them.');
+
+    if (portal) {
+      parts.push('You permitted <em>Rego Limen</em>, so your mages can open portals. ' +
+        '<span class="warn">Forbidding it would have denied you raiding, never being raided.</span>');
+    } else {
+      parts.push('Without <em>Rego Limen</em> your universe cannot open a portal. You can still be visited.');
+    }
+    if (theft) {
+      parts.push('<em>Intellego Mentem</em> is live: <span class="warn">a raider can read a spell straight out of a scholar\u2019s head.</span>');
+    }
+    if (unmake) {
+      parts.push('<em>Perdo</em> is permitted, so unmaking works here \u2014 including on your own archives.');
+    }
+    line.innerHTML = parts.join(' ');
+  }
+
+  function setAll(t, f) {
+    for (var i = 0; i < techOn.length; i++) techOn[i] = t;
+    for (var j = 0; j < formOn.length; j++) formOn[j] = f;
+  }
+
+  var PRESETS = {
+    // The subset the build actually ships: 3 techniques x 4 forms.
+    v1:   function () { setAll(false, false);
+                        [1,3,4].forEach(function (t) { techOn[t] = true; });
+                        [7,8,12,13].forEach(function (f) { formOn[f] = true; }); },
+    fire: function () { setAll(false, false);
+                        [0,4].forEach(function (t) { techOn[t] = true; });
+                        [5,8].forEach(function (f) { formOn[f] = true; }); },
+    // Permit almost nothing offensive: no Perdo, no Ignem, no portals.
+    deny: function () { setAll(false, false);
+                        [0,1].forEach(function (t) { techOn[t] = true; });
+                        [4,8,3].forEach(function (f) { formOn[f] = true; }); },
+    all:  function () { setAll(true, true); },
+    none: function () { setAll(false, false); }
+  };
+
+  Array.prototype.forEach.call(document.querySelectorAll('.preset'), function (b) {
+    b.addEventListener('click', function () {
+      var fn = PRESETS[b.getAttribute('data-preset')];
+      if (fn) { fn(); render(); }
+    });
+  });
 
   render();
 
+  // The archive. The slider is a raid: volumes go, then teachers, then the node.
   var burn = document.getElementById('burn');
-  var burned = document.getElementById('burned');
-  if (burn && burned) {
-    burn.addEventListener('input', function () { burned.style.opacity = burn.value / 100; });
+  var burnedImg = document.getElementById('burnedImg');
+  var shelfLine = document.getElementById('shelfLine');
+  if (burn && burnedImg && shelfLine) {
+    burn.addEventListener('input', function () {
+      var v = burn.value / 100;
+      burnedImg.style.opacity = v;
+      var volumes = Math.round(63 * (1 - v));
+      var teachers = Math.max(0, Math.round(11 * (1 - v * 1.15)));
+      if (volumes === 0 && teachers === 0) {
+        shelfLine.innerHTML = '<span style="color:var(--ember)">shelf &middot; ash &middot; ' +
+          'the node has left this universe &mdash; rediscovery costs 3\u00d7 being taught</span>';
+      } else {
+        shelfLine.textContent = 'shelf \u00b7 ' + volumes + ' volumes \u00b7 ' +
+          teachers + (teachers === 1 ? ' scholar can' : ' scholars can') + ' teach the deepest working';
+      }
+    });
   }
 })();
 </script>
