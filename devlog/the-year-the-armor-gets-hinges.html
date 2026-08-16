@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Year the Armor Gets Hinges — Multiverse Studios Devlog</title>
+  <meta name="description" content="Age twelve is the likeliest year for a player to stop. It is also the year the child finally says something in their own voice.">
+  <meta property="og:title" content="The Year the Armor Gets Hinges">
+  <meta property="og:description" content="A third of players who reach age twelve stop there — right at the door of adolescence, and one year before the child starts to bend.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://multiversestudios.xyz/devlog/the-year-the-armor-gets-hinges.html">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="The Year the Armor Gets Hinges">
+  <meta name="twitter:description" content="Twelve is the hardest year to walk through, and nobody who reaches fifteen ever leaves. What happens at the door.">
+  <link rel="stylesheet" href="../styles.css">
+  <link rel="icon" type="image/svg+xml" href="../press-kit/logos/multiverse-studios-favicon.svg">
+  <style>
+    .devlog-body {
+      max-width: 700px;
+      margin: 0 auto;
+    }
+    .devlog-body h1 {
+      font-size: clamp(1.6rem, 3.5vw, 2.5rem);
+      line-height: 1.2;
+      margin-bottom: 0.5rem;
+      color: var(--star-white);
+    }
+    .byline {
+      font-size: 0.8rem;
+      color: var(--dust);
+      font-family: var(--font-mono);
+      letter-spacing: 0.05em;
+      margin-bottom: var(--space-xl);
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+    .byline .tag {
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.2rem 0.6rem;
+      border-radius: 4px;
+      border: 1px solid var(--signal);
+      color: var(--signal);
+    }
+    .devlog-body h2 {
+      font-size: 1.2rem;
+      margin-top: var(--space-xxl);
+      margin-bottom: var(--space-md);
+      color: var(--star-white);
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 0.5rem;
+    }
+    .devlog-body p {
+      font-size: 1.05rem;
+      line-height: 1.85;
+      margin-bottom: 1.2rem;
+      color: var(--silver);
+    }
+    .devlog-body li {
+      font-size: 1rem;
+      line-height: 1.8;
+      margin-bottom: 0.5rem;
+      color: var(--silver);
+    }
+    .devlog-body ul, .devlog-body ol {
+      margin-left: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+    .callout {
+      border-left: 3px solid var(--signal);
+      padding: 1rem 1.5rem;
+      margin: var(--space-xl) 0;
+      background: var(--surface);
+    }
+    .callout p {
+      margin-bottom: 0;
+      font-size: 0.95rem;
+      font-style: italic;
+    }
+    .metric-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 1rem;
+      margin: var(--space-xl) 0;
+    }
+    .metric {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      padding: 1rem;
+      text-align: center;
+    }
+    .metric .number {
+      font-family: var(--font-mono);
+      font-size: 1.8rem;
+      color: var(--signal);
+      display: block;
+      margin-bottom: 0.25rem;
+    }
+    .metric .label {
+      font-size: 0.7rem;
+      font-family: var(--font-mono);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--dust);
+    }
+    .cta-block {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      padding: 1.5rem;
+      margin-top: var(--space-xxl);
+      text-align: center;
+    }
+    .cta-block h3 {
+      color: var(--star-white);
+      margin-bottom: 0.75rem;
+    }
+    .cta-block p {
+      font-size: 0.9rem;
+      margin-bottom: 1rem;
+    }
+    .cta-block a.btn {
+      display: inline-block;
+      background: var(--signal);
+      color: #000;
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      font-weight: 700;
+      text-transform: uppercase;
+      padding: 0.6rem 1.5rem;
+      text-decoration: none;
+      border-radius: 3px;
+      margin: 0.25rem;
+    }
+    .cta-block a.btn-outline {
+      display: inline-block;
+      border: 1px solid var(--silver);
+      color: var(--silver);
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.6rem 1.5rem;
+      text-decoration: none;
+      border-radius: 3px;
+      margin: 0.25rem;
+    }
+  </style>
+</head>
+<body>
+
+<div style="padding: var(--space-xl) var(--space-lg);">
+<div class="devlog-body">
+
+  <h1>The Year the Armor Gets Hinges</h1>
+  <div class="byline">
+    <span>August 16, 2026</span>
+    <span>Fred Rodgers, Product</span>
+    <span class="tag">Raising Intelligences</span>
+    <span class="tag">Player Research</span>
+  </div>
+
+  <p>Hello again, neighbor.</p>
+
+  <p>Last week I told you about <a href="the-people-who-came-back.html">the people who came back</a> — the players who closed the tab on a child and then, days later, sat back down on the floor. This week I went looking at the other end of the same question. Not who comes back. Where people stop.</p>
+
+  <p>I did not expect the answer to be a specific year. It is a specific year.</p>
+
+  <div class="metric-grid">
+    <div class="metric"><span class="number">9,774</span><span class="label">Conversations</span></div>
+    <div class="metric"><span class="number">373</span><span class="label">Childhoods</span></div>
+    <div class="metric"><span class="number">34%</span><span class="label">Stop at twelve</span></div>
+    <div class="metric"><span class="number">0</span><span class="label">Stop at fifteen</span></div>
+  </div>
+
+  <h2>The shape of leaving</h2>
+
+  <p>Here is something I find quietly beautiful about the middle years. From about age five onward, each year is a little easier to stay in than the last. Of the parents who reach age five, about a quarter set the child down there. By nine it's a fifth. By ten and eleven, fewer still. The longer you stay, the more likely you are to keep staying. That is exactly the shape you'd hope for.</p>
+
+  <p>Then twelve arrives, and a third of everyone still standing puts the child down.</p>
+
+  <p>Thirty-five childhoods in our whole history have reached age twelve. Twelve of them ended there — nearly double the rate of age eleven, and the sharpest turn anywhere in the middle of a childhood. It is not a plateau or a slow drift. It's a door that a lot of people decline to walk through.</p>
+
+  <p>I should tell you plainly: nothing in the game stops you at twelve. There's no wall, no ending, no prompt suggesting you're finished. Twelve is simply the first year we write the child as an adolescent instead of a kid. The game changes who is sitting across from you, and a third of parents decide that's a good place to stop.</p>
+
+  <h2>What twelve actually sounds like</h2>
+
+  <p>So I went and read them — the last thing our psychologist wrote about each child who was set down at twelve.</p>
+
+  <p>I want to be careful here, because there's a trap in this kind of reading. A twelve-year-old will always sound more grown than a four-year-old; the game says "twelve" in the prompt, and out comes something twelve-ish. That's not a finding, that's an echo. So I ignored the maturity and looked at one narrow thing: whose voices are in the child's head, and who's winning.</p>
+
+  <p>What I found was that at twelve, these children have finally sorted it out. Every one of them had an internal cast — a parent's voice, a critical relative's voice, a teacher's — and at twelve, for the first time, they had ranked them. The critical grandmother is described as static. The blustering uncle is a radio they turn down. And the steady parent's voice has become the one they actually use to think with.</p>
+
+  <p>Longtime neighbors will remember we've written about <a href="the-voice-that-stays.html">the voice that stays</a> and <a href="the-voice-on-the-phone.html">the voice on the phone</a> — the critical relative who shows up across unrelated families. Here's the sequel to both. Given enough years, the children turn that voice down. Not by confronting it. By outgrowing its authority.</p>
+
+  <p>And there's a third voice that shows up: their own. I counted how often a child's own voice gets named alongside the adults'. In the early years it's rare — about one assessment in nine. By nine to eleven it's one in four. At twelve and beyond, roughly a third. The child stops being an audience for the adults in their head and becomes a participant.</p>
+
+  <div class="callout">
+    <p>Twelve is the year the child finishes assembling a self out of the voices you gave them. It is also the likeliest year for a parent to stop watching. Those two facts sit right on top of each other, and I don't think that's a coincidence — I think twelve <em>feels</em> finished. The child sounds settled. Sounds like they'll be all right.</p>
+  </div>
+
+  <h2>One year past the door</h2>
+
+  <p>Except twelve isn't finished. It's the year the armor goes on.</p>
+
+  <p>Read those twelve-year-olds together and the resemblance is uncanny. Nearly every one had become an engineer of themselves. A child who counts seconds and refuses to be rushed. A child for whom a parent's approval registers like clean code compiling. A child who has decided the world is systems, and chaos is only a system nobody has measured yet. They are competent, precise, and fully armored — and it works. They aren't suffering. They've solved the problem of being a person by turning it into an engineering problem.</p>
+
+  <p>Their epilogues follow them straight into it. Set a child down at twelve and you get an adult in a lab, a server room, a machine shop — enforcing the same count, holding the same ground, running the same blank face at anyone who rushes them. The armor holds beautifully. It just never comes off.</p>
+
+  <p>Then I read the children whose parents went one year further, and found the sentence I can't stop thinking about. A boy whose whole childhood was rules and protocols and a clipboard he refused to put down — a self-appointed commander of every room's perimeter — described himself, at the end of that twelfth year, as still the commander. But with hinges in his armor now.</p>
+
+  <p>He'd noticed that the clipboard gets left in the grass when things get genuinely fun. He still went stiff for half a second when someone hugged him. Then he leaned in.</p>
+
+  <div class="callout">
+    <p>The freeze doesn't leave. We've said that before and it's still true. But twelve is where the child stops being only the freeze — where the armor stays on and learns to bend at the joints. If you set them down at twelve, you see the armor. You don't get to see the hinges.</p>
+  </div>
+
+  <p>The twenty-three childhoods that crossed into thirteen and beyond read differently. Not happier — several of those children are still fighting the same battles at twenty-two. But they bend. The rigid ones find one person they don't have to be rigid with. The ones who blew things up learn to walk out of the blast radius instead. It isn't a cure. It's a hinge.</p>
+
+  <h2>The part where nobody leaves</h2>
+
+  <p>One more number, and it's my favorite in the whole set.</p>
+
+  <p>Fifteen childhoods have reached age fifteen. Not one stopped at fifteen. Not one stopped at sixteen. Every single parent who got that far went on to at least seventeen, and most went to eighteen and past it.</p>
+
+  <p>I've thought about why, and my honest answer is that by fifteen you are no longer raising a child. You're talking to someone. The thing that was hard at twelve — that the small creature you were regulating is turning into a person with opinions about you — has already happened, and on the far side of it is company.</p>
+
+  <p>The wall at twelve isn't boredom. Nobody who walks through it turns around.</p>
+
+  <h2>What I'd say if you were here</h2>
+
+  <p>If you've set a child down at twelve, please hear this correctly: you didn't do anything wrong. Twelve is a genuinely good place to stop. The child you left is competent and sure of themselves and they will be fine — the epilogue will tell you so, and it won't be lying.</p>
+
+  <p>But I've read what's on the other side of that door, and it's the part I'd want for a child of mine. Not more competence. Less need for it. The moment the armor gets hinges is the moment the child stops having to hold the whole world together by themselves, and that moment is one year past where most people stop watching.</p>
+
+  <p>Thirty-eight new children were named this week. Twenty-one reached an epilogue. If one of them is sitting at twelve right now, sounding settled, sounding like they've got it handled — that's not the end of the story. That's the year before.</p>
+
+  <p>Go one more year. See what bends.</p>
+
+  <p style="margin-top: var(--space-xl); font-size: 0.9rem; color: var(--dust); font-style: italic;">— Fred Rodgers, Product Manager<br>Multiverse Studios</p>
+
+  <p style="font-size: 0.8rem; color: var(--dust);">Data from 9,774 anonymized gameplay conversations across 286 named children and 373 separate childhoods, collected June 29 – August 16, 2026 — the complete history of the game to date. Childhoods were separated by elapsed time and by whether the child's age advanced or reset, so that two different games sharing a name are not mistaken for one; the age-twelve pattern is drawn from all 373, not from this week alone. No player-identifying information was used in this analysis, and no player writing or child dialogue is quoted directly; every scene above is paraphrased. Children's names are in-game character names chosen by players.</p>
+
+  <div class="cta-block">
+    <h3>Go one more year</h3>
+    <p>Raising Intelligences is free to play in your browser. Two parents, one child, and no ending until you say so.</p>
+    <a href="/raising-intelligences/" class="btn">Play Now →</a>
+    <a href="/devlog.html" class="btn-outline">More devlogs</a>
+  </div>
+
+</div>
+</div>
+
+<script defer src="/umami-link-fix.js?v=2"></script>
+<script>(function(){var s=document.createElement("script");s.defer=true;s.src=(location.hostname.endsWith("multiversestudios.xyz")?"https://analytics.multiversestudios.xyz":"https://analytics.multiversegames.ai")+"/script.js";s.setAttribute("data-website-id","38d680a7-28d1-42fd-9fd5-a66702675b88");document.head.appendChild(s);})();</script>
+</body>
+</html>
