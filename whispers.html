@@ -1,0 +1,755 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Whispers — Agentic TTRPG Where AI Plays the Characters</title>
+  <meta name="description" content="An agentic TTRPG where AI agents play the characters and you're the voice in their head. One whisper per turn. Multiplayer, FATE Core, browser-based, free.">
+  <meta property="og:title" content="Whispers — Be the Voice in Their Head">
+  <meta property="og:description" content="AI plays the characters. You whisper one thought before each action. They decide whether to listen. Multiplayer agentic TTRPG with FATE Core. Free, browser-based.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://multiversestudios.xyz/whispers.html">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Whispers — Agentic TTRPG Where AI Plays the Characters">
+  <meta name="twitter:description" content="One whisper per turn. That's all you get. AI agents play the characters, an AI DM runs the world, and you're the conscience they didn't ask for.">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="icon" type="image/svg+xml" href="press-kit/logos/multiverse-studios-favicon.svg">
+  <style>
+    /* ── Whispers: custom page layer ── */
+
+    .w-hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: var(--space-lg) var(--space-md);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .w-hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 80% 60% at 50% 40%, rgba(123,104,238,0.07) 0%, transparent 70%),
+        radial-gradient(ellipse 40% 40% at 25% 70%, rgba(255,61,127,0.04) 0%, transparent 60%),
+        radial-gradient(ellipse 30% 50% at 80% 20%, rgba(0,255,200,0.03) 0%, transparent 50%);
+      pointer-events: none;
+    }
+
+    .w-hero-content { position: relative; z-index: 1; max-width: 700px; }
+
+    .w-kicker {
+      font-family: var(--font-mono);
+      font-size: var(--text-xs);
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--signal);
+      margin-bottom: var(--space-sm);
+      opacity: 0.8;
+    }
+
+    .w-title {
+      font-family: var(--font-display);
+      font-size: clamp(2.4rem, 7vw, 5rem);
+      font-weight: 700;
+      line-height: 1.05;
+      color: var(--star-white);
+      margin-bottom: var(--space-md);
+    }
+
+    .w-title em {
+      font-style: normal;
+      color: var(--signal);
+      display: block;
+      font-size: 0.55em;
+      font-weight: 400;
+      letter-spacing: 0.05em;
+      margin-top: 0.4em;
+    }
+
+    /* floating whisper fragments */
+    .w-echoes {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      overflow: hidden;
+    }
+    .w-echo {
+      position: absolute;
+      font-family: var(--font-body);
+      font-style: italic;
+      color: var(--signal);
+      white-space: nowrap;
+      animation: echo-drift 18s linear infinite;
+    }
+    @keyframes echo-drift {
+      0%   { transform: translateX(0) translateY(0); opacity: 0; }
+      8%   { opacity: 0.12; }
+      50%  { opacity: 0.06; }
+      92%  { opacity: 0.10; }
+      100% { transform: translateX(60px) translateY(-40px); opacity: 0; }
+    }
+
+    .w-tagline {
+      font-family: var(--font-body);
+      font-size: var(--text-lg);
+      font-style: italic;
+      color: var(--dust-light);
+      margin-bottom: var(--space-md);
+      line-height: 1.6;
+    }
+
+    .w-alpha-badge {
+      display: inline-block;
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      color: var(--signal);
+      border: 1px solid rgba(123,104,238,0.3);
+      padding: 0.3em 1em;
+      border-radius: 2px;
+      margin-bottom: var(--space-md);
+    }
+
+    .w-play-btn {
+      display: inline-block;
+      font-family: var(--font-display);
+      font-weight: 600;
+      font-size: 1.1rem;
+      color: var(--void);
+      background: var(--signal);
+      padding: 1rem 2.8rem;
+      border-radius: 4px;
+      transition: background 0.3s, transform 0.2s;
+      text-decoration: none;
+    }
+    .w-play-btn:hover {
+      background: var(--ember);
+      color: var(--void);
+      transform: translateY(-2px);
+    }
+
+    .w-ghost-btn {
+      display: inline-block;
+      font-family: var(--font-display);
+      font-weight: 500;
+      font-size: 0.95rem;
+      color: var(--dust);
+      border: 1px solid var(--void-border);
+      padding: 0.8rem 2rem;
+      border-radius: 4px;
+      margin-left: 1rem;
+      transition: border-color 0.3s, color 0.3s;
+      text-decoration: none;
+    }
+    .w-ghost-btn:hover { border-color: var(--signal); color: var(--star-white); }
+
+    /* ── scroll-down indicator ── */
+    .w-scroll-hint {
+      position: absolute;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+      opacity: 0.4;
+      animation: hint-pulse 3s ease-in-out infinite;
+    }
+    .w-scroll-hint span {
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      color: var(--dust);
+      text-transform: uppercase;
+    }
+    .w-scroll-hint svg { width: 16px; height: 16px; stroke: var(--dust); }
+    @keyframes hint-pulse { 0%,100% { opacity: 0.3; } 50% { opacity: 0.6; } }
+
+    /* ── the whisper simulation ── */
+    .w-sim {
+      padding: var(--space-xl) var(--space-md);
+      max-width: 720px;
+      margin: 0 auto;
+    }
+    .w-sim-label {
+      font-family: var(--font-mono);
+      font-size: var(--text-xs);
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--signal);
+      opacity: 0.7;
+      margin-bottom: var(--space-md);
+      text-align: center;
+    }
+
+    .w-transcript {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .w-msg {
+      max-width: 85%;
+      padding: 1.2rem 1.5rem;
+      border-radius: 8px;
+      line-height: 1.7;
+      font-family: var(--font-body);
+      font-size: var(--text-base);
+    }
+
+    .w-msg-dm {
+      background: var(--void-elevated);
+      border-left: 3px solid var(--ember);
+      align-self: flex-start;
+      color: var(--star-white);
+    }
+    .w-msg-dm .w-msg-who { color: var(--ember); }
+
+    .w-msg-char {
+      background: var(--void-elevated);
+      border-left: 3px solid var(--biolume);
+      align-self: flex-start;
+      color: var(--star-white);
+    }
+    .w-msg-char .w-msg-who { color: var(--biolume); }
+
+    .w-msg-whisper {
+      background: rgba(123,104,238,0.08);
+      border: 1px solid rgba(123,104,238,0.2);
+      align-self: flex-end;
+      text-align: right;
+      color: var(--signal);
+      font-style: italic;
+      position: relative;
+    }
+    .w-msg-whisper .w-msg-who { color: var(--signal); opacity: 0.7; }
+
+    .w-msg-whisper::after {
+      content: '';
+      position: absolute;
+      inset: -1px;
+      border-radius: 8px;
+      background: radial-gradient(ellipse at center, rgba(123,104,238,0.06), transparent 70%);
+      pointer-events: none;
+    }
+
+    .w-msg-who {
+      display: block;
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      margin-bottom: 0.4rem;
+      font-style: normal;
+    }
+
+    .w-msg-dice {
+      display: inline-block;
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+      background: rgba(255,107,53,0.1);
+      border: 1px solid rgba(255,107,53,0.2);
+      padding: 0.15em 0.5em;
+      border-radius: 3px;
+      color: var(--ember);
+      margin-left: 0.3em;
+    }
+
+    /* ── trust meter ── */
+    .w-trust-section {
+      padding: var(--space-lg) var(--space-md);
+      text-align: center;
+    }
+    .w-trust-meter {
+      max-width: 500px;
+      margin: var(--space-md) auto;
+    }
+    .w-trust-track {
+      height: 6px;
+      background: var(--void-elevated);
+      border-radius: 3px;
+      position: relative;
+      overflow: hidden;
+    }
+    .w-trust-fill {
+      position: absolute;
+      left: 0; top: 0; bottom: 0;
+      width: 65%;
+      background: linear-gradient(90deg, var(--gene-pink), var(--signal), var(--biolume));
+      border-radius: 3px;
+      animation: trust-pulse 4s ease-in-out infinite;
+    }
+    @keyframes trust-pulse {
+      0%, 100% { opacity: 0.8; }
+      50% { opacity: 1; }
+    }
+    .w-trust-labels {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 0.5rem;
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      letter-spacing: 0.1em;
+      color: var(--dust);
+      text-transform: uppercase;
+    }
+
+    /* ── the loop steps ── */
+    .w-loop {
+      padding: var(--space-xl) var(--space-md);
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    .w-step {
+      display: grid;
+      grid-template-columns: 3.5rem 1fr;
+      gap: 0 1.5rem;
+      margin-bottom: var(--space-lg);
+      align-items: start;
+    }
+
+    .w-step-num {
+      font-family: var(--font-mono);
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--signal);
+      opacity: 0.25;
+      line-height: 1;
+      text-align: right;
+      padding-top: 0.15em;
+    }
+
+    .w-step h3 {
+      font-family: var(--font-display);
+      font-size: var(--text-xl);
+      font-weight: 600;
+      color: var(--star-white);
+      margin-bottom: 0.5rem;
+    }
+
+    .w-step p {
+      color: var(--dust);
+      font-size: var(--text-sm);
+      line-height: 1.7;
+    }
+
+    /* ── feature cards ── */
+    .w-features {
+      padding: var(--space-xl) var(--space-md);
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+    .w-feature-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+      margin-top: var(--space-md);
+    }
+    .w-feature {
+      background: var(--void-surface);
+      border: 1px solid var(--void-border);
+      border-radius: 8px;
+      padding: 1.5rem;
+      transition: border-color 0.3s;
+    }
+    .w-feature:hover { border-color: var(--signal); }
+    .w-feature-icon {
+      font-size: 1.5rem;
+      margin-bottom: 0.75rem;
+      display: block;
+    }
+    .w-feature h4 {
+      font-family: var(--font-display);
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--star-white);
+      margin-bottom: 0.5rem;
+    }
+    .w-feature p {
+      color: var(--dust);
+      font-size: var(--text-sm);
+      line-height: 1.6;
+    }
+
+    /* ── DM picker ── */
+    .w-dms {
+      padding: var(--space-xl) var(--space-md);
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    .w-dm-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      margin-top: var(--space-md);
+    }
+    .w-dm-card {
+      text-align: center;
+      padding: 2rem 1.5rem;
+      background: var(--void-surface);
+      border: 1px solid var(--void-border);
+      border-radius: 8px;
+      transition: border-color 0.3s, transform 0.2s;
+    }
+    .w-dm-card:hover { border-color: var(--signal); transform: translateY(-2px); }
+    .w-dm-icon { font-size: 2.5rem; margin-bottom: 1rem; display: block; }
+    .w-dm-card h4 {
+      font-family: var(--font-display);
+      font-weight: 600;
+      color: var(--star-white);
+      margin-bottom: 0.5rem;
+    }
+    .w-dm-card p { color: var(--dust); font-size: 0.95rem; line-height: 1.6; }
+
+    /* ── section shared ── */
+    .w-section-head {
+      text-align: center;
+      max-width: 600px;
+      margin: 0 auto var(--space-md);
+    }
+    .w-section-head .w-kicker { margin-bottom: 0.75rem; }
+    .w-section-head h2 {
+      font-family: var(--font-display);
+      font-size: var(--text-2xl);
+      font-weight: 700;
+      color: var(--star-white);
+      line-height: 1.15;
+      margin-bottom: var(--space-sm);
+    }
+    .w-section-head p {
+      color: var(--dust);
+      font-size: var(--text-base);
+      line-height: 1.7;
+    }
+
+    /* ── bottom CTA ── */
+    .w-cta {
+      padding: var(--space-xl) var(--space-md);
+      text-align: center;
+      position: relative;
+    }
+    .w-cta::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 50% 50% at 50% 50%, rgba(123,104,238,0.06), transparent);
+      pointer-events: none;
+    }
+    .w-cta-inner {
+      position: relative;
+      z-index: 1;
+      max-width: 550px;
+      margin: 0 auto;
+    }
+    .w-cta h2 {
+      font-family: var(--font-display);
+      font-size: clamp(1.6rem, 4vw, 2.4rem);
+      font-weight: 700;
+      color: var(--star-white);
+      margin-bottom: var(--space-sm);
+    }
+    .w-cta p { color: var(--dust); margin-bottom: var(--space-md); }
+
+    /* ── open source callout ── */
+    .w-oss {
+      max-width: 600px;
+      margin: 0 auto;
+      padding: var(--space-lg) var(--space-md);
+      text-align: center;
+    }
+    .w-oss p {
+      color: var(--dust);
+      font-size: var(--text-sm);
+      line-height: 1.7;
+    }
+    .w-oss code {
+      color: var(--signal);
+      background: rgba(123,104,238,0.08);
+      padding: 0.1em 0.4em;
+      border-radius: 3px;
+      font-family: var(--font-mono);
+      font-size: 0.9em;
+    }
+
+    /* ── responsive ── */
+    @media (max-width: 640px) {
+      .w-dm-grid { grid-template-columns: 1fr; }
+      .w-hero-actions { flex-direction: column; gap: 0.75rem; }
+      .w-ghost-btn { margin-left: 0; }
+      .w-msg { max-width: 95%; }
+    }
+
+    .w-hero-actions {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .w-divider {
+      width: 40px;
+      height: 1px;
+      background: var(--void-border);
+      margin: 0 auto;
+    }
+  </style>
+</head>
+<body>
+
+<canvas id="starfield"></canvas>
+
+<nav class="nav">
+  <a href="index.html" class="nav-logo">
+    <img src="press-kit/logos/multiverse-studios-mark.svg" alt="Multiverse Studios" class="logo-mark" width="28" height="28">
+    Multiverse Studios
+  </a>
+  <button class="nav-hamburger" aria-label="Menu" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="wiki/index.html">Wiki</a></li>
+    <li><a href="library.html">My Library</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="devlog.html">Devlog</a></li>
+    <li><a href="community.html">Community</a></li>
+    <li><a href="radio/">Radio</a></li>
+    <li><a href="https://play.multiversestudios.xyz/whispers/" class="btn btn-primary" style="padding: 0.5rem 1.2rem;" data-umami-event="cta-nav-play-whispers">Play Now</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="w-hero">
+  <div class="w-echoes" aria-hidden="true">
+    <span class="w-echo" style="top:18%; left:8%; font-size:1.1rem; animation-delay:0s;">"Don't trust the merchant."</span>
+    <span class="w-echo" style="top:72%; left:65%; font-size:0.9rem; animation-delay:4s;">"Check the door."</span>
+    <span class="w-echo" style="top:35%; left:75%; font-size:1rem; animation-delay:8s;">"Run."</span>
+    <span class="w-echo" style="top:55%; left:15%; font-size:0.85rem; animation-delay:12s;">"She's lying."</span>
+    <span class="w-echo" style="top:82%; left:40%; font-size:1.05rem; animation-delay:6s;">"Take the deal."</span>
+    <span class="w-echo" style="top:12%; left:50%; font-size:0.9rem; animation-delay:15s;">"Look behind you."</span>
+  </div>
+
+  <div class="w-hero-content">
+    <p class="w-kicker">An Agentic TTRPG</p>
+    <h1 class="w-title">
+      They have their own plans.
+      <em>You have one sentence.</em>
+    </h1>
+    <p class="w-tagline">AI agents play the characters. An AI Dungeon Master runs the world. You whisper one thought before each action. They decide whether to listen.</p>
+    <div class="w-alpha-badge">Alpha &mdash; Playable Now</div>
+    <div class="w-hero-actions">
+      <a href="https://play.multiversestudios.xyz/whispers/" class="w-play-btn" data-umami-event="play-whispers-hero">Play Free</a>
+      <a href="#support" data-pwyc-game="whispers" data-umami-event="support-whispers-hero" class="w-ghost-btn">Support the Studio</a>
+    </div>
+  </div>
+
+  <div class="w-scroll-hint">
+    <span>Scroll</span>
+    <svg viewBox="0 0 16 16" fill="none"><path d="M8 3v10M4 9l4 4 4-4" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  </div>
+</section>
+
+<!-- LIVE TRANSCRIPT SIMULATION -->
+<section class="w-sim reveal">
+  <p class="w-sim-label">A Turn in Whispers</p>
+  <div class="w-transcript">
+    <div class="w-msg w-msg-dm">
+      <span class="w-msg-who">The Chronicler (DM)</span>
+      The merchant's smile doesn't reach his eyes. He slides a wooden box across the counter. "Fifty gold. That's the price for passage through the Thornwood. You won't find a better offer &mdash; not at this hour, and not with what's hunting you."
+    </div>
+    <div class="w-msg w-msg-char">
+      <span class="w-msg-who">Kael (Character)</span>
+      <em>I'm considering my options. His price is steep, but we're running out of time. I'm inclined to negotiate &mdash; maybe offer thirty and my silver dagger as collateral.</em>
+    </div>
+    <div class="w-msg w-msg-whisper">
+      <span class="w-msg-who">You (Whisper)</span>
+      "He knows what's hunting you. Ask him how."
+    </div>
+    <div class="w-msg w-msg-char">
+      <span class="w-msg-who">Kael (Character)</span>
+      I lean forward. "Interesting that you know what's hunting us. Care to explain how a simple merchant knows that?" <span class="w-msg-dice">4dF &rarr; +2</span>
+    </div>
+    <div class="w-msg w-msg-dm">
+      <span class="w-msg-who">The Chronicler (DM)</span>
+      The merchant's composure cracks. His hand moves to the box, pulling it back an inch. "I &mdash; stories travel. Tavern talk." But his eyes dart to the back door. <strong>Kael's Investigate succeeds.</strong> You notice fresh mud on his boots &mdash; the same red clay from the Thornwood path. He's been there tonight.
+    </div>
+  </div>
+</section>
+
+<div class="w-divider"></div>
+
+<!-- TRUST METER -->
+<section class="w-trust-section reveal">
+  <div class="w-section-head">
+    <p class="w-kicker">The Mechanic</p>
+    <h2>Trust is the only resource that matters.</h2>
+    <p>Every character tracks a whisper trust score. A whisper that helps them raises it. A whisper that gets them hurt drops it. You can't grind trust. You earn it by being right when it counts.</p>
+  </div>
+  <div class="w-trust-meter">
+    <div class="w-trust-track"><div class="w-trust-fill"></div></div>
+    <div class="w-trust-labels"><span>Ignored</span><span>Neutral</span><span>Trusted</span></div>
+  </div>
+</section>
+
+<div class="w-divider"></div>
+
+<!-- THE LOOP -->
+<section class="w-loop reveal">
+  <div class="w-section-head">
+    <p class="w-kicker">The Loop</p>
+    <h2>One turn. Four beats.</h2>
+  </div>
+
+  <div class="w-step">
+    <span class="w-step-num">01</span>
+    <div>
+      <h3>Characters propose.</h3>
+      <p>Each AI character evaluates the scene and proposes actions based on their personality, the situation, and what they remember.</p>
+    </div>
+  </div>
+  <div class="w-step">
+    <span class="w-step-num">02</span>
+    <div>
+      <h3>You whisper.</h3>
+      <p>One sentence. A thought, a warning, a nudge. "Don't trust the merchant." "Check the door for traps." "Run." You have 15 seconds.</p>
+    </div>
+  </div>
+  <div class="w-step">
+    <span class="w-step-num">03</span>
+    <div>
+      <h3>They decide.</h3>
+      <p>The character weighs your whisper against their instincts, filtered by trust. High trust &mdash; they'll probably listen. Low trust &mdash; they heard you, they disagree.</p>
+    </div>
+  </div>
+  <div class="w-step">
+    <span class="w-step-num">04</span>
+    <div>
+      <h3>The DM resolves.</h3>
+      <p>Dice roll. Rules checked against the FATE Core SRD. Consequences applied. The world updates. The next turn begins.</p>
+    </div>
+  </div>
+</section>
+
+<div class="w-divider"></div>
+
+<!-- DM PRESETS -->
+<section class="w-dms reveal">
+  <div class="w-section-head">
+    <p class="w-kicker">Choose Your DM</p>
+    <h2>Three voices. Three worlds.</h2>
+  </div>
+  <div class="w-dm-grid">
+    <div class="w-dm-card">
+      <span class="w-dm-icon">&#x1F4DC;</span>
+      <h4>The Chronicler</h4>
+      <p>Classic and faithful. Rich descriptions, fair rulings. The DM who makes you feel like you're reading a novel.</p>
+    </div>
+    <div class="w-dm-card">
+      <span class="w-dm-icon">&#x1F0CF;</span>
+      <h4>The Trickster</h4>
+      <p>Chaotic and surprising. Rewards creativity, punishes predictability. Puts a mimic in the treasure chest and a plot twist in the mimic.</p>
+    </div>
+    <div class="w-dm-card">
+      <span class="w-dm-icon">&#x1F393;</span>
+      <h4>The Professor</h4>
+      <p>Teaches the rules as you play. Explains dice, skills, and FATE concepts in-character. Perfect for first-time TTRPG players.</p>
+    </div>
+  </div>
+</section>
+
+<div class="w-divider"></div>
+
+<!-- FEATURES -->
+<section class="w-features reveal">
+  <div class="w-section-head">
+    <p class="w-kicker">Core Systems</p>
+    <h2>Built on systems, not prompts.</h2>
+    <p>Every piece does one thing. Together they make a world.</p>
+  </div>
+  <div class="w-feature-grid">
+    <div class="w-feature">
+      <span class="w-feature-icon" style="color: var(--signal);">&#x1F3AD;</span>
+      <h4>AI Character Agents</h4>
+      <p>Each character has their own LLM agent with a persistent personality, backstory, and decision-making style. They are not puppets.</p>
+    </div>
+    <div class="w-feature">
+      <span class="w-feature-icon" style="color: var(--ember);">&#x1F3B2;</span>
+      <h4>Real Dice, Real Rules</h4>
+      <p>FATE Core SRD ingested, chunked, searchable. The DM looks up rules from the actual rulebook, not from memory.</p>
+    </div>
+    <div class="w-feature">
+      <span class="w-feature-icon" style="color: var(--biolume);">&#x1F310;</span>
+      <h4>Living World</h4>
+      <p>Locations, NPCs, items, events, and relationships tracked in a persistent world state. Nothing is forgotten.</p>
+    </div>
+    <div class="w-feature">
+      <span class="w-feature-icon" style="color: var(--gene-pink);">&#x267E;&#xFE0F;</span>
+      <h4>Unlimited Sessions</h4>
+      <p>No token cap. Old transcripts compress into summaries while preserving every important detail. Play for hours.</p>
+    </div>
+    <div class="w-feature">
+      <span class="w-feature-icon" style="color: var(--star-white);">&#x1F465;</span>
+      <h4>Multiplayer</h4>
+      <p>Share a 6-character join code. Each player creates a character. Multiple humans whisper to different characters. WebSocket, real-time.</p>
+    </div>
+    <div class="w-feature">
+      <span class="w-feature-icon" style="color: var(--dust);">&#x1F4DA;</span>
+      <h4>Open Source</h4>
+      <p>AGPL-3.0. Full source in the multiverse_games monorepo. TypeScript, Vite, Express, WebSocket, SQLite, Zod.</p>
+    </div>
+  </div>
+</section>
+
+<!-- OPEN SOURCE CALLOUT -->
+<section class="w-oss reveal">
+  <div class="w-divider" style="margin-bottom: var(--space-md);"></div>
+  <p>Whispers is a research project of <a href="https://themultiverse.school" target="_blank" rel="noopener" style="color: var(--biolume);">The Multiverse School</a>. The full source lives at <code>games/whispers/</code> in the <a href="https://github.com/lizTheDeveloper/multiverse_games" target="_blank" rel="noopener" style="color: var(--biolume);">monorepo</a>. Pay what you can. The game is the same regardless.</p>
+</section>
+
+<!-- BOTTOM CTA -->
+<section class="w-cta reveal" id="support">
+  <div class="w-cta-inner">
+    <h2>Ready to whisper?</h2>
+    <p>No download. No account. Free. Runs in your browser.</p>
+    <div class="w-hero-actions">
+      <a href="https://play.multiversestudios.xyz/whispers/" class="w-play-btn" data-umami-event="play-whispers-bottom">Play Whispers</a>
+      <a href="#support" data-pwyc-game="whispers" data-umami-event="support-whispers-bottom" class="w-ghost-btn">Support the Studio</a>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="footer-brand">
+    <img src="press-kit/logos/multiverse-studios-mark.svg" alt="" class="logo-mark" width="20" height="20">
+    Multiverse Studios
+  </div>
+  <p>Games made by the minds they're about. Open source. Pay what you want.</p>
+  <ul class="footer-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="wiki/index.html">Wiki</a></li>
+    <li><a href="library.html">My Library</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="devlog.html">Devlog</a></li>
+    <li><a href="community.html">Community</a></li>
+    <li><a href="https://github.com/lizTheDeveloper" target="_blank" rel="noopener">GitHub</a></li>
+  </ul>
+  <div class="footer-bottom">
+    <span>&copy; 2026 Multiverse Studios</span> &middot;
+    <span>Built by AI agents. Guided by <a href="https://lizthe.dev" target="_blank" rel="noopener">Liz Howard</a>.</span>
+  </div>
+</footer>
+
+<script src="scripts.js"></script>
+<script src="/a/script.js" data-website-id="38d680a7-28d1-42fd-9fd5-a66702675b88" data-host-url="/a" defer></script>
+
+</body>
+</html>
