@@ -59,6 +59,18 @@ if (!self.define) {
       exports,
       require
     };
+    // security(sast): non-literal `require(depName)` below is generated Workbox
+    // AMD module-loader boilerplate (see file header), NOT hand-written app code.
+    // `require` here is the locally-scoped shim defined two lines above
+    // (`depUri => singleRequire(depUri, uri)`), not Node's `require`. `depName`
+    // is drawn from `depsNames`, which is the literal array passed to the
+    // `define([...])` call at the bottom of this loader block (e.g.
+    // `define(['./workbox-4367cb6e'], ...)`) — a build-time-fixed list emitted
+    // by the Workbox bundler, never runtime/request-derived input. There is no
+    // path from untrusted input to this specifier. Do not hand-edit this
+    // generated file's logic; if Workbox is upgraded, regenerate this loader
+    // and reapply this comment. Suppressed for Endor Labs SAST finding
+    // "dynamic/non-literal require" (issue #4).
     registry[uri] = Promise.all(depsNames.map(
       depName => specialDeps[depName] || require(depName)
     )).then(deps => {

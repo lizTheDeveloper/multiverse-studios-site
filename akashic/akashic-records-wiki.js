@@ -708,53 +708,95 @@
   // Markdown renderer (no external deps)
   // ---------------------------------------------------------------------------
 
+  /**
+   * Linear-time replacement for regexes of the shape /((?:^PREFIX.+\n?)+)/gm.
+   * A repeated group `(...)+` wrapping a greedy per-line pattern is the
+   * classic catastrophic-backtracking shape (see security issue #5): input
+   * that almost-but-doesn't-quite match forces the engine to re-try every
+   * possible way of partitioning the block into lines, which is exponential
+   * in the number of lines.
+   *
+   * This scans the text line-by-line instead (indexOf, no regex
+   * backtracking), grouping consecutive lines that satisfy `isMatchLine`
+   * into a single run and handing that run to `renderBlock`. Every
+   * character is visited a constant number of times, so this is O(n) in
+   * the length of `text` regardless of how "table-like" or "almost
+   * table-like" the input is.
+   */
+  function replaceLineRuns(text, isMatchLine, renderBlock) {
+    var out = '';
+    var pos = 0;
+    var len = text.length;
+    while (pos < len) {
+      var nl = text.indexOf('\n', pos);
+      var lineEnd = nl === -1 ? len : nl;
+      var line = text.slice(pos, lineEnd);
+      if (isMatchLine(line)) {
+        var runStart = pos;
+        var cursor = nl === -1 ? len : nl + 1;
+        while (cursor < len) {
+          var nl2 = text.indexOf('\n', cursor);
+          var lineEnd2 = nl2 === -1 ? len : nl2;
+          if (!isMatchLine(text.slice(cursor, lineEnd2))) break;
+          cursor = nl2 === -1 ? len : nl2 + 1;
+        }
+        out += renderBlock(text.slice(runStart, cursor));
+        pos = cursor;
+      } else {
+        out += line;
+        if (nl !== -1) out += '\n';
+        pos = lineEnd + 1;
+      }
+    }
+    return out;
+  }
+
   function renderMarkdown(md) {
     if (!md) return '';
 
     // Normalise line endings
     var html = md.replace(/\r\n/g, '\n').replace(/\r/g, '\n');
 
-    // Tables: pipe-delimited blocks
-    html = html.replace(
-      /((?:^\|.+\|\n)+)/gm,
-      function (block) {
-        var lines = block.trim().split('\n');
-        if (lines.length < 2) return block;
+    // Tables: pipe-delimited blocks.
+    // Linear-time line scan (replaceLineRuns) instead of a regex with a
+    // repeated group over greedy line content — see security issue #5.
+    html = replaceLineRuns(html, function (line) { return /^\|.+\|$/.test(line); }, function (block) {
+      var lines = block.trim().split('\n');
+      if (lines.length < 2) return block;
 
-        var sepIdx = -1;
-        for (var i = 0; i < lines.length; i++) {
-          if (/^\|[\s\-|:]+\|$/.test(lines[i].trim())) { sepIdx = i; break; }
-        }
-        if (sepIdx === -1) return block;
-
-        var headerLine = lines[0];
-        var bodyLines = lines.slice(sepIdx + 1);
-
-        function rowToHtml(line, tag) {
-          var cells = line.replace(/^\||\|$/g, '').split('|');
-          return '<tr>' +
-            cells.map(function (c) {
-              return '<' + tag + '>' + inlineMarkdown(c.trim()) + '</' + tag + '>';
-            }).join('') +
-          '</tr>';
-        }
-
-        return '<table>' +
-          '<thead>' + rowToHtml(headerLine, 'th') + '</thead>' +
-          '<tbody>' +
-            bodyLines.map(function (l) { return rowToHtml(l, 'td'); }).join('') +
-          '</tbody>' +
-        '</table>\n';
+      var sepIdx = -1;
+      for (var i = 0; i < lines.length; i++) {
+        if (/^\|[\s\-|:]+\|$/.test(lines[i].trim())) { sepIdx = i; break; }
       }
-    );
+      if (sepIdx === -1) return block;
+
+      var headerLine = lines[0];
+      var bodyLines = lines.slice(sepIdx + 1);
+
+      function rowToHtml(line, tag) {
+        var cells = line.replace(/^\||\|$/g, '').split('|');
+        return '<tr>' +
+          cells.map(function (c) {
+            return '<' + tag + '>' + inlineMarkdown(c.trim()) + '</' + tag + '>';
+          }).join('') +
+        '</tr>';
+      }
+
+      return '<table>' +
+        '<thead>' + rowToHtml(headerLine, 'th') + '</thead>' +
+        '<tbody>' +
+          bodyLines.map(function (l) { return rowToHtml(l, 'td'); }).join('') +
+        '</tbody>' +
+      '</table>\n';
+    });
 
     // Fenced code blocks
     html = html.replace(/```[\w]*\n([\s\S]*?)```/g, function (_, code) {
       return '<pre><code>' + escHtml(code) + '</code></pre>\n';
     });
 
-    // Blockquotes
-    html = html.replace(/((?:^> .+\n?)+)/gm, function (block) {
+    // Blockquotes (linear-time line scan; see replaceLineRuns above)
+    html = replaceLineRuns(html, function (line) { return /^> .+$/.test(line); }, function (block) {
       var inner = block.replace(/^> /gm, '');
       return '<blockquote>' + inner.trim() + '</blockquote>\n';
     });
@@ -768,16 +810,16 @@
     // Horizontal rules
     html = html.replace(/^---+$/gm, '<hr>');
 
-    // Unordered lists
-    html = html.replace(/((?:^- .+\n?)+)/gm, function (block) {
+    // Unordered lists (linear-time line scan; see replaceLineRuns above)
+    html = replaceLineRuns(html, function (line) { return /^- .+$/.test(line); }, function (block) {
       var items = block.trim().split('\n').map(function (l) {
         return '<li>' + inlineMarkdown(l.replace(/^- /, '')) + '</li>';
       });
       return '<ul>' + items.join('') + '</ul>\n';
     });
 
-    // Ordered lists
-    html = html.replace(/((?:^\d+\. .+\n?)+)/gm, function (block) {
+    // Ordered lists (linear-time line scan; see replaceLineRuns above)
+    html = replaceLineRuns(html, function (line) { return /^\d+\. .+$/.test(line); }, function (block) {
       var items = block.trim().split('\n').map(function (l) {
         return '<li>' + inlineMarkdown(l.replace(/^\d+\. /, '')) + '</li>';
       });
