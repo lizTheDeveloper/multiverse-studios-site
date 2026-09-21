@@ -149,3 +149,39 @@ this ends up served publicly.
 - **Secrets rotation, backup retention beyond `html/`** (e.g. the Docker
   image layers, the git checkout itself) — only the served `html/` tree is
   backed up and rolled back automatically.
+
+
+## GitHub Secrets the Actions workflow needs
+
+| Secret | What it is |
+|---|---|
+| `HETZNER_SSH_KEY` | Private SSH key for `root@` the production box. Generate with `ssh-keygen -t ed25519`, put the **public** half in `/root/.ssh/authorized_keys` on the box and the **private** half in this secret. |
+| `HETZNER_HOST` | Hostname/IP of the box serving multiversestudios.xyz. If this is wrong, the deploy ships to the wrong machine — see the verification note in `deploy.yml`. |
+| `MATRIX_WEBHOOK_URL` | Webhook for the #deployments channel. Optional; the workflow skips notification if unset. |
+
+## Troubleshooting
+
+**Deploy reported success but the site shows old content.** Check the live commit
+first, not the container: `curl -s https://multiversestudios.xyz/deployed-sha.txt`.
+If that does not match what you deployed, the deploy did not reach the box serving
+the domain. Compare `HETZNER_HOST` against `dig +short multiversestudios.xyz`.
+
+**Assets look stale after a deploy.** `scripts/hash-assets.mjs` rewrites asset refs
+with content hashes, and it is fail-closed — if it did not run, HTML will reference
+unhashed paths and browsers will serve cached copies. Both deploy paths run it; a
+hand-rolled rsync does not, which is why hand-rolled rsync is not a supported route.
+
+**Site down during restart.** The container is recreated, so there is a brief gap.
+`box-deploy.sh` waits and then verifies; if verification fails it rolls back.
+
+---
+
+### A note on the old `DEPLOYMENT.md`
+
+That file was removed in favour of this one. It described a "manual deployment"
+that rsynced a working tree straight to `html/` with no `scripts` exclude, without
+running `gen-versions.mjs`/`hash-assets.mjs`, and without stamping
+`deployed-sha.txt` — so following it would have shipped unbuilt content and left
+the SHA marker lying about what was live. It also documented the health check as
+"HTTP 200 at /", which is the exact check that reported success for weeks while
+production was untouched. Both deploy paths described above supersede it.

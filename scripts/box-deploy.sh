@@ -58,6 +58,10 @@ log()  { echo "[box-deploy] $*"; }
 loud() { echo; echo "############################################################"; echo "# $*"; echo "############################################################"; echo; }
 
 # ---- lock (don't let two deploys run at once) --------------------------
+# STATE_DIR has to exist before the lock file inside it can be opened. On a
+# box that has never run this script, it does not — the first run died here
+# with "No such file or directory" until this mkdir was added.
+mkdir -p "$STATE_DIR"
 exec 200>"$LOCK_FILE"
 if ! flock -n 200; then
   echo "[box-deploy] another deploy is already running (lock: $LOCK_FILE)" >&2
@@ -147,7 +151,7 @@ rsync -a --delete \
   --exclude='.git' \
   --exclude='node_modules' \
   --exclude='.wrangler' \
-  --exclude='scripts' \
+  --exclude='scripts' --exclude='DEPLOY.md' --exclude='DEPLOYMENT.md' \
   "$CHECKOUT_DIR/" "$WORKDIR/html/"
 
 # Must be written BEFORE the docker build: the Dockerfile does
