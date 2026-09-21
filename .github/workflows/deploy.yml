@@ -39,7 +39,6 @@ jobs:
             --exclude='.wrangler' \
             --exclude='scripts' \
             --exclude='DEPLOY.md' \
-            --exclude='DEPLOYMENT.md' \
             ./ root@${{ secrets.HETZNER_HOST }}:/opt/marketing-site/html/
 
       # Must run BEFORE the build: the Dockerfile does `COPY html/ ...`, so anything

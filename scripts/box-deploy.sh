@@ -147,11 +147,16 @@ fi
 
 # ---- 4. publish the built tree into html/ --------------------------------
 # Same exclude list as the CI rsync step.
+# NOTE: only DEPLOY.md is excluded. Do NOT add an exclude for a file you want
+# REMOVED from the live site — rsync --exclude PROTECTS a path from --delete,
+# so excluding a deleted file strands the stale copy on the box forever. That
+# is exactly what happened to DEPLOYMENT.md (2026-09-21): it stayed live at
+# multiversestudios.xyz/DEPLOYMENT.md until it was deleted off the box by hand.
 rsync -a --delete \
   --exclude='.git' \
   --exclude='node_modules' \
   --exclude='.wrangler' \
-  --exclude='scripts' --exclude='DEPLOY.md' --exclude='DEPLOYMENT.md' \
+  --exclude='scripts' --exclude='DEPLOY.md' \
   "$CHECKOUT_DIR/" "$WORKDIR/html/"
 
 # Must be written BEFORE the docker build: the Dockerfile does
