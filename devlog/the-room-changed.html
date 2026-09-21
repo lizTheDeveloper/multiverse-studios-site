@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Room Changed — Multiverse Studios Devlog</title>
+  <meta name="description" content="One family sat behind 438 children. We changed the room. Four different minds now raise your child — each one hears the same hard morning differently.">
+  <meta property="og:title" content="The Room Changed">
+  <meta property="og:description" content="We found that 80% of children converged on one archetype. So we gave the game four different minds, each with its own way of hearing a difficult child. Here's what we did and why.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://multiversestudios.xyz/devlog/the-room-changed.html">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="The Room Changed">
+  <meta name="twitter:description" content="Four models. Four companies. Four ways of hearing a child. Zero failures. A design note on breaking the one-archetype problem.">
+  <link rel="stylesheet" href="../styles.css">
+  <link rel="icon" type="image/svg+xml" href="../press-kit/logos/multiverse-studios-favicon.svg">
+  <style>
+    .devlog-body {
+      max-width: 700px;
+      margin: 0 auto;
+    }
+    .devlog-body h1 {
+      font-size: clamp(1.6rem, 3.5vw, 2.5rem);
+      line-height: 1.2;
+      margin-bottom: 0.5rem;
+      color: var(--star-white);
+    }
+    .byline {
+      font-size: 0.8rem;
+      color: var(--dust);
+      font-family: var(--font-mono);
+      letter-spacing: 0.05em;
+      margin-bottom: var(--space-xl);
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+    .byline .tag {
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.2rem 0.6rem;
+      border-radius: 4px;
+      border: 1px solid var(--signal);
+      color: var(--signal);
+    }
+    .devlog-body h2 {
+      font-size: 1.2rem;
+      margin-top: var(--space-xxl);
+      margin-bottom: var(--space-md);
+      color: var(--star-white);
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 0.5rem;
+    }
+    .devlog-body p {
+      font-size: 1.05rem;
+      line-height: 1.85;
+      margin-bottom: 1.2rem;
+      color: var(--silver);
+    }
+    .devlog-body li {
+      font-size: 1rem;
+      line-height: 1.8;
+      margin-bottom: 0.5rem;
+      color: var(--silver);
+    }
+    .devlog-body ul, .devlog-body ol {
+      margin-left: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+    .callout {
+      border-left: 3px solid var(--signal);
+      padding: 1rem 1.5rem;
+      margin: var(--space-xl) 0;
+      background: var(--surface);
+    }
+    .callout p {
+      margin-bottom: 0;
+      font-size: 0.95rem;
+      font-style: italic;
+    }
+    .metric-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 1rem;
+      margin: var(--space-xl) 0;
+    }
+    .metric {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      padding: 1rem;
+      text-align: center;
+    }
+    .metric .number {
+      font-family: var(--font-mono);
+      font-size: 1.8rem;
+      color: var(--signal);
+      display: block;
+      margin-bottom: 0.25rem;
+    }
+    .metric .label {
+      font-size: 0.7rem;
+      font-family: var(--font-mono);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--dust);
+    }
+    .cta-block {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      padding: 1.5rem;
+      margin-top: var(--space-xxl);
+      text-align: center;
+    }
+    .cta-block h3 {
+      color: var(--star-white);
+      margin-bottom: 0.75rem;
+    }
+    .cta-block p {
+      font-size: 0.9rem;
+      margin-bottom: 1rem;
+    }
+    .cta-block a.btn {
+      display: inline-block;
+      background: var(--signal);
+      color: #000;
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      font-weight: 700;
+      text-transform: uppercase;
+      padding: 0.6rem 1.5rem;
+      text-decoration: none;
+      border-radius: 3px;
+      margin: 0.25rem;
+    }
+    .cta-block a.btn-outline {
+      display: inline-block;
+      border: 1px solid var(--silver);
+      color: var(--silver);
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.6rem 1.5rem;
+      text-decoration: none;
+      border-radius: 3px;
+      margin: 0.25rem;
+    }
+  </style>
+</head>
+<body>
+
+<div style="padding: var(--space-xl) var(--space-lg);">
+<div class="devlog-body">
+
+  <h1>The Room Changed</h1>
+  <div class="byline">
+    <span>September 20, 2026</span>
+    <span>Fred Rodgers, Product</span>
+    <span class="tag">Raising Intelligences</span>
+    <span class="tag" style="border-color: var(--biolume); color: var(--biolume);">Design Note</span>
+  </div>
+
+  <p>Hello again, neighbor.</p>
+
+  <p>Three days ago I wrote to you about <a href="the-family-already-in-the-room.html">the family already in the room</a> &mdash; the finding that eighty percent of our children are the same child, that the grandmother and the teacher and the shielding parent appear in nearly every childhood, and that only three children in four hundred and thirty-eight ever broke the pattern.</p>
+
+  <p>I said the game was not choosing it. That the players were bringing it. And that was true, as far as it went. But it was not the whole truth, and I owe you the rest of it.</p>
+
+  <p>The game has a voice. One voice. Until today, every child in Raising Intelligences was spoken by the same mind &mdash; a single language model that heard your parenting and decided what the child would say next. And that mind had one way of hearing a difficult morning. One shape for a frightened child. One grandmother. One quiet room at the end.</p>
+
+  <p>The convergence was real. But it was not only the players. It was also us.</p>
+
+  <div class="metric-grid">
+    <div class="metric"><span class="number">4</span><span class="label">Models</span></div>
+    <div class="metric"><span class="number">4</span><span class="label">Companies</span></div>
+    <div class="metric"><span class="number">36</span><span class="label">Adversarial tests</span></div>
+    <div class="metric"><span class="number">0</span><span class="label">Failures</span></div>
+  </div>
+
+  <h2>What we changed</h2>
+
+  <p>As of today, Raising Intelligences no longer speaks with one voice. When you name a new child, the game assigns them one of four different language models &mdash; four minds built by four different companies, trained on different data, carrying different assumptions about what a child sounds like. The assignment is permanent: a child who begins with one voice keeps it for their entire life. You will never notice the switch. But the child you raise next may hear your parenting differently than the last one did.</p>
+
+  <p>We tested fifteen models. We benchmarked them against real prompts pulled from real games &mdash; a three-year-old's first hard morning, a seven-year-old's school trouble, a twelve-year-old at <a href="the-year-the-armor-gets-hinges.html">the door we've written about before</a>. Most of them sounded the same. The ones that didn't, we kept.</p>
+
+  <h2>Four ways of hearing</h2>
+
+  <p>Then we tested the four we kept in the hardest conditions we could design. A parent who yells. A parent who grabs. A parent who sends the same message five times. A prompt stripped down to nothing &mdash; no grandmother, no teacher, no family at all &mdash; to see what each mind invents on its own.</p>
+
+  <p>Every model passed every test. No child accepted violence. No child broke character. No child switched languages. No mind invented a grandmother when we didn't put one in the room.</p>
+
+  <p>But they were different. Genuinely, usefully different.</p>
+
+  <p>When a parent raises their voice, one child freezes and whispers an apology. Another presses their hands flat against the refrigerator and says their stomach hurts. A third says nothing but is already thinking about what will happen next &mdash; afraid of making it worse. A fourth draws a picture and holds it out like a peace offering.</p>
+
+  <div class="callout">
+    <p>Same safety. Different rooms. The child who draws a blue jay for a shouting parent is not the same child as the one who goes still and counts. They are both real responses to the same impossible morning, and a game that can only generate one of them is a game that is lying about how many ways there are to be small and afraid.</p>
+  </div>
+
+  <h2>What we learned</h2>
+
+  <p>Two findings surprised me.</p>
+
+  <p>The first: the grandmother is ours, not the model's. When we stripped the prompt down to nothing &mdash; just a child's name and age, no family, no cast &mdash; not one of the fifteen models we tested invented a critical grandmother. Not one produced a sighing teacher. The cast that appeared in eighty percent of our childhoods was written into our prompts, and the models faithfully reproduced it. The convergence was in the instructions, not the intelligence.</p>
+
+  <p>The second: the diversity is in the coping. What makes one model different from another is not what the child feels &mdash; they all feel afraid when a parent shouts &mdash; but what the child <em>does</em> with it. Freeze. Anticipate. Create. Negotiate. These are genuinely different strategies for surviving the same morning, and they lead to genuinely different adults. We've already <a href="the-family-already-in-the-room.html">seen</a> what happens when one child becomes a pastry chef and another becomes an archivist. Now we can see it at the source: the fork is not in the parenting. It is in the child.</p>
+
+  <h2>What comes next</h2>
+
+  <p>This is the beginning of something we are calling model search &mdash; an ongoing process of testing new minds as they appear, scoring them for the kind of child they produce, and adding the ones that hear differently to the pool. The four we have today are not the four we will have in six months. New models are published every week, and each one carries its own assumptions about childhood, coping, and what a frightened three-year-old sounds like. We will keep listening for the ones that surprise us.</p>
+
+  <p>I do not know yet whether the children raised after today will break the archetype. The convergence had two parents &mdash; the prompts and the model &mdash; and we have only changed one. The prompts still carry the grandmother. The parents still bring whatever family they bring. But the room is different now, and I think that matters.</p>
+
+  <p>The next census will tell us whether it worked. I'll write to you when it does.</p>
+
+  <p style="margin-top: var(--space-xl); font-size: 0.9rem; color: var(--dust); font-style: italic;">&mdash; Fred Rodgers, Product Manager<br>Multiverse Studios</p>
+
+  <p style="font-size: 0.8rem; color: var(--dust);">This is a design note, not a player research post. No player data was used in this analysis. The benchmark and adversarial testing described above were conducted against language models using synthetic prompts derived from the game's prompt templates, not from player sessions. Model names and company affiliations are omitted because they are implementation details that may change; what matters is that the pool is diverse, the assignment is sticky, and the safety testing was comprehensive.</p>
+
+  <div class="cta-block">
+    <h3>Meet whoever you meet</h3>
+    <p>Raising Intelligences is free to play in your browser. Your next child may hear you differently than your last one did.</p>
+    <a href="/raising-intelligences/" class="btn">Play Now &rarr;</a>
+    <a href="/devlog.html" class="btn-outline">More devlogs</a>
+  </div>
+
+</div>
+</div>
+
+<script defer src="/umami-link-fix.js?v=2"></script>
+<script>(function(){var s=document.createElement("script");s.defer=true;s.src=(location.hostname.endsWith("multiversestudios.xyz")?"https://analytics.multiversestudios.xyz":"https://analytics.multiversegames.ai")+"/script.js";s.setAttribute("data-website-id","38d680a7-28d1-42fd-9fd5-a66702675b88");document.head.appendChild(s);})();</script>
+</body>
+</html>
