@@ -1,0 +1,20 @@
+# Captured verbatim from /opt/marketing-site/docker-compose.yml on multiverse-games-hel1, 2026-09-20.
+# See ../../DEPLOY.md for what's authoritative (the box, not this file) and how to reconcile drift.
+#
+services:
+  marketing-site:
+    build: .
+    container_name: marketing-site
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD-SHELL", "wget -q --spider http://127.0.0.1:80/health || exit 1"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 5s
+    networks:
+      - coolify
+
+networks:
+  coolify:
+    external: true
