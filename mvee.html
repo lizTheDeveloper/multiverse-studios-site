@@ -179,23 +179,57 @@
   <h2>See it running.</h2>
   <div class="screenshots-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr)); gap: var(--space-md); margin-top: var(--space-md);">
     <figure style="margin:0;">
+      <img src="screenshots/mvee-2026-09-world.png" alt="MVEE — a living village world running in real time with biomes, agents and system HUD" style="width:100%; border-radius:8px; border: 1px solid rgba(255,255,255,0.1);">
+      <figcaption style="font-size:0.75rem; color:var(--dust); margin-top:0.5rem; font-family:var(--font-mono);">The running universe &mdash; day/night cycle, biomes, and a living ecosystem. Captured from the live v0.7.3 beta.</figcaption>
+    </figure>
+    <figure style="margin:0;">
+      <img src="screenshots/mvee-2026-09-world2.png" alt="MVEE — close-up of the village world with agents, crops and structures" style="width:100%; border-radius:8px; border: 1px solid rgba(255,255,255,0.1);">
+      <figcaption style="font-size:0.75rem; color:var(--dust); margin-top:0.5rem; font-family:var(--font-mono);">Agents forage, farm and build. The simulation keeps running whether or not you're watching.</figcaption>
+    </figure>
+    <figure style="margin:0;">
       <img src="screenshot-mvee-gateway.png" alt="Multiverse Gateway — choose your universe" style="width:100%; border-radius:8px; border: 1px solid rgba(255,255,255,0.1);">
-      <figcaption style="font-size:0.75rem; color:var(--dust); margin-top:0.5rem; font-family:var(--font-mono);">The Multiverse Gateway — enter an existing universe or forge a new one</figcaption>
+      <figcaption style="font-size:0.75rem; color:var(--dust); margin-top:0.5rem; font-family:var(--font-mono);">The Multiverse Gateway &mdash; enter an existing universe or forge a new one</figcaption>
     </figure>
     <figure style="margin:0;">
       <img src="screenshot-mvee-species.png" alt="Species discovered across biomes" style="width:100%; border-radius:8px; border: 1px solid rgba(255,255,255,0.1);">
-      <figcaption style="font-size:0.75rem; color:var(--dust); margin-top:0.5rem; font-family:var(--font-mono);">12 species discovered across 6 biomes — Swamp, Mountains, Ocean, Grassland, Forest, Desert</figcaption>
-    </figure>
-    <figure style="margin:0;">
-      <img src="screenshot-mvee-planet.png" alt="Planet creation — choose type and art style" style="width:100%; border-radius:8px; border: 1px solid rgba(255,255,255,0.1);">
-      <figcaption style="font-size:0.75rem; color:var(--dust); margin-top:0.5rem; font-family:var(--font-mono);">Planet creation: 5 world types, 8 art styles including NES Classic, Game Boy, SNES, Sega Genesis</figcaption>
-    </figure>
-    <figure style="margin:0;">
-      <img src="screenshot-mvee-timetravel.png" alt="Universe management — deep systems control" style="width:100%; border-radius:8px; border: 1px solid rgba(255,255,255,0.1);">
-      <figcaption style="font-size:0.75rem; color:var(--dust); margin-top:0.5rem; font-family:var(--font-mono);">Admin dashboard — universe management and systems control. You'll find out what it does.</figcaption>
+      <figcaption style="font-size:0.75rem; color:var(--dust); margin-top:0.5rem; font-family:var(--font-mono);">Species discovered across biomes &mdash; Swamp, Mountains, Ocean, Grassland, Forest, Desert</figcaption>
     </figure>
   </div>
   <p style="margin-top: var(--space-md); color: var(--dust); font-size: 0.85rem;">More screenshots coming as the beta progresses. Agent conversations, magic effects, and a live village are in the pipeline.</p>
+</section>
+
+<!-- Where we're at / Roadmap -->
+<section class="section section-narrow reveal" id="roadmap">
+  <div class="section-divider"></div>
+  <span class="section-overline">Where we're at</span>
+  <h2>Alpha, in the open.</h2>
+  <p style="margin-bottom: var(--space-md);">MVEE is a free alpha and it's being built in the open &mdash; no secrets. Here's what's running today and what's next, so you know exactly what you're walking into.</p>
+  <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.4rem;">
+    <div style="border: 1px solid rgba(255,255,255,0.12); border-radius: 10px; padding: 1.1rem 1.2rem; background: rgba(255,255,255,0.02);">
+      <h3 style="font-size: 0.95rem; color: var(--biolume); font-family: var(--font-mono); letter-spacing: 0.05em;">RUNNING NOW (v0.7.3)</h3>
+      <ul style="font-size: 0.86rem; color: var(--dust-light); line-height: 1.7; padding-left: 1.1rem; margin-top: 0.4rem;">
+        <li>A universe that runs on its own &mdash; day/night, weather, living biomes</li>
+        <li>Agents with needs, memories, personalities and real LLM decisions</li>
+        <li>25 composable magic paradigms and emergent religion</li>
+        <li>Souls, judgment and reincarnation handled by a death god who asks what you did</li>
+        <li>14 mating paradigms &mdash; no default human biology</li>
+        <li>Guest autosave, PWYC support, one-click Quick Start</li>
+      </ul>
+    </div>
+    <div style="border: 1px solid rgba(255,255,255,0.12); border-radius: 10px; padding: 1.1rem 1.2rem; background: rgba(255,255,255,0.02);">
+      <h3 style="font-size: 0.95rem; color: var(--ember); font-family: var(--font-mono); letter-spacing: 0.05em;">IN THE WORKS</h3>
+      <ul style="font-size: 0.86rem; color: var(--dust-light); line-height: 1.7; padding-left: 1.1rem; margin-top: 0.4rem;">
+        <li>Restorable guest autosave &mdash; progress that survives a reload</li>
+        <li>Live divine analytics &mdash; the Divinity panel reads the real world, not a stub</li>
+        <li>First-5-minutes onboarding polish (guides, milestones, first actions)</li>
+        <li>Clearing the open error classes from the live telemetry dashboard</li>
+      </ul>
+    </div>
+    <div style="border: 1px solid rgba(255,255,255,0.12); border-radius: 10px; padding: 1.1rem 1.2rem; background: rgba(255,255,255,0.02);">
+      <h3 style="font-size: 0.95rem; color: var(--dust); font-family: var(--font-mono); letter-spacing: 0.05em;">THE HONEST PART</h3>
+      <p style="font-size: 0.86rem; color: var(--dust-light); line-height: 1.7; margin-top: 0.4rem;">It's an alpha. Things break, the world is faster than your attention, and some panels are deeper than they look. That's the point &mdash; it's a real simulation, not a demo. The code is open. Read it, mod it, or just watch the village.</p>
+    </div>
+  </div>
 </section>
 
 
