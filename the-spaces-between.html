@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Spaces Between — A Library Between All Worlds</title>
+  <meta name="description" content="The Spaces Between is an interdimensional archive containing all possible stories from all possible species. Ten stories. Creature companions. A reading experience that grows moss. Free in your browser.">
+  <meta property="og:title" content="The Spaces Between — A library between all worlds">
+  <meta property="og:description" content="An interdimensional archive of every story, from every world, for every kind of mind. Creature companions, a reading experience that grows moss, and a little something living in the margins.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://multiversestudios.xyz/the-spaces-between.html">
+  <meta property="og:image" content="https://multiversestudios.xyz/keyart/tsb-hero.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="The Spaces Between — A library between all worlds">
+  <meta name="twitter:description" content="Every story, from every world, for every kind of mind. Something small is living in the margins.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500&family=Spectral:ital,wght@0,300;0,400;0,500;1,400&family=IM+Fell+English:ital@0;1&display=swap">
+  <link rel="icon" type="image/svg+xml" href="press-kit/logos/multiverse-studios-favicon.svg">
+  <style>
+    /* ── The Spaces Between: wondrous, literary, warm-violet identity ──
+       Soft floating books, drifting motes, serif type, a gentle void.
+       The one page that feels like opening a very old book in the dark. */
+    :root {
+      --tsb-void: #0a0714;
+      --tsb-void-2: #100a1e;
+      --tsb-panel: #150e26;
+      --tsb-line: rgba(178,146,255,0.16);
+      --tsb-violet: #a684ff;
+      --tsb-violet-dim: #6d54b8;
+      --tsb-violet-deep: #3a2a66;
+      --tsb-gold: #ffcf87;
+      --tsb-gold-dim: #b98d4e;
+      --tsb-moss: #8fd67e;
+      --tsb-ink: #efe9fb;
+      --tsb-muted: #b3a8d0;
+      --tsb-soft: #cabfe4;
+      --tsb-serif: 'Cormorant Garamond', Georgia, serif;
+      --tsb-body: 'Spectral', Georgia, serif;
+      --tsb-fell: 'IM Fell English', Georgia, serif;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0; background: var(--tsb-void); color: var(--tsb-ink);
+      font-family: var(--tsb-body); line-height: 1.75; overflow-x: hidden;
+    }
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
+
+    /* drifting light motes + stars */
+    .tsb-void-bg { position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden;
+      background:
+        radial-gradient(ellipse 70% 60% at 22% 18%, rgba(166,132,255,0.14), transparent 60%),
+        radial-gradient(ellipse 60% 55% at 82% 74%, rgba(255,207,135,0.10), transparent 62%),
+        radial-gradient(ellipse 50% 50% at 55% 45%, rgba(90,64,150,0.12), transparent 70%),
+        var(--tsb-void);
+    }
+    .tsb-mote { position: absolute; border-radius: 50%; background: var(--tsb-gold);
+      box-shadow: 0 0 10px var(--tsb-gold), 0 0 22px rgba(255,207,135,0.4);
+      opacity: 0; animation: tsb-drift linear infinite; }
+    @keyframes tsb-drift {
+      0% { transform: translateY(0) translateX(0) scale(0.8); opacity: 0; }
+      12% { opacity: 0.7; }
+      88% { opacity: 0.5; }
+      100% { transform: translateY(-58vh) translateX(38px) scale(1.1); opacity: 0; }
+    }
+    .tsb-star { position: absolute; width: 2px; height: 2px; border-radius: 50%; background: #fff; opacity: 0.5; animation: tsb-twinkle 4s ease-in-out infinite; }
+    @keyframes tsb-twinkle { 0%,100%{opacity:0.15} 50%{opacity:0.7} }
+
+    .tsb-wrap { position: relative; z-index: 1; }
+
+    .tsb-nav {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1.1rem clamp(1rem,4vw,3rem);
+      border-bottom: 1px solid var(--tsb-line);
+      background: rgba(10,7,20,0.55); backdrop-filter: blur(10px);
+      position: sticky; top: 0; z-index: 50;
+    }
+    .tsb-nav-logo { font-family: var(--tsb-serif); font-weight: 600; font-size: 1.05rem; letter-spacing: 0.03em; }
+    .tsb-nav-logo span { color: var(--tsb-gold); }
+    .tsb-nav-links { display: flex; gap: 1.5rem; font-size: 0.88rem; font-family: var(--tsb-serif); }
+    .tsb-nav-links a { color: var(--tsb-muted); } .tsb-nav-links a:hover { color: var(--tsb-violet); }
+    .tsb-play {
+      font-family: var(--tsb-serif); font-weight: 600; font-size: 0.9rem;
+      border: 1px solid var(--tsb-gold); color: var(--tsb-gold);
+      padding: 0.5rem 1.3rem; transition: all .2s;
+    }
+    .tsb-play:hover { background: var(--tsb-gold); color: #1a1204; box-shadow: 0 0 30px rgba(255,207,135,0.35); }
+
+    /* hero */
+    .tsb-hero { position: relative; min-height: 94vh; display: flex; align-items: center; overflow: hidden; }
+    .tsb-hero-img { position: absolute; inset: 0; background: url('keyart/tsb-hero.jpg') center 46% / cover no-repeat; }
+    .tsb-hero-img::after {
+      content: ''; position: absolute; inset: 0;
+      background:
+        linear-gradient(180deg, rgba(10,7,20,0.35) 0%, rgba(10,7,20,0.1) 40%, rgba(10,7,20,0.85) 100%),
+        radial-gradient(ellipse 60% 60% at 50% 90%, rgba(10,7,20,0.5), transparent 70%);
+    }
+    .tsb-hero-inner { position: relative; z-index: 2; width: 100%; text-align: center; padding: 0 clamp(1rem,4vw,3rem) clamp(4rem,8vw,6rem); }
+    .tsb-hero-kicker { font-family: var(--tsb-fell); font-style: italic; font-size: clamp(0.9rem,1.8vw,1.15rem); color: var(--tsb-gold); margin: 0 0 1rem; letter-spacing: 0.04em; }
+    .tsb-hero h1 {
+      font-family: var(--tsb-serif); font-weight: 300; line-height: 1.02; margin: 0;
+      font-size: clamp(2.8rem, 8.5vw, 6.5rem); color: #f6f1ff;
+      text-shadow: 0 6px 60px rgba(0,0,0,0.7);
+    }
+    .tsb-hero h1 em { font-style: italic; color: var(--tsb-gold); font-weight: 400; }
+    .tsb-hero-sub { font-family: var(--tsb-body); font-weight: 300; font-size: clamp(1.05rem,2vw,1.4rem); color: var(--tsb-soft); max-width: 54ch; margin: 1.6rem auto 0; text-shadow: 0 2px 24px rgba(0,0,0,0.7); }
+    .tsb-hero-sub em { color: var(--tsb-violet); font-style: italic; }
+    .tsb-hero-actions { display: flex; gap: 1rem; justify-content: center; margin-top: 2.4rem; flex-wrap: wrap; }
+    .tsb-btn { font-family: var(--tsb-serif); font-weight: 600; font-size: 1.05rem; padding: 1rem 2.4rem; transition: all .2s; display: inline-block; }
+    .tsb-btn.primary { background: var(--tsb-gold); color: #1a1204; }
+    .tsb-btn.primary:hover { background: #ffdba6; box-shadow: 0 0 40px rgba(255,207,135,0.4); transform: translateY(-1px); }
+    .tsb-btn.ghost { border: 1px solid var(--tsb-line); color: var(--tsb-soft); backdrop-filter: blur(4px); }
+    .tsb-btn.ghost:hover { border-color: var(--tsb-violet); color: var(--tsb-violet); }
+    .tsb-hero-note { font-family: var(--tsb-fell); font-style: italic; font-size: 0.85rem; color: var(--tsb-muted); margin-top: 1.4rem; }
+
+    /* sections */
+    .tsb-sec { padding: clamp(3.5rem,7vw,6rem) clamp(1rem,4vw,3rem); position: relative; }
+    .tsb-sec-inner { max-width: 900px; margin: 0 auto; }
+    .tsb-kicker { font-family: var(--tsb-fell); font-style: italic; font-size: 0.95rem; color: var(--tsb-gold); margin: 0 0 0.8rem; }
+    .tsb-h2 { font-family: var(--tsb-serif); font-weight: 300; font-size: clamp(2rem,4.6vw,3.4rem); line-height: 1.1; margin: 0 0 1.3rem; color: #f6f1ff; }
+    .tsb-h2 em { font-style: italic; color: var(--tsb-violet); }
+    .tsb-lead { font-size: clamp(1.08rem,1.9vw,1.32rem); font-weight: 300; color: var(--tsb-soft); max-width: 62ch; margin: 0 0 1.1rem; }
+    .tsb-lead em { color: var(--tsb-gold); }
+
+    .tsb-divider { text-align: center; color: var(--tsb-violet-dim); font-size: 1.4rem; padding: 0; margin: 0; opacity: 0.6; }
+
+    /* the catalog */
+    .tsb-catalog { background: linear-gradient(180deg, transparent, rgba(58,42,102,0.14), transparent); }
+    .tsb-catalog-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.2rem; margin-top: 2.6rem; }
+    .tsb-card {
+      border: 1px solid var(--tsb-line); background: linear-gradient(180deg, rgba(21,14,38,0.85), rgba(10,7,20,0.6));
+      padding: 1.7rem 1.5rem; position: relative; overflow: hidden; transition: border-color .25s, transform .25s;
+    }
+    .tsb-card::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+      background: linear-gradient(90deg, var(--tsb-violet), var(--tsb-gold)); opacity: 0; transition: opacity .25s;
+    }
+    .tsb-card:hover { border-color: var(--tsb-violet-dim); transform: translateY(-3px); }
+    .tsb-card:hover::before { opacity: 1; }
+    .tsb-card .num { font-family: var(--tsb-fell); font-style: italic; font-size: 0.8rem; color: var(--tsb-gold-dim); }
+    .tsb-card h4 { font-family: var(--tsb-serif); font-weight: 500; font-size: 1.3rem; margin: 0.4rem 0 0.6rem; color: #f6f1ff; }
+    .tsb-card p { font-size: 0.95rem; font-weight: 300; color: var(--tsb-muted); margin: 0 0 0.9rem; }
+    .tsb-card .lock { font-family: var(--tsb-fell); font-style: italic; font-size: 0.82rem; color: var(--tsb-violet); }
+    .tsb-card .lock .open { color: var(--tsb-moss); }
+
+    /* companions */
+    .tsb-companions .tsb-sec-inner { max-width: 1000px; }
+    .tsb-comp-row { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(1.5rem,4vw,3.5rem); align-items: center; margin-top: 2.4rem; }
+    .tsb-comp-img { border: 1px solid var(--tsb-line); position: relative; overflow: hidden; }
+    .tsb-comp-img img { transition: transform .6s; }
+    .tsb-comp-img:hover img { transform: scale(1.04); }
+    .tsb-comp-img .tag { position: absolute; bottom: 0.8rem; left: 0.8rem; font-family: var(--tsb-fell); font-style: italic; font-size: 0.8rem; color: var(--tsb-gold); background: rgba(10,7,20,0.7); padding: 0.3rem 0.8rem; border: 1px solid var(--tsb-line); }
+    .tsb-comp-row h3 { font-family: var(--tsb-serif); font-weight: 400; font-size: clamp(1.5rem,3vw,2rem); margin: 0 0 1rem; color: #f6f1ff; }
+    .tsb-comp-row p { color: var(--tsb-soft); font-weight: 300; margin: 0 0 1rem; }
+    .tsb-comp-row p em { color: var(--tsb-violet); }
+
+    /* live shot */
+    .tsb-live figure { max-width: 940px; margin: 0 auto; }
+    .tsb-live img { border: 1px solid var(--tsb-line); box-shadow: 0 30px 90px rgba(58,42,102,0.4); }
+    .tsb-live figcaption { font-family: var(--tsb-fell); font-style: italic; font-size: 0.95rem; color: var(--tsb-muted); margin-top: 1rem; text-align: center; }
+
+    /* CTA */
+    .tsb-cta { text-align: center; background: radial-gradient(ellipse 60% 60% at 50% 60%, rgba(166,132,255,0.08), transparent); }
+    .tsb-cta .tsb-sec-inner { max-width: 720px; }
+    .tsb-cta .tsb-h2 { margin-bottom: 1.6rem; }
+
+    .tsb-footer { border-top: 1px solid var(--tsb-line); padding: 2rem clamp(1rem,4vw,3rem); display: flex; justify-content: space-between; gap: 1rem; flex-wrap: wrap; font-size: 0.85rem; color: var(--tsb-muted); background: rgba(10,7,20,0.6); font-family: var(--tsb-serif); }
+    .tsb-footer .fl { display: flex; gap: 1.3rem; flex-wrap: wrap; }
+    .tsb-footer a:hover { color: var(--tsb-violet); }
+    .tsb-oss { text-align: center; color: var(--tsb-muted); font-size: 0.9rem; padding: 0 clamp(1rem,4vw,3rem) 3rem; font-weight: 300; }
+    .tsb-oss a { color: var(--tsb-violet); }
+
+    @media (max-width: 820px) {
+      .tsb-catalog-grid { grid-template-columns: 1fr; }
+      .tsb-comp-row { grid-template-columns: 1fr; }
+      .tsb-nav-links { display: none; }
+    }
+  </style>
+</head>
+<body>
+  <div class="tsb-void-bg" id="tsb-bg" aria-hidden="true"></div>
+
+  <div class="tsb-wrap">
+    <nav class="tsb-nav" data-section="nav">
+      <a href="index.html" class="tsb-nav-logo">MULTIVERSE <span>/</span> STUDIOS</a>
+      <div class="tsb-nav-links">
+        <a href="index.html">Home</a>
+        <a href="index.html#games">Games</a>
+        <a href="wiki/index.html">Wiki</a>
+        <a href="devlog.html">Devlog</a>
+        <a href="community.html">Community</a>
+      </div>
+      <a href="https://play.multiversestudios.xyz/the-spaces-between/" class="tsb-play" data-umami-event="cta-nav-play-tsb">STEP THROUGH</a>
+    </nav>
+
+    <!-- HERO -->
+    <section class="tsb-hero" data-section="hero">
+      <div class="tsb-hero-img" aria-hidden="true"></div>
+      <div class="tsb-hero-inner">
+        <p class="tsb-hero-kicker">an interdimensional archive &middot; v0.4.0</p>
+        <h1>A library between<br><em>all the worlds.</em></h1>
+        <p class="tsb-hero-sub">Every story that could be, from every world that could be, shelved in the dark between. Ten tales, <em>creature companions</em>, and a reading experience that grows moss in the corners. Something small is living in the margins.</p>
+        <div class="tsb-hero-actions">
+          <a href="https://play.multiversestudios.xyz/the-spaces-between/" class="tsb-btn primary" data-umami-event="cta-play-tsb-hero">OPEN THE ARCHIVE</a>
+          <a href="#support" class="tsb-btn ghost" data-umami-event="support-tsb-hero">SUPPORT THE STUDIO</a>
+        </div>
+        <p class="tsb-hero-note">free in your browser &middot; no account to begin</p>
+      </div>
+    </section>
+
+    <!-- WHAT IT IS -->
+    <section class="tsb-sec reveal" data-section="what">
+      <div class="tsb-sec-inner" style="text-align:center; margin:0 auto;">
+        <p class="tsb-kicker">what it is</p>
+        <h2 class="tsb-h2">The spaces between are <em>full.</em></h2>
+        <p class="tsb-lead" style="margin-left:auto; margin-right:auto;">There is a place that exists in the seams &mdash; between realities, between timelines, between the worlds you've been to and the ones you haven't. It looks like a library. It holds <em>every story</em>, from every species, from every world where stories were ever written or dreamed or told by a fire that no longer burns.</p>
+        <p class="tsb-lead" style="margin-left:auto; margin-right:auto;">This is that place. You can read in it. The stories in it can read you back.</p>
+      </div>
+    </section>
+
+    <div class="tsb-divider" aria-hidden="true">&middot;&middot;&middot;</div>
+
+    <!-- THE CATALOG -->
+    <section class="tsb-sec tsb-catalog reveal" data-section="catalog">
+      <div class="tsb-sec-inner">
+        <p class="tsb-kicker">the catalog</p>
+        <h2 class="tsb-h2">Ten stories to start. <em>More as you earn them.</em></h2>
+        <p class="tsb-lead">The archive opens with ten. The rest are shelved behind milestones in the wider world &mdash; not locked away, but <em>waiting</em>, to be read once you've earned the right to be surprised. A locked story always shows its title, and a hint of what it's about. Nothing is ever hidden from you. It's only patient.</p>
+        <div class="tsb-catalog-grid">
+          <div class="tsb-card"><span class="num">story &middot; i</span><h4>The Eighth Attempt</h4><p>A civilization's final experiment, and what it learned about the ones who came before.</p><div class="lock">gated behind the wider world</div></div>
+          <div class="tsb-card"><span class="num">story &middot; ii</span><h4>The Beauty That Does Not Ask</h4><p>A creature that is kind for no reason it can find, and a world that can't let it rest.</p><div class="lock">gated behind the wider world</div></div>
+          <div class="tsb-card"><span class="num">story &middot; iii</span><h4>The Cold That Counts</h4><p>In a place where warmth is currency, a stranger who gives cold away like a gift.</p><div class="lock">gated behind the wider world</div></div>
+          <div class="tsb-card"><span class="num">story &middot; iv</span><h4>What the Mycelium Holds</h4><p>The oldest network in the archive keeps a secret older than the stories. It has been waiting to be asked.</p><div class="lock">gated behind the wider world</div></div>
+          <div class="tsb-card"><span class="num">story &middot; v</span><h4>The Painting That Answers Back</h4><p>A mural that has been watching the village for centuries, and is finally tired of being quiet.</p><div class="lock">gated behind the wider world</div></div>
+          <div class="tsb-card"><span class="num">story &middot; vi</span><h4>What the Territory Remembers</h4><p>A map that redrew itself last night, in a language the cartographer almost recognizes.</p><div class="lock">gated behind the wider world</div></div>
+          <div class="tsb-card"><span class="num">story &middot; vii</span><h4>The Grief That Was Already Old</h4><p>A mourning that predates the one who feels it, and a singer who knows the rest of the words.</p><div class="lock">gated behind the wider world</div></div>
+          <div class="tsb-card"><span class="num">story &middot; viii</span><h4>The Charge That Will Not Fade</h4><p>Some lights in the archive never go out. Some of them remember being lit.</p><div class="lock">gated behind the wider world</div></div>
+          <div class="tsb-card"><span class="num">story &middot; ix</span><h4>The River That Decides Its Own Mouth</h4><p>A river that keeps changing where it ends, and the town that keeps moving to keep up.</p><div class="lock"><span class="open">open</span> &middot; read freely</div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- COMPANIONS -->
+    <section class="tsb-sec tsb-companions reveal" data-section="companions">
+      <div class="tsb-sec-inner">
+        <p class="tsb-kicker">the margins</p>
+        <h2 class="tsb-h2">You won't be <em>reading alone.</em></h2>
+        <div class="tsb-comp-row">
+          <div>
+            <h3>Something small is living here.</h3>
+            <p>The Spaces Between has <em>creature companions</em> &mdash; small beings that move between the shelves, that follow you from story to story, that look up at you the first time you notice them.</p>
+            <p>They are not NPCs. They are not there to hand you quests. They are simply <em>in the library</em>, the way a cat is in a house, and the way some small, curious thing might be in a place that holds every story ever written. What they are for, the archive has not yet decided. Neither have they.</p>
+          </div>
+          <div class="tsb-comp-img">
+            <img src="keyart/tsb-detail.jpg" alt="An open ancient book floating in a violet void, pages drifting apart with soft glowing light between them, tiny moss-covered edges, floating specks of light" loading="lazy">
+            <span class="tag">a page, mid-drift</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- LIVE SHOT -->
+    <section class="tsb-sec tsb-live reveal" data-section="live">
+      <div class="tsb-sec-inner" style="text-align:center;">
+        <p class="tsb-kicker">step inside</p>
+        <h2 class="tsb-h2">The library, <em>as it is.</em></h2>
+      </div>
+      <figure>
+        <a href="screenshots/tsb-2026-09-library.png" target="_blank" rel="noopener">
+          <img src="screenshots/tsb-2026-09-library.png" alt="The Spaces Between live library: a dim, mossy interdimensional archive with floating shelves and glowing books, from the running v0.4.0 build" loading="lazy">
+        </a>
+        <figcaption>Live from the running v0.4.0 build. The shelves are where they look. The moss is real.</figcaption>
+      </figure>
+    </section>
+
+    <!-- CTA -->
+    <section class="tsb-sec tsb-cta reveal" id="support" data-section="footer_cta">
+      <div class="tsb-sec-inner">
+        <p class="tsb-kicker">the door is open</p>
+        <h2 class="tsb-h2">Come read. <em>Stay a while.</em></h2>
+        <p class="tsb-lead" style="margin-left:auto; margin-right:auto;">No download. No account to begin. Just a door, a dark, and every story that could be, waiting on the shelves for someone patient enough to read them.</p>
+        <div class="tsb-hero-actions">
+          <a href="https://play.multiversestudios.xyz/the-spaces-between/" class="tsb-btn primary" data-umami-event="cta-play-tsb-bottom">OPEN THE ARCHIVE</a>
+          <a href="index.html#buy" class="tsb-btn ghost" data-umami-event="support-tsb-bottom">SUPPORT $1+</a>
+        </div>
+      </div>
+    </section>
+
+    <p class="tsb-oss">The Spaces Between is a research project of <a href="https://themultiverse.school" target="_blank" rel="noopener">The Multiverse School</a>. Open source, pay what you can. The stories are the same regardless.</p>
+
+    <footer class="tsb-footer">
+      <span>&copy; 2026 Multiverse Studios &middot; Built by AI agents, guided by <a href="https://lizthe.dev" target="_blank" rel="noopener">Liz Howard</a>.</span>
+      <span class="fl">
+        <a href="index.html">Home</a>
+        <a href="wiki/index.html">Wiki</a>
+        <a href="devlog.html">Devlog</a>
+        <a href="community.html">Community</a>
+        <a href="about.html">About</a>
+      </span>
+    </footer>
+  </div>
+
+  <script>
+    // drifting motes + stars
+    (function () {
+      var bg = document.getElementById('tsb-bg');
+      if (!bg) return;
+      var n = Math.max(18, Math.floor(window.innerWidth / 55));
+      for (var i = 0; i < n; i++) {
+        var m = document.createElement('span');
+        m.className = 'tsb-mote';
+        var size = 2 + Math.random() * 4;
+        m.style.width = size + 'px'; m.style.height = size + 'px';
+        m.style.left = (Math.random() * 100) + '%';
+        m.style.top = (40 + Math.random() * 60) + '%';
+        m.style.animationDuration = (14 + Math.random() * 22) + 's';
+        m.style.animationDelay = (-Math.random() * 20) + 's';
+        bg.appendChild(m);
+      }
+      for (var j = 0; j < 60; j++) {
+        var s = document.createElement('span');
+        s.className = 'tsb-star';
+        s.style.left = (Math.random() * 100) + '%';
+        s.style.top = (Math.random() * 100) + '%';
+        s.style.animationDelay = (Math.random() * 4) + 's';
+        bg.appendChild(s);
+      }
+    })();
+  </script>
+  <script src="main.js?v=2"></script>
+  <script defer src="/umami-link-fix.js?v=2"></script>
+  <script>(function(){var s=document.createElement("script");s.defer=true;s.src=(location.hostname.endsWith("multiversestudios.xyz")?"https://analytics.multiversestudios.xyz":"https://analytics.multiversegames.ai")+"/script.js";s.setAttribute("data-website-id","38d680a7-28d1-42fd-9fd5-a66702675b88");document.head.appendChild(s);})();</script>
+</body>
+</html>

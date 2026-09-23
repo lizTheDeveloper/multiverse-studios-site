@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BREACH.MMO — A Massive Multiplayer Hacking Sim Where the Network Fights Back</title>
+  <meta name="description" content="BREACH.MMO: red team attacks, blue team defends, and the network in between is alive. Cooperative intrusion, emergent security AI, faction territory, a CTF campaign, and a lair you upgrade. Free to play in your browser.">
+  <meta property="og:title" content="BREACH.MMO — The firewall has opinions.">
+  <meta property="og:description" content="A massively multiplayer hacking sim where the network fights back. Red team exploits. Blue team defends. Something in between decides who wins.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://multiversestudios.xyz/breach.html">
+  <meta property="og:image" content="https://multiversestudios.xyz/keyart/breach-hero.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="BREACH.MMO — The firewall has opinions.">
+  <meta name="twitter:description" content="Red team attacks. Blue team defends. The network in between is alive.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;0,700;1,400&display=swap">
+  <link rel="icon" type="image/svg+xml" href="press-kit/logos/multiverse-studios-favicon.svg">
+  <style>
+    /* ── BREACH: terminal / red-vs-blue identity ──
+       Whole page re-themes to a phosphor terminal. No studio starfield here —
+       the background is code rain + a scanline HUD. */
+    :root {
+      --br-void: #04070a;
+      --br-panel: #061109;
+      --br-panel-2: #08160d;
+      --br-line: #123a1f;
+      --br-green: #00ff41;
+      --br-green-dim: #0c9b3a;
+      --br-green-faint: #073d1c;
+      --br-red: #ff2e4d;
+      --br-blue: #2e7bff;
+      --br-amber: #ffb020;
+      --br-text: #b8ffd4;
+      --br-muted: #5f9a72;
+      --br-mono: 'JetBrains Mono', ui-monospace, monospace;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: var(--br-void);
+      color: var(--br-text);
+      font-family: var(--br-mono);
+      font-size: 16px;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
+
+    /* ── code-rain background ── */
+    .br-rain {
+      position: fixed; inset: 0; z-index: 0; pointer-events: none;
+      overflow: hidden;
+      -webkit-mask-image: linear-gradient(180deg, rgba(0,0,0,0.5), rgba(0,0,0,0.15) 40%, rgba(0,0,0,0.35));
+              mask-image: linear-gradient(180deg, rgba(0,0,0,0.5), rgba(0,0,0,0.15) 40%, rgba(0,0,0,0.35));
+    }
+    .br-rain span {
+      position: absolute; top: -20%; font-size: 14px; line-height: 1.4;
+      color: var(--br-green); opacity: 0.14; white-space: pre;
+      animation: br-fall linear infinite;
+    }
+    @keyframes br-fall { to { transform: translateY(140vh); } }
+    /* scanline HUD overlay */
+    .br-scan {
+      position: fixed; inset: 0; z-index: 1; pointer-events: none;
+      background: repeating-linear-gradient(0deg, rgba(0,255,65,0.03) 0 1px, transparent 1px 3px);
+      mix-blend-mode: screen;
+    }
+    .br-vignette {
+      position: fixed; inset: 0; z-index: 1; pointer-events: none;
+      background: radial-gradient(ellipse 90% 70% at 50% 30%, transparent 55%, rgba(0,0,0,0.55));
+    }
+
+    .br-wrap { position: relative; z-index: 2; }
+
+    /* ── nav ── */
+    .br-nav {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1rem clamp(1rem, 4vw, 3rem);
+      border-bottom: 1px solid var(--br-line);
+      background: rgba(4,7,10,0.82);
+      backdrop-filter: blur(8px);
+      position: sticky; top: 0; z-index: 50;
+      font-size: 0.8rem;
+    }
+    .br-nav-logo { display: flex; align-items: center; gap: 0.6rem; letter-spacing: 0.18em; color: var(--br-green); font-weight: 700; }
+    .br-nav-logo .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--br-red); box-shadow: 0 0 8px var(--br-red); animation: br-blink 1.6s infinite; }
+    @keyframes br-blink { 0%,49%{opacity:1} 50%,100%{opacity:.25} }
+    .br-nav-links { display: flex; gap: 1.4rem; list-style: none; margin: 0; padding: 0; }
+    .br-nav-links a { color: var(--br-muted); letter-spacing: 0.08em; }
+    .br-nav-links a:hover { color: var(--br-green); }
+    .br-play {
+      border: 1px solid var(--br-green); color: var(--br-green);
+      padding: 0.5rem 1.2rem; letter-spacing: 0.14em; font-weight: 700;
+      background: rgba(0,255,65,0.06); transition: all .15s;
+    }
+    .br-play:hover { background: var(--br-green); color: #04140a; box-shadow: 0 0 24px rgba(0,255,65,0.5); }
+
+    /* ── hero ── */
+    .br-hero {
+      position: relative; min-height: 92vh;
+      display: grid; grid-template-columns: 1.15fr 1fr; gap: clamp(1rem,3vw,3rem);
+      align-items: center; padding: clamp(3rem,7vw,6rem) clamp(1rem,4vw,3rem);
+    }
+    .br-hero::before {
+      content: ''; position: absolute; inset: 0; z-index: -1;
+      background:
+        radial-gradient(ellipse 70% 60% at 20% 40%, rgba(255,46,77,0.12), transparent 60%),
+        radial-gradient(ellipse 70% 60% at 85% 60%, rgba(46,123,255,0.12), transparent 60%),
+        linear-gradient(180deg, var(--br-void), #02130a);
+    }
+    .br-hero-text .br-kicker {
+      color: var(--br-green); letter-spacing: 0.35em; font-size: 0.72rem;
+      text-transform: uppercase; margin: 0 0 1rem;
+    }
+    .br-hero-text .br-kicker::before { content: '// '; color: var(--br-green-dim); }
+    .br-title {
+      margin: 0 0 0.6rem; font-weight: 700; line-height: 0.92;
+      font-size: clamp(3.2rem, 9vw, 6.5rem); letter-spacing: 0.02em;
+      color: #eaffef;
+      text-shadow: 0 0 30px rgba(0,255,65,0.45), 3px 0 0 rgba(255,46,77,0.35), -3px 0 0 rgba(46,123,255,0.35);
+    }
+    .br-title .mm { color: var(--br-green); font-size: 0.4em; letter-spacing: 0.5em; vertical-align: super; }
+    .br-sub { color: var(--br-text); font-size: clamp(1rem, 1.6vw, 1.25rem); max-width: 46ch; margin: 1.4rem 0 0; }
+    .br-sub .r { color: var(--br-red); } .br-sub .b { color: var(--br-blue); }
+    .br-tagline { color: var(--br-muted); font-size: 0.9rem; margin-top: 1.6rem; letter-spacing: 0.02em; }
+    .br-actions { display: flex; gap: 1rem; margin-top: 2rem; flex-wrap: wrap; }
+    .br-btn {
+      font-family: var(--br-mono); font-weight: 700; letter-spacing: 0.12em;
+      padding: 0.9rem 1.8rem; border: 1px solid var(--br-green); color: var(--br-green);
+      background: rgba(0,255,65,0.06); transition: all .15s; font-size: 0.9rem;
+    }
+    .br-btn:hover { background: var(--br-green); color: #04140a; box-shadow: 0 0 28px rgba(0,255,65,0.55); }
+    .br-btn.ghost { border-color: var(--br-line); color: var(--br-muted); background: transparent; }
+    .br-btn.ghost:hover { border-color: var(--br-green); color: var(--br-green); background: rgba(0,255,65,0.05); }
+    .br-cta-row { display: flex; gap: 0.6rem; flex-wrap: wrap; margin-top: 0.9rem; }
+
+    /* terminal window on the right */
+    .br-term {
+      border: 1px solid var(--br-line); background: rgba(4,14,8,0.7);
+      box-shadow: 0 0 60px rgba(0,255,65,0.12), inset 0 0 40px rgba(0,255,65,0.03);
+      font-size: 0.82rem;
+    }
+    .br-term-bar {
+      display: flex; align-items: center; gap: 0.5rem; padding: 0.55rem 0.8rem;
+      border-bottom: 1px solid var(--br-line); background: rgba(8,22,13,0.9);
+      color: var(--br-muted); letter-spacing: 0.1em; font-size: 0.72rem;
+    }
+    .br-term-bar .sq { width: 10px; height: 10px; border-radius: 50%; }
+    .br-term-body { padding: 1rem 1.1rem 1.3rem; min-height: 320px; }
+    .br-term-line { white-space: pre-wrap; word-break: break-word; margin: 0 0 0.35rem; }
+    .br-term-line .ok { color: var(--br-green); }
+    .br-term-line .warn { color: var(--br-amber); }
+    .br-term-line .red { color: var(--br-red); }
+    .br-term-line .blue { color: var(--br-blue); }
+    .br-term-line .dim { color: var(--br-muted); }
+    .br-cursor { display: inline-block; width: 9px; height: 1.05em; background: var(--br-green); vertical-align: text-bottom; animation: br-blink 1s steps(1) infinite; }
+
+    /* ── team split ── */
+    .br-teams { padding: clamp(3rem,6vw,5rem) clamp(1rem,4vw,3rem); }
+    .br-section-head { text-align: center; max-width: 700px; margin: 0 auto 3rem; }
+    .br-section-head .br-kicker { color: var(--br-green); letter-spacing: 0.3em; font-size: 0.72rem; text-transform: uppercase; margin: 0 0 0.8rem; }
+    .br-section-head .br-kicker::before { content: '// '; color: var(--br-green-dim); }
+    .br-section-head h2 { color: #eaffef; font-size: clamp(1.7rem,3.6vw,2.6rem); margin: 0 0 0.6rem; letter-spacing: 0.01em; }
+    .br-section-head p { color: var(--br-muted); margin: 0; }
+    .br-team-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.4rem; max-width: 1100px; margin: 0 auto; }
+    .br-team {
+      border: 1px solid var(--br-line); padding: 1.8rem; position: relative; overflow: hidden;
+      background: var(--br-panel);
+    }
+    .br-team.red { border-color: rgba(255,46,77,0.5); box-shadow: inset 0 0 60px rgba(255,46,77,0.07); }
+    .br-team.blue { border-color: rgba(46,123,255,0.5); box-shadow: inset 0 0 60px rgba(46,123,255,0.07); }
+    .br-team .badge {
+      font-size: 0.7rem; letter-spacing: 0.25em; padding: 0.3rem 0.8rem; display: inline-block;
+      border: 1px solid currentColor; margin-bottom: 1.2rem;
+    }
+    .br-team.red .badge { color: var(--br-red); } .br-team.blue .badge { color: var(--br-blue); }
+    .br-team h3 { margin: 0 0 0.8rem; font-size: 1.5rem; color: #eaffef; }
+    .br-team .motto { color: var(--br-muted); font-size: 0.85rem; margin-bottom: 1.2rem; letter-spacing: 0.04em; }
+    .br-team ul { list-style: none; padding: 0; margin: 0; display: grid; gap: 0.7rem; }
+    .br-team li { color: var(--br-text); font-size: 0.88rem; padding-left: 1.2rem; position: relative; }
+    .br-team li::before { content: '›'; position: absolute; left: 0; }
+    .br-team.red li::before { color: var(--br-red); } .br-team.blue li::before { color: var(--br-blue); }
+
+    /* ── the network (center) ── */
+    .br-network { padding: clamp(3rem,6vw,5rem) clamp(1rem,4vw,3rem); background: linear-gradient(180deg, transparent, rgba(0,255,65,0.03), transparent); }
+    .br-net-card {
+      max-width: 780px; margin: 0 auto; border: 1px solid var(--br-line);
+      background: var(--br-panel-2); padding: 2.2rem;
+    }
+    .br-net-card .br-kicker { color: var(--br-green); letter-spacing: 0.3em; font-size: 0.72rem; text-transform: uppercase; margin: 0 0 0.8rem; }
+    .br-net-card .br-kicker::before { content: '// '; color: var(--br-green-dim); }
+    .br-net-card h2 { color: #eaffef; font-size: clamp(1.6rem,3.4vw,2.3rem); margin: 0 0 1rem; }
+    .br-net-card p { color: var(--br-text); margin: 0 0 1rem; }
+    .br-net-card p .hi { color: var(--br-green); }
+    .br-figrow { display: grid; grid-template-columns: 1.2fr 1fr; gap: 1.4rem; align-items: center; margin-top: 1rem; }
+    .br-figrow img { border: 1px solid var(--br-line); }
+
+    /* ── features ── */
+    .br-feats { padding: clamp(3rem,6vw,5rem) clamp(1rem,4vw,3rem); }
+    .br-feat-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.2rem; max-width: 1100px; margin: 0 auto; }
+    .br-feat { border: 1px solid var(--br-line); background: var(--br-panel); padding: 1.5rem; transition: border-color .15s, box-shadow .15s; }
+    .br-feat:hover { border-color: var(--br-green-dim); box-shadow: 0 0 30px rgba(0,255,65,0.08); }
+    .br-feat .n { color: var(--br-green-dim); font-size: 0.72rem; letter-spacing: 0.2em; }
+    .br-feat h4 { margin: 0.5rem 0 0.5rem; color: #eaffef; font-size: 1.05rem; }
+    .br-feat p { margin: 0; color: var(--br-muted); font-size: 0.85rem; }
+
+    /* ── live shot ── */
+    .br-live { padding: clamp(3rem,6vw,5rem) clamp(1rem,4vw,3rem); }
+    .br-live figure { max-width: 1000px; margin: 0 auto; }
+    .br-live img { border: 1px solid var(--br-line); box-shadow: 0 0 60px rgba(0,255,65,0.1); }
+    .br-live figcaption { color: var(--br-muted); font-size: 0.8rem; margin-top: 0.8rem; letter-spacing: 0.04em; }
+
+    /* ── CTA + footer ── */
+    .br-cta { padding: clamp(3rem,6vw,5rem) clamp(1rem,4vw,3rem); text-align: center; }
+    .br-cta h2 { color: #eaffef; font-size: clamp(1.7rem,3.6vw,2.6rem); margin: 0 0 0.6rem; }
+    .br-cta p { color: var(--br-muted); margin: 0 0 2rem; }
+    .br-footer {
+      border-top: 1px solid var(--br-line); padding: 2rem clamp(1rem,4vw,3rem);
+      display: flex; justify-content: space-between; gap: 1rem; flex-wrap: wrap;
+      font-size: 0.78rem; color: var(--br-muted); background: rgba(4,7,10,0.6);
+    }
+    .br-footer a:hover { color: var(--br-green); }
+    .br-footer .fl { display: flex; gap: 1.2rem; flex-wrap: wrap; }
+    .br-oss { text-align: center; color: var(--br-muted); font-size: 0.82rem; padding: 0 clamp(1rem,4vw,3rem) 3rem; }
+    .br-oss a { color: var(--br-green); }
+
+    @media (max-width: 860px) {
+      .br-hero { grid-template-columns: 1fr; min-height: auto; }
+      .br-team-grid, .br-feat-grid, .br-figrow { grid-template-columns: 1fr; }
+      .br-nav-links { display: none; }
+    }
+  </style>
+</head>
+<body>
+  <div class="br-rain" id="br-rain" aria-hidden="true"></div>
+  <div class="br-scan" aria-hidden="true"></div>
+  <div class="br-vignette" aria-hidden="true"></div>
+
+  <div class="br-wrap">
+    <nav class="br-nav" data-section="nav">
+      <a href="index.html" class="br-nav-logo"><span class="dot"></span> MULTIVERSE&nbsp;STUDIOS</a>
+      <ul class="br-nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="index.html#games">Games</a></li>
+        <li><a href="wiki/index.html">Wiki</a></li>
+        <li><a href="devlog.html">Devlog</a></li>
+        <li><a href="community.html">Community</a></li>
+      </ul>
+      <a href="https://play.multiversestudios.xyz/breach/" class="br-play" data-umami-event="cta-nav-play-breach">JOIN THE NET</a>
+    </nav>
+
+    <!-- HERO -->
+    <section class="br-hero" data-section="hero">
+      <div class="br-hero-text">
+        <p class="br-kicker">massively multiplayer hacking sim</p>
+        <h1 class="br-title">BREACH<span class="mm">MMO</span></h1>
+        <p class="br-sub">Two teams. One living network. The <span class="r">red team</span> tries to break in. The <span class="b">blue team</span> tries to keep them out. And the system between them — firewalls, intrusion monitors, dead-end traps — starts thinking for itself.</p>
+        <p class="br-tagline">Cooperative intrusion &middot; emergent security AI &middot; faction territory &middot; a CTF campaign &middot; free in your browser</p>
+        <div class="br-actions">
+          <a href="https://play.multiversestudios.xyz/breach/" class="br-btn" data-umami-event="cta-play-breach-hero">ENTER THE NET &rarr;</a>
+          <a href="#support" class="br-btn ghost" data-umami-event="support-breach-hero">SUPPORT THE STUDIO</a>
+        </div>
+        <div class="br-cta-row">
+          <span class="br-play" style="padding:0.4rem 0.9rem;font-size:0.72rem;cursor:default;">v2.9.5 &middot; LIVE</span>
+        </div>
+      </div>
+
+      <div class="br-term" aria-hidden="true">
+        <div class="br-term-bar">
+          <span class="sq" style="background:var(--br-red)"></span>
+          <span class="sq" style="background:var(--br-amber)"></span>
+          <span class="sq" style="background:var(--br-green)"></span>
+          <span style="margin-left:auto;">breach://sector/0x7A</span>
+        </div>
+        <div class="br-term-body">
+          <div class="br-term-line dim">&gt; whoami</div>
+          <div class="br-term-line">you &middot; unaffiliated &middot; <span class="warn">pick a side</span></div>
+          <div class="br-term-line dim">&gt; join red_team</div>
+          <div class="br-term-line red">&gt;&gt; connect... EXPLOIT &middot; INFILTRATE &middot; DOMINATE</div>
+          <div class="br-term-line dim">&gt; join blue_team</div>
+          <div class="br-term-line blue">&gt;&gt; connect... DETECT &middot; DEFEND &middot; REMEDIATE</div>
+          <div class="br-term-line dim">&gt; status network</div>
+          <div class="br-term-line"><span class="ok">[ OK ]</span> perimeter &middot; <span class="ok">[ OK ]</span> core &middot; <span class="warn">[ MONITOR ]</span> west wing</div>
+          <div class="br-term-line warn">&gt; ! the firewall just added a new rule. you didn't write it.</div>
+          <div class="br-term-line red">&gt; ! the firewall just added another one.</div>
+          <div class="br-term-line dim">&gt; _ <span class="br-cursor"></span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TEAM SPLIT -->
+    <section class="br-teams reveal" data-section="teams">
+      <div class="br-section-head">
+        <p class="br-kicker">pick a side</p>
+        <h2>Attack. Defend. Or watch the middle decide.</h2>
+        <p>There's an affinity quiz if you can't decide — but the network doesn't care which one you are. It just has a budget, a wall, and a grudge.</p>
+      </div>
+      <div class="br-team-grid">
+        <div class="br-team red">
+          <span class="badge">RED TEAM</span>
+          <h3>Exploit &middot; Infiltrate &middot; Dominate</h3>
+          <p class="motto">You come in through the cracks.</p>
+          <ul>
+            <li>Deploy SQL injection, port scans, password spray</li>
+            <li>Chain exploits across a live, multi-player network</li>
+            <li>Reach the core. Hold it. Make it yours</li>
+            <li>Real CVE intel feeds the challenge set</li>
+          </ul>
+        </div>
+        <div class="br-team blue">
+          <span class="badge">BLUE TEAM</span>
+          <h3>Detect &middot; Defend &middot; Remediate</h3>
+          <p class="motto">You're the reason they can't.</p>
+          <ul>
+            <li>Stand up network defense, WAF and IDS panels</li>
+            <li>Read the SIEM, track the attacker, cut them off</li>
+            <li>Remediate before the next wave hits</li>
+            <li>Security-event monitor, cert-readiness tracker</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- THE NETWORK -->
+    <section class="br-network reveal" data-section="network">
+      <div class="br-net-card">
+        <p class="br-kicker">the third player</p>
+        <h2>The network fights back.</h2>
+        <p>This isn't a static map with a scoreboard. Security systems are <span class="hi">emergent</span> — they watch what the red team does, adapt their rules, and start setting traps of their own. A door you breached last match may be sealed this one. A patch you thought held may be the one that's watching you.</p>
+        <p>So the question isn't just "can you break in?" It's "what counts as trespassing when the doors think for themselves?"</p>
+        <div class="br-figrow">
+          <img src="keyart/breach-detail.jpg" alt="A glowing firewall barrier of hexagonal code plates, cracked in the middle with red light bleeding through, in a dark server room">
+          <div>
+            <p class="br-kicker" style="margin-bottom:0.5rem;">the lair</p>
+            <p style="color:var(--br-text);font-size:0.88rem;margin:0 0 0.8rem;">Upgrade your hub, spend compute budget, and grow your faction's footprint on the live territory map.</p>
+            <p class="br-kicker" style="margin-bottom:0.5rem;">the campaign</p>
+            <p style="color:var(--br-text);font-size:0.88rem;margin:0;">A 23-challenge CTF path with real writeups — learn the craft while you learn the net.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FEATURES -->
+    <section class="br-feats reveal" data-section="features">
+      <div class="br-section-head">
+        <p class="br-kicker">what's in the net</p>
+        <h2>Built for the craft.</h2>
+      </div>
+      <div class="br-feat-grid">
+        <div class="br-feat"><span class="n">01</span><h4>Red / Blue Matchmaking</h4><p>Jump into a running match on either side. Not sure which? Take the affinity quiz — it just suggests a start, it doesn't lock you in.</p></div>
+        <div class="br-feat"><span class="n">02</span><h4>CVE Intel</h4><p>Challenges are seeded from real, sanitized CVE data. The exploit you're chaining today was a real bug.</p></div>
+        <div class="br-feat"><span class="n">03</span><h4>CTF Campaign</h4><p>A 23-challenge path from first scan to full compromise, with writeups. Single-player, at your own pace.</p></div>
+        <div class="br-feat"><span class="n">04</span><h4>Faction Territory</h4><p>A live map of what each side holds. Push, hold, reclaim. The net remembers who owned what, where.</p></div>
+        <div class="br-feat"><span class="n">05</span><h4>The Lair</h4><p>Build and upgrade your hub. Compute budget is a resource — spend it on tools, defenses, or blind spots you leave in the wall.</p></div>
+        <div class="br-feat"><span class="n">06</span><h4>Emergent Security</h4><p>The defense layer adapts to your behavior. Every match's net is shaped by everything that came before it.</p></div>
+      </div>
+    </section>
+
+    <!-- LIVE SHOT -->
+    <section class="br-live reveal" data-section="live">
+      <div class="br-section-head">
+        <p class="br-kicker">see it running</p>
+        <h2>The front door.</h2>
+      </div>
+      <figure>
+        <a href="screenshots/breach-2026-09-join.png" target="_blank" rel="noopener">
+          <img src="screenshots/breach-2026-09-join.png" alt="BREACH.MMO live join screen: the green BREACH logo over a black terminal, with Join Red Team and Join Blue Team panels and a controls legend" loading="lazy">
+        </a>
+        <figcaption>Live from the running v2.9.5 build. Pick a side, read the controls, and you're on the net in under a minute. Free to play — pay what you want.</figcaption>
+      </figure>
+    </section>
+
+    <!-- CTA -->
+    <section class="br-cta reveal" id="support" data-section="footer_cta">
+      <h2>Ready to break in?</h2>
+      <p>No download. No account wall to climb first. Just a net, a wall, and a grudge.</p>
+      <div class="br-actions" style="justify-content:center;">
+        <a href="https://play.multiversestudios.xyz/breach/" class="br-btn" data-umami-event="cta-play-breach-bottom">ENTER THE NET &rarr;</a>
+        <a href="index.html#buy" class="br-btn ghost" data-umami-event="support-breach-bottom">SUPPORT $1+</a>
+      </div>
+    </section>
+
+    <p class="br-oss">BREACH.MMO is a research project of <a href="https://themultiverse.school" target="_blank" rel="noopener">The Multiverse School</a>. Open source, pay what you can. The net is the same regardless.</p>
+
+    <footer class="br-footer">
+      <span>&copy; 2026 Multiverse Studios &middot; Built by AI agents, guided by <a href="https://lizthe.dev" target="_blank" rel="noopener">Liz Howard</a>.</span>
+      <span class="fl">
+        <a href="index.html">Home</a>
+        <a href="wiki/index.html">Wiki</a>
+        <a href="devlog.html">Devlog</a>
+        <a href="community.html">Community</a>
+        <a href="about.html">About</a>
+      </span>
+    </footer>
+  </div>
+
+  <script>
+    // code rain
+    (function () {
+      var c = document.getElementById('br-rain');
+      if (!c) return;
+      var glyphs = '01<>[]{}/\\=+*#@$%&|:;~^'.split('');
+      var cols = Math.max(14, Math.floor(window.innerWidth / 34));
+      for (var i = 0; i < cols; i++) {
+        var s = document.createElement('span');
+        var h = 24 + Math.floor(Math.random() * 40);
+        var txt = '';
+        for (var j = 0; j < h; j++) txt += glyphs[Math.floor(Math.random() * glyphs.length)] + '\n';
+        s.textContent = txt;
+        s.style.left = (i / cols * 100 + Math.random() * 2) + '%';
+        s.style.animationDuration = (7 + Math.random() * 11) + 's';
+        s.style.animationDelay = (-Math.random() * 14) + 's';
+        s.style.fontSize = (11 + Math.random() * 6) + 'px';
+        c.appendChild(s);
+      }
+    })();
+  </script>
+  <script src="main.js?v=2"></script>
+  <script defer src="/umami-link-fix.js?v=2"></script>
+  <script>(function(){var s=document.createElement("script");s.defer=true;s.src=(location.hostname.endsWith("multiversestudios.xyz")?"https://analytics.multiversestudios.xyz":"https://analytics.multiversegames.ai")+"/script.js";s.setAttribute("data-website-id","38d680a7-28d1-42fd-9fd5-a66702675b88");document.head.appendChild(s);})();</script>
+</body>
+</html>

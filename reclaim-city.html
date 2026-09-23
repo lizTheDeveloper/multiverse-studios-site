@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Reclaim City — Your Data. Your City. Take It Back.</title>
+  <meta name="description" content="Reclaim City is a cyberpunk privacy game where you scout districts, shut down surveillance, and reclaim your city block by block. No account needed. No data collected. Obviously. Free in your browser.">
+  <meta property="og:title" content="Reclaim City — The city is holding your data.">
+  <meta property="og:description" content="A cyberpunk privacy game. Scout districts, shut down surveillance, and reclaim your city block by block. No account. No data collected. Obviously.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://multiversestudios.xyz/reclaim-city.html">
+  <meta property="og:image" content="https://multiversestudios.xyz/keyart/reclaim-hero.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Reclaim City — Your data. Your city.">
+  <meta name="twitter:description" content="Shut down the surveillance. Reclaim the city block by block. No account. No data collected.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300;12..96,400;12..96,600;12..96,800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+  <link rel="icon" type="image/svg+xml" href="press-kit/logos/multiverse-studios-favicon.svg">
+  <style>
+    /* ── Reclaim City: cinematic neon-noir, editorial identity ──
+       Full-bleed photographic hero, warm amber + cyan, big expressive type.
+       The "film still" feel — the opposite of a dashboard. */
+    :root {
+      --rc-bg: #05070c;
+      --rc-bg-2: #080c14;
+      --rc-panel: #0b1019;
+      --rc-line: rgba(120,190,220,0.14);
+      --rc-cyan: #25e0d0;
+      --rc-cyan-dim: #1a9c93;
+      --rc-amber: #ffb43a;
+      --rc-amber-dim: #b97e2a;
+      --rc-magenta: #ff4d6d;
+      --rc-text: #e9edf3;
+      --rc-muted: #93a1b3;
+      --rc-serif: 'Bricolage Grotesque', system-ui, sans-serif;
+      --rc-body: 'Inter', system-ui, sans-serif;
+      --rc-mono: 'JetBrains Mono', ui-monospace, monospace;
+    }
+    * { box-sizing: border-box; }
+    body { margin: 0; background: var(--rc-bg); color: var(--rc-text); font-family: var(--rc-body); line-height: 1.7; overflow-x: hidden; }
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
+
+    .rc-nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 50;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1rem clamp(1rem,4vw,3rem);
+      background: linear-gradient(180deg, rgba(5,7,12,0.75), rgba(5,7,12,0));
+      transition: background .3s;
+    }
+    .rc-nav-logo { font-family: var(--rc-serif); font-weight: 800; font-size: 1rem; letter-spacing: 0.02em; }
+    .rc-nav-logo span { color: var(--rc-cyan); }
+    .rc-nav-links { display: flex; gap: 1.5rem; font-size: 0.85rem; }
+    .rc-nav-links a { color: var(--rc-muted); transition: color .15s; }
+    .rc-nav-links a:hover { color: var(--rc-cyan); }
+    .rc-play {
+      font-family: var(--rc-body); font-weight: 600; font-size: 0.85rem;
+      border: 1px solid var(--rc-amber); color: var(--rc-amber);
+      padding: 0.5rem 1.2rem; transition: all .15s;
+    }
+    .rc-play:hover { background: var(--rc-amber); color: #140d02; box-shadow: 0 0 26px rgba(255,180,58,0.4); }
+
+    /* full-bleed cinematic hero */
+    .rc-hero {
+      position: relative; min-height: 100svh;
+      display: flex; align-items: flex-end;
+    }
+    .rc-hero-img {
+      position: absolute; inset: 0;
+      background: url('keyart/reclaim-hero.jpg') center 62% / cover no-repeat;
+      transform: scale(1.04);
+    }
+    .rc-hero-img::after {
+      content: ''; position: absolute; inset: 0;
+      background:
+        linear-gradient(180deg, rgba(5,7,12,0.5) 0%, rgba(5,7,12,0.05) 35%, rgba(5,7,12,0.72) 82%, var(--rc-bg) 100%),
+        radial-gradient(ellipse 70% 55% at 50% 78%, rgba(5,7,12,0.35), transparent 70%);
+    }
+    .rc-hero-inner {
+      position: relative; z-index: 2; width: 100%;
+      padding: 0 clamp(1rem,4vw,3rem) clamp(4rem,9vw,7rem);
+    }
+    .rc-hero-over {
+      font-family: var(--rc-mono); font-size: 0.72rem; letter-spacing: 0.34em;
+      color: var(--rc-cyan); text-transform: uppercase; margin: 0 0 1rem;
+    }
+    .rc-hero h1 {
+      font-family: var(--rc-serif); font-weight: 800; letter-spacing: -0.025em;
+      font-size: clamp(3rem, 9.5vw, 7.5rem); line-height: 0.95; margin: 0;
+      max-width: 12ch; text-shadow: 0 4px 50px rgba(0,0,0,0.6);
+    }
+    .rc-hero h1 em { font-style: normal; color: var(--rc-amber); }
+    .rc-hero-sub {
+      font-size: clamp(1.05rem,2vw,1.4rem); color: var(--rc-text);
+      max-width: 52ch; margin: 1.4rem 0 0; text-shadow: 0 2px 24px rgba(0,0,0,0.7);
+    }
+    .rc-hero-sub .c { color: var(--rc-cyan); font-weight: 600; }
+    .rc-hero-actions { display: flex; gap: 1rem; margin-top: 2.2rem; flex-wrap: wrap; align-items: center; }
+    .rc-btn {
+      font-family: var(--rc-body); font-weight: 600; font-size: 1rem;
+      padding: 1rem 2.2rem; transition: all .15s; display: inline-block;
+    }
+    .rc-btn.primary { background: var(--rc-amber); color: #140d02; }
+    .rc-btn.primary:hover { background: #ffc25e; box-shadow: 0 0 40px rgba(255,180,58,0.45); transform: translateY(-1px); }
+    .rc-btn.ghost { border: 1px solid rgba(233,237,243,0.4); color: var(--rc-text); backdrop-filter: blur(4px); }
+    .rc-btn.ghost:hover { border-color: var(--rc-cyan); color: var(--rc-cyan); }
+    .rc-hero-note { font-family: var(--rc-mono); font-size: 0.75rem; color: var(--rc-muted); letter-spacing: 0.05em; }
+
+    .rc-scroll {
+      position: absolute; bottom: 1.4rem; left: 50%; transform: translateX(-50%); z-index: 3;
+      font-family: var(--rc-mono); font-size: 0.65rem; letter-spacing: 0.3em; color: var(--rc-muted);
+      text-transform: uppercase; animation: rc-float 2.6s ease-in-out infinite;
+    }
+    @keyframes rc-float { 0%,100%{ transform: translate(-50%,0); opacity:.55 } 50%{ transform: translate(-50%,8px); opacity:1 } }
+
+    /* sections */
+    .rc-sec { padding: clamp(3.5rem,7vw,6rem) clamp(1rem,4vw,3rem); position: relative; }
+    .rc-sec-inner { max-width: 1080px; margin: 0 auto; }
+    .rc-kicker { font-family: var(--rc-mono); font-size: 0.72rem; letter-spacing: 0.3em; color: var(--rc-cyan); text-transform: uppercase; margin: 0 0 0.9rem; }
+    .rc-h2 { font-family: var(--rc-serif); font-weight: 800; letter-spacing: -0.02em; font-size: clamp(2rem,4.6vw,3.4rem); line-height: 1.05; margin: 0 0 1.2rem; }
+    .rc-h2 .c { color: var(--rc-cyan); }
+    .rc-h2 .a { color: var(--rc-amber); }
+    .rc-lead { font-size: clamp(1.05rem,1.8vw,1.3rem); color: var(--rc-muted); max-width: 60ch; margin: 0 0 1rem; }
+    .rc-lead strong { color: var(--rc-text); font-weight: 600; }
+
+    /* the premise — big statement */
+    .rc-premise { background: var(--rc-bg-2); border-top: 1px solid var(--rc-line); border-bottom: 1px solid var(--rc-line); }
+    .rc-premise .rc-sec-inner { max-width: 900px; }
+    .rc-quote {
+      font-family: var(--rc-serif); font-weight: 300; font-size: clamp(1.6rem,3.6vw,2.6rem);
+      line-height: 1.3; color: var(--rc-text); margin: 1.5rem 0 0;
+    }
+    .rc-quote em { font-style: italic; color: var(--rc-amber); }
+
+    /* how it plays — alternating rows */
+    .rc-row { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(1.5rem,4vw,4rem); align-items: center; margin-top: 3rem; }
+    .rc-row.rev .rc-row-text { order: 2; }
+    .rc-row h3 { font-family: var(--rc-serif); font-weight: 600; font-size: clamp(1.4rem,2.6vw,1.9rem); margin: 0 0 0.8rem; }
+    .rc-row p { color: var(--rc-muted); margin: 0 0 1rem; font-size: 1.02rem; }
+    .rc-row p .c { color: var(--rc-cyan); }
+    .rc-row-num { font-family: var(--rc-mono); font-size: 0.72rem; letter-spacing: 0.25em; color: var(--rc-amber-dim); margin-bottom: 0.6rem; display: block; }
+    .rc-row-img { border: 1px solid var(--rc-line); position: relative; overflow: hidden; }
+    .rc-row-img img { transition: transform .5s; }
+    .rc-row-img:hover img { transform: scale(1.03); }
+    .rc-row-img .tag {
+      position: absolute; bottom: 0.8rem; left: 0.8rem;
+      font-family: var(--rc-mono); font-size: 0.68rem; letter-spacing: 0.15em;
+      color: var(--rc-cyan); background: rgba(5,7,12,0.7); padding: 0.3rem 0.7rem;
+      border: 1px solid var(--rc-line); backdrop-filter: blur(4px);
+    }
+
+    /* the city stats strip */
+    .rc-stats { display: grid; grid-template-columns: repeat(4,1fr); gap: 1px; background: var(--rc-line); border: 1px solid var(--rc-line); margin-top: 3rem; }
+    .rc-stat { background: var(--rc-panel); padding: 1.6rem 1.4rem; text-align: center; }
+    .rc-stat .v { font-family: var(--rc-serif); font-weight: 800; font-size: clamp(1.8rem,4vw,2.6rem); color: var(--rc-amber); line-height: 1; }
+    .rc-stat .k { font-family: var(--rc-mono); font-size: 0.68rem; letter-spacing: 0.18em; color: var(--rc-muted); text-transform: uppercase; margin-top: 0.5rem; }
+
+    /* no-account callout */
+    .rc-noacct { background: linear-gradient(180deg, transparent, rgba(37,224,208,0.05), transparent); }
+    .rc-noacct .rc-sec-inner { max-width: 820px; text-align: center; }
+    .rc-noacct .rc-h2 { margin-left: auto; margin-right: auto; }
+    .rc-noacct p { max-width: 56ch; margin-left: auto; margin-right: auto; }
+    .rc-noacct .rc-chips { display: flex; gap: 0.8rem; justify-content: center; flex-wrap: wrap; margin-top: 2rem; }
+    .rc-chip { font-family: var(--rc-mono); font-size: 0.78rem; letter-spacing: 0.08em; color: var(--rc-cyan); border: 1px solid var(--rc-line); padding: 0.5rem 1.1rem; background: rgba(11,16,25,0.6); }
+
+    /* live shot */
+    .rc-live figure { max-width: 1000px; margin: 0 auto; }
+    .rc-live img { border: 1px solid var(--rc-line); box-shadow: 0 24px 80px rgba(0,0,0,0.5); }
+    .rc-live figcaption { font-size: 0.85rem; color: var(--rc-muted); margin-top: 0.9rem; }
+
+    /* CTA */
+    .rc-cta { text-align: center; }
+    .rc-cta .rc-sec-inner { max-width: 760px; }
+    .rc-cta .rc-h2 { margin-bottom: 1.6rem; }
+
+    .rc-footer { border-top: 1px solid var(--rc-line); padding: 2rem clamp(1rem,4vw,3rem); display: flex; justify-content: space-between; gap: 1rem; flex-wrap: wrap; font-size: 0.82rem; color: var(--rc-muted); background: var(--rc-bg-2); }
+    .rc-footer .fl { display: flex; gap: 1.3rem; flex-wrap: wrap; }
+    .rc-footer a:hover { color: var(--rc-cyan); }
+    .rc-oss { text-align: center; color: var(--rc-muted); font-size: 0.85rem; padding: 0 clamp(1rem,4vw,3rem) 3rem; }
+    .rc-oss a { color: var(--rc-cyan); }
+
+    @media (max-width: 820px) {
+      .rc-row { grid-template-columns: 1fr; }
+      .rc-row.rev .rc-row-text { order: 0; }
+      .rc-stats { grid-template-columns: 1fr 1fr; }
+      .rc-nav-links { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="rc-nav" data-section="nav">
+    <a href="index.html" class="rc-nav-logo">MULTIVERSE<span>/</span>STUDIOS</a>
+    <div class="rc-nav-links">
+      <a href="index.html">Home</a>
+      <a href="index.html#games">Games</a>
+      <a href="wiki/index.html">Wiki</a>
+      <a href="devlog.html">Devlog</a>
+      <a href="community.html">Community</a>
+    </div>
+    <a href="https://play.multiversegames.ai/reclaim-city/" class="rc-play" data-umami-event="cta-nav-play-reclaim">PLAY FREE</a>
+  </nav>
+
+  <!-- CINEMATIC HERO -->
+  <section class="rc-hero" data-section="hero">
+    <div class="rc-hero-img" aria-hidden="true"></div>
+    <div class="rc-hero-inner">
+      <p class="rc-hero-over">a cyberpunk privacy game &middot; v1.0.0</p>
+      <h1>The city is holding<br><em>your data.</em></h1>
+      <p class="rc-hero-sub">Every building in this city is a server, and every server is holding something that belongs to you. <span class="c">Scout the districts. Shut down the surveillance. Reclaim the city block by block.</span> Until there's nothing left to take.</p>
+      <div class="rc-hero-actions">
+        <a href="https://play.multiversegames.ai/reclaim-city/" class="rc-btn primary" data-umami-event="cta-play-reclaim-hero">PLAY NOW &mdash; FREE</a>
+        <a href="#support" class="rc-btn ghost" data-umami-event="support-reclaim-hero">SUPPORT THE STUDIO</a>
+        <span class="rc-hero-note">no account &middot; no download &middot; runs in your browser</span>
+      </div>
+    </div>
+    <span class="rc-scroll">scroll</span>
+  </section>
+
+  <!-- PREMISE -->
+  <section class="rc-sec rc-premise reveal" data-section="premise">
+    <div class="rc-sec-inner">
+      <p class="rc-kicker">the premise</p>
+      <p class="rc-lead">It sounds like a privacy lecture. It plays like a heist.</p>
+      <p class="rc-quote">Your data is the most valuable thing in the city. <em>It's just not yours.</em> Reclaim City is about taking it back &mdash; district by district, server by server &mdash; while the city's surveillance keeps you one step behind.</p>
+    </div>
+  </section>
+
+  <!-- HOW IT PLAYS -->
+  <section class="rc-sec reveal" data-section="how">
+    <div class="rc-sec-inner">
+      <p class="rc-kicker">how it plays</p>
+      <h2 class="rc-h2">Thirteen districts. One map. <span class="c">All of it occupied.</span></h2>
+      <p class="rc-lead">You start where everything connects: your email. The <strong>Master Keys</strong> district. Everything else in the city builds on it.</p>
+
+      <div class="rc-row">
+        <div class="rc-row-text">
+          <span class="rc-row-num">01 / scout</span>
+          <h3>Every district is a server.</h3>
+          <p>Capitol, Marketplace, Archives, Vault, Perimeter &mdash; each of the thirteen districts runs its own missions, its own integrity, its own share of your data. You scout before you move, and you move where it counts.</p>
+          <p>The map is live. Districts are <span class="c">occupied</span> until you clear their missions, and the city watches which way you go.</p>
+        </div>
+        <div class="rc-row-img">
+          <img src="screenshots/reclaim-city-2026-09-map.png" alt="Reclaim City live sector map: a 13-district city grid of dark isometric buildings, with district panels (Reclamation, Capitol, Archives, Vault, Marketplace, Perimeter, Square, Master Keys) each showing missions and integrity" loading="lazy">
+          <span class="tag">SECTOR MAP // LIVE</span>
+        </div>
+      </div>
+
+      <div class="rc-row rev">
+        <div class="rc-row-text">
+          <span class="rc-row-num">02 / the loop</span>
+          <h3>Shut down the surveillance.</h3>
+          <p>Data-privacy missions are the unit of play: trace a leak, scrub an archive, take a watcher offline. Each one nudges a district's integrity back toward yours and your <span class="c">exposure</span> down toward zero.</p>
+          <p>Three numbers run the whole game &mdash; integrity, exposure, and streak &mdash; and every mission moves at least one of them.</p>
+        </div>
+        <div class="rc-row-img">
+          <img src="keyart/reclaim-detail.jpg" alt="A hand-sized glowing cyan data shard floating over a gloved hand on a dark rainy cyberpunk street, light particles trailing, teal and cyan palette" loading="lazy">
+          <span class="tag">A SHARD OF YOUR DATA</span>
+        </div>
+      </div>
+
+      <div class="rc-row">
+        <div class="rc-row-text">
+          <span class="rc-row-num">03 / the promise</span>
+          <h3>The game that practices what it preaches.</h3>
+          <p>A privacy game should not need your data to play. Reclaim City runs entirely in your browser. <span class="c">No account. No data collected. Obviously.</span> The whole pitch is the point: a city you can reclaim without surrendering yourself to reclaim it.</p>
+        </div>
+        <div class="rc-row-img">
+          <img src="keyart/reclaim-hero.jpg" alt="A rain-soaked cyberpunk street at night, a lone hooded figure holding a glowing data shard, surveillance drones in the fog, neon signs reflecting on wet pavement" loading="lazy">
+          <span class="tag">THE CITY, BEFORE YOU</span>
+        </div>
+      </div>
+
+      <div class="rc-stats">
+        <div class="rc-stat"><div class="v">13</div><div class="k">districts</div></div>
+        <div class="rc-stat"><div class="v">3</div><div class="k">core stats</div></div>
+        <div class="rc-stat"><div class="v">0</div><div class="k">accounts required</div></div>
+        <div class="rc-stat"><div class="v">100%</div><div class="k">in your browser</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- NO ACCOUNT -->
+  <section class="rc-sec rc-noacct reveal" data-section="noacct">
+    <div class="rc-sec-inner">
+      <p class="rc-kicker">the fine print (there is none)</p>
+      <h2 class="rc-h2">No account. No data. <span class="a">Obviously.</span></h2>
+      <p>Most games ask for an email before you can see what they're about. This one is a game about taking back the data a city holds on you &mdash; so it doesn't hold any of yours. What you reclaim stays on your machine, the way it should.</p>
+      <div class="rc-chips">
+        <span class="rc-chip">no sign-up</span>
+        <span class="rc-chip">no trackers</span>
+        <span class="rc-chip">no phone-home</span>
+        <span class="rc-chip">local saves only</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="rc-sec rc-cta reveal" id="support" data-section="footer_cta">
+    <div class="rc-sec-inner">
+      <h2 class="rc-h2">Take the city back.</h2>
+      <p class="rc-lead" style="margin:0 auto 2rem;">Free to play. No download. No account. Just a city that's been holding your data, and a very reasonable person who's had enough.</p>
+      <div class="rc-hero-actions" style="justify-content:center;">
+        <a href="https://play.multiversegames.ai/reclaim-city/" class="rc-btn primary" data-umami-event="cta-play-reclaim-bottom">PLAY NOW &mdash; FREE</a>
+        <a href="index.html#buy" class="rc-btn ghost" data-umami-event="support-reclaim-bottom">SUPPORT $1+</a>
+      </div>
+    </div>
+  </section>
+
+  <p class="rc-oss">Reclaim City is a research project of <a href="https://themultiverse.school" target="_blank" rel="noopener">The Multiverse School</a>. Open source, pay what you can.</p>
+
+  <footer class="rc-footer">
+    <span>&copy; 2026 Multiverse Studios &middot; Built by AI agents, guided by <a href="https://lizthe.dev" target="_blank" rel="noopener">Liz Howard</a>.</span>
+    <span class="fl">
+      <a href="index.html">Home</a>
+      <a href="wiki/index.html">Wiki</a>
+      <a href="devlog.html">Devlog</a>
+      <a href="community.html">Community</a>
+      <a href="about.html">About</a>
+    </span>
+  </footer>
+
+  <script src="main.js?v=2"></script>
+  <script defer src="/umami-link-fix.js?v=2"></script>
+  <script>(function(){var s=document.createElement("script");s.defer=true;s.src=(location.hostname.endsWith("multiversestudios.xyz")?"https://analytics.multiversestudios.xyz":"https://analytics.multiversegames.ai")+"/script.js";s.setAttribute("data-website-id","38d680a7-28d1-42fd-9fd5-a66702675b88");document.head.appendChild(s);})();</script>
+</body>
+</html>
