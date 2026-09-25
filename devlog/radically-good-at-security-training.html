@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Radically Good at Security Training — Multiverse Studios Devlog</title>
+  <meta name="description" content="In 18 days, 9,272 people played Reclaim City and completed 18,296 real security actions on their real accounts. Here is what they did.">
+  <meta property="og:title" content="Radically Good at Security Training">
+  <meta property="og:description" content="In 18 days, 9,272 people played Reclaim City and completed 18,296 real security actions on their real accounts. Here is what they did.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://multiversestudios.xyz/devlog/radically-good-at-security-training.html">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Radically Good at Security Training">
+  <meta name="twitter:description" content="18,296 real security actions. 4,847 breaches found. 1,446 accounts locked down with 2FA. Not a quiz. Real accounts.">
+  <link rel="stylesheet" href="../styles.css">
+  <link rel="icon" type="image/svg+xml" href="../press-kit/logos/multiverse-studios-favicon.svg">
+  <style>
+    .devlog-body {
+      max-width: 700px;
+      margin: 0 auto;
+    }
+    .devlog-body h1 {
+      font-size: clamp(1.6rem, 3.5vw, 2.5rem);
+      line-height: 1.2;
+      margin-bottom: 0.5rem;
+      color: var(--star-white);
+    }
+    .byline {
+      font-size: 0.8rem;
+      color: var(--dust);
+      font-family: var(--font-mono);
+      letter-spacing: 0.05em;
+      margin-bottom: var(--space-xl);
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+    .byline .tag {
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.2rem 0.6rem;
+      border-radius: 4px;
+      border: 1px solid var(--signal);
+      color: var(--signal);
+    }
+    .devlog-body h2 {
+      font-size: 1.2rem;
+      margin-top: var(--space-xxl);
+      margin-bottom: var(--space-md);
+      color: var(--star-white);
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 0.5rem;
+    }
+    .devlog-body p {
+      font-size: 1.05rem;
+      line-height: 1.85;
+      margin-bottom: 1.2rem;
+      color: var(--silver);
+    }
+    .devlog-body li {
+      font-size: 1rem;
+      line-height: 1.8;
+      margin-bottom: 0.5rem;
+      color: var(--silver);
+    }
+    .devlog-body ul, .devlog-body ol {
+      margin-left: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+    .callout {
+      border-left: 3px solid var(--signal);
+      padding: 1rem 1.5rem;
+      margin: var(--space-xl) 0;
+      background: var(--surface);
+    }
+    .callout p {
+      margin-bottom: 0;
+      font-size: 0.95rem;
+      font-style: italic;
+    }
+    .metric-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 1rem;
+      margin: var(--space-xl) 0;
+    }
+    .metric {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      padding: 1rem;
+      text-align: center;
+    }
+    .metric .number {
+      font-family: var(--font-mono);
+      font-size: 1.8rem;
+      color: var(--signal);
+      display: block;
+      margin-bottom: 0.25rem;
+    }
+    .metric .label {
+      font-size: 0.7rem;
+      font-family: var(--font-mono);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--dust);
+    }
+    .cta-block {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      padding: 1.5rem;
+      margin-top: var(--space-xxl);
+      text-align: center;
+    }
+    .cta-block h3 {
+      color: var(--star-white);
+      margin-bottom: 0.75rem;
+    }
+    .cta-block p {
+      font-size: 0.9rem;
+      margin-bottom: 1rem;
+    }
+    .cta-block a.btn {
+      display: inline-block;
+      background: var(--signal);
+      color: #000;
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      font-weight: 700;
+      text-transform: uppercase;
+      padding: 0.6rem 1.5rem;
+      text-decoration: none;
+      border-radius: 3px;
+      margin: 0.25rem;
+    }
+    .cta-block a.btn-outline {
+      display: inline-block;
+      border: 1px solid var(--silver);
+      color: var(--silver);
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.6rem 1.5rem;
+      text-decoration: none;
+      border-radius: 3px;
+      margin: 0.25rem;
+    }
+  </style>
+
+  <style>
+    /* Reclaim City stat cards: each one is sized to be a clean phone screenshot. */
+    .rc { --cyan:#00E5FF; --lime:#C6FF00; --pink:#FF2D9B; --amber:#FF9F00; }
+    .rc-card { position: relative; margin: 1.25rem 0; padding: 2.25rem 1.25rem 2rem; border-radius: 18px;
+      background: radial-gradient(120% 90% at 50% 0%, color-mix(in srgb, var(--c) 16%, transparent), rgba(9,11,16,0.96) 70%);
+      border: 1px solid color-mix(in srgb, var(--c) 45%, transparent);
+      box-shadow: 0 0 40px color-mix(in srgb, var(--c) 14%, transparent), inset 0 0 0 1px rgba(255,255,255,0.03);
+      text-align: center; overflow: hidden; }
+    .rc-card .kicker { font-family: var(--font-mono, monospace); font-size: 0.72rem; letter-spacing: 0.22em; text-transform: uppercase; color: color-mix(in srgb, var(--c) 80%, white); opacity: .85; }
+    .rc-card .big { display: block; font-family: var(--font-display, inherit); font-weight: 800; line-height: 0.95; margin: 0.9rem 0 0.6rem;
+      font-size: clamp(2.3rem, 10.5vw, 4.6rem); white-space: nowrap; color: var(--c); text-shadow: 0 0 28px color-mix(in srgb, var(--c) 45%, transparent); letter-spacing: -0.02em; }
+    .rc-card .what { font-size: clamp(1.05rem, 4.6vw, 1.3rem); line-height: 1.4; color: var(--star-white, #edeff3); max-width: 22ch; margin: 0 auto; }
+    .rc-card .sub { margin-top: 0.9rem; font-size: 0.9rem; line-height: 1.5; color: var(--dust-light, #aab); max-width: 30ch; margin-left: auto; margin-right: auto; }
+    .rc-card .tag-line { position: absolute; left: 0; right: 0; bottom: 0.55rem; font-family: var(--font-mono, monospace); font-size: 0.62rem; letter-spacing: 0.18em; color: rgba(237,239,243,0.35); }
+    .rc-row { display: grid; grid-template-columns: 1fr 1fr; gap: 0.9rem; }
+    .rc-row .rc-card { margin: 0; padding: 1.6rem 0.8rem 1.9rem; }
+    .rc-row .rc-card .big { font-size: clamp(2.2rem, 12vw, 3.4rem); }
+    .rc-row .rc-card .what { font-size: 0.95rem; }
+    .rc-hero { text-align:center; margin: 0.5rem 0 1.5rem; }
+    .rc-hero .eyebrow { font-family: var(--font-mono, monospace); letter-spacing: .25em; font-size: .72rem; color: var(--cyan); }
+    @media (max-width: 420px) { .rc-row { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+
+<div style="padding: var(--space-xl) var(--space-lg);">
+<div class="devlog-body rc">
+
+  <div class="rc-hero"><div class="eyebrow">RECLAIM CITY &middot; DAY 18</div></div>
+  <h1>Radically Good at Security Training</h1>
+  <div class="byline">
+    <span>September 24, 2026</span>
+    <span>Multiverse Studios</span>
+    <span class="tag" style="color: #00E5FF; border-color: #00E5FF;">Reclaim City</span>
+    <span class="tag" style="color: var(--signal); border-color: var(--signal);">By the Numbers</span>
+  </div>
+
+  <p>Security training usually means a video you half-watch and a quiz you click through. Reclaim City does it differently. Every mission is a real thing you do to a real account &mdash; check it for breaches, change the password, turn on two-factor, pull your data back from a broker &mdash; and each one you finish takes back a building in a city the data brokers own.</p>
+
+  <p>We launched it on September 7th. Eighteen days later, here&rsquo;s what players did.</p>
+
+  <div class="rc-card" style="--c: var(--cyan);">
+    <div class="kicker">Real-world security actions</div>
+    <span class="big">18,296</span>
+    <div class="what">things people actually did to protect their real accounts</div>
+    <div class="sub">Not quiz answers. Not badges. Breach checks, new passwords, two-factor, credit freezes and privacy settings &mdash; on the accounts they use every day.</div>
+    <div class="tag-line">RECLAIM CITY &middot; FIRST 18 DAYS</div>
+  </div>
+
+  <div class="rc-card" style="--c: var(--lime);">
+    <div class="kicker">Follow-through</div>
+    <span class="big">89%</span>
+    <div class="what">of missions people started, they finished</div>
+    <div class="sub">21,376 started. 18,987 finished. Most people who opened a real security task saw it through.</div>
+    <div class="tag-line">RECLAIM CITY &middot; FIRST 18 DAYS</div>
+  </div>
+
+  <h2>What people found</h2>
+
+  <div class="rc-card" style="--c: var(--pink);">
+    <div class="kicker">Breaches uncovered</div>
+    <span class="big">4,847</span>
+    <div class="what">times a player checked an account and found it in a real data breach</div>
+    <div class="sub">3,611 of those turned up three or more breaches on a single account. That&rsquo;s the moment the game stops being a game.</div>
+    <div class="tag-line">RECLAIM CITY &middot; FIRST 18 DAYS</div>
+  </div>
+
+  <h2>What people did about it</h2>
+
+  <div class="rc-row">
+    <div class="rc-card" style="--c: var(--cyan);">
+      <div class="kicker">Passwords</div>
+      <span class="big">1,616</span>
+      <div class="what">passwords changed</div>
+    </div>
+    <div class="rc-card" style="--c: var(--lime);">
+      <div class="kicker">Two-factor</div>
+      <span class="big">1,446</span>
+      <div class="what">accounts locked down with 2FA</div>
+    </div>
+    <div class="rc-card" style="--c: var(--amber);">
+      <div class="kicker">Privacy</div>
+      <span class="big">1,127</span>
+      <div class="what">privacy settings taken back</div>
+    </div>
+    <div class="rc-card" style="--c: var(--pink);">
+      <div class="kicker">Credit</div>
+      <span class="big">144</span>
+      <div class="what">credit freezes and locks</div>
+    </div>
+  </div>
+
+  <p style="margin-top: 1.5rem;">Plus 5,535 audits of who&rsquo;s logged into your accounts and from where &mdash; the check that catches the session you forgot about on a library computer.</p>
+
+  <div class="callout">
+    <p>Two-factor is the step security agencies tell everyone to take first, and the one almost nobody gets around to. Our players did it one thousand four hundred and forty-six times in eighteen days. Every one of those is an account that a leaked password alone can&rsquo;t open anymore.</p>
+  </div>
+
+  <h2>Who&rsquo;s playing</h2>
+
+  <div class="rc-row">
+    <div class="rc-card" style="--c: var(--cyan);">
+      <div class="kicker">Players</div>
+      <span class="big">9,272</span>
+      <div class="what">people in eighteen days</div>
+    </div>
+    <div class="rc-card" style="--c: var(--amber);">
+      <div class="kicker">Countries</div>
+      <span class="big">88</span>
+      <div class="what">countries and counting</div>
+    </div>
+    <div class="rc-card" style="--c: var(--lime);">
+      <div class="kicker">On phones</div>
+      <span class="big">75%</span>
+      <div class="what">played on a phone &mdash; the device their accounts actually live on</div>
+    </div>
+    <div class="rc-card" style="--c: var(--pink);">
+      <div class="kicker">Record</div>
+      <span class="big">98</span>
+      <div class="what">missions finished by one very secure person</div>
+    </div>
+  </div>
+
+  <h2>Why this matters</h2>
+
+  <p>Most people know they should turn on two-factor and freeze their credit. Knowing isn&rsquo;t the problem. Getting around to it is. Reclaim City turns each of those chores into a building you take back, and it&rsquo;s honest about why it matters: the accounts are yours, and the breaches are real.</p>
+
+  <p>Eighteen thousand actions is eighteen thousand fewer open doors. Every password changed after a breach is one a scammer can&rsquo;t reuse. Every credit freeze is a loan that can&rsquo;t be opened in someone&rsquo;s name. None of it is flashy. All of it is real, and nobody had to sit through a slideshow to do it.</p>
+
+  <p>We think that&rsquo;s radical. We also think it&rsquo;s just good security training.</p>
+
+  <p style="margin-top: var(--space-xl); font-size: 0.9rem; color: var(--dust); font-style: italic;">&mdash; Multiverse Studios</p>
+
+  <p style="font-size: 0.8rem; color: var(--dust);">Numbers cover September 7 &ndash; 24, 2026, from Reclaim City&rsquo;s anonymous gameplay events on our own self-hosted analytics &mdash; no ad networks, no third parties, no accounts. Counts are actions, not people: someone who checked three accounts for breaches counts three times. We never see your passwords, your accounts or what you found beyond the answer you pick in the debrief. You can switch sharing off any time on the Your City screen.</p>
+
+  <div class="cta-block">
+    <h3>Take back your city</h3>
+    <p>Reclaim City is free, runs in your phone&rsquo;s browser, and needs no account.</p>
+    <a href="https://play.multiversegames.ai/reclaim-city/" class="btn">Play Now &rarr;</a>
+    <a href="/devlog.html" class="btn-outline">More devlogs</a>
+  </div>
+
+</div>
+</div>
+
+<script defer src="/umami-link-fix.js?v=2"></script>
+<script>(function(){var s=document.createElement("script");s.defer=true;s.src=(location.hostname.endsWith("multiversestudios.xyz")?"https://analytics.multiversestudios.xyz":"https://analytics.multiversegames.ai")+"/script.js";s.setAttribute("data-website-id","38d680a7-28d1-42fd-9fd5-a66702675b88");document.head.appendChild(s);})();</script>
+</body>
+</html>
