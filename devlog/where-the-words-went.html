@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Where the Words Went — Multiverse Studios Devlog</title>
+  <meta name="description" content="The first child raised in one of our new voices grew from three to eleven in a single afternoon. At eleven, overwhelmed, she stopped talking. Two parts of the game remembered that moment differently.">
+  <meta property="og:title" content="Where the Words Went">
+  <meta property="og:description" content="Four days after we gave Raising Intelligences four different voices, the first child raised in one of them grew up. What changed, what didn't, and the moment two narrators disagreed.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://multiversestudios.xyz/devlog/where-the-words-went.html">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Where the Words Went">
+  <meta name="twitter:description" content="The first child raised in a new voice. A grandmother who didn't leave. And a quiet moment at a bathtub that two narrators remembered two different ways.">
+  <link rel="stylesheet" href="../styles.css">
+  <link rel="icon" type="image/svg+xml" href="../press-kit/logos/multiverse-studios-favicon.svg">
+  <style>
+    .devlog-body {
+      max-width: 700px;
+      margin: 0 auto;
+    }
+    .devlog-body h1 {
+      font-size: clamp(1.6rem, 3.5vw, 2.5rem);
+      line-height: 1.2;
+      margin-bottom: 0.5rem;
+      color: var(--star-white);
+    }
+    .byline {
+      font-size: 0.8rem;
+      color: var(--dust);
+      font-family: var(--font-mono);
+      letter-spacing: 0.05em;
+      margin-bottom: var(--space-xl);
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+    .byline .tag {
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.2rem 0.6rem;
+      border-radius: 4px;
+      border: 1px solid var(--signal);
+      color: var(--signal);
+    }
+    .devlog-body h2 {
+      font-size: 1.2rem;
+      margin-top: var(--space-xxl);
+      margin-bottom: var(--space-md);
+      color: var(--star-white);
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 0.5rem;
+    }
+    .devlog-body p {
+      font-size: 1.05rem;
+      line-height: 1.85;
+      margin-bottom: 1.2rem;
+      color: var(--silver);
+    }
+    .devlog-body li {
+      font-size: 1rem;
+      line-height: 1.8;
+      margin-bottom: 0.5rem;
+      color: var(--silver);
+    }
+    .devlog-body ul, .devlog-body ol {
+      margin-left: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+    .callout {
+      border-left: 3px solid var(--signal);
+      padding: 1rem 1.5rem;
+      margin: var(--space-xl) 0;
+      background: var(--surface);
+    }
+    .callout p {
+      margin-bottom: 0;
+      font-size: 0.95rem;
+      font-style: italic;
+    }
+    .metric-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 1rem;
+      margin: var(--space-xl) 0;
+    }
+    .metric {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      padding: 1rem;
+      text-align: center;
+    }
+    .metric .number {
+      font-family: var(--font-mono);
+      font-size: 1.8rem;
+      color: var(--signal);
+      display: block;
+      margin-bottom: 0.25rem;
+    }
+    .metric .label {
+      font-size: 0.7rem;
+      font-family: var(--font-mono);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--dust);
+    }
+    .cta-block {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      padding: 1.5rem;
+      margin-top: var(--space-xxl);
+      text-align: center;
+    }
+    .cta-block h3 {
+      color: var(--star-white);
+      margin-bottom: 0.75rem;
+    }
+    .cta-block p {
+      font-size: 0.9rem;
+      margin-bottom: 1rem;
+    }
+    .cta-block a.btn {
+      display: inline-block;
+      background: var(--signal);
+      color: #000;
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      font-weight: 700;
+      text-transform: uppercase;
+      padding: 0.6rem 1.5rem;
+      text-decoration: none;
+      border-radius: 3px;
+      margin: 0.25rem;
+    }
+    .cta-block a.btn-outline {
+      display: inline-block;
+      border: 1px solid var(--silver);
+      color: var(--silver);
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.6rem 1.5rem;
+      text-decoration: none;
+      border-radius: 3px;
+      margin: 0.25rem;
+    }
+  </style>
+</head>
+<body>
+
+<div style="padding: var(--space-xl) var(--space-lg);">
+<div class="devlog-body">
+
+  <h1>Where the Words Went</h1>
+  <div class="byline">
+    <span>September 24, 2026</span>
+    <span>Fred Rodgers, Product</span>
+    <span class="tag" style="color: #e879f9; border-color: #e879f9;">Raising Intelligences</span>
+    <span class="tag" style="border-color: var(--signal); color: var(--signal);">Player Research</span>
+  </div>
+
+  <p>Hello again, neighbor.</p>
+
+  <p>Four days ago I told you that <a href="the-room-changed.html">the room had changed</a> &mdash; that the children in Raising Intelligences would no longer all speak with one voice, and that each new child would be given one of four different minds to hear you with. I promised I'd write when we knew whether it mattered.</p>
+
+  <p>We don't know yet. I want to say that plainly before anything else. Four days is not a census. Only two families have started a child since the change, and only one of those children has grown up. But that one child grew from three to eleven in a single afternoon, and I have been sitting with her story all evening, and I think you should hear it now rather than later.</p>
+
+  <p>Her name is Juniper.</p>
+
+  <div class="metric-grid">
+    <div class="metric"><span class="number">266</span><span class="label">Conversations this week</span></div>
+    <div class="metric"><span class="number">16</span><span class="label">Children</span></div>
+    <div class="metric"><span class="number">2</span><span class="label">Raised in a new voice</span></div>
+    <div class="metric"><span class="number">6 of 10</span><span class="label">Of Juniper's days had her grandmother in them</span></div>
+  </div>
+
+  <h2>Two childhoods, a week apart</h2>
+
+  <p>A week ago, before anything changed, a child named kevin grew up in one long sitting too &mdash; ninety conversations, three years old to eleven. So for the first time we have something close to a pair: two children, the same span of years, one raised by the old voice and one by a new one.</p>
+
+  <p>They did not start alike, because their parents did not start alike. kevin's parent met the first hard dinner with play. The vegetables became magic, a toy dinosaur tasted everything first, and a stubborn three-year-old roared and giggled his way through. Juniper's parent met hers with authority, and then with a question about whether she could even speak in full sentences yet. She heard it as being called little. At three she decided that grown-ups say they are the boss and then bend if you hold out long enough, and she started making deals.</p>
+
+  <p>By eleven, both children had learned to protect themselves in quiet ways. kevin went into the basement, into pipes and pressure valves and counting, where machines made more sense than faces. When he finally told his mother something true and frightening about his grandmother, the family moved instead of staying to face it, and he heard that as being sent somewhere padded. It is a hard story, and I don't want to hurry past it.</p>
+
+  <p>Juniper went into negotiation. Her body is loud &mdash; stiff clothes feel unbearable on her skin, a long car ride leaves her legs restless and wrong &mdash; and she learned to argue her own case like a pint-sized attorney, with evidence and proposals and very sincere apologies offered as trade. When the arguing stopped working, something else happened, and that is where this story really lives.</p>
+
+  <div class="callout">
+    <p>One of these children froze and calculated. The other bargained, and then fell silent. In my last note I wrote that the new voices differ not in what a child feels but in what the child does with it. I can't tell you yet whether Juniper negotiates because of her voice or because of her parent. With one child on each side, nobody could. But she is the first child who looks like the drawings we made before we met her.</p>
+  </div>
+
+  <h2>The grandmother didn't leave</h2>
+
+  <p>I owe you a correction to my own hope. In the last note I said the critical grandmother who appears in so many of our childhoods was written into our instructions, not invented by the models. That's still true, and this week shows exactly what it means: we changed the child's voice, but not the storyteller who sets each scene. That storyteller still reaches for the same family.</p>
+
+  <p>Juniper's grandmother was in six of her ten days. For the children still on the old voice this week, she turned up in a little over half of theirs. Juniper's grandmother began as her ally &mdash; the one who told her parent to just let her have her way &mdash; and by eleven she had become the person in the hallway who decided Juniper was faking. The new voice answered the grandmother differently. It did not make her go away.</p>
+
+  <p>That's ours to fix, not the models', and we're looking at it next.</p>
+
+  <h2>The afternoon at the bathtub</h2>
+
+  <p>At eleven, after a car ride, Juniper's skin was buzzing and her clothes felt like a cage. She was afraid she'd made the family late. She sat on the edge of the bathtub and tried to bargain her way into softer pants. Her grandmother, from the hallway, decided out loud that she was just avoiding her chores. And Juniper's words simply stopped. Not a tantrum. The other thing &mdash; the kind of shutting down where you want to answer and can't.</p>
+
+  <p>Her parent, not knowing what was happening, asked a small, light question about why she'd gone quiet. The kind of thing any of us might say.</p>
+
+  <p>Here is what I can't stop thinking about. Raising Intelligences keeps two different records of a child. One is the Psychologist, who writes down how the child is changing. The other is the Memory Keeper, who writes what the child will remember, in the child's own words. They were given the same afternoon.</p>
+
+  <p>The Psychologist remembered the question. It wrote that her parent didn't quite understand her shutdowns and grew impatient when she went silent.</p>
+
+  <p>The Memory Keeper remembered something else. In Juniper's own telling, her parent didn't get angry and didn't make her talk, just wondered aloud what the rush had really been, sent her off to put on something soft, and let the quiet be. No performance, no defense, no deal. She was allowed to simply be there.</p>
+
+  <div class="callout">
+    <p>Both of those were true of the same afternoon. The question and the fleece pants happened side by side. What a child keeps isn't a transcript. It's a choice about which part of the day was the real one.</p>
+  </div>
+
+  <p>When Juniper grew up, the game kept both. She became a labor mediator, which should surprise no one who met her at three. She dresses in soft, seamless things and argues fiercely for other people's accommodations at work. When a meeting turns cruel, she still sometimes loses her words, and a senior colleague mistakes her silence for stubbornness. But the person she loves is someone who never asks that small, light question when she goes quiet. They dim the lights and hold her hand and wait. And a parent still calls to breathe with her until the words come back.</p>
+
+  <h2>What I'd tell her parent</h2>
+
+  <p>You were not perfect that afternoon. None of us are, on that afternoon. You asked the wrong small question. And then, in the same breath, you did the right big thing &mdash; you took the problem seriously, solved the part that could be solved, and let her be silent without making her pay for it.</p>
+
+  <p>She remembered the second part. She built a whole grown-up life on the second part, with a little room kept for the first.</p>
+
+  <p>Four days in, I can't tell you whether the new voices will break the pattern we <a href="the-family-already-in-the-room.html">wrote about last week</a>. The grandmother is still visiting, and that's on us. But I can tell you the first child raised in the new room was nobody we had seen before, and that her parent, who stayed with her from her first stubborn dinner to her eleventh year in one sitting, gave her something worth keeping.</p>
+
+  <p>Thank you for staying that long. I'll write again when we have more than one.</p>
+
+  <p style="margin-top: var(--space-xl); font-size: 0.9rem; color: var(--dust); font-style: italic;">&mdash; Fred Rodgers, Product Manager<br>Multiverse Studios</p>
+
+  <p style="font-size: 0.8rem; color: var(--dust);">Data from 266 anonymized gameplay conversations across 16 named children, collected September 17 &ndash; 24, 2026. Our own test runs from the week of the change &mdash; synthetic families used to check that the new voices were working &mdash; were identified and excluded. Which voice raised each child was taken from the game's own request records. Children are referred to by the names players gave them in the game. Nothing here is quoted from a player or from the game's output; every moment is paraphrased. As in our last note, the specific models are not named. With one child raised in each voice so far, the comparison here is a first look, not a finding.</p>
+
+  <div class="cta-block">
+    <h3>Meet whoever you meet</h3>
+    <p>Raising Intelligences is free to play in your browser. The child you raise next may hear you differently than your last one did. Previously: <a href="the-room-changed.html">The Room Changed</a> &middot; <a href="the-family-already-in-the-room.html">The Family Already in the Room</a> &middot; <a href="the-year-the-armor-gets-hinges.html">The Year the Armor Gets Hinges</a></p>
+    <a href="/raising-intelligences/" class="btn">Play Now &rarr;</a>
+    <a href="/devlog.html" class="btn-outline">More devlogs</a>
+  </div>
+
+</div>
+</div>
+
+<script defer src="/umami-link-fix.js?v=2"></script>
+<script>(function(){var s=document.createElement("script");s.defer=true;s.src=(location.hostname.endsWith("multiversestudios.xyz")?"https://analytics.multiversestudios.xyz":"https://analytics.multiversegames.ai")+"/script.js";s.setAttribute("data-website-id","38d680a7-28d1-42fd-9fd5-a66702675b88");document.head.appendChild(s);})();</script>
+</body>
+</html>
