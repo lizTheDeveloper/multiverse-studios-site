@@ -7,9 +7,15 @@
 (function initWikiClient() {
   'use strict';
 
+  // The lore API is served at /api/lore on the play host of whichever domain
+  // the reader is on (.ai for players whose ISP blocks .xyz). It used to point
+  // at play.multiversestudios.xyz/lore, a path that only ever returned the
+  // play portal's HTML, so no one's discoveries ever unlocked anything.
   var LORE_API = window.location.hostname === 'localhost'
     ? 'http://localhost:3400'
-    : 'https://play.multiversestudios.xyz/lore';
+    : (/multiversegames\.ai$/.test(window.location.hostname)
+        ? 'https://play.multiversegames.ai'
+        : 'https://play.multiversestudios.xyz');
 
   // ── State ──────────────────────────────────────────────
 
