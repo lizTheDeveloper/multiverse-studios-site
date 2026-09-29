@@ -83,6 +83,14 @@
       accent: '#3ddc84',   // solar green
       accentVar: 'var(--biolume, #3ddc84)',
     },
+    gotchu: {
+      gameKey: 'gotchu',
+      playUrl: 'https://play.multiversestudios.xyz/gotchu-guy/',
+      name: 'Gotchu Guy',
+      tagline: 'Adopt a guy with a job. You influence him, not play him.',
+      accent: '#e8a33d',   // gotchi amber
+      accentVar: '#e8a33d',
+    },
   };
 
   // Checkout session endpoints.

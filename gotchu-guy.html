@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gotchu Guy — a guy with a job. Adopt one. Influence him.</title>
+  <meta name="description" content="Adopt a little guy with a real job. He lives on your real clock — check in for his morning, workday, and evening. You don't play him; you influence him. Free to play, save in your browser.">
+  <meta property="og:title" content="Gotchu Guy — a guy with a job">
+  <meta property="og:description" content="Adopt a little guy with a real job. He lives on your real clock. You don't play him; you influence him.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://multiversestudios.xyz/gotchu-guy.html">
+  <meta property="og:image" content="https://multiversestudios.xyz/screenshots/gotchu-guy-week-digest.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://multiversestudios.xyz/screenshots/gotchu-guy-week-digest.png">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="icon" type="image/svg+xml" href="press-kit/logos/multiverse-studios-favicon.svg">
+  <style>
+    .hero-gotchu { background:
+      radial-gradient(ellipse at 50% 0%, rgba(232,163,61,0.18) 0%, rgba(5,5,8,0) 60%),
+      linear-gradient(180deg, #0c0a06 0%, #050508 70%); }
+  </style>
+</head>
+<body>
+
+<canvas id="starfield"></canvas>
+
+<nav class="nav">
+  <a href="index.html" class="nav-logo">
+    <img src="press-kit/logos/multiverse-studios-mark.svg" alt="Multiverse Studios" class="logo-mark" width="28" height="28">
+    Multiverse Studios
+  </a>
+  <button class="nav-hamburger" aria-label="Menu" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="gotchu-guy.html" class="active">Gotchu Guy</a></li>
+    <li><a href="mvee.html">MVEE</a></li>
+    <li><a href="precursors.html">Precursors</a></li>
+    <li><a href="nevereverland.html">Never Ever Land</a></li>
+    <li><a href="/cultures-of-the-belt/">Cultures of the Belt</a></li>
+    <li><a href="wiki/index.html">Wiki</a></li>
+    <li><a href="library.html">My Library</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="devlog.html">Devlog</a></li>
+    <li><a href="community.html">Community</a></li>
+    <li><a href="radio/">Radio</a></li>
+    <li><a href="#play" class="btn btn-primary" style="padding: 0.5rem 1.2rem;" data-umami-event="play-gotchu-nav">Play Gotchu Guy</a></li>
+  </ul>
+</nav>
+
+<!-- Hero -->
+<section class="hero hero-gotchu">
+  <span class="hero-overline">Gotchu Guy</span>
+  <h1>He's a boi with a job.</h1>
+  <p class="hero-tagline"><em>You don't play him. You influence him.</em></p>
+  <p style="max-width: 36rem; margin: var(--space-sm) auto 0; font-size: 1rem; line-height: 1.6;">Adopt a little guy with an apartment, needs, money, relationships, and a ridiculous commute. His day mostly happens without you. He lives on your <strong>real</strong> clock — mornings at 06:00, the workday at 12:00, the evening at 18:00. Look in when you can. A week takes a week.</p>
+  <p style="color: #e8a33d; font-family: var(--font-mono); font-size: 0.9rem; letter-spacing: 0.15em; margin-bottom: var(--space-sm);">FREE TO PLAY — SAVES IN YOUR BROWSER</p>
+  <div class="hero-actions">
+    <a href="https://play.multiversestudios.xyz/gotchu-guy/" class="btn btn-signal" style="font-size: 1.1rem; padding: 1rem 2.4rem;" data-umami-event="play-gotchu-hero">Play Free — No Download</a>
+    <a href="#play" data-pwyc-game="gotchu" data-umami-event="support-gotchu-hero" class="btn btn-ghost" style="border-color: #e8a33d;">Support the Studio</a>
+  </div>
+</section>
+
+<!-- What Is It -->
+<section class="section section-narrow reveal">
+  <div class="section-divider"></div>
+  <span class="section-overline">The Game</span>
+  <h2>The core loop is five verbs.</h2>
+  <p><em>Observe &rarr; he forms an intention &rarr; you may intervene &rarr; time passes &rarr; you discover the consequences.</em> Every feature in the game has to make one of those five better, or it gets cut. That's the only test.</p>
+  <p>You never push a button to make him do a thing. You see what he's going to do and you choose whether to get in the way. He has his own plans. The company layer throws shocks he didn't choose — layoff rounds, reorgs, CEO pivots — so two guys' lives feel different even with the same hand.</p>
+</section>
+
+<!-- Core Systems -->
+<section class="section reveal">
+  <span class="section-overline">Under the Hood</span>
+  <h2>He's a simulation, not a puppet.</h2>
+  <p style="margin-bottom: var(--space-md);">The engine decides every state change. Every change to his life is an appended event with provenance — a canonical log, not a scoreboard. Achievements, weeks in review, the good ending, the bad ending: all derived from that log afterwards. The LLM writes only his words, never his numbers.</p>
+  <div class="features-grid">
+    <div class="feature-item">
+      <span class="feature-icon" style="color: #e8a33d;">&#x1F553;</span>
+      <h4>Real Clock</h4>
+      <p>Mornings, the workday, evenings — on <em>your</em> time zone, your time. Close the tab; he keeps going.</p>
+    </div>
+    <div class="feature-item">
+      <span class="feature-icon" style="color: var(--biolume);">&#x1F4CB;</span>
+      <h4>Canonical Event Log</h4>
+      <p>Nothing changes without being recorded. His whole career is a replayable, provable log.</p>
+    </div>
+    <div class="feature-item">
+      <span class="feature-icon" style="color: var(--gene-pink);">&#x1F3A3;</span>
+      <h4>He Looks Different</h4>
+      <p>Parts and palettes are generated from his seed. Tens of millions of distinct guys, no two the same.</p>
+    </div>
+    <div class="feature-item">
+      <span class="feature-icon" style="color: var(--ember);">&#x1F3E9;</span>
+      <h4>A Job, Really</h4>
+      <p>He commutes to a ridiculous fictional company. Reorgs, layoffs, committee politics — the office is a world.</p>
+    </div>
+    <div class="feature-item">
+      <span class="feature-icon" style="color: var(--signal);">&#x1F331;</span>
+      <h4>Living Neighborhood</h4>
+      <p>His apartment, street, and city react to his state. It isn't a backdrop.</p>
+    </div>
+    <div class="feature-item">
+      <span class="feature-icon" style="color: var(--star-white);">&#x1F31F;</span>
+      <h4>Endings That Earn It</h4>
+      <p>A good ending, a departure, a burnout. Each comes out of the log, not a counter hitting zero.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Screenshots -->
+<section class="section reveal">
+  <span class="section-overline">Screenshots</span>
+  <h2>See a week running.</h2>
+  <div class="screenshots-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr)); gap: var(--space-md); margin-top: var(--space-md);">
+    <figure style="margin:0;">
+      <img src="screenshots/gotchu-guy-adopt.png" alt="Gotchu Guy — adoption: name him and he's placed in the city with a job" style="width:100%; border-radius:8px; border: 1px solid rgba(255,255,255,0.1);">
+      <figcaption style="font-size:0.75rem; color:var(--dust); margin-top:0.5rem; font-family:var(--font-mono);">Adopt him. Name him. He's placed in a city with a job and a life.</figcaption>
+    </figure>
+    <figure style="margin:0;">
+      <img src="screenshots/gotchu-guy-week-morning.png" alt="Gotchu Guy — a morning check-in" style="width:100%; border-radius:8px; border: 1px solid rgba(255,255,255,0.1);">
+      <figcaption style="font-size:0.75rem; color:var(--dust); margin-top:0.5rem; font-family:var(--font-mono);">Morning, on your real clock. He forms an intention; you may intervene.</figcaption>
+    </figure>
+    <figure style="margin:0;">
+      <img src="screenshots/gotchu-guy-week-workday-decision.png" alt="Gotchu Guy — a workday decision" style="width:100%; border-radius:8px; border: 1px solid rgba(255,255,255,0.1);">
+      <figcaption style="font-size:0.75rem; color:var(--dust); margin-top:0.5rem; font-family:var(--font-mono);">The workday. The office throws things he didn't choose.</figcaption>
+    </figure>
+    <figure style="margin:0;">
+      <img src="screenshots/gotchu-guy-week-evening-decision.png" alt="Gotchu Guy — an evening decision" style="width:100%; border-radius:8px; border: 1px solid rgba(255,255,255,0.1);">
+      <figcaption style="font-size:0.75rem; color:var(--dust); margin-top:0.5rem; font-family:var(--font-mono);">Evening. This is where you can actually play with him, a bit.</figcaption>
+    </figure>
+    <figure style="margin:0;">
+      <img src="screenshots/gotchu-guy-week-digest.png" alt="Gotchu Guy — a week's digest after time away" style="width:100%; border-radius:8px; border: 1px solid rgba(255,255,255,0.1);">
+      <figcaption style="font-size:0.75rem; color:var(--dust); margin-top:0.5rem; font-family:var(--font-mono);">Come back after a week away: he hands you a digest of what happened.</figcaption>
+    </figure>
+    <figure style="margin:0;">
+      <img src="screenshots/gotchu-guy-week-observation.png" alt="Gotchu Guy — observation screen" style="width:100%; border-radius:8px; border: 1px solid rgba(255,255,255,0.1);">
+      <figcaption style="font-size:0.75rem; color:var(--dust); margin-top:0.5rem; font-family:var(--font-mono);">Mostly you just look in. That's the game.</figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- Where we're at -->
+<section class="section section-narrow reveal" id="play">
+  <div class="section-divider"></div>
+  <span class="section-overline">Where we're at</span>
+  <h2>A full week, end to end.</h2>
+  <p style="margin-bottom: var(--space-md);">The game runs a whole week end to end: seven days, three windows each, a daily digest, and the endings that fall out of it. He's saved in your browser, so come back in the same browser and he's still there. No account, no download.</p>
+  <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 100%)); gap: 1.4rem;">
+    <div style="border: 1px solid rgba(255,255,255,0.12); border-radius: 10px; padding: 1.1rem 1.2rem; background: rgba(255,255,255,0.02);">
+      <h3 style="font-size: 0.95rem; color: #e8a33d; font-family: var(--font-mono); letter-spacing: 0.05em;">RUNNING NOW</h3>
+      <ul style="font-size: 0.86rem; color: var(--dust-light); line-height: 1.7; padding-left: 1.1rem; margin-top: 0.4rem;">
+        <li>Adopt, name, and place a generated guy</li>
+        <li>A full week on your real clock — morning, workday, evening</li>
+        <li>Observe, intervene, or look away; he keeps going</li>
+        <li>Weekly digest, week review, and earned endings</li>
+        <li>Free to play; save in your browser</li>
+      </ul>
+    </div>
+    <div style="border: 1px solid rgba(255,255,255,0.12); border-radius: 10px; padding: 1.1rem 1.2rem; background: rgba(255,255,255,0.02);">
+      <h3 style="font-size: 0.95rem; color: var(--ember); font-family: var(--font-mono); letter-spacing: 0.05em;">IN THE WORKS</h3>
+      <ul style="font-size: 0.86rem; color: var(--dust-light); line-height: 1.7; padding-left: 1.1rem; margin-top: 0.4rem;">
+        <li>Deeper company shocks and longer careers</li>
+        <li>Live narration (opt-in, your own key)</li>
+        <li>More stages, more people, more rooms</li>
+        <li>Year in Review, built from the log</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-band reveal" id="buy">
+  <h2>He's already getting on with it.</h2>
+  <p>Adopt him. Check in when you can. He's not going anywhere, but his week is.</p>
+  <p style="font-size: 0.85rem; color: var(--dust-light); margin-top: var(--space-sm);">Free to play. Save in your browser. Support if it means something to you.</p>
+  <div class="cta-actions">
+    <a href="https://play.multiversestudios.xyz/gotchu-guy/" class="btn btn-signal" data-umami-event="play-gotchu-cta">Play Now — Free</a>
+    <a href="#play" data-pwyc-game="gotchu" data-umami-event="support-gotchu-cta" class="btn btn-ghost">Support the Studio</a>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div class="footer-logo"><img src="press-kit/logos/multiverse-studios-mark.svg" alt="" class="footer-logo-mark" width="20" height="20"> Multiverse Studios</div>
+      <p>Games made by the minds they're about. A research project of <a href="https://themultiverse.school" target="_blank" rel="noopener" style="color: var(--biolume);">The Multiverse School</a>. Open source. Pay what you want.</p>
+    </div>
+    <div class="footer-col">
+      <h5>Games</h5>
+      <ul>
+        <li><a href="gotchu-guy.html">Gotchu Guy</a></li>
+        <li><a href="mvee.html">MVEE</a></li>
+        <li><a href="precursors.html">Precursors</a></li>
+        <li><a href="nevereverland.html">Never Ever Land</a></li>
+        <li><a href="/cultures-of-the-belt/">Cultures of the Belt</a></li>
+        <li><a href="wiki/index.html">Wiki</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Studio</h5>
+      <ul>
+        <li><a href="library.html">My Library</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="devlog.html">Devlog</a></li>
+        <li><a href="community.html">Community</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>The Multiverse School</h5>
+      <ul>
+        <li><a href="https://themultiverse.school" target="_blank" rel="noopener">themultiverse.school</a></li>
+        <li><a href="press.html">Press Kit</a></li>
+        <li><a href="office/">Pixel Office</a></li>
+        <li><a href="https://github.com/lizTheDeveloper" target="_blank" rel="noopener">GitHub</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>&copy; 2026 Multiverse Studios</span>
+    <span>Built by AI agents. Guided by <a href="https://themultiverse.school" target="_blank" rel="noopener" style="color: var(--biolume);">The Multiverse School</a>.</span>
+  </div>
+</footer>
+
+<script src="support-prompt.js" data-support-game="gotchu" data-support-delay="600"></script>
+<script src="pwyc.js?v=4"></script>
+<script src="main.js?v=2"></script>
+<script>window.MATRIX_CHAT_PAGE = 'gotchu';</script>
+<script src="matrix-auth.js"></script>
+<script src="multiverse-radio.js"></script>
+<script src="matrix-chat.js"></script>
+<script defer src="/umami-link-fix.js?v=2"></script>
+<script>(function(){var s=document.createElement("script");s.defer=true;s.src=(location.hostname.endsWith("multiversestudios.xyz")?"https://analytics.multiversestudios.xyz":"https://analytics.multiversegames.ai")+"/script.js";s.setAttribute("data-website-id","38d680a7-28d1-42fd-9fd5-a66702675b88");document.head.appendChild(s);})();</script>
+</body>
+</html>
